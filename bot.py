@@ -310,10 +310,10 @@ RÈGLES ABSOLUES :
 4. Sans image/vidéo : commence par "{prefix} —"
 5. Max 280 caractères tweet (lien inclus)
 6. Max 2 emojis, bien placés
-7. Source à la fin : 📰 {source}
+7. Source à la fin en italique sans emoji, petit et discret : "— _Le Monde_"
 8. Zéro hashtag
 
-BON exemple : "🚨 BREAKING — 3 000 civils tués au Liban depuis le 2 mars. Les frappes s'intensifient. 📰 Le Monde"
+BON exemple : "🚨 BREAKING — 3 000 civils tués au Liban depuis le 2 mars. Les frappes s'intensifient. — _Le Monde_"
 MAUVAIS exemple : "Dans le contexte du conflit au Moyen-Orient, il convient de noter que..."
 
 Réponds UNIQUEMENT avec ce JSON :
@@ -438,7 +438,7 @@ def build_tweet_image_png(headline, source, category, photo_url=None):
         mois = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"]
         now  = datetime.now()
         date_str = f"{now.day} {mois[now.month-1]} {now.year}"
-        draw.text((40, H-50), f"📰 {source}", font=font_sm, fill=(255,255,255,100))
+        draw.text((40, H-50), f"{source}", font=font_sm, fill=(255,255,255,100))
         bbox = draw.textbbox((0,0), date_str, font=font_sm)
         draw.text((W - bbox[2] - 40, H-50), date_str, font=font_sm, fill=(255,255,255,60))
 
