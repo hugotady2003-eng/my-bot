@@ -35,26 +35,35 @@ CATEGORIES_VIDEO = {"breaking", "international", "sport", "science", "insolite",
 # ─────────────────────────────────────────────────────────────────────────────
 
 RSS_FEEDS = [
-    # 🇫🇷 France
-    {"url": "https://www.lemonde.fr/rss/une.xml",                     "source": "Le Monde"},
-    {"url": "https://www.lefigaro.fr/rss/figaro_actualites.xml",      "source": "Le Figaro"},
-    {"url": "https://www.liberation.fr/arc/outboundfeeds/rss/",       "source": "Libération"},
-    {"url": "https://www.20minutes.fr/feeds/rss/actu",                "source": "20 Minutes"},
-    {"url": "https://www.bfmtv.com/rss/news-24-7/",                   "source": "BFMTV"},
-    {"url": "https://www.franceinfo.fr/rss/en-direct.rss",            "source": "France Info"},
+    # 🇫🇷 France générale
+    {"url": "https://www.lemonde.fr/rss/une.xml",                          "source": "Le Monde"},
+    {"url": "https://www.lefigaro.fr/rss/figaro_actualites.xml",           "source": "Le Figaro"},
+    {"url": "https://www.liberation.fr/arc/outboundfeeds/rss/",            "source": "Libération"},
+    {"url": "https://www.20minutes.fr/feeds/rss/actu",                     "source": "20 Minutes"},
+    {"url": "https://www.bfmtv.com/rss/news-24-7/",                        "source": "BFMTV"},
+    {"url": "https://www.franceinfo.fr/rss/en-direct.rss",                 "source": "France Info"},
+    # 🏛️ Politique française spécifique
+    {"url": "https://www.lemonde.fr/politique/rss/",                       "source": "Le Monde Politique"},
+    {"url": "https://www.lefigaro.fr/rss/figaro_politique.xml",            "source": "Le Figaro Politique"},
+    {"url": "https://www.publicsenat.fr/rss/articles.rss",                 "source": "Public Sénat"},
+    # 🔐 Numérique / CNIL / Tech française
+    {"url": "https://www.cnil.fr/fr/rss.xml",                              "source": "CNIL"},
+    {"url": "https://www.numerama.com/feed/",                              "source": "Numerama"},
     # 🌍 International
-    {"url": "https://feeds.bbci.co.uk/news/world/rss.xml",            "source": "BBC World"},
-    {"url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", "source": "NY Times"},
-    {"url": "https://www.theguardian.com/world/rss",                  "source": "The Guardian"},
-    {"url": "https://feeds.reuters.com/reuters/topNews",              "source": "Reuters"},
+    {"url": "https://feeds.bbci.co.uk/news/world/rss.xml",                 "source": "BBC World"},
+    {"url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",      "source": "NY Times"},
+    {"url": "https://www.theguardian.com/world/rss",                       "source": "The Guardian"},
+    {"url": "https://feeds.reuters.com/reuters/topNews",                   "source": "Reuters"},
     # 📈 Économie
-    {"url": "https://www.lesechos.fr/rss/rss_la_une.xml",             "source": "Les Echos"},
+    {"url": "https://www.lesechos.fr/rss/rss_la_une.xml",                  "source": "Les Echos"},
     # 🔬 Science & Tech
-    {"url": "https://www.futura-sciences.com/rss/actualites.xml",     "source": "Futura Sciences"},
-    # 😲 Insolite
-    {"url": "https://www.leparisien.fr/faits-divers/rss.xml",         "source": "Le Parisien"},
+    {"url": "https://www.futura-sciences.com/rss/actualites.xml",          "source": "Futura Sciences"},
+    # 😲 Insolite / Faits divers
+    {"url": "https://www.leparisien.fr/faits-divers/rss.xml",              "source": "Le Parisien"},
     # 🏆 Sport
-    {"url": "https://www.lequipe.fr/rss/actu_rss.xml",                "source": "L'Équipe"},
+    {"url": "https://www.lequipe.fr/rss/actu_rss.xml",                     "source": "L'Équipe"},
+    # 📜 Histoire
+    {"url": "https://www.herodote.net/rss.xml",                            "source": "Herodote"},
 ]
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -97,8 +106,25 @@ def init_db():
     conn.execute("""CREATE TABLE IF NOT EXISTS recent_titles (
         id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT,
         added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+    conn.execute("""CREATE TABLE IF NOT EXISTS category_log (
+        category TEXT PRIMARY KEY,
+        last_sent TIMESTAMP DEFAULT '2000-01-01')""")
     conn.commit()
     return conn
+
+def get_categories_sent_today(conn):
+    """Retourne les catégories déjà envoyées aujourd'hui."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    rows  = conn.execute(
+        "SELECT category FROM category_log WHERE last_sent LIKE ?", (f"{today}%",)
+    ).fetchall()
+    return {r[0] for r in rows}
+
+def mark_category_sent(conn, category):
+    conn.execute("""INSERT INTO category_log (category, last_sent) VALUES (?,?)
+        ON CONFLICT(category) DO UPDATE SET last_sent=excluded.last_sent""",
+        (category, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    conn.commit()
 
 def is_url_seen(conn, url):
     h = hashlib.md5(url.encode()).hexdigest()
@@ -287,21 +313,19 @@ Catégorie "histoire" : uniquement si l'article parle d'un fait historique lié 
 # ─────────────────────────────────────────────────────────────────────────────
 
 def generate_tweet_content(title, summary, source, category, video_url=None):
+    """Génère 2 propositions de tweet avec angles différents."""
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     today  = datetime.now().strftime("%d %B %Y")
-    prefix = TWEET_PREFIXES.get(category, "📰")
-
     extras = {
-        "histoire": "Commence par '📜 Il y a X ans...'",
-        "insolite": "Rends-le fun et surprenant. Emoji 😲 ou 🤯 bienvenu.",
-        "breaking": "Commence par 🚨.",
-        "science":  "Explique simplement, sans jargon.",
+        "histoire": "C'est un fait historique. Style 'Il y a X ans...'",
+        "insolite": "Rends-le fun et surprenant.",
+        "breaking": "Urgence et clarté maximale.",
+        "science":  "Simplifie, rends accessible.",
     }
     extra = extras.get(category, "")
+    video_instruction = f"\nIntègre ce lien dans la proposition 1 : {video_url}" if video_url else ""
 
-    video_instruction = f"\nAjoute ce lien vidéo à la fin : {video_url}" if video_url else ""
-
-    prompt = f"""Tu es community manager de Pulse, compte Twitter d'actu.
+    prompt = f"""Tu es community manager de Pulse, compte Twitter d'actu française.
 Aujourd'hui : {today}. Catégorie : {category}. {extra}
 
 Article :
@@ -309,22 +333,25 @@ Source : {source}
 Titre : {title}
 Résumé : {summary}{video_instruction}
 
-RÈGLES ABSOLUES :
-1. TOUJOURS en FRANÇAIS, même si l'article est en anglais
-2. INFO DIRECTE et BRUTE — zéro intro, zéro remplissage, zéro "Dans un contexte..."
-3. TWEET UNIQUE par défaut. Thread UNIQUEMENT si l'info a plusieurs volets vraiment distincts qui ne rentrent pas en 280 caractères. En cas de doute → tweet unique.
-4. Sans image/vidéo : commence par "{prefix} —"
-5. Max 280 caractères tweet (lien inclus)
-6. Max 2 emojis, bien placés
-7. Source à la fin en italique sans emoji, petit et discret : "— _Le Monde_"
-8. Zéro hashtag
+Génère DEUX propositions de tweet avec des angles différents.
 
-BON exemple : "🚨 BREAKING — 3 000 civils tués au Liban depuis le 2 mars. Les frappes s'intensifient. — _Le Monde_"
-MAUVAIS exemple : "Dans le contexte du conflit au Moyen-Orient, il convient de noter que..."
+FORMAT de chaque tweet :
+**MOT-CLÉ** | info directe et précise #hashtag1 #hashtag2 (Source)
 
-Réponds UNIQUEMENT avec ce JSON :
-Tweet : {{"type":"tweet","content":"..."}}
-Thread (rare) : {{"type":"thread","content":["1/N...","2/N..."]}}"""
+Règles strictes :
+- TOUJOURS en FRANÇAIS
+- **MOT-CLÉ** en gras au début (1-2 mots max, ex: **POLITIQUE**, **RETRAITES**, **SAMSUNG**)
+- Séparateur | après le mot-clé
+- Info brute et directe, zéro remplissage
+- 2-3 hashtags pertinents sur des mots clés que les gens recherchent
+- Source entre parenthèses à la fin sans emoji : (Le Monde)
+- Max 280 caractères
+- Deux angles vraiment différents (ex: angle chiffres vs angle conséquences)
+
+Exemple : **RETRAITES** | Le gouvernement suspend la réforme après une semaine de grève #Retraites #Grève #Social (France Info)
+
+Réponds UNIQUEMENT avec ce JSON, sans texte autour :
+{{"proposition1": "tweet complet", "proposition2": "tweet complet"}}"""
 
     msg = client.messages.create(
         model="claude-haiku-4-5-20251001", max_tokens=800,
@@ -334,11 +361,32 @@ Thread (rare) : {{"type":"thread","content":["1/N...","2/N..."]}}"""
     return json.loads(raw)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# IMAGE TWEET — DA Pulse générée en PNG avec Pillow (pièce jointe email)
-# ─────────────────────────────────────────────────────────────────────────────
+def analyse_image_type(photo_url, title):
+    """
+    Détermine si l'image est une photo de personne identifiable.
+    Retourne True si personne (pas de texte au milieu), False sinon.
+    """
+    if not photo_url:
+        return False
+    try:
+        client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+        prompt = f"""Le titre de l'article est : "{title}"
+L'image vient de cette URL : {photo_url}
 
-def build_tweet_image_png(headline, source, category, photo_url=None):
+Sans voir l'image, en te basant uniquement sur le titre et le contexte :
+Cette image montre-t-elle probablement une ou plusieurs personnes identifiables (politiciens, célébrités, sportifs...) ?
+
+Réponds UNIQUEMENT avec : {{"is_person": true}} ou {{"is_person": false}}"""
+        msg = client.messages.create(
+            model="claude-haiku-4-5-20251001", max_tokens=50,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        raw = msg.content[0].text.strip().replace("```json","").replace("```","").strip()
+        return json.loads(raw).get("is_person", False)
+    except:
+        return False
+
+def build_tweet_image_png(headline, source, category, photo_url=None, is_person=False):
     """
     Génère un PNG 1200x675 DA Pulse.
     - Police Noto Sans (propre, lisible, style Apple)
@@ -470,15 +518,16 @@ def build_tweet_image_png(headline, source, category, photo_url=None):
         draw = ImageDraw.Draw(img)
         draw.text((bx+18, by+9), cat_text, font=font_badge, fill=(255,255,255))
 
-        # ── Titre centré verticalement ──
-        line_h     = font_size + 16
-        total_h    = len(lines) * line_h
-        ty         = (H - total_h) // 2 + 10
-        for ln in lines:
-            bbox = draw.textbbox((0,0), ln, font=font_title)
-            lw   = bbox[2] - bbox[0]
-            draw.text(((W - lw) // 2, ty), ln, font=font_title, fill=(255, 255, 255))
-            ty  += line_h
+        # ── Titre centré verticalement — seulement si pas une photo de personne ──
+        if not is_person:
+            line_h     = font_size + 16
+            total_h    = len(lines) * line_h
+            ty         = (H - total_h) // 2 + 10
+            for ln in lines:
+                bbox = draw.textbbox((0,0), ln, font=font_title)
+                lw   = bbox[2] - bbox[0]
+                draw.text(((W - lw) // 2, ty), ln, font=font_title, fill=(255, 255, 255))
+                ty  += line_h
 
         # ── Source + date (bas) ──
         mois = ["jan","fev","mar","avr","mai","juin","juil","aout","sep","oct","nov","dec"]
@@ -561,16 +610,12 @@ def build_pdf(tweet_result, title, source, url, category, video=None):
         story.append(Paragraph(title, s_title))
         story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#eeeeee")))
 
-        # Tweets
-        if tweet_result["type"] == "tweet":
-            story.append(Paragraph("TWEET — copie ce texte tel quel sur X :", s_label))
-            story.append(Paragraph(tweet_result["content"], s_tweet))
-        else:
-            tweets = tweet_result["content"]
-            story.append(Paragraph(f"THREAD ({len(tweets)} tweets) — poste dans l'ordre :", s_label))
-            for i, t in enumerate(tweets, 1):
-                story.append(Paragraph(f"Tweet {i}/{len(tweets)} :", s_label))
-                story.append(Paragraph(t, s_tweet))
+        # Tweets — 2 propositions
+        story.append(Paragraph("PROPOSITION 1 — copie ce texte sur X :", s_label))
+        story.append(Paragraph(tweet_result.get("proposition1", ""), s_tweet))
+        story.append(Spacer(1, 0.2*cm))
+        story.append(Paragraph("PROPOSITION 2 — ou celle-ci :", s_label))
+        story.append(Paragraph(tweet_result.get("proposition2", ""), s_tweet))
 
         # Vidéo
         if video:
@@ -651,6 +696,12 @@ def extract_image(entry):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def check_feeds(conn):
+    # ── Filtre horaire : pas d'envoi entre 23h et 8h ──
+    heure = datetime.now().hour
+    if heure >= 23 or heure < 8:
+        print(f"  😴 Hors plage horaire ({heure}h) — on attend 8h.")
+        return
+
     print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 🔍 Scan RSS...")
 
     # 1. Collecter
@@ -694,7 +745,18 @@ def check_feeds(conn):
         except Exception as e:
             print(f"  ❌ Analyse : {e}")
 
-    # 3. Meilleurs en tête
+    # 3. Boost catégories pas encore envoyées aujourd'hui + tri par score
+    cats_today = get_categories_sent_today(conn)
+    all_cats   = set(CATEGORY_STYLES.keys())
+    missing    = all_cats - cats_today
+    if missing:
+        print(f"  📊 Catégories manquantes aujourd'hui : {', '.join(missing)}")
+
+    # Boost +2 pour les catégories pas encore vues aujourd'hui
+    for item in scored:
+        if item["analysis"]["category"] in missing:
+            item["score"] = min(10, item["score"] + 2)
+
     scored.sort(key=lambda x: x["score"], reverse=True)
     top = scored[:MAX_PAR_PASSE]
     print(f"  → {len(top)} sélectionné(s).")
@@ -709,9 +771,12 @@ def check_feeds(conn):
             # Image PNG
             photo    = extract_image(item["entry"])
             png_bytes, png_filename = None, None
+            is_person = False
+            if photo:
+                is_person = analyse_image_type(photo, item["title"])
             if a.get("needs_image") or photo:
                 png_bytes, png_filename = build_tweet_image_png(
-                    item["title"], item["source"], cat, photo
+                    item["title"], item["source"], cat, photo, is_person=is_person
                 )
 
             # Vidéo YouTube
@@ -738,6 +803,7 @@ def check_feeds(conn):
                 pdf_bytes=pdf_bytes, pdf_filename=pdf_name,
                 png_bytes=png_bytes, png_filename=png_filename or "pulse-image.png"
             )
+            mark_category_sent(conn, cat)
             print(f"  📧 Envoyé {'📎PDF' if pdf_bytes else ''} {'🖼️PNG' if png_bytes else ''} {'📹' if video else ''} : {item['title'][:50]}...")
             time.sleep(4)
 
