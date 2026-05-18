@@ -336,31 +336,52 @@ Règles : vrai et fidèle · ton direct · max 3 emojis/tweet
 
 def build_tweet_image_html(headline, source, category, photo_url=None):
     s        = CATEGORY_STYLES.get(category, CATEGORY_STYLES["international"])
-    date_str = datetime.now().strftime("%d %b %Y")
-    h        = headline if len(headline) <= 110 else headline[:107] + "..."
+    # Date en français
+    mois = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"]
+    now  = datetime.now()
+    date_str = f"{now.day} {mois[now.month-1]} {now.year}"
 
-    photo_div = ""
+    # Tronquer le titre
+    h = headline if len(headline) <= 80 else headline[:77] + "..."
+    # Taille de police adaptée à la longueur
+    font_size = "22px" if len(h) > 60 else "26px"
+
+    photo_style = ""
     if photo_url:
-        photo_div = f'<div style="position:absolute;inset:0;background:url({photo_url!r}) center/cover;opacity:.80;filter:saturate(.85);"></div>'
+        photo_style = f"background-image:url('{photo_url}');background-size:cover;background-position:center;"
 
-    return f"""<div style="width:580px;height:326px;position:relative;overflow:hidden;border-radius:14px;display:block;margin:0 auto;">
-  {photo_div}
-  <div style="position:absolute;inset:0;background:{s['overlay']};"></div>
-  <div style="position:absolute;top:0;left:0;right:0;height:9px;background:{s['bar']};"></div>
-  <div style="position:absolute;inset:0;padding:20px 24px 18px;display:flex;flex-direction:column;justify-content:space-between;">
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-family:Georgia,serif;font-style:italic;font-weight:900;font-size:22px;color:#fff;letter-spacing:-1px;">Pulse</span>
-      <span style="background:rgba(255,255,255,.1);border:1px solid {s['badge_color']}55;border-radius:100px;padding:4px 12px;font-size:11px;font-weight:bold;color:{s['badge_color']};letter-spacing:1px;">{s['label']}</span>
-    </div>
-    <div style="font-family:Georgia,serif;font-style:italic;font-weight:900;font-size:28px;color:#fff;line-height:1.2;text-shadow:0 2px 20px rgba(0,0,0,.6);max-width:92%;">{h}</div>
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-size:11px;color:rgba(255,255,255,.38);">📰 {source}</span>
-      <span style="font-size:11px;color:rgba(255,255,255,.2);">{date_str}</span>
-    </div>
-  </div>
-</div>"""
-
-
+    return f"""<table width="580" cellpadding="0" cellspacing="0" style="border-radius:14px;overflow:hidden;margin:0 auto;" bgcolor="#0d0d14">
+  <tr><td style="height:9px;background:{s['bar']};font-size:0;">&nbsp;</td></tr>
+  <tr>
+    <td style="padding:0;position:relative;">
+      <table width="580" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="580" height="290" style="{photo_style}opacity:1;font-size:0;" bgcolor="#0d0d14">
+            <table width="580" cellpadding="0" cellspacing="0" style="background:rgba(0,0,0,0);">
+              <tr><td style="background:{s['overlay']};padding:18px 22px 16px;">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="font-family:Georgia,serif;font-style:italic;font-weight:900;font-size:20px;color:#fff;letter-spacing:-1px;">Pulse</td>
+                    <td align="right" style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;color:{s['badge_color']};border:1px solid {s['badge_color']};border-radius:20px;padding:3px 10px;white-space:nowrap;">{s['label']}</td>
+                  </tr>
+                </table>
+                <div style="height:20px;"></div>
+                <p style="font-family:Georgia,serif;font-style:italic;font-weight:900;font-size:{font_size};color:#fff;line-height:1.25;margin:0;padding:0;">{h}</p>
+                <div style="height:20px;"></div>
+                <table width="100%" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="font-family:Arial;font-size:11px;color:rgba(255,255,255,.4);">📰 {source}</td>
+                    <td align="right" style="font-family:Arial;font-size:11px;color:rgba(255,255,255,.22);">{date_str}</td>
+                  </tr>
+                </table>
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>"""
 # ─────────────────────────────────────────────────────────────────────────────
 # EMAIL
 # ─────────────────────────────────────────────────────────────────────────────
