@@ -1,0 +1,31 @@
+name: NewsBot – Email
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Installation
+        run: pip install -r requirements.txt
+      - name: Cache articles vus
+        uses: actions/cache@v4
+        with:
+          path: seen_articles.db
+          key: seen-${{ github.run_id }}
+          restore-keys: seen-
+      - name: Lancer le bot
+        env:
+          GMAIL_ADDRESS:     ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASS:    ${{ secrets.GMAIL_APP_PASS }}
+          EMAIL_TO:          ${{ secrets.EMAIL_TO }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          YOUTUBE_API_KEY:   ${{ secrets.YOUTUBE_API_KEY }}
+        run: python bot_single_run.py
