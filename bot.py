@@ -340,8 +340,6 @@ Thread (rare) : {{"type":"thread","content":["1/N...","2/N..."]}}"""
 
 def build_tweet_image_png(headline, source, category, photo_url=None):
     """
-def build_tweet_image_png(headline, source, category, photo_url=None):
-    """
     Génère un PNG 1200x675 DA Pulse.
     - Police Noto Sans (propre, lisible, style Apple)
     - Taille texte adaptative selon longueur du titre
