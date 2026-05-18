@@ -350,7 +350,10 @@ Règles :
 - Source entre parenthèses : ({source})
 - Max 280 caractères
 
+ATTENTION : après le "{prefix} {cat_label} |", NE RÉPÈTE JAMAIS le mot "{cat_label}" dans le texte. Va directement à l'info.
+
 Exemple : 🌍 MONDE | Le Danemark refuse de négocier le Groenland malgré Trump #Groenland #Trump #Géopolitique (Le Monde)
+Mauvais exemple : 🌍 MONDE | MONDE — Le Danemark...  ← NE PAS FAIRE
 
 Réponds UNIQUEMENT avec ce JSON :
 {{"tweet": "le tweet complet"}}"""
@@ -365,28 +368,20 @@ Réponds UNIQUEMENT avec ce JSON :
 
 def analyse_image_type(photo_url, title):
     """
-    Détermine si l'image est une photo de personne identifiable.
-    Retourne True si personne (pas de texte au milieu), False sinon.
+    Détermine si l'image est une photo de personne.
+    Heuristique simple basée sur les mots-clés du titre.
+    On ne skip le texte QUE si c'est clairement un portrait de personne nommée.
     """
     if not photo_url:
         return False
-    try:
-        client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-        prompt = f"""Le titre de l'article est : "{title}"
-L'image vient de cette URL : {photo_url}
-
-Sans voir l'image, en te basant uniquement sur le titre et le contexte :
-Cette image montre-t-elle probablement une ou plusieurs personnes identifiables (politiciens, célébrités, sportifs...) ?
-
-Réponds UNIQUEMENT avec : {{"is_person": true}} ou {{"is_person": false}}"""
-        msg = client.messages.create(
-            model="claude-haiku-4-5-20251001", max_tokens=50,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        raw = msg.content[0].text.strip().replace("```json","").replace("```","").strip()
-        return json.loads(raw).get("is_person", False)
-    except:
-        return False
+    # Mots indiquant clairement une personne nommée (portrait)
+    person_keywords = [
+        "portrait", "interview", "discours", "conférence de presse",
+        "macron", "trump", "biden", "poutine", "xi jinping", "bardella",
+        "le pen", "mélenchon", "attal", "weil", "castets"
+    ]
+    title_lower = title.lower()
+    return any(kw in title_lower for kw in person_keywords)
 
 def build_tweet_image_png(headline, source, category, photo_url=None, is_person=False):
     """
@@ -731,7 +726,7 @@ def check_feeds(conn):
     for fi in RSS_FEEDS:
         try:
             feed = feedparser.parse(fi["url"])
-            for entry in feed.entries[:5]:
+            for entry in feed.entries[:2]:  # max 2 par source
                 url   = entry.get("link","")
                 title = entry.get("title","")
                 summ  = entry.get("summary", entry.get("description",""))
