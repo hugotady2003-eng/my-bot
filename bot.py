@@ -313,48 +313,50 @@ Catégorie "histoire" : uniquement si l'article parle d'un fait historique lié 
 # ─────────────────────────────────────────────────────────────────────────────
 
 def generate_tweet_content(title, summary, source, category, video_url=None):
-    """Génère 2 propositions de tweet avec angles différents."""
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     today  = datetime.now().strftime("%d %B %Y")
+    prefix = TWEET_PREFIXES.get(category, "📰")
+    cat_label = {
+        "breaking": "BREAKING", "international": "MONDE",
+        "politique": "POLITIQUE", "economie": "ECO",
+        "societe": "SOCIETE", "histoire": "HISTOIRE",
+        "insolite": "INSOLITE", "sport": "SPORT", "science": "SCIENCE",
+    }.get(category, category.upper())
     extras = {
-        "histoire": "C'est un fait historique. Style 'Il y a X ans...'",
+        "histoire": "Style 'Il y a X ans...'",
         "insolite": "Rends-le fun et surprenant.",
-        "breaking": "Urgence et clarté maximale.",
+        "breaking": "Urgence et clarté.",
         "science":  "Simplifie, rends accessible.",
     }
     extra = extras.get(category, "")
-    video_instruction = f"\nIntègre ce lien dans la proposition 1 : {video_url}" if video_url else ""
+    video_instruction = f"\nIntègre ce lien à la fin : {video_url}" if video_url else ""
 
     prompt = f"""Tu es community manager de Pulse, compte Twitter d'actu française.
-Aujourd'hui : {today}. Catégorie : {category}. {extra}
+Aujourd'hui : {today}. {extra}
 
 Article :
 Source : {source}
 Titre : {title}
 Résumé : {summary}{video_instruction}
 
-Génère DEUX propositions de tweet avec des angles différents.
+FORMAT OBLIGATOIRE :
+{prefix} {cat_label} | info directe #hashtag1 #hashtag2 (Source)
 
-FORMAT de chaque tweet :
-**MOT-CLÉ** | info directe et précise #hashtag1 #hashtag2 (Source)
-
-Règles strictes :
+Règles :
 - TOUJOURS en FRANÇAIS
-- **MOT-CLÉ** en gras au début (1-2 mots max, ex: **POLITIQUE**, **RETRAITES**, **SAMSUNG**)
-- Séparateur | après le mot-clé
-- Info brute et directe, zéro remplissage
-- 2-3 hashtags pertinents sur des mots clés que les gens recherchent
-- Source entre parenthèses à la fin sans emoji : (Le Monde)
+- Commence par "{prefix} {cat_label} |"
+- Info brute après le |, zéro remplissage
+- 2-3 hashtags pertinents
+- Source entre parenthèses : ({source})
 - Max 280 caractères
-- Deux angles vraiment différents (ex: angle chiffres vs angle conséquences)
 
-Exemple : **RETRAITES** | Le gouvernement suspend la réforme après une semaine de grève #Retraites #Grève #Social (France Info)
+Exemple : 🌍 MONDE | Le Danemark refuse de négocier le Groenland malgré Trump #Groenland #Trump #Géopolitique (Le Monde)
 
-Réponds UNIQUEMENT avec ce JSON, sans texte autour :
-{{"proposition1": "tweet complet", "proposition2": "tweet complet"}}"""
+Réponds UNIQUEMENT avec ce JSON :
+{{"tweet": "le tweet complet"}}"""
 
     msg = client.messages.create(
-        model="claude-haiku-4-5-20251001", max_tokens=800,
+        model="claude-haiku-4-5-20251001", max_tokens=400,
         messages=[{"role": "user", "content": prompt}]
     )
     raw = msg.content[0].text.strip().replace("```json","").replace("```","").strip()
@@ -403,10 +405,22 @@ def build_tweet_image_png(headline, source, category, photo_url=None, is_person=
         # ── Fond de base ──
         img  = Image.new('RGB', (W, H), (13, 13, 20))
 
-        # ── Photo de fond ──
-        if photo_url:
+        # ── Photo de fond — article ou fallback Unsplash ──
+        UNSPLASH_FALLBACK = {
+            "breaking":      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=70",
+            "international": "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&q=70",
+            "politique":     "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&q=70",
+            "economie":      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=70",
+            "societe":       "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=70",
+            "histoire":      "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1200&q=70",
+            "insolite":      "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=1200&q=70",
+            "sport":         "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=70",
+            "science":       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=70",
+        }
+        img_url = photo_url or UNSPLASH_FALLBACK.get(category)
+        if img_url:
             try:
-                req = urllib.request.Request(photo_url, headers={"User-Agent": "Mozilla/5.0"})
+                req   = urllib.request.Request(img_url, headers={"User-Agent": "Mozilla/5.0"})
                 with urllib.request.urlopen(req, timeout=6) as r:
                     raw = r.read()
                 photo = Image.open(io.BytesIO(raw)).convert('RGB').resize((W, H), Image.LANCZOS)
@@ -491,7 +505,7 @@ def build_tweet_image_png(headline, source, category, photo_url=None, is_person=
         # ── Logo PULSE (haut gauche) — sans emoji ──
         draw.text((44, 32), "Pulse", font=font_logo, fill=(255, 255, 255))
 
-        # ── Badge catégorie (haut droit) — texte sans emoji ──
+        # ── Badge catégorie (haut droit) — couleur de la catégorie ──
         cat_labels_clean = {
             "breaking":      "Breaking",
             "international": "International",
@@ -503,20 +517,31 @@ def build_tweet_image_png(headline, source, category, photo_url=None, is_person=
             "sport":         "Sport",
             "science":       "Science & Tech",
         }
-        cat_text = cat_labels_clean.get(category, category.capitalize())
-        bbox     = draw.textbbox((0,0), cat_text, font=font_badge)
-        bw = bbox[2] - bbox[0] + 36
-        bh = bbox[3] - bbox[1] + 18
+        cat_text  = cat_labels_clean.get(category, category.capitalize())
+        # Couleur du badge = couleur de la catégorie
+        badge_rgb = tuple(int(s["badge_color"].lstrip("#")[i:i+2], 16) for i in (0,2,4))
+
+        bbox = draw.textbbox((0,0), cat_text, font=font_badge)
+        tw_b = bbox[2] - bbox[0]
+        th_b = bbox[3] - bbox[1]
+        pad_x, pad_y = 20, 10
+        bw = tw_b + pad_x * 2
+        bh = th_b + pad_y * 2
         bx = W - bw - 44
-        by = 30
-        # Fond semi-transparent du badge
+        by = 28
+
+        # Fond coloré semi-transparent du badge
         badge_overlay = Image.new('RGBA', (W, H), (0,0,0,0))
         bdraw = ImageDraw.Draw(badge_overlay)
-        bdraw.rounded_rectangle([bx, by, bx+bw, by+bh], radius=bh//2,
-                                  fill=(255,255,255,25), outline=(255,255,255,70), width=1)
+        bdraw.rounded_rectangle(
+            [bx, by, bx+bw, by+bh], radius=bh//2,
+            fill=(*badge_rgb, 50),
+            outline=(*badge_rgb, 180), width=2
+        )
         img  = Image.alpha_composite(img.convert('RGBA'), badge_overlay).convert('RGB')
         draw = ImageDraw.Draw(img)
-        draw.text((bx+18, by+9), cat_text, font=font_badge, fill=(255,255,255))
+        # Texte centré dans le badge
+        draw.text((bx + pad_x, by + pad_y), cat_text, font=font_badge, fill=badge_rgb)
 
         # ── Titre centré verticalement — seulement si pas une photo de personne ──
         if not is_person:
@@ -610,12 +635,9 @@ def build_pdf(tweet_result, title, source, url, category, video=None):
         story.append(Paragraph(title, s_title))
         story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#eeeeee")))
 
-        # Tweets — 2 propositions
-        story.append(Paragraph("PROPOSITION 1 — copie ce texte sur X :", s_label))
-        story.append(Paragraph(tweet_result.get("proposition1", ""), s_tweet))
-        story.append(Spacer(1, 0.2*cm))
-        story.append(Paragraph("PROPOSITION 2 — ou celle-ci :", s_label))
-        story.append(Paragraph(tweet_result.get("proposition2", ""), s_tweet))
+        # Tweet — texte à copier
+        story.append(Paragraph("TWEET — copie ce texte tel quel sur X :", s_label))
+        story.append(Paragraph(tweet_result.get("tweet", tweet_result.get("proposition1", "")), s_tweet))
 
         # Vidéo
         if video:
@@ -784,25 +806,26 @@ def check_feeds(conn):
             if a.get("needs_video") and YOUTUBE_API_KEY:
                 video = find_relevant_video(item["title"], item["summary"], cat)
 
-            # Tweet
+            # Tweet — 1 seule proposition par article
             tweet = generate_tweet_content(
                 item["title"], item["summary"], item["source"], cat,
                 video_url=video["url"] if video else None
             )
 
-            # PDF
             now      = datetime.now()
             emoji    = TWEET_PREFIXES.get(cat, "📰").split()[0]
-            subject  = f"{emoji} Pulse · {item['source']} · {item['score']}/10 · {item['title'][:45]}..."
+            subject  = f"{emoji} Pulse · {item['source']} · {item['title'][:45]}..."
             pdf_name = f"pulse-{cat}-{now.strftime('%d%m%Y-%H%M')}.pdf"
             pdf_bytes = build_pdf(tweet, item["title"], item["source"], item["url"], cat, video)
 
-            # Envoi
             send_email(
                 subject,
                 pdf_bytes=pdf_bytes, pdf_filename=pdf_name,
                 png_bytes=png_bytes, png_filename=png_filename or "pulse-image.png"
             )
+            mark_category_sent(conn, cat)
+            print(f"  📧 Envoyé : {item['title'][:50]}...")
+            time.sleep(4)
             mark_category_sent(conn, cat)
             print(f"  📧 Envoyé {'📎PDF' if pdf_bytes else ''} {'🖼️PNG' if png_bytes else ''} {'📹' if video else ''} : {item['title'][:50]}...")
             time.sleep(4)
