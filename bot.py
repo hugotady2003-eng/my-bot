@@ -286,44 +286,42 @@ def generate_tweet_content(title, summary, source, category, video_url=None):
     prefix = CATEGORY_STYLES.get(category, {}).get("prefix", "📰")
 
     extras = {
-        "histoire": "Commence par '📜 Il y a X ans...' et rends-le fascinant.",
+        "histoire": "Commence par '📜 Il y a X ans...'",
         "insolite": "Rends-le fun et surprenant. Emoji 😲 ou 🤯 bienvenu.",
-        "breaking": "Urgence et clarté avant tout.",
+        "breaking": "Commence par 🚨.",
         "science":  "Explique simplement, sans jargon.",
     }
     extra = extras.get(category, "")
 
-    video_instruction = ""
-    if video_url:
-        video_instruction = f"""
-IMPORTANT : intègre ce lien vidéo YouTube de façon naturelle dans le tweet ou à la fin.
-URL vidéo : {video_url}
-Formulation suggérée : "📹 Voir en vidéo : {video_url}" ou intégré dans le texte."""
+    video_instruction = f"\nAjoute ce lien vidéo à la fin : {video_url}" if video_url else ""
 
-    prompt = f"""Tu es community manager de Pulse, compte Twitter actu France & monde.
+    prompt = f"""Tu es community manager de Pulse, compte Twitter d'actu.
 Aujourd'hui : {today}. Catégorie : {category}. {extra}
 
 Article :
 Source : {source}
 Titre : {title}
-Résumé : {summary}
-{video_instruction}
+Résumé : {summary}{video_instruction}
 
-RÈGLE IMPORTANTE sur le format :
-- Si PAS de vidéo et PAS d'image : commence OBLIGATOIREMENT par "{prefix} —" pour identifier la catégorie
-- Si image ou vidéo présente : pas besoin du préfixe, l'image/vidéo identifie déjà
-- Tweet unique si ≤ 280 caractères (lien vidéo compris)
-- Thread de 3-5 tweets si le sujet est riche
+RÈGLES ABSOLUES :
+1. TOUJOURS en FRANÇAIS, même si l'article est en anglais
+2. INFO DIRECTE et BRUTE — zéro intro, zéro remplissage, zéro "Dans un contexte..."
+3. TWEET UNIQUE par défaut. Thread UNIQUEMENT si l'info a plusieurs volets vraiment distincts qui ne rentrent pas en 280 caractères. En cas de doute → tweet unique.
+4. Sans image/vidéo : commence par "{prefix} —"
+5. Max 280 caractères tweet (lien inclus)
+6. Max 2 emojis, bien placés
+7. Source à la fin : 📰 {source}
+8. Zéro hashtag
+
+BON exemple : "🚨 BREAKING — 3 000 civils tués au Liban depuis le 2 mars. Les frappes s'intensifient. 📰 Le Monde"
+MAUVAIS exemple : "Dans le contexte du conflit au Moyen-Orient, il convient de noter que..."
 
 Réponds UNIQUEMENT avec ce JSON :
 Tweet : {{"type":"tweet","content":"..."}}
-Thread : {{"type":"thread","content":["1/N...","2/N..."]}}
-
-Règles : vrai et fidèle · ton direct · max 3 emojis/tweet
-· 📰 {source} à la fin · max 2 hashtags"""
+Thread (rare) : {{"type":"thread","content":["1/N...","2/N..."]}}"""
 
     msg = client.messages.create(
-        model="claude-haiku-4-5-20251001", max_tokens=1000,
+        model="claude-haiku-4-5-20251001", max_tokens=800,
         messages=[{"role": "user", "content": prompt}]
     )
     raw = msg.content[0].text.strip().replace("```json","").replace("```","").strip()
@@ -331,62 +329,133 @@ Règles : vrai et fidèle · ton direct · max 3 emojis/tweet
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# IMAGE TWEET — DA Pulse
+# IMAGE TWEET — DA Pulse générée en PNG avec Pillow (pièce jointe email)
 # ─────────────────────────────────────────────────────────────────────────────
 
-def build_tweet_image_html(headline, source, category, photo_url=None):
-    s        = CATEGORY_STYLES.get(category, CATEGORY_STYLES["international"])
-    # Date en français
-    mois = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"]
-    now  = datetime.now()
-    date_str = f"{now.day} {mois[now.month-1]} {now.year}"
+def build_tweet_image_png(headline, source, category, photo_url=None):
+    """
+    Génère un PNG 1200x675 (ratio Twitter) avec la DA Pulse.
+    Retourne (bytes, filename) ou (None, None) si erreur.
+    """
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+        import io, urllib.request, math
 
-    # Tronquer le titre
-    h = headline if len(headline) <= 80 else headline[:77] + "..."
-    # Taille de police adaptée à la longueur
-    font_size = "22px" if len(h) > 60 else "26px"
+        W, H = 1200, 675
+        img  = Image.new('RGB', (W, H), (13, 13, 20))
+        draw = ImageDraw.Draw(img)
 
-    photo_style = ""
-    if photo_url:
-        photo_style = f"background-image:url('{photo_url}');background-size:cover;background-position:center;"
+        # ── Photo de fond depuis l'article ──
+        if photo_url:
+            try:
+                req = urllib.request.Request(photo_url, headers={"User-Agent": "Mozilla/5.0"})
+                with urllib.request.urlopen(req, timeout=6) as r:
+                    raw = r.read()
+                photo = Image.open(io.BytesIO(raw)).convert('RGB').resize((W, H), Image.LANCZOS)
+                # Opacité 80% → mélange avec le fond sombre
+                bg = Image.new('RGB', (W, H), (13, 13, 20))
+                img = Image.blend(bg, photo, alpha=0.80)
+                draw = ImageDraw.Draw(img)
+            except:
+                pass  # Pas de photo → fond sombre
 
-    return f"""<table width="580" cellpadding="0" cellspacing="0" style="border-radius:14px;overflow:hidden;margin:0 auto;" bgcolor="#0d0d14">
-  <tr><td style="height:9px;background:{s['bar']};font-size:0;">&nbsp;</td></tr>
-  <tr>
-    <td style="padding:0;position:relative;">
-      <table width="580" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="580" height="290" style="{photo_style}opacity:1;font-size:0;" bgcolor="#0d0d14">
-            <table width="580" cellpadding="0" cellspacing="0" style="background:rgba(0,0,0,0);">
-              <tr><td style="background:{s['overlay']};padding:18px 22px 16px;">
-                <table width="100%" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td style="font-family:Georgia,serif;font-style:italic;font-weight:900;font-size:20px;color:#fff;letter-spacing:-1px;">Pulse</td>
-                    <td align="right" style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;color:{s['badge_color']};border:1px solid {s['badge_color']};border-radius:20px;padding:3px 10px;white-space:nowrap;">{s['label']}</td>
-                  </tr>
-                </table>
-                <div style="height:20px;"></div>
-                <p style="font-family:Georgia,serif;font-style:italic;font-weight:900;font-size:{font_size};color:#fff;line-height:1.25;margin:0;padding:0;">{h}</p>
-                <div style="height:20px;"></div>
-                <table width="100%" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td style="font-family:Arial;font-size:11px;color:rgba(255,255,255,.4);">📰 {source}</td>
-                    <td align="right" style="font-family:Arial;font-size:11px;color:rgba(255,255,255,.22);">{date_str}</td>
-                  </tr>
-                </table>
-              </td></tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>"""
+        # ── Overlay sombre par-dessus ──
+        s       = CATEGORY_STYLES.get(category, CATEGORY_STYLES["international"])
+        overlay = Image.new('RGBA', (W, H), (0,0,0,0))
+        odraw   = ImageDraw.Draw(overlay)
+        # Dégradé : bas plus sombre pour lisibilité du texte
+        for y in range(H):
+            t = y / H
+            a = int(160 + t * 80)  # 160 → 240
+            odraw.line([(0,y),(W,y)], fill=(13,13,20,a))
+        img = Image.alpha_composite(img.convert('RGBA'), overlay).convert('RGB')
+        draw = ImageDraw.Draw(img)
+
+        # ── Barre couleur en haut (9px) ──
+        bar_colors = {
+            "breaking":      [(255,32,32),   (255,96,48)],
+            "international": [(33,150,243),  (0,184,212)],
+            "politique":     [(255,193,7),   (255,152,0)],
+            "economie":      [(0,230,118),   (0,191,165)],
+            "societe":       [(206,147,216), (156,39,176)],
+            "histoire":      [(212,168,67),  (160,113,74)],
+            "insolite":      [(0,229,255),   (29,233,182)],
+            "sport":         [(68,138,255),  (48,79,254)],
+            "science":       [(124,77,255),  (101,31,255)],
+        }
+        c1, c2 = bar_colors.get(category, [(33,150,243),(0,184,212)])
+        for x in range(W):
+            t = x / W
+            r = int(c1[0] + t*(c2[0]-c1[0]))
+            g = int(c1[1] + t*(c2[1]-c1[1]))
+            b = int(c1[2] + t*(c2[2]-c1[2]))
+            draw.line([(x,0),(x,9)], fill=(r,g,b))
+
+        # ── Polices ──
+        try:
+            font_big  = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf", 68)
+            font_med  = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf", 38)
+            font_sm   = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 26)
+            font_logo = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf", 52)
+        except:
+            font_big = font_med = font_sm = font_logo = ImageFont.load_default()
+
+        # ── Logo Pulse (haut gauche) ──
+        draw.text((40, 30), "Pulse", font=font_logo, fill=(255,255,255))
+
+        # ── Badge catégorie (haut droite) ──
+        cat_label = s["label"]
+        bbox = draw.textbbox((0,0), cat_label, font=font_sm)
+        bw = bbox[2] - bbox[0] + 28
+        bh = bbox[3] - bbox[1] + 14
+        bx = W - bw - 36
+        by = 28
+        draw.rounded_rectangle([bx, by, bx+bw, by+bh], radius=20, outline=(255,255,255,60), width=1)
+        draw.text((bx+14, by+7), cat_label, font=font_sm, fill=(255,255,255))
+
+        # ── Titre (centre) ──
+        # Découper en lignes de max 42 chars
+        words = headline.split()
+        lines, line = [], ""
+        for w in words:
+            if len(line + " " + w) <= 42:
+                line = (line + " " + w).strip()
+            else:
+                if line: lines.append(line)
+                line = w
+        if line: lines.append(line)
+        lines = lines[:3]  # max 3 lignes
+
+        total_h = len(lines) * 85
+        ty = (H - total_h) // 2 - 10
+        for ln in lines:
+            bbox = draw.textbbox((0,0), ln, font=font_big)
+            lw = bbox[2] - bbox[0]
+            draw.text(((W-lw)//2, ty), ln, font=font_big, fill=(255,255,255))
+            ty += 85
+
+        # ── Source + date (bas) ──
+        mois = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"]
+        now  = datetime.now()
+        date_str = f"{now.day} {mois[now.month-1]} {now.year}"
+        draw.text((40, H-50), f"📰 {source}", font=font_sm, fill=(255,255,255,100))
+        bbox = draw.textbbox((0,0), date_str, font=font_sm)
+        draw.text((W - bbox[2] - 40, H-50), date_str, font=font_sm, fill=(255,255,255,60))
+
+        # ── Export PNG en bytes ──
+        buf = io.BytesIO()
+        img.save(buf, format='PNG', optimize=True)
+        filename = f"pulse-{category}-{now.strftime('%d%m%Y-%H%M')}.png"
+        return buf.getvalue(), filename
+
+    except Exception as e:
+        print(f"  ⚠️  Génération image PNG échouée : {e}")
+        return None, None
 # ─────────────────────────────────────────────────────────────────────────────
 # EMAIL
 # ─────────────────────────────────────────────────────────────────────────────
 
-def build_email(tweet_result, analysis, title, url, source, score, image_html, video):
+def build_email(tweet_result, analysis, title, url, source, score, has_image=False, video=None):
     cat       = analysis.get("category", "international")
     emoji     = CATEGORY_EMOJIS.get(cat, "📰")
     s         = CATEGORY_STYLES.get(cat, CATEGORY_STYLES["international"])
@@ -458,7 +527,7 @@ def build_email(tweet_result, analysis, title, url, source, score, image_html, v
       <p style="font-size:11px;color:#444;margin:7px 0 0;font-style:italic;font-family:Arial;">{analysis.get('reason','')}</p>
     </div>
 
-    {'<p style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:1px;margin:0 0 10px;font-family:Arial;">Image pour X</p>' + image_html if image_html else ''}
+    {'<div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 18px;margin-bottom:20px;font-family:Arial;"><p style="margin:0;font-size:13px;color:#aaa;">📎 <b style=\'color:#eee;\'>Image X en pièce jointe</b> — télécharge-la et poste-la avec le tweet ✨</p></div>' if has_image else ''}
 
     {video_html}
 
@@ -476,12 +545,19 @@ def build_email(tweet_result, analysis, title, url, source, score, image_html, v
     return subject, html
 
 
-def send_email(subject, html_body):
-    msg = MIMEMultipart("alternative")
+def send_email(subject, html_body, attachment_bytes=None, attachment_name="pulse-image.png"):
+    from email.mime.image import MIMEImage
+    msg = MIMEMultipart("mixed")
     msg["Subject"] = subject
     msg["From"]    = GMAIL_ADDRESS
     msg["To"]      = EMAIL_TO
-    msg.attach(MIMEText(html_body, "html", "utf-8"))
+    alt = MIMEMultipart("alternative")
+    alt.attach(MIMEText(html_body, "html", "utf-8"))
+    msg.attach(alt)
+    if attachment_bytes:
+        img_part = MIMEImage(attachment_bytes, name=attachment_name)
+        img_part.add_header("Content-Disposition", "attachment", filename=attachment_name)
+        msg.attach(img_part)
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as srv:
         srv.login(GMAIL_ADDRESS, GMAIL_APP_PASS)
         srv.sendmail(GMAIL_ADDRESS, EMAIL_TO, msg.as_string())
@@ -560,34 +636,39 @@ def check_feeds(conn):
     for item in top:
         try:
             add_recent_title(conn, item["title"])
-            cat      = item["analysis"]["category"]
-            a        = item["analysis"]
+            cat = item["analysis"]["category"]
+            a   = item["analysis"]
 
-            # Image article
-            photo    = extract_image(item["entry"])
-            img_html = ""
+            # Image article (URL depuis le RSS)
+            photo = extract_image(item["entry"])
+
+            # Générer le PNG Pulse avec Pillow → pièce jointe
+            img_bytes = None
+            img_filename = None
             if a.get("needs_image") or photo:
-                img_html = build_tweet_image_html(item["title"], item["source"], cat, photo)
+                img_bytes, img_filename = build_tweet_image_png(
+                    item["title"], item["source"], cat, photo
+                )
 
-            # Vidéo YouTube (seulement si Claude le juge utile)
+            # Vidéo YouTube
             video = None
             if a.get("needs_video") and YOUTUBE_API_KEY:
                 video = find_relevant_video(item["title"], item["summary"], cat)
 
-            # Tweet (avec ou sans vidéo, avec ou sans image → préfixe adapté)
-            has_visual = bool(img_html or video)
+            # Tweet
             tweet = generate_tweet_content(
                 item["title"], item["summary"], item["source"], cat,
                 video_url=video["url"] if video else None
             )
 
-            # Email
+            # Email + pièce jointe PNG
             subject, html = build_email(
                 tweet, a, item["title"], item["url"],
-                item["source"], item["score"], img_html, video
+                item["source"], item["score"],
+                has_image=bool(img_bytes), video=video
             )
-            send_email(subject, html)
-            print(f"  📧 Envoyé {'📹' if video else '🖼️' if img_html else '📝'} : {item['title'][:50]}...")
+            send_email(subject, html, attachment_bytes=img_bytes, attachment_name=img_filename or "pulse-image.png")
+            print(f"  📧 Envoyé {'📎PNG' if img_bytes else ''} {'📹' if video else ''} : {item['title'][:50]}...")
             time.sleep(4)
 
         except Exception as e:
