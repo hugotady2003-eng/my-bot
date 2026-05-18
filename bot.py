@@ -62,21 +62,27 @@ RSS_FEEDS = [
 # ─────────────────────────────────────────────────────────────────────────────
 
 CATEGORY_STYLES = {
-    "breaking":      {"bar": "linear-gradient(90deg,#ff2020,#ff6030)", "overlay": "rgba(18,3,3,.88)",   "badge_color": "#ff6868",  "label": "🔴 Breaking",      "prefix": "🚨 BREAKING"},
-    "international": {"bar": "linear-gradient(90deg,#2196f3,#00b8d4)", "overlay": "rgba(3,10,22,.88)",  "badge_color": "#64b5f6",  "label": "🌍 International", "prefix": "🌍 MONDE"},
-    "politique":     {"bar": "linear-gradient(90deg,#ffc107,#ff9800)", "overlay": "rgba(12,10,2,.88)",  "badge_color": "#ffd54f",  "label": "🏛️ Politique",    "prefix": "🏛️ POLITIQUE"},
-    "economie":      {"bar": "linear-gradient(90deg,#00e676,#00bfa5)", "overlay": "rgba(2,12,5,.88)",   "badge_color": "#69f0ae",  "label": "📈 Économie",      "prefix": "📈 ÉCO"},
-    "societe":       {"bar": "linear-gradient(90deg,#ce93d8,#9c27b0)", "overlay": "rgba(10,4,20,.88)",  "badge_color": "#ce93d8",  "label": "👥 Société",       "prefix": "👥 SOCIÉTÉ"},
-    "histoire":      {"bar": "linear-gradient(90deg,#d4a843,#a0714a)", "overlay": "rgba(14,8,2,.88)",   "badge_color": "#d4a843",  "label": "📜 Histoire",      "prefix": "📜 HISTOIRE"},
-    "insolite":      {"bar": "linear-gradient(90deg,#00e5ff,#1de9b6)", "overlay": "rgba(2,12,14,.88)",  "badge_color": "#00e5ff",  "label": "😲 Insolite",      "prefix": "😲 INSOLITE"},
-    "sport":         {"bar": "linear-gradient(90deg,#448aff,#304ffe)", "overlay": "rgba(2,6,14,.88)",   "badge_color": "#82b1ff",  "label": "🏆 Sport",         "prefix": "🏆 SPORT"},
-    "science":       {"bar": "linear-gradient(90deg,#7c4dff,#651fff)", "overlay": "rgba(2,6,16,.88)",   "badge_color": "#b388ff",  "label": "🔬 Science & Tech","prefix": "🔬 SCIENCE"},
+    "breaking":      {"bar": "linear-gradient(90deg,#ff2020,#ff6030)", "overlay": "rgba(18,3,3,.88)",   "badge_color": "#ff6868",  "label": "🔴 Breaking",      "prefix": "BREAKING"},
+    "international": {"bar": "linear-gradient(90deg,#2196f3,#00b8d4)", "overlay": "rgba(3,10,22,.88)",  "badge_color": "#64b5f6",  "label": "🌍 International", "prefix": "MONDE"},
+    "politique":     {"bar": "linear-gradient(90deg,#ffc107,#ff9800)", "overlay": "rgba(12,10,2,.88)",  "badge_color": "#ffd54f",  "label": "🏛️ Politique",    "prefix": "POLITIQUE"},
+    "economie":      {"bar": "linear-gradient(90deg,#00e676,#00bfa5)", "overlay": "rgba(2,12,5,.88)",   "badge_color": "#69f0ae",  "label": "📈 Économie",      "prefix": "ECO"},
+    "societe":       {"bar": "linear-gradient(90deg,#ce93d8,#9c27b0)", "overlay": "rgba(10,4,20,.88)",  "badge_color": "#ce93d8",  "label": "👥 Société",       "prefix": "SOCIETE"},
+    "histoire":      {"bar": "linear-gradient(90deg,#d4a843,#a0714a)", "overlay": "rgba(14,8,2,.88)",   "badge_color": "#d4a843",  "label": "📜 Histoire",      "prefix": "HISTOIRE"},
+    "insolite":      {"bar": "linear-gradient(90deg,#00e5ff,#1de9b6)", "overlay": "rgba(2,12,14,.88)",  "badge_color": "#00e5ff",  "label": "😲 Insolite",      "prefix": "INSOLITE"},
+    "sport":         {"bar": "linear-gradient(90deg,#448aff,#304ffe)", "overlay": "rgba(2,6,14,.88)",   "badge_color": "#82b1ff",  "label": "🏆 Sport",         "prefix": "SPORT"},
+    "science":       {"bar": "linear-gradient(90deg,#7c4dff,#651fff)", "overlay": "rgba(2,6,16,.88)",   "badge_color": "#b388ff",  "label": "🔬 Science & Tech","prefix": "SCIENCE"},
 }
 
-CATEGORY_EMOJIS = {
-    "breaking": "🚨", "international": "🌍", "politique": "🏛️",
-    "economie": "📈", "societe": "👥",       "histoire": "📜",
-    "insolite": "😲", "sport": "🏆",         "science": "🔬",
+TWEET_PREFIXES = {
+    "breaking":      "🚨 BREAKING",
+    "international": "🌍 MONDE",
+    "politique":     "🏛️ POLITIQUE",
+    "economie":      "📈 ECO",
+    "societe":       "👥 SOCIETE",
+    "histoire":      "📜 HISTOIRE",
+    "insolite":      "😲 INSOLITE",
+    "sport":         "🏆 SPORT",
+    "science":       "🔬 SCIENCE",
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -283,7 +289,7 @@ Catégorie "histoire" : uniquement si l'article parle d'un fait historique lié 
 def generate_tweet_content(title, summary, source, category, video_url=None):
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     today  = datetime.now().strftime("%d %B %Y")
-    prefix = CATEGORY_STYLES.get(category, {}).get("prefix", "📰")
+    prefix = TWEET_PREFIXES.get(category, "📰")
 
     extras = {
         "histoire": "Commence par '📜 Il y a X ans...'",
@@ -334,44 +340,46 @@ Thread (rare) : {{"type":"thread","content":["1/N...","2/N..."]}}"""
 
 def build_tweet_image_png(headline, source, category, photo_url=None):
     """
-    Génère un PNG 1200x675 (ratio Twitter) avec la DA Pulse.
-    Retourne (bytes, filename) ou (None, None) si erreur.
+def build_tweet_image_png(headline, source, category, photo_url=None):
+    """
+    Génère un PNG 1200x675 DA Pulse.
+    - Police Noto Sans (propre, lisible, style Apple)
+    - Taille texte adaptative selon longueur du titre
+    - Pas d'emoji dans les textes rendus (problème PIL)
+    - Badge catégorie sans emoji
     """
     try:
         from PIL import Image, ImageDraw, ImageFont
-        import io, urllib.request, math
+        import io, urllib.request
 
         W, H = 1200, 675
-        img  = Image.new('RGB', (W, H), (13, 13, 20))
-        draw = ImageDraw.Draw(img)
 
-        # ── Photo de fond depuis l'article ──
+        # ── Fond de base ──
+        img  = Image.new('RGB', (W, H), (13, 13, 20))
+
+        # ── Photo de fond ──
         if photo_url:
             try:
                 req = urllib.request.Request(photo_url, headers={"User-Agent": "Mozilla/5.0"})
                 with urllib.request.urlopen(req, timeout=6) as r:
                     raw = r.read()
                 photo = Image.open(io.BytesIO(raw)).convert('RGB').resize((W, H), Image.LANCZOS)
-                # Opacité 80% → mélange avec le fond sombre
-                bg = Image.new('RGB', (W, H), (13, 13, 20))
-                img = Image.blend(bg, photo, alpha=0.80)
-                draw = ImageDraw.Draw(img)
+                bg    = Image.new('RGB', (W, H), (13, 13, 20))
+                img   = Image.blend(bg, photo, alpha=0.80)
             except:
-                pass  # Pas de photo → fond sombre
+                pass
 
-        # ── Overlay sombre par-dessus ──
+        # ── Overlay dégradé sombre ──
         s       = CATEGORY_STYLES.get(category, CATEGORY_STYLES["international"])
-        overlay = Image.new('RGBA', (W, H), (0,0,0,0))
+        overlay = Image.new('RGBA', (W, H), (0, 0, 0, 0))
         odraw   = ImageDraw.Draw(overlay)
-        # Dégradé : bas plus sombre pour lisibilité du texte
         for y in range(H):
-            t = y / H
-            a = int(160 + t * 80)  # 160 → 240
-            odraw.line([(0,y),(W,y)], fill=(13,13,20,a))
-        img = Image.alpha_composite(img.convert('RGBA'), overlay).convert('RGB')
+            a = int(140 + (y / H) * 100)
+            odraw.line([(0, y), (W, y)], fill=(10, 10, 18, a))
+        img  = Image.alpha_composite(img.convert('RGBA'), overlay).convert('RGB')
         draw = ImageDraw.Draw(img)
 
-        # ── Barre couleur en haut (9px) ──
+        # ── Barre couleur haut ──
         bar_colors = {
             "breaking":      [(255,32,32),   (255,96,48)],
             "international": [(33,150,243),  (0,184,212)],
@@ -389,67 +397,107 @@ def build_tweet_image_png(headline, source, category, photo_url=None):
             r = int(c1[0] + t*(c2[0]-c1[0]))
             g = int(c1[1] + t*(c2[1]-c1[1]))
             b = int(c1[2] + t*(c2[2]-c1[2]))
-            draw.line([(x,0),(x,9)], fill=(r,g,b))
+            draw.line([(x,0),(x,12)], fill=(r,g,b))
 
-        # ── Polices ──
-        try:
-            font_big  = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf", 68)
-            font_med  = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf", 38)
-            font_sm   = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 26)
-            font_logo = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf", 52)
-        except:
-            font_big = font_med = font_sm = font_logo = ImageFont.load_default()
+        # ── Polices — Noto Sans (propre, sans serif, style Apple) ──
+        font_paths = [
+            "/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf",
+            "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
+            "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        ]
+        def load_font(size, bold=False):
+            candidates = [p for p in font_paths if ("Bold" in p or not bold)]
+            for p in candidates:
+                try:
+                    return ImageFont.truetype(p, size)
+                except:
+                    continue
+            return ImageFont.load_default()
 
-        # ── Logo Pulse (haut gauche) ──
-        draw.text((40, 30), "Pulse", font=font_logo, fill=(255,255,255))
+        font_logo  = load_font(56, bold=True)
+        font_badge = load_font(28)
+        font_sm    = load_font(30)
 
-        # ── Badge catégorie (haut droite) ──
-        cat_label = s["label"]
-        bbox = draw.textbbox((0,0), cat_label, font=font_sm)
-        bw = bbox[2] - bbox[0] + 28
-        bh = bbox[3] - bbox[1] + 14
-        bx = W - bw - 36
-        by = 28
-        draw.rounded_rectangle([bx, by, bx+bw, by+bh], radius=20, outline=(255,255,255,60), width=1)
-        draw.text((bx+14, by+7), cat_label, font=font_sm, fill=(255,255,255))
+        # ── Taille titre adaptative ──
+        # On choisit la taille pour que le texte tienne en max 3 lignes dans 1100px de large
+        title_clean = headline  # pas d'emoji dans le titre image
+        for font_size in [72, 60, 50, 42, 36]:
+            font_title = load_font(font_size, bold=True)
+            # Découper en lignes
+            words = title_clean.split()
+            lines, line = [], ""
+            for w in words:
+                test = (line + " " + w).strip()
+                bbox = draw.textbbox((0,0), test, font=font_title)
+                if bbox[2] - bbox[0] <= 1100:
+                    line = test
+                else:
+                    if line: lines.append(line)
+                    line = w
+            if line: lines.append(line)
+            if len(lines) <= 3:
+                break  # bonne taille trouvée
 
-        # ── Titre (centre) ──
-        # Découper en lignes de max 42 chars
-        words = headline.split()
-        lines, line = [], ""
-        for w in words:
-            if len(line + " " + w) <= 42:
-                line = (line + " " + w).strip()
-            else:
-                if line: lines.append(line)
-                line = w
-        if line: lines.append(line)
-        lines = lines[:3]  # max 3 lignes
+        lines = lines[:3]
 
-        total_h = len(lines) * 85
-        ty = (H - total_h) // 2 - 10
+        # ── Logo PULSE (haut gauche) — sans emoji ──
+        draw.text((44, 32), "Pulse", font=font_logo, fill=(255, 255, 255))
+
+        # ── Badge catégorie (haut droit) — texte sans emoji ──
+        cat_labels_clean = {
+            "breaking":      "Breaking",
+            "international": "International",
+            "politique":     "Politique",
+            "economie":      "Economie",
+            "societe":       "Societe",
+            "histoire":      "Histoire",
+            "insolite":      "Insolite",
+            "sport":         "Sport",
+            "science":       "Science & Tech",
+        }
+        cat_text = cat_labels_clean.get(category, category.capitalize())
+        bbox     = draw.textbbox((0,0), cat_text, font=font_badge)
+        bw = bbox[2] - bbox[0] + 36
+        bh = bbox[3] - bbox[1] + 18
+        bx = W - bw - 44
+        by = 30
+        # Fond semi-transparent du badge
+        badge_overlay = Image.new('RGBA', (W, H), (0,0,0,0))
+        bdraw = ImageDraw.Draw(badge_overlay)
+        bdraw.rounded_rectangle([bx, by, bx+bw, by+bh], radius=bh//2,
+                                  fill=(255,255,255,25), outline=(255,255,255,70), width=1)
+        img  = Image.alpha_composite(img.convert('RGBA'), badge_overlay).convert('RGB')
+        draw = ImageDraw.Draw(img)
+        draw.text((bx+18, by+9), cat_text, font=font_badge, fill=(255,255,255))
+
+        # ── Titre centré verticalement ──
+        line_h     = font_size + 16
+        total_h    = len(lines) * line_h
+        ty         = (H - total_h) // 2 + 10
         for ln in lines:
-            bbox = draw.textbbox((0,0), ln, font=font_big)
-            lw = bbox[2] - bbox[0]
-            draw.text(((W-lw)//2, ty), ln, font=font_big, fill=(255,255,255))
-            ty += 85
+            bbox = draw.textbbox((0,0), ln, font=font_title)
+            lw   = bbox[2] - bbox[0]
+            draw.text(((W - lw) // 2, ty), ln, font=font_title, fill=(255, 255, 255))
+            ty  += line_h
 
         # ── Source + date (bas) ──
-        mois = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"]
+        mois = ["jan","fev","mar","avr","mai","juin","juil","aout","sep","oct","nov","dec"]
         now  = datetime.now()
         date_str = f"{now.day} {mois[now.month-1]} {now.year}"
-        draw.text((40, H-50), f"{source}", font=font_sm, fill=(255,255,255,100))
+        draw.text((44, H - 55), source, font=font_sm, fill=(255,255,255,120))
         bbox = draw.textbbox((0,0), date_str, font=font_sm)
-        draw.text((W - bbox[2] - 40, H-50), date_str, font=font_sm, fill=(255,255,255,60))
+        draw.text((W - bbox[2] - 44, H - 55), date_str, font=font_sm, fill=(255,255,255,80))
 
-        # ── Export PNG en bytes ──
+        # ── Export ──
         buf = io.BytesIO()
         img.save(buf, format='PNG', optimize=True)
         filename = f"pulse-{category}-{now.strftime('%d%m%Y-%H%M')}.png"
         return buf.getvalue(), filename
 
     except Exception as e:
-        print(f"  ⚠️  Génération image PNG échouée : {e}")
+        print(f"  ⚠️  PNG echoue : {e}")
         return None, None
 # ─────────────────────────────────────────────────────────────────────────────
 # EMAIL
@@ -681,7 +729,7 @@ def check_feeds(conn):
 
             # PDF
             now      = datetime.now()
-            emoji    = CATEGORY_EMOJIS.get(cat, "📰")
+            emoji    = TWEET_PREFIXES.get(cat, "📰").split()[0]
             subject  = f"{emoji} Pulse · {item['source']} · {item['score']}/10 · {item['title'][:45]}..."
             pdf_name = f"pulse-{cat}-{now.strftime('%d%m%Y-%H%M')}.pdf"
             pdf_bytes = build_pdf(tweet, item["title"], item["source"], item["url"], cat, video)
