@@ -455,109 +455,130 @@ def build_tweet_image_png(headline, source, category, photo_url=None):
 # EMAIL
 # ─────────────────────────────────────────────────────────────────────────────
 
-def build_email(tweet_result, analysis, title, url, source, score, has_image=False, video=None):
-    cat       = analysis.get("category", "international")
-    emoji     = CATEGORY_EMOJIS.get(cat, "📰")
-    s         = CATEGORY_STYLES.get(cat, CATEGORY_STYLES["international"])
-    badge_col = s["badge_color"]
+def build_pdf(tweet_result, title, source, url, category, video=None):
+    """Génère un PDF avec le texte exact à copier-coller sur X."""
+    try:
+        from reportlab.lib.pagesizes import A4
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.units import cm
+        from reportlab.lib import colors
+        from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable
+        from reportlab.lib.enums import TA_LEFT, TA_CENTER
+        import io
 
-    subject = f"{emoji} Pulse · {source} · {score}/10 · {title[:52]}..."
+        buf = io.BytesIO()
+        doc = SimpleDocTemplate(buf, pagesize=A4,
+                                leftMargin=2*cm, rightMargin=2*cm,
+                                topMargin=2*cm, bottomMargin=2*cm)
 
-    # Bloc vidéo
-    video_html = ""
-    if video:
-        video_html = f"""
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;margin-top:16px;display:flex;align-items:center;gap:14px;">
-          <span style="font-size:28px;">🎬</span>
-          <div>
-            <p style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:1px;margin:0 0 4px;font-family:Arial;">Vidéo YouTube associée</p>
-            <p style="font-size:14px;font-weight:bold;color:#eee;margin:0 0 4px;font-family:Arial;">{video['title'][:70]}</p>
-            <p style="font-size:12px;color:#666;margin:0 0 6px;font-family:Arial;">{video['channel']}</p>
-            <a href="{video['url']}" style="font-size:13px;color:{badge_col};text-decoration:none;font-family:Arial;">▶ {video['url']}</a>
-          </div>
-        </div>"""
+        styles = getSampleStyleSheet()
+        cat_label = CATEGORY_STYLES.get(category, {}).get("label", "")
+        now = datetime.now()
+        mois = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"]
+        date_str = f"{now.day} {mois[now.month-1]} {now.year} · {now.strftime('%H:%M')}"
 
-    # Tweets
-    if tweet_result["type"] == "tweet":
-        tweets_html = f"""
-        <p style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px;font-family:Arial;">Tweet — copie et poste sur X</p>
-        <div style="background:#f7f7f9;border:1px solid #e0e0e8;border-radius:14px;padding:18px;font-size:16px;line-height:1.7;color:#111;white-space:pre-wrap;font-family:Arial;">{tweet_result['content']}</div>"""
-    else:
-        n = len(tweet_result["content"])
-        tweets_html = f'<p style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px;font-family:Arial;">Thread · {n} tweets</p>'
-        for i, t in enumerate(tweet_result["content"], 1):
-            tweets_html += f"""
-            <p style="font-size:10px;color:#aaa;margin:12px 0 4px;font-family:Arial;">— Tweet {i}/{n} —</p>
-            <div style="background:#f7f7f9;border:1px solid #e0e0e8;border-radius:14px;padding:16px;font-size:15px;line-height:1.7;color:#111;white-space:pre-wrap;font-family:Arial;">{t}</div>"""
+        # Styles custom
+        s_header = ParagraphStyle("header", fontSize=22, fontName="Helvetica-Bold",
+                                   textColor=colors.HexColor("#1a0060"), spaceAfter=4)
+        s_sub    = ParagraphStyle("sub", fontSize=10, fontName="Helvetica",
+                                   textColor=colors.HexColor("#888888"), spaceAfter=2)
+        s_cat    = ParagraphStyle("cat", fontSize=11, fontName="Helvetica-Bold",
+                                   textColor=colors.HexColor("#7b2fff"), spaceAfter=6)
+        s_title  = ParagraphStyle("title", fontSize=13, fontName="Helvetica-Bold",
+                                   textColor=colors.HexColor("#111111"), spaceAfter=4,
+                                   leading=18)
+        s_label  = ParagraphStyle("label", fontSize=9, fontName="Helvetica",
+                                   textColor=colors.HexColor("#aaaaaa"), spaceAfter=4,
+                                   spaceBefore=16)
+        s_tweet  = ParagraphStyle("tweet", fontSize=14, fontName="Helvetica",
+                                   textColor=colors.HexColor("#000000"), leading=22,
+                                   spaceAfter=8, borderPadding=12,
+                                   backColor=colors.HexColor("#f5f5f7"),
+                                   borderColor=colors.HexColor("#e0e0e8"),
+                                   borderWidth=1, borderRadius=8)
+        s_url    = ParagraphStyle("url", fontSize=10, fontName="Helvetica",
+                                   textColor=colors.HexColor("#3b1fff"), spaceAfter=4)
+        s_note   = ParagraphStyle("note", fontSize=9, fontName="Helvetica-Oblique",
+                                   textColor=colors.HexColor("#bbbbbb"), spaceAfter=4,
+                                   alignment=TA_CENTER)
 
-    score_color = "#ff4444" if score < 5 else "#ffc107" if score < 7 else "#00c853"
-    score_pct   = score * 10
+        story = []
 
-    html = f"""<!DOCTYPE html>
-<html><head><meta charset="UTF-8"></head>
-<body style="margin:0;padding:0;background:#0c0c14;">
-<div style="max-width:640px;margin:0 auto;padding:28px 16px;">
+        # En-tête
+        story.append(Paragraph("Pulse", s_header))
+        story.append(Paragraph(f"Insuffler l'actu · {date_str}", s_sub))
+        story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor("#e0e0e8")))
+        story.append(Spacer(1, 0.3*cm))
 
-  <div style="background:linear-gradient(135deg,#1c0860 0%,#6020cc 55%,#c44dff 100%);border-radius:16px 16px 0 0;padding:22px 28px 18px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <div>
-        <span style="font-family:Georgia,serif;font-style:italic;font-weight:900;font-size:30px;color:#fff;letter-spacing:-1.5px;">Pulse</span>
-        <span style="font-size:11px;color:rgba(255,255,255,.45);margin-left:10px;letter-spacing:2px;font-family:Arial;">INSUFFLER L'ACTU.</span>
-      </div>
-      <span style="font-size:12px;color:rgba(255,255,255,.4);font-family:Arial;">{datetime.now().strftime('%d/%m/%Y · %H:%M')}</span>
-    </div>
-  </div>
+        # Catégorie + source
+        story.append(Paragraph(f"{cat_label} · {source}", s_cat))
+        story.append(Paragraph(title, s_title))
+        story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#eeeeee")))
 
-  <div style="background:#16161f;padding:24px 28px;border-radius:0 0 16px 16px;border:1px solid rgba(255,255,255,.05);">
+        # Tweets
+        if tweet_result["type"] == "tweet":
+            story.append(Paragraph("TWEET — copie ce texte tel quel sur X :", s_label))
+            story.append(Paragraph(tweet_result["content"], s_tweet))
+        else:
+            tweets = tweet_result["content"]
+            story.append(Paragraph(f"THREAD ({len(tweets)} tweets) — poste dans l'ordre :", s_label))
+            for i, t in enumerate(tweets, 1):
+                story.append(Paragraph(f"Tweet {i}/{len(tweets)} :", s_label))
+                story.append(Paragraph(t, s_tweet))
 
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
-      <span style="background:rgba(255,255,255,.07);border:1px solid {badge_col}55;border-radius:100px;padding:6px 16px;font-size:12px;font-weight:bold;color:{badge_col};font-family:Arial;">{s['label']}</span>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <span style="font-size:11px;color:#444;font-family:Arial;text-transform:uppercase;letter-spacing:1px;">Intérêt</span>
-        <div style="background:#222230;border-radius:100px;width:90px;height:5px;overflow:hidden;">
-          <div style="background:{score_color};width:{score_pct}%;height:100%;border-radius:100px;"></div>
-        </div>
-        <span style="font-size:13px;font-weight:bold;color:{score_color};font-family:Arial;">{score}/10</span>
-      </div>
-    </div>
+        # Vidéo
+        if video:
+            story.append(Paragraph("VIDÉO ASSOCIÉE :", s_label))
+            story.append(Paragraph(f"{video['title']}", s_title))
+            story.append(Paragraph(video["url"], s_url))
 
-    <div style="background:rgba(255,255,255,.03);border-left:3px solid {badge_col};padding:12px 16px;border-radius:0 8px 8px 0;margin-bottom:20px;">
-      <p style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:1px;margin:0 0 5px;font-family:Arial;">📰 {source}</p>
-      <p style="font-size:16px;font-weight:bold;color:#eee;margin:0;line-height:1.4;font-family:Arial;">{title}</p>
-      <p style="font-size:11px;color:#444;margin:7px 0 0;font-style:italic;font-family:Arial;">{analysis.get('reason','')}</p>
-    </div>
+        # Lien article
+        story.append(Spacer(1, 0.4*cm))
+        story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#eeeeee")))
+        story.append(Paragraph(f"Source : {url}", s_url))
+        story.append(Spacer(1, 0.3*cm))
+        story.append(Paragraph("Pulse × Claude AI — généré automatiquement", s_note))
 
-    {'<div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 18px;margin-bottom:20px;font-family:Arial;"><p style="margin:0;font-size:13px;color:#aaa;">📎 <b style=\'color:#eee;\'>Image X en pièce jointe</b> — télécharge-la et poste-la avec le tweet ✨</p></div>' if has_image else ''}
+        doc.build(story)
+        return buf.getvalue()
 
-    {video_html}
-
-    <div style="margin-top:22px;">{tweets_html}</div>
-
-    <div style="margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.05);">
-      <a href="{url}" style="display:inline-block;background:linear-gradient(135deg,#3b1fff,#9c27b0);color:#fff;padding:11px 24px;border-radius:100px;text-decoration:none;font-size:13px;font-weight:bold;font-family:Arial;">🔗 Lire l'article original</a>
-    </div>
-
-    <p style="margin-top:18px;font-size:11px;color:#2a2a35;text-align:center;font-family:Arial;">Pulse × Claude AI — copie le tweet et poste-le sur X ✨</p>
-  </div>
-</div>
-</body></html>"""
-
-    return subject, html
+    except Exception as e:
+        print(f"  ⚠️  PDF échoué : {e}")
+        return None
 
 
-def send_email(subject, html_body, attachment_bytes=None, attachment_name="pulse-image.png"):
+def send_email(subject, pdf_bytes=None, png_bytes=None, png_filename="pulse-image.png", pdf_filename="pulse-tweet.pdf"):
+    """Email minimaliste avec PDF + PNG en pièces jointes."""
+    from email.mime.application import MIMEApplication
     from email.mime.image import MIMEImage
+
     msg = MIMEMultipart("mixed")
     msg["Subject"] = subject
     msg["From"]    = GMAIL_ADDRESS
     msg["To"]      = EMAIL_TO
-    alt = MIMEMultipart("alternative")
-    alt.attach(MIMEText(html_body, "html", "utf-8"))
-    msg.attach(alt)
-    if attachment_bytes:
-        img_part = MIMEImage(attachment_bytes, name=attachment_name)
-        img_part.add_header("Content-Disposition", "attachment", filename=attachment_name)
+
+    # Corps texte ultra simple
+    body = MIMEText(
+        f"Pulse — Nouvelle actu détectée\n\n"
+        f"📎 {pdf_filename} — texte à copier-coller sur X\n"
+        f"{'🖼️ ' + png_filename + ' — image à poster avec le tweet' if png_bytes else ''}\n\n"
+        f"Pulse × Claude AI",
+        "plain", "utf-8"
+    )
+    msg.attach(body)
+
+    # Pièce jointe PDF
+    if pdf_bytes:
+        pdf_part = MIMEApplication(pdf_bytes, _subtype="pdf", name=pdf_filename)
+        pdf_part.add_header("Content-Disposition", "attachment", filename=pdf_filename)
+        msg.attach(pdf_part)
+
+    # Pièce jointe PNG
+    if png_bytes:
+        img_part = MIMEImage(png_bytes, name=png_filename)
+        img_part.add_header("Content-Disposition", "attachment", filename=png_filename)
         msg.attach(img_part)
+
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as srv:
         srv.login(GMAIL_ADDRESS, GMAIL_APP_PASS)
         srv.sendmail(GMAIL_ADDRESS, EMAIL_TO, msg.as_string())
@@ -639,14 +660,11 @@ def check_feeds(conn):
             cat = item["analysis"]["category"]
             a   = item["analysis"]
 
-            # Image article (URL depuis le RSS)
-            photo = extract_image(item["entry"])
-
-            # Générer le PNG Pulse avec Pillow → pièce jointe
-            img_bytes = None
-            img_filename = None
+            # Image PNG
+            photo    = extract_image(item["entry"])
+            png_bytes, png_filename = None, None
             if a.get("needs_image") or photo:
-                img_bytes, img_filename = build_tweet_image_png(
+                png_bytes, png_filename = build_tweet_image_png(
                     item["title"], item["source"], cat, photo
                 )
 
@@ -661,14 +679,20 @@ def check_feeds(conn):
                 video_url=video["url"] if video else None
             )
 
-            # Email + pièce jointe PNG
-            subject, html = build_email(
-                tweet, a, item["title"], item["url"],
-                item["source"], item["score"],
-                has_image=bool(img_bytes), video=video
+            # PDF
+            now      = datetime.now()
+            emoji    = CATEGORY_EMOJIS.get(cat, "📰")
+            subject  = f"{emoji} Pulse · {item['source']} · {item['score']}/10 · {item['title'][:45]}..."
+            pdf_name = f"pulse-{cat}-{now.strftime('%d%m%Y-%H%M')}.pdf"
+            pdf_bytes = build_pdf(tweet, item["title"], item["source"], item["url"], cat, video)
+
+            # Envoi
+            send_email(
+                subject,
+                pdf_bytes=pdf_bytes, pdf_filename=pdf_name,
+                png_bytes=png_bytes, png_filename=png_filename or "pulse-image.png"
             )
-            send_email(subject, html, attachment_bytes=img_bytes, attachment_name=img_filename or "pulse-image.png")
-            print(f"  📧 Envoyé {'📎PNG' if img_bytes else ''} {'📹' if video else ''} : {item['title'][:50]}...")
+            print(f"  📧 Envoyé {'📎PDF' if pdf_bytes else ''} {'🖼️PNG' if png_bytes else ''} {'📹' if video else ''} : {item['title'][:50]}...")
             time.sleep(4)
 
         except Exception as e:
