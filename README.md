@@ -2,6 +2,7 @@
 
 Bot qui surveille les journaux, génère des tweets via Claude, et te les envoie par email en HTML.
 
+oui
 ---
 
 ## 🚀 Installation (15 minutes, tout gratuit)
