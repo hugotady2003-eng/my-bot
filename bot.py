@@ -518,26 +518,47 @@ def build_pdf(tweet_text, title, source, url, category, video=None):
 # ═══════════════════════════════════════════════════════════════════════════
 # EMAIL
 # ═══════════════════════════════════════════════════════════════════════════
-def send_email(subject, pdf_bytes, pdf_name, png_bytes, png_name):
+def send_email(subject, tweet_text, title, source, url, video, png_bytes, png_name):
+    """Email avec tweet en texte brut dans le corps + PNG en pièce jointe."""
     msg = MIMEMultipart("mixed")
     msg["Subject"] = subject
     msg["From"]    = GMAIL_ADDRESS
     msg["To"]      = EMAIL_TO
-    msg.attach(MIMEText(
-        "Pulse — Nouvelle actu\n\n"
-        "📎 PDF : tweet à copier sur X\n"
-        "🖼️ PNG : image à joindre au tweet\n\n"
-        "Pulse × Claude AI",
-        "plain", "utf-8"
-    ))
-    if pdf_bytes:
-        p = MIMEApplication(pdf_bytes, _subtype="pdf", name=pdf_name)
-        p.add_header("Content-Disposition", "attachment", filename=pdf_name)
-        msg.attach(p)
+
+    # Corps de l'email — tweet brut copiable directement
+    now      = datetime.now()
+    mois     = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"]
+    date_str = f"{now.day} {mois[now.month-1]} {now.year} · {now.strftime('%H:%M')}"
+
+    video_section = ""
+    if video:
+        video_section = f"\n\n🎬 Vidéo associée :\n{video['title']}\n{video['url']}"
+
+    body = (
+        f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"  P U L S E  ·  Insuffler l'actu\n"
+        f"  {date_str}\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+        f"📰 Source : {source}\n"
+        f"📌 {title}\n\n"
+        f"─────────────────────────────────────────\n"
+        f"  TWEET — copie ce texte sur X\n"
+        f"─────────────────────────────────────────\n\n"
+        f"{tweet_text}\n"
+        f"{video_section}\n\n"
+        f"─────────────────────────────────────────\n\n"
+        f"🔗 Article original :\n{url}\n\n"
+        f"Pulse × Claude AI\n"
+    )
+
+    msg.attach(MIMEText(body, "plain", "utf-8"))
+
+    # PNG en pièce jointe
     if png_bytes:
         i = MIMEImage(png_bytes, name=png_name)
         i.add_header("Content-Disposition", "attachment", filename=png_name)
         msg.attach(i)
+
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as srv:
         srv.login(GMAIL_ADDRESS, GMAIL_APP_PASS)
         srv.sendmail(GMAIL_ADDRESS, EMAIL_TO, msg.as_string())
@@ -649,16 +670,14 @@ def check_feeds(conn):
             photo            = extract_photo(item["entry"])
             png_bytes, png_nm= build_png(headline_court, item["source"], cat, photo)
 
-            # PDF
-            now       = datetime.now()
-            pdf_bytes = build_pdf(tweet_final, item["title"], item["source"], item["url"], cat, video)
-            pdf_nm    = f"pulse-{cat}-{now.strftime('%d%m%Y-%H%M')}.pdf"
-            png_nm    = png_nm or f"pulse-{cat}-{now.strftime('%d%m%Y-%H%M')}.png"
+            now    = datetime.now()
+            png_nm = png_nm or f"pulse-{cat}-{now.strftime('%d%m%Y-%H%M')}.png"
 
-            # Envoi
+            # Envoi : tweet dans le corps + PNG en pièce jointe
             emoji   = EMOJIS[cat]
             subject = f"{emoji} Pulse · {item['source']} · {item['title'][:50]}"
-            send_email(subject, pdf_bytes, pdf_nm, png_bytes, png_nm)
+            send_email(subject, tweet_final, item["title"], item["source"],
+                       item["url"], video, png_bytes, png_nm)
             mark_cat(conn, cat)
             print(f"  📧 Envoyé [{cat}] : {item['title'][:55]}")
             time.sleep(4)
