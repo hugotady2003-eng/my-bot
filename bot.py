@@ -161,11 +161,12 @@ Va directement à l'info.
 Règles :
 - FRANÇAIS obligatoire
 - Info brute et directe, zéro remplissage
-- 2-3 hashtags pertinents à la fin
+- 2-3 hashtags intégrés NATURELLEMENT dans la phrase (pas tous à la fin)
 - Source entre parenthèses à la fin : ({source})
-- Max 240 caractères (le préfixe sera ajouté automatiquement)
+- Max 240 caractères
 
-Exemple de bonne réponse : Poutine reçu par Xi pour renforcer leur alliance malgré la pression occidentale #Russie #Chine #Géopolitique (Le Monde)
+Exemple CORRECT : Poutine en #Chine pour renforcer l'alliance avec la #Russie malgré la pression occidentale (Le Monde)
+Exemple INCORRECT : Poutine en Chine pour renforcer l'alliance #Russie #Chine #Géopolitique (Le Monde)
 
 JSON uniquement : {{"body":"texte après le pipe ici"}}""", max_tokens=300)
 
