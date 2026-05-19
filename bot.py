@@ -144,29 +144,35 @@ Score: 9-10=breaking, 7-8=important, 5-6=intéressant, 0-4=banal
 "histoire" seulement si fait historique lié à la date du jour""")
 
 def gen_tweet(title, summary, source, category, video_url=None):
-    prefix    = PREFIXES.get(category, "📰")
     cat_label = CAT_LABELS.get(category, category.upper())
+    prefix    = PREFIXES.get(category, "📰")
     video_str = f"\nAjoute ce lien à la fin : {video_url}" if video_url else ""
     today     = datetime.now().strftime("%d %B %Y")
+
+    # Claude génère SEULEMENT le texte après le | — pas le préfixe
     result = claude(f"""Community manager de Pulse. Aujourd'hui : {today}.
 
 Article — Source:{source} | Titre:{title} | Résumé:{summary}{video_str}
 
-FORMAT : {prefix} {cat_label} | info directe #hashtag1 #hashtag2 (Source)
+Génère UNIQUEMENT le texte du tweet après le séparateur |
+Ne commence PAS par "{cat_label}" ni par aucune catégorie.
+Va directement à l'info.
 
 Règles :
 - FRANÇAIS obligatoire
-- Commence EXACTEMENT par "{prefix} {cat_label} |"
-- NE répète JAMAIS "{cat_label}" dans le texte après le |
-- Info brute, directe, zéro remplissage
-- 2-3 hashtags pertinents
-- Source entre parenthèses : ({source})
-- Max 280 caractères
+- Info brute et directe, zéro remplissage
+- 2-3 hashtags pertinents à la fin
+- Source entre parenthèses à la fin : ({source})
+- Max 240 caractères (le préfixe sera ajouté automatiquement)
 
-Exemple : 🌍 MONDE | Le Danemark refuse de négocier le Groenland face à Trump #Groenland #Trump #Géopolitique (Le Monde)
+Exemple de bonne réponse : Poutine reçu par Xi pour renforcer leur alliance malgré la pression occidentale #Russie #Chine #Géopolitique (Le Monde)
 
-JSON uniquement : {{"tweet":"le tweet complet"}}""", max_tokens=400)
-    return result.get("tweet", "")
+JSON uniquement : {{"body":"texte après le pipe ici"}}""", max_tokens=300)
+
+    body = result.get("body", "").strip()
+    # On construit le tweet final ici en Python — préfixe garanti correct
+    tweet = f"{prefix} {cat_label} | {body}"
+    return tweet
 
 # ── YOUTUBE ───────────────────────────────────────────────────────────────────
 def find_video(title, summary):
@@ -282,8 +288,8 @@ def build_png(headline, source, category, photo_url=None):
         draw = ImageDraw.Draw(img)
         draw.text((bx+18, by+9), cat_text, font=f_badge, fill=badge_rgb)
 
-        # Titre centré — seulement si pas une personne connue
-        show_text = not is_person(headline)
+        # Titre centré — pas de texte seulement si personne connue ET photo réelle de l'article
+        show_text = (not is_person(headline)) or (photo_url is None)
         if show_text:
             # Taille adaptative
             for fsize in [68, 56, 46, 38, 32]:
@@ -479,8 +485,19 @@ def check_feeds(conn):
             item["score"] = min(10, item["score"] + 2)
 
     scored.sort(key=lambda x: x["score"], reverse=True)
-    top = scored[:MAX_PAR_PASSE]
-    print(f"  → {len(top)} sélectionné(s) sur {len(scored)} éligibles.")
+
+    # Sélection : 2 articles de catégories DIFFÉRENTES
+    top = []
+    used_cats = set()
+    for item in scored:
+        cat = item["analysis"]["category"]
+        if cat not in used_cats:
+            top.append(item)
+            used_cats.add(cat)
+        if len(top) >= MAX_PAR_PASSE:
+            break
+
+    print(f"  → {len(top)} sélectionné(s) [{', '.join(used_cats)}] sur {len(scored)} éligibles.")
 
     # 4. Générer et envoyer
     for item in top:
