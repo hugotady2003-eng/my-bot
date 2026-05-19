@@ -580,6 +580,63 @@ def extract_photo(entry):
 # ═══════════════════════════════════════════════════════════════════════════
 # BOUCLE PRINCIPALE
 # ═══════════════════════════════════════════════════════════════════════════
+def gen_histoire_du_jour(conn):
+    """
+    Génère UNE FOIS PAR JOUR un tweet sur un fait historique lié à la date du jour.
+    Retourne un dict item compatible avec le reste du pipeline, ou None.
+    """
+    # Vérifier si l'histoire a déjà été envoyée aujourd'hui
+    if "histoire" in cats_today(conn):
+        return None
+
+    today = datetime.now()
+    jour  = today.strftime("%d %B")
+
+    try:
+        result = claude(f"""Tu es un historien passionné qui anime le compte Twitter Pulse.
+
+Aujourd'hui c'est le {jour}.
+
+Trouve UN fait historique marquant, surprenant ou peu connu qui s'est passé un {jour} (n'importe quelle année).
+Privilégie les faits qui font dire "ah ouais je savais pas !" plutôt que les événements ultra-connus.
+
+Génère ensuite le tweet complet.
+
+FORMAT OBLIGATOIRE :
+📜 HISTOIRE | texte du tweet avec les détails
+
+Règles :
+- Commence par "Il y a X ans," puis l'événement
+- Donne les détails importants — ne teaser pas
+- Hashtags intégrés dans le texte
+- Pas de source externe, juste "(Éphéméride Pulse)" à la fin
+- 300-500 caractères
+- FRANÇAIS obligatoire
+
+Réponds avec ce JSON UNIQUEMENT :
+{{"titre_court":"<max 75 chars pour l'image>","tweet":"le tweet complet avec 📜 HISTOIRE | au début"}}""", max_tokens=600)
+
+        titre_court = result.get("titre_court", f"Éphéméride du {jour}")[:75]
+        tweet       = result.get("tweet", "")
+
+        if not tweet:
+            return None
+
+        print(f"  📜 Histoire du jour générée : {titre_court}")
+        return {
+            "title":    f"Éphéméride — {jour}",
+            "source":   "Éphéméride Pulse",
+            "url":      "",
+            "analysis": {"category": "histoire", "needs_video": False},
+            "tweet":    tweet,
+            "headline_court": titre_court,
+            "photo_url": None,
+        }
+    except Exception as e:
+        print(f"  ⚠️ Histoire du jour échouée : {e}")
+        return None
+
+
 def check_feeds(conn):
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Scan RSS...")
 
@@ -647,27 +704,40 @@ def check_feeds(conn):
 
     print(f"  → {len(top)} sélectionné(s) [{', '.join(used_cats)}] sur {len(scored)} éligibles.")
 
+    # ── Histoire du jour (une fois par jour, générée par Claude) ──
+    histoire = gen_histoire_du_jour(conn)
+    if histoire and "histoire" not in used_cats:
+        top.append(histoire)
+        used_cats.add("histoire")
+        print(f"  📜 Histoire du jour ajoutée.")
+
     # 5. Générer et envoyer
     for item in top:
         try:
             cat = item["analysis"]["category"]
             a   = item["analysis"]
-            add_recent(conn, item["title"])
 
-            # Vidéo YouTube
-            video = None
-            if a.get("needs_video") and YOUTUBE_API_KEY:
-                video = find_video(item["title"], item["summary"])
+            # Si c'est l'histoire du jour, le tweet est déjà généré
+            if "tweet" in item:
+                tweet_final    = item["tweet"]
+                headline_court = item["headline_court"]
+                photo          = item.get("photo_url")
+                video          = None
+            else:
+                add_recent(conn, item["title"])
 
-            # Tweet + titre court
-            body, headline_court = gen_tweet_et_titre(
-                item["title"], item["summary"], item["source"], cat,
-                video_url=video["url"] if video else None
-            )
-            tweet_final = build_full_tweet(body, cat)
+                # Vidéo YouTube
+                video = None
+                if a.get("needs_video") and YOUTUBE_API_KEY:
+                    video = find_video(item["title"], item["summary"])
 
-            # Image PNG
-            photo            = extract_photo(item["entry"])
+                # Tweet + titre court
+                body, headline_court = gen_tweet_et_titre(
+                    item["title"], item["summary"], item["source"], cat,
+                    video_url=video["url"] if video else None
+                )
+                tweet_final = build_full_tweet(body, cat)
+                photo       = extract_photo(item["entry"])
             png_bytes, png_nm= build_png(headline_court, item["source"], cat, photo)
 
             now    = datetime.now()
