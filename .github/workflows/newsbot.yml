@@ -5,6 +5,7 @@ on:
     - cron: "0 6,8,10,12,14,16,18,20,21 * * *"
   workflow_dispatch:
   repository_dispatch:
+  types: [run-bot]
 
 jobs:
   run-bot:
