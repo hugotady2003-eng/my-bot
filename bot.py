@@ -219,19 +219,28 @@ STRICT RULES for body:
 - Go straight to the info — no intro
 - ENGLISH only
 - Structure (Premium account = 600 chars max):
-   • Sentence 1: PUNCHY hook with the KEY INFO (the "punchline" — make people want to read more)
+   • Sentence 1 (the HOOK): SHORT and PUNCHY with the key info. Must make the reader want to keep reading.
    • Line break
    • 1-2 short sentences with details (NO repetition of sentence 1)
    • Line break
    • Source in parentheses at the end: ({source})
 - GIVE THE FULL INFO — never tease without delivering
-- 2-3 hashtags INTEGRATED naturally in the text (replace a word: "the #US" not "US #US")
 - Max 600 characters total
 
-GOOD EXAMPLE:
-Body: "Trump just announced 50% tariffs on all #China imports, escalating the trade war.
+HASHTAG RULES (very important):
+- Use 2-3 hashtags, SPREAD throughout the text (not all clustered at the start or end)
+- Put hashtags on the MOST SEARCHED keywords for this topic:
+   • Famous person's name → #Trump, #Macron, #Mbappe, #Musk
+   • Country → #USA, #China, #Iran, #France
+   • Major company → #Tesla, #Apple, #OpenAI
+   • Major event/concept → #ClimateChange, #AI, #Election
+- Replace a word naturally: write "the #US economy" not "US economy #US"
+- Don't hashtag generic words like #news, #today, #breaking
 
-The move targets electronics and consumer goods, with prices expected to surge in #US stores within weeks. Beijing has promised swift retaliation.
+GOOD EXAMPLE:
+Body: "#Trump just slapped 50% tariffs on all imports from #China, escalating the trade war.
+
+The move targets electronics and consumer goods, with US store prices expected to surge within weeks. Beijing has promised swift retaliation.
 
 (Bloomberg)"
 
@@ -572,21 +581,35 @@ Today is {today}. Here are VERIFIED historical events from Wikipedia (100% relia
 
 {events_str}
 
-Choose ONE event that is:
-- Surprising or lesser-known (NOT super famous events everyone knows)
-- Internationally relevant
-- Has a "wow, didn't know that" factor
+CRITICAL RULE — only choose an event if it is GLOBALLY FAMOUS, meaning:
+- The vast majority of people (worldwide) know it or have heard of it
+- It's the kind of event taught in history class or referenced in pop culture
+- Examples of acceptable events: 9/11 attacks, JFK assassination, Apollo 11 moon landing, fall of the Berlin Wall, D-Day, Pearl Harbor, end of WW2, Hiroshima, fall of the Soviet Union, Mandela freed, MLK's "I have a dream", Princess Diana's death, Titanic sinking, Chernobyl, etc.
+- Examples to REJECT: local laws, niche scientific discoveries, regional events, obscure treaties, unknown personalities
 
-Then generate the tweet. Use ONLY facts from the list above — do not invent dates, numbers, or details.
+If NONE of the events in the list above match this "globally famous" criteria → return {{"skip": true}}.
+Be STRICT. Better to skip than to publish a forgettable fact.
+
+If you find a worthy event, generate the tweet using ONLY facts from the list above. Do NOT invent dates, numbers, or details.
 
 FORMAT:
 - headline_court (max 75 chars): catchy headline for the image
 - image_query (max 5 words): what to search for the image
-- body: tweet body (400-500 chars). Start with "X years ago today,..." then give the facts. End with "(Source: Wikipedia)"
-- 2-3 hashtags integrated naturally in the text
+- body: tweet body (400-500 chars).
+  • Start with "X years ago today, [event in one punchy sentence]"
+  • Then give 1-2 sentences of context/details (no repetition)
+  • End with "(Source: Wikipedia)"
+  • 2-3 hashtags SPREAD throughout the text on the most searched keywords (person's name, country, event name) — NOT all at the start or end
 
 Return ONLY this JSON:
-{{"headline_court":"...","image_query":"...","body":"..."}}""", max_tokens=600)
+{{"headline_court":"...","image_query":"...","body":"..."}}
+OR
+{{"skip": true}}""", max_tokens=600)
+
+        # Si Claude décide de skip
+        if result.get("skip"):
+            print(f"  📜 Aucun événement historique mondialement connu aujourd'hui — skip.")
+            return None
 
         body           = result.get("body", "").strip()
         headline_court = result.get("headline_court", f"On this day: {today}")[:75]
