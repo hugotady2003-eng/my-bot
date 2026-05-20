@@ -2,12 +2,12 @@
 Pulse NewsBot — bot d'actu internationale en anglais.
 Génère des tweets engageants avec image PNG, envoyés par email.
 """
-import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib
+import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib, random
 import urllib.request, urllib.parse, re
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # ═══════════════════════════════════════════════════════════════════════════
 # CONFIG
@@ -109,10 +109,46 @@ def init_db():
         "CREATE TABLE IF NOT EXISTS seen (hash TEXT PRIMARY KEY, title TEXT, seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)",
         "CREATE TABLE IF NOT EXISTS recent_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)",
         "CREATE TABLE IF NOT EXISTS category_log (category TEXT PRIMARY KEY, last_sent TEXT DEFAULT '2000-01-01')",
+        # Cache des analyses pour éviter de re-payer Claude sur les mêmes articles
+        # qui ont été analysés mais pas publiés (ex: rejetés par sélection top-2)
+        """CREATE TABLE IF NOT EXISTS analyzed_cache (
+            hash TEXT PRIMARY KEY,
+            score INTEGER,
+            category TEXT,
+            is_duplicate INTEGER,
+            needs_video INTEGER,
+            analyzed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )""",
     ]:
         conn.execute(sql)
+    # Nettoyage : on supprime les analyses de plus de 24h
+    conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
     conn.commit()
     return conn
+
+def get_cached_analysis(conn, url):
+    h   = hashlib.md5(url.encode()).hexdigest()
+    row = conn.execute(
+        "SELECT score, category, is_duplicate, needs_video FROM analyzed_cache WHERE hash=?",
+        (h,)
+    ).fetchone()
+    if row:
+        return {
+            "score": row[0], "category": row[1],
+            "is_duplicate": bool(row[2]), "needs_video": bool(row[3]),
+        }
+    return None
+
+def cache_analysis(conn, url, analysis):
+    h = hashlib.md5(url.encode()).hexdigest()
+    conn.execute(
+        """INSERT OR REPLACE INTO analyzed_cache (hash, score, category, is_duplicate, needs_video)
+           VALUES (?, ?, ?, ?, ?)""",
+        (h, int(analysis.get("score", 0)), analysis.get("category", ""),
+         1 if analysis.get("is_duplicate") else 0,
+         1 if analysis.get("needs_video") else 0)
+    )
+    conn.commit()
 
 def is_seen(conn, url):
     h = hashlib.md5(url.encode()).hexdigest()
@@ -140,6 +176,48 @@ def mark_cat(conn, cat):
     conn.execute("INSERT INTO category_log (category,last_sent) VALUES (?,?) ON CONFLICT(category) DO UPDATE SET last_sent=excluded.last_sent", (cat, now))
     conn.commit()
 
+def last_publish_time(conn):
+    """Retourne la datetime de la dernière publication, ou None."""
+    row = conn.execute("SELECT MAX(last_sent) FROM category_log WHERE last_sent != '2000-01-01'").fetchone()
+    if not row or not row[0]:
+        return None
+    try:
+        return datetime.strptime(row[0], "%Y-%m-%d %H:%M:%S")
+    except:
+        return None
+
+def should_publish_now(conn, min_minutes=90, max_minutes=150):
+    """
+    Décide si on doit publier maintenant.
+    Cible un intervalle aléatoire entre min_minutes et max_minutes depuis la dernière publication.
+    Logique probabiliste :
+    - < min_minutes : on attend toujours
+    - > max_minutes : on publie toujours
+    - entre les deux : probabilité croissante linéaire
+    """
+    last = last_publish_time(conn)
+    if not last:
+        return True  # Première publication
+
+    elapsed = (datetime.now() - last).total_seconds() / 60
+
+    if elapsed < min_minutes:
+        wait = int(min_minutes - elapsed)
+        print(f"  ⏸️  Dernière publi il y a {int(elapsed)} min — attente min {wait} min.")
+        return False
+    if elapsed > max_minutes:
+        print(f"  ✅ Dernière publi il y a {int(elapsed)} min — au-delà du max, on publie.")
+        return True
+
+    # Probabilité croissante : 0% à min_minutes, 100% à max_minutes
+    proba = (elapsed - min_minutes) / (max_minutes - min_minutes)
+    publish = random.random() < proba
+    if publish:
+        print(f"  🎲 {int(elapsed)} min depuis dernière publi (proba {int(proba*100)}%) → on publie.")
+    else:
+        print(f"  🎲 {int(elapsed)} min depuis dernière publi (proba {int(proba*100)}%) → on attend.")
+    return publish
+
 # ═══════════════════════════════════════════════════════════════════════════
 # CLAUDE API
 # ═══════════════════════════════════════════════════════════════════════════
@@ -152,24 +230,43 @@ def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001"):
     raw = msg.content[0].text.strip().replace("```json", "").replace("```", "").strip()
     return json.loads(raw)
 
-def analyse(title, summary, source, recent):
-    """Analyse un article : ne retient QUE les actus à portée internationale."""
+def analyse_batch(articles, recent):
+    """
+    Analyse PLUSIEURS articles en un seul appel Claude (optimisation coût × ~3).
+    `articles` : liste de dicts {title, summary, source}.
+    Retourne une liste d'analyses dans le même ordre.
+    """
+    if not articles:
+        return []
+
     recent_str = "\n".join(f"- {t}" for t in recent[:20]) or "None"
     today      = datetime.now().strftime("%d %B %Y")
     cats       = "|".join(LABELS.keys())
-    return claude(f"""You are the editor of Pulse, an English-language news Twitter account focused on GLOBAL impact.
+
+    # On numérote chaque article pour pouvoir corréler avec la réponse
+    articles_str = "\n\n".join(
+        f"### Article {i+1}\nSource: {a['source']}\nTitle: {a['title']}\nSummary: {a.get('summary', '')[:300]}"
+        for i, a in enumerate(articles)
+    )
+
+    prompt = f"""You are the editor of Pulse, an English-language news Twitter account focused on GLOBAL impact.
 Today: {today}
 
-Article:
-- Source: {source}
-- Title:  {title}
-- Summary: {summary}
+Below are {len(articles)} candidate articles to analyze. For EACH one, return a JSON entry.
 
 Recent published titles (avoid duplicates):
 {recent_str}
 
-Return ONLY this JSON:
-{{"score":<0-10>,"category":"<{cats}>","is_duplicate":<true|false>,"needs_video":<true|false>,"reason":"<1 short sentence>"}}
+Articles to analyze:
+
+{articles_str}
+
+Return ONLY this JSON array (one entry per article, in the SAME ORDER):
+{{"analyses":[
+  {{"id":1,"score":<0-10>,"category":"<{cats}>","is_duplicate":<true|false>,"needs_video":<true|false>}},
+  {{"id":2,"score":<0-10>,"category":"<{cats}>","is_duplicate":<true|false>,"needs_video":<true|false>}},
+  ...
+]}}
 
 Scoring criteria (be STRICT):
 - 9-10: major breaking news affecting millions worldwide
@@ -177,7 +274,7 @@ Scoring criteria (be STRICT):
 - 5-6:  interesting but limited reach
 - 0-4:  local news, fluff, PR, not for international audience
 
-ONLY publish if score >= 7. We focus on:
+Focus on:
 - Globally known politicians (Trump, Macron, Putin, Xi, etc.)
 - Major companies (Apple, Tesla, OpenAI, etc.)
 - International conflicts, wars, geopolitics
@@ -185,7 +282,19 @@ ONLY publish if score >= 7. We focus on:
 - World-famous athletes/celebrities doing something newsworthy
 
 is_duplicate=true ONLY if a recent title covers the EXACT same event.
-"history" ONLY for verifiable historical facts on today's date.""", max_tokens=200)
+"history" ONLY for verifiable historical facts on today's date.
+
+IMPORTANT: return EXACTLY {len(articles)} entries in the analyses array, in the same order as the articles above."""
+
+    # Le batch peut nécessiter pas mal de tokens en sortie (50 par article ≈)
+    result   = claude(prompt, max_tokens=max(500, len(articles) * 80))
+    analyses = result.get("analyses", [])
+
+    # Sécurité : si le retour est incomplet, on complète avec des scores nuls
+    while len(analyses) < len(articles):
+        analyses.append({"score": 0, "category": "world", "is_duplicate": False, "needs_video": False})
+
+    return analyses[:len(articles)]
 
 def gen_tweet_complet(title, summary, source, category, video_url=None):
     """
@@ -644,7 +753,13 @@ OR
 # BOUCLE PRINCIPALE
 # ═══════════════════════════════════════════════════════════════════════════
 def check_feeds(conn):
-    print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 RSS scan...")
+    print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
+
+    # Décide si c'est le moment de publier (intervalle aléatoire 90-150 min)
+    if not should_publish_now(conn):
+        return
+
+    print(f"  → RSS scan...")
 
     # 1. Collecter nouveaux articles
     candidates = []
@@ -667,24 +782,49 @@ def check_feeds(conn):
 
     print(f"  → {len(candidates)} new articles · analyzing...")
 
-    # 2. Analyser
-    recent = get_recent(conn)
-    scored = []
-    for c in candidates:
-        try:
-            a     = analyse(c["title"], c["summary"], c["source"], recent)
+    # 2. Analyse — séparation entre les articles cachés et ceux à analyser
+    recent       = get_recent(conn)
+    scored       = []
+    to_analyse   = []   # articles à envoyer à Claude
+    to_analyse_idx = []
+
+    for i, c in enumerate(candidates):
+        cached = get_cached_analysis(conn, c["url"])
+        if cached:
+            print(f"  💾 Cache: {c['title'][:55]}")
+            a = cached
             score = int(a.get("score", 0))
-            mark_seen(conn, c["url"], c["title"])
             if a.get("is_duplicate"):
-                print(f"  ⏩ Duplicate: {c['title'][:55]}")
+                mark_seen(conn, c["url"], c["title"])
                 continue
             if score < SCORE_MINIMUM:
-                print(f"  📉 {score}/10: {c['title'][:55]}")
+                mark_seen(conn, c["url"], c["title"])
                 continue
             scored.append({**c, "analysis": a, "score": score})
-            print(f"  ✅ {score}/10 [{a.get('category')}]: {c['title'][:55]}")
+        else:
+            to_analyse.append(c)
+            to_analyse_idx.append(i)
+
+    # 3. Batch analyse de tous les articles non cachés en UN seul appel Claude
+    if to_analyse:
+        try:
+            print(f"  🧠 Batch analyse de {len(to_analyse)} articles...")
+            analyses = analyse_batch(to_analyse, recent)
+            for c, a in zip(to_analyse, analyses):
+                cache_analysis(conn, c["url"], a)
+                score = int(a.get("score", 0))
+                if a.get("is_duplicate"):
+                    mark_seen(conn, c["url"], c["title"])
+                    print(f"  ⏩ Duplicate: {c['title'][:55]}")
+                    continue
+                if score < SCORE_MINIMUM:
+                    mark_seen(conn, c["url"], c["title"])
+                    print(f"  📉 {score}/10: {c['title'][:55]}")
+                    continue
+                scored.append({**c, "analysis": a, "score": score})
+                print(f"  ✅ {score}/10 [{a.get('category')}]: {c['title'][:55]}")
         except Exception as e:
-            print(f"  ❌ Analyse '{c['title'][:40]}': {e}")
+            print(f"  ❌ Batch analyse: {e}")
 
     # 3. Boost catégories pas envoyées aujourd'hui
     missing = set(STYLES.keys()) - cats_today(conn)
@@ -752,6 +892,9 @@ def check_feeds(conn):
             send_email(subject, tweet_final, item["title"], item["source"],
                        item["url"], video, png_bytes, png_nm)
             mark_cat(conn, cat)
+            # On marque l'article comme vu UNIQUEMENT après publication réussie
+            if item.get("url"):
+                mark_seen(conn, item["url"], item["title"])
             print(f"  📧 Sent [{cat}]: {item['title'][:55]}")
             time.sleep(4)
 
