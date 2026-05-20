@@ -210,7 +210,7 @@ def last_publish_time(conn):
     except:
         return None
 
-def should_publish_now(conn, min_minutes=90, max_minutes=150):
+def should_publish_now(conn, min_minutes=60, max_minutes=180):
     """
     Décide si on doit publier maintenant.
     Cible un intervalle aléatoire entre min_minutes et max_minutes depuis la dernière publication.
