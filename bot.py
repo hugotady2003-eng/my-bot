@@ -26,7 +26,7 @@ TWITTER_ACCESS_TOKEN        = os.environ.get("TWITTER_ACCESS_TOKEN",        "")
 TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET", "")
 
 SCORE_MINIMUM = 7  # plus exigeant : seules les vraies grosses actus
-MAX_PAR_PASSE = 2
+MAX_PAR_PASSE = 1  # 1 seul article par run
 
 # ═══════════════════════════════════════════════════════════════════════════
 # SOURCES RSS — international + grandes figures
@@ -42,11 +42,21 @@ RSS_FEEDS = [
     # 🇺🇸 US (forte portée mondiale)
     {"url": "https://feeds.washingtonpost.com/rss/world",             "source": "Washington Post"},
     {"url": "https://www.politico.com/rss/politicopicks.xml",         "source": "Politico"},
-    # 📈 Business / Tech mondial
+    # 📈 Business / Marchés mondial
     {"url": "https://feeds.bloomberg.com/markets/news.rss",           "source": "Bloomberg"},
     {"url": "https://www.ft.com/world?format=rss",                    "source": "Financial Times"},
+    # 🤖 AI / Tech / Crypto (Twitter loves this)
     {"url": "https://techcrunch.com/feed/",                           "source": "TechCrunch"},
     {"url": "https://www.theverge.com/rss/index.xml",                 "source": "The Verge"},
+    {"url": "https://www.wired.com/feed/rss",                         "source": "Wired"},
+    {"url": "https://arstechnica.com/feed/",                          "source": "Ars Technica"},
+    {"url": "https://venturebeat.com/feed/",                          "source": "VentureBeat"},
+    {"url": "https://www.engadget.com/rss.xml",                       "source": "Engadget"},
+    {"url": "https://feeds.feedburner.com/TechCrunch/artificial-intelligence", "source": "TechCrunch AI"},
+    {"url": "https://www.coindesk.com/arc/outboundfeeds/rss/",        "source": "CoinDesk"},
+    {"url": "https://cointelegraph.com/rss",                          "source": "Cointelegraph"},
+    {"url": "https://decrypt.co/feed",                                "source": "Decrypt"},
+    {"url": "https://www.theblock.co/rss.xml",                        "source": "The Block"},
     # 🔬 Science / Santé
     {"url": "https://www.nature.com/nature.rss",                      "source": "Nature"},
     {"url": "https://www.sciencedaily.com/rss/top/science.xml",       "source": "Science Daily"},
@@ -73,6 +83,9 @@ STYLES = {
     "science":       {"color": "#b388ff", "label": "Science",       "bar": [(124,77,255),(101,31,255)],   "overlay": (2,6,16)},
     "health":        {"color": "#ff8a80", "label": "Health",        "bar": [(255,138,128),(244,67,54)],   "overlay": (16,4,4)},
     "environment":   {"color": "#80e27e", "label": "Environment",   "bar": [(128,226,126),(76,175,80)],   "overlay": (4,14,4)},
+    "tech":          {"color": "#40c4ff", "label": "Tech",          "bar": [(64,196,255),(0,176,255)],    "overlay": (2,8,18)},
+    "ai":            {"color": "#e040fb", "label": "AI",            "bar": [(224,64,251),(170,0,255)],    "overlay": (10,2,20)},
+    "crypto":        {"color": "#ffab40", "label": "Crypto",        "bar": [(255,171,64),(255,109,0)],    "overlay": (18,10,2)},
 }
 
 EMOJIS = {
@@ -80,6 +93,7 @@ EMOJIS = {
     "business": "📈", "society": "👥", "history": "📜",
     "culture": "🎭",  "sport": "🏆", "science": "🔬",
     "health":   "🏥", "environment": "🌱",
+    "tech":     "💻", "ai": "🤖", "crypto": "₿",
 }
 
 LABELS = {
@@ -89,6 +103,7 @@ LABELS = {
     "culture": "CULTURE", "sport": "SPORT",
     "science": "SCIENCE", "health": "HEALTH",
     "environment": "ENVIRONMENT",
+    "tech": "TECH", "ai": "AI", "crypto": "CRYPTO",
 }
 
 # Images Unsplash de fallback par catégorie
@@ -104,6 +119,9 @@ UNSPLASH_FALLBACK = {
     "science":     "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=70",
     "health":      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=70",
     "environment": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=70",
+    "tech":        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=70",
+    "ai":          "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=70",
+    "crypto":      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=70",
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
