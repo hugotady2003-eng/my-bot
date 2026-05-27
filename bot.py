@@ -1,6 +1,6 @@
 """
-Pulse NewsBot — bot d'actu internationale en anglais.
-Génère des tweets engageants avec image PNG, envoyés par email.
+Pulse NewsBot — bot d'actualité française.
+Génère des tweets engageants avec image PNG, envoyés par email + posté sur X.
 """
 import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib, random
 import urllib.request, urllib.parse, re
@@ -17,111 +17,120 @@ GMAIL_APP_PASS    = os.environ.get("GMAIL_APP_PASS",    "")
 EMAIL_TO          = os.environ.get("EMAIL_TO",          "")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 YOUTUBE_API_KEY   = os.environ.get("YOUTUBE_API_KEY",   "")
-UNSPLASH_KEY      = os.environ.get("UNSPLASH_KEY",      "")  # optionnel, pour images contextuelles
+UNSPLASH_KEY      = os.environ.get("UNSPLASH_KEY",      "")
 
-# Twitter / X API (OAuth 1.0a — pour poster avec image)
 TWITTER_API_KEY             = os.environ.get("TWITTER_API_KEY",             "")
 TWITTER_API_SECRET          = os.environ.get("TWITTER_API_SECRET",          "")
 TWITTER_ACCESS_TOKEN        = os.environ.get("TWITTER_ACCESS_TOKEN",        "")
 TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET", "")
 
-SCORE_MINIMUM = 7  # plus exigeant : seules les vraies grosses actus
-MAX_PAR_PASSE = 1  # 1 seul article par run
+SCORE_MINIMUM = 6
+MAX_PAR_PASSE = 1
 
 # ═══════════════════════════════════════════════════════════════════════════
-# SOURCES RSS — international + grandes figures
+# SOURCES RSS — France
 # ═══════════════════════════════════════════════════════════════════════════
 RSS_FEEDS = [
-    # 🌍 International majeur
-    {"url": "https://feeds.bbci.co.uk/news/world/rss.xml",            "source": "BBC World"},
-    {"url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", "source": "NY Times"},
-    {"url": "https://www.theguardian.com/world/rss",                  "source": "The Guardian"},
-    {"url": "https://feeds.reuters.com/Reuters/worldNews",            "source": "Reuters"},
-    {"url": "https://www.aljazeera.com/xml/rss/all.xml",              "source": "Al Jazeera"},
-    {"url": "https://feeds.npr.org/1004/rss.xml",                     "source": "NPR World"},
-    # 🇺🇸 US (forte portée mondiale)
-    {"url": "https://feeds.washingtonpost.com/rss/world",             "source": "Washington Post"},
-    {"url": "https://www.politico.com/rss/politicopicks.xml",         "source": "Politico"},
-    # 📈 Business / Marchés mondial
-    {"url": "https://feeds.bloomberg.com/markets/news.rss",           "source": "Bloomberg"},
-    {"url": "https://www.ft.com/world?format=rss",                    "source": "Financial Times"},
-    # 🤖 AI / Tech / Crypto (Twitter loves this)
-    {"url": "https://techcrunch.com/feed/",                           "source": "TechCrunch"},
-    {"url": "https://www.theverge.com/rss/index.xml",                 "source": "The Verge"},
-    {"url": "https://www.wired.com/feed/rss",                         "source": "Wired"},
-    {"url": "https://arstechnica.com/feed/",                          "source": "Ars Technica"},
-    {"url": "https://venturebeat.com/feed/",                          "source": "VentureBeat"},
-    {"url": "https://www.engadget.com/rss.xml",                       "source": "Engadget"},
-    {"url": "https://feeds.feedburner.com/TechCrunch/artificial-intelligence", "source": "TechCrunch AI"},
-    {"url": "https://www.coindesk.com/arc/outboundfeeds/rss/",        "source": "CoinDesk"},
-    {"url": "https://cointelegraph.com/rss",                          "source": "Cointelegraph"},
-    {"url": "https://decrypt.co/feed",                                "source": "Decrypt"},
-    {"url": "https://www.theblock.co/rss.xml",                        "source": "The Block"},
-    # 🔬 Science / Santé
-    {"url": "https://www.nature.com/nature.rss",                      "source": "Nature"},
-    {"url": "https://www.sciencedaily.com/rss/top/science.xml",       "source": "Science Daily"},
-    {"url": "https://www.who.int/rss-feeds/news-english.xml",         "source": "WHO"},
-    # 🏆 Sport international
-    {"url": "https://www.espn.com/espn/rss/news",                     "source": "ESPN"},
-    {"url": "https://www.skysports.com/rss/12040",                    "source": "Sky Sports"},
-    # 🌱 Environnement
-    {"url": "https://www.theguardian.com/environment/rss",            "source": "Guardian Environment"},
+    # 🇫🇷 Grands quotidiens nationaux
+    {"url": "https://www.lemonde.fr/rss/une.xml",                      "source": "Le Monde"},
+    {"url": "https://www.lefigaro.fr/rss/figaro_actualites.xml",       "source": "Le Figaro"},
+    {"url": "https://www.liberation.fr/arc/outboundfeeds/rss-all/?outputType=xml", "source": "Libération"},
+    {"url": "https://www.lepoint.fr/rss.xml",                          "source": "Le Point"},
+    {"url": "https://www.lexpress.fr/rss/alaune.xml",                  "source": "L'Express"},
+    # 📺 Médias temps réel (style breaking)
+    {"url": "https://www.bfmtv.com/rss/news-24-7/",                    "source": "BFMTV"},
+    {"url": "https://www.francetvinfo.fr/titres.rss",                  "source": "France Info"},
+    {"url": "https://www.francebleu.fr/rss/a-la-une.xml",              "source": "France Bleu"},
+    {"url": "https://www.cnews.fr/rss/a-la-une.xml",                   "source": "CNEWS"},
+    # 📰 Quotidiens populaires + faits divers
+    {"url": "https://www.leparisien.fr/rss.xml",                       "source": "Le Parisien"},
+    {"url": "https://www.20minutes.fr/feeds/rss-une.xml",              "source": "20 Minutes"},
+    {"url": "https://www.ouest-france.fr/rss/une",                     "source": "Ouest-France"},
+    {"url": "https://www.sudouest.fr/essentiel/rss.xml",               "source": "Sud Ouest"},
+    {"url": "https://www.ladepeche.fr/rss.xml",                        "source": "La Dépêche"},
+    {"url": "https://www.midilibre.fr/rss.xml",                        "source": "Midi Libre"},
+    {"url": "https://www.nicematin.com/feed/rss/derniere-minute",      "source": "Nice-Matin"},
+    {"url": "https://www.estrepublicain.fr/rss/derniere-minute",       "source": "Est Républicain"},
+    # 🏛️ Politique / Économie
+    {"url": "https://www.lesechos.fr/rss/rss_la_une.xml",              "source": "Les Echos"},
+    {"url": "https://www.latribune.fr/rss/rubriques/actualite.html",   "source": "La Tribune"},
+    {"url": "https://www.challenges.fr/rss.xml",                       "source": "Challenges"},
+    # 💻 Tech / IA / Innovation
+    {"url": "https://www.numerama.com/feed/",                          "source": "Numerama"},
+    {"url": "https://www.frandroid.com/feed",                          "source": "Frandroid"},
+    {"url": "https://www.01net.com/rss/actualites.xml",                "source": "01net"},
+    {"url": "https://www.zdnet.fr/feeds/rss/actualites/",              "source": "ZDNet"},
+    # 🔬 Science
+    {"url": "https://www.futura-sciences.com/rss/actualites.xml",      "source": "Futura Sciences"},
+    {"url": "https://www.sciencesetavenir.fr/rss.xml",                 "source": "Sciences et Avenir"},
+    # 🏆 Sport
+    {"url": "https://www.lequipe.fr/rss/actu_rss.xml",                 "source": "L'Équipe"},
+    {"url": "https://www.eurosport.fr/rss.xml",                        "source": "Eurosport"},
+    # ❤️ Positivité / Insolite
+    {"url": "https://positivr.fr/feed/",                               "source": "Positivr"},
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
-# DA PULSE — styles, préfixes, labels (EN ANGLAIS maintenant)
+# DA PULSE — styles, préfixes, labels
 # ═══════════════════════════════════════════════════════════════════════════
 STYLES = {
     "breaking":      {"color": "#ff6868", "label": "Breaking",      "bar": [(255,32,32),(255,96,48)],     "overlay": (18,3,3)},
-    "world":         {"color": "#64b5f6", "label": "World",         "bar": [(33,150,243),(0,184,212)],    "overlay": (3,10,22)},
-    "politics":      {"color": "#ffd54f", "label": "Politics",      "bar": [(255,193,7),(255,152,0)],     "overlay": (12,10,2)},
-    "business":      {"color": "#69f0ae", "label": "Business",      "bar": [(0,230,118),(0,191,165)],     "overlay": (2,12,5)},
-    "society":       {"color": "#ce93d8", "label": "Society",       "bar": [(206,147,216),(156,39,176)],  "overlay": (10,4,20)},
-    "history":       {"color": "#d4a843", "label": "History",       "bar": [(212,168,67),(160,113,74)],   "overlay": (14,8,2)},
+    "france":        {"color": "#64b5f6", "label": "France",        "bar": [(33,150,243),(0,184,212)],    "overlay": (3,10,22)},
+    "monde":         {"color": "#80d8ff", "label": "Monde",         "bar": [(0,176,255),(0,229,255)],     "overlay": (2,8,18)},
+    "politique":     {"color": "#ffd54f", "label": "Politique",     "bar": [(255,193,7),(255,152,0)],     "overlay": (12,10,2)},
+    "economie":      {"color": "#69f0ae", "label": "Eco",           "bar": [(0,230,118),(0,191,165)],     "overlay": (2,12,5)},
+    "societe":       {"color": "#ce93d8", "label": "Société",       "bar": [(206,147,216),(156,39,176)],  "overlay": (10,4,20)},
+    "faitsdivers":   {"color": "#f48fb1", "label": "Faits Divers",  "bar": [(244,143,177),(233,30,99)],   "overlay": (16,4,8)},
+    "histoire":      {"color": "#d4a843", "label": "Histoire",      "bar": [(212,168,67),(160,113,74)],   "overlay": (14,8,2)},
     "culture":       {"color": "#00e5ff", "label": "Culture",       "bar": [(0,229,255),(29,233,182)],    "overlay": (2,12,14)},
     "sport":         {"color": "#82b1ff", "label": "Sport",         "bar": [(68,138,255),(48,79,254)],    "overlay": (2,6,14)},
     "science":       {"color": "#b388ff", "label": "Science",       "bar": [(124,77,255),(101,31,255)],   "overlay": (2,6,16)},
-    "health":        {"color": "#ff8a80", "label": "Health",        "bar": [(255,138,128),(244,67,54)],   "overlay": (16,4,4)},
-    "environment":   {"color": "#80e27e", "label": "Environment",   "bar": [(128,226,126),(76,175,80)],   "overlay": (4,14,4)},
+    "sante":         {"color": "#ff8a80", "label": "Santé",         "bar": [(255,138,128),(244,67,54)],   "overlay": (16,4,4)},
+    "environnement": {"color": "#80e27e", "label": "Environnement", "bar": [(128,226,126),(76,175,80)],   "overlay": (4,14,4)},
     "tech":          {"color": "#40c4ff", "label": "Tech",          "bar": [(64,196,255),(0,176,255)],    "overlay": (2,8,18)},
-    "ai":            {"color": "#e040fb", "label": "AI",            "bar": [(224,64,251),(170,0,255)],    "overlay": (10,2,20)},
-    "crypto":        {"color": "#ffab40", "label": "Crypto",        "bar": [(255,171,64),(255,109,0)],    "overlay": (18,10,2)},
+    "ia":            {"color": "#e040fb", "label": "IA",            "bar": [(224,64,251),(170,0,255)],    "overlay": (10,2,20)},
+    "insolite":      {"color": "#ffd180", "label": "Insolite",      "bar": [(255,209,128),(255,152,0)],   "overlay": (16,10,2)},
+    "positivity":    {"color": "#ff80ab", "label": "Positif",       "bar": [(255,128,171),(244,143,177)], "overlay": (20,4,12)},
 }
 
 EMOJIS = {
-    "breaking": "🚨", "world": "🌍", "politics": "🏛️",
-    "business": "📈", "society": "👥", "history": "📜",
+    "breaking": "🚨", "france": "🇫🇷", "monde": "🌍", "politique": "🏛️",
+    "economie": "📈", "societe": "👥", "faitsdivers": "🚓", "histoire": "📜",
     "culture": "🎭",  "sport": "🏆", "science": "🔬",
-    "health":   "🏥", "environment": "🌱",
-    "tech":     "💻", "ai": "🤖", "crypto": "₿",
+    "sante":    "🏥", "environnement": "🌱",
+    "tech":     "💻", "ia": "🤖", "insolite": "😲", "positivity": "❤️",
 }
 
 LABELS = {
-    "breaking": "BREAKING", "world": "WORLD",
-    "politics": "POLITICS", "business": "BUSINESS",
-    "society": "SOCIETY", "history": "HISTORY",
+    "breaking": "URGENT", "france": "FRANCE", "monde": "MONDE",
+    "politique": "POLITIQUE", "economie": "ECO",
+    "societe": "SOCIÉTÉ", "faitsdivers": "FAITS DIVERS",
+    "histoire": "HISTOIRE",
     "culture": "CULTURE", "sport": "SPORT",
-    "science": "SCIENCE", "health": "HEALTH",
-    "environment": "ENVIRONMENT",
-    "tech": "TECH", "ai": "AI", "crypto": "CRYPTO",
+    "science": "SCIENCE", "sante": "SANTÉ",
+    "environnement": "ENVIRONNEMENT",
+    "tech": "TECH", "ia": "IA",
+    "insolite": "INSOLITE", "positivity": "POSITIF",
 }
 
-# Images Unsplash de fallback par catégorie
 UNSPLASH_FALLBACK = {
-    "breaking":    "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=70",
-    "world":       "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&q=70",
-    "politics":    "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&q=70",
-    "business":    "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=70",
-    "society":     "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=70",
-    "history":     "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1200&q=70",
-    "culture":     "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=1200&q=70",
-    "sport":       "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=70",
-    "science":     "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=70",
-    "health":      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=70",
-    "environment": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=70",
-    "tech":        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=70",
-    "ai":          "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=70",
-    "crypto":      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=70",
+    "breaking":      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=70",
+    "france":        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=70",
+    "monde":         "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&q=70",
+    "politique":     "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&q=70",
+    "economie":      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=70",
+    "societe":       "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=70",
+    "faitsdivers":   "https://images.unsplash.com/photo-1453873531674-2151bcd01707?w=1200&q=70",
+    "histoire":      "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1200&q=70",
+    "culture":       "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=1200&q=70",
+    "sport":         "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=70",
+    "science":       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=70",
+    "sante":         "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=70",
+    "environnement": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=70",
+    "tech":          "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=70",
+    "ia":            "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=70",
+    "insolite":      "https://images.unsplash.com/photo-1532009324734-20a7a5813719?w=1200&q=70",
+    "positivity":    "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=1200&q=70",
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -133,46 +142,23 @@ def init_db():
         "CREATE TABLE IF NOT EXISTS seen (hash TEXT PRIMARY KEY, title TEXT, seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)",
         "CREATE TABLE IF NOT EXISTS recent_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)",
         "CREATE TABLE IF NOT EXISTS category_log (category TEXT PRIMARY KEY, last_sent TEXT DEFAULT '2000-01-01')",
-        # Cache des analyses pour éviter de re-payer Claude sur les mêmes articles
-        # qui ont été analysés mais pas publiés (ex: rejetés par sélection top-2)
         """CREATE TABLE IF NOT EXISTS analyzed_cache (
             hash TEXT PRIMARY KEY,
-            score INTEGER,
-            category TEXT,
-            is_duplicate INTEGER,
-            needs_video INTEGER,
+            score INTEGER, category TEXT,
+            is_duplicate INTEGER, needs_video INTEGER,
             analyzed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )""",
+        # Nouveau : log des mots-clés publiés pour bloquer la répétition
+        """CREATE TABLE IF NOT EXISTS keyword_log (
+            keyword TEXT PRIMARY KEY,
+            last_sent TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )""",
     ]:
         conn.execute(sql)
-    # Nettoyage : on supprime les analyses de plus de 24h
     conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
+    conn.execute("DELETE FROM keyword_log    WHERE last_sent   < datetime('now', '-12 hours')")
     conn.commit()
     return conn
-
-def get_cached_analysis(conn, url):
-    h   = hashlib.md5(url.encode()).hexdigest()
-    row = conn.execute(
-        "SELECT score, category, is_duplicate, needs_video FROM analyzed_cache WHERE hash=?",
-        (h,)
-    ).fetchone()
-    if row:
-        return {
-            "score": row[0], "category": row[1],
-            "is_duplicate": bool(row[2]), "needs_video": bool(row[3]),
-        }
-    return None
-
-def cache_analysis(conn, url, analysis):
-    h = hashlib.md5(url.encode()).hexdigest()
-    conn.execute(
-        """INSERT OR REPLACE INTO analyzed_cache (hash, score, category, is_duplicate, needs_video)
-           VALUES (?, ?, ?, ?, ?)""",
-        (h, int(analysis.get("score", 0)), analysis.get("category", ""),
-         1 if analysis.get("is_duplicate") else 0,
-         1 if analysis.get("needs_video") else 0)
-    )
-    conn.commit()
 
 def is_seen(conn, url):
     h = hashlib.md5(url.encode()).hexdigest()
@@ -184,7 +170,7 @@ def mark_seen(conn, url, title):
     conn.commit()
 
 def get_recent(conn):
-    return [r[0] for r in conn.execute("SELECT title FROM recent_titles ORDER BY added_at DESC LIMIT 40").fetchall()]
+    return [r[0] for r in conn.execute("SELECT title FROM recent_titles ORDER BY added_at DESC LIMIT 50").fetchall()]
 
 def add_recent(conn, title):
     conn.execute("INSERT INTO recent_titles (title) VALUES (?)", (title,))
@@ -200,8 +186,43 @@ def mark_cat(conn, cat):
     conn.execute("INSERT INTO category_log (category,last_sent) VALUES (?,?) ON CONFLICT(category) DO UPDATE SET last_sent=excluded.last_sent", (cat, now))
     conn.commit()
 
+def get_cached_analysis(conn, url):
+    h   = hashlib.md5(url.encode()).hexdigest()
+    row = conn.execute("SELECT score, category, is_duplicate, needs_video FROM analyzed_cache WHERE hash=?", (h,)).fetchone()
+    if row:
+        return {"score": row[0], "category": row[1], "is_duplicate": bool(row[2]), "needs_video": bool(row[3])}
+    return None
+
+def cache_analysis(conn, url, analysis):
+    h = hashlib.md5(url.encode()).hexdigest()
+    conn.execute(
+        "INSERT OR REPLACE INTO analyzed_cache (hash, score, category, is_duplicate, needs_video) VALUES (?,?,?,?,?)",
+        (h, int(analysis.get("score", 0)), analysis.get("category", ""),
+         1 if analysis.get("is_duplicate") else 0,
+         1 if analysis.get("needs_video") else 0)
+    )
+    conn.commit()
+
+def recent_keywords(conn, hours=12):
+    """Retourne les mots-clés majeurs publiés dans les dernières heures."""
+    return [r[0] for r in conn.execute(
+        "SELECT keyword FROM keyword_log WHERE last_sent > datetime('now', ?)",
+        (f"-{hours} hours",)
+    ).fetchall()]
+
+def log_keywords(conn, keywords):
+    """Enregistre les mots-clés majeurs d'un tweet qui vient d'être publié."""
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    for kw in keywords:
+        kw = kw.lower().strip()
+        if kw:
+            conn.execute(
+                "INSERT OR REPLACE INTO keyword_log (keyword, last_sent) VALUES (?, ?)",
+                (kw, now)
+            )
+    conn.commit()
+
 def last_publish_time(conn):
-    """Retourne la datetime de la dernière publication, ou None."""
     row = conn.execute("SELECT MAX(last_sent) FROM category_log WHERE last_sent != '2000-01-01'").fetchone()
     if not row or not row[0]:
         return None
@@ -211,35 +232,22 @@ def last_publish_time(conn):
         return None
 
 def should_publish_now(conn, min_minutes=60, max_minutes=180):
-    """
-    Décide si on doit publier maintenant.
-    Cible un intervalle aléatoire entre min_minutes et max_minutes depuis la dernière publication.
-    Logique probabiliste :
-    - < min_minutes : on attend toujours
-    - > max_minutes : on publie toujours
-    - entre les deux : probabilité croissante linéaire
-    """
     last = last_publish_time(conn)
     if not last:
-        return True  # Première publication
-
+        return True
     elapsed = (datetime.now() - last).total_seconds() / 60
-
     if elapsed < min_minutes:
-        wait = int(min_minutes - elapsed)
-        print(f"  ⏸️  Dernière publi il y a {int(elapsed)} min — attente min {wait} min.")
+        print(f"  ⏸️  Dernière publi il y a {int(elapsed)} min — attente.")
         return False
     if elapsed > max_minutes:
-        print(f"  ✅ Dernière publi il y a {int(elapsed)} min — au-delà du max, on publie.")
+        print(f"  ✅ Dernière publi il y a {int(elapsed)} min — on publie.")
         return True
-
-    # Probabilité croissante : 0% à min_minutes, 100% à max_minutes
     proba = (elapsed - min_minutes) / (max_minutes - min_minutes)
     publish = random.random() < proba
     if publish:
-        print(f"  🎲 {int(elapsed)} min depuis dernière publi (proba {int(proba*100)}%) → on publie.")
+        print(f"  🎲 {int(elapsed)} min (proba {int(proba*100)}%) → on publie.")
     else:
-        print(f"  🎲 {int(elapsed)} min depuis dernière publi (proba {int(proba*100)}%) → on attend.")
+        print(f"  🎲 {int(elapsed)} min (proba {int(proba*100)}%) → on attend.")
     return publish
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -254,134 +262,140 @@ def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001"):
     raw = msg.content[0].text.strip().replace("```json", "").replace("```", "").strip()
     return json.loads(raw)
 
-def analyse_batch(articles, recent):
-    """
-    Analyse PLUSIEURS articles en un seul appel Claude (optimisation coût × ~3).
-    `articles` : liste de dicts {title, summary, source}.
-    Retourne une liste d'analyses dans le même ordre.
-    """
+def analyse_batch(articles, recent, blocked_keywords):
+    """Analyse plusieurs articles en un seul appel Claude."""
     if not articles:
         return []
 
-    recent_str = "\n".join(f"- {t}" for t in recent[:20]) or "None"
-    today      = datetime.now().strftime("%d %B %Y")
-    cats       = "|".join(LABELS.keys())
+    recent_str  = "\n".join(f"- {t}" for t in recent[:20]) or "Aucun"
+    blocked_str = ", ".join(blocked_keywords) if blocked_keywords else "Aucun"
+    today       = datetime.now().strftime("%d %B %Y")
+    cats        = "|".join(LABELS.keys())
 
-    # On numérote chaque article pour pouvoir corréler avec la réponse
     articles_str = "\n\n".join(
-        f"### Article {i+1}\nSource: {a['source']}\nTitle: {a['title']}\nSummary: {a.get('summary', '')[:300]}"
+        f"### Article {i+1}\nSource: {a['source']}\nTitre: {a['title']}\nRésumé: {a.get('summary','')[:300]}"
         for i, a in enumerate(articles)
     )
 
-    prompt = f"""You are the editor of Pulse, an English-language news Twitter account focused on GLOBAL impact.
-Today: {today}
+    prompt = f"""Tu es l'éditeur du compte Twitter Pulse, compte d'actualité française.
+Aujourd'hui : {today}
 
-Below are {len(articles)} candidate articles to analyze. For EACH one, return a JSON entry.
+Voici {len(articles)} articles à analyser.
 
-Recent published titles (avoid duplicates):
+Titres récemment publiés (à éviter en doublon sémantique) :
 {recent_str}
 
-Articles to analyze:
+⚠️ MOTS-CLÉS DÉJÀ PUBLIÉS dans les 12 dernières heures (NE PAS y revenir) :
+{blocked_str}
 
+Si un article traite d'un sujet contenant un de ces mots-clés bloqués, mets is_duplicate=true.
+
+Articles :
 {articles_str}
 
-Return ONLY this JSON array (one entry per article, in the SAME ORDER):
+Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE) :
 {{"analyses":[
   {{"id":1,"score":<0-10>,"category":"<{cats}>","is_duplicate":<true|false>,"needs_video":<true|false>}},
-  {{"id":2,"score":<0-10>,"category":"<{cats}>","is_duplicate":<true|false>,"needs_video":<true|false>}},
   ...
 ]}}
 
-Scoring criteria (be STRICT):
-- 9-10: major breaking news affecting millions worldwide
-- 7-8:  important international story (known figure, big company, world event)
-- 5-6:  interesting but limited reach
-- 0-4:  local news, fluff, PR, not for international audience
+Barème score :
+- 9-10 : breaking news majeure
+- 7-8  : info importante (politique, économie, sport, etc.)
+- 6    : info intéressante du quotidien (insolite, fait divers marquant, info locale forte)
+- 0-5  : trop banal pour un compte d'actu
 
-Focus on:
-- Globally known politicians (Trump, Macron, Putin, Xi, etc.)
-- Major companies (Apple, Tesla, OpenAI, etc.)
-- International conflicts, wars, geopolitics
-- Global health, environment, science breakthroughs
-- World-famous athletes/celebrities doing something newsworthy
+NE FAVORISE PAS systématiquement les mêmes sujets (Trump, Iran, Macron, Chine...).
+Diversifie. Une info locale marquante peut scorer aussi haut qu'une info internationale.
 
-is_duplicate=true ONLY if a recent title covers the EXACT same event.
-"history" ONLY for verifiable historical facts on today's date.
+Catégories :
+- "breaking" : breaking news urgente, à diffuser vite
+- "france"   : actu nationale française (général)
+- "monde"    : actu internationale
+- "politique" : politique française ou internationale
+- "economie" : économie, entreprises, marchés
+- "societe"  : société, social, vie quotidienne
+- "faitsdivers" : faits divers, justice
+- "culture"  : cinéma, musique, art, littérature
+- "sport"    : sport
+- "science"  : science, recherche
+- "sante"    : santé publique, médecine
+- "environnement" : climat, écologie
+- "tech"     : technologie, gadgets
+- "ia"       : intelligence artificielle
+- "insolite" : insolite, faits étonnants
+- "positivity" : feel-good, actes de bonté, histoires positives
+- "histoire" : événement historique vérifiable lié à la date du jour
 
-IMPORTANT: return EXACTLY {len(articles)} entries in the analyses array, in the same order as the articles above."""
+IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
 
-    # Le batch peut nécessiter pas mal de tokens en sortie (50 par article ≈)
     result   = claude(prompt, max_tokens=max(500, len(articles) * 80))
     analyses = result.get("analyses", [])
-
-    # Sécurité : si le retour est incomplet, on complète avec des scores nuls
     while len(analyses) < len(articles):
-        analyses.append({"score": 0, "category": "world", "is_duplicate": False, "needs_video": False})
-
+        analyses.append({"score": 0, "category": "france", "is_duplicate": False, "needs_video": False})
     return analyses[:len(articles)]
 
 def gen_tweet_complet(title, summary, source, category, video_url=None):
-    """
-    Génère le corps du tweet en anglais + un titre court pour l'image
-    + une description précise pour chercher l'image contextuelle.
-    """
+    """Génère tweet + titre image + image_query + mots-clés majeurs."""
     today = datetime.now().strftime("%d %B %Y")
     label = LABELS[category]
-    video_str = f"\nInclude this video link at the end: {video_url}" if video_url else ""
+    video_str = f"\nIntègre ce lien à la fin du tweet : {video_url}" if video_url else ""
 
-    result = claude(f"""You are the community manager of Pulse, an English-language news Twitter account.
-Today: {today}.
+    # Style adaptatif selon catégorie
+    if category in ("breaking", "faitsdivers"):
+        style_instr = """STYLE BREAKING/URGENT :
+- Phrase 1 : très courte, percutante, factuelle (qui, quoi, où)
+- Pas d'analyse, juste les faits bruts
+- Ton journaliste de terrain BFM"""
+    elif category == "positivity":
+        style_instr = """STYLE NARRATIF/STORYTELLING :
+- Phrase 1 : accroche émotionnelle qui donne envie de lire
+- Paragraphes développés avec noms, dates, citations
+- Ton chaleureux et humain"""
+    else:
+        style_instr = """STYLE INFO POSÉE :
+- Phrase 1 : accroche claire avec l'info principale
+- 1-2 phrases courtes de contexte/conséquences (sans répéter)
+- Ton informatif et professionnel"""
 
-Article to cover:
-- Source: {source}
-- Title:  {title}
-- Summary: {summary}{video_str}
+    result = claude(f"""Tu es community manager de Pulse, compte Twitter d'actualité française.
+Aujourd'hui : {today}.
 
-Generate THREE things:
+Article à traiter :
+- Source : {source}
+- Titre  : {title}
+- Résumé : {summary}{video_str}
 
-1. **headline_court** (max 75 chars): A punchy, attention-grabbing headline for the image background.
-   No hashtags, no emoji. Must fit in full without truncation.
+Génère QUATRE choses :
 
-2. **image_query** (max 5 words): A specific search query to find a relevant image.
-   Example: "Donald Trump speech podium" or "Iran flag protest Tehran" or "Tesla factory production line"
+1. **headline_court** (max 75 caractères) : titre punchy pour l'image. Pas de hashtag, pas d'emoji.
 
-3. **body**: The tweet body (without prefix — it will be added automatically).
+2. **image_query** (max 5 mots, EN ANGLAIS) : recherche pour trouver une image pertinente.
+   Ex: "Emmanuel Macron Elysee speech", "Paris metro station", "Iran flag Tehran protest"
 
-STRICT RULES for body:
-- DO NOT start with "{label}" or any category in caps
-- Go straight to the info — no intro
-- ENGLISH only
-- Structure (Premium account = 600 chars max):
-   • Sentence 1 (the HOOK): SHORT and PUNCHY with the key info. Must make the reader want to keep reading.
-   • Line break
-   • 1-2 short sentences with details (NO repetition of sentence 1)
-   • Line break
-   • Source in parentheses at the end: ({source})
-- GIVE THE FULL INFO — never tease without delivering
-- Max 600 characters total
+3. **keywords_majeurs** (3 mots-clés en minuscules) : les mots-clés CENTRAUX du sujet, pour anti-répétition.
+   Ex pour "Trump impose tarifs Chine" → ["trump", "tarifs", "chine"]
+   Ex pour "Incendie 15e arrondissement Paris" → ["incendie", "paris", "15e"]
+   Ex pour "Mbappé blessé entraînement" → ["mbappe", "blessure", "real"]
 
-HASHTAG RULES (very important):
-- Use 2-3 hashtags, SPREAD throughout the text (not all clustered at the start or end)
-- Put hashtags on the MOST SEARCHED keywords for this topic:
-   • Famous person's name → #Trump, #Macron, #Mbappe, #Musk
-   • Country → #USA, #China, #Iran, #France
-   • Major company → #Tesla, #Apple, #OpenAI
-   • Major event/concept → #ClimateChange, #AI, #Election
-- Replace a word naturally: write "the #US economy" not "US economy #US"
-- Don't hashtag generic words like #news, #today, #breaking
+4. **body** : corps du tweet (sans préfixe — il sera ajouté automatiquement).
 
-GOOD EXAMPLE:
-Body: "#Trump just slapped 50% tariffs on all imports from #China, escalating the trade war.
+{style_instr}
 
-The move targets electronics and consumer goods, with US store prices expected to surge within weeks. Beijing has promised swift retaliation.
+RÈGLES STRICTES pour body :
+- NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules
+- Va directement à l'info
+- FRANÇAIS obligatoire
+- Compte Premium = 600 caractères max
+- Info COMPLÈTE, jamais teaser
+- 2-3 hashtags RÉPARTIS dans le texte sur les mots les plus recherchés (#Macron, #Paris, #PSG, pas #news)
+- Hashtags intégrés naturellement : "la #France" pas "France #France"
+- Termine par la source entre parenthèses : ({source})
 
-(Bloomberg)"
-
-Return ONLY this JSON:
-{{"headline_court":"...","image_query":"...","body":"..."}}""", max_tokens=900)
+Réponds avec ce JSON UNIQUEMENT :
+{{"headline_court":"...","image_query":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""", max_tokens=900)
 
     body = result.get("body", "").strip()
-    # Nettoyage : enlever tout début "LABEL |" si Claude en a mis un
     for label_test in LABELS.values():
         body = re.sub(rf"^{label_test}\s*\|\s*", "", body, flags=re.IGNORECASE)
         body = re.sub(rf"^{label_test}\s*[—-]\s*", "", body, flags=re.IGNORECASE)
@@ -389,8 +403,9 @@ Return ONLY this JSON:
 
     headline_court = result.get("headline_court", title)[:80].strip()
     image_query    = result.get("image_query", category).strip()
+    keywords       = result.get("keywords_majeurs", [])
 
-    return body, headline_court, image_query
+    return body, headline_court, image_query, keywords
 
 def build_full_tweet(body, category):
     emoji = EMOJIS[category]
@@ -398,13 +413,9 @@ def build_full_tweet(body, category):
     return f"{emoji} {label} | {body}"
 
 # ═══════════════════════════════════════════════════════════════════════════
-# RECHERCHE IMAGE CONTEXTUELLE
+# IMAGES
 # ═══════════════════════════════════════════════════════════════════════════
 def search_unsplash(query, category):
-    """
-    Cherche une image pertinente via Unsplash (gratuit, sans clé pour les images aléatoires).
-    Si pas de match, fallback sur l'image par catégorie.
-    """
     if UNSPLASH_KEY:
         try:
             url = f"https://api.unsplash.com/search/photos?query={urllib.parse.quote(query)}&per_page=1&client_id={UNSPLASH_KEY}"
@@ -413,48 +424,12 @@ def search_unsplash(query, category):
                 data = json.loads(r.read())
             if data.get("results"):
                 return data["results"][0]["urls"]["regular"]
-        except Exception as e:
-            print(f"  ⚠️ Unsplash search: {e}")
-
-    # Fallback : utilise l'URL Unsplash source.unsplash.com (sans clé, gratuit)
+        except: pass
     try:
         return f"https://source.unsplash.com/1200x675/?{urllib.parse.quote(query)}"
     except:
         return UNSPLASH_FALLBACK.get(category)
 
-# ═══════════════════════════════════════════════════════════════════════════
-# YOUTUBE
-# ═══════════════════════════════════════════════════════════════════════════
-def find_video(title, summary):
-    if not YOUTUBE_API_KEY:
-        return None
-    try:
-        q   = urllib.parse.quote(" ".join(title.split()[:7]))
-        url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={q}&type=video&maxResults=5&relevanceLanguage=en&key={YOUTUBE_API_KEY}"
-        with urllib.request.urlopen(url, timeout=8) as r:
-            data = json.loads(r.read())
-        videos = [{"title": i["snippet"]["title"], "channel": i["snippet"]["channelTitle"],
-                   "url": f"https://youtu.be/{i['id']['videoId']}"}
-                  for i in data.get("items", []) if i["id"].get("videoId")]
-        if not videos:
-            return None
-        result = claude(f"""Article: {title}
-Summary: {summary}
-
-Candidate videos:
-{chr(10).join(f"{i+1}. [{v['channel']}] {v['title']}" for i,v in enumerate(videos))}
-
-JSON: {{"chosen":<1-{len(videos)} or 0>,"reason":"<1 sentence>"}}
-Pick only if DIRECTLY related to same event, reliable source.""", max_tokens=100)
-        idx = int(result.get("chosen", 0))
-        return videos[idx-1] if 0 < idx <= len(videos) else None
-    except Exception as e:
-        print(f"  ⚠️ YouTube: {e}")
-        return None
-
-# ═══════════════════════════════════════════════════════════════════════════
-# IMAGE PNG — DA Pulse
-# ═══════════════════════════════════════════════════════════════════════════
 def fetch_img(url):
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -464,10 +439,22 @@ def fetch_img(url):
         print(f"  ⚠️ Fetch image: {e}")
         return None
 
+def extract_photo(entry):
+    if hasattr(entry, "media_content") and entry.media_content:
+        for m in entry.media_content:
+            if m.get("type", "").startswith("image"):
+                return m.get("url")
+    if hasattr(entry, "enclosures") and entry.enclosures:
+        for e in entry.enclosures:
+            if "image" in e.get("type", ""):
+                return e.get("href")
+    return None
+
 def build_png(headline_court, source, category, photo_url=None, image_query=None):
     """
-    Génère un PNG 1200x675 DA Pulse.
-    Si photo_url fourni (article RSS) → utilise. Sinon cherche via image_query.
+    PNG 1200x675 DA Pulse.
+    Si photo_url (vraie photo article) → affichée à 100% SANS texte au milieu.
+    Sinon → fallback Unsplash + texte au milieu.
     """
     try:
         from PIL import Image, ImageDraw, ImageFont
@@ -479,10 +466,13 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         if len(headline_court) > 80:
             headline_court = headline_court[:77].rsplit(" ", 1)[0] + "..."
 
+        # Détecte si on a une VRAIE photo article ou une image Unsplash de fallback
+        has_real_photo = photo_url is not None
+        show_text      = not has_real_photo  # texte uniquement si pas de vraie photo
+
         # ─── FOND ───
         img = Image.new('RGB', (W, H), (13, 13, 20))
 
-        # Stratégie image : RSS > Unsplash search > fallback catégorie
         img_url = photo_url
         if not img_url and image_query:
             img_url = search_unsplash(image_query, category)
@@ -490,24 +480,39 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             img_url = UNSPLASH_FALLBACK.get(category)
 
         raw = fetch_img(img_url)
-        # Si fail et image_query existait, retry avec fallback catégorie
         if not raw and image_query:
             raw = fetch_img(UNSPLASH_FALLBACK.get(category))
 
         if raw:
             try:
                 photo = Image.open(io.BytesIO(raw)).convert('RGB').resize((W, H), Image.LANCZOS)
-                img   = Image.blend(Image.new('RGB', (W, H), (13, 13, 20)), photo, alpha=0.80)
-            except:
-                pass
+                # Vraie photo article = 100% visible, image Unsplash = atténuée pour lisibilité texte
+                alpha = 1.0 if has_real_photo else 0.80
+                img   = Image.blend(Image.new('RGB', (W, H), (13, 13, 20)), photo, alpha=alpha)
+            except: pass
 
-        # ─── OVERLAY SOMBRE ───
+        # ─── OVERLAY ───
         ov    = Image.new('RGBA', (W, H), (0, 0, 0, 0))
         odraw = ImageDraw.Draw(ov)
         r0, g0, b0 = s["overlay"]
-        for y in range(H):
-            a = min(255, 180 + int(y / H * 70))
-            odraw.line([(0, y), (W, y)], fill=(r0, g0, b0, a))
+
+        if has_real_photo:
+            # Pas de texte au centre : overlay léger seulement en haut/bas pour lisibilité logo/source
+            for y in range(H):
+                if y < 100:
+                    a = int(180 * (1 - y / 100))
+                elif y > H - 100:
+                    a = int(180 * ((y - (H - 100)) / 100))
+                else:
+                    a = 0
+                if a > 0:
+                    odraw.line([(0, y), (W, y)], fill=(r0, g0, b0, a))
+        else:
+            # Texte au centre : overlay sombre uniforme pour lisibilité
+            for y in range(H):
+                a = min(255, 180 + int(y / H * 70))
+                odraw.line([(0, y), (W, y)], fill=(r0, g0, b0, a))
+
         img  = Image.alpha_composite(img.convert('RGBA'), ov).convert('RGB')
         draw = ImageDraw.Draw(img)
 
@@ -527,10 +532,8 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf",
             ]
             for p in paths:
-                try:
-                    return ImageFont.truetype(p, size)
-                except:
-                    continue
+                try: return ImageFont.truetype(p, size)
+                except: continue
             return ImageFont.load_default()
 
         f_logo  = font(56)
@@ -552,50 +555,49 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         bov   = Image.new('RGBA', (W, H), (0, 0, 0, 0))
         bdraw = ImageDraw.Draw(bov)
         bdraw.rounded_rectangle([bx, by, bx + bw, by + bh], radius=bh // 2,
-                                  fill=(*badge_rgb, 50), outline=(*badge_rgb, 200), width=2)
+                                fill=(*badge_rgb, 50), outline=(*badge_rgb, 200), width=2)
         img  = Image.alpha_composite(img.convert('RGBA'), bov).convert('RGB')
         draw = ImageDraw.Draw(img)
         draw.text((bx + 18, by + 9), cat_text, font=f_badge, fill=badge_rgb)
 
-        # ─── TITRE CENTRÉ ───
-        chosen_lines = None
-        chosen_size  = 32
-        for fsize in [62, 54, 48, 42, 36, 32]:
-            ft    = font(fsize)
-            words = headline_court.split()
-            lines, line = [], ""
-            for w in words:
-                test = (line + " " + w).strip()
-                if draw.textbbox((0, 0), test, font=ft)[2] <= 1080:
-                    line = test
-                else:
-                    if line: lines.append(line)
-                    line = w
-            if line: lines.append(line)
-            if len(lines) <= 3:
-                chosen_lines = lines
-                chosen_size  = fsize
-                break
-        if chosen_lines is None:
-            chosen_lines = [headline_court[:50] + "..."]
-            chosen_size  = 38
+        # ─── TITRE CENTRÉ (seulement si pas de vraie photo) ───
+        if show_text:
+            chosen_lines, chosen_size = None, 32
+            for fsize in [62, 54, 48, 42, 36, 32]:
+                ft    = font(fsize)
+                words = headline_court.split()
+                lines, line = [], ""
+                for w in words:
+                    test = (line + " " + w).strip()
+                    if draw.textbbox((0, 0), test, font=ft)[2] <= 1080:
+                        line = test
+                    else:
+                        if line: lines.append(line)
+                        line = w
+                if line: lines.append(line)
+                if len(lines) <= 3:
+                    chosen_lines, chosen_size = lines, fsize
+                    break
+            if chosen_lines is None:
+                chosen_lines = [headline_court[:50] + "..."]
+                chosen_size  = 38
 
-        ft      = font(chosen_size)
-        line_h  = chosen_size + 14
-        total_h = len(chosen_lines) * line_h
-        ty      = (H - total_h) // 2 + 10
-        for ln in chosen_lines:
-            bb = draw.textbbox((0, 0), ln, font=ft)
-            draw.text(((W - (bb[2] - bb[0])) // 2, ty), ln, font=ft, fill=(255, 255, 255))
-            ty += line_h
+            ft     = font(chosen_size)
+            line_h = chosen_size + 14
+            total_h= len(chosen_lines) * line_h
+            ty     = (H - total_h) // 2 + 10
+            for ln in chosen_lines:
+                bb = draw.textbbox((0, 0), ln, font=ft)
+                draw.text(((W - (bb[2] - bb[0])) // 2, ty), ln, font=ft, fill=(255, 255, 255))
+                ty += line_h
 
         # ─── SOURCE + DATE EN BAS ───
-        months   = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        mois     = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"]
         now      = datetime.now()
-        date_str = f"{months[now.month - 1]} {now.day}, {now.year}"
-        draw.text((44, H - 52), source, font=f_sm, fill=(255, 255, 255, 150))
+        date_str = f"{now.day} {mois[now.month - 1]} {now.year}"
+        draw.text((44, H - 52), source, font=f_sm, fill=(255, 255, 255, 200))
         bb2 = draw.textbbox((0, 0), date_str, font=f_sm)
-        draw.text((W - bb2[2] - 44, H - 52), date_str, font=f_sm, fill=(255, 255, 255, 100))
+        draw.text((W - bb2[2] - 44, H - 52), date_str, font=f_sm, fill=(255, 255, 255, 200))
 
         buf = io.BytesIO()
         img.save(buf, format='PNG', optimize=True)
@@ -614,22 +616,22 @@ def send_email(subject, tweet_text, title, source, url, video, png_bytes, png_na
     msg["From"]    = GMAIL_ADDRESS
     msg["To"]      = EMAIL_TO
 
-    months   = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    mois     = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"]
     now      = datetime.now()
-    date_str = f"{months[now.month-1]} {now.day}, {now.year} · {now.strftime('%H:%M')}"
+    date_str = f"{now.day} {mois[now.month-1]} {now.year} · {now.strftime('%H:%M')}"
 
-    video_section = f"\n\n🎬 Related video:\n{video['title']}\n{video['url']}" if video else ""
-    url_section   = f"\n\n🔗 Original article:\n{url}" if url else ""
+    video_section = f"\n\n🎬 Vidéo associée :\n{video['title']}\n{video['url']}" if video else ""
+    url_section   = f"\n\n🔗 Article original :\n{url}" if url else ""
 
     body = (
         f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"  P U L S E  ·  The world, decoded\n"
+        f"  P U L S E  ·  Insuffler l'actu\n"
         f"  {date_str}\n"
         f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-        f"📰 Source: {source}\n"
+        f"📰 Source : {source}\n"
         f"📌 {title}\n\n"
         f"─────────────────────────────────────────\n"
-        f"  TWEET — copy this text to X\n"
+        f"  TWEET — copie ce texte sur X\n"
         f"─────────────────────────────────────────\n\n"
         f"{tweet_text}\n"
         f"{video_section}"
@@ -650,180 +652,125 @@ def send_email(subject, tweet_text, title, source, url, video, png_bytes, png_na
         srv.sendmail(GMAIL_ADDRESS, EMAIL_TO, msg.as_string())
 
 # ═══════════════════════════════════════════════════════════════════════════
-# POST TWITTER / X
+# POST TWITTER
 # ═══════════════════════════════════════════════════════════════════════════
 def post_to_twitter(tweet_text, png_bytes=None):
-    """
-    Poste un tweet sur X avec optionnellement une image.
-    Utilise OAuth 1.0a : upload image via v1.1 puis post tweet via v2.
-    Retourne l'URL du tweet ou None si échec.
-    """
     if not all([TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET]):
-        print("  ⚠️  Twitter API non configurée — tweet non posté.")
+        print("  ⚠️ Twitter API non configurée.")
         return None
-
     try:
-        import tweepy
-        import io
-
-        # OAuth 1.0a — client pour upload média (v1.1)
-        auth = tweepy.OAuth1UserHandler(
-            TWITTER_API_KEY, TWITTER_API_SECRET,
-            TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET
-        )
+        import tweepy, io
+        auth   = tweepy.OAuth1UserHandler(TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
         api_v1 = tweepy.API(auth)
-
-        # Client v2 pour le post du tweet lui-même
         client_v2 = tweepy.Client(
-            consumer_key=TWITTER_API_KEY,
-            consumer_secret=TWITTER_API_SECRET,
-            access_token=TWITTER_ACCESS_TOKEN,
-            access_token_secret=TWITTER_ACCESS_TOKEN_SECRET
+            consumer_key=TWITTER_API_KEY, consumer_secret=TWITTER_API_SECRET,
+            access_token=TWITTER_ACCESS_TOKEN, access_token_secret=TWITTER_ACCESS_TOKEN_SECRET
         )
-
         media_ids = None
         if png_bytes:
             try:
-                # Upload de l'image via v1.1 (seul endpoint qui marche pour les médias)
                 media = api_v1.media_upload(filename="pulse.png", file=io.BytesIO(png_bytes))
                 media_ids = [media.media_id]
             except Exception as e:
-                print(f"  ⚠️  Upload image X échoué : {e}")
-
-        # Post du tweet via v2
+                print(f"  ⚠️ Upload image X échoué : {e}")
         response = client_v2.create_tweet(text=tweet_text, media_ids=media_ids)
         tweet_id = response.data.get("id")
         url      = f"https://x.com/i/web/status/{tweet_id}" if tweet_id else None
         if url:
             print(f"  🐦 Posté sur X : {url}")
         return url
-
     except Exception as e:
         print(f"  ❌ Post X échoué : {e}")
         return None
 
 # ═══════════════════════════════════════════════════════════════════════════
-# EXTRACTION IMAGE RSS
-# ═══════════════════════════════════════════════════════════════════════════
-def extract_photo(entry):
-    if hasattr(entry, "media_content") and entry.media_content:
-        for m in entry.media_content:
-            if m.get("type", "").startswith("image"):
-                return m.get("url")
-    if hasattr(entry, "enclosures") and entry.enclosures:
-        for e in entry.enclosures:
-            if "image" in e.get("type", ""):
-                return e.get("href")
-    return None
-
-# ═══════════════════════════════════════════════════════════════════════════
-# HISTOIRE DU JOUR — avec vérification Wikipedia
+# HISTOIRE DU JOUR
 # ═══════════════════════════════════════════════════════════════════════════
 def fetch_wikipedia_onthisday():
-    """Récupère les événements du jour depuis Wikipedia (source fiable et vérifiable)."""
     try:
         now = datetime.now()
-        url = f"https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/{now.month:02d}/{now.day:02d}"
+        url = f"https://api.wikimedia.org/feed/v1/wikipedia/fr/onthisday/events/{now.month:02d}/{now.day:02d}"
         req = urllib.request.Request(url, headers={"User-Agent": "PulseBot/1.0"})
         with urllib.request.urlopen(req, timeout=8) as r:
             data = json.loads(r.read())
         events = data.get("events", [])
-        # On garde les events avec un texte et un page Wikipedia
-        clean = []
+        clean  = []
         for e in events[:30]:
-            year = e.get("year")
-            text = e.get("text", "")
+            year, text = e.get("year"), e.get("text", "")
             pages = e.get("pages", [])
             if year and text and pages:
-                clean.append({
-                    "year": year,
-                    "text": text,
-                    "wiki_url": pages[0].get("content_urls", {}).get("desktop", {}).get("page", "")
-                })
+                clean.append({"year": year, "text": text})
         return clean
     except Exception as e:
         print(f"  ⚠️ Wikipedia: {e}")
         return []
 
 def gen_histoire_du_jour(conn):
-    """Génère un tweet historique du jour avec faits 100% vérifiés via Wikipedia."""
-    if "history" in cats_today(conn):
+    if "histoire" in cats_today(conn):
         return None
-
     events = fetch_wikipedia_onthisday()
-    if not events:
-        print("  ⚠️ Pas d'événements Wikipedia disponibles aujourd'hui.")
-        return None
+    if not events: return None
 
-    today = datetime.now().strftime("%d %B")
+    now        = datetime.now()
+    today      = now.strftime("%d %B")
+    current_yr = now.year
 
-    # On donne les events vérifiés à Claude pour qu'il choisisse + rédige
-    events_str = "\n".join(f"- {e['year']}: {e['text']}" for e in events[:15])
+    # On pré-calcule "X ans" en Python pour éviter que Claude se trompe
+    events_str = "\n".join(
+        f"- En {e['year']} (il y a {current_yr - e['year']} ans) : {e['text']}"
+        for e in events[:15]
+    )
 
     try:
-        result = claude(f"""You are a history writer for Pulse, an English news Twitter account.
+        result = claude(f"""Tu écris pour Pulse, compte Twitter français.
 
-Today is {today}. Here are VERIFIED historical events from Wikipedia (100% reliable, do NOT invent facts):
+Aujourd'hui nous sommes le {today} {current_yr}. Voici les événements historiques VÉRIFIÉS de Wikipédia (le nombre d'années est DÉJÀ calculé, NE PAS le recalculer) :
 
 {events_str}
 
-CRITICAL RULE — only choose an event if it is GLOBALLY FAMOUS, meaning:
-- The vast majority of people (worldwide) know it or have heard of it
-- It's the kind of event taught in history class or referenced in pop culture
-- Examples of acceptable events: 9/11 attacks, JFK assassination, Apollo 11 moon landing, fall of the Berlin Wall, D-Day, Pearl Harbor, end of WW2, Hiroshima, fall of the Soviet Union, Mandela freed, MLK's "I have a dream", Princess Diana's death, Titanic sinking, Chernobyl, etc.
-- Examples to REJECT: local laws, niche scientific discoveries, regional events, obscure treaties, unknown personalities
+CHOISIS UN événement qui est MONDIALEMENT CONNU :
+- 11 septembre, Apollo 11, chute du Mur, JFK, D-Day, Pearl Harbor, Mandela, Diana, Titanic, Tchernobyl, Mai 68, etc.
+- REJETTE les événements obscurs ou trop locaux.
 
-If NONE of the events in the list above match this "globally famous" criteria → return {{"skip": true}}.
-Be STRICT. Better to skip than to publish a forgettable fact.
+Si rien n'est assez célèbre dans la liste → {{"skip": true}}
 
-If you find a worthy event, generate the tweet using ONLY facts from the list above. Do NOT invent dates, numbers, or details.
+Sinon génère le tweet en FRANÇAIS.
 
-FORMAT:
-- headline_court (max 75 chars): catchy headline for the image
-- image_query (max 5 words): what to search for the image
-- body: tweet body (400-500 chars).
-  • Start with "X years ago today, [event in one punchy sentence]"
-  • Then give 1-2 sentences of context/details (no repetition)
-  • End with "(Source: Wikipedia)"
-  • 2-3 hashtags SPREAD throughout the text on the most searched keywords (person's name, country, event name) — NOT all at the start or end
+⚠️ IMPORTANT : utilise EXACTEMENT le nombre d'années indiqué entre parenthèses dans la liste ci-dessus. Ne recalcule rien. Si la liste dit "il y a 57 ans", écris "il y a 57 ans". Pas 56, pas 58.
 
-Return ONLY this JSON:
+Format :
+- headline_court (max 75 chars)
+- image_query (5 mots en anglais)
+- body : commence par "Il y a X ans, [événement]" (X = la valeur exacte de la liste), puis contexte/détails. Hashtags répartis. Fini par "(Source : Wikipédia)"
+
+JSON :
 {{"headline_court":"...","image_query":"...","body":"..."}}
-OR
+OU
 {{"skip": true}}""", max_tokens=600)
 
-        # Si Claude décide de skip
         if result.get("skip"):
-            print(f"  📜 Aucun événement historique mondialement connu aujourd'hui — skip.")
+            print("  📜 Aucun événement assez connu — skip.")
             return None
 
-        body           = result.get("body", "").strip()
-        headline_court = result.get("headline_court", f"On this day: {today}")[:75]
-        image_query    = result.get("image_query", "history old")
-
-        # Nettoyage anti-doublon "HISTORY |"
+        body = result.get("body", "").strip()
         for lbl in LABELS.values():
             body = re.sub(rf"^{lbl}\s*\|\s*", "", body, flags=re.IGNORECASE)
         body = re.sub(r"^[\U0001F300-\U0001F9FF\u2600-\u27BF\s]+", "", body).strip()
+        if not body: return None
 
-        if not body:
-            return None
-
-        tweet_final = build_full_tweet(body, "history")
-
-        print(f"  📜 History generated: {headline_court}")
         return {
-            "title":          f"On this day — {today}",
-            "source":         "Wikipedia",
+            "title":          f"Éphéméride — {today}",
+            "source":         "Wikipédia",
             "url":            "",
-            "analysis":       {"category": "history", "needs_video": False},
-            "tweet":          tweet_final,
-            "headline_court": headline_court,
-            "image_query":    image_query,
+            "analysis":       {"category": "histoire", "needs_video": False},
+            "tweet":          build_full_tweet(body, "histoire"),
+            "headline_court": result.get("headline_court", f"Éphéméride {today}")[:75],
+            "image_query":    result.get("image_query", "history old"),
             "photo_url":      None,
+            "keywords":       [],
         }
     except Exception as e:
-        print(f"  ⚠️ History failed: {e}")
+        print(f"  ⚠️ Histoire échouée : {e}")
         return None
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -832,13 +779,10 @@ OR
 def check_feeds(conn):
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
 
-    # Décide si c'est le moment de publier (intervalle aléatoire 90-150 min)
     if not should_publish_now(conn):
         return
 
-    print(f"  → RSS scan...")
-
-    # 1. Collecter nouveaux articles
+    print(f"  → Scan RSS...")
     candidates = []
     for fi in RSS_FEEDS:
         try:
@@ -848,51 +792,44 @@ def check_feeds(conn):
                 title = entry.get("title", "")
                 summ  = entry.get("summary", entry.get("description", ""))
                 if url and title and not is_seen(conn, url):
-                    candidates.append({"url": url, "title": title, "summary": summ,
-                                       "source": fi["source"], "entry": entry})
+                    candidates.append({"url": url, "title": title, "summary": summ, "source": fi["source"], "entry": entry})
         except Exception as e:
             print(f"  ❌ RSS {fi['source']}: {e}")
 
     if not candidates:
-        print("  → No new articles.")
+        print("  → Aucun article nouveau.")
         return
 
-    print(f"  → {len(candidates)} new articles · analyzing...")
+    print(f"  → {len(candidates)} articles à analyser...")
+    recent          = get_recent(conn)
+    blocked_kws     = recent_keywords(conn, hours=12)
+    if blocked_kws:
+        print(f"  🚫 Mots-clés bloqués (12h) : {', '.join(blocked_kws)}")
 
-    # 2. Analyse — séparation entre les articles cachés et ceux à analyser
-    recent       = get_recent(conn)
-    scored       = []
-    to_analyse   = []   # articles à envoyer à Claude
-    to_analyse_idx = []
-
-    for i, c in enumerate(candidates):
+    scored      = []
+    to_analyse  = []
+    for c in candidates:
         cached = get_cached_analysis(conn, c["url"])
         if cached:
-            print(f"  💾 Cache: {c['title'][:55]}")
-            a = cached
-            score = int(a.get("score", 0))
+            a, score = cached, int(cached.get("score", 0))
             if a.get("is_duplicate"):
-                mark_seen(conn, c["url"], c["title"])
-                continue
+                mark_seen(conn, c["url"], c["title"]); continue
             if score < SCORE_MINIMUM:
-                mark_seen(conn, c["url"], c["title"])
-                continue
+                mark_seen(conn, c["url"], c["title"]); continue
             scored.append({**c, "analysis": a, "score": score})
         else:
             to_analyse.append(c)
-            to_analyse_idx.append(i)
 
-    # 3. Batch analyse de tous les articles non cachés en UN seul appel Claude
     if to_analyse:
         try:
             print(f"  🧠 Batch analyse de {len(to_analyse)} articles...")
-            analyses = analyse_batch(to_analyse, recent)
+            analyses = analyse_batch(to_analyse, recent, blocked_kws)
             for c, a in zip(to_analyse, analyses):
                 cache_analysis(conn, c["url"], a)
                 score = int(a.get("score", 0))
                 if a.get("is_duplicate"):
                     mark_seen(conn, c["url"], c["title"])
-                    print(f"  ⏩ Duplicate: {c['title'][:55]}")
+                    print(f"  ⏩ Doublon: {c['title'][:55]}")
                     continue
                 if score < SCORE_MINIMUM:
                     mark_seen(conn, c["url"], c["title"])
@@ -903,92 +840,80 @@ def check_feeds(conn):
         except Exception as e:
             print(f"  ❌ Batch analyse: {e}")
 
-    # 3. Boost catégories pas envoyées aujourd'hui
+    # Boost catégorie pas encore vue aujourd'hui
     missing = set(STYLES.keys()) - cats_today(conn)
     for item in scored:
         if item["analysis"]["category"] in missing:
             item["score"] = min(10, item["score"] + 2)
 
-    # 4. Sélection : MAX_PAR_PASSE catégories différentes
     scored.sort(key=lambda x: x["score"], reverse=True)
-    top = []
-    used_cats = set()
+    top, used = [], set()
     for item in scored:
         cat = item["analysis"]["category"]
-        if cat not in used_cats:
-            top.append(item)
-            used_cats.add(cat)
-        if len(top) >= MAX_PAR_PASSE:
-            break
+        if cat not in used:
+            top.append(item); used.add(cat)
+        if len(top) >= MAX_PAR_PASSE: break
 
-    print(f"  → {len(top)} selected [{', '.join(used_cats)}]")
-
-    # 5. Histoire du jour (fait vérifié via Wikipedia)
+    # Histoire du jour (1×/jour, vérifié Wikipedia)
     histoire = gen_histoire_du_jour(conn)
-    if histoire and "history" not in used_cats:
-        top.append(histoire)
-        used_cats.add("history")
+    if histoire and "histoire" not in used and len(top) < MAX_PAR_PASSE + 1:
+        top.append(histoire); used.add("histoire")
 
     if not top:
-        print("  → Nothing to send.")
+        print("  → Rien à publier.")
         return
 
-    # 6. Générer et envoyer
+    print(f"  → {len(top)} sélectionné(s) [{', '.join(used)}]")
+
     for item in top:
         try:
             cat = item["analysis"]["category"]
             a   = item["analysis"]
+            keywords = []
 
             if "tweet" in item:
-                # Histoire du jour pré-générée
                 tweet_final    = item["tweet"]
                 headline_court = item["headline_court"]
                 image_query    = item.get("image_query")
                 photo          = item.get("photo_url")
                 video          = None
+                keywords       = item.get("keywords", [])
             else:
                 add_recent(conn, item["title"])
                 video = None
-                if a.get("needs_video") and YOUTUBE_API_KEY:
-                    video = find_video(item["title"], item["summary"])
-                body, headline_court, image_query = gen_tweet_complet(
-                    item["title"], item["summary"], item["source"], cat,
-                    video_url=video["url"] if video else None
+                body, headline_court, image_query, keywords = gen_tweet_complet(
+                    item["title"], item["summary"], item["source"], cat
                 )
                 tweet_final = build_full_tweet(body, cat)
                 photo       = extract_photo(item["entry"])
 
-            # Image
             png_bytes, png_nm = build_png(headline_court, item["source"], cat, photo, image_query)
-
             now    = datetime.now()
             png_nm = png_nm or f"pulse-{cat}-{now.strftime('%d%m%Y-%H%M')}.png"
 
             emoji   = EMOJIS[cat]
             subject = f"{emoji} Pulse · {item['source']} · {item['title'][:50]}"
-            send_email(subject, tweet_final, item["title"], item["source"],
-                       item["url"], video, png_bytes, png_nm)
+            send_email(subject, tweet_final, item["title"], item["source"], item["url"], video, png_bytes, png_nm)
 
-            # Post automatique sur X / Twitter
             post_to_twitter(tweet_final, png_bytes)
 
             mark_cat(conn, cat)
-            # On marque l'article comme vu UNIQUEMENT après publication réussie
+            log_keywords(conn, keywords)  # bloque ces mots-clés 12h
             if item.get("url"):
                 mark_seen(conn, item["url"], item["title"])
-            print(f"  📧 Sent [{cat}]: {item['title'][:55]}")
+            print(f"  📧 Envoyé [{cat}]: {item['title'][:55]}")
+            if keywords:
+                print(f"  🔒 Mots-clés bloqués 12h: {', '.join(keywords)}")
             time.sleep(4)
-
         except Exception as e:
-            print(f"  ❌ Send '{item['title'][:40]}': {e}")
+            print(f"  ❌ Envoi '{item['title'][:40]}': {e}")
 
 
 def main():
-    print("🤖 Pulse NewsBot started!")
+    print("🤖 Pulse NewsBot démarré !")
     conn = init_db()
     while True:
         check_feeds(conn)
-        print("  💤 Sleep 2h...\n")
         time.sleep(7200)
 
 if __name__ == "__main__":
