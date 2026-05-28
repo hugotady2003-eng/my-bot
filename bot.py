@@ -114,23 +114,23 @@ LABELS = {
 }
 
 UNSPLASH_FALLBACK = {
-    "breaking":      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=70",
-    "france":        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=70",
-    "monde":         "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&q=70",
-    "politique":     "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&q=70",
-    "economie":      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=70",
-    "societe":       "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=70",
-    "faitsdivers":   "https://images.unsplash.com/photo-1453873531674-2151bcd01707?w=1200&q=70",
-    "histoire":      "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1200&q=70",
-    "culture":       "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=1200&q=70",
-    "sport":         "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=70",
-    "science":       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=70",
-    "sante":         "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=70",
-    "environnement": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=70",
-    "tech":          "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=70",
-    "ia":            "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=70",
-    "insolite":      "https://images.unsplash.com/photo-1532009324734-20a7a5813719?w=1200&q=70",
-    "positivity":    "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=1200&q=70",
+    "breaking":      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=95",
+    "france":        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=95",
+    "monde":         "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&q=95",
+    "politique":     "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&q=95",
+    "economie":      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=95",
+    "societe":       "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=95",
+    "faitsdivers":   "https://images.unsplash.com/photo-1453873531674-2151bcd01707?w=1200&q=95",
+    "histoire":      "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1200&q=95",
+    "culture":       "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=1200&q=95",
+    "sport":         "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=95",
+    "science":       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=95",
+    "sante":         "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=95",
+    "environnement": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=95",
+    "tech":          "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=95",
+    "ia":            "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=95",
+    "insolite":      "https://images.unsplash.com/photo-1532009324734-20a7a5813719?w=1200&q=95",
+    "positivity":    "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=1200&q=95",
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -440,6 +440,7 @@ def fetch_img(url):
         return None
 
 def extract_photo(entry):
+    """Cherche une image dans l'article RSS."""
     if hasattr(entry, "media_content") and entry.media_content:
         for m in entry.media_content:
             if m.get("type", "").startswith("image"):
@@ -449,6 +450,63 @@ def extract_photo(entry):
             if "image" in e.get("type", ""):
                 return e.get("href")
     return None
+
+def extract_video(entry):
+    """Cherche une vidéo dans l'article RSS (MP4, HLS, WebM...)."""
+    VIDEO_EXTS  = (".mp4", ".mov", ".webm", ".m3u8", ".avi", ".mkv")
+    VIDEO_TYPES = ("video/", "application/x-mpegurl", "application/vnd.apple.mpegurl")
+    if hasattr(entry, "media_content") and entry.media_content:
+        for m in entry.media_content:
+            t, url = m.get("type", "").lower(), m.get("url", "")
+            if any(t.startswith(vt) for vt in VIDEO_TYPES): return url
+            if any(url.lower().endswith(ext) for ext in VIDEO_EXTS): return url
+    if hasattr(entry, "enclosures") and entry.enclosures:
+        for e in entry.enclosures:
+            t   = e.get("type", "").lower()
+            url = e.get("href", "") or e.get("url", "")
+            if any(t.startswith(vt) for vt in VIDEO_TYPES): return url
+            if any(url.lower().endswith(ext) for ext in VIDEO_EXTS): return url
+    content = ""
+    if hasattr(entry, "content") and entry.content:
+        content = entry.content[0].get("value", "")
+    elif hasattr(entry, "summary"):
+        content = entry.summary or ""
+    import re as _re
+    matches = _re.findall(r'https?://[^\s"\'<>]+\.(?:mp4|m3u8|mov|webm)', content, _re.IGNORECASE)
+    return matches[0] if matches else None
+
+def download_and_convert_video(video_url, max_duration=90):
+    """Télécharge et convertit une vidéo en MP4 720p compatible X via FFmpeg."""
+    import subprocess, tempfile, os
+    try:
+        subprocess.run(["ffmpeg", "-version"], capture_output=True, check=True)
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        print("  ⚠️ FFmpeg non disponible.")
+        return None
+    try:
+        out_path = tempfile.mktemp(suffix=".mp4")
+        cmd = [
+            "ffmpeg", "-y", "-i", video_url,
+            "-t", str(max_duration),
+            "-vf", "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2",
+            "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+            "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart",
+            "-max_muxing_queue_size", "1024", out_path
+        ]
+        result = subprocess.run(cmd, capture_output=True, timeout=120)
+        if result.returncode != 0:
+            print(f"  ⚠️ FFmpeg erreur: {result.stderr.decode()[-200:]}")
+            return None
+        size_mb = os.path.getsize(out_path) / (1024 * 1024)
+        if size_mb > 512:
+            print(f"  ⚠️ Vidéo trop lourde ({size_mb:.0f} MB).")
+            os.remove(out_path); return None
+        print(f"  🎬 Vidéo convertie ({size_mb:.1f} MB)")
+        return out_path
+    except subprocess.TimeoutExpired:
+        print("  ⚠️ FFmpeg timeout."); return None
+    except Exception as e:
+        print(f"  ⚠️ Vidéo erreur: {e}"); return None
 
 def build_png(headline_court, source, category, photo_url=None, image_query=None):
     """
@@ -600,7 +658,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         draw.text((W - bb2[2] - 44, H - 52), date_str, font=f_sm, fill=(255, 255, 255, 200))
 
         buf = io.BytesIO()
-        img.save(buf, format='PNG', optimize=True)
+        img.save(buf, format='PNG')
         return buf.getvalue(), f"pulse-{category}-{now.strftime('%d%m%Y-%H%M')}.png"
 
     except Exception as e:
@@ -654,12 +712,13 @@ def send_email(subject, tweet_text, title, source, url, video, png_bytes, png_na
 # ═══════════════════════════════════════════════════════════════════════════
 # POST TWITTER
 # ═══════════════════════════════════════════════════════════════════════════
-def post_to_twitter(tweet_text, png_bytes=None):
+def post_to_twitter(tweet_text, png_bytes=None, video_path=None):
+    """Poste sur X avec vidéo MP4 (prioritaire) ou image PNG."""
     if not all([TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET]):
         print("  ⚠️ Twitter API non configurée.")
         return None
     try:
-        import tweepy, io
+        import tweepy, io, os
         auth   = tweepy.OAuth1UserHandler(TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
         api_v1 = tweepy.API(auth)
         client_v2 = tweepy.Client(
@@ -667,7 +726,16 @@ def post_to_twitter(tweet_text, png_bytes=None):
             access_token=TWITTER_ACCESS_TOKEN, access_token_secret=TWITTER_ACCESS_TOKEN_SECRET
         )
         media_ids = None
-        if png_bytes:
+        if video_path and os.path.exists(video_path):
+            try:
+                print("  📤 Upload vidéo sur X...")
+                media = api_v1.media_upload(filename=video_path, media_category="tweet_video", chunked=True)
+                media_ids = [media.media_id]
+                print(f"  ✅ Vidéo uploadée")
+            except Exception as e:
+                print(f"  ⚠️ Upload vidéo échoué : {e} → fallback image")
+                video_path = None
+        if not video_path and png_bytes:
             try:
                 media = api_v1.media_upload(filename="pulse.png", file=io.BytesIO(png_bytes))
                 media_ids = [media.media_id]
@@ -677,7 +745,10 @@ def post_to_twitter(tweet_text, png_bytes=None):
         tweet_id = response.data.get("id")
         url      = f"https://x.com/i/web/status/{tweet_id}" if tweet_id else None
         if url:
-            print(f"  🐦 Posté sur X : {url}")
+            media_type = "🎬 vidéo" if video_path else "🖼️ image"
+            print(f"  🐦 Posté sur X ({media_type}) : {url}")
+        if video_path and os.path.exists(video_path):
+            os.remove(video_path)
         return url
     except Exception as e:
         print(f"  ❌ Post X échoué : {e}")
@@ -887,21 +958,22 @@ def check_feeds(conn):
                 tweet_final = build_full_tweet(body, cat)
                 photo       = extract_photo(item["entry"])
 
+            # Cherche une vidéo dans l'article RSS
+            video_path = None
+            if "entry" in item:
+                video_url = extract_video(item["entry"])
+                if video_url:
+                    print(f"  🎬 Vidéo trouvée : {video_url[:60]}...")
+                    video_path = download_and_convert_video(video_url)
+
             png_bytes, png_nm = build_png(headline_court, item["source"], cat, photo, image_query)
-            now    = datetime.now()
-            png_nm = png_nm or f"pulse-{cat}-{now.strftime('%d%m%Y-%H%M')}.png"
-
-            emoji   = EMOJIS[cat]
-            subject = f"{emoji} Pulse · {item['source']} · {item['title'][:50]}"
-            send_email(subject, tweet_final, item["title"], item["source"], item["url"], video, png_bytes, png_nm)
-
-            post_to_twitter(tweet_final, png_bytes)
+            post_to_twitter(tweet_final, png_bytes, video_path)
 
             mark_cat(conn, cat)
-            log_keywords(conn, keywords)  # bloque ces mots-clés 12h
+            log_keywords(conn, keywords)
             if item.get("url"):
                 mark_seen(conn, item["url"], item["title"])
-            print(f"  📧 Envoyé [{cat}]: {item['title'][:55]}")
+            print(f"  ✅ Publié [{cat}]: {item['title'][:55]}")
             if keywords:
                 print(f"  🔒 Mots-clés bloqués 12h: {', '.join(keywords)}")
             time.sleep(4)
