@@ -392,6 +392,14 @@ RÈGLES STRICTES pour body :
 - Hashtags intégrés naturellement : "la #France" pas "France #France"
 - Termine par la source entre parenthèses : ({source})
 
+⚠️ MISE EN FORME OBLIGATOIRE — AÉRER LE TEXTE :
+- Sépare le tweet en 2 ou 3 paragraphes courts
+- METS UN DOUBLE SAUT DE LIGNE (\\n\\n) entre chaque paragraphe
+- La source à la fin doit être précédée d'un double saut de ligne, seule sur sa ligne
+- Exemple de structure EXACTE attendue (avec les \\n\\n) :
+  "Phrase d'accroche qui pose l'info principale.\\n\\nDeuxième paragraphe avec le contexte et les détails.\\n\\nTroisième paragraphe avec la conséquence ou la question soulevée.\\n\\n(Source)"
+- Dans le JSON, les sauts de ligne s'écrivent \\n
+
 Réponds avec ce JSON UNIQUEMENT :
 {{"headline_court":"...","image_query":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""", max_tokens=900)
 
