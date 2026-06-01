@@ -935,10 +935,10 @@ Voici les titres et résumés des articles d'actualité du jour :
 
 {headlines_str}
 
-SUJETS DÉJÀ TRAITÉS EN THREAD CES 7 DERNIERS JOURS (à ÉVITER) :
+SUJETS DÉJÀ TRAITÉS CES 7 DERNIERS JOURS (à ÉVITER) :
 {avoid_str}
 
-Ta mission : identifier LE sujet majeur du jour (différent de ceux déjà traités) et écrire un THREAD explicatif de 4 à 5 tweets.
+Ta mission : identifier LE sujet majeur du jour (différent de ceux déjà traités) et écrire un DÉCRYPTAGE complet en UN SEUL tweet long (compte Premium).
 
 RÈGLES ABSOLUES :
 - Base-toi UNIQUEMENT sur les informations présentes dans les articles ci-dessus.
@@ -946,24 +946,29 @@ RÈGLES ABSOLUES :
 - Si tu n'es pas sûr d'un détail, reste général plutôt que d'inventer.
 - FRANÇAIS, ton clair et pédagogique.
 
-Format du thread :
-- Tweet 1 : accroche forte qui pose le sujet + "🧵" à la fin (indique un thread)
-- Tweets 2 à 4-5 : développement, contexte, enjeux, chaque tweet autonome et clair
-- Dernier tweet : ce qu'il faut retenir / ce qui va suivre
-- Chaque tweet max 270 caractères
-- Numérote chaque tweet "1/" "2/" etc. au début
-- 1-2 hashtags pertinents répartis dans le thread
+Format du tweet (700 à 1000 caractères) :
+- Ligne 1 : accroche forte qui pose le sujet, suivie de "— Le décryptage 🧵"
+- DOUBLE SAUT DE LIGNE
+- 2-3 paragraphes courts séparés par des doubles sauts de ligne : contexte, enjeux, ce qu'il faut comprendre
+- DOUBLE SAUT DE LIGNE
+- Une phrase de conclusion / ce qu'il faut retenir
+- 2-3 hashtags répartis dans le texte
+- Les sauts de ligne s'écrivent \\n dans le JSON
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"sujet":"<2-4 mots résumant le sujet>","keywords":["mot1","mot2","mot3"],"image_query":"<5 mots anglais>","tweets":["1/ ...","2/ ...","3/ ...","4/ ..."]}}""", max_tokens=1200)
+{{"sujet":"<2-4 mots>","keywords":["mot1","mot2","mot3"],"image_query":"<5 mots anglais>","body":"Accroche — Le décryptage 🧵\\n\\nParagraphe 1...\\n\\nParagraphe 2...\\n\\nÀ retenir : ..."}}""", max_tokens=1000)
 
-        tweets = result.get("tweets", [])
-        if not tweets or len(tweets) < 3:
+        body = result.get("body", "").strip()
+        if not body or len(body) < 100:
             print("  ⚠️ Thread invalide.")
             return None
 
+        # Nettoyage préfixe éventuel
+        for lbl in LABELS.values():
+            body = re.sub(rf"^{lbl}\s*\|\s*", "", body, flags=re.IGNORECASE)
+
         return {
-            "tweets":      tweets,
+            "body":        body,
             "keywords":    result.get("keywords", []),
             "sujet":       result.get("sujet", "actu"),
             "image_query": result.get("image_query", "world news"),
@@ -1093,16 +1098,16 @@ def post_poll(question, options):
 def check_feeds(conn):
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
 
-    # ── THREAD QUOTIDIEN (matin, 1×/jour, prioritaire) ──
+    # ── DÉCRYPTAGE QUOTIDIEN (matin, 1×/jour, prioritaire) ──
     if not special_done_today(conn, "thread") and datetime.now().hour >= 9:
         thread = gen_thread(conn)
         if thread:
             png_bytes, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"])
-            url = post_thread(thread["tweets"], png_bytes)
+            url = post_to_twitter(thread["body"], png_bytes)
             if url:
                 log_special(conn, "thread", thread["keywords"])
-                print(f"  🧵 Thread du jour publié [{thread['sujet']}]")
-                return  # on s'arrête là pour ce run
+                print(f"  🧵 Décryptage du jour publié [{thread['sujet']}]")
+                return
 
     # ── SONDAGE QUOTIDIEN (après-midi, 1×/jour) ──
     if not special_done_today(conn, "poll") and datetime.now().hour >= 12:
