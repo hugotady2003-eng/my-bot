@@ -153,10 +153,18 @@ def init_db():
             keyword TEXT PRIMARY KEY,
             last_sent TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )""",
+        # Suivi des threads et sondages (anti-répétition sur 7 jours)
+        """CREATE TABLE IF NOT EXISTS special_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            kind TEXT,
+            keywords TEXT,
+            sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )""",
     ]:
         conn.execute(sql)
     conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
     conn.execute("DELETE FROM keyword_log    WHERE last_sent   < datetime('now', '-12 hours')")
+    conn.execute("DELETE FROM special_log    WHERE sent_at     < datetime('now', '-8 days')")
     conn.commit()
     return conn
 
@@ -220,6 +228,29 @@ def log_keywords(conn, keywords):
                 "INSERT OR REPLACE INTO keyword_log (keyword, last_sent) VALUES (?, ?)",
                 (kw, now)
             )
+    conn.commit()
+
+def special_done_today(conn, kind):
+    """Vrai si un thread/sondage a déjà été publié aujourd'hui."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    return conn.execute(
+        "SELECT 1 FROM special_log WHERE kind=? AND sent_at LIKE ?",
+        (kind, f"{today}%")
+    ).fetchone() is not None
+
+def recent_special_topics(conn, kind, days=7):
+    """Sujets de threads/sondages des N derniers jours (anti-répétition)."""
+    rows = conn.execute(
+        "SELECT keywords FROM special_log WHERE kind=? AND sent_at > datetime('now', ?)",
+        (kind, f"-{days} days")
+    ).fetchall()
+    return [r[0] for r in rows]
+
+def log_special(conn, kind, keywords):
+    conn.execute(
+        "INSERT INTO special_log (kind, keywords) VALUES (?, ?)",
+        (kind, ", ".join(keywords))
+    )
     conn.commit()
 
 def last_publish_time(conn):
@@ -551,11 +582,20 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
 
         if raw:
             try:
-                photo = Image.open(io.BytesIO(raw)).convert('RGB').resize((W, H), Image.LANCZOS)
+                photo = Image.open(io.BytesIO(raw)).convert('RGB')
+                # Crop "cover" : remplit le cadre 1200x675 SANS déformer (recadre l'excédent)
+                src_w, src_h = photo.size
+                scale = max(W / src_w, H / src_h)
+                new_w, new_h = int(src_w * scale + 0.5), int(src_h * scale + 0.5)
+                photo = photo.resize((new_w, new_h), Image.LANCZOS)
+                left  = (new_w - W) // 2
+                top   = (new_h - H) // 2
+                photo = photo.crop((left, top, left + W, top + H))
                 # Vraie photo article = 100% visible, image Unsplash = atténuée pour lisibilité texte
                 alpha = 1.0 if has_real_photo else 0.80
                 img   = Image.blend(Image.new('RGB', (W, H), (13, 13, 20)), photo, alpha=alpha)
-            except: pass
+            except Exception as e:
+                print(f"  ⚠️ Traitement image: {e}")
 
         # ─── OVERLAY ───
         ov    = Image.new('RGBA', (W, H), (0, 0, 0, 0))
@@ -853,11 +893,228 @@ OU
         return None
 
 # ═══════════════════════════════════════════════════════════════════════════
+# THREADS QUOTIDIENS (basés sur les vrais articles RSS)
+# ═══════════════════════════════════════════════════════════════════════════
+def gather_all_headlines():
+    """Récupère un large échantillon de titres+résumés RSS pour repérer les grands sujets."""
+    headlines = []
+    for fi in RSS_FEEDS:
+        try:
+            feed = feedparser.parse(fi["url"])
+            for entry in feed.entries[:5]:
+                title = entry.get("title", "")
+                summ  = entry.get("summary", entry.get("description", ""))
+                if title:
+                    summ = re.sub(r"<[^>]+>", "", summ)  # nettoie le HTML
+                    headlines.append(f"[{fi['source']}] {title} — {summ[:200]}")
+        except: pass
+    return headlines
+
+def gen_thread(conn):
+    """Génère un thread explicatif sur le sujet majeur du jour, basé UNIQUEMENT sur les articles RSS."""
+    if special_done_today(conn, "thread"):
+        return None
+    if datetime.now().hour < 9:   # pas de thread avant 9h
+        return None
+
+    headlines = gather_all_headlines()
+    if len(headlines) < 10:
+        print("  ⚠️ Pas assez d'articles pour un thread.")
+        return None
+
+    avoid = recent_special_topics(conn, "thread", days=7)
+    avoid_str = " ; ".join(avoid) if avoid else "Aucun"
+
+    headlines_str = "\n".join(headlines[:50])
+    today = datetime.now().strftime("%d %B %Y")
+
+    try:
+        result = claude(f"""Tu es journaliste pour Pulse, compte Twitter d'actualité française. Aujourd'hui : {today}.
+
+Voici les titres et résumés des articles d'actualité du jour :
+
+{headlines_str}
+
+SUJETS DÉJÀ TRAITÉS EN THREAD CES 7 DERNIERS JOURS (à ÉVITER) :
+{avoid_str}
+
+Ta mission : identifier LE sujet majeur du jour (différent de ceux déjà traités) et écrire un THREAD explicatif de 4 à 5 tweets.
+
+RÈGLES ABSOLUES :
+- Base-toi UNIQUEMENT sur les informations présentes dans les articles ci-dessus.
+- N'INVENTE AUCUN fait, chiffre, date ou citation qui ne serait pas dans les articles.
+- Si tu n'es pas sûr d'un détail, reste général plutôt que d'inventer.
+- FRANÇAIS, ton clair et pédagogique.
+
+Format du thread :
+- Tweet 1 : accroche forte qui pose le sujet + "🧵" à la fin (indique un thread)
+- Tweets 2 à 4-5 : développement, contexte, enjeux, chaque tweet autonome et clair
+- Dernier tweet : ce qu'il faut retenir / ce qui va suivre
+- Chaque tweet max 270 caractères
+- Numérote chaque tweet "1/" "2/" etc. au début
+- 1-2 hashtags pertinents répartis dans le thread
+
+Réponds avec ce JSON UNIQUEMENT :
+{{"sujet":"<2-4 mots résumant le sujet>","keywords":["mot1","mot2","mot3"],"image_query":"<5 mots anglais>","tweets":["1/ ...","2/ ...","3/ ...","4/ ..."]}}""", max_tokens=1200)
+
+        tweets = result.get("tweets", [])
+        if not tweets or len(tweets) < 3:
+            print("  ⚠️ Thread invalide.")
+            return None
+
+        return {
+            "tweets":      tweets,
+            "keywords":    result.get("keywords", []),
+            "sujet":       result.get("sujet", "actu"),
+            "image_query": result.get("image_query", "world news"),
+        }
+    except Exception as e:
+        print(f"  ⚠️ Thread échoué : {e}")
+        return None
+
+def post_thread(tweets_list, png_bytes=None):
+    """Poste un thread (chaîne de réponses) sur X. Image sur le 1er tweet."""
+    if not all([TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET]):
+        print("  ⚠️ Twitter API non configurée.")
+        return None
+    try:
+        import tweepy, io
+        auth   = tweepy.OAuth1UserHandler(TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
+        api_v1 = tweepy.API(auth)
+        client_v2 = tweepy.Client(
+            consumer_key=TWITTER_API_KEY, consumer_secret=TWITTER_API_SECRET,
+            access_token=TWITTER_ACCESS_TOKEN, access_token_secret=TWITTER_ACCESS_TOKEN_SECRET
+        )
+        media_ids = None
+        if png_bytes:
+            try:
+                media = api_v1.media_upload(filename="pulse.png", file=io.BytesIO(png_bytes))
+                media_ids = [media.media_id]
+            except Exception as e:
+                print(f"  ⚠️ Upload image thread échoué : {e}")
+
+        prev_id = None
+        first_url = None
+        for i, txt in enumerate(tweets_list):
+            if i == 0:
+                resp = client_v2.create_tweet(text=txt, media_ids=media_ids)
+            else:
+                resp = client_v2.create_tweet(text=txt, in_reply_to_tweet_id=prev_id)
+            prev_id = resp.data.get("id")
+            if i == 0:
+                first_url = f"https://x.com/i/web/status/{prev_id}"
+            time.sleep(2)
+        print(f"  🧵 Thread posté ({len(tweets_list)} tweets) : {first_url}")
+        return first_url
+    except Exception as e:
+        print(f"  ❌ Thread X échoué : {e}")
+        return None
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SONDAGES QUOTIDIENS
+# ═══════════════════════════════════════════════════════════════════════════
+def gen_poll(conn):
+    """Génère un sondage basé sur un vrai sujet d'actualité du jour."""
+    if special_done_today(conn, "poll"):
+        return None
+    if datetime.now().hour < 12:   # sondage l'après-midi
+        return None
+
+    headlines = gather_all_headlines()
+    if len(headlines) < 10:
+        return None
+
+    avoid = recent_special_topics(conn, "poll", days=7)
+    avoid_str = " ; ".join(avoid) if avoid else "Aucun"
+    headlines_str = "\n".join(headlines[:40])
+    today = datetime.now().strftime("%d %B %Y")
+
+    try:
+        result = claude(f"""Tu animes Pulse, compte Twitter d'actualité française. Aujourd'hui : {today}.
+
+Articles du jour :
+{headlines_str}
+
+SONDAGES DÉJÀ FAITS CES 7 DERNIERS JOURS (à éviter) :
+{avoid_str}
+
+Crée UN sondage engageant sur un sujet d'actualité du jour (différent des précédents).
+
+RÈGLES :
+- La question se base sur un vrai sujet présent dans les articles ci-dessus
+- Question courte et claire (max 200 caractères), peut inclure 1 hashtag
+- 2 à 4 options de réponse, chacune max 25 caractères
+- Sujet qui invite au débat ou à l'opinion (pas une question dont la réponse est factuelle)
+- FRANÇAIS
+
+Réponds avec ce JSON UNIQUEMENT :
+{{"keywords":["mot1","mot2"],"question":"...","options":["Option 1","Option 2","Option 3"]}}""", max_tokens=400)
+
+        question = result.get("question", "").strip()
+        options  = [o.strip()[:25] for o in result.get("options", []) if o.strip()]
+        if not question or len(options) < 2:
+            return None
+        options = options[:4]  # X autorise max 4 options
+        return {
+            "question": question[:280],
+            "options":  options,
+            "keywords": result.get("keywords", []),
+        }
+    except Exception as e:
+        print(f"  ⚠️ Sondage échoué : {e}")
+        return None
+
+def post_poll(question, options):
+    """Poste un sondage sur X (texte seul, pas d'image possible)."""
+    if not all([TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET]):
+        return None
+    try:
+        import tweepy
+        client_v2 = tweepy.Client(
+            consumer_key=TWITTER_API_KEY, consumer_secret=TWITTER_API_SECRET,
+            access_token=TWITTER_ACCESS_TOKEN, access_token_secret=TWITTER_ACCESS_TOKEN_SECRET
+        )
+        resp = client_v2.create_tweet(
+            text=question,
+            poll_options=options,
+            poll_duration_minutes=1440  # 24h
+        )
+        tid = resp.data.get("id")
+        url = f"https://x.com/i/web/status/{tid}" if tid else None
+        print(f"  📊 Sondage posté : {url}")
+        return url
+    except Exception as e:
+        print(f"  ❌ Sondage X échoué : {e}")
+        return None
+
+# ═══════════════════════════════════════════════════════════════════════════
 # BOUCLE PRINCIPALE
 # ═══════════════════════════════════════════════════════════════════════════
 def check_feeds(conn):
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
 
+    # ── THREAD QUOTIDIEN (matin, 1×/jour, prioritaire) ──
+    if not special_done_today(conn, "thread") and datetime.now().hour >= 9:
+        thread = gen_thread(conn)
+        if thread:
+            png_bytes, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"])
+            url = post_thread(thread["tweets"], png_bytes)
+            if url:
+                log_special(conn, "thread", thread["keywords"])
+                print(f"  🧵 Thread du jour publié [{thread['sujet']}]")
+                return  # on s'arrête là pour ce run
+
+    # ── SONDAGE QUOTIDIEN (après-midi, 1×/jour) ──
+    if not special_done_today(conn, "poll") and datetime.now().hour >= 12:
+        poll = gen_poll(conn)
+        if poll:
+            url = post_poll(poll["question"], poll["options"])
+            if url:
+                log_special(conn, "poll", poll["keywords"])
+                print(f"  📊 Sondage du jour publié")
+                return  # on s'arrête là pour ce run
+
+    # ── PUBLICATION NORMALE (rythme aléatoire) ──
     if not should_publish_now(conn):
         return
 
