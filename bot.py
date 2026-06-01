@@ -68,6 +68,12 @@ RSS_FEEDS = [
     {"url": "https://www.eurosport.fr/rss.xml",                        "source": "Eurosport"},
     # ❤️ Positivité / Insolite
     {"url": "https://positivr.fr/feed/",                               "source": "Positivr"},
+    # 🎬 Pop culture / Réseaux sociaux / Créateurs / Buzz
+    {"url": "https://www.konbini.com/fr/feed/",                        "source": "Konbini"},
+    {"url": "https://www.numerama.com/pop-culture/feed/",              "source": "Numerama Pop"},
+    {"url": "https://www.melty.fr/feed",                               "source": "Melty"},
+    {"url": "https://www.programme-tv.net/rss/actualites.xml",         "source": "Programme TV"},
+    {"url": "https://www.premiere.fr/rss/actualite",                   "source": "Première"},
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -332,12 +338,16 @@ Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE) :
 
 Barème score :
 - 9-10 : breaking news majeure
-- 7-8  : info importante (politique, économie, sport, etc.)
-- 6    : info intéressante du quotidien (insolite, fait divers marquant, info locale forte)
+- 7-8  : info importante (politique, économie, sport, gros buzz réseaux sociaux/pop culture)
+- 6    : info intéressante du quotidien (insolite, fait divers marquant, info locale forte, lancement de produit d'une célébrité)
 - 0-5  : trop banal pour un compte d'actu
 
-NE FAVORISE PAS systématiquement les mêmes sujets (Trump, Iran, Macron, Chine...).
-Diversifie. Une info locale marquante peut scorer aussi haut qu'une info internationale.
+⚖️ ÉQUILIBRE ÉDITORIAL IMPORTANT :
+- NE FAVORISE PAS systématiquement la politique et les mêmes sujets (Trump, Iran, Macron, Chine...).
+- VALORISE autant la POP CULTURE et les RÉSEAUX SOCIAUX : créateurs de contenu (Squeezie, McFly & Carlito, Inoxtag, Lena Situations...), lancements de marques/produits par des célébrités, buzz viraux, cinéma, séries, musique, télé-réalité, sorties culturelles.
+- Ces sujets "légers" intéressent ÉNORMÉMENT le grand public et méritent des scores élevés (7-8) quand c'est un gros événement (ex: Squeezie lance une boisson, McFly & Carlito sortent des chips = score 7-8).
+- Un bon mix = politique + société + pop culture + sport + insolite, PAS que de la politique.
+- Une info locale marquante peut scorer aussi haut qu'une info internationale.
 
 Catégories :
 - "breaking" : breaking news urgente, à diffuser vite
@@ -347,7 +357,7 @@ Catégories :
 - "economie" : économie, entreprises, marchés
 - "societe"  : société, social, vie quotidienne
 - "faitsdivers" : faits divers, justice
-- "culture"  : cinéma, musique, art, littérature
+- "culture"  : cinéma, musique, art, littérature, séries, célébrités, créateurs de contenu, buzz réseaux sociaux, lancements de produits par des personnalités
 - "sport"    : sport
 - "science"  : science, recherche
 - "sante"    : santé publique, médecine
@@ -409,7 +419,9 @@ Génère QUATRE choses :
    Ex pour "Incendie 15e arrondissement Paris" → ["incendie", "paris", "15e"]
    Ex pour "Mbappé blessé entraînement" → ["mbappe", "blessure", "real"]
 
-4. **body** : corps du tweet (sans préfixe — il sera ajouté automatiquement).
+4. **person** : si l'article parle d'UNE personnalité publique précise (politique, sportif, artiste, créateur de contenu, PDG...), donne son nom complet tel qu'il apparaîtrait sur Wikipédia (ex: "Emmanuel Macron", "Kylian Mbappé", "Squeezie"). Sinon mets "".
+
+5. **body** : corps du tweet (sans préfixe — il sera ajouté automatiquement).
 
 {style_instr}
 
@@ -432,7 +444,7 @@ RÈGLES STRICTES pour body :
 - Dans le JSON, les sauts de ligne s'écrivent \\n
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"headline_court":"...","image_query":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""", max_tokens=900)
+{{"headline_court":"...","image_query":"...","person":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""", max_tokens=900)
 
     body = result.get("body", "").strip()
     for label_test in LABELS.values():
@@ -443,8 +455,9 @@ Réponds avec ce JSON UNIQUEMENT :
     headline_court = result.get("headline_court", title)[:80].strip()
     image_query    = result.get("image_query", category).strip()
     keywords       = result.get("keywords_majeurs", [])
+    person         = result.get("person", "").strip()
 
-    return body, headline_court, image_query, keywords
+    return body, headline_court, image_query, keywords, person
 
 def build_full_tweet(body, category):
     emoji = EMOJIS[category]
@@ -477,6 +490,103 @@ def fetch_img(url):
     except Exception as e:
         print(f"  ⚠️ Fetch image: {e}")
         return None
+
+def fetch_og_image(article_url):
+    """Récupère l'image HD (og:image) depuis la page de l'article — bien meilleure que la miniature RSS."""
+    if not article_url:
+        return None
+    try:
+        req = urllib.request.Request(article_url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            html = r.read(200000).decode("utf-8", errors="ignore")
+        # Cherche og:image puis twitter:image
+        for prop in ('property=["\']og:image(?::url)?["\']', 'name=["\']twitter:image["\']'):
+            m = re.search(r'<meta[^>]+' + prop + r'[^>]+content=["\']([^"\']+)["\']', html, re.IGNORECASE)
+            if not m:
+                m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+' + prop, html, re.IGNORECASE)
+            if m:
+                img = m.group(1).strip()
+                if img.startswith("//"):
+                    img = "https:" + img
+                if img.startswith("http"):
+                    return img
+    except Exception as e:
+        print(f"  ⚠️ og:image: {e}")
+    return None
+
+def fetch_wikipedia_portrait(name):
+    """Récupère une photo HD d'une personnalité depuis Wikipedia FR."""
+    if not name:
+        return None
+    try:
+        api = ("https://fr.wikipedia.org/w/api.php?action=query&titles="
+               + urllib.parse.quote(name)
+               + "&prop=pageimages&pithumbsize=1200&format=json&redirects=1")
+        req = urllib.request.Request(api, headers={"User-Agent": "PulseBot/1.0"})
+        with urllib.request.urlopen(req, timeout=8) as r:
+            data = json.loads(r.read())
+        pages = data.get("query", {}).get("pages", {})
+        for _, page in pages.items():
+            thumb = page.get("thumbnail", {}).get("source")
+            if thumb:
+                return thumb
+    except Exception as e:
+        print(f"  ⚠️ Wikipedia portrait: {e}")
+    return None
+
+def img_dimensions_ok(raw, min_w=600, min_h=400):
+    """Vérifie qu'une image est assez grande pour ne pas être floue une fois agrandie."""
+    try:
+        from PIL import Image
+        import io
+        im = Image.open(io.BytesIO(raw))
+        w, h = im.size
+        return w >= min_w and h >= min_h
+    except:
+        return False
+
+def get_best_image(article_url, photo_url, person, image_query, category):
+    """
+    Choisit la MEILLEURE image dispo, par ordre de priorité :
+    1. og:image de l'article (HD, en rapport avec le sujet)
+    2. photo de la personnalité (Wikipedia) si l'article parle de quelqu'un
+    3. miniature RSS si assez grande
+    4. Unsplash (recherche par mots-clés)
+    5. Unsplash fallback catégorie
+    Retourne (raw_bytes, is_real_photo).
+    """
+    # 1. og:image de l'article
+    og = fetch_og_image(article_url)
+    if og:
+        raw = fetch_img(og)
+        if raw and img_dimensions_ok(raw):
+            return raw, True
+
+    # 2. Photo de la personnalité
+    if person:
+        portrait = fetch_wikipedia_portrait(person)
+        if portrait:
+            raw = fetch_img(portrait)
+            if raw and img_dimensions_ok(raw):
+                print(f"  👤 Photo de {person} (Wikipedia)")
+                return raw, True
+
+    # 3. Miniature RSS si assez grande
+    if photo_url:
+        raw = fetch_img(photo_url)
+        if raw and img_dimensions_ok(raw):
+            return raw, True
+
+    # 4. Unsplash recherche
+    if image_query:
+        u = search_unsplash(image_query, category)
+        raw = fetch_img(u)
+        if raw and img_dimensions_ok(raw, min_w=800, min_h=400):
+            return raw, False
+
+    # 5. Fallback catégorie
+    raw = fetch_img(UNSPLASH_FALLBACK.get(category))
+    return (raw, False) if raw else (None, False)
 
 def extract_photo(entry):
     """Cherche une image dans l'article RSS."""
@@ -514,6 +624,32 @@ def extract_video(entry):
     matches = _re.findall(r'https?://[^\s"\'<>]+\.(?:mp4|m3u8|mov|webm)', content, _re.IGNORECASE)
     return matches[0] if matches else None
 
+def extract_video_from_page(article_url):
+    """Cherche une vidéo (og:video) sur la page de l'article."""
+    if not article_url:
+        return None
+    try:
+        req = urllib.request.Request(article_url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            html = r.read(300000).decode("utf-8", errors="ignore")
+        # og:video:url ou og:video
+        for prop in ('property=["\']og:video(?::url|:secure_url)?["\']',):
+            m = re.search(r'<meta[^>]+' + prop + r'[^>]+content=["\']([^"\']+)["\']', html, re.IGNORECASE)
+            if not m:
+                m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+' + prop, html, re.IGNORECASE)
+            if m:
+                v = m.group(1).strip()
+                # On ignore les embeds YouTube/Dailymotion (copyright + pas téléchargeables simplement)
+                if any(x in v.lower() for x in ("youtube.com", "youtu.be", "dailymotion", "/embed/")):
+                    return None
+                if v.startswith("//"):
+                    v = "https:" + v
+                if v.startswith("http") and any(v.lower().split("?")[0].endswith(e) for e in (".mp4", ".m3u8", ".mov", ".webm")):
+                    return v
+    except Exception as e:
+        print(f"  ⚠️ og:video: {e}")
+    return None
+
 def download_and_convert_video(video_url, max_duration=90):
     """Télécharge et convertit une vidéo en MP4 720p compatible X via FFmpeg."""
     import subprocess, tempfile, os
@@ -547,11 +683,12 @@ def download_and_convert_video(video_url, max_duration=90):
     except Exception as e:
         print(f"  ⚠️ Vidéo erreur: {e}"); return None
 
-def build_png(headline_court, source, category, photo_url=None, image_query=None):
+def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None):
     """
     PNG 1200x675 DA Pulse.
-    Si photo_url (vraie photo article) → affichée à 100% SANS texte au milieu.
-    Sinon → fallback Unsplash + texte au milieu.
+    Va chercher la MEILLEURE image (og:image HD, photo personnalité, etc.).
+    Vraie photo → affichée à 100% SANS texte au milieu.
+    Image Unsplash générique → atténuée + texte au milieu.
     """
     try:
         from PIL import Image, ImageDraw, ImageFont
@@ -563,22 +700,12 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         if len(headline_court) > 80:
             headline_court = headline_court[:77].rsplit(" ", 1)[0] + "..."
 
-        # Détecte si on a une VRAIE photo article ou une image Unsplash de fallback
-        has_real_photo = photo_url is not None
-        show_text      = not has_real_photo  # texte uniquement si pas de vraie photo
-
         # ─── FOND ───
         img = Image.new('RGB', (W, H), (13, 13, 20))
 
-        img_url = photo_url
-        if not img_url and image_query:
-            img_url = search_unsplash(image_query, category)
-        if not img_url:
-            img_url = UNSPLASH_FALLBACK.get(category)
-
-        raw = fetch_img(img_url)
-        if not raw and image_query:
-            raw = fetch_img(UNSPLASH_FALLBACK.get(category))
+        # Sélection de la meilleure image disponible
+        raw, has_real_photo = get_best_image(article_url, photo_url, person, image_query, category)
+        show_text = not has_real_photo  # texte au centre seulement si image générique
 
         if raw:
             try:
@@ -1219,24 +1346,30 @@ def check_feeds(conn):
                 photo          = item.get("photo_url")
                 video          = None
                 keywords       = item.get("keywords", [])
+                person         = item.get("person", "")
             else:
                 add_recent(conn, item["title"])
                 video = None
-                body, headline_court, image_query, keywords = gen_tweet_complet(
+                body, headline_court, image_query, keywords, person = gen_tweet_complet(
                     item["title"], item["summary"], item["source"], cat
                 )
                 tweet_final = build_full_tweet(body, cat)
                 photo       = extract_photo(item["entry"])
 
-            # Cherche une vidéo dans l'article RSS
+            # Cherche une vidéo dans l'article RSS, puis sur la page de l'article
             video_path = None
             if "entry" in item:
                 video_url = extract_video(item["entry"])
+                if not video_url:
+                    video_url = extract_video_from_page(item.get("url"))
                 if video_url:
                     print(f"  🎬 Vidéo trouvée : {video_url[:60]}...")
                     video_path = download_and_convert_video(video_url)
 
-            png_bytes, png_nm = build_png(headline_court, item["source"], cat, photo, image_query)
+            png_bytes, png_nm = build_png(
+                headline_court, item["source"], cat, photo, image_query,
+                article_url=item.get("url"), person=person
+            )
             post_to_twitter(tweet_final, png_bytes, video_path)
 
             mark_cat(conn, cat)
