@@ -24,6 +24,9 @@ TWITTER_API_SECRET          = os.environ.get("TWITTER_API_SECRET",          "")
 TWITTER_ACCESS_TOKEN        = os.environ.get("TWITTER_ACCESS_TOKEN",        "")
 TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET", "")
 
+FACEBOOK_PAGE_TOKEN = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
+FACEBOOK_PAGE_ID    = os.environ.get("FACEBOOK_PAGE_ID",    "")
+
 SCORE_MINIMUM = 6
 MAX_PAR_PASSE = 1
 
@@ -922,11 +925,72 @@ def post_to_twitter(tweet_text, png_bytes=None, video_path=None):
         if url:
             media_type = "🎬 vidéo" if video_path else "🖼️ image"
             print(f"  🐦 Posté sur X ({media_type}) : {url}")
-        if video_path and os.path.exists(video_path):
-            os.remove(video_path)
         return url
     except Exception as e:
         print(f"  ❌ Post X échoué : {e}")
+        return None
+
+# ═══════════════════════════════════════════════════════════════════════════
+# POST FACEBOOK
+# ═══════════════════════════════════════════════════════════════════════════
+def post_to_facebook(message, png_bytes=None, video_path=None):
+    """Poste sur la Page Facebook : photo + texte, ou vidéo, ou texte seul."""
+    if not (FACEBOOK_PAGE_TOKEN and FACEBOOK_PAGE_ID):
+        return None
+    try:
+        import urllib.request, json, os
+        # Nettoyage du texte : Facebook n'aime pas les hashtags partout, mais on garde le contenu tel quel
+        # (le même que X pour cohérence)
+
+        # 1) Avec vidéo
+        if video_path and os.path.exists(video_path):
+            try:
+                import mimetypes
+                url = f"https://graph-video.facebook.com/v21.0/{FACEBOOK_PAGE_ID}/videos"
+                with open(video_path, "rb") as f:
+                    video_data = f.read()
+                boundary = "----PulseBoundary7MA4YWxkTrZu0gW"
+                body = b""
+                # champ description
+                body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"description\"\r\n\r\n{message}\r\n".encode()
+                # champ access_token
+                body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"access_token\"\r\n\r\n{FACEBOOK_PAGE_TOKEN}\r\n".encode()
+                # fichier vidéo
+                body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"source\"; filename=\"video.mp4\"\r\nContent-Type: video/mp4\r\n\r\n".encode()
+                body += video_data + f"\r\n--{boundary}--\r\n".encode()
+                req = urllib.request.Request(url, data=body, headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
+                with urllib.request.urlopen(req, timeout=120) as r:
+                    res = json.loads(r.read())
+                print(f"  📘 Posté sur Facebook (🎬 vidéo) : {res.get('id','ok')}")
+                return res.get("id")
+            except Exception as e:
+                print(f"  ⚠️ Vidéo FB échouée : {e} → fallback photo")
+
+        # 2) Avec photo
+        if png_bytes:
+            url = f"https://graph.facebook.com/v21.0/{FACEBOOK_PAGE_ID}/photos"
+            boundary = "----PulseBoundary7MA4YWxkTrZu0gW"
+            body = b""
+            body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"caption\"\r\n\r\n{message}\r\n".encode()
+            body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"access_token\"\r\n\r\n{FACEBOOK_PAGE_TOKEN}\r\n".encode()
+            body += f"--{boundary}\r\nContent-Disposition: form-data; name=\"source\"; filename=\"pulse.png\"\r\nContent-Type: image/png\r\n\r\n".encode()
+            body += png_bytes + f"\r\n--{boundary}--\r\n".encode()
+            req = urllib.request.Request(url, data=body, headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                res = json.loads(r.read())
+            print(f"  📘 Posté sur Facebook (🖼️ photo) : {res.get('post_id', res.get('id','ok'))}")
+            return res.get("post_id", res.get("id"))
+
+        # 3) Texte seul
+        url  = f"https://graph.facebook.com/v21.0/{FACEBOOK_PAGE_ID}/feed"
+        data = urllib.parse.urlencode({"message": message, "access_token": FACEBOOK_PAGE_TOKEN}).encode()
+        req  = urllib.request.Request(url, data=data)
+        with urllib.request.urlopen(req, timeout=30) as r:
+            res = json.loads(r.read())
+        print(f"  📘 Posté sur Facebook (texte) : {res.get('id','ok')}")
+        return res.get("id")
+    except Exception as e:
+        print(f"  ❌ Post Facebook échoué : {e}")
         return None
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1231,6 +1295,7 @@ def check_feeds(conn):
         if thread:
             png_bytes, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"])
             url = post_to_twitter(thread["body"], png_bytes)
+            post_to_facebook(thread["body"], png_bytes)
             if url:
                 log_special(conn, "thread", thread["keywords"])
                 print(f"  🧵 Décryptage du jour publié [{thread['sujet']}]")
@@ -1241,6 +1306,9 @@ def check_feeds(conn):
         poll = gen_poll(conn)
         if poll:
             url = post_poll(poll["question"], poll["options"])
+            # Facebook : pas de sondage natif via API → on poste la question + options en texte
+            fb_text = poll["question"] + "\n\n" + "\n".join(f"• {o}" for o in poll["options"]) + "\n\n👉 Votez en commentaire !"
+            post_to_facebook(fb_text)
             if url:
                 log_special(conn, "poll", poll["keywords"])
                 print(f"  📊 Sondage du jour publié")
@@ -1371,6 +1439,15 @@ def check_feeds(conn):
                 article_url=item.get("url"), person=person
             )
             post_to_twitter(tweet_final, png_bytes, video_path)
+            post_to_facebook(tweet_final, png_bytes, video_path)
+
+            # Nettoyage du fichier vidéo temporaire (après X + Facebook)
+            if video_path:
+                try:
+                    import os as _os
+                    if _os.path.exists(video_path):
+                        _os.remove(video_path)
+                except: pass
 
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
