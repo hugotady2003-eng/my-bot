@@ -313,7 +313,7 @@ def analyse_batch(articles, recent, blocked_keywords):
     cats        = "|".join(LABELS.keys())
 
     articles_str = "\n\n".join(
-        f"### Article {i+1}\nSource: {a['source']}\nTitre: {a['title']}\nRésumé: {a.get('summary','')[:300]}"
+        f"### Article {i+1}\nSource: {a['source']}\nTitre: {a['title']}\nRésumé: {a.get('summary','')[:150]}"
         for i, a in enumerate(articles)
     )
 
@@ -1319,26 +1319,37 @@ def check_feeds(conn):
         return
 
     print(f"  → Scan RSS...")
-    candidates = []
+    blocked_kws = recent_keywords(conn, hours=12)
+    candidates  = []
+    pre_filtered = 0
     for fi in RSS_FEEDS:
         try:
             feed = feedparser.parse(fi["url"])
-            for entry in feed.entries[:3]:
+            for entry in feed.entries[:2]:
                 url   = entry.get("link", "")
                 title = entry.get("title", "")
                 summ  = entry.get("summary", entry.get("description", ""))
                 if url and title and not is_seen(conn, url):
+                    # Pré-filtre GRATUIT : si le titre contient un mot-clé déjà publié (12h),
+                    # on rejette SANS payer Claude
+                    title_low = title.lower()
+                    if blocked_kws and any(kw in title_low for kw in blocked_kws):
+                        mark_seen(conn, url, title)
+                        pre_filtered += 1
+                        continue
                     candidates.append({"url": url, "title": title, "summary": summ, "source": fi["source"], "entry": entry})
         except Exception as e:
             print(f"  ❌ RSS {fi['source']}: {e}")
+
+    if pre_filtered:
+        print(f"  🚫 {pre_filtered} articles pré-filtrés (mots-clés bloqués, sans coût Claude)")
 
     if not candidates:
         print("  → Aucun article nouveau.")
         return
 
     print(f"  → {len(candidates)} articles à analyser...")
-    recent          = get_recent(conn)
-    blocked_kws     = recent_keywords(conn, hours=12)
+    recent = get_recent(conn)
     if blocked_kws:
         print(f"  🚫 Mots-clés bloqués (12h) : {', '.join(blocked_kws)}")
 
