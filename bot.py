@@ -689,7 +689,7 @@ def download_and_convert_video(video_url, max_duration=90):
     except Exception as e:
         print(f"  ⚠️ Vidéo erreur: {e}"); return None
 
-def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None):
+def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
     """
     PNG DA Pulse, taille paramétrable (W×H).
     - Paysage 1200×675 pour X/Facebook (défaut)
@@ -802,7 +802,54 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         draw = ImageDraw.Draw(img)
         draw.text((bx + 18, by + 9), cat_text, font=f_badge, fill=badge_rgb)
 
-        # ─── TITRE CENTRÉ (seulement si pas de vraie photo) ───
+        # ─── TITRE EN BAS (style Instagram : toujours visible, même avec photo) ───
+        if headline_bottom:
+            # Dégradé sombre renforcé en bas pour lisibilité du titre
+            grad = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+            gd = ImageDraw.Draw(grad)
+            band = int(H * 0.42)
+            for i in range(band):
+                y = H - band + i
+                a = int(225 * (i / band) ** 1.3)
+                gd.line([(0, y), (W, y)], fill=(8, 6, 20, a))
+            img = Image.alpha_composite(img.convert('RGBA'), grad).convert('RGB')
+            draw = ImageDraw.Draw(img)
+
+            # Titre wrappé, posé juste au-dessus de la source
+            max_w = int(W * 0.90)
+            sizes = [int(W * x) for x in (0.058, 0.052, 0.046, 0.040, 0.035)]
+            chosen_lines, chosen_size = None, sizes[-1]
+            for fsize in sizes:
+                ft = font(fsize)
+                words = headline_court.split()
+                lines, line = [], ""
+                for w in words:
+                    test = (line + " " + w).strip()
+                    if draw.textbbox((0, 0), test, font=ft)[2] <= max_w:
+                        line = test
+                    else:
+                        if line: lines.append(line)
+                        line = w
+                if line: lines.append(line)
+                if len(lines) <= 4:
+                    chosen_lines, chosen_size = lines, fsize
+                    break
+            if chosen_lines is None:
+                chosen_lines = [headline_court[:60] + "..."]
+                chosen_size = sizes[-1]
+
+            ft = font(chosen_size)
+            line_h = chosen_size + 12
+            total_h = len(chosen_lines) * line_h
+            ty = int(H - H * 0.10) - total_h
+            for ln in chosen_lines:
+                # ombre + texte pour lisibilité
+                draw.text((margin + 2, ty + 2), ln, font=ft, fill=(0, 0, 0))
+                draw.text((margin, ty), ln, font=ft, fill=(255, 255, 255))
+                ty += line_h
+            show_text = False  # on n'affiche pas le titre centré en plus
+
+        # ─── TITRE CENTRÉ (seulement si pas de vraie photo et pas en mode bas) ───
         if show_text:
             max_w = int(W * 0.9)
             sizes = [int(W*x) for x in (0.052, 0.045, 0.040, 0.035, 0.030, 0.027)]
@@ -1027,6 +1074,42 @@ def upload_to_imgbb(png_bytes):
     except Exception as e:
         print(f"  ⚠️ Upload imgbb échoué : {e}")
         return None
+
+def build_ig_caption(tweet_text, keywords=None):
+    """
+    Optimise la légende pour Instagram (gratuit, fait en Python) :
+    - retire les liens (non cliquables sur Insta)
+    - ajoute un appel à l'action vers X
+    - ajoute des hashtags pertinents (Insta fonctionne beaucoup par hashtags)
+    """
+    import re as _re
+    text = tweet_text or ""
+    # Retire les URLs
+    text = _re.sub(r'https?://\S+', '', text).strip()
+    # Retire les hashtags déjà présents pour les regrouper proprement en bas
+    existing = _re.findall(r'#\w+', text)
+    text = _re.sub(r'#\w+', '', text).strip()
+    text = _re.sub(r'[ \t]+\n', '\n', text)
+    text = _re.sub(r'\n{3,}', '\n\n', text).strip()
+
+    # Construit une liste de hashtags : mots-clés + existants + standards
+    tags = []
+    def add_tag(t):
+        t = _re.sub(r'[^0-9A-Za-zÀ-ÿ]', '', t)
+        if t and len(t) > 2:
+            h = "#" + t[0].upper() + t[1:]
+            if h.lower() not in [x.lower() for x in tags]:
+                tags.append(h)
+    for kw in (keywords or []):
+        add_tag(kw)
+    for h in existing:
+        add_tag(h[1:])
+    for std in ["Actualité", "Info", "France", "News", "Pulse"]:
+        add_tag(std)
+    hashtags = " ".join(tags[:12])
+
+    cta = "👉 Plus d'infos sur X : @PULSEactus"
+    return f"{text}\n\n{cta}\n\n{hashtags}"
 
 def post_to_instagram(caption, png_bytes=None, video_path=None):
     """
@@ -1403,8 +1486,8 @@ def check_feeds(conn):
             png_bytes, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"], prefetched=(raw_src, has_real))
             url = post_to_twitter(thread["body"], png_bytes)
             post_to_facebook(thread["body"], png_bytes)
-            png_ig, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"], W=1080, H=1350, prefetched=(raw_src, has_real))
-            post_to_instagram(thread["body"], png_ig)
+            png_ig, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"], W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True)
+            post_to_instagram(build_ig_caption(thread["body"], thread.get("keywords")), png_ig)
             if url:
                 log_special(conn, "thread", thread["keywords"])
                 print(f"  🧵 Décryptage du jour publié [{thread['sujet']}]")
@@ -1564,13 +1647,13 @@ def check_feeds(conn):
             post_to_twitter(tweet_final, png_bytes, video_path)
             post_to_facebook(tweet_final, png_bytes, video_path)
 
-            # Image portrait 4:5 (Instagram) — réutilise la même image source
+            # Image portrait 4:5 (Instagram) — titre écrit sur l'image (style Insta)
             png_ig, _ = build_png(
                 headline_court, item["source"], cat, photo, image_query,
                 article_url=item.get("url"), person=person,
-                W=1080, H=1350, prefetched=(raw_src, has_real)
+                W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True
             )
-            post_to_instagram(tweet_final, png_ig)
+            post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
 
             # Nettoyage du fichier vidéo temporaire (après X + Facebook)
             if video_path:
