@@ -3,7 +3,7 @@ Pulse NewsBot — bot d'actualité française.
 Génère des tweets engageants avec image PNG, envoyés par email + posté sur X.
 """
 import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib, random
-import urllib.request, urllib.parse, re
+import urllib.request, urllib.parse, urllib.error, re
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
@@ -998,6 +998,13 @@ def post_to_facebook(message, png_bytes=None, video_path=None):
             res = json.loads(r.read())
         print(f"  📘 Posté sur Facebook (texte) : {res.get('id','ok')}")
         return res.get("id")
+    except urllib.error.HTTPError as e:
+        try:
+            body = e.read().decode("utf-8", errors="ignore")
+        except:
+            body = ""
+        print(f"  ❌ Post Facebook échoué : {e} | détail : {body}")
+        return None
     except Exception as e:
         print(f"  ❌ Post Facebook échoué : {e}")
         return None
@@ -1066,6 +1073,13 @@ def post_to_instagram(caption, png_bytes=None, video_path=None):
         post_id = res2.get("id")
         print(f"  📸 Posté sur Instagram : {post_id or 'ok'}")
         return post_id
+    except urllib.error.HTTPError as e:
+        try:
+            body = e.read().decode("utf-8", errors="ignore")
+        except:
+            body = ""
+        print(f"  ❌ Post Instagram échoué : {e} | détail : {body}")
+        return None
     except Exception as e:
         print(f"  ❌ Post Instagram échoué : {e}")
         return None
