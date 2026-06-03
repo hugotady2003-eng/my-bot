@@ -27,6 +27,9 @@ TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET", "")
 FACEBOOK_PAGE_TOKEN = os.environ.get("FACEBOOK_PAGE_TOKEN", "")
 FACEBOOK_PAGE_ID    = os.environ.get("FACEBOOK_PAGE_ID",    "")
 
+INSTAGRAM_ACCOUNT_ID = os.environ.get("INSTAGRAM_ACCOUNT_ID", "")
+IMGBB_KEY            = os.environ.get("IMGBB_KEY",            "")
+
 SCORE_MINIMUM = 6
 MAX_PAR_PASSE = 1
 
@@ -686,34 +689,36 @@ def download_and_convert_video(video_url, max_duration=90):
     except Exception as e:
         print(f"  ⚠️ Vidéo erreur: {e}"); return None
 
-def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None):
+def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None):
     """
-    PNG 1200x675 DA Pulse.
-    Va chercher la MEILLEURE image (og:image HD, photo personnalité, etc.).
-    Vraie photo → affichée à 100% SANS texte au milieu.
-    Image Unsplash générique → atténuée + texte au milieu.
+    PNG DA Pulse, taille paramétrable (W×H).
+    - Paysage 1200×675 pour X/Facebook (défaut)
+    - Portrait 1080×1350 (4:5) pour Instagram
+    prefetched = (raw_bytes, has_real_photo) pour réutiliser une image déjà téléchargée.
     """
     try:
         from PIL import Image, ImageDraw, ImageFont
         import io
 
-        W, H = 1200, 675
         s = STYLES[category]
+        margin = int(W * 0.037)   # marge proportionnelle (~44px en 1200, ~40px en 1080)
 
-        if len(headline_court) > 80:
-            headline_court = headline_court[:77].rsplit(" ", 1)[0] + "..."
+        if len(headline_court) > 90:
+            headline_court = headline_court[:87].rsplit(" ", 1)[0] + "..."
 
         # ─── FOND ───
         img = Image.new('RGB', (W, H), (13, 13, 20))
 
-        # Sélection de la meilleure image disponible
-        raw, has_real_photo = get_best_image(article_url, photo_url, person, image_query, category)
-        show_text = not has_real_photo  # texte au centre seulement si image générique
+        # Sélection de la meilleure image (ou réutilisation si déjà téléchargée)
+        if prefetched is not None:
+            raw, has_real_photo = prefetched
+        else:
+            raw, has_real_photo = get_best_image(article_url, photo_url, person, image_query, category)
+        show_text = not has_real_photo
 
         if raw:
             try:
                 photo = Image.open(io.BytesIO(raw)).convert('RGB')
-                # Crop "cover" : remplit le cadre 1200x675 SANS déformer (recadre l'excédent)
                 src_w, src_h = photo.size
                 scale = max(W / src_w, H / src_h)
                 new_w, new_h = int(src_w * scale + 0.5), int(src_h * scale + 0.5)
@@ -721,7 +726,6 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 left  = (new_w - W) // 2
                 top   = (new_h - H) // 2
                 photo = photo.crop((left, top, left + W, top + H))
-                # Vraie photo article = 100% visible, image Unsplash = atténuée pour lisibilité texte
                 alpha = 1.0 if has_real_photo else 0.80
                 img   = Image.blend(Image.new('RGB', (W, H), (13, 13, 20)), photo, alpha=alpha)
             except Exception as e:
@@ -731,20 +735,19 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         ov    = Image.new('RGBA', (W, H), (0, 0, 0, 0))
         odraw = ImageDraw.Draw(ov)
         r0, g0, b0 = s["overlay"]
+        edge = int(H * 0.15)
 
         if has_real_photo:
-            # Pas de texte au centre : overlay léger seulement en haut/bas pour lisibilité logo/source
             for y in range(H):
-                if y < 100:
-                    a = int(180 * (1 - y / 100))
-                elif y > H - 100:
-                    a = int(180 * ((y - (H - 100)) / 100))
+                if y < edge:
+                    a = int(190 * (1 - y / edge))
+                elif y > H - edge:
+                    a = int(190 * ((y - (H - edge)) / edge))
                 else:
                     a = 0
                 if a > 0:
                     odraw.line([(0, y), (W, y)], fill=(r0, g0, b0, a))
         else:
-            # Texte au centre : overlay sombre uniforme pour lisibilité
             for y in range(H):
                 a = min(255, 180 + int(y / H * 70))
                 odraw.line([(0, y), (W, y)], fill=(r0, g0, b0, a))
@@ -754,12 +757,13 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
 
         # ─── BARRE COULEUR HAUT ───
         c1, c2 = s["bar"]
+        bar_h  = max(10, int(H * 0.018))
         for x in range(W):
             t = x / W
             r = int(c1[0] + t * (c2[0] - c1[0]))
             g = int(c1[1] + t * (c2[1] - c1[1]))
             b = int(c1[2] + t * (c2[2] - c1[2]))
-            draw.line([(x, 0), (x, 12)], fill=(r, g, b))
+            draw.line([(x, 0), (x, bar_h)], fill=(r, g, b))
 
         # ─── POLICES ───
         def font(size, bold=True):
@@ -772,12 +776,14 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 except: continue
             return ImageFont.load_default()
 
-        f_logo  = font(56)
-        f_badge = font(28, bold=False)
-        f_sm    = font(28, bold=False)
+        logo_sz  = int(W * 0.047)
+        small_sz = int(W * 0.023)
+        f_logo  = font(logo_sz)
+        f_badge = font(small_sz, bold=False)
+        f_sm    = font(small_sz, bold=False)
 
         # ─── LOGO PULSE ───
-        draw.text((44, 30), "Pulse", font=f_logo, fill=(255, 255, 255))
+        draw.text((margin, int(H * 0.044)), "Pulse", font=f_logo, fill=(255, 255, 255))
 
         # ─── BADGE CATÉGORIE ───
         badge_hex = s["color"].lstrip("#")
@@ -786,8 +792,8 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         bb = draw.textbbox((0, 0), cat_text, font=f_badge)
         bw = bb[2] - bb[0] + 36
         bh = bb[3] - bb[1] + 18
-        bx = W - bw - 44
-        by = 26
+        bx = W - bw - margin
+        by = int(H * 0.039)
         bov   = Image.new('RGBA', (W, H), (0, 0, 0, 0))
         bdraw = ImageDraw.Draw(bov)
         bdraw.rounded_rectangle([bx, by, bx + bw, by + bh], radius=bh // 2,
@@ -798,25 +804,27 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
 
         # ─── TITRE CENTRÉ (seulement si pas de vraie photo) ───
         if show_text:
-            chosen_lines, chosen_size = None, 32
-            for fsize in [62, 54, 48, 42, 36, 32]:
+            max_w = int(W * 0.9)
+            sizes = [int(W*x) for x in (0.052, 0.045, 0.040, 0.035, 0.030, 0.027)]
+            chosen_lines, chosen_size = None, sizes[-1]
+            for fsize in sizes:
                 ft    = font(fsize)
                 words = headline_court.split()
                 lines, line = [], ""
                 for w in words:
                     test = (line + " " + w).strip()
-                    if draw.textbbox((0, 0), test, font=ft)[2] <= 1080:
+                    if draw.textbbox((0, 0), test, font=ft)[2] <= max_w:
                         line = test
                     else:
                         if line: lines.append(line)
                         line = w
                 if line: lines.append(line)
-                if len(lines) <= 3:
+                if len(lines) <= 4:
                     chosen_lines, chosen_size = lines, fsize
                     break
             if chosen_lines is None:
                 chosen_lines = [headline_court[:50] + "..."]
-                chosen_size  = 38
+                chosen_size  = sizes[-1]
 
             ft     = font(chosen_size)
             line_h = chosen_size + 14
@@ -831,9 +839,10 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         mois     = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"]
         now      = datetime.now()
         date_str = f"{now.day} {mois[now.month - 1]} {now.year}"
-        draw.text((44, H - 52), source, font=f_sm, fill=(255, 255, 255, 200))
+        by2 = int(H - H * 0.077)
+        draw.text((margin, by2), source, font=f_sm, fill=(255, 255, 255, 200))
         bb2 = draw.textbbox((0, 0), date_str, font=f_sm)
-        draw.text((W - bb2[2] - 44, H - 52), date_str, font=f_sm, fill=(255, 255, 255, 200))
+        draw.text((W - bb2[2] - margin, by2), date_str, font=f_sm, fill=(255, 255, 255, 200))
 
         buf = io.BytesIO()
         img.save(buf, format='PNG')
@@ -991,6 +1000,74 @@ def post_to_facebook(message, png_bytes=None, video_path=None):
         return res.get("id")
     except Exception as e:
         print(f"  ❌ Post Facebook échoué : {e}")
+        return None
+
+# ═══════════════════════════════════════════════════════════════════════════
+# POST INSTAGRAM (image 4:5 hébergée sur imgbb)
+# ═══════════════════════════════════════════════════════════════════════════
+def upload_to_imgbb(png_bytes):
+    """Upload une image sur imgbb (gratuit) et retourne l'URL publique."""
+    if not IMGBB_KEY:
+        return None
+    try:
+        import base64
+        b64  = base64.b64encode(png_bytes).decode()
+        data = urllib.parse.urlencode({"key": IMGBB_KEY, "image": b64, "expiration": "86400"}).encode()
+        req  = urllib.request.Request("https://api.imgbb.com/1/upload", data=data)
+        with urllib.request.urlopen(req, timeout=30) as r:
+            res = json.loads(r.read())
+        return res.get("data", {}).get("url")
+    except Exception as e:
+        print(f"  ⚠️ Upload imgbb échoué : {e}")
+        return None
+
+def post_to_instagram(caption, png_bytes=None, video_path=None):
+    """
+    Poste sur Instagram via l'API Graph (image 4:5 uniquement pour l'instant).
+    Process en 2 étapes : créer un conteneur média (avec URL image) puis publier.
+    """
+    if not (INSTAGRAM_ACCOUNT_ID and FACEBOOK_PAGE_TOKEN):
+        return None
+    if not png_bytes:
+        return None  # Instagram exige une image/vidéo, pas de post texte seul
+
+    # 1) Héberger l'image (Instagram exige une URL publique)
+    image_url = upload_to_imgbb(png_bytes)
+    if not image_url:
+        print("  ⚠️ Instagram : pas d'URL image (imgbb), skip.")
+        return None
+
+    try:
+        # 2) Créer le conteneur média
+        url1  = f"https://graph.facebook.com/v21.0/{INSTAGRAM_ACCOUNT_ID}/media"
+        data1 = urllib.parse.urlencode({
+            "image_url":    image_url,
+            "caption":      caption,
+            "access_token": FACEBOOK_PAGE_TOKEN
+        }).encode()
+        req1 = urllib.request.Request(url1, data=data1)
+        with urllib.request.urlopen(req1, timeout=60) as r:
+            res1 = json.loads(r.read())
+        creation_id = res1.get("id")
+        if not creation_id:
+            print(f"  ⚠️ Instagram : conteneur non créé ({res1})")
+            return None
+
+        # 3) Publier le conteneur
+        time.sleep(3)  # laisser Instagram traiter l'image
+        url2  = f"https://graph.facebook.com/v21.0/{INSTAGRAM_ACCOUNT_ID}/media_publish"
+        data2 = urllib.parse.urlencode({
+            "creation_id":  creation_id,
+            "access_token": FACEBOOK_PAGE_TOKEN
+        }).encode()
+        req2 = urllib.request.Request(url2, data=data2)
+        with urllib.request.urlopen(req2, timeout=60) as r:
+            res2 = json.loads(r.read())
+        post_id = res2.get("id")
+        print(f"  📸 Posté sur Instagram : {post_id or 'ok'}")
+        return post_id
+    except Exception as e:
+        print(f"  ❌ Post Instagram échoué : {e}")
         return None
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1234,17 +1311,32 @@ Articles du jour :
 SONDAGES DÉJÀ FAITS CES 7 DERNIERS JOURS (à éviter) :
 {avoid_str}
 
-Crée UN sondage engageant sur un sujet d'actualité du jour (différent des précédents).
+Crée UN sondage qui va FAIRE RÉAGIR ET VOTER un maximum de monde.
 
-RÈGLES :
-- La question se base sur un vrai sujet présent dans les articles ci-dessus
-- Question courte et claire (max 200 caractères), peut inclure 1 hashtag
-- 2 à 4 options de réponse, chacune max 25 caractères
-- Sujet qui invite au débat ou à l'opinion (pas une question dont la réponse est factuelle)
+🎯 RÈGLES D'OR D'UN BON SONDAGE :
+1. SUJET GRAND PUBLIC ET CHAUD : politique française, sport (foot, JO, équipe de France), faits divers marquants, société, polémiques du moment, décisions du gouvernement, prix/pouvoir d'achat, sécurité, immigration, débats de société. ÉVITE absolument les sujets de niche, intellos, culturels confidentiels ou les personnalités que le grand public ne connaît pas (philosophes, écrivains méconnus, etc.).
+2. CLIVANT / QUI DIVISE : la question doit opposer deux camps, toucher une opinion forte, ou demander un pronostic. Les gens votent quand ils ont un AVIS tranché.
+3. ULTRA SIMPLE : compréhensible en 2 secondes, même sans avoir lu l'article. Pas de question alambiquée.
+4. Options TRÈS courtes et tranchées (max 25 caractères) : souvent "Oui / Non", "Pour / Contre", "D'accord / Pas d'accord", ou des choix concrets (noms d'équipes, de personnalités connues...).
+
+EXEMPLES DE BONS SONDAGES (style à imiter) :
+- "Faut-il interdire les écrans aux moins de 3 ans ? 📱" → Oui / Non
+- "Le PSG va-t-il gagner la Ligue des Champions ? ⚽" → Oui / Non / J'y crois moyen
+- "Retraite à 64 ans : toujours contre ? 🏛️" → Pour / Contre / Ça dépend
+- "Couvre-feu pour les mineurs : bonne idée ? 🌙" → Oui / Non
+
+EXEMPLES DE MAUVAIS SONDAGES (à NE JAMAIS faire) :
+- "Edgar Morin incarnait-il l'humanisme républicain ?" (personne ne connaît, trop intello)
+- Toute question dont la réponse est factuelle plutôt qu'une opinion
+
+CONTRAINTES TECHNIQUES :
+- Question max 200 caractères, avec 1 emoji pertinent (et éventuellement 1 hashtag connu)
+- 2 à 4 options, chacune max 25 caractères
+- Base-toi sur un vrai sujet présent dans les articles ci-dessus
 - FRANÇAIS
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"keywords":["mot1","mot2"],"question":"...","options":["Option 1","Option 2","Option 3"]}}""", max_tokens=400)
+{{"keywords":["mot1","mot2"],"question":"...","options":["Option 1","Option 2"]}}""", max_tokens=400)
 
         question = result.get("question", "").strip()
         options  = [o.strip()[:25] for o in result.get("options", []) if o.strip()]
@@ -1293,9 +1385,12 @@ def check_feeds(conn):
     if not special_done_today(conn, "thread") and datetime.now().hour >= 9:
         thread = gen_thread(conn)
         if thread:
-            png_bytes, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"])
+            raw_src, has_real = get_best_image(None, None, None, thread["image_query"], "monde")
+            png_bytes, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"], prefetched=(raw_src, has_real))
             url = post_to_twitter(thread["body"], png_bytes)
             post_to_facebook(thread["body"], png_bytes)
+            png_ig, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"], W=1080, H=1350, prefetched=(raw_src, has_real))
+            post_to_instagram(thread["body"], png_ig)
             if url:
                 log_special(conn, "thread", thread["keywords"])
                 print(f"  🧵 Décryptage du jour publié [{thread['sujet']}]")
@@ -1445,12 +1540,23 @@ def check_feeds(conn):
                     print(f"  🎬 Vidéo trouvée : {video_url[:60]}...")
                     video_path = download_and_convert_video(video_url)
 
+            # Image paysage (X + Facebook) — on récupère aussi l'image source pour réutilisation
+            raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, cat)
             png_bytes, png_nm = build_png(
                 headline_court, item["source"], cat, photo, image_query,
-                article_url=item.get("url"), person=person
+                article_url=item.get("url"), person=person,
+                prefetched=(raw_src, has_real)
             )
             post_to_twitter(tweet_final, png_bytes, video_path)
             post_to_facebook(tweet_final, png_bytes, video_path)
+
+            # Image portrait 4:5 (Instagram) — réutilise la même image source
+            png_ig, _ = build_png(
+                headline_court, item["source"], cat, photo, image_query,
+                article_url=item.get("url"), person=person,
+                W=1080, H=1350, prefetched=(raw_src, has_real)
+            )
+            post_to_instagram(tweet_final, png_ig)
 
             # Nettoyage du fichier vidéo temporaire (après X + Facebook)
             if video_path:
