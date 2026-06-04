@@ -724,7 +724,9 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 new_w, new_h = int(src_w * scale + 0.5), int(src_h * scale + 0.5)
                 photo = photo.resize((new_w, new_h), Image.LANCZOS)
                 left  = (new_w - W) // 2
-                top   = (new_h - H) // 2
+                # Recadrage vertical biaisé vers le HAUT : sur une photo de personne,
+                # le visage est en haut. Un crop centré coupait les têtes → on garde le haut.
+                top   = int((new_h - H) * 0.2)
                 photo = photo.crop((left, top, left + W, top + H))
                 alpha = 1.0 if has_real_photo else 0.80
                 img   = Image.blend(Image.new('RGB', (W, H), (13, 13, 20)), photo, alpha=alpha)
@@ -804,20 +806,23 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
 
         # ─── TITRE EN BAS (style Instagram : toujours visible, même avec photo) ───
         if headline_bottom:
-            # Dégradé sombre renforcé en bas pour lisibilité du titre
+            from PIL import ImageFilter
+
+            # Dégradé sombre qui MONTE plus haut (lisibilité du texte placé plus haut)
             grad = Image.new('RGBA', (W, H), (0, 0, 0, 0))
             gd = ImageDraw.Draw(grad)
-            band = int(H * 0.42)
+            band = int(H * 0.68)               # couvre les ~2/3 inférieurs
             for i in range(band):
                 y = H - band + i
-                a = int(225 * (i / band) ** 1.3)
-                gd.line([(0, y), (W, y)], fill=(8, 6, 20, a))
+                t = i / band
+                a = int(255 * (t ** 0.95))     # assombrit tôt et fort
+                gd.line([(0, y), (W, y)], fill=(5, 4, 14, a))
             img = Image.alpha_composite(img.convert('RGBA'), grad).convert('RGB')
             draw = ImageDraw.Draw(img)
 
-            # Titre wrappé, posé juste au-dessus de la source
+            # Titre wrappé et AUTO-DIMENSIONNÉ (titre court = très gros)
             max_w = int(W * 0.90)
-            sizes = [int(W * x) for x in (0.058, 0.052, 0.046, 0.040, 0.035)]
+            sizes = [int(W * x) for x in (0.092, 0.082, 0.072, 0.063, 0.055, 0.048)]
             chosen_lines, chosen_size = None, sizes[-1]
             for fsize in sizes:
                 ft = font(fsize)
@@ -838,13 +843,29 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 chosen_lines = [headline_court[:60] + "..."]
                 chosen_size = sizes[-1]
 
-            ft = font(chosen_size)
-            line_h = chosen_size + 12
+            ft      = font(chosen_size)
+            line_h  = int(chosen_size * 1.14)
             total_h = len(chosen_lines) * line_h
-            ty = int(H - H * 0.10) - total_h
+            # Bloc de texte centré vers ~66% de la hauteur → commence bien plus haut
+            center_y = int(H * 0.66)
+            ty0 = center_y - total_h // 2
+
+            # OMBRE PORTÉE DOUCE (floutée) au lieu d'un contour noir net
+            shadow = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+            sdraw  = ImageDraw.Draw(shadow)
+            ty = ty0
             for ln in chosen_lines:
-                # ombre + texte pour lisibilité
-                draw.text((margin + 2, ty + 2), ln, font=ft, fill=(0, 0, 0))
+                sdraw.text((margin + 4, ty + 6), ln, font=ft, fill=(0, 0, 0, 235))
+                ty += line_h
+            shadow = shadow.filter(ImageFilter.GaussianBlur(12))
+            # on densifie l'ombre en la compositant 2 fois (plus lisible)
+            img = Image.alpha_composite(img.convert('RGBA'), shadow)
+            img = Image.alpha_composite(img, shadow).convert('RGB')
+            draw = ImageDraw.Draw(img)
+
+            # Texte blanc net par-dessus (sans contour)
+            ty = ty0
+            for ln in chosen_lines:
                 draw.text((margin, ty), ln, font=ft, fill=(255, 255, 255))
                 ty += line_h
             show_text = False  # on n'affiche pas le titre centré en plus
@@ -1086,9 +1107,11 @@ def build_ig_caption(tweet_text, keywords=None):
     text = tweet_text or ""
     # Retire les URLs
     text = _re.sub(r'https?://\S+', '', text).strip()
-    # Retire les hashtags déjà présents pour les regrouper proprement en bas
-    existing = _re.findall(r'#\w+', text)
-    text = _re.sub(r'#\w+', '', text).strip()
+    # Récupère les hashtags présents pour les regrouper en bas,
+    # MAIS garde les mots dans la phrase (on retire juste le "#", sinon on casse le texte)
+    existing = _re.findall(r'#(\w+)', text)
+    text = _re.sub(r'#(\w+)', r'\1', text).strip()
+    text = _re.sub(r'[ \t]{2,}', ' ', text)
     text = _re.sub(r'[ \t]+\n', '\n', text)
     text = _re.sub(r'\n{3,}', '\n\n', text).strip()
 
@@ -1103,7 +1126,7 @@ def build_ig_caption(tweet_text, keywords=None):
     for kw in (keywords or []):
         add_tag(kw)
     for h in existing:
-        add_tag(h[1:])
+        add_tag(h)
     for std in ["Actualité", "Info", "France", "News", "Pulse"]:
         add_tag(std)
     hashtags = " ".join(tags[:12])
