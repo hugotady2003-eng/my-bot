@@ -274,7 +274,7 @@ def last_publish_time(conn):
     except:
         return None
 
-def should_publish_now(conn, min_minutes=60, max_minutes=180):
+def should_publish_now(conn, min_minutes=45, max_minutes=105):
     last = last_publish_time(conn)
     if not last:
         return True
@@ -304,6 +304,44 @@ def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001"):
     )
     raw = msg.content[0].text.strip().replace("```json", "").replace("```", "").strip()
     return json.loads(raw)
+
+def claude_text(prompt, max_tokens=700, model="claude-haiku-4-5-20251001"):
+    """Comme claude() mais renvoie du texte brut (pas de JSON)."""
+    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    msg = client.messages.create(
+        model=model, max_tokens=max_tokens,
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return msg.content[0].text.strip()
+
+def relire(texte):
+    """
+    Relecture finale : corrige fautes d'orthographe/grammaire/accord, traduit tout
+    passage en anglais, complète les mots tronqués. Garde le sens, le ton, les emojis,
+    les hashtags et la mise en forme À L'IDENTIQUE. Appel court et peu coûteux.
+    """
+    if not texte or len(texte) < 10:
+        return texte
+    try:
+        prompt = (
+            "Tu es correcteur professionnel. Corrige ce texte de publication en français.\n\n"
+            "RÈGLES :\n"
+            "- Corrige TOUTES les fautes d'orthographe, grammaire, accord, conjugaison, ponctuation.\n"
+            "- Traduis en français TOUT mot ou phrase en anglais. Le résultat doit être 100% en français.\n"
+            "- Complète tout mot visiblement coupé/tronqué.\n"
+            "- GARDE le sens, le ton, les emojis, les hashtags et la mise en forme (sauts de ligne, paragraphes) EXACTEMENT.\n"
+            "- N'ajoute aucune information, n'en retire aucune, ne change pas la structure.\n"
+            "- Renvoie UNIQUEMENT le texte corrigé, sans aucun commentaire ni guillemets autour.\n\n"
+            "TEXTE :\n" + texte
+        )
+        out = claude_text(prompt, max_tokens=900)
+        out = out.strip().strip('"').strip()
+        # garde-fou : on n'accepte la correction que si elle reste cohérente en longueur
+        if out and 0.5 * len(texte) <= len(out) <= 1.6 * len(texte):
+            return out
+    except Exception as e:
+        print(f"  ⚠️ Relecture échouée (texte gardé tel quel) : {e}")
+    return texte
 
 def analyse_batch(articles, recent, blocked_keywords):
     """Analyse plusieurs articles en un seul appel Claude."""
@@ -355,24 +393,10 @@ Barème score :
 - Un bon mix = politique + société + pop culture + sport + insolite, PAS que de la politique.
 - Une info locale marquante peut scorer aussi haut qu'une info internationale.
 
-Catégories :
-- "breaking" : breaking news urgente, à diffuser vite
-- "france"   : actu nationale française (général)
-- "monde"    : actu internationale
-- "politique" : politique française ou internationale
-- "economie" : économie, entreprises, marchés
-- "societe"  : société, social, vie quotidienne
-- "faitsdivers" : faits divers, justice
-- "culture"  : cinéma, musique, art, littérature, séries, célébrités, créateurs de contenu, buzz réseaux sociaux, lancements de produits par des personnalités
-- "sport"    : sport
-- "science"  : science, recherche
-- "sante"    : santé publique, médecine
-- "environnement" : climat, écologie
-- "tech"     : technologie, gadgets
-- "ia"       : intelligence artificielle
-- "insolite" : insolite, faits étonnants
-- "positivity" : feel-good, actes de bonté, histoires positives
-- "histoire" : événement historique vérifiable lié à la date du jour
+Catégories possibles (choisis la plus juste) :
+breaking, france, monde, politique, economie, societe, faitsdivers, histoire,
+culture (cinéma, musique, séries, célébrités, créateurs/influenceurs, buzz réseaux sociaux, produits de célébrités),
+sport, science, sante, environnement, tech, ia, insolite, positivity.
 
 IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
 
@@ -434,7 +458,7 @@ Génère QUATRE choses :
 RÈGLES STRICTES pour body :
 - NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules
 - Va directement à l'info
-- FRANÇAIS obligatoire
+- 🇫🇷 FRANÇAIS IMPECCABLE OBLIGATOIRE : aucun mot ni aucune expression en anglais (traduis tout en français), aucune faute d'orthographe, de grammaire ou d'accord, aucun mot tronqué. AVANT de répondre, RELIS ton texte et corrige toutes les fautes.
 - Compte Premium = 600 caractères max
 - Info COMPLÈTE, jamais teaser
 - 2-3 hashtags RÉPARTIS dans le texte sur les mots les plus recherchés (#Macron, #Paris, #PSG, pas #news)
@@ -1326,25 +1350,30 @@ Voici les titres et résumés des articles d'actualité du jour :
 SUJETS DÉJÀ TRAITÉS CES 7 DERNIERS JOURS (à ÉVITER) :
 {avoid_str}
 
-Ta mission : identifier LE sujet majeur du jour (différent de ceux déjà traités) et écrire un DÉCRYPTAGE complet en UN SEUL tweet long (compte Premium).
+Ta mission : identifier LE sujet majeur du jour (différent de ceux déjà traités) et écrire un DÉCRYPTAGE clair, bien structuré et agréable à lire, en UN SEUL tweet long (compte Premium).
 
 RÈGLES ABSOLUES :
 - Base-toi UNIQUEMENT sur les informations présentes dans les articles ci-dessus.
 - N'INVENTE AUCUN fait, chiffre, date ou citation qui ne serait pas dans les articles.
 - Si tu n'es pas sûr d'un détail, reste général plutôt que d'inventer.
-- FRANÇAIS, ton clair et pédagogique.
+- 🇫🇷 FRANÇAIS IMPECCABLE : zéro mot en anglais (traduis tout), zéro faute d'orthographe/grammaire/accord, aucun mot tronqué. RELIS-toi avant de répondre et corrige tout.
 
-Format du tweet (700 à 1000 caractères) :
-- Ligne 1 : accroche forte qui pose le sujet, suivie de "— Le décryptage 🧵"
+STRUCTURE OBLIGATOIRE (bien aérée, avec emojis pour rythmer) :
+- Ligne 1 : 🧵 + accroche forte qui pose le sujet, puis "— Le décryptage"
+- DOUBLE SAUT DE LIGNE entre CHAQUE bloc
+- Puis 3 blocs courts, chacun introduit par un emoji thématique en début de ligne, par exemple :
+  📌 Le contexte : ...
+  ⚡ Les enjeux : ...
+  🔮 Ce qui peut suivre : ...
+  (adapte les emojis et intitulés au sujet : 📊 chiffres, 🌍 international, ⚖️ justice, 💶 économie, etc.)
 - DOUBLE SAUT DE LIGNE
-- 2-3 paragraphes courts séparés par des doubles sauts de ligne : contexte, enjeux, ce qu'il faut comprendre
-- DOUBLE SAUT DE LIGNE
-- Une phrase de conclusion / ce qu'il faut retenir
-- 2-3 hashtags répartis dans le texte
+- Dernier bloc : ✅ À retenir : une phrase de synthèse
+- 2-3 hashtags pertinents répartis naturellement dans le texte (#Macron, #PSG... pas #news)
+- Longueur totale : 700 à 1000 caractères
 - Les sauts de ligne s'écrivent \\n dans le JSON
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"sujet":"<2-4 mots>","keywords":["mot1","mot2","mot3"],"image_query":"<5 mots anglais>","body":"Accroche — Le décryptage 🧵\\n\\nParagraphe 1...\\n\\nParagraphe 2...\\n\\nÀ retenir : ..."}}""", max_tokens=1000)
+{{"sujet":"<2-4 mots>","keywords":["mot1","mot2","mot3"],"image_query":"<5 mots anglais>","body":"🧵 Accroche — Le décryptage\\n\\n📌 Le contexte : ...\\n\\n⚡ Les enjeux : ...\\n\\n🔮 Ce qui peut suivre : ...\\n\\n✅ À retenir : ..."}}""", max_tokens=1000)
 
         body = result.get("body", "").strip()
         if not body or len(body) < 100:
@@ -1437,13 +1466,17 @@ Crée UN sondage qui va FAIRE RÉAGIR ET VOTER un maximum de monde.
 1. SUJET GRAND PUBLIC ET CHAUD : politique française, sport (foot, JO, équipe de France), faits divers marquants, société, polémiques du moment, décisions du gouvernement, prix/pouvoir d'achat, sécurité, immigration, débats de société. ÉVITE absolument les sujets de niche, intellos, culturels confidentiels ou les personnalités que le grand public ne connaît pas (philosophes, écrivains méconnus, etc.).
 2. CLIVANT / QUI DIVISE : la question doit opposer deux camps, toucher une opinion forte, ou demander un pronostic. Les gens votent quand ils ont un AVIS tranché.
 3. ULTRA SIMPLE : compréhensible en 2 secondes, même sans avoir lu l'article. Pas de question alambiquée.
-4. Options TRÈS courtes et tranchées (max 25 caractères) : souvent "Oui / Non", "Pour / Contre", "D'accord / Pas d'accord", ou des choix concrets (noms d'équipes, de personnalités connues...).
+4. Options ULTRA COURTES : 1 à 3 mots MAXIMUM, JAMAIS une phrase. Limite stricte de 20 caractères par option (sinon X les coupe en plein milieu !). Privilégie : "Oui" / "Non" / "Pour" / "Contre" / "Ça dépend" / "Aucun" / des noms courts (équipes, personnalités).
 
-EXEMPLES DE BONS SONDAGES (style à imiter) :
-- "Faut-il interdire les écrans aux moins de 3 ans ? 📱" → Oui / Non
-- "Le PSG va-t-il gagner la Ligue des Champions ? ⚽" → Oui / Non / J'y crois moyen
-- "Retraite à 64 ans : toujours contre ? 🏛️" → Pour / Contre / Ça dépend
-- "Couvre-feu pour les mineurs : bonne idée ? 🌙" → Oui / Non
+EXEMPLES DE BONS SONDAGES (style à imiter, regarde la BRIÈVETÉ des options) :
+- "Faut-il interdire les écrans aux moins de 3 ans ? 📱" → "Oui" / "Non"
+- "Le PSG va-t-il gagner la Ligue des Champions ? ⚽" → "Oui" / "Non" / "J'y crois pas"
+- "Retraite à 64 ans : toujours contre ? 🏛️" → "Pour" / "Contre" / "Ça dépend"
+- "Durcir l'assurance-chômage ? 💼" → "Bonne idée" / "Mauvaise idée" / "Ça dépend"
+
+❌ MAUVAIS (options trop longues, seront coupées) :
+- "Oui, faut réduire les abus" (trop long !) → écris juste "Oui" ou "Bonne idée"
+- "Non, c'est punir les précaires" (trop long !) → écris juste "Non" ou "Injuste"
 
 EXEMPLES DE MAUVAIS SONDAGES (à NE JAMAIS faire) :
 - "Edgar Morin incarnait-il l'humanisme républicain ?" (personne ne connaît, trop intello)
@@ -1451,15 +1484,27 @@ EXEMPLES DE MAUVAIS SONDAGES (à NE JAMAIS faire) :
 
 CONTRAINTES TECHNIQUES :
 - Question max 200 caractères, avec 1 emoji pertinent (et éventuellement 1 hashtag connu)
-- 2 à 4 options, chacune max 25 caractères
+- 2 à 4 options, chacune 1-3 mots, 20 caractères MAX (impératif)
 - Base-toi sur un vrai sujet présent dans les articles ci-dessus
-- FRANÇAIS
+- FRANÇAIS sans faute
 
 Réponds avec ce JSON UNIQUEMENT :
 {{"keywords":["mot1","mot2"],"question":"...","options":["Option 1","Option 2"]}}""", max_tokens=400)
 
         question = result.get("question", "").strip()
-        options  = [o.strip()[:25] for o in result.get("options", []) if o.strip()]
+
+        def clean_option(o, limit=25):
+            """Coupe proprement au mot (jamais en plein milieu) si > limite."""
+            o = o.strip()
+            if len(o) <= limit:
+                return o
+            cut = o[:limit]
+            if " " in cut:
+                cut = cut[:cut.rfind(" ")]
+            return cut.strip()
+
+        options = [clean_option(o) for o in result.get("options", []) if o.strip()]
+        options = [o for o in options if o]  # retire vides
         if not question or len(options) < 2:
             return None
         options = options[:4]  # X autorise max 4 options
@@ -1581,6 +1626,14 @@ def check_feeds(conn):
             scored.append({**c, "analysis": a, "score": score})
         else:
             to_analyse.append(c)
+
+    # 💰 Limite le nombre d'articles ENVOYÉS à Claude par passage (les articles en
+    # cache restent gratuits). On garde un échantillon varié pour borner le coût API.
+    MAX_ANALYSE = 15
+    if len(to_analyse) > MAX_ANALYSE:
+        skipped = len(to_analyse) - MAX_ANALYSE
+        to_analyse = random.sample(to_analyse, MAX_ANALYSE)
+        print(f"  💰 {skipped} articles non analysés ce passage (plafond {MAX_ANALYSE}, vus au prochain run)")
 
     if to_analyse:
         try:
