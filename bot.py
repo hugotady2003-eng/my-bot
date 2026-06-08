@@ -889,15 +889,16 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             img = Image.alpha_composite(img.convert('RGBA'), grad).convert('RGB')
             draw = ImageDraw.Draw(img)
 
-            # Titre wrappé et AUTO-DIMENSIONNÉ (titre court = très gros)
+            # Titre : on retire les hashtags (inutiles/moches sur une image) et on
+            # auto-dimensionne pour que RIEN ne déborde (titre court = très gros).
+            clean_title = re.sub(r'#(\w+)', r'\1', headline_court)
+            clean_title = re.sub(r'\s{2,}', ' ', clean_title).strip()
             max_w = int(W * 0.90)
             sizes = [int(W * x) for x in (0.092, 0.082, 0.072, 0.063, 0.055, 0.048)]
-            chosen_lines, chosen_size = None, sizes[-1]
-            for fsize in sizes:
-                ft = font(fsize)
-                words = headline_court.split()
+
+            def _wrap_words(ft):
                 lines, line = [], ""
-                for w in words:
+                for w in clean_title.split():
                     test = (line + " " + w).strip()
                     if draw.textbbox((0, 0), test, font=ft)[2] <= max_w:
                         line = test
@@ -905,12 +906,42 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                         if line: lines.append(line)
                         line = w
                 if line: lines.append(line)
-                if len(lines) <= 4:
+                return lines
+
+            def _all_words_fit(ft):
+                return all(draw.textbbox((0, 0), w, font=ft)[2] <= max_w for w in clean_title.split())
+
+            chosen_lines, chosen_size = None, sizes[-1]
+            for fsize in sizes:
+                ft = font(fsize)
+                lines = _wrap_words(ft)
+                if len(lines) <= 4 and _all_words_fit(ft):
                     chosen_lines, chosen_size = lines, fsize
                     break
             if chosen_lines is None:
-                chosen_lines = [headline_court[:60] + "..."]
-                chosen_size = sizes[-1]
+                # Dernier recours : plus petite taille + coupe des mots trop longs
+                ft = font(sizes[-1]); chosen_size = sizes[-1]
+                lines, line = [], ""
+                for w in clean_title.split():
+                    if draw.textbbox((0, 0), w, font=ft)[2] > max_w:
+                        if line: lines.append(line); line = ""
+                        chunk = ""
+                        for ch in w:
+                            if draw.textbbox((0, 0), chunk + ch, font=ft)[2] <= max_w:
+                                chunk += ch
+                            else:
+                                if chunk: lines.append(chunk)
+                                chunk = ch
+                        if chunk: line = chunk
+                    else:
+                        test = (line + " " + w).strip()
+                        if draw.textbbox((0, 0), test, font=ft)[2] <= max_w:
+                            line = test
+                        else:
+                            if line: lines.append(line)
+                            line = w
+                if line: lines.append(line)
+                chosen_lines = lines[:4]
 
             ft      = font(chosen_size)
             line_h  = int(chosen_size * 1.14)
