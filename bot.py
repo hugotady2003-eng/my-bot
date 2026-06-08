@@ -527,10 +527,18 @@ def fetch_og_image(article_url):
         return None
     try:
         req = urllib.request.Request(article_url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=10) as r:
-            html = r.read(200000).decode("utf-8", errors="ignore")
-        # Cherche og:image puis twitter:image
-        for prop in ('property=["\']og:image(?::url)?["\']', 'name=["\']twitter:image["\']'):
+        with urllib.request.urlopen(req, timeout=15) as r:
+            html = r.read(400000).decode("utf-8", errors="ignore")
+        # Plusieurs sources possibles, par ordre de préférence
+        patterns = [
+            r'property=["\']og:image:secure_url["\']',
+            r'property=["\']og:image:url["\']',
+            r'property=["\']og:image["\']',
+            r'name=["\']twitter:image:src["\']',
+            r'name=["\']twitter:image["\']',
+            r'name=["\']thumbnail["\']',
+        ]
+        for prop in patterns:
             m = re.search(r'<meta[^>]+' + prop + r'[^>]+content=["\']([^"\']+)["\']', html, re.IGNORECASE)
             if not m:
                 m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+' + prop, html, re.IGNORECASE)
@@ -540,6 +548,14 @@ def fetch_og_image(article_url):
                     img = "https:" + img
                 if img.startswith("http"):
                     return img
+        # Dernier recours : <link rel="image_src">
+        m = re.search(r'<link[^>]+rel=["\']image_src["\'][^>]+href=["\']([^"\']+)["\']', html, re.IGNORECASE)
+        if m:
+            img = m.group(1).strip()
+            if img.startswith("//"):
+                img = "https:" + img
+            if img.startswith("http"):
+                return img
     except Exception as e:
         print(f"  ⚠️ og:image: {e}")
     return None
@@ -574,6 +590,25 @@ def img_dimensions_ok(raw, min_w=600, min_h=400):
         return w >= min_w and h >= min_h
     except:
         return False
+
+def detect_face_center(pil_img):
+    """
+    Retourne (cx, cy) du centre du plus grand visage détecté, ou None.
+    Utilise OpenCV (Haar cascade). Si OpenCV absent ou aucun visage, retourne None
+    (on retombe alors sur le cadrage par défaut). Aucun coût API.
+    """
+    try:
+        import cv2, numpy as np
+        arr  = np.array(pil_img.convert("RGB"))[:, :, ::-1].copy()  # RGB -> BGR
+        gray = cv2.cvtColor(arr, cv2.COLOR_BGR2GRAY)
+        cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+        faces = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(50, 50))
+        if len(faces) == 0:
+            return None
+        x, y, w, h = max(faces, key=lambda f: f[2] * f[3])  # le plus grand visage
+        return (x + w / 2.0, y + h / 2.0)
+    except Exception:
+        return None
 
 def get_best_image(article_url, photo_url, person, image_query, category):
     """
@@ -747,10 +782,19 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 scale = max(W / src_w, H / src_h)
                 new_w, new_h = int(src_w * scale + 0.5), int(src_h * scale + 0.5)
                 photo = photo.resize((new_w, new_h), Image.LANCZOS)
-                left  = (new_w - W) // 2
-                # Recadrage vertical biaisé vers le HAUT : sur une photo de personne,
-                # le visage est en haut. Un crop centré coupait les têtes → on garde le haut.
-                top   = int((new_h - H) * 0.2)
+                # Cadrage INTELLIGENT : on centre sur le VISAGE s'il y en a un détecté
+                # (sinon léger biais vers le haut). Fini les visages coupés.
+                face = detect_face_center(photo) if has_real_photo else None
+                if face:
+                    fcx, fcy = face
+                    left = int(fcx - W / 2)
+                    top  = int(fcy - H * 0.42)   # visage à ~42% du haut, avec de l'air au-dessus
+                else:
+                    left = (new_w - W) // 2
+                    top  = int((new_h - H) * 0.2)
+                # On garde le cadre à l'intérieur de l'image
+                left = max(0, min(left, new_w - W))
+                top  = max(0, min(top,  new_h - H))
                 photo = photo.crop((left, top, left + W, top + H))
                 alpha = 1.0 if has_real_photo else 0.80
                 img   = Image.blend(Image.new('RGB', (W, H), (13, 13, 20)), photo, alpha=alpha)
