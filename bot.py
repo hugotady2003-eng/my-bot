@@ -1585,24 +1585,247 @@ def post_poll(question, options):
         return None
 
 # ═══════════════════════════════════════════════════════════════════════════
+# CARROUSEL INSTAGRAM (décryptage du jour en plusieurs slides, style média)
+# ═══════════════════════════════════════════════════════════════════════════
+def _cfont(size, bold=True):
+    for p in [f"/usr/share/fonts/truetype/noto/NotoSans-{'Bold' if bold else 'Regular'}.ttf",
+              f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"]:
+        try: return ImageFont.truetype(p, size)
+        except: continue
+    return ImageFont.load_default()
+
+def _lerp(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
+
+def _neon_bg(W, H):
+    """Fond dégradé néon Pulse (navy → violet → magenta), rendu rapide."""
+    c_top, c_mid, c_bot = (18, 14, 46), (46, 20, 92), (120, 28, 128)
+    col = Image.new('RGB', (1, H))
+    for y in range(H):
+        t = y / H
+        c = _lerp(c_top, c_mid, t / 0.6) if t < 0.6 else _lerp(c_mid, c_bot, (t - 0.6) / 0.4)
+        col.putpixel((0, y), c)
+    return col.resize((W, H))
+
+def _wrap(draw, text, font, max_w):
+    words, lines, line = text.split(), [], ""
+    for w in words:
+        test = (line + " " + w).strip()
+        if draw.textbbox((0, 0), test, font=font)[2] <= max_w:
+            line = test
+        else:
+            if line: lines.append(line)
+            line = w
+    if line: lines.append(line)
+    return lines
+
+def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 90, 200)):
+    """Génère une slide de contenu (PNG bytes) dans la DA Pulse."""
+    import io
+    W, H = 1080, 1350
+    margin = int(W * 0.07)
+    img = _neon_bg(W, H)
+    draw = ImageDraw.Draw(img)
+
+    # barre néon en haut
+    for x in range(W):
+        draw.line([(x, 0), (x, 10)], fill=_lerp((90, 140, 255), (255, 80, 200), x / W))
+
+    # logo
+    draw.text((margin, int(H * 0.045)), "Pulse", font=_cfont(int(W * 0.05)), fill=(255, 255, 255))
+
+    # pastille page i/N
+    pl = f"{idx}/{total}"
+    fp = _cfont(int(W * 0.028), bold=True)
+    bb = draw.textbbox((0, 0), pl, font=fp); pw = bb[2] - bb[0] + 34; ph = bb[3] - bb[1] + 22
+    px0 = W - pw - margin; py0 = int(H * 0.045)
+    pov = Image.new('RGBA', (W, H), (0, 0, 0, 0)); pdd = ImageDraw.Draw(pov)
+    pdd.rounded_rectangle([px0, py0, px0 + pw, py0 + ph], radius=ph // 2,
+                          fill=(255, 255, 255, 40), outline=(255, 255, 255, 150), width=2)
+    img = Image.alpha_composite(img.convert('RGBA'), pov).convert('RGB'); draw = ImageDraw.Draw(img)
+    draw.text((px0 + 17, py0 + 8), pl, font=fp, fill=(255, 255, 255))
+
+    # titre (auto-dimensionné pour tenir)
+    y = int(H * 0.15)
+    tsize = int(W * 0.072)
+    for trysize in (int(W * 0.072), int(W * 0.063), int(W * 0.055)):
+        if len(_wrap(draw, title, _cfont(trysize), int(W * 0.86))) <= 3:
+            tsize = trysize; break
+    f_title = _cfont(tsize)
+    for ln in _wrap(draw, title, f_title, int(W * 0.86)):
+        draw.text((margin, y), ln, font=f_title, fill=(255, 255, 255)); y += int(tsize * 1.15)
+
+    # trait d'accent
+    y += 12
+    draw.rounded_rectangle([margin, y, margin + int(W * 0.18), y + 10], radius=5, fill=accent)
+    y += int(H * 0.045)
+
+    # points à puces (auto-dimensionnés selon le nombre)
+    psize = int(W * 0.044) if len(points) <= 3 else int(W * 0.039)
+    f_pt = _cfont(psize, bold=False)
+    for pt in points:
+        draw.ellipse([margin, y + 13, margin + 18, y + 31], fill=accent)
+        for ln in _wrap(draw, pt, f_pt, int(W * 0.80)):
+            draw.text((margin + 40, y), ln, font=f_pt, fill=(238, 232, 250)); y += int(psize * 1.32)
+        y += int(H * 0.018)
+
+    # CTA sur la dernière slide (flèche → qui s'affiche bien, pas d'emoji couleur)
+    if is_last:
+        draw.text((margin, int(H * 0.9)), "→ Plus d'infos sur X : @PULSEactus",
+                  font=_cfont(int(W * 0.04), bold=True), fill=accent)
+
+    buf = io.BytesIO(); img.save(buf, format="PNG"); return buf.getvalue()
+
+def gen_carousel(conn):
+    """Génère le contenu d'un carrousel pédagogique sur LE sujet de fond du jour."""
+    headlines = gather_all_headlines()
+    if not headlines:
+        return None
+    headlines_str = "\n".join(headlines[:50])
+    avoid = recent_special_topics(conn, "thread", days=7)
+    avoid_str = ", ".join(avoid) if avoid else "(aucun)"
+    today = datetime.now().strftime("%d %B %Y")
+    try:
+        result = claude(f"""Tu es Pulse, média d'actualité française. Aujourd'hui : {today}.
+
+Titres du jour :
+{headlines_str}
+
+Sujets déjà traités ces 7 derniers jours (à éviter) :
+{avoid_str}
+
+Choisis LE sujet de fond le plus marquant du jour (réforme, loi, économie, société, sujet explicatif — PAS un simple fait divers ni un score sportif) et crée un CARROUSEL pédagogique, clair et facile à comprendre, qui explique le sujet étape par étape.
+
+RÈGLES ABSOLUES :
+- Base-toi UNIQUEMENT sur les titres/résumés ci-dessus. N'INVENTE AUCUN chiffre, date ou citation précis. Si tu n'es pas sûr d'un chiffre, reste qualitatif.
+- 🇫🇷 FRANÇAIS IMPECCABLE : zéro mot en anglais, zéro faute. Relis-toi avant de répondre.
+- EXACTEMENT 4 slides de contenu (en plus de la couverture).
+- Chaque slide : un "titre" court et clair (≤ 32 caractères) + 2 à 3 "points".
+- Chaque point : UNE phrase courte et simple (≤ 110 caractères). PAS d'emoji dans les points (ils ne s'affichent pas sur l'image).
+- Progression logique : par ex. "C'est quoi ?" → "Ce qui change" → "Pourquoi ?" → "Et maintenant ?" (adapte au sujet).
+- cover_title : accroche percutante (≤ 60 caractères) qui donne envie de faire défiler.
+
+Réponds avec ce JSON UNIQUEMENT :
+{{"sujet":"<2-4 mots>","cover_title":"<accroche ≤60 car>","image_query":"<5 mots-clés anglais pour photo>","keywords":["m1","m2","m3"],"slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1300)
+
+        slides = result.get("slides", [])
+        slides = [s for s in slides if s.get("titre") and s.get("points")][:4]
+        if not result.get("cover_title") or len(slides) < 3:
+            return None
+        return {
+            "sujet":       result.get("sujet", "Décryptage")[:40],
+            "cover_title": result["cover_title"][:80],
+            "image_query": result.get("image_query", "news france"),
+            "keywords":    result.get("keywords", []),
+            "slides":      slides,
+        }
+    except Exception as e:
+        print(f"  ⚠️ gen_carousel: {e}")
+        return None
+
+def carousel_to_text(carousel):
+    """Construit le texte du décryptage (X + Facebook) à partir du carrousel — sans 2e appel Claude."""
+    emojis = ["📌", "⚡", "🔍", "🔮", "✅"]
+    out = f"🧵 {carousel['cover_title']} — Le décryptage\n\n"
+    for i, s in enumerate(carousel["slides"]):
+        em = emojis[i] if i < len(emojis) else "•"
+        out += f"{em} {s['titre']}\n" + " ".join(s["points"]) + "\n\n"
+    return out.strip()
+
+def post_carousel_to_instagram(slides_png, caption):
+    """Publie un carrousel (2 à 10 images) sur Instagram via l'API Graph."""
+    if not (INSTAGRAM_ACCOUNT_ID and FACEBOOK_PAGE_TOKEN):
+        return None
+    if not slides_png or len(slides_png) < 2:
+        return None
+    try:
+        # 1) Créer un conteneur "item" par image
+        child_ids = []
+        for png in slides_png:
+            image_url = upload_to_imgbb(png)
+            if not image_url:
+                continue
+            data = urllib.parse.urlencode({
+                "image_url": image_url,
+                "is_carousel_item": "true",
+                "access_token": FACEBOOK_PAGE_TOKEN,
+            }).encode()
+            req = urllib.request.Request(f"https://graph.facebook.com/v21.0/{INSTAGRAM_ACCOUNT_ID}/media", data=data)
+            with urllib.request.urlopen(req, timeout=60) as r:
+                cid = json.loads(r.read()).get("id")
+            if cid:
+                child_ids.append(cid)
+            time.sleep(2)
+        if len(child_ids) < 2:
+            print(f"  ⚠️ Carrousel : pas assez d'images uploadées ({len(child_ids)})")
+            return None
+
+        # 2) Conteneur carrousel parent
+        data = urllib.parse.urlencode({
+            "media_type": "CAROUSEL",
+            "children": ",".join(child_ids),
+            "caption": caption,
+            "access_token": FACEBOOK_PAGE_TOKEN,
+        }).encode()
+        req = urllib.request.Request(f"https://graph.facebook.com/v21.0/{INSTAGRAM_ACCOUNT_ID}/media", data=data)
+        with urllib.request.urlopen(req, timeout=60) as r:
+            creation_id = json.loads(r.read()).get("id")
+        if not creation_id:
+            print("  ⚠️ Carrousel : conteneur parent non créé")
+            return None
+
+        # 3) Publier
+        time.sleep(5)
+        data = urllib.parse.urlencode({"creation_id": creation_id, "access_token": FACEBOOK_PAGE_TOKEN}).encode()
+        req = urllib.request.Request(f"https://graph.facebook.com/v21.0/{INSTAGRAM_ACCOUNT_ID}/media_publish", data=data)
+        with urllib.request.urlopen(req, timeout=60) as r:
+            post_id = json.loads(r.read()).get("id")
+        print(f"  🎠 Carrousel Instagram publié ({len(child_ids)} slides) : {post_id or 'ok'}")
+        return post_id
+    except urllib.error.HTTPError as e:
+        try: body = e.read().decode("utf-8", errors="ignore")
+        except: body = ""
+        print(f"  ❌ Carrousel Instagram échoué : {e} | détail : {body}")
+        return None
+    except Exception as e:
+        print(f"  ❌ Carrousel Instagram échoué : {e}")
+        return None
+
+# ═══════════════════════════════════════════════════════════════════════════
 # BOUCLE PRINCIPALE
 # ═══════════════════════════════════════════════════════════════════════════
 def check_feeds(conn):
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
 
-    # ── DÉCRYPTAGE QUOTIDIEN (matin, 1×/jour, prioritaire) ──
+    # ── DÉCRYPTAGE QUOTIDIEN : carrousel Instagram + texte X/Facebook (1×/jour) ──
     if not special_done_today(conn, "thread") and datetime.now().hour >= 9:
-        thread = gen_thread(conn)
-        if thread:
-            raw_src, has_real = get_best_image(None, None, None, thread["image_query"], "monde")
-            png_bytes, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"], prefetched=(raw_src, has_real))
-            url = post_to_twitter(thread["body"], png_bytes)
-            post_to_facebook(thread["body"], png_bytes)
-            png_ig, _ = build_png(thread["sujet"][:75], "Pulse", "monde", None, thread["image_query"], W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True)
-            post_to_instagram(build_ig_caption(thread["body"], thread.get("keywords")), png_ig)
+        carousel = gen_carousel(conn)
+        if carousel:
+            # Texte X + Facebook (assemblé depuis le carrousel, sans 2e appel Claude)
+            body = carousel_to_text(carousel)
+            tags = " ".join("#" + re.sub(r'[^0-9A-Za-zÀ-ÿ]', '', k).capitalize()
+                            for k in carousel.get("keywords", [])[:3] if k.strip())
+            xfb = body + (("\n\n" + tags) if tags else "")
+
+            # Image de couverture (photo + gros titre) — partagée X/Facebook
+            raw_src, has_real = get_best_image(None, None, None, carousel["image_query"], "monde")
+            cover_paysage, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
+                                         carousel["image_query"], prefetched=(raw_src, has_real))
+            url = post_to_twitter(xfb, cover_paysage)
+            post_to_facebook(xfb, cover_paysage)
+
+            # Carrousel Instagram : couverture (4:5) + slides de contenu
+            total = len(carousel["slides"]) + 1
+            cover_ig, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
+                                    carousel["image_query"], W=1080, H=1350,
+                                    prefetched=(raw_src, has_real), headline_bottom=True)
+            slides_png = [cover_ig]
+            for i, s in enumerate(carousel["slides"], start=2):
+                slides_png.append(build_carousel_slide(s["titre"], s["points"], i, total, is_last=(i == total)))
+            post_carousel_to_instagram(slides_png, build_ig_caption(body, carousel.get("keywords")))
+
             if url:
-                log_special(conn, "thread", thread["keywords"])
-                print(f"  🧵 Décryptage du jour publié [{thread['sujet']}]")
+                log_special(conn, "thread", carousel["keywords"])
+                print(f"  🎠 Décryptage du jour publié (carrousel Instagram) [{carousel['sujet']}]")
                 return
 
     # ── SONDAGE QUOTIDIEN (après-midi, 1×/jour) ──
