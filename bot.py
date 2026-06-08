@@ -1676,47 +1676,113 @@ def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 
 
     buf = io.BytesIO(); img.save(buf, format="PNG"); return buf.getvalue()
 
+def gather_articles_with_urls(limit_per_feed=4):
+    """Récupère les articles récents avec leur URL (pour pouvoir lire l'article complet)."""
+    arts = []
+    for fi in RSS_FEEDS:
+        try:
+            feed = feedparser.parse(fi["url"])
+            for entry in feed.entries[:limit_per_feed]:
+                title = entry.get("title", "")
+                if not title:
+                    continue
+                summ = re.sub(r"<[^>]+>", "", entry.get("summary", entry.get("description", "")))
+                arts.append({
+                    "title":   title,
+                    "summary": summ[:200],
+                    "url":     entry.get("link", ""),
+                    "source":  fi["source"],
+                })
+        except:
+            pass
+    return arts
+
+def fetch_article_text(url, max_chars=3000):
+    """Récupère le texte principal d'un article (paragraphes), pour en extraire les vrais chiffres."""
+    if not url:
+        return ""
+    try:
+        import html as _html
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            page = r.read(500000).decode("utf-8", errors="ignore")
+        page = re.sub(r'<(script|style)[^>]*>.*?</\1>', ' ', page, flags=re.DOTALL | re.IGNORECASE)
+        paras = re.findall(r'<p[^>]*>(.*?)</p>', page, flags=re.DOTALL | re.IGNORECASE)
+        text = " ".join(re.sub(r'<[^>]+>', '', p) for p in paras)
+        text = _html.unescape(re.sub(r'\s+', ' ', text)).strip()
+        return text[:max_chars]
+    except Exception as e:
+        print(f"  ⚠️ fetch_article_text: {e}")
+        return ""
+
 def gen_carousel(conn):
-    """Génère le contenu d'un carrousel pédagogique sur LE sujet de fond du jour."""
-    headlines = gather_all_headlines()
-    if not headlines:
+    """
+    Décryptage chiffré : (1) Claude choisit LE sujet de fond du jour,
+    (2) on LIT l'article complet, (3) Claude génère des slides avec de vrais chiffres.
+    """
+    arts = gather_articles_with_urls()
+    if len(arts) < 10:
         return None
-    headlines_str = "\n".join(headlines[:50])
+    arts = arts[:40]
+    listing = "\n".join(f"{i}. [{a['source']}] {a['title']} — {a['summary']}" for i, a in enumerate(arts))
     avoid = recent_special_topics(conn, "thread", days=7)
     avoid_str = ", ".join(avoid) if avoid else "(aucun)"
     today = datetime.now().strftime("%d %B %Y")
     try:
-        result = claude(f"""Tu es Pulse, média d'actualité française. Aujourd'hui : {today}.
+        # ÉTAPE 1 : choisir LE sujet de fond du jour
+        pick = claude(f"""Tu es Pulse, média d'actualité française. Aujourd'hui : {today}.
 
-Titres du jour :
-{headlines_str}
+Articles du jour (numérotés) :
+{listing}
 
-Sujets déjà traités ces 7 derniers jours (à éviter) :
-{avoid_str}
+Sujets déjà traités ces 7 derniers jours (à éviter) : {avoid_str}
 
-Choisis LE sujet de fond le plus marquant du jour (réforme, loi, économie, société, sujet explicatif — PAS un simple fait divers ni un score sportif) et crée un CARROUSEL pédagogique, clair et facile à comprendre, qui explique le sujet étape par étape.
-
-RÈGLES ABSOLUES :
-- Base-toi UNIQUEMENT sur les titres/résumés ci-dessus. N'INVENTE AUCUN chiffre, date ou citation précis. Si tu n'es pas sûr d'un chiffre, reste qualitatif.
-- 🇫🇷 FRANÇAIS IMPECCABLE : zéro mot en anglais, zéro faute. Relis-toi avant de répondre.
-- EXACTEMENT 4 slides de contenu (en plus de la couverture).
-- Chaque slide : un "titre" court et clair (≤ 32 caractères) + 2 à 3 "points".
-- Chaque point : UNE phrase courte et simple (≤ 110 caractères). PAS d'emoji dans les points (ils ne s'affichent pas sur l'image).
-- Progression logique : par ex. "C'est quoi ?" → "Ce qui change" → "Pourquoi ?" → "Et maintenant ?" (adapte au sujet).
-- cover_title : accroche percutante (≤ 60 caractères) qui donne envie de faire défiler.
+Choisis LE sujet de fond le plus marquant pour un décryptage pédagogique : réforme, loi, économie, grande décision, sujet de société explicatif. ÉVITE les simples faits divers, scores sportifs et people.
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"sujet":"<2-4 mots>","cover_title":"<accroche ≤60 car>","image_query":"<5 mots-clés anglais pour photo>","keywords":["m1","m2","m3"],"slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1300)
+{{"index": <numéro de l'article choisi>, "sujet":"<2-4 mots>", "cover_title":"<accroche ≤60 caractères>", "image_query":"<5 mots-clés anglais pour photo>", "keywords":["m1","m2","m3"]}}""", max_tokens=300)
+
+        idx = pick.get("index")
+        if idx is None or not isinstance(idx, int) or idx < 0 or idx >= len(arts):
+            return None
+        art = arts[idx]
+
+        # ÉTAPE 2 : lire l'article complet (pour les vrais chiffres)
+        article_text = fetch_article_text(art["url"])
+        if len(article_text) < 250:
+            article_text = f"{art['title']}. {art['summary']}"  # repli si lecture impossible
+
+        # ÉTAPE 3 : générer les slides chiffrées à partir de l'article
+        result = claude(f"""Tu es Pulse, média d'actualité française. Voici un article à décrypter en carrousel pédagogique.
+
+SUJET : {art['title']}
+ARTICLE :
+{article_text}
+
+Crée un carrousel clair et CHIFFRÉ qui explique le sujet étape par étape.
+
+RÈGLES ABSOLUES :
+- Utilise UNIQUEMENT les informations de l'article ci-dessus. N'invente AUCUN chiffre.
+- REFORMULE avec tes propres mots, ne recopie jamais des phrases entières de l'article (droit d'auteur).
+- 📊 METS LES CHIFFRES EN AVANT : montants en €, pourcentages, nombres, dates, répartitions. Les gens veulent du concret, pas du blabla. Si l'article contient une répartition ou une comparaison, fais une slide "Les chiffres clés".
+- 🇫🇷 FRANÇAIS IMPECCABLE : zéro mot en anglais, zéro faute. Relis-toi.
+- EXACTEMENT 4 slides de contenu.
+- Chaque slide : "titre" court (≤ 32 caractères) + 2 à 3 "points".
+- Chaque point : UNE phrase courte, factuelle et concrète (≤ 110 caractères), avec un chiffre dès que possible. PAS d'emoji dans les points.
+- Progression logique adaptée au sujet (ex : "C'est quoi ?" → "Les chiffres clés" → "Ce qui change" → "Et après ?").
+
+Réponds avec ce JSON UNIQUEMENT :
+{{"slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1100)
 
         slides = result.get("slides", [])
         slides = [s for s in slides if s.get("titre") and s.get("points")][:4]
-        if not result.get("cover_title") or len(slides) < 3:
+        if len(slides) < 3:
             return None
         return {
-            "sujet":       result.get("sujet", "Décryptage")[:40],
-            "cover_title": result["cover_title"][:80],
-            "image_query": result.get("image_query", "news france"),
-            "keywords":    result.get("keywords", []),
+            "sujet":       pick.get("sujet", "Décryptage")[:40],
+            "cover_title": pick.get("cover_title", art["title"])[:80],
+            "image_query": pick.get("image_query", "news france"),
+            "keywords":    pick.get("keywords", []),
             "slides":      slides,
         }
     except Exception as e:
