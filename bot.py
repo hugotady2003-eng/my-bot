@@ -33,6 +33,9 @@ IMGBB_KEY            = os.environ.get("IMGBB_KEY",            "")
 
 SCORE_MINIMUM = 6
 MAX_PAR_PASSE = 1
+BREAKING_SCORE = 9        # score minimum (analyse Claude) pour qu'une actu soit publiée en "breaking"
+BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
+BREAKING_GAP_MIN = 25     # délai mini (minutes) entre deux publications breaking (anti-spam)
 
 # ═══════════════════════════════════════════════════════════════════════════
 # SOURCES RSS — France
@@ -81,6 +84,14 @@ RSS_FEEDS = [
     {"url": "https://www.melty.fr/feed",                               "source": "Melty"},
     {"url": "https://www.programme-tv.net/rss/actualites.xml",         "source": "Programme TV"},
     {"url": "https://www.premiere.fr/rss/actualite",                   "source": "Première"},
+    # 🎮 Geek / Jeux vidéo / YouTubeurs / Créateurs
+    {"url": "https://www.journaldugeek.com/feed/",                     "source": "Journal du Geek"},
+    {"url": "https://www.begeek.fr/feed",                              "source": "Begeek"},
+    {"url": "https://www.jeuxvideo.com/rss/rss.xml",                   "source": "Jeuxvideo.com"},
+    {"url": "https://www.gamekult.com/feed.xml",                       "source": "Gamekult"},
+    {"url": "https://www.actugaming.net/feed/",                        "source": "ActuGaming"},
+    {"url": "https://www.millenium.org/feed",                          "source": "Millenium"},
+    {"url": "https://fr.ign.com/feed.xml",                             "source": "IGN France"},
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -390,13 +401,14 @@ Barème score :
 ⚖️ ÉQUILIBRE ÉDITORIAL IMPORTANT :
 - NE FAVORISE PAS systématiquement la politique et les mêmes sujets (Trump, Iran, Macron, Chine...).
 - VALORISE autant la POP CULTURE et les RÉSEAUX SOCIAUX : créateurs de contenu (Squeezie, McFly & Carlito, Inoxtag, Lena Situations...), lancements de marques/produits par des célébrités, buzz viraux, cinéma, séries, musique, télé-réalité, sorties culturelles.
-- Ces sujets "légers" intéressent ÉNORMÉMENT le grand public et méritent des scores élevés (7-8) quand c'est un gros événement (ex: Squeezie lance une boisson, McFly & Carlito sortent des chips = score 7-8).
-- Un bon mix = politique + société + pop culture + sport + insolite, PAS que de la politique.
+- 🎮 VALORISE AUSSI le GEEK / JEUX VIDÉO / YOUTUBEURS : sorties et annonces de jeux vidéo (PlayStation, Xbox, Nintendo, GTA, gros AAA...), actus gaming et esport, drama/annonces de YouTubeurs et streamers Twitch, tech grand public (nouveaux smartphones, IA, gadgets). Une grosse annonce gaming ou une actu de créateur connu mérite un score élevé (7-8).
+- Ces sujets "légers" intéressent ÉNORMÉMENT le grand public et méritent des scores élevés (7-8) quand c'est un gros événement (ex: Squeezie lance une boisson, sortie de GTA 6, Inoxtag annonce un projet = score 7-8).
+- Un bon mix = politique + société + pop culture + gaming/geek + sport + insolite, PAS que de la politique.
 - Une info locale marquante peut scorer aussi haut qu'une info internationale.
 
 Catégories possibles (choisis la plus juste) :
 breaking, france, monde, politique, economie, societe, faitsdivers, histoire,
-culture (cinéma, musique, séries, célébrités, créateurs/influenceurs, buzz réseaux sociaux, produits de célébrités),
+culture (cinéma, musique, séries, célébrités, créateurs/influenceurs, YouTubeurs/streamers, jeux vidéo, gaming, esport, buzz réseaux sociaux, produits de célébrités),
 sport, science, sante, environnement, tech, ia, insolite, positivity.
 
 IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
@@ -1891,6 +1903,76 @@ def post_carousel_to_instagram(slides_png, caption):
 # ═══════════════════════════════════════════════════════════════════════════
 # BOUCLE PRINCIPALE
 # ═══════════════════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════════════════
+# MODE BREAKING — détection multi-sources + publication immédiate
+# ═══════════════════════════════════════════════════════════════════════════
+BREAKING_STOPWORDS = set("""
+alors apres après avec avant aussi autre autres aux avoir bien cela cele celui ces cette
+chez comme contre dans depuis deux donc dont elle elles entre etait était etre être eux
+fait faire font hier huit pour plus moins très tres sans sous selon sur son sas ses leur
+leurs cette ceux dont mais nous vous quand quoi qui que des les une uns deux trois quatre
+cinq matin soir jour jours semaine annee année ville france francais français info flash
+direct video vidéo photos selon vers tout tous toute toutes encore aujourd hui ans contre
+""".split())
+
+def _sig_words(title):
+    words = re.findall(r"[0-9A-Za-zÀ-ÿ]+", title.lower())
+    return {w for w in words if len(w) >= 4 and w not in BREAKING_STOPWORDS}
+
+def breaking_recent(conn, minutes=BREAKING_GAP_MIN):
+    """Vrai si une actu breaking a déjà été publiée dans les N dernières minutes."""
+    return conn.execute(
+        "SELECT 1 FROM special_log WHERE kind='breaking' AND sent_at > datetime('now', ?)",
+        (f"-{minutes} minutes",)
+    ).fetchone() is not None
+
+def detect_breaking(conn, candidates):
+    """
+    Détecte une actu 'breaking' = un même sujet repris MAINTENANT par plusieurs sources
+    distinctes. Gratuit (analyse de titres uniquement). Renvoie le candidat le plus repris.
+    """
+    if breaking_recent(conn):
+        return None
+    enriched = [(c, _sig_words(c["title"])) for c in candidates]
+    best, best_count = None, 0
+    for i, (c, wi) in enumerate(enriched):
+        if len(wi) < 2:
+            continue
+        sources = set()
+        for j, (d, wj) in enumerate(enriched):
+            if i == j or d["source"] == c["source"]:
+                continue
+            if len(wi & wj) >= 2:          # ≥2 mots significatifs en commun
+                sources.add(d["source"])
+        # le sujet (le candidat lui-même + les autres sources) doit couvrir ≥ BREAKING_SOURCES sources
+        if len(sources) + 1 >= BREAKING_SOURCES and len(sources) > best_count:
+            best, best_count = c, len(sources)
+    return best
+
+def publish_breaking(conn, item, cat):
+    """Publie immédiatement une actu breaking sur X + Facebook + Instagram (style Breaking)."""
+    add_recent(conn, item["title"])
+    body, headline_court, image_query, keywords, person = gen_tweet_complet(
+        item["title"], item["summary"], item["source"], cat
+    )
+    tweet_final = build_full_tweet(body, "breaking")   # force le label rouge "Breaking"
+    photo = extract_photo(item["entry"]) if "entry" in item else None
+    raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, "breaking")
+    png_bytes, _ = build_png(headline_court, item["source"], "breaking", photo, image_query,
+                             article_url=item.get("url"), person=person, prefetched=(raw_src, has_real))
+    post_to_twitter(tweet_final, png_bytes)
+    post_to_facebook(tweet_final, png_bytes)
+    png_ig, _ = build_png(headline_court, item["source"], "breaking", photo, image_query,
+                          article_url=item.get("url"), person=person, W=1080, H=1350,
+                          prefetched=(raw_src, has_real), headline_bottom=True)
+    post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
+    mark_cat(conn, "breaking")
+    log_keywords(conn, keywords)
+    log_special(conn, "breaking", keywords)
+    if item.get("url"):
+        mark_seen(conn, item["url"], item["title"])
+    return keywords
+
 def check_feeds(conn):
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
 
@@ -1939,10 +2021,7 @@ def check_feeds(conn):
                 print(f"  📊 Sondage du jour publié")
                 return  # on s'arrête là pour ce run
 
-    # ── PUBLICATION NORMALE (rythme aléatoire) ──
-    if not should_publish_now(conn):
-        return
-
+    # ── SCAN RSS (à chaque run, gratuit) — sert au MODE BREAKING et à la publi normale ──
     print(f"  → Scan RSS...")
     blocked_kws = recent_keywords(conn, hours=12)
     candidates  = []
@@ -1969,12 +2048,38 @@ def check_feeds(conn):
     if pre_filtered:
         print(f"  🚫 {pre_filtered} articles pré-filtrés (mots-clés bloqués, sans coût Claude)")
 
+    recent = get_recent(conn)
+
+    # ── MODE BREAKING : un même sujet repris par plusieurs sources → publication IMMÉDIATE ──
+    breaking = detect_breaking(conn, candidates)
+    if breaking:
+        print(f"  🚨 Breaking potentiel (multi-sources) : {breaking['title'][:55]}")
+        try:
+            a = analyse_batch([breaking], recent, blocked_kws)[0]
+            cache_analysis(conn, breaking["url"], a)
+        except Exception:
+            a = {"score": BREAKING_SCORE, "category": "breaking", "is_duplicate": False}
+        if not a.get("is_duplicate") and int(a.get("score", 0)) >= BREAKING_SCORE:
+            try:
+                kws = publish_breaking(conn, breaking, a.get("category", "breaking"))
+                print(f"  🚨 BREAKING publié immédiatement : {breaking['title'][:55]}")
+                if kws:
+                    print(f"  🔒 Mots-clés bloqués 12h: {', '.join(kws)}")
+                return
+            except Exception as e:
+                print(f"  ❌ Breaking échoué : {e}")
+        else:
+            print(f"  → Sujet pas assez majeur pour un breaking (score {a.get('score')}).")
+
+    # ── PUBLICATION NORMALE (rythme aléatoire) ──
+    if not should_publish_now(conn):
+        return
+
     if not candidates:
         print("  → Aucun article nouveau.")
         return
 
     print(f"  → {len(candidates)} articles à analyser...")
-    recent = get_recent(conn)
     if blocked_kws:
         print(f"  🚫 Mots-clés bloqués (12h) : {', '.join(blocked_kws)}")
 
