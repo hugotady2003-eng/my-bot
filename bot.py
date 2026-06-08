@@ -4,6 +4,7 @@ Génère des tweets engageants avec image PNG, envoyés par email + posté sur X
 """
 import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib, random
 import urllib.request, urllib.parse, urllib.error, re
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
