@@ -1668,12 +1668,30 @@ def _wrap(draw, text, font, max_w):
     if line: lines.append(line)
     return lines
 
-def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 90, 200)):
-    """Génère une slide de contenu (PNG bytes) dans la DA Pulse."""
+def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 90, 200), bg_photo=None):
+    """Génère une slide de contenu (PNG bytes) dans la DA Pulse, avec photo de fond floutée si dispo."""
     import io
     W, H = 1080, 1350
     margin = int(W * 0.07)
-    img = _neon_bg(W, H)
+
+    # Fond : photo de l'article floutée + assombrie (plus riche qu'un simple dégradé), sinon dégradé néon
+    img = None
+    if bg_photo:
+        try:
+            ph = Image.open(io.BytesIO(bg_photo)).convert('RGB')
+            pr, tr = ph.width / ph.height, W / H
+            if pr > tr:
+                nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
+            else:
+                nh = int(ph.width / tr); ph = ph.crop((0, (ph.height - nh) // 2, ph.width, (ph.height - nh) // 2 + nh))
+            base = ph.resize((W, H)).filter(ImageFilter.GaussianBlur(18))
+            # voile violet sombre Pulse par-dessus pour la lisibilité
+            tint = Image.new('RGB', (W, H), (18, 12, 46))
+            img = Image.blend(base, tint, 0.78)
+        except Exception:
+            img = None
+    if img is None:
+        img = _neon_bg(W, H)
     draw = ImageDraw.Draw(img)
 
     # barre néon en haut
@@ -1797,7 +1815,7 @@ Réponds avec ce JSON UNIQUEMENT :
         art = arts[idx]
 
         # ÉTAPE 2 : lire l'article complet (pour les vrais chiffres)
-        article_text = fetch_article_text(art["url"])
+        article_text = fetch_article_text(art["url"], max_chars=4000)
         if len(article_text) < 250:
             article_text = f"{art['title']}. {art['summary']}"  # repli si lecture impossible
 
@@ -1808,17 +1826,17 @@ SUJET : {art['title']}
 ARTICLE :
 {article_text}
 
-Crée un carrousel clair et CHIFFRÉ qui explique le sujet étape par étape.
+Crée un carrousel clair, CONCRET et CHIFFRÉ qui explique le sujet étape par étape.
 
 RÈGLES ABSOLUES :
 - Utilise UNIQUEMENT les informations de l'article ci-dessus. N'invente AUCUN chiffre.
-- REFORMULE avec tes propres mots, ne recopie jamais des phrases entières de l'article (droit d'auteur).
-- 📊 METS LES CHIFFRES EN AVANT : montants en €, pourcentages, nombres, dates, répartitions. Les gens veulent du concret, pas du blabla. Si l'article contient une répartition ou une comparaison, fais une slide "Les chiffres clés".
+- REFORMULE avec tes propres mots, ne recopie jamais des phrases entières (droit d'auteur).
+- 📊 LES CHIFFRES D'ABORD : vise AU MOINS 4 données chiffrées sur l'ensemble du carrousel (montants en €, pourcentages, quantités, nombres de personnes, dates, classements...). Fais une slide "Les chiffres clés" si l'article s'y prête.
+- ⛔ INTERDIT les phrases vagues et creuses du type "le marché se complexifie", "de plus en plus diverse et imprévisible", "les habitudes changent", "un phénomène croissant". CHAQUE point doit apporter une info CONCRÈTE : un chiffre, un nom propre, un lieu, une date ou un fait précis.
+- Si l'article manque de chiffres, mets en avant les faits les plus concrets (noms, pays concernés, décisions précises) — JAMAIS de généralités.
 - 🇫🇷 FRANÇAIS IMPECCABLE : zéro mot en anglais, zéro faute. Relis-toi.
-- EXACTEMENT 4 slides de contenu.
-- Chaque slide : "titre" court (≤ 32 caractères) + 2 à 3 "points".
-- Chaque point : UNE phrase courte, factuelle et concrète (≤ 110 caractères), avec un chiffre dès que possible. PAS d'emoji dans les points.
-- Progression logique adaptée au sujet (ex : "C'est quoi ?" → "Les chiffres clés" → "Ce qui change" → "Et après ?").
+- EXACTEMENT 4 slides de contenu. Titre court (≤ 32 caractères) + 2 à 3 points.
+- Chaque point : UNE phrase courte et factuelle (≤ 110 caractères), avec un chiffre ou un fait précis. PAS d'emoji dans les points.
 
 Réponds avec ce JSON UNIQUEMENT :
 {{"slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1100)
@@ -1833,6 +1851,8 @@ Réponds avec ce JSON UNIQUEMENT :
             "image_query": pick.get("image_query", "news france"),
             "keywords":    pick.get("keywords", []),
             "slides":      slides,
+            "url":         art["url"],
+            "summary":     art["summary"],
         }
     except Exception as e:
         print(f"  ⚠️ gen_carousel: {e}")
@@ -2295,21 +2315,22 @@ def check_feeds(conn):
                             for k in carousel.get("keywords", [])[:3] if k.strip())
             xfb = body + (("\n\n" + tags) if tags else "")
 
-            # Image de couverture (photo + gros titre) — partagée X/Facebook
-            raw_src, has_real = get_best_image(None, None, None, carousel["image_query"], "monde")
+            # Image de couverture : VRAIE photo de l'article (og:image) en priorité, sinon Unsplash
+            raw_src, has_real = get_best_image(carousel.get("url"), None, None, carousel["image_query"], "monde")
             cover_paysage, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
                                          carousel["image_query"], prefetched=(raw_src, has_real))
             url = post_to_twitter(xfb, cover_paysage)
             post_to_facebook(xfb, cover_paysage)
 
-            # Carrousel Instagram : couverture (4:5) + slides de contenu
+            # Carrousel Instagram : couverture (4:5) + slides de contenu (fond photo flouté)
             total = len(carousel["slides"]) + 1
             cover_ig, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
                                     carousel["image_query"], W=1080, H=1350,
                                     prefetched=(raw_src, has_real), headline_bottom=True)
             slides_png = [cover_ig]
             for i, s in enumerate(carousel["slides"], start=2):
-                slides_png.append(build_carousel_slide(s["titre"], s["points"], i, total, is_last=(i == total)))
+                slides_png.append(build_carousel_slide(s["titre"], s["points"], i, total,
+                                                       is_last=(i == total), bg_photo=raw_src))
             post_carousel_to_instagram(slides_png, build_ig_caption(body, carousel.get("keywords")))
 
             if url:
