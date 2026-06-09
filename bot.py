@@ -36,6 +36,7 @@ MAX_PAR_PASSE = 1
 BREAKING_SCORE = 9        # score minimum (analyse Claude) pour qu'une actu soit publiée en "breaking"
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
 BREAKING_GAP_MIN = 25     # délai mini (minutes) entre deux publications breaking (anti-spam)
+SPORT_COOLDOWN_MIN = 120  # délai mini (minutes) entre deux posts SPORT (anti-spam sport en direct)
 
 # ═══════════════════════════════════════════════════════════════════════════
 # SOURCES RSS — France
@@ -393,8 +394,8 @@ Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE) :
 ]}}
 
 Barème score :
-- 9-10 : breaking news majeure
-- 7-8  : info importante (politique, économie, sport, gros buzz réseaux sociaux/pop culture)
+- 9-10 : UNIQUEMENT un FAIT urgent et majeur EN TRAIN DE SE PASSER — décès d'une personnalité majeure, attentat, catastrophe naturelle, accident/crash grave, fusillade, résultat très attendu (élection, verdict), annonce gouvernementale soudaine et majeure. ⛔ Un rapport, une étude, une analyse, un sondage, un classement, un baromètre ou une prévision n'est JAMAIS un 9-10 (au mieux 7).
+- 7-8  : info importante (politique, économie, sport, gros buzz réseaux sociaux/pop culture, rapport ou étude marquant)
 - 6    : info intéressante du quotidien (insolite, fait divers marquant, info locale forte, lancement de produit d'une célébrité)
 - 0-5  : trop banal pour un compte d'actu
 
@@ -410,6 +411,8 @@ Catégories possibles (choisis la plus juste) :
 breaking, france, monde, politique, economie, societe, faitsdivers, histoire,
 culture (cinéma, musique, séries, célébrités, créateurs/influenceurs, YouTubeurs/streamers, jeux vidéo, gaming, esport, buzz réseaux sociaux, produits de célébrités),
 sport, science, sante, environnement, tech, ia, insolite, positivity.
+
+⚠️ CATÉGORIE "breaking" — TRÈS RESTRICTIVE : réservée aux FAITS urgents en direct (mort d'une personnalité, attentat, catastrophe naturelle, accident/crash grave, fusillade, résultat très attendu). Un rapport, une étude, une analyse, un sondage, un classement, une prévision ou un avis ne doit JAMAIS être catégorisé "breaking" — mets economie, politique, societe, etc. Le label rouge "URGENT" ne doit jamais apparaître sur ce type de contenu.
 
 IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
 
@@ -1919,6 +1922,70 @@ def _sig_words(title):
     words = re.findall(r"[0-9A-Za-zÀ-ÿ]+", title.lower())
     return {w for w in words if len(w) >= 4 and w not in BREAKING_STOPWORDS}
 
+# Marqueurs de contenu "mou" (rapport, étude, analyse...) qui ne sont JAMAIS un breaking
+BREAKING_EXCLUDE = (
+    "rapport", "étude", "etude", "analyse", "sondage", "classement", "baromètre", "barometre",
+    "tribune", "chronique", "interview", "portrait", "décryptage", "decryptage", "infographie",
+    "témoignage", "temoignage", "préconise", "preconise", "recommande", "palmarès", "palmares",
+    "prévision", "prevision", "selon une étude", "selon un rapport", "avis de", "dossier",
+)
+
+def _is_soft_news(title):
+    t = title.lower()
+    return any(m in t for m in BREAKING_EXCLUDE)
+
+# Marqueurs de SPORT EN DIRECT / résultat chaud (pour un léger coup de pouce, sans spam)
+LIVE_SPORT_MARKERS = (
+    "en direct", "live", "suivez", "mi-temps", "quart-temps", "quart temps", "prolongation",
+    "mène", "mènent", "l'emporte", "s'impose", "bat ", "battu", "victoire", "défaite",
+    "qualifié", "qualifie", "élimine", "elimine", "finale", "demi-finale", "demi finale",
+    "but de", "égalise", "egalise", "penalty", "carton rouge", "pole position", "grand prix",
+    "remporte", "domine", "arrache", "renverse", "points", "sets", "manche décisive",
+)
+
+def _is_live_sport(item):
+    t = (item.get("title", "") + " " + item.get("summary", "")).lower()
+    return any(m in t for m in LIVE_SPORT_MARKERS)
+
+def sport_cooldown_active(conn, minutes=SPORT_COOLDOWN_MIN):
+    """Vrai si un post SPORT a déjà été publié dans les N dernières minutes (anti-spam)."""
+    return conn.execute(
+        "SELECT 1 FROM category_log WHERE category='sport' AND last_sent > datetime('now', ?)",
+        (f"-{minutes} minutes",)
+    ).fetchone() is not None
+
+# Marqueurs d'un RÉSULTAT FINAL (mots qui indiquent un match terminé)
+SPORT_RESULT_MARKERS = (
+    "victoire", "défaite", "defaite", "s'impose", "l'emporte", "remporte", "vainqueur",
+    "qualifié", "qualifie", "éliminé", "elimine", "élimination", "champion", "sacré",
+    "score final", "résultat final", "terminé", "fin du match", "au coup de sifflet final",
+)
+# Indices d'un match EN COURS (ou à venir) → ce n'est PAS un résultat final
+SPORT_LIVE_CUES = (
+    "en direct", "live", "suivez", "mi-temps", "à la pause", "quart-temps", "quart temps",
+    "e période", "1re période", "2e période", "e minute", "en cours", "actuellement",
+    "avant-match", "avant match", "compositions", "à suivre", "mène", "mènent",
+)
+
+def _is_sport_result(title):
+    """Vrai uniquement si le titre annonce un match TERMINÉ (pas un score en cours)."""
+    t = title.lower()
+    if any(c in t for c in SPORT_LIVE_CUES):      # match en cours/à venir → pas un résultat
+        return False
+    if any(m in t for m in SPORT_RESULT_MARKERS):
+        return True
+    # le verbe "battre" conjugué (mais pas "débat", "combat", "bateau"...)
+    if re.search(r"\b(bat|battent|battu|battue|battus|battues)\b", t):
+        return True
+    return False
+
+def sport_result_recent(conn, minutes=240):
+    """Vrai si un RÉSULTAT sportif a déjà été publié récemment (limite à 1 dérogation / 4h)."""
+    return conn.execute(
+        "SELECT 1 FROM special_log WHERE kind='sport_result' AND sent_at > datetime('now', ?)",
+        (f"-{minutes} minutes",)
+    ).fetchone() is not None
+
 def breaking_recent(conn, minutes=BREAKING_GAP_MIN):
     """Vrai si une actu breaking a déjà été publiée dans les N dernières minutes."""
     return conn.execute(
@@ -1937,6 +2004,8 @@ def detect_breaking(conn, candidates):
     best, best_count = None, 0
     for i, (c, wi) in enumerate(enriched):
         if len(wi) < 2:
+            continue
+        if _is_soft_news(c["title"]):      # rapport / étude / analyse / sondage... → jamais breaking
             continue
         sources = set()
         for j, (d, wj) in enumerate(enriched):
@@ -2024,6 +2093,7 @@ def check_feeds(conn):
     # ── SCAN RSS (à chaque run, gratuit) — sert au MODE BREAKING et à la publi normale ──
     print(f"  → Scan RSS...")
     blocked_kws = recent_keywords(conn, hours=12)
+    allow_sport_result = not sport_result_recent(conn)   # autorise UN résultat de match malgré le blocage 12h
     candidates  = []
     pre_filtered = 0
     for fi in RSS_FEEDS:
@@ -2035,12 +2105,15 @@ def check_feeds(conn):
                 summ  = entry.get("summary", entry.get("description", ""))
                 if url and title and not is_seen(conn, url):
                     # Pré-filtre GRATUIT : si le titre contient un mot-clé déjà publié (12h),
-                    # on rejette SANS payer Claude
+                    # on rejette SANS payer Claude — SAUF si c'est le RÉSULTAT d'un match (1 dérogation/4h)
                     title_low = title.lower()
                     if blocked_kws and any(kw in title_low for kw in blocked_kws):
-                        mark_seen(conn, url, title)
-                        pre_filtered += 1
-                        continue
+                        if allow_sport_result and _is_sport_result(title):
+                            pass  # on laisse passer le résultat final d'un match déjà couvert
+                        else:
+                            mark_seen(conn, url, title)
+                            pre_filtered += 1
+                            continue
                     candidates.append({"url": url, "title": title, "summary": summ, "source": fi["source"], "entry": entry})
         except Exception as e:
             print(f"  ❌ RSS {fi['source']}: {e}")
@@ -2125,11 +2198,24 @@ def check_feeds(conn):
         except Exception as e:
             print(f"  ❌ Batch analyse: {e}")
 
+    # 🚨 Garde-fou : un rapport / étude / analyse / sondage ne doit JAMAIS porter le label "breaking/URGENT"
+    for item in scored:
+        if item["analysis"].get("category") == "breaking" and _is_soft_news(item["title"]):
+            item["analysis"]["category"] = "france"
+            print(f"  ⬇️ 'breaking' déclassé (contenu non urgent) : {item['title'][:50]}")
+
     # Boost catégorie pas encore vue aujourd'hui
     missing = set(STYLES.keys()) - cats_today(conn)
     for item in scored:
         if item["analysis"]["category"] in missing:
             item["score"] = min(10, item["score"] + 2)
+
+    # 🏀 Léger coup de pouce au SPORT EN DIRECT (cost-neutral : ne crée pas de post en plus).
+    #    Anti-spam : seulement si aucun post sport depuis 2h (+ blocage mots-clés 12h sur le même match).
+    if not sport_cooldown_active(conn):
+        for item in scored:
+            if item["analysis"].get("category") == "sport" and _is_live_sport(item):
+                item["score"] = min(10, item["score"] + 2)
 
     scored.sort(key=lambda x: x["score"], reverse=True)
     top, used = [], set()
@@ -2211,6 +2297,8 @@ def check_feeds(conn):
 
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
+            if cat == "sport" and _is_sport_result(item.get("title", "")):
+                log_special(conn, "sport_result", keywords)   # 1 dérogation résultat / 4h
             if item.get("url"):
                 mark_seen(conn, item["url"], item["title"])
             print(f"  ✅ Publié [{cat}]: {item['title'][:55]}")
