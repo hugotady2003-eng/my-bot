@@ -1907,6 +1907,116 @@ def post_carousel_to_instagram(slides_png, caption):
 # BOUCLE PRINCIPALE
 # ═══════════════════════════════════════════════════════════════════════════
 # ═══════════════════════════════════════════════════════════════════════════
+# CARTE DE VICTOIRE (sport) — photo du match floutée + score + vainqueur
+# ═══════════════════════════════════════════════════════════════════════════
+def extract_match_result(title, summary):
+    """Extrait les données d'un match terminé (équipes, score, compétition) via 1 petit appel Claude."""
+    try:
+        r = claude(f"""Analyse ce titre/résumé d'actualité sportive.
+S'il s'agit d'un MATCH TERMINÉ avec un score final clair, extrais les infos. Sinon réponds {{"ok":false}}.
+
+Titre : {title}
+Résumé : {summary[:300]}
+
+Réponds avec ce JSON UNIQUEMENT :
+{{"ok":true,"team_a":"<équipe 1>","score_a":<entier>,"team_b":"<équipe 2>","score_b":<entier>,"competition":"<compétition courte, ex: Coupe du Monde 2026 / Ligue 1 / NBA>"}}
+Si ce n'est pas un score de match terminé clairement identifiable, réponds {{"ok":false}}.""", max_tokens=200)
+        if not r or not r.get("ok"):
+            return None
+        sa, sb = int(r["score_a"]), int(r["score_b"])
+        ta, tb = str(r.get("team_a", "")).strip()[:22], str(r.get("team_b", "")).strip()[:22]
+        if not ta or not tb:
+            return None
+        winner = "A" if sa > sb else ("B" if sb > sa else "NUL")
+        return {"team_a": ta, "score_a": sa, "team_b": tb, "score_b": sb,
+                "competition": str(r.get("competition", "")).strip()[:26], "winner": winner}
+    except Exception as e:
+        print(f"  ⚠️ extract_match_result: {e}")
+        return None
+
+def build_victory_card(raw_photo, team_a, sa, team_b, sb, compet, winner, source, W=1200, H=675):
+    """Carte de résultat sportif : photo du match floutée + overlay score/vainqueur (DA Pulse)."""
+    import io
+    GOLD, WHITE, DIM, SILVER = (255, 210, 74), (255, 255, 255), (225, 220, 240), (220, 224, 235)
+    def f(px, bold=True):
+        for p in [f"/usr/share/fonts/truetype/noto/NotoSans-{'Bold' if bold else 'Regular'}.ttf",
+                  f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"]:
+            try: return ImageFont.truetype(p, int(px))
+            except: continue
+        return ImageFont.load_default()
+    def lerp(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
+    def fit(d, txt, maxw, start, mins=20):
+        s = start
+        while s > mins and d.textbbox((0, 0), txt, font=f(s))[2] > maxw: s -= 2
+        return f(s)
+    def shadow(base, fn, blur=12):
+        ly = Image.new('RGBA', base.size, (0, 0, 0, 0)); fn(ImageDraw.Draw(ly))
+        base.alpha_composite(ly.filter(ImageFilter.GaussianBlur(blur)))
+
+    # fond : photo du match floutée (recadrée cover) ou dégradé néon si pas de photo
+    bg = None
+    if raw_photo:
+        try:
+            ph = Image.open(io.BytesIO(raw_photo)).convert('RGB')
+            pr, tr = ph.width / ph.height, W / H
+            if pr > tr:
+                nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
+            else:
+                nh = int(ph.width / tr); ph = ph.crop((0, (ph.height - nh) // 2, ph.width, (ph.height - nh) // 2 + nh))
+            bg = ph.resize((W, H)).filter(ImageFilter.GaussianBlur(7))
+        except Exception:
+            bg = None
+    if bg is None:
+        c_top, c_mid, c_bot = (16, 12, 42), (44, 18, 88), (110, 24, 120)
+        col = Image.new('RGB', (1, H))
+        for y in range(H):
+            t = y / H
+            col.putpixel((0, y), lerp(c_top, c_mid, t / 0.6) if t < 0.6 else lerp(c_mid, c_bot, (t - 0.6) / 0.4))
+        bg = col.resize((W, H))
+    img = bg.convert('RGBA')
+
+    # overlay sombre en bandes haut/bas (centre laissé visible)
+    ov = Image.new('RGBA', (W, H), (0, 0, 0, 0)); od = ImageDraw.Draw(ov)
+    for y in range(H):
+        t = y / H
+        a = int(150 * (1 - t / 0.34)) if t < 0.34 else (int(165 * ((t - 0.66) / 0.34)) if t > 0.66 else 0)
+        if a > 0: od.line([(0, y), (W, y)], fill=(14, 10, 38, min(180, a)))
+    img = Image.alpha_composite(img, ov); d = ImageDraw.Draw(img)
+
+    for x in range(W): d.line([(x, 0), (x, max(6, int(H * 0.012)))], fill=lerp((90, 140, 255), (255, 80, 200), x / W))
+    d.text((int(W * 0.038), int(H * 0.05)), "Pulse", font=f(W * 0.037), fill=WHITE)
+    if compet:
+        fc = f(W * 0.020); tw = d.textbbox((0, 0), compet, font=fc)[2]
+        x1 = W - tw - int(W * 0.038) - int(W * 0.028); y0 = int(H * 0.055); y1 = y0 + int(H * 0.062)
+        d.rounded_rectangle([x1, y0, W - int(W * 0.038), y1], radius=int(H * 0.031), outline=(255, 255, 255, 180), width=2)
+        d.text((W - int(W * 0.038) - int(W * 0.014), (y0 + y1) // 2), compet, font=fc, fill=WHITE, anchor="rm")
+
+    banner = "★  VICTOIRE  ★" if winner in ("A", "B") else "MATCH NUL"
+    bcol = GOLD if winner in ("A", "B") else SILVER
+    by = int(H * 0.225)
+    shadow(img, lambda l: l.text((W // 2, by), banner, font=f(W * 0.032), fill=(0, 0, 0, 235), anchor="mm"), 10); d = ImageDraw.Draw(img)
+    d.text((W // 2, by), banner, font=f(W * 0.032), fill=bcol, anchor="mm")
+
+    cy = int(H * 0.50); score_txt = f"{sa}  -  {sb}"
+    shadow(img, lambda l: l.text((W // 2, cy), score_txt, font=f(W * 0.10), fill=(0, 0, 0, 240), anchor="mm"), 16); d = ImageDraw.Draw(img)
+    d.text((W // 2, cy), score_txt, font=f(W * 0.10), fill=WHITE, anchor="mm")
+
+    lax, rax, maxw = int(W * 0.17), int(W * 0.83), int(W * 0.27)
+    for xx, txt, win in [(lax, team_a.upper(), winner == "A"), (rax, team_b.upper(), winner == "B")]:
+        ft = fit(d, txt, maxw, W * 0.044)
+        shadow(img, lambda l, xx=xx, txt=txt, ft=ft: l.text((xx, cy - int(H * 0.03)), txt, font=ft, fill=(0, 0, 0, 240), anchor="mm"), 11); d = ImageDraw.Draw(img)
+        d.text((xx, cy - int(H * 0.03)), txt, font=ft, fill=GOLD if win else WHITE, anchor="mm")
+        if win:
+            d.text((xx, cy + int(H * 0.05)), "✔ VAINQUEUR", font=f(W * 0.018), fill=GOLD, anchor="mm")
+
+    shadow(img, lambda l: l.text((int(W * 0.038), H - int(H * 0.08)), "Pulse", font=f(W * 0.025), fill=(0, 0, 0, 220)), 6); d = ImageDraw.Draw(img)
+    d.text((int(W * 0.038), H - int(H * 0.08)), "Pulse", font=f(W * 0.025), fill=WHITE)
+    d.text((W - int(W * 0.038), H - int(H * 0.055)), f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
+           font=f(W * 0.018, False), fill=DIM, anchor="rm")
+
+    buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
+
+# ═══════════════════════════════════════════════════════════════════════════
 # MODE BREAKING — détection multi-sources + publication immédiate
 # ═══════════════════════════════════════════════════════════════════════════
 BREAKING_STOPWORDS = set("""
@@ -2271,20 +2381,34 @@ def check_feeds(conn):
 
             # Image paysage (X + Facebook) — on récupère aussi l'image source pour réutilisation
             raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, cat)
-            png_bytes, png_nm = build_png(
-                headline_court, item["source"], cat, photo, image_query,
-                article_url=item.get("url"), person=person,
-                prefetched=(raw_src, has_real)
-            )
+
+            # 🏆 Si c'est un RÉSULTAT sportif : carte de victoire (photo floutée + score)
+            victory = None
+            if cat == "sport" and "tweet" not in item and _is_sport_result(item.get("title", "")):
+                victory = extract_match_result(item["title"], item.get("summary", ""))
+
+            if victory:
+                png_bytes = build_victory_card(raw_src, victory["team_a"], victory["score_a"],
+                                               victory["team_b"], victory["score_b"], victory["competition"],
+                                               victory["winner"], item["source"], W=1200, H=675)
+                png_ig = build_victory_card(raw_src, victory["team_a"], victory["score_a"],
+                                            victory["team_b"], victory["score_b"], victory["competition"],
+                                            victory["winner"], item["source"], W=1080, H=1350)
+                print(f"  🏆 Carte de victoire : {victory['team_a']} {victory['score_a']}-{victory['score_b']} {victory['team_b']}")
+            else:
+                png_bytes, png_nm = build_png(
+                    headline_court, item["source"], cat, photo, image_query,
+                    article_url=item.get("url"), person=person,
+                    prefetched=(raw_src, has_real)
+                )
+                png_ig, _ = build_png(
+                    headline_court, item["source"], cat, photo, image_query,
+                    article_url=item.get("url"), person=person,
+                    W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True
+                )
+
             post_to_twitter(tweet_final, png_bytes, video_path)
             post_to_facebook(tweet_final, png_bytes, video_path)
-
-            # Image portrait 4:5 (Instagram) — titre écrit sur l'image (style Insta)
-            png_ig, _ = build_png(
-                headline_court, item["source"], cat, photo, image_query,
-                article_url=item.get("url"), person=person,
-                W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True
-            )
             post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
 
             # Nettoyage du fichier vidéo temporaire (après X + Facebook)
