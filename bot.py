@@ -34,6 +34,7 @@ IMGBB_KEY            = os.environ.get("IMGBB_KEY",            "")
 SCORE_MINIMUM = 6
 MAX_PAR_PASSE = 1
 BREAKING_SCORE = 9        # score minimum (analyse Claude) pour qu'une actu soit publiée en "breaking"
+BUZZ_SCORE = 7            # score minimum pour un fast-track "buzz" (multi-sources) — label normal, pas URGENT
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
 BREAKING_GAP_MIN = 25     # délai mini (minutes) entre deux publications breaking (anti-spam)
 SPORT_COOLDOWN_MIN = 120  # délai mini (minutes) entre deux posts SPORT (anti-spam sport en direct)
@@ -2278,26 +2279,28 @@ def detect_breaking(conn, candidates):
             best, best_count = c, len(sources)
     return best
 
-def publish_breaking(conn, item, cat):
-    """Publie immédiatement une actu breaking sur X + Facebook + Instagram (style Breaking)."""
+def publish_breaking(conn, item, cat, urgent=True):
+    """Publie vite une actu (X + Facebook + Instagram).
+    urgent=True → label rouge 'Breaking'. urgent=False → label normal de la catégorie (buzz/insolite)."""
     add_recent(conn, item["title"])
+    label_cat = "breaking" if urgent else cat
     body, headline_court, image_query, keywords, person = gen_tweet_complet(
         item["title"], item["summary"], item["source"], cat
     )
-    tweet_final = build_full_tweet(body, "breaking")   # force le label rouge "Breaking"
+    tweet_final = build_full_tweet(body, label_cat)
     photo = extract_photo(item["entry"]) if "entry" in item else None
-    raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, "breaking")
-    png_bytes, _ = build_png(headline_court, item["source"], "breaking", photo, image_query,
+    raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, label_cat)
+    png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                              article_url=item.get("url"), person=person, prefetched=(raw_src, has_real))
     post_to_twitter(tweet_final, png_bytes)
     post_to_facebook(tweet_final, png_bytes)
-    png_ig, _ = build_png(headline_court, item["source"], "breaking", photo, image_query,
+    png_ig, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                           article_url=item.get("url"), person=person, W=1080, H=1350,
                           prefetched=(raw_src, has_real), headline_bottom=True)
     post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
-    mark_cat(conn, "breaking")
+    mark_cat(conn, label_cat)
     log_keywords(conn, keywords)
-    log_special(conn, "breaking", keywords)
+    log_special(conn, "breaking", keywords)   # partage l'anti-spam (1 fast-track / 25 min)
     if item.get("url"):
         mark_seen(conn, item["url"], item["title"])
     return keywords
@@ -2395,15 +2398,26 @@ def check_feeds(conn):
             a = {"score": BREAKING_SCORE, "category": "breaking", "is_duplicate": False}
         if not a.get("is_duplicate") and int(a.get("score", 0)) >= BREAKING_SCORE:
             try:
-                kws = publish_breaking(conn, breaking, a.get("category", "breaking"))
+                # Vrai breaking (drame, urgence) → label rouge URGENT
+                kws = publish_breaking(conn, breaking, a.get("category", "breaking"), urgent=True)
                 print(f"  🚨 BREAKING publié immédiatement : {breaking['title'][:55]}")
                 if kws:
                     print(f"  🔒 Mots-clés bloqués 12h: {', '.join(kws)}")
                 return
             except Exception as e:
                 print(f"  ❌ Breaking échoué : {e}")
+        elif not a.get("is_duplicate") and int(a.get("score", 0)) >= BUZZ_SCORE:
+            try:
+                # Buzz viral (repris par plusieurs sources) → publié vite, mais label NORMAL (insolite/tech...)
+                kws = publish_breaking(conn, breaking, a.get("category", "france"), urgent=False)
+                print(f"  ⚡ BUZZ publié rapidement (label normal) : {breaking['title'][:55]}")
+                if kws:
+                    print(f"  🔒 Mots-clés bloqués 12h: {', '.join(kws)}")
+                return
+            except Exception as e:
+                print(f"  ❌ Buzz échoué : {e}")
         else:
-            print(f"  → Sujet pas assez majeur pour un breaking (score {a.get('score')}).")
+            print(f"  → Sujet pas assez repris pour un fast-track (score {a.get('score')}).")
 
     # ── PUBLICATION NORMALE (rythme aléatoire) ──
     if not should_publish_now(conn):
