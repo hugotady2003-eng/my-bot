@@ -72,7 +72,6 @@ RSS_FEEDS = [
     {"url": "https://www.01net.com/rss/actualites.xml",                "source": "01net"},
     {"url": "https://www.zdnet.fr/feeds/rss/actualites/",              "source": "ZDNet"},
     # 🔬 Science
-    {"url": "https://www.futura-sciences.com/rss/actualites.xml",      "source": "Futura Sciences"},
     {"url": "https://www.sciencesetavenir.fr/rss.xml",                 "source": "Sciences et Avenir"},
     # 🏆 Sport
     {"url": "https://www.lequipe.fr/rss/actu_rss.xml",                 "source": "L'Équipe"},
@@ -481,12 +480,16 @@ RÈGLES STRICTES pour body :
 - Hashtags intégrés naturellement : "la #France" pas "France #France"
 - Termine par la source entre parenthèses : ({source})
 
-⚠️ MISE EN FORME OBLIGATOIRE — AÉRER LE TEXTE :
-- Sépare le tweet en 2 ou 3 paragraphes courts
-- METS UN DOUBLE SAUT DE LIGNE (\\n\\n) entre chaque paragraphe
-- La source à la fin doit être précédée d'un double saut de ligne, seule sur sa ligne
-- Exemple de structure EXACTE attendue (avec les \\n\\n) :
-  "Phrase d'accroche qui pose l'info principale.\\n\\nDeuxième paragraphe avec le contexte et les détails.\\n\\nTroisième paragraphe avec la conséquence ou la question soulevée.\\n\\n(Source)"
+⚠️ MISE EN FORME OBLIGATOIRE — ACCROCHE + DÉTAILS :
+- LA PREMIÈRE LIGNE est une PHRASE D'ACCROCHE autonome qui RÉSUME l'actualité (l'essentiel : qui / quoi / où), comme un titre de news. Une seule phrase, percutante et complète.
+- Cette accroche doit être SÉPARÉE du reste par un DOUBLE SAUT DE LIGNE (\\n\\n) — bien distincte, seule en haut.
+- Ne commence JAMAIS par une question teaser ("Et si...", "Vous ne devinerez jamais...", "Saviez-vous que...") : va DROIT au fait.
+- Ensuite seulement viennent les détails (contexte, chiffres, conséquences) en 1 ou 2 paragraphes courts, séparés par \\n\\n.
+- La source à la fin, précédée d'un double saut de ligne, seule sur sa ligne.
+- Structure EXACTE attendue (avec les \\n\\n) :
+  "ACCROCHE qui résume l'info en une phrase.\\n\\nDétails : contexte, chiffres, ce qui se passe.\\n\\nConséquence ou enjeu soulevé.\\n\\n(Source)"
+- Exemple concret :
+  "Un séisme de magnitude 7,8 a frappé le sud des Philippines, faisant au moins 15 morts.\\n\\nDe nombreux bâtiments se sont effondrés, dont des écoles. Une alerte au tsunami a été déclenchée sur plusieurs côtes.\\n\\n(AFP)"
 - Dans le JSON, les sauts de ligne s'écrivent \\n
 
 Réponds avec ce JSON UNIQUEMENT :
@@ -2017,6 +2020,133 @@ def build_victory_card(raw_photo, team_a, sa, team_b, sb, compet, winner, source
     buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
 
 # ═══════════════════════════════════════════════════════════════════════════
+# CARTE HOMMAGE (décès d'une personnalité) — portrait N&B + nom + dates (sobre)
+# ═══════════════════════════════════════════════════════════════════════════
+DEATH_MARKERS = (
+    "est mort", "est morte", "décès de", "décédé", "décédée", "s'est éteint", "s'est éteinte",
+    "meurt à", "mort à l'âge", "morte à l'âge", "nous a quittés", "disparition de", "à l'âge de",
+)
+# Exclusions : bilans collectifs / accidents / expressions (pas un hommage individuel)
+DEATH_EXCLUDE = (
+    "morts", "tués", "tues", "victimes", "bilan", "peine de mort", "mort de rire",
+    "mort cérébrale", "à mort", "mise à mort", "blessés",
+)
+
+def _is_obituary(title, summary):
+    """Vrai si l'article annonce le décès d'UNE personnalité (pas un bilan collectif)."""
+    t = (title + " " + summary).lower()
+    if any(x in t for x in DEATH_EXCLUDE):
+        return False
+    return any(m in t for m in DEATH_MARKERS)
+
+def extract_obituary(title, summary, url=None):
+    """Extrait nom / naissance / âge / métier — UNIQUEMENT depuis l'article (zéro invention).
+    L'année du décès est ajoutée par Python (vraie année), jamais devinée par Claude."""
+    try:
+        text = summary[:400]
+        if url:
+            art = fetch_article_text(url, max_chars=1800)
+            if len(art) > 200:
+                text = art
+        r = claude(f"""On t'a transmis un article annonçant le décès d'une personnalité.
+
+Titre : {title}
+Texte de l'article :
+{text}
+
+Extrais UNIQUEMENT les informations EXPLICITEMENT écrites dans le texte ci-dessus.
+⛔ RÈGLES ABSOLUES — NE TE TROMPE PAS :
+- N'utilise JAMAIS tes connaissances personnelles. Base-toi SEULEMENT sur le texte fourni.
+- N'invente JAMAIS et NE CALCULE JAMAIS une date, une année ou un âge.
+- "birth_year" : l'année de naissance SEULEMENT si elle est écrite telle quelle dans le texte, sinon null.
+- "age" : l'âge au décès SEULEMENT s'il est écrit dans le texte (ex: "mort à 83 ans" → 83), sinon null.
+- "desc" : le métier/rôle SEULEMENT s'il est écrit, sinon "".
+
+Réponds avec ce JSON UNIQUEMENT :
+{{"ok":true,"name":"<nom complet exact>","birth_year":<entier ou null>,"age":<entier ou null>,"desc":"<métier ou vide>"}}
+Si ce n'est pas le décès d'une personne nommée, réponds {{"ok":false}}.""", max_tokens=220)
+        if not r or not r.get("ok"):
+            return None
+        name = str(r.get("name", "")).strip()[:40]
+        if not name:
+            return None
+        # L'année du décès vient de Python (vraie année), pas de Claude
+        cur = datetime.now().year
+        by, age, dates = r.get("birth_year"), r.get("age"), ""
+        try:
+            if by and 1850 < int(by) <= cur:
+                dates = f"{int(by)} – {cur}"
+            elif age and 0 < int(age) < 130:
+                dates = f"À {int(age)} ans"
+        except (ValueError, TypeError):
+            dates = ""
+        return {"name": name, "dates": dates, "desc": str(r.get("desc", "")).strip()[:40]}
+    except Exception as e:
+        print(f"  ⚠️ extract_obituary: {e}")
+        return None
+
+def build_hommage_card(raw_photo, name, dates, desc, source, W=1200, H=675):
+    """Carte hommage sobre : portrait en noir & blanc + nom + dates (DA Pulse discrète)."""
+    import io
+    from PIL import ImageOps
+    WHITE, GREY, FAINT = (245, 245, 248), (176, 180, 194), (140, 144, 158)
+    def f(px, bold=True, serif=False):
+        fam = "DejaVuSerif" if serif else "DejaVuSans"
+        p = f"/usr/share/fonts/truetype/dejavu/{fam}{'-Bold' if bold else ''}.ttf"
+        try: return ImageFont.truetype(p, int(px))
+        except: return ImageFont.load_default()
+    def fit(d, txt, maxw, start, mins=24, **kw):
+        s = start
+        while s > mins and d.textbbox((0, 0), txt, font=f(s, **kw))[2] > maxw: s -= 2
+        return f(s, **kw)
+
+    # fond : portrait recadré (léger biais vers le haut pour le visage) + NOIR & BLANC
+    if raw_photo:
+        try:
+            ph = Image.open(io.BytesIO(raw_photo)).convert('RGB')
+            pr, tr = ph.width / ph.height, W / H
+            if pr > tr:
+                nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
+            else:
+                nh = int(ph.width / tr); top = int((ph.height - nh) * 0.30); ph = ph.crop((0, top, ph.width, top + nh))
+            ph = ph.resize((W, H))
+            bw = ImageOps.grayscale(ph).convert('RGB')
+            bw = Image.blend(bw, Image.new('RGB', (W, H), (0, 0, 0)), 0.18)
+        except Exception:
+            bw = Image.new('RGB', (W, H), (28, 28, 34))
+    else:
+        bw = Image.new('RGB', (W, H), (28, 28, 34))
+    img = bw.convert('RGBA')
+
+    # voile sombre : léger en haut, très sombre en bas (pour le texte)
+    ov = Image.new('RGBA', (W, H), (0, 0, 0, 0)); od = ImageDraw.Draw(ov)
+    for y in range(H):
+        t = y / H
+        a = int(245 * ((t - 0.42) / 0.58)) if t > 0.42 else int(60 * (1 - t / 0.42))
+        od.line([(0, y), (W, y)], fill=(8, 8, 12, min(238, max(0, a))))
+    img = Image.alpha_composite(img, ov); d = ImageDraw.Draw(img)
+
+    # fine barre sobre (gris ardoise, pas de néon festif)
+    for x in range(W):
+        d.line([(x, 0), (x, 5)], fill=(int(70 + 30 * x / W), int(72 + 26 * x / W), int(90 + 40 * x / W)))
+    d.text((int(W * 0.038), int(H * 0.05)), "Pulse", font=f(W * 0.034), fill=WHITE)
+    d.text((W - int(W * 0.038), int(H * 0.075)), "H O M M A G E", font=f(W * 0.020, True), fill=GREY, anchor="rm")
+
+    # bloc nom + dates en bas
+    ny = int(H * 0.66)
+    fn = fit(d, name.upper(), int(W * 0.86), W * 0.062, serif=True)
+    d.text((int(W * 0.045), ny), name.upper(), font=fn, fill=WHITE)
+    y2 = ny + fn.size + int(H * 0.02)
+    d.rectangle([int(W * 0.046), y2, int(W * 0.046) + int(W * 0.12), y2 + 3], fill=GREY)
+    if dates:
+        d.text((int(W * 0.045), y2 + int(H * 0.025)), dates, font=f(W * 0.025, False), fill=GREY)
+    if desc:
+        d.text((int(W * 0.045), y2 + int(H * 0.085)), desc, font=f(W * 0.021, False), fill=FAINT)
+    d.text((W - int(W * 0.038), H - int(H * 0.05)), f"{source}", font=f(W * 0.018, False), fill=FAINT, anchor="rm")
+
+    buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
+
+# ═══════════════════════════════════════════════════════════════════════════
 # MODE BREAKING — détection multi-sources + publication immédiate
 # ═══════════════════════════════════════════════════════════════════════════
 BREAKING_STOPWORDS = set("""
@@ -2387,6 +2517,11 @@ def check_feeds(conn):
             if cat == "sport" and "tweet" not in item and _is_sport_result(item.get("title", "")):
                 victory = extract_match_result(item["title"], item.get("summary", ""))
 
+            # 🕊️ Si c'est le DÉCÈS d'une personnalité : carte hommage (portrait N&B + nom)
+            obituary = None
+            if not victory and "tweet" not in item and _is_obituary(item.get("title", ""), item.get("summary", "")):
+                obituary = extract_obituary(item["title"], item.get("summary", ""), item.get("url"))
+
             if victory:
                 png_bytes = build_victory_card(raw_src, victory["team_a"], victory["score_a"],
                                                victory["team_b"], victory["score_b"], victory["competition"],
@@ -2395,6 +2530,12 @@ def check_feeds(conn):
                                             victory["team_b"], victory["score_b"], victory["competition"],
                                             victory["winner"], item["source"], W=1080, H=1350)
                 print(f"  🏆 Carte de victoire : {victory['team_a']} {victory['score_a']}-{victory['score_b']} {victory['team_b']}")
+            elif obituary:
+                png_bytes = build_hommage_card(raw_src, obituary["name"], obituary["dates"],
+                                               obituary["desc"], item["source"], W=1200, H=675)
+                png_ig = build_hommage_card(raw_src, obituary["name"], obituary["dates"],
+                                            obituary["desc"], item["source"], W=1080, H=1350)
+                print(f"  🕊️ Carte hommage : {obituary['name']}")
             else:
                 png_bytes, png_nm = build_png(
                     headline_court, item["source"], cat, photo, image_query,
