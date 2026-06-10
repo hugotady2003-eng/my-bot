@@ -2269,6 +2269,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             print("  ⚠️ ffmpeg introuvable (imageio-ffmpeg manquant dans requirements.txt) → image utilisée")
             return None
     try:
+        print(f"  🎬 Génération vidéo ({kind})...")
         W, H, FPS, DUR = VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR
         N = int(FPS * DUR)
         sober = (kind == "hommage")
@@ -3007,6 +3008,8 @@ def check_feeds(conn):
                     article_url=item.get("url"), person=person,
                     W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True
                 )
+                if not video_path:   # vidéo animée Pulse sur TOUS les posts (barre néon couleur catégorie)
+                    video_path = build_video("news", {"headline": headline_court}, cat, raw_src, item["source"])
 
             post_to_twitter(tweet_final, png_bytes, video_path)
             post_to_facebook(tweet_final, png_bytes, video_path)
