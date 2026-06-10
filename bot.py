@@ -428,22 +428,19 @@ def gen_tweet_complet(title, summary, source, category, video_url=None):
     label = LABELS[category]
     video_str = f"\nIntègre ce lien à la fin du tweet : {video_url}" if video_url else ""
 
-    # Style adaptatif selon catégorie
+    # Style adaptatif selon catégorie — TOUJOURS court et télégraphique (fil d'actu)
     if category in ("breaking", "faitsdivers"):
-        style_instr = """STYLE BREAKING/URGENT :
-- Phrase 1 : très courte, percutante, factuelle (qui, quoi, où)
-- Pas d'analyse, juste les faits bruts
-- Ton journaliste de terrain BFM"""
+        style_instr = """STYLE FLASH :
+- 1 phrase factuelle et dense : les faits bruts (qui, quoi, où) + le chiffre clé
+- Zéro analyse, zéro remplissage"""
     elif category == "positivity":
-        style_instr = """STYLE NARRATIF/STORYTELLING :
-- Phrase 1 : accroche émotionnelle qui donne envie de lire
-- Paragraphes développés avec noms, dates, citations
-- Ton chaleureux et humain"""
+        style_instr = """STYLE POSITIF :
+- 1 à 2 phrases, ton chaleureux mais bref
+- Le fait marquant mis en avant, sans pathos"""
     else:
-        style_instr = """STYLE INFO POSÉE :
-- Phrase 1 : accroche claire avec l'info principale
-- 1-2 phrases courtes de contexte/conséquences (sans répéter)
-- Ton informatif et professionnel"""
+        style_instr = """STYLE INFO (télégraphique) :
+- 1 à 2 phrases denses et factuelles : l'essentiel + le chiffre ou le fait clé
+- Concis, pas de contexte superflu"""
 
     result = claude(f"""Tu es community manager de Pulse, compte Twitter d'actualité française.
 Aujourd'hui : {today}.
@@ -471,26 +468,17 @@ Génère QUATRE choses :
 
 {style_instr}
 
-RÈGLES STRICTES pour body :
-- NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules
-- Va directement à l'info
-- 🇫🇷 FRANÇAIS IMPECCABLE OBLIGATOIRE : aucun mot ni aucune expression en anglais (traduis tout en français), aucune faute d'orthographe, de grammaire ou d'accord, aucun mot tronqué. AVANT de répondre, RELIS ton texte et corrige toutes les fautes.
-- Compte Premium = 600 caractères max
-- Info COMPLÈTE, jamais teaser
-- 2-3 hashtags RÉPARTIS dans le texte sur les mots les plus recherchés (#Macron, #Paris, #PSG, pas #news)
-- Hashtags intégrés naturellement : "la #France" pas "France #France"
-- Termine par la source entre parenthèses : ({source})
-
-⚠️ MISE EN FORME OBLIGATOIRE — ACCROCHE + DÉTAILS :
-- LA PREMIÈRE LIGNE est une PHRASE D'ACCROCHE autonome qui RÉSUME l'actualité (l'essentiel : qui / quoi / où), comme un titre de news. Une seule phrase, percutante et complète.
-- Cette accroche doit être SÉPARÉE du reste par un DOUBLE SAUT DE LIGNE (\\n\\n) — bien distincte, seule en haut.
-- Ne commence JAMAIS par une question teaser ("Et si...", "Vous ne devinerez jamais...", "Saviez-vous que...") : va DROIT au fait.
-- Ensuite seulement viennent les détails (contexte, chiffres, conséquences) en 1 ou 2 paragraphes courts, séparés par \\n\\n.
-- La source à la fin, précédée d'un double saut de ligne, seule sur sa ligne.
-- Structure EXACTE attendue (avec les \\n\\n) :
-  "ACCROCHE qui résume l'info en une phrase.\\n\\nDétails : contexte, chiffres, ce qui se passe.\\n\\nConséquence ou enjeu soulevé.\\n\\n(Source)"
-- Exemple concret :
-  "Un séisme de magnitude 7,8 a frappé le sud des Philippines, faisant au moins 15 morts.\\n\\nDe nombreux bâtiments se sont effondrés, dont des écoles. Une alerte au tsunami a été déclenchée sur plusieurs côtes.\\n\\n(AFP)"
+RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
+- NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules ; va DIRECTEMENT à l'info.
+- TÉLÉGRAPHIQUE : 1 à 2 phrases MAXIMUM, denses et autonomes, comme une dépêche. Info COMPLÈTE, jamais un teaser.
+- Mets en avant le CHIFFRE ou le FAIT clé. Tu peux écrire UN mot ou chiffre important en MAJUSCULES pour l'emphase (avec parcimonie).
+- ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
+- Longueur cible COURTE : environ 200 à 330 caractères. Jamais un long pavé.
+- 🇫🇷 FRANÇAIS IMPECCABLE : aucun mot ni expression en anglais (traduis tout), aucune faute d'orthographe/grammaire/accord, aucun mot tronqué. RELIS-toi avant de répondre.
+- AUCUN hashtag (le style Cerfia n'en met pas). Au maximum UN seul s'il est vraiment central.
+- Termine par la source entre parenthèses, précédée d'UN seul double saut de ligne : \\n\\n({source})
+- Exemple du rendu attendu (court, dense, factuel) :
+  "À Mexico, des MILLIERS de manifestants bloquent l'accès au stade à deux jours du match d'ouverture de la Coupe du monde. Ils réclament une hausse des salaires et l'abrogation d'une loi sur les retraites.\\n\\n(Le Figaro)"
 - Dans le JSON, les sauts de ligne s'écrivent \\n
 
 Réponds avec ce JSON UNIQUEMENT :
