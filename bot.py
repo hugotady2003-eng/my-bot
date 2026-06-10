@@ -475,10 +475,11 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
 - Longueur cible COURTE : environ 200 à 330 caractères. Jamais un long pavé.
 - 🇫🇷 FRANÇAIS IMPECCABLE : aucun mot ni expression en anglais (traduis tout), aucune faute d'orthographe/grammaire/accord, aucun mot tronqué. RELIS-toi avant de répondre.
-- AUCUN hashtag (le style Cerfia n'en met pas). Au maximum UN seul s'il est vraiment central.
-- Termine par la source entre parenthèses, précédée d'UN seul double saut de ligne : \\n\\n({source})
-- Exemple du rendu attendu (court, dense, factuel) :
-  "À Mexico, des MILLIERS de manifestants bloquent l'accès au stade à deux jours du match d'ouverture de la Coupe du monde. Ils réclament une hausse des salaires et l'abrogation d'une loi sur les retraites.\\n\\n(Le Figaro)"
+- 2-3 hashtags INTÉGRÉS DANS LES PHRASES : transforme un mot-clé DÉJÀ présent en hashtag en lui collant "#" (ex : "à #Mexico", "la #CoupeDuMonde2026", "le #PSG").
+- ⛔ INTÉGRATION PROPRE — ne casse JAMAIS le texte : ne DUPLIQUE pas un mot ("à Mexico #Mexico" = INTERDIT), ne mets pas de "#" au milieu d'un mot, n'ajoute pas de mot juste pour caser un hashtag, et NE mets PAS de bloc de hashtags à la fin. Le hashtag doit se lire naturellement dans la phrase.
+- RETOUR À LA LIGNE après la 1ʳᵉ phrase (jamais un gros bloc lourd) : phrase d'accroche, puis LIGNE VIDE, puis la 2ᵉ phrase, puis LIGNE VIDE, puis la source. Soit : Phrase 1.\\n\\nPhrase 2.\\n\\n(Source)
+- Exemple EXACT du rendu attendu (court, aéré, hashtags intégrés) :
+  "À #Mexico, des MILLIERS de manifestants bloquent l'accès au stade à deux jours du match d'ouverture de la #CoupeDuMonde2026.\\n\\nIls réclament une hausse des salaires et l'abrogation d'une loi sur les retraites.\\n\\n(Le Figaro)"
 - Dans le JSON, les sauts de ligne s'écrivent \\n
 
 Réponds avec ce JSON UNIQUEMENT :
@@ -1216,30 +1217,29 @@ def build_ig_caption(tweet_text, keywords=None):
     text = _re.sub(r'https?://\S+', '', text).strip()
     # Récupère les hashtags présents pour les regrouper en bas,
     # MAIS garde les mots dans la phrase (on retire juste le "#", sinon on casse le texte)
-    existing = _re.findall(r'#(\w+)', text)
-    text = _re.sub(r'#(\w+)', r'\1', text).strip()
+    existing = _re.findall(r'#(\w+)', text)   # hashtags déjà intégrés dans le texte → on les GARDE tels quels
+    # On NE retire PAS le "#" du texte (sinon "#CoupeDuMonde2026" deviendrait "CoupeDuMonde2026" collé = texte cassé)
     text = _re.sub(r'[ \t]{2,}', ' ', text)
     text = _re.sub(r'[ \t]+\n', '\n', text)
     text = _re.sub(r'\n{3,}', '\n\n', text).strip()
 
-    # Construit une liste de hashtags : mots-clés + existants + standards
+    # Bloc de découverte en bas : quelques hashtags EN PLUS, SANS répéter ceux déjà dans le texte
+    have = {h.lower() for h in existing}   # mots déjà en hashtag dans le texte (sans le #)
     tags = []
     def add_tag(t):
         t = _re.sub(r'[^0-9A-Za-zÀ-ÿ]', '', t)
-        if t and len(t) > 2:
-            h = "#" + t[0].upper() + t[1:]
-            if h.lower() not in [x.lower() for x in tags]:
-                tags.append(h)
+        if not t or len(t) <= 2 or t.lower() in have:
+            return
+        tags.append("#" + t[0].upper() + t[1:])
+        have.add(t.lower())
     for kw in (keywords or []):
         add_tag(kw)
-    for h in existing:
-        add_tag(h)
-    for std in ["Actualité", "Info", "France", "News", "Pulse"]:
+    for std in ["Actualité", "France", "Pulse"]:
         add_tag(std)
-    hashtags = " ".join(tags[:12])
+    extra = " ".join(tags[:6])
 
     cta = "👉 Plus d'infos sur X : @PULSEactus"
-    return f"{text}\n\n{cta}\n\n{hashtags}"
+    return f"{text}\n\n{cta}" + (f"\n\n{extra}" if extra else "")
 
 def post_to_instagram(caption, png_bytes=None, video_path=None):
     """
