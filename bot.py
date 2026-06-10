@@ -106,6 +106,7 @@ STYLES = {
     "economie":      {"color": "#69f0ae", "label": "Eco",           "bar": [(0,230,118),(0,191,165)],     "overlay": (2,12,5)},
     "societe":       {"color": "#ce93d8", "label": "Société",       "bar": [(206,147,216),(156,39,176)],  "overlay": (10,4,20)},
     "faitsdivers":   {"color": "#f48fb1", "label": "Faits Divers",  "bar": [(244,143,177),(233,30,99)],   "overlay": (16,4,8)},
+    "hommage":       {"color": "#cfd2dd", "label": "Hommage",       "bar": [(176,180,194),(120,124,140)], "overlay": (10,10,14)},
     "histoire":      {"color": "#d4a843", "label": "Histoire",      "bar": [(212,168,67),(160,113,74)],   "overlay": (14,8,2)},
     "culture":       {"color": "#00e5ff", "label": "Culture",       "bar": [(0,229,255),(29,233,182)],    "overlay": (2,12,14)},
     "sport":         {"color": "#82b1ff", "label": "Sport",         "bar": [(68,138,255),(48,79,254)],    "overlay": (2,6,14)},
@@ -120,7 +121,7 @@ STYLES = {
 
 EMOJIS = {
     "breaking": "🚨", "france": "🇫🇷", "monde": "🌍", "politique": "🏛️",
-    "economie": "📈", "societe": "👥", "faitsdivers": "🚓", "histoire": "📜",
+    "economie": "📈", "societe": "👥", "faitsdivers": "🚓", "hommage": "🕊️", "histoire": "📜",
     "culture": "🎭",  "sport": "🏆", "science": "🔬",
     "sante":    "🏥", "environnement": "🌱",
     "tech":     "💻", "ia": "🤖", "insolite": "😲", "positivity": "❤️",
@@ -129,7 +130,7 @@ EMOJIS = {
 LABELS = {
     "breaking": "URGENT", "france": "FRANCE", "monde": "MONDE",
     "politique": "POLITIQUE", "economie": "ECO",
-    "societe": "SOCIÉTÉ", "faitsdivers": "FAITS DIVERS",
+    "societe": "SOCIÉTÉ", "faitsdivers": "FAITS DIVERS", "hommage": "HOMMAGE",
     "histoire": "HISTOIRE",
     "culture": "CULTURE", "sport": "SPORT",
     "science": "SCIENCE", "sante": "SANTÉ",
@@ -146,6 +147,7 @@ UNSPLASH_FALLBACK = {
     "economie":      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=95",
     "societe":       "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=95",
     "faitsdivers":   "https://images.unsplash.com/photo-1453873531674-2151bcd01707?w=1200&q=95",
+    "hommage":       "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=95",
     "histoire":      "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1200&q=95",
     "culture":       "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=1200&q=95",
     "sport":         "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=95",
@@ -432,7 +434,12 @@ def gen_tweet_complet(title, summary, source, category, video_url=None):
     video_str = f"\nIntègre ce lien à la fin du tweet : {video_url}" if video_url else ""
 
     # Style adaptatif selon catégorie — TOUJOURS court et télégraphique (fil d'actu)
-    if category in ("breaking", "faitsdivers"):
+    if category == "hommage":
+        style_instr = """STYLE HOMMAGE (décès d'une personne) :
+- Ton SOBRE, respectueux et factuel — aucun sensationnalisme, aucune formule accrocheuse
+- 1 à 2 phrases : qui était la personne, les circonstances si connues
+- Pas de mot en MAJUSCULES pour l'emphase, pas de point d'exclamation"""
+    elif category in ("breaking", "faitsdivers"):
         style_instr = """STYLE FLASH :
 - 1 phrase factuelle et dense : les faits bruts (qui, quoi, où) + le chiffre clé
 - Zéro analyse, zéro remplissage"""
@@ -768,7 +775,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
     prefetched = (raw_bytes, has_real_photo) pour réutiliser une image déjà téléchargée.
     """
     try:
-        from PIL import Image, ImageDraw, ImageFont
+        from PIL import Image, ImageDraw, ImageFont, ImageFilter
         import io
 
         s = STYLES[category]
@@ -888,7 +895,6 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
 
         # ─── TITRE EN BAS (style Instagram : toujours visible, même avec photo) ───
         if headline_bottom:
-            from PIL import ImageFilter
 
             # Dégradé sombre qui MONTE plus haut (lisibilité du texte placé plus haut)
             grad = Image.new('RGBA', (W, H), (0, 0, 0, 0))
@@ -2075,12 +2081,14 @@ def build_victory_card(raw_photo, res, source, W=1200, H=675):
 # ═══════════════════════════════════════════════════════════════════════════
 DEATH_MARKERS = (
     "est mort", "est morte", "décès de", "décédé", "décédée", "s'est éteint", "s'est éteinte",
-    "meurt à", "mort à l'âge", "morte à l'âge", "nous a quittés", "disparition de", "à l'âge de",
+    "meurt", "décède", "mort à l'âge", "morte à l'âge", "nous a quittés", "disparition de",
+    "à l'âge de", "a perdu la vie", "perd la vie", "retrouvé mort", "retrouvée morte",
 )
 # Exclusions : bilans collectifs / accidents / expressions (pas un hommage individuel)
 DEATH_EXCLUDE = (
     "morts", "tués", "tues", "victimes", "bilan", "peine de mort", "mort de rire",
-    "mort cérébrale", "à mort", "mise à mort", "blessés",
+    "mort cérébrale", "à mort", "mise à mort", "blessés", "ne meurt", "meurt jamais",
+    "meurt de rire",
 )
 
 def _is_obituary(title, summary):
@@ -2196,6 +2204,321 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1200, H=675):
     d.text((W - int(W * 0.038), H - int(H * 0.05)), f"{source}", font=f(W * 0.018, False), fill=FAINT, anchor="rm")
 
     buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
+
+# ═══════════════════════════════════════════════════════════════════════════
+# VIDÉOS ANIMÉES (motion design Pulse) — 0 appel Claude, rendu local + ffmpeg
+# ═══════════════════════════════════════════════════════════════════════════
+VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1280, 720, 24, 7.0
+
+def _vf(px, bold=True, italic=False, serif=False):
+    if serif:
+        name = "DejaVuSerif" + ("-Bold" if bold else "")
+    else:
+        name = "DejaVuSans" + ("-BoldOblique" if (bold and italic) else ("-Bold" if bold else ""))
+    return ImageFont.truetype(f"/usr/share/fonts/truetype/dejavu/{name}.ttf", int(px))
+
+def _vlerp(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
+def _vease(t): t = max(0.0, min(1.0, t)); return 1 - (1 - t) ** 3
+
+def _neon_strip(category, W, h, sober=False):
+    """Bande dégradée multi-nuances (couleurs de la catégorie) qui servira de barre néon défilante."""
+    if sober:
+        a, b = (120, 124, 142), (215, 218, 232)
+    else:
+        bar = STYLES.get(category, STYLES.get("france", list(STYLES.values())[0]))["bar"]
+        a, b = bar[0], bar[1]
+    dark = tuple(int(c * 0.45) for c in a)
+    period = max(2, W // 2)
+    strip = Image.new("RGB", (period, h))
+    for x in range(period):
+        t = x / period
+        tt = 1 - abs(2 * t - 1)                       # sombre → clair → sombre (cycle continu)
+        c = _vlerp(dark, b, tt)
+        for y in range(h):
+            strip.putpixel((x, y), c)
+    return strip
+
+def _wrap_fit(d, text, maxw, start_px, max_lines=2, min_px=30):
+    """Police auto-réduite pour tenir en ≤ max_lines ; tronque avec … en dernier recours."""
+    size = start_px
+    while size >= min_px:
+        font = _vf(size)
+        lines, cur = [], ""
+        for w in text.split():
+            t = (cur + " " + w).strip()
+            if d.textbbox((0, 0), t, font=font)[2] <= maxw: cur = t
+            else: lines.append(cur); cur = w
+        lines.append(cur)
+        if len(lines) <= max_lines:
+            return font, lines
+        size -= 4
+    font = _vf(min_px)
+    lines = lines[:max_lines]
+    while d.textbbox((0, 0), lines[-1] + "…", font=font)[2] > maxw and " " in lines[-1]:
+        lines[-1] = lines[-1].rsplit(" ", 1)[0]
+    lines[-1] += "…"
+    return font, lines
+
+def build_video(kind, data, category, raw_photo, source, urgent=False):
+    """Génère une vidéo MP4 animée (DA Pulse). kind: "news" | "victory" | "hommage".
+    Renvoie le chemin du MP4, ou None si indisponible (le post retombe alors sur l'image)."""
+    import io, math, shutil, subprocess, tempfile
+    if os.environ.get("PULSE_VIDEO", "1") == "0":
+        return None
+    if not shutil.which("ffmpeg"):
+        return None
+    try:
+        W, H, FPS, DUR = VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR
+        N = int(FPS * DUR)
+        sober = (kind == "hommage")
+        GOLD, WHITE, DIM = (255, 210, 74), (255, 255, 255), (222, 218, 238)
+        NEON, RED = (255, 80, 200), (226, 48, 70)
+
+        # ── couches précalculées ──
+        photo_big = None
+        if raw_photo:
+            try:
+                ph = Image.open(io.BytesIO(raw_photo)).convert("RGB")
+                SCp = 1.10
+                bw_, bh_ = int(W * SCp), int(H * SCp)
+                pr, tr = ph.width / ph.height, bw_ / bh_
+                if pr > tr:
+                    nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
+                else:
+                    nh = int(ph.width / tr); ph = ph.crop((0, (ph.height - nh) // 2, ph.width, (ph.height - nh) // 2 + nh))
+                ph = ph.resize((bw_, bh_), Image.LANCZOS)
+                if sober:
+                    from PIL import ImageOps as _IO
+                    ph = Image.blend(_IO.grayscale(ph).convert("RGB"), Image.new("RGB", ph.size, (0, 0, 0)), 0.18)
+                elif kind == "victory":
+                    ph = ph.filter(ImageFilter.GaussianBlur(5))
+                photo_big = ph
+            except Exception:
+                photo_big = None
+        c1, c2, c3 = (16, 12, 52), (70, 26, 152), (226, 59, 167)
+        if sober: c1, c2, c3 = (16, 16, 22), (32, 32, 42), (52, 52, 66)
+        col = Image.new("RGB", (1, H))
+        for y in range(H):
+            t = y / H
+            col.putpixel((0, y), _vlerp(c1, c2, t / 0.55) if t < 0.55 else _vlerp(c2, c3, (t - 0.55) / 0.45))
+        grad_bg = col.resize((W, H))
+        bands = Image.new("RGBA", (W, H), (0, 0, 0, 0)); bd = ImageDraw.Draw(bands)
+        for y in range(H):
+            t = y / H
+            a = int(155 * (1 - t / 0.22)) if t < 0.22 else (int(238 * ((t - 0.44) / 0.56)) if t > 0.44 else 0)
+            if a > 0: bd.line([(0, y), (W, y)], fill=(10, 8, 30, min(238, a)))
+        BAR_H = 9
+        strip = _neon_strip(category, W, BAR_H, sober=sober)
+        period = strip.width
+
+        LOGO_F = _vf(W * 0.042, italic=True)
+        _t = ImageDraw.Draw(Image.new("RGB", (8, 8)))
+        lb = _t.textbbox((int(W * 0.04), int(H * 0.055)), "PULSE", font=LOGO_F)
+        ex, ey = lb[2] + int(W * 0.014), (lb[1] + lb[3]) // 2
+        u = int(W * 0.008)
+        ECG = [(ex, ey), (ex + 2*u, ey), (ex + 3*u, ey - 4*u), (ex + 4*u, ey + 3*u),
+               (ex + 5*u, ey - u), (ex + 6*u, ey), (ex + 9*u, ey)]
+        seg = [math.dist(ECG[i], ECG[i+1]) for i in range(len(ECG) - 1)]
+        TOT = sum(seg)
+        def ecg_pts(frac):
+            if frac <= 0: return []
+            tgt, pts, acc = TOT * min(1.0, frac), [ECG[0]], 0.0
+            for i, L in enumerate(seg):
+                if acc + L <= tgt: pts.append(ECG[i+1]); acc += L
+                else:
+                    r = (tgt - acc) / L; a_, b_ = ECG[i], ECG[i+1]
+                    pts.append((a_[0] + (b_[0]-a_[0]) * r, a_[1] + (b_[1]-a_[1]) * r)); break
+            return pts
+        ecg_col = (205, 208, 224) if sober else NEON
+
+        # ── zones texte (anti-collision : tout est ancré AU-DESSUS du pied de page) ──
+        FOOTER_Y = H - int(H * 0.115)            # zone réservée source/date
+        tmpd = ImageDraw.Draw(Image.new("RGB", (8, 8)))
+        HFONT, HLINES, LH, HY0 = None, [], 0, 0
+        if kind == "news":
+            headline = str(data.get("headline", ""))[:90]
+            HFONT, HLINES = _wrap_fit(tmpd, headline, int(W * 0.92), int(W * 0.052), max_lines=2)
+            LH = int(HFONT.size * 1.22)
+            HY0 = FOOTER_Y - int(H * 0.035) - LH * len(HLINES)   # bloc collé au-dessus du pied de page
+
+        out_dir = tempfile.mkdtemp(prefix="pulsevid_")
+        for n in range(N):
+            t = n / FPS
+            img = grad_bg.copy().convert("RGBA")
+            pa = _vease((t - 0.9) / 1.0)
+            if photo_big is not None and pa > 0:
+                z = 1.0 + 0.07 * (t / DUR)
+                cw, chh = int(photo_big.width / z), int(photo_big.height / z)
+                cx, cy = (photo_big.width - cw) // 2, int((photo_big.height - chh) * 0.45)
+                fr = photo_big.crop((cx, cy, cx + cw, cy + chh)).resize((W, H), Image.LANCZOS).convert("RGBA")
+                img = fr if pa >= 1 else Image.blend(img, fr, pa)
+            img.alpha_composite(bands)
+            # barre néon défilante (nuances de la catégorie)
+            off = int((t * W * 0.22) % period)
+            bar = Image.new("RGB", (W, BAR_H))
+            xx = -off
+            while xx < W:
+                bar.paste(strip, (xx, 0)); xx += period
+            img.paste(bar, (0, 0))
+            d = ImageDraw.Draw(img)
+            # logo + ECG
+            la = _vease(t / 0.6)
+            if la > 0:
+                d.text((int(W * 0.04), int(H * 0.055)), "PULSE", font=LOGO_F, fill=WHITE + (int(255 * la),))
+            pts = ecg_pts(_vease((t - 0.3) / 0.9))
+            if len(pts) >= 2:
+                if not sober:
+                    lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); ld = ImageDraw.Draw(lay)
+                    ld.line(pts, fill=ecg_col + (110,), width=7, joint="curve")
+                    img.alpha_composite(lay.filter(ImageFilter.GaussianBlur(4)))
+                d = ImageDraw.Draw(img)
+                d.line(pts, fill=ecg_col, width=3, joint="curve")
+                if _vease((t - 0.3) / 0.9) >= 1 and not sober:
+                    r = 4 + 1.6 * (1 + math.sin(t * 5.5)) / 2
+                    e = ECG[-1]
+                    d.ellipse([e[0]-r, e[1]-r, e[0]+r, e[1]+r], fill=ecg_col)
+            # pastille haut droite
+            sa = _vease((t - 0.9) / 0.35)
+            if sa > 0:
+                if kind == "hommage":
+                    d.text((W - int(W * 0.04), int(H * 0.085)), "H O M M A G E", font=_vf(W * 0.020),
+                           fill=(205, 208, 224, int(255 * sa)), anchor="rm")
+                elif urgent:
+                    s = 1.0 + 0.5 * (1 - sa)
+                    pf = _vf(W * 0.024 * s)
+                    txt = "URGENT"; tw = d.textbbox((0, 0), txt, font=pf)[2]
+                    cxp, cyp = W - int(W * 0.04) - tw // 2 - int(W * 0.030), int(H * 0.095)
+                    padx, pady = int(W * 0.022 * s), int(H * 0.022 * s)
+                    box = [cxp - tw // 2 - padx, cyp - pady - int(W * 0.012 * s),
+                           cxp + tw // 2 + padx + int(W * 0.018 * s), cyp + pady + int(W * 0.012 * s)]
+                    d.rounded_rectangle(box, radius=int(H * 0.035), fill=RED + (int(235 * sa),))
+                    blink = 0.55 + 0.45 * math.sin(t * 6.0)
+                    rr = int(W * 0.0055)
+                    d.ellipse([box[0] + padx - rr, cyp - rr, box[0] + padx + rr, cyp + rr],
+                              fill=(255, 255, 255, int(255 * sa * blink)))
+                    d.text((cxp + int(W * 0.012), cyp), txt, font=pf, fill=WHITE + (int(255 * sa),), anchor="mm")
+                else:
+                    lbl = LABELS.get(category, category.upper())[:18]
+                    pf = _vf(W * 0.019)
+                    tw = d.textbbox((0, 0), lbl, font=pf)[2]
+                    x1 = W - int(W * 0.04) - tw - int(W * 0.030); y0p = int(H * 0.065); y1p = y0p + int(H * 0.060)
+                    d.rounded_rectangle([x1, y0p, W - int(W * 0.04), y1p], radius=int(H * 0.030),
+                                        outline=(255, 255, 255, int(190 * sa)), width=2)
+                    d.text((W - int(W * 0.04) - int(W * 0.015), (y0p + y1p) // 2), lbl,
+                           font=pf, fill=WHITE + (int(255 * sa),), anchor="rm")
+
+            # ── contenu central selon le type ──
+            if kind == "news":
+                for i, line in enumerate(HLINES):
+                    wa = _vease((t - (1.9 + i * 0.25)) / 0.45)
+                    if wa <= 0: continue
+                    dy = int((1 - wa) * 16)
+                    y = HY0 + i * LH + dy
+                    d.text((int(W * 0.04) + 2, y + 2), line, font=HFONT, fill=(0, 0, 0, int(200 * wa)))
+                    d.text((int(W * 0.04), y), line, font=HFONT, fill=WHITE + (int(255 * wa),))
+            elif kind == "victory":
+                typ, winner = data.get("type", "match"), data.get("winner", "")
+                cy = int(H * 0.50)
+                if typ == "race":
+                    name = data.get("winner_name", "").upper()
+                    fz = _vf(min(W * 0.085, W * 0.085))
+                    while tmpd.textbbox((0, 0), name, font=fz)[2] > W * 0.84 and fz.size > 30:
+                        fz = _vf(fz.size - 4)
+                    na_ = _vease((t - 1.6) / 0.6)
+                    if na_ > 0:
+                        sc = 1.08 - 0.08 * na_
+                        f2 = _vf(fz.size * sc)
+                        d.text((W // 2 + 2, cy + 2), name, font=f2, fill=(0, 0, 0, int(220 * na_)), anchor="mm")
+                        d.text((W // 2, cy), name, font=f2, fill=GOLD + (int(255 * na_),), anchor="mm")
+                    da_ = _vease((t - 2.4) / 0.5)
+                    if da_ > 0 and data.get("detail"):
+                        d.text((W // 2, cy - int(H * 0.10)), data["detail"], font=_vf(W * 0.022, False),
+                               fill=DIM + (int(255 * da_),), anchor="mm")
+                else:
+                    na, nb = (data.get("player_a"), data.get("player_b")) if typ == "tennis" else (data.get("team_a"), data.get("team_b"))
+                    sl = _vease((t - 1.5) / 0.7)
+                    lax, rax = int(W * 0.17), int(W * 0.83)
+                    offx = int((1 - sl) * W * 0.22)
+                    for xx_, txt_, win_ in [(lax - offx, (na or "").upper(), winner == "A"),
+                                            (rax + offx, (nb or "").upper(), winner == "B")]:
+                        if sl <= 0: break
+                        ftm = _vf(W * 0.044)
+                        while tmpd.textbbox((0, 0), txt_, font=ftm)[2] > W * 0.27 and ftm.size > 22:
+                            ftm = _vf(ftm.size - 2)
+                        d.text((xx_ + 2, cy - int(H * 0.03) + 2), txt_, font=ftm, fill=(0, 0, 0, int(220 * sl)), anchor="mm")
+                        gold_now = win_ and t >= 4.0
+                        d.text((xx_, cy - int(H * 0.03)), txt_, font=ftm,
+                               fill=(GOLD if gold_now else WHITE) + (int(255 * sl),), anchor="mm")
+                        if win_ and _vease((t - 4.2) / 0.4) > 0:
+                            va = _vease((t - 4.2) / 0.4)
+                            d.text((xx_, cy + int(H * 0.055)), "✔ VAINQUEUR", font=_vf(W * 0.018),
+                                   fill=GOLD + (int(255 * va),), anchor="mm")
+                    if typ == "tennis":
+                        ca_ = _vease((t - 2.3) / 0.6)
+                        if ca_ > 0:
+                            sets = data.get("sets", "") or "—"
+                            cf = _vf(W * 0.05)
+                            while tmpd.textbbox((0, 0), sets, font=cf)[2] > W * 0.42 and cf.size > 22:
+                                cf = _vf(cf.size - 2)
+                            d.text((W // 2 + 2, cy + 2), sets, font=cf, fill=(0, 0, 0, int(220 * ca_)), anchor="mm")
+                            d.text((W // 2, cy), sets, font=cf, fill=WHITE + (int(255 * ca_),), anchor="mm")
+                    else:
+                        prog = _vease((t - 2.3) / 1.1)
+                        va_, vb_ = int(round(prog * int(data.get("score_a", 0)))), int(round(prog * int(data.get("score_b", 0))))
+                        if prog > 0:
+                            cf = _vf(W * 0.10)
+                            d.text((W // 2 + 3, cy + 3), f"{va_}  -  {vb_}", font=cf, fill=(0, 0, 0, 230), anchor="mm")
+                            d.text((W // 2, cy), f"{va_}  -  {vb_}", font=cf, fill=WHITE, anchor="mm")
+                    st_ = _vease((t - 3.6) / 0.35)
+                    if st_ > 0 and winner != "NUL":
+                        sc = 1.0 + 0.5 * (1 - st_)
+                        bf = _vf(W * 0.032 * sc)
+                        d.text((W // 2 + 2, int(H * 0.205) + 2), "★  VICTOIRE  ★", font=bf, fill=(0, 0, 0, int(220 * st_)), anchor="mm")
+                        d.text((W // 2, int(H * 0.205)), "★  VICTOIRE  ★", font=bf, fill=GOLD + (int(255 * st_),), anchor="mm")
+                    elif st_ > 0:
+                        d.text((W // 2, int(H * 0.205)), "MATCH NUL", font=_vf(W * 0.032),
+                               fill=(220, 224, 235, int(255 * st_)), anchor="mm")
+            elif kind == "hommage":
+                name = str(data.get("name", ""))
+                fz = _vf(W * 0.058, serif=True)
+                while tmpd.textbbox((0, 0), name.upper(), font=fz)[2] > W * 0.86 and fz.size > 28:
+                    fz = _vf(fz.size - 4, serif=True)
+                ny = FOOTER_Y - int(H * 0.205)
+                na_ = _vease((t - 1.8) / 0.9)
+                if na_ > 0:
+                    dy = int((1 - na_) * 14)
+                    d.text((int(W * 0.045), ny + dy), name.upper(), font=fz, fill=WHITE + (int(255 * na_),))
+                fa2 = _vease((t - 2.8) / 0.8)
+                if fa2 > 0:
+                    y2 = ny + fz.size + int(H * 0.022)
+                    d.rectangle([int(W * 0.046), y2, int(W * 0.046) + int(W * 0.11), y2 + 3],
+                                fill=(176, 180, 194, int(255 * fa2)))
+                    if data.get("dates"):
+                        d.text((int(W * 0.045), y2 + int(H * 0.022)), data["dates"], font=_vf(W * 0.024, False),
+                               fill=(196, 200, 216, int(255 * fa2)))
+                fa3 = _vease((t - 3.4) / 0.8)
+                if fa3 > 0 and data.get("desc"):
+                    d.text((int(W * 0.045), ny + fz.size + int(H * 0.085)), data["desc"], font=_vf(W * 0.020, False),
+                           fill=(165, 168, 186, int(255 * fa3)))
+
+            # pied de page (zone réservée — rien ne descend dessus)
+            fa = _vease((t - (DUR - 2.2)) / 0.6)
+            if fa > 0:
+                d.text((int(W * 0.04), H - int(H * 0.082)), "Pulse", font=_vf(W * 0.020),
+                       fill=WHITE + (int(255 * fa),))
+                d.text((W - int(W * 0.04), H - int(H * 0.070)), f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
+                       font=_vf(W * 0.016, False), fill=DIM + (int(230 * fa),), anchor="rm")
+            img.convert("RGB").save(f"{out_dir}/f_{n:03d}.png")
+
+        out_mp4 = os.path.join(out_dir, "pulse_video.mp4")
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS),
+                        "-i", f"{out_dir}/f_%03d.png", "-c:v", "libx264", "-pix_fmt", "yuv420p",
+                        "-crf", "20", "-movflags", "+faststart", out_mp4], check=True, timeout=300)
+        print(f"  🎬 Vidéo générée ({kind})")
+        return out_mp4
+    except Exception as e:
+        print(f"  ⚠️ build_video: {e} → image classique")
+        return None
 
 # ═══════════════════════════════════════════════════════════════════════════
 # MODE BREAKING — détection multi-sources + publication immédiate
@@ -2322,8 +2645,9 @@ def publish_breaking(conn, item, cat, urgent=True):
     raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, label_cat)
     png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                              article_url=item.get("url"), person=person, prefetched=(raw_src, has_real))
-    post_to_twitter(tweet_final, png_bytes)
-    post_to_facebook(tweet_final, png_bytes)
+    vid = build_video("news", {"headline": headline_court}, label_cat, raw_src, item["source"], urgent=urgent)
+    post_to_twitter(tweet_final, png_bytes, vid)
+    post_to_facebook(tweet_final, png_bytes, vid)
     png_ig, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                           article_url=item.get("url"), person=person, W=1080, H=1350,
                           prefetched=(raw_src, has_real), headline_bottom=True)
@@ -2546,6 +2870,9 @@ def check_feeds(conn):
             cat = item["analysis"]["category"]
             a   = item["analysis"]
             keywords = []
+            # Décès d'une personne → catégorie HOMMAGE (label 🕊️, ton sobre), jamais "faits divers"
+            if cat != "breaking" and _is_obituary(item.get("title", ""), item.get("summary", "")):
+                cat = "hommage"
 
             if "tweet" in item:
                 tweet_final    = item["tweet"]
@@ -2584,18 +2911,20 @@ def check_feeds(conn):
 
             # 🕊️ Si c'est le DÉCÈS d'une personnalité : carte hommage (portrait N&B + nom)
             obituary = None
-            if not victory and "tweet" not in item and _is_obituary(item.get("title", ""), item.get("summary", "")):
+            if not victory and "tweet" not in item and cat == "hommage":
                 obituary = extract_obituary(item["title"], item.get("summary", ""), item.get("url"))
 
             if victory:
                 png_bytes = build_victory_card(raw_src, victory, item["source"], W=1200, H=675)
                 png_ig    = build_victory_card(raw_src, victory, item["source"], W=1080, H=1350)
+                video_path = build_video("victory", victory, "sport", raw_src, item["source"])
                 print(f"  🏆 Carte résultat ({victory['type']}) publiée")
             elif obituary:
                 png_bytes = build_hommage_card(raw_src, obituary["name"], obituary["dates"],
                                                obituary["desc"], item["source"], W=1200, H=675)
                 png_ig = build_hommage_card(raw_src, obituary["name"], obituary["dates"],
                                             obituary["desc"], item["source"], W=1080, H=1350)
+                video_path = build_video("hommage", obituary, "hommage", raw_src, item["source"])
                 print(f"  🕊️ Carte hommage : {obituary['name']}")
             else:
                 png_bytes, png_nm = build_png(
