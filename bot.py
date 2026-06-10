@@ -190,6 +190,7 @@ def init_db():
     conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
     conn.execute("DELETE FROM keyword_log    WHERE last_sent   < datetime('now', '-12 hours')")
     conn.execute("DELETE FROM special_log    WHERE sent_at     < datetime('now', '-8 days')")
+    conn.execute("DELETE FROM seen           WHERE seen_at     < datetime('now', '-45 days')")   # la base reste légère
     conn.commit()
     return conn
 
@@ -310,13 +311,31 @@ def should_publish_now(conn, min_minutes=45, max_minutes=105):
 # CLAUDE API
 # ═══════════════════════════════════════════════════════════════════════════
 def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001"):
+    """Appel Claude avec parsing JSON blindé + 1 nouvelle tentative en cas d'erreur réseau/API."""
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    msg = client.messages.create(
-        model=model, max_tokens=max_tokens,
-        messages=[{"role": "user", "content": prompt}]
-    )
-    raw = msg.content[0].text.strip().replace("```json", "").replace("```", "").strip()
-    return json.loads(raw)
+    last_err = None
+    for attempt in (1, 2):
+        try:
+            msg = client.messages.create(
+                model=model, max_tokens=max_tokens,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            raw = msg.content[0].text.strip().replace("```json", "").replace("```", "").strip()
+            try:
+                return json.loads(raw)
+            except json.JSONDecodeError:
+                # Repli : extrait le premier objet JSON même si Claude a ajouté du texte autour
+                m = re.search(r'\{.*\}', raw, re.DOTALL)
+                if m:
+                    return json.loads(m.group(0))
+                raise
+        except (anthropic.APIConnectionError, anthropic.APIStatusError, anthropic.RateLimitError) as e:
+            last_err = e
+            if attempt == 1:
+                time.sleep(3)
+                continue
+            raise
+    raise last_err
 
 def claude_text(prompt, max_tokens=700, model="claude-haiku-4-5-20251001"):
     """Comme claude() mais renvoie du texte brut (pas de JSON)."""
@@ -326,35 +345,6 @@ def claude_text(prompt, max_tokens=700, model="claude-haiku-4-5-20251001"):
         messages=[{"role": "user", "content": prompt}]
     )
     return msg.content[0].text.strip()
-
-def relire(texte):
-    """
-    Relecture finale : corrige fautes d'orthographe/grammaire/accord, traduit tout
-    passage en anglais, complète les mots tronqués. Garde le sens, le ton, les emojis,
-    les hashtags et la mise en forme À L'IDENTIQUE. Appel court et peu coûteux.
-    """
-    if not texte or len(texte) < 10:
-        return texte
-    try:
-        prompt = (
-            "Tu es correcteur professionnel. Corrige ce texte de publication en français.\n\n"
-            "RÈGLES :\n"
-            "- Corrige TOUTES les fautes d'orthographe, grammaire, accord, conjugaison, ponctuation.\n"
-            "- Traduis en français TOUT mot ou phrase en anglais. Le résultat doit être 100% en français.\n"
-            "- Complète tout mot visiblement coupé/tronqué.\n"
-            "- GARDE le sens, le ton, les emojis, les hashtags et la mise en forme (sauts de ligne, paragraphes) EXACTEMENT.\n"
-            "- N'ajoute aucune information, n'en retire aucune, ne change pas la structure.\n"
-            "- Renvoie UNIQUEMENT le texte corrigé, sans aucun commentaire ni guillemets autour.\n\n"
-            "TEXTE :\n" + texte
-        )
-        out = claude_text(prompt, max_tokens=900)
-        out = out.strip().strip('"').strip()
-        # garde-fou : on n'accepte la correction que si elle reste cohérente en longueur
-        if out and 0.5 * len(texte) <= len(out) <= 1.6 * len(texte):
-            return out
-    except Exception as e:
-        print(f"  ⚠️ Relecture échouée (texte gardé tel quel) : {e}")
-    return texte
 
 def analyse_batch(articles, recent, blocked_keywords):
     """Analyse plusieurs articles en un seul appel Claude."""
@@ -395,16 +385,29 @@ Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE) :
 
 Barème score :
 - 9-10 : UNIQUEMENT un FAIT urgent et majeur EN TRAIN DE SE PASSER — décès d'une personnalité majeure, attentat, catastrophe naturelle, accident/crash grave, fusillade, résultat très attendu (élection, verdict), annonce gouvernementale soudaine et majeure. ⛔ Un rapport, une étude, une analyse, un sondage, un classement, un baromètre ou une prévision n'est JAMAIS un 9-10 (au mieux 7).
-- 7-8  : info importante (politique, économie, sport, gros buzz réseaux sociaux/pop culture, rapport ou étude marquant)
-- 6    : info intéressante du quotidien (insolite, fait divers marquant, info locale forte, lancement de produit d'une célébrité)
-- 0-5  : trop banal pour un compte d'actu
+- 7-8  : info CHAUDE et CONCRÈTE qui fait réagir : actu politique à rebondissement (démission, clash, affaire, garde à vue), match/résultat sportif, drama ou buzz (people, créateurs, réseaux sociaux), fait divers marquant, gros lancement gaming/tech, polémique en cours
+- 6    : info intéressante du quotidien (insolite, info locale forte, lancement de produit d'une célébrité)
+- 0-5  : trop banal OU trop froid pour un compte d'actu
+
+🔥 PRIORITÉ ABSOLUE AU CHAUD ET AU CONCRET :
+- PRIORISE ce qui SE PASSE MAINTENANT ou vient de se passer : événements en direct, résultats, décisions prises, clashs, arrestations, victoires, drames, annonces effectives.
+- ⛔ DÉPRIORISE FORTEMENT (score MAX 5) tout ce qui est FROID, INSTITUTIONNEL ou SPÉCULATIF : débats sur une réforme à venir ("à un mois de la réforme prévue en juillet..."), négociations techniques (mécanismes européens, tarification, quotas), rapports prospectifs, "ce qui pourrait changer", consultations, projets de loi sans vote, anniversaires institutionnels. Personne ne clique là-dessus.
+- Test simple : si le titre parle d'un FUTUR POTENTIEL ou d'un PROCESSUS technique → MAX 5. S'il raconte un ÉVÉNEMENT qui vient d'arriver → 6+.
+
+🇫🇷 CE QUI BUZZE LE PLUS sur X en France (à privilégier dès que présent) :
+1. FOOTBALL : équipe de France, Mbappé, PSG, OM, Coupe du Monde 2026, Ligue des champions — n°1 absolu de l'engagement
+2. Drames et faits divers majeurs : fusillade, attentat, disparition, procès médiatique (= breaking si en direct)
+3. Politique à CLASH : affaires, gardes à vue, démissions, punchlines à l'Assemblée, motions — pas les textes de loi techniques
+4. Autres sports chauds : NBA/Wembanyama, Roland-Garros, Tour de France, F1, boxe/MMA
+5. Drama people/influenceurs/télé : clashs de créateurs, télé-réalité, révélations
+6. Insolite viral : pannes nationales, bugs cocasses ("Test Cédric"), records absurdes
 
 ⚖️ ÉQUILIBRE ÉDITORIAL IMPORTANT :
-- NE FAVORISE PAS systématiquement la politique et les mêmes sujets (Trump, Iran, Macron, Chine...).
+- NE FAVORISE PAS systématiquement la politique et les mêmes sujets (Trump, Iran, Macron, Chine...). La politique qui score haut, c'est celle à REBONDISSEMENTS (affaires, clashs, démissions), pas les débats de procédure.
 - VALORISE autant la POP CULTURE et les RÉSEAUX SOCIAUX : créateurs de contenu (Squeezie, McFly & Carlito, Inoxtag, Lena Situations...), lancements de marques/produits par des célébrités, buzz viraux, cinéma, séries, musique, télé-réalité, sorties culturelles.
 - 🎮 VALORISE AUSSI le GEEK / JEUX VIDÉO / YOUTUBEURS : sorties et annonces de jeux vidéo (PlayStation, Xbox, Nintendo, GTA, gros AAA...), actus gaming et esport, drama/annonces de YouTubeurs et streamers Twitch, tech grand public (nouveaux smartphones, IA, gadgets). Une grosse annonce gaming ou une actu de créateur connu mérite un score élevé (7-8).
 - Ces sujets "légers" intéressent ÉNORMÉMENT le grand public et méritent des scores élevés (7-8) quand c'est un gros événement (ex: Squeezie lance une boisson, sortie de GTA 6, Inoxtag annonce un projet = score 7-8).
-- Un bon mix = politique + société + pop culture + gaming/geek + sport + insolite, PAS que de la politique.
+- Un bon mix = politique chaude + société + pop culture + gaming/geek + sport + insolite, PAS de débats institutionnels.
 - Une info locale marquante peut scorer aussi haut qu'une info internationale.
 
 Catégories possibles (choisis la plus juste) :
@@ -791,6 +794,8 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 scale = max(W / src_w, H / src_h)
                 new_w, new_h = int(src_w * scale + 0.5), int(src_h * scale + 0.5)
                 photo = photo.resize((new_w, new_h), Image.LANCZOS)
+                if scale < 1:   # on a réduit la photo → légère accentuation pour une netteté parfaite
+                    photo = photo.filter(ImageFilter.UnsharpMask(radius=2, percent=60, threshold=3))
                 # Cadrage INTELLIGENT : on centre sur le VISAGE s'il y en a un détecté
                 # (sinon léger biais vers le haut). Fini les visages coupés.
                 face = detect_face_center(photo) if has_real_photo else None
@@ -1251,7 +1256,17 @@ def post_to_instagram(caption, png_bytes=None, video_path=None):
     if not png_bytes:
         return None  # Instagram exige une image/vidéo, pas de post texte seul
 
-    # 1) Héberger l'image (Instagram exige une URL publique)
+    # 1) Conversion en JPEG haute qualité (format exigé par l'API Instagram, évite une recompression destructive)
+    try:
+        import io as _io
+        im = Image.open(_io.BytesIO(png_bytes)).convert("RGB")
+        buf = _io.BytesIO()
+        im.save(buf, format="JPEG", quality=92, optimize=True)
+        png_bytes = buf.getvalue()
+    except Exception:
+        pass  # en cas de souci, on envoie l'image telle quelle
+
+    # 2) Héberger l'image (Instagram exige une URL publique)
     image_url = upload_to_imgbb(png_bytes)
     if not image_url:
         print("  ⚠️ Instagram : pas d'URL image (imgbb), skip.")
@@ -1404,78 +1419,6 @@ def gather_all_headlines():
                     headlines.append(f"[{fi['source']}] {title} — {summ[:200]}")
         except: pass
     return headlines
-
-def gen_thread(conn):
-    """Génère un thread explicatif sur le sujet majeur du jour, basé UNIQUEMENT sur les articles RSS."""
-    if special_done_today(conn, "thread"):
-        return None
-    if datetime.now().hour < 9:   # pas de thread avant 9h
-        return None
-
-    headlines = gather_all_headlines()
-    if len(headlines) < 10:
-        print("  ⚠️ Pas assez d'articles pour un thread.")
-        return None
-
-    avoid = recent_special_topics(conn, "thread", days=7)
-    avoid_str = " ; ".join(avoid) if avoid else "Aucun"
-
-    headlines_str = "\n".join(headlines[:50])
-    today = datetime.now().strftime("%d %B %Y")
-
-    try:
-        result = claude(f"""Tu es journaliste pour Pulse, compte Twitter d'actualité française. Aujourd'hui : {today}.
-
-Voici les titres et résumés des articles d'actualité du jour :
-
-{headlines_str}
-
-SUJETS DÉJÀ TRAITÉS CES 7 DERNIERS JOURS (à ÉVITER) :
-{avoid_str}
-
-Ta mission : identifier LE sujet majeur du jour (différent de ceux déjà traités) et écrire un DÉCRYPTAGE clair, bien structuré et agréable à lire, en UN SEUL tweet long (compte Premium).
-
-RÈGLES ABSOLUES :
-- Base-toi UNIQUEMENT sur les informations présentes dans les articles ci-dessus.
-- N'INVENTE AUCUN fait, chiffre, date ou citation qui ne serait pas dans les articles.
-- Si tu n'es pas sûr d'un détail, reste général plutôt que d'inventer.
-- 🇫🇷 FRANÇAIS IMPECCABLE : zéro mot en anglais (traduis tout), zéro faute d'orthographe/grammaire/accord, aucun mot tronqué. RELIS-toi avant de répondre et corrige tout.
-
-STRUCTURE OBLIGATOIRE (bien aérée, avec emojis pour rythmer) :
-- Ligne 1 : 🧵 + accroche forte qui pose le sujet, puis "— Le décryptage"
-- DOUBLE SAUT DE LIGNE entre CHAQUE bloc
-- Puis 3 blocs courts, chacun introduit par un emoji thématique en début de ligne, par exemple :
-  📌 Le contexte : ...
-  ⚡ Les enjeux : ...
-  🔮 Ce qui peut suivre : ...
-  (adapte les emojis et intitulés au sujet : 📊 chiffres, 🌍 international, ⚖️ justice, 💶 économie, etc.)
-- DOUBLE SAUT DE LIGNE
-- Dernier bloc : ✅ À retenir : une phrase de synthèse
-- 2-3 hashtags pertinents répartis naturellement dans le texte (#Macron, #PSG... pas #news)
-- Longueur totale : 700 à 1000 caractères
-- Les sauts de ligne s'écrivent \\n dans le JSON
-
-Réponds avec ce JSON UNIQUEMENT :
-{{"sujet":"<2-4 mots>","keywords":["mot1","mot2","mot3"],"image_query":"<5 mots anglais>","body":"🧵 Accroche — Le décryptage\\n\\n📌 Le contexte : ...\\n\\n⚡ Les enjeux : ...\\n\\n🔮 Ce qui peut suivre : ...\\n\\n✅ À retenir : ..."}}""", max_tokens=1000)
-
-        body = result.get("body", "").strip()
-        if not body or len(body) < 100:
-            print("  ⚠️ Thread invalide.")
-            return None
-
-        # Nettoyage préfixe éventuel
-        for lbl in LABELS.values():
-            body = re.sub(rf"^{lbl}\s*\|\s*", "", body, flags=re.IGNORECASE)
-
-        return {
-            "body":        body,
-            "keywords":    result.get("keywords", []),
-            "sujet":       result.get("sujet", "actu"),
-            "image_query": result.get("image_query", "world news"),
-        }
-    except Exception as e:
-        print(f"  ⚠️ Thread échoué : {e}")
-        return None
 
 def post_thread(tweets_list, png_bytes=None):
     """Poste un thread (chaîne de réponses) sur X. Image sur le 1er tweet."""
@@ -1793,15 +1736,30 @@ Articles du jour (numérotés) :
 
 Sujets déjà traités ces 7 derniers jours (à éviter) : {avoid_str}
 
-Choisis LE sujet de fond le plus marquant pour un décryptage pédagogique : réforme, loi, économie, grande décision, sujet de société explicatif. ÉVITE les simples faits divers, scores sportifs et people.
+Choisis les sujets qui font PARLER et donnent envie de cliquer : affaire/scandale en cours, polémique, drame marquant, événement sportif majeur, décision qui touche directement le portefeuille ou le quotidien des gens, gros buzz. ⛔ ÉVITE ABSOLUMENT les sujets froids/institutionnels : débats techniques (quotas, tarification, mécanismes européens), réformes "à venir", rapports prospectifs, négociations de procédure. Si un sujet ressemble à un cours d'économie, ne le choisis pas.
+
+Donne ton TOP 3 par ordre de préférence (le meilleur en premier).
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"index": <numéro de l'article choisi>, "sujet":"<2-4 mots>", "cover_title":"<accroche ≤60 caractères>", "image_query":"<5 mots-clés anglais pour photo>", "keywords":["m1","m2","m3"]}}""", max_tokens=300)
+{{"indices": [<n°1>, <n°2>, <n°3>], "sujet":"<2-4 mots sur le n°1>", "cover_title":"<accroche ≤60 caractères pour le n°1>", "image_query":"<5 mots-clés anglais pour photo>", "keywords":["m1","m2","m3"]}}""", max_tokens=300)
 
-        idx = pick.get("index")
-        if idx is None or not isinstance(idx, int) or idx < 0 or idx >= len(arts):
+        # On prend le premier candidat du top 3 qui a une VRAIE photo (og:image) — jamais de photo de stock
+        indices = pick.get("indices") or ([pick["index"]] if isinstance(pick.get("index"), int) else [])
+        art, og_bytes = None, None
+        for idx in indices[:3]:
+            if not isinstance(idx, int) or idx < 0 or idx >= len(arts):
+                continue
+            cand = arts[idx]
+            try:
+                og = fetch_og_image(cand["url"])
+            except Exception:
+                og = None
+            if og:
+                art, og_bytes = cand, og
+                break
+        if art is None:
+            print("  ⚠️ Décryptage : aucun candidat avec une vraie photo — on retentera au prochain passage.")
             return None
-        art = arts[idx]
 
         # ÉTAPE 2 : lire l'article complet (pour les vrais chiffres)
         article_text = fetch_article_text(art["url"], max_chars=4000)
@@ -1828,7 +1786,7 @@ RÈGLES ABSOLUES :
 - Chaque point : UNE phrase courte et factuelle (≤ 110 caractères), avec un chiffre ou un fait précis. PAS d'emoji dans les points.
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1100)
+{{"cover_title":"<accroche de couverture ≤60 caractères, percutante>","slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1100)
 
         slides = result.get("slides", [])
         slides = [s for s in slides if s.get("titre") and s.get("points")][:4]
@@ -1836,12 +1794,13 @@ Réponds avec ce JSON UNIQUEMENT :
             return None
         return {
             "sujet":       pick.get("sujet", "Décryptage")[:40],
-            "cover_title": pick.get("cover_title", art["title"])[:80],
+            "cover_title": (result.get("cover_title") or pick.get("cover_title") or art["title"])[:80],
             "image_query": pick.get("image_query", "news france"),
             "keywords":    pick.get("keywords", []),
             "slides":      slides,
             "url":         art["url"],
             "summary":     art["summary"],
+            "og_bytes":    og_bytes,   # vraie photo de l'article, déjà vérifiée
         }
     except Exception as e:
         print(f"  ⚠️ gen_carousel: {e}")
@@ -1921,41 +1880,97 @@ def post_carousel_to_instagram(slides_png, caption):
 # ═══════════════════════════════════════════════════════════════════════════
 # CARTE DE VICTOIRE (sport) — photo du match floutée + score + vainqueur
 # ═══════════════════════════════════════════════════════════════════════════
-def extract_match_result(title, summary):
-    """Extrait les données d'un match terminé (équipes, score, compétition) via 1 petit appel Claude."""
+def extract_sport_result(title, summary):
+    """Extrait un résultat sportif TERMINÉ : match (sports co), tennis (sets) ou course (vainqueur seul)."""
     try:
         r = claude(f"""Analyse ce titre/résumé d'actualité sportive.
-S'il s'agit d'un MATCH TERMINÉ avec un score final clair, extrais les infos. Sinon réponds {{"ok":false}}.
+S'il s'agit d'un RÉSULTAT DÉFINITIF clairement identifiable, extrais les infos. Sinon réponds {{"ok":false}}.
 
 Titre : {title}
 Résumé : {summary[:300]}
 
-Réponds avec ce JSON UNIQUEMENT :
-{{"ok":true,"team_a":"<équipe 1>","score_a":<entier>,"team_b":"<équipe 2>","score_b":<entier>,"competition":"<compétition courte, ex: Coupe du Monde 2026 / Ligue 1 / NBA>"}}
-Si ce n'est pas un score de match terminé clairement identifiable, réponds {{"ok":false}}.""", max_tokens=200)
+Types possibles :
+- "match"  (sports collectifs : football, basket, rugby, handball...) → team_a, score_a, team_b, score_b
+- "tennis" (duel en sets) → player_a, player_b, sets (ex "6-4, 3-6, 7-6"), winner ("A" ou "B")
+- "race"   (cyclisme, F1, athlétisme, ski, natation, golf, moto...) → winner_name, detail (ex "Étape 12", "Grand Prix du Canada", sinon vide)
+
+Champs communs : competition (nom court : "Ligue 1", "Roland-Garros", "Tour de France"...), sport (en MAJUSCULES : FOOTBALL, BASKET, TENNIS, RUGBY, CYCLISME, F1...).
+⛔ UNIQUEMENT les infos écrites dans le titre/résumé. N'invente RIEN (ni score, ni nom).
+
+Réponds avec ce JSON UNIQUEMENT (un de ces formats) :
+{{"ok":true,"type":"match","sport":"FOOTBALL","competition":"Ligue 1","team_a":"PSG","score_a":2,"team_b":"OM","score_b":1}}
+{{"ok":true,"type":"tennis","sport":"TENNIS","competition":"Roland-Garros","player_a":"Alcaraz","player_b":"Sinner","sets":"6-4, 3-6, 7-6","winner":"A"}}
+{{"ok":true,"type":"race","sport":"CYCLISME","competition":"Tour de France","winner_name":"Pogacar","detail":"Étape 12"}}""", max_tokens=260)
         if not r or not r.get("ok"):
             return None
-        sa, sb = int(r["score_a"]), int(r["score_b"])
-        ta, tb = str(r.get("team_a", "")).strip()[:22], str(r.get("team_b", "")).strip()[:22]
-        if not ta or not tb:
-            return None
-        winner = "A" if sa > sb else ("B" if sb > sa else "NUL")
-        return {"team_a": ta, "score_a": sa, "team_b": tb, "score_b": sb,
-                "competition": str(r.get("competition", "")).strip()[:26], "winner": winner}
+        t     = r.get("type")
+        comp  = str(r.get("competition", "")).strip()[:26]
+        sport = str(r.get("sport", "")).strip().upper()[:14]
+        if t == "match":
+            sa, sb = int(r["score_a"]), int(r["score_b"])
+            ta, tb = str(r.get("team_a", "")).strip()[:22], str(r.get("team_b", "")).strip()[:22]
+            if not ta or not tb:
+                return None
+            return {"type": "match", "sport": sport, "competition": comp,
+                    "team_a": ta, "score_a": sa, "team_b": tb, "score_b": sb,
+                    "winner": "A" if sa > sb else ("B" if sb > sa else "NUL")}
+        if t == "tennis":
+            pa, pb = str(r.get("player_a", "")).strip()[:22], str(r.get("player_b", "")).strip()[:22]
+            win = r.get("winner")
+            if not pa or not pb or win not in ("A", "B"):
+                return None
+            return {"type": "tennis", "sport": sport or "TENNIS", "competition": comp,
+                    "player_a": pa, "player_b": pb,
+                    "sets": str(r.get("sets", "")).strip()[:30], "winner": win}
+        if t == "race":
+            wn = str(r.get("winner_name", "")).strip()[:26]
+            if not wn:
+                return None
+            return {"type": "race", "sport": sport, "competition": comp,
+                    "winner_name": wn, "detail": str(r.get("detail", "")).strip()[:30]}
+        return None
     except Exception as e:
-        print(f"  ⚠️ extract_match_result: {e}")
+        print(f"  ⚠️ extract_sport_result: {e}")
         return None
 
-def build_victory_card(raw_photo, team_a, sa, team_b, sb, compet, winner, source, W=1200, H=675):
-    """Carte de résultat sportif : photo du match floutée + overlay score/vainqueur (DA Pulse)."""
+def _pulse_brand(img, d, W, H, color=(255, 255, 255), ecg=True):
+    """Logo Pulse en italique gras + ligne ECG néon (signature de la marque)."""
+    def fnt(px):
+        try:
+            return ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf", int(px))
+        except Exception:
+            return ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", int(px))
+    size = W * 0.040
+    x0, y0 = int(W * 0.038), int(H * 0.045)
+    f = fnt(size)
+    d.text((x0, y0), "PULSE", font=f, fill=color)
+    if not ecg:
+        return
+    # ligne ECG : plat → pic → creux → petit rebond → plat → point (comme le logo officiel)
+    bb = d.textbbox((x0, y0), "PULSE", font=f)
+    lx, ly = bb[2] + int(W * 0.012), (bb[1] + bb[3]) // 2
+    u = max(3, int(W * 0.0075))   # unité d'échelle
+    pts = [(lx, ly), (lx + 2*u, ly), (lx + 3*u, ly - 4*u), (lx + 4*u, ly + 3*u),
+           (lx + 5*u, ly - u), (lx + 6*u, ly), (lx + 9*u, ly)]
+    neon = (255, 80, 200)
+    # halo (épais translucide) + trait net
+    lay = Image.new('RGBA', img.size, (0, 0, 0, 0)); ld = ImageDraw.Draw(lay)
+    ld.line(pts, fill=neon + (110,), width=max(5, int(W * 0.006)), joint="curve")
+    img.alpha_composite(lay.filter(ImageFilter.GaussianBlur(4)))
+    d2 = ImageDraw.Draw(img)
+    d2.line(pts, fill=neon, width=max(2, int(W * 0.0028)), joint="curve")
+    r = max(3, int(W * 0.0035))
+    d2.ellipse([pts[-1][0] - r, pts[-1][1] - r, pts[-1][0] + r, pts[-1][1] + r], fill=neon)
+
+def build_victory_card(raw_photo, res, source, W=1200, H=675):
+    """Carte de résultat sportif DA Pulse : photo du match floutée + score/vainqueur selon le sport.
+    res = dict renvoyé par extract_sport_result (type match / tennis / race)."""
     import io
     GOLD, WHITE, DIM, SILVER = (255, 210, 74), (255, 255, 255), (225, 220, 240), (220, 224, 235)
     def f(px, bold=True):
-        for p in [f"/usr/share/fonts/truetype/noto/NotoSans-{'Bold' if bold else 'Regular'}.ttf",
-                  f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"]:
-            try: return ImageFont.truetype(p, int(px))
-            except: continue
-        return ImageFont.load_default()
+        p = f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"
+        try: return ImageFont.truetype(p, int(px))
+        except Exception: return ImageFont.load_default()
     def lerp(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
     def fit(d, txt, maxw, start, mins=20):
         s = start
@@ -1965,7 +1980,7 @@ def build_victory_card(raw_photo, team_a, sa, team_b, sb, compet, winner, source
         ly = Image.new('RGBA', base.size, (0, 0, 0, 0)); fn(ImageDraw.Draw(ly))
         base.alpha_composite(ly.filter(ImageFilter.GaussianBlur(blur)))
 
-    # fond : photo du match floutée (recadrée cover) ou dégradé néon si pas de photo
+    # ── fond : photo floutée (recadrage cover LANCZOS) ou dégradé marque navy→violet→magenta ──
     bg = None
     if raw_photo:
         try:
@@ -1975,51 +1990,78 @@ def build_victory_card(raw_photo, team_a, sa, team_b, sb, compet, winner, source
                 nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
             else:
                 nh = int(ph.width / tr); ph = ph.crop((0, (ph.height - nh) // 2, ph.width, (ph.height - nh) // 2 + nh))
-            bg = ph.resize((W, H)).filter(ImageFilter.GaussianBlur(7))
+            bg = ph.resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(7))
         except Exception:
             bg = None
     if bg is None:
-        c_top, c_mid, c_bot = (16, 12, 42), (44, 18, 88), (110, 24, 120)
+        c1, c2, c3 = (18, 14, 62), (74, 28, 160), (226, 59, 167)   # bleu nuit → violet → magenta (DA Pulse)
         col = Image.new('RGB', (1, H))
         for y in range(H):
             t = y / H
-            col.putpixel((0, y), lerp(c_top, c_mid, t / 0.6) if t < 0.6 else lerp(c_mid, c_bot, (t - 0.6) / 0.4))
+            col.putpixel((0, y), lerp(c1, c2, t / 0.55) if t < 0.55 else lerp(c2, c3, (t - 0.55) / 0.45))
         bg = col.resize((W, H))
     img = bg.convert('RGBA')
 
-    # overlay sombre en bandes haut/bas (centre laissé visible)
+    # bandes sombres haut/bas (centre laissé visible pour la photo)
     ov = Image.new('RGBA', (W, H), (0, 0, 0, 0)); od = ImageDraw.Draw(ov)
     for y in range(H):
         t = y / H
-        a = int(150 * (1 - t / 0.34)) if t < 0.34 else (int(165 * ((t - 0.66) / 0.34)) if t > 0.66 else 0)
-        if a > 0: od.line([(0, y), (W, y)], fill=(14, 10, 38, min(180, a)))
+        a = int(160 * (1 - t / 0.34)) if t < 0.34 else (int(175 * ((t - 0.66) / 0.34)) if t > 0.66 else 0)
+        if a > 0: od.line([(0, y), (W, y)], fill=(12, 9, 36, min(190, a)))
     img = Image.alpha_composite(img, ov); d = ImageDraw.Draw(img)
 
-    for x in range(W): d.line([(x, 0), (x, max(6, int(H * 0.012)))], fill=lerp((90, 140, 255), (255, 80, 200), x / W))
-    d.text((int(W * 0.038), int(H * 0.05)), "Pulse", font=f(W * 0.037), fill=WHITE)
-    if compet:
-        fc = f(W * 0.020); tw = d.textbbox((0, 0), compet, font=fc)[2]
-        x1 = W - tw - int(W * 0.038) - int(W * 0.028); y0 = int(H * 0.055); y1 = y0 + int(H * 0.062)
-        d.rounded_rectangle([x1, y0, W - int(W * 0.038), y1], radius=int(H * 0.031), outline=(255, 255, 255, 180), width=2)
-        d.text((W - int(W * 0.038) - int(W * 0.014), (y0 + y1) // 2), compet, font=fc, fill=WHITE, anchor="rm")
+    # barre dégradée marque + logo Pulse italique + ECG
+    for x in range(W):
+        d.line([(x, 0), (x, max(6, int(H * 0.012)))], fill=lerp((90, 140, 255), (255, 80, 200), x / W))
+    _pulse_brand(img, d, W, H); d = ImageDraw.Draw(img)
 
-    banner = "★  VICTOIRE  ★" if winner in ("A", "B") else "MATCH NUL"
-    bcol = GOLD if winner in ("A", "B") else SILVER
+    # pastille SPORT · COMPÉTITION
+    pill = " · ".join(x for x in (res.get("sport", ""), res.get("competition", "")) if x)[:38]
+    if pill:
+        fc = f(W * 0.019); tw = d.textbbox((0, 0), pill, font=fc)[2]
+        x1 = W - tw - int(W * 0.038) - int(W * 0.028); y0 = int(H * 0.055); y1 = y0 + int(H * 0.062)
+        d.rounded_rectangle([x1, y0, W - int(W * 0.038), y1], radius=int(H * 0.031), outline=(255, 255, 255, 185), width=2)
+        d.text((W - int(W * 0.038) - int(W * 0.014), (y0 + y1) // 2), pill, font=fc, fill=WHITE, anchor="rm")
+
+    typ = res.get("type", "match")
+    winner = res.get("winner", "")
+    is_draw = (typ == "match" and winner == "NUL")
+    banner = "MATCH NUL" if is_draw else "★  VICTOIRE  ★"
+    bcol = SILVER if is_draw else GOLD
     by = int(H * 0.225)
     shadow(img, lambda l: l.text((W // 2, by), banner, font=f(W * 0.032), fill=(0, 0, 0, 235), anchor="mm"), 10); d = ImageDraw.Draw(img)
     d.text((W // 2, by), banner, font=f(W * 0.032), fill=bcol, anchor="mm")
 
-    cy = int(H * 0.50); score_txt = f"{sa}  -  {sb}"
-    shadow(img, lambda l: l.text((W // 2, cy), score_txt, font=f(W * 0.10), fill=(0, 0, 0, 240), anchor="mm"), 16); d = ImageDraw.Draw(img)
-    d.text((W // 2, cy), score_txt, font=f(W * 0.10), fill=WHITE, anchor="mm")
+    cy = int(H * 0.50)
 
-    lax, rax, maxw = int(W * 0.17), int(W * 0.83), int(W * 0.27)
-    for xx, txt, win in [(lax, team_a.upper(), winner == "A"), (rax, team_b.upper(), winner == "B")]:
-        ft = fit(d, txt, maxw, W * 0.044)
-        shadow(img, lambda l, xx=xx, txt=txt, ft=ft: l.text((xx, cy - int(H * 0.03)), txt, font=ft, fill=(0, 0, 0, 240), anchor="mm"), 11); d = ImageDraw.Draw(img)
-        d.text((xx, cy - int(H * 0.03)), txt, font=ft, fill=GOLD if win else WHITE, anchor="mm")
-        if win:
-            d.text((xx, cy + int(H * 0.05)), "✔ VAINQUEUR", font=f(W * 0.018), fill=GOLD, anchor="mm")
+    if typ == "race":
+        # course / contre-la-montre / GP : le vainqueur en très grand, OR
+        name = res.get("winner_name", "").upper()
+        fn = fit(d, name, int(W * 0.84), W * 0.085)
+        shadow(img, lambda l: l.text((W // 2, cy), name, font=fn, fill=(0, 0, 0, 240), anchor="mm"), 14); d = ImageDraw.Draw(img)
+        d.text((W // 2, cy), name, font=fn, fill=GOLD, anchor="mm")
+        d.text((W // 2, cy + int(H * 0.085)), "✔ VAINQUEUR", font=f(W * 0.022), fill=GOLD, anchor="mm")
+        if res.get("detail"):
+            d.text((W // 2, cy - int(H * 0.085)), res["detail"], font=f(W * 0.022, False), fill=DIM, anchor="mm")
+    else:
+        # match (score) ou tennis (sets) : duel gauche/droite
+        if typ == "tennis":
+            na, nb = res.get("player_a", ""), res.get("player_b", "")
+            center = res.get("sets", "") or "—"
+            cf = fit(d, center, int(W * 0.42), W * 0.052, mins=24)
+        else:
+            na, nb = res.get("team_a", ""), res.get("team_b", "")
+            center = f"{res.get('score_a', '')}  -  {res.get('score_b', '')}"
+            cf = f(W * 0.10)
+        shadow(img, lambda l: l.text((W // 2, cy), center, font=cf, fill=(0, 0, 0, 240), anchor="mm"), 16); d = ImageDraw.Draw(img)
+        d.text((W // 2, cy), center, font=cf, fill=WHITE, anchor="mm")
+        lax, rax, maxw = int(W * 0.17), int(W * 0.83), int(W * 0.27)
+        for xx, txt, win in [(lax, na.upper(), winner == "A"), (rax, nb.upper(), winner == "B")]:
+            ft = fit(d, txt, maxw, W * 0.044)
+            shadow(img, lambda l, xx=xx, txt=txt, ft=ft: l.text((xx, cy - int(H * 0.03)), txt, font=ft, fill=(0, 0, 0, 240), anchor="mm"), 11); d = ImageDraw.Draw(img)
+            d.text((xx, cy - int(H * 0.03)), txt, font=ft, fill=GOLD if win else WHITE, anchor="mm")
+            if win:
+                d.text((xx, cy + int(H * 0.05)), "✔ VAINQUEUR", font=f(W * 0.018), fill=GOLD, anchor="mm")
 
     shadow(img, lambda l: l.text((int(W * 0.038), H - int(H * 0.08)), "Pulse", font=f(W * 0.025), fill=(0, 0, 0, 220)), 6); d = ImageDraw.Draw(img)
     d.text((int(W * 0.038), H - int(H * 0.08)), "Pulse", font=f(W * 0.025), fill=WHITE)
@@ -2118,7 +2160,7 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1200, H=675):
                 nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
             else:
                 nh = int(ph.width / tr); top = int((ph.height - nh) * 0.30); ph = ph.crop((0, top, ph.width, top + nh))
-            ph = ph.resize((W, H))
+            ph = ph.resize((W, H), Image.LANCZOS)
             bw = ImageOps.grayscale(ph).convert('RGB')
             bw = Image.blend(bw, Image.new('RGB', (W, H), (0, 0, 0)), 0.18)
         except Exception:
@@ -2306,8 +2348,8 @@ def check_feeds(conn):
                             for k in carousel.get("keywords", [])[:3] if k.strip())
             xfb = body + (("\n\n" + tags) if tags else "")
 
-            # Image de couverture : VRAIE photo de l'article (og:image) en priorité, sinon Unsplash
-            raw_src, has_real = get_best_image(carousel.get("url"), None, None, carousel["image_query"], "monde")
+            # Image de couverture : VRAIE photo de l'article, déjà vérifiée par gen_carousel (jamais de stock)
+            raw_src, has_real = carousel["og_bytes"], True
             cover_paysage, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
                                          carousel["image_query"], prefetched=(raw_src, has_real))
             url = post_to_twitter(xfb, cover_paysage)
@@ -2538,7 +2580,7 @@ def check_feeds(conn):
             # 🏆 Si c'est un RÉSULTAT sportif : carte de victoire (photo floutée + score)
             victory = None
             if cat == "sport" and "tweet" not in item and _is_sport_result(item.get("title", "")):
-                victory = extract_match_result(item["title"], item.get("summary", ""))
+                victory = extract_sport_result(item["title"], item.get("summary", ""))
 
             # 🕊️ Si c'est le DÉCÈS d'une personnalité : carte hommage (portrait N&B + nom)
             obituary = None
@@ -2546,13 +2588,9 @@ def check_feeds(conn):
                 obituary = extract_obituary(item["title"], item.get("summary", ""), item.get("url"))
 
             if victory:
-                png_bytes = build_victory_card(raw_src, victory["team_a"], victory["score_a"],
-                                               victory["team_b"], victory["score_b"], victory["competition"],
-                                               victory["winner"], item["source"], W=1200, H=675)
-                png_ig = build_victory_card(raw_src, victory["team_a"], victory["score_a"],
-                                            victory["team_b"], victory["score_b"], victory["competition"],
-                                            victory["winner"], item["source"], W=1080, H=1350)
-                print(f"  🏆 Carte de victoire : {victory['team_a']} {victory['score_a']}-{victory['score_b']} {victory['team_b']}")
+                png_bytes = build_victory_card(raw_src, victory, item["source"], W=1200, H=675)
+                png_ig    = build_victory_card(raw_src, victory, item["source"], W=1080, H=1350)
+                print(f"  🏆 Carte résultat ({victory['type']}) publiée")
             elif obituary:
                 png_bytes = build_hommage_card(raw_src, obituary["name"], obituary["dates"],
                                                obituary["desc"], item["source"], W=1200, H=675)
