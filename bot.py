@@ -385,32 +385,27 @@ Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE) :
   ...
 ]}}
 
-Barème score :
-- 9-10 : UNIQUEMENT un FAIT urgent et majeur EN TRAIN DE SE PASSER — décès d'une personnalité majeure, attentat, catastrophe naturelle, accident/crash grave, fusillade, résultat très attendu (élection, verdict), annonce gouvernementale soudaine et majeure. ⛔ Un rapport, une étude, une analyse, un sondage, un classement, un baromètre ou une prévision n'est JAMAIS un 9-10 (au mieux 7).
-- 7-8  : info CHAUDE et CONCRÈTE qui fait réagir : actu politique à rebondissement (démission, clash, affaire, garde à vue), match/résultat sportif, drama ou buzz (people, créateurs, réseaux sociaux), fait divers marquant, gros lancement gaming/tech, polémique en cours
-- 6    : info intéressante du quotidien (insolite, info locale forte, lancement de produit d'une célébrité)
-- 0-5  : trop banal OU trop froid pour un compte d'actu
+Barème = POTENTIEL D'ENGAGEMENT sur X en France (réactions, partages, commentaires). Question clé pour CHAQUE article : "Est-ce que des gens vont COMMENTER, S'INDIGNER, CÉLÉBRER, RIRE ou PARTAGER ?" Une info qui ne provoque AUCUNE émotion (colère, joie, choc, rire, fierté) = MAX 5, même si elle est "importante" sur le papier.
 
-🔥 PRIORITÉ ABSOLUE AU CHAUD ET AU CONCRET :
-- PRIORISE ce qui SE PASSE MAINTENANT ou vient de se passer : événements en direct, résultats, décisions prises, clashs, arrestations, victoires, drames, annonces effectives.
-- ⛔ DÉPRIORISE FORTEMENT (score MAX 5) tout ce qui est FROID, INSTITUTIONNEL ou SPÉCULATIF : débats sur une réforme à venir ("à un mois de la réforme prévue en juillet..."), négociations techniques (mécanismes européens, tarification, quotas), rapports prospectifs, "ce qui pourrait changer", consultations, projets de loi sans vote, anniversaires institutionnels. Personne ne clique là-dessus.
-- Test simple : si le titre parle d'un FUTUR POTENTIEL ou d'un PROCESSUS technique → MAX 5. S'il raconte un ÉVÉNEMENT qui vient d'arriver → 6+.
+- 9-10 : fait MAJEUR en cours — mort d'une personnalité de premier plan, attentat, catastrophe, France qualifiée/éliminée en Coupe du Monde, démission du gouvernement, verdict d'un procès national. (Jamais : rapport, étude, sondage, classement, prévision → max 7.)
+- 8 : ce qui fait halluciner ou vibrer la France. EXEMPLES CALIBRÉS : un arbitre de la Coupe du Monde privé de visa pour les USA = 8 ; l'usine du produit de YouTubeurs très connus (McFly et Carlito...) qui brûle = 8 ; un ministre s'exprime sur une affaire nationale brûlante = 8 ; grosse victoire des Bleus = 8.
+- 7 : résultat de match notable, garde à vue d'une personnalité, buzz viral national, sortie d'un jeu très attendu, drama d'influenceur connu, fait divers marquant.
+- 6 : insolite sympa, info locale forte, lancement notable grand public.
+- 0-5 : le reste. EXEMPLES CALIBRÉS de scores BAS : "Apple ouvre les bundles d'abonnements entre éditeurs sur l'App Store" = 3 (annonce business B2B, tout le monde s'en fiche) ; partenariat entre entreprises = 3 ; mise à jour d'application = 2 ; étude/baromètre = 4 ; "ce qui pourrait changer d'ici 2030" = 3 ; revue de presse / "vu de l'étranger" / édito = 3.
 
-🇫🇷 CE QUI BUZZE LE PLUS sur X en France (à privilégier dès que présent) :
-1. FOOTBALL : équipe de France, Mbappé, PSG, OM, Coupe du Monde 2026, Ligue des champions — n°1 absolu de l'engagement
-2. Drames et faits divers majeurs : fusillade, attentat, disparition, procès médiatique (= breaking si en direct)
-3. Politique à CLASH : affaires, gardes à vue, démissions, punchlines à l'Assemblée, motions — pas les textes de loi techniques
-4. Autres sports chauds : NBA/Wembanyama, Roland-Garros, Tour de France, F1, boxe/MMA
-5. Drama people/influenceurs/télé : clashs de créateurs, télé-réalité, révélations
-6. Insolite viral : pannes nationales, bugs cocasses ("Test Cédric"), records absurdes
+⛔ PLAFONDS STRICTS :
+- Annonce produit/business/tech SANS émotion directe pour le grand public (bundles, partenariats, API, résultats trimestriels, levées de fonds, fonctionnalités) → MAX 4. Test : si la réaction attendue en commentaire est "🥱", c'est MAX 4.
+- FUTUR potentiel ou PROCESSUS technique ("pourrait", "envisage", "d'ici 20XX", négociations, quotas, consultations, projets de loi sans vote) → MAX 5.
+- Angle ÉDITORIAL (revue de presse, "vu de l'étranger", tribune, portrait, décryptage d'un autre média) → MAX 5 : on veut le FAIT, pas le commentaire du fait.
 
-⚖️ ÉQUILIBRE ÉDITORIAL IMPORTANT :
-- NE FAVORISE PAS systématiquement la politique et les mêmes sujets (Trump, Iran, Macron, Chine...). La politique qui score haut, c'est celle à REBONDISSEMENTS (affaires, clashs, démissions), pas les débats de procédure.
-- VALORISE autant la POP CULTURE et les RÉSEAUX SOCIAUX : créateurs de contenu (Squeezie, McFly & Carlito, Inoxtag, Lena Situations...), lancements de marques/produits par des célébrités, buzz viraux, cinéma, séries, musique, télé-réalité, sorties culturelles.
-- 🎮 VALORISE AUSSI le GEEK / JEUX VIDÉO / YOUTUBEURS : sorties et annonces de jeux vidéo (PlayStation, Xbox, Nintendo, GTA, gros AAA...), actus gaming et esport, drama/annonces de YouTubeurs et streamers Twitch, tech grand public (nouveaux smartphones, IA, gadgets). Une grosse annonce gaming ou une actu de créateur connu mérite un score élevé (7-8).
-- Ces sujets "légers" intéressent ÉNORMÉMENT le grand public et méritent des scores élevés (7-8) quand c'est un gros événement (ex: Squeezie lance une boisson, sortie de GTA 6, Inoxtag annonce un projet = score 7-8).
-- Un bon mix = politique chaude + société + pop culture + gaming/geek + sport + insolite, PAS de débats institutionnels.
-- Une info locale marquante peut scorer aussi haut qu'une info internationale.
+🇫🇷 HIÉRARCHIE DE L'ENGAGEMENT en France :
+1) Football (Bleus, Mbappé, PSG, OM, Coupe du Monde 2026, Ligue des champions)
+2) Drames et faits divers majeurs (fusillade, incendie, disparition, procès médiatique)
+3) Politique à CLASH (affaires, gardes à vue, démissions, punchlines — pas les textes techniques)
+4) NBA/Wembanyama, Roland-Garros, Tour de France, F1, boxe/MMA
+5) Influenceurs/people/télé (Squeezie, McFly et Carlito, Inoxtag, Hanouna...) et gaming (GTA, PlayStation, Nintendo) — une grosse actu ici vaut 7-8, autant que la politique chaude
+6) Insolite viral (pannes nationales, bugs cocasses, records absurdes)
+Un bon fil = un mix de tout ça. Une info locale marquante peut scorer aussi haut qu'une info internationale.
 
 Catégories possibles (choisis la plus juste) :
 breaking, france, monde, politique, economie, societe, faitsdivers, histoire,
@@ -2265,8 +2260,14 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
     import io, math, shutil, subprocess, tempfile
     if os.environ.get("PULSE_VIDEO", "1") == "0":
         return None
-    if not shutil.which("ffmpeg"):
-        return None
+    ffmpeg_bin = shutil.which("ffmpeg")
+    if not ffmpeg_bin:
+        try:
+            import imageio_ffmpeg
+            ffmpeg_bin = imageio_ffmpeg.get_ffmpeg_exe()   # binaire ffmpeg embarqué via pip
+        except Exception:
+            print("  ⚠️ ffmpeg introuvable (imageio-ffmpeg manquant dans requirements.txt) → image utilisée")
+            return None
     try:
         W, H, FPS, DUR = VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR
         N = int(FPS * DUR)
@@ -2511,7 +2512,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             img.convert("RGB").save(f"{out_dir}/f_{n:03d}.png")
 
         out_mp4 = os.path.join(out_dir, "pulse_video.mp4")
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS),
+        subprocess.run([ffmpeg_bin, "-y", "-loglevel", "error", "-framerate", str(FPS),
                         "-i", f"{out_dir}/f_%03d.png", "-c:v", "libx264", "-pix_fmt", "yuv420p",
                         "-crf", "20", "-movflags", "+faststart", out_mp4], check=True, timeout=300)
         print(f"  🎬 Vidéo générée ({kind})")
@@ -2540,6 +2541,8 @@ def _sig_words(title):
 BREAKING_EXCLUDE = (
     "rapport", "étude", "etude", "analyse", "sondage", "classement", "baromètre", "barometre",
     "tribune", "chronique", "interview", "portrait", "décryptage", "decryptage", "infographie",
+    "vue de l'étranger", "vu de l'étranger", "revue de presse", "édito", "edito",
+    "ce qu'il faut retenir", "récap", "recap", "résumé de la", "en images",
     "témoignage", "temoignage", "préconise", "preconise", "recommande", "palmarès", "palmares",
     "prévision", "prevision", "selon une étude", "selon un rapport", "avis de", "dossier",
 )
@@ -2593,6 +2596,29 @@ def _is_sport_result(title):
         return True
     return False
 
+# Nouveaux développements d'un sujet déjà couvert (déclaration, mise en examen...) → 1 suite autorisée / 4h
+FOLLOWUP_MARKERS = (
+    "réagit", "s'exprime", "annonce", "révèle", "mis en examen", "mise en examen", "garde à vue",
+    "interpell", "démission", "nouveau bilan", "rebondissement", "témoigne", "porte plainte",
+    "reconnaît", "condamn", "s'excuse", "répond", "convoqu", "déclare", "promet", "limog",
+)
+def _is_followup(title):
+    t = title.lower()
+    return any(m in t for m in FOLLOWUP_MARKERS)
+
+def followup_recent(conn, minutes=240):
+    return conn.execute(
+        "SELECT 1 FROM special_log WHERE kind='followup' AND sent_at > datetime('now', ?)",
+        (f"-{minutes} minutes",)
+    ).fetchone() is not None
+
+def ig_allowed(conn, minutes=90):
+    """Anti-blocage Instagram : espace les publications API (Insta freine les cadences trop élevées)."""
+    return conn.execute(
+        "SELECT 1 FROM special_log WHERE kind='ig_post' AND sent_at > datetime('now', ?)",
+        (f"-{minutes} minutes",)
+    ).fetchone() is None
+
 def sport_result_recent(conn, minutes=240):
     """Vrai si un RÉSULTAT sportif a déjà été publié récemment (limite à 1 dérogation / 4h)."""
     return conn.execute(
@@ -2606,6 +2632,42 @@ def breaking_recent(conn, minutes=BREAKING_GAP_MIN):
         "SELECT 1 FROM special_log WHERE kind='breaking' AND sent_at > datetime('now', ?)",
         (f"-{minutes} minutes",)
     ).fetchone() is not None
+
+# ── PRÉ-CLASSEMENT GRATUIT (Python) : choisit les candidats qui méritent l'analyse Claude ──
+PRERANK_HOT = [
+    (5, r"coupe du monde|mondial 2026|équipe de france|les bleus|mbapp|\bpsg\b|\bom\b|wembanyama|roland.garros|tour de france|ligue des champions"),
+    (5, r"\bmort\b|\bmorte\b|décès|décéd|\btué|fusillade|attentat|incendie|explosion|enlèvement|disparition|crash|effondr|otage"),
+    (4, r"garde à vue|mis en examen|démission|interpell|condamn|verdict|procès|scandale|polémique|visa refus|expuls|suspendu"),
+    (4, r"squeezie|mcfly|carlito|inoxtag|hanouna|l[ée]na situations|booba|\bjul\b|\bgims\b|ninho|tibo inshape|amixem|michou|domingo"),
+    (3, r"clash|\bbuzz\b|viral|historique|inédit|panne (géante|nationale|mondiale)|grève|manifestation|bloqu"),
+    (2, r"victoire|défaite|qualifi|élimin|finale|sacre|remporte"),
+]
+PRERANK_COLD = [
+    (-4, r"app store|bundle|abonnement|partenariat|trimestriel|levée de fonds|lève des fonds|acquisition|\bapi\b|mise à jour|fonctionnalité|s'associe"),
+    (-4, r"vue de l'étranger|revue de presse|édito|tribune|chronique|portrait|ce qu'il faut retenir|récap|décryptage"),
+    (-3, r"étude|rapport|sondage|classement|baromètre"),
+    (-3, r"pourrait|devrait|envisage|prévoit|à l'horizon|d'ici 20\d\d"),
+    (-2, r"comment |pourquoi |voici |conseils|astuces|guide"),
+]
+def prerank_candidates(cands, keep):
+    """Classement heuristique gratuit : mots chauds/froids + écho multi-sources.
+    Fini le tirage au sort : les articles les plus prometteurs partent en analyse."""
+    sigs = [_sig_words(c["title"]) for c in cands]
+    scored_idx = []
+    for i, c in enumerate(cands):
+        t = (c["title"] + " " + (c.get("summary") or "")[:120]).lower()
+        s = 0.0
+        for w, rx in PRERANK_HOT:
+            if re.search(rx, t): s += w
+        for w, rx in PRERANK_COLD:
+            if re.search(rx, t): s += w
+        echo = sum(1 for j in range(len(cands))
+                   if j != i and cands[j]["source"] != c["source"] and len(sigs[i] & sigs[j]) >= 2)
+        s += min(6, echo * 2)            # repris par plusieurs médias = important
+        s += random.random() * 0.5       # micro-aléa pour départager
+        scored_idx.append((s, i))
+    scored_idx.sort(key=lambda x: -x[0])
+    return [cands[i] for _, i in scored_idx[:keep]]
 
 def detect_breaking(conn, candidates):
     """
@@ -2651,7 +2713,11 @@ def publish_breaking(conn, item, cat, urgent=True):
     png_ig, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                           article_url=item.get("url"), person=person, W=1080, H=1350,
                           prefetched=(raw_src, has_real), headline_bottom=True)
-    post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
+    if ig_allowed(conn):
+        post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
+        log_special(conn, "ig_post", [])
+    else:
+        print("  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)")
     mark_cat(conn, label_cat)
     log_keywords(conn, keywords)
     log_special(conn, "breaking", keywords)   # partage l'anti-spam (1 fast-track / 25 min)
@@ -2712,6 +2778,7 @@ def check_feeds(conn):
     print(f"  → Scan RSS...")
     blocked_kws = recent_keywords(conn, hours=12)
     allow_sport_result = not sport_result_recent(conn)   # autorise UN résultat de match malgré le blocage 12h
+    allow_followup     = not followup_recent(conn)        # autorise UNE suite d'affaire malgré le blocage 12h
     candidates  = []
     pre_filtered = 0
     for fi in RSS_FEEDS:
@@ -2725,14 +2792,17 @@ def check_feeds(conn):
                     # Pré-filtre GRATUIT : si le titre contient un mot-clé déjà publié (12h),
                     # on rejette SANS payer Claude — SAUF si c'est le RÉSULTAT d'un match (1 dérogation/4h)
                     title_low = title.lower()
+                    is_fu = False
                     if blocked_kws and any(kw in title_low for kw in blocked_kws):
                         if allow_sport_result and _is_sport_result(title):
-                            pass  # on laisse passer le résultat final d'un match déjà couvert
+                            pass  # résultat final d'un match déjà couvert
+                        elif allow_followup and _is_followup(title) and not _is_soft_news(title):
+                            is_fu = True  # nouveau développement d'un gros sujet (ex: un ministre s'exprime)
                         else:
                             mark_seen(conn, url, title)
                             pre_filtered += 1
                             continue
-                    candidates.append({"url": url, "title": title, "summary": summ, "source": fi["source"], "entry": entry})
+                    candidates.append({"url": url, "title": title, "summary": summ, "source": fi["source"], "entry": entry, "followup": is_fu})
         except Exception as e:
             print(f"  ❌ RSS {fi['source']}: {e}")
 
@@ -2801,11 +2871,11 @@ def check_feeds(conn):
 
     # 💰 Limite le nombre d'articles ENVOYÉS à Claude par passage (les articles en
     # cache restent gratuits). On garde un échantillon varié pour borner le coût API.
-    MAX_ANALYSE = 15
+    MAX_ANALYSE = 18
     if len(to_analyse) > MAX_ANALYSE:
         skipped = len(to_analyse) - MAX_ANALYSE
-        to_analyse = random.sample(to_analyse, MAX_ANALYSE)
-        print(f"  💰 {skipped} articles non analysés ce passage (plafond {MAX_ANALYSE}, vus au prochain run)")
+        to_analyse = prerank_candidates(to_analyse, MAX_ANALYSE)
+        print(f"  🎯 Pré-classement : {skipped} articles écartés, les {MAX_ANALYSE} plus prometteurs partent en analyse")
 
     if to_analyse:
         try:
@@ -2836,8 +2906,8 @@ def check_feeds(conn):
     # Boost catégorie pas encore vue aujourd'hui
     missing = set(STYLES.keys()) - cats_today(conn)
     for item in scored:
-        if item["analysis"]["category"] in missing:
-            item["score"] = min(10, item["score"] + 2)
+        if item["analysis"]["category"] in missing and item["score"] >= 6:
+            item["score"] = min(10, item["score"] + 1)   # la variété départage les BONS sujets, ne sauve pas les mauvais
 
     # 🏀 Léger coup de pouce au SPORT EN DIRECT (cost-neutral : ne crée pas de post en plus).
     #    Anti-spam : seulement si aucun post sport depuis 2h (+ blocage mots-clés 12h sur le même match).
@@ -2940,7 +3010,11 @@ def check_feeds(conn):
 
             post_to_twitter(tweet_final, png_bytes, video_path)
             post_to_facebook(tweet_final, png_bytes, video_path)
-            post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
+            if ig_allowed(conn):
+                post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
+                log_special(conn, "ig_post", [])
+            else:
+                print("  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)")
 
             # Nettoyage du fichier vidéo temporaire (après X + Facebook)
             if video_path:
@@ -2952,6 +3026,8 @@ def check_feeds(conn):
 
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
+            if item.get("followup"):
+                log_special(conn, "followup", keywords)   # 1 suite d'affaire / 4h
             if cat == "sport" and _is_sport_result(item.get("title", "")):
                 log_special(conn, "sport_result", keywords)   # 1 dérogation résultat / 4h
             if item.get("url"):
