@@ -1968,11 +1968,11 @@ def build_victory_card(raw_photo, res, source, W=1200, H=675):
         if typ == "tennis":
             na, nb = res.get("player_a", ""), res.get("player_b", "")
             center = res.get("sets", "") or "—"
-            cf = fit(d, center, int(W * 0.42), W * 0.052, mins=24)
+            cf = fit(d, center, int(W * 0.38), W * 0.052, mins=24)
         else:
             na, nb = res.get("team_a", ""), res.get("team_b", "")
             center = f"{res.get('score_a', '')}  -  {res.get('score_b', '')}"
-            cf = f(W * 0.10)
+            cf = fit(d, center, int(W * 0.38), W * 0.10, mins=36)   # scores à 3 chiffres (NBA) : auto-réduction
         shadow(img, lambda l: l.text((W // 2, cy), center, font=cf, fill=(0, 0, 0, 240), anchor="mm"), 16); d = ImageDraw.Draw(img)
         d.text((W // 2, cy), center, font=cf, fill=WHITE, anchor="mm")
         lax, rax, maxw = int(W * 0.17), int(W * 0.83), int(W * 0.27)
@@ -2383,15 +2383,20 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                         if ca_ > 0:
                             sets = data.get("sets", "") or "—"
                             cf = _vf(W * 0.05)
-                            while tmpd.textbbox((0, 0), sets, font=cf)[2] > W * 0.42 and cf.size > 22:
+                            while tmpd.textbbox((0, 0), sets, font=cf)[2] > W * 0.38 and cf.size > 22:
                                 cf = _vf(cf.size - 2)
                             d.text((W // 2 + 2, cy + 2), sets, font=cf, fill=(0, 0, 0, int(220 * ca_)), anchor="mm")
                             d.text((W // 2, cy), sets, font=cf, fill=WHITE + (int(255 * ca_),), anchor="mm")
                     else:
                         prog = _vease((t - 2.3) / 1.1)
-                        va_, vb_ = int(round(prog * int(data.get("score_a", 0)))), int(round(prog * int(data.get("score_b", 0))))
+                        sa_f, sb_f = int(data.get("score_a", 0)), int(data.get("score_b", 0))
+                        va_, vb_ = int(round(prog * sa_f)), int(round(prog * sb_f))
                         if prog > 0:
+                            # taille calibrée sur le score FINAL (stable pendant le comptage, jamais sur les équipes)
+                            final_txt = f"{sa_f}  -  {sb_f}"
                             cf = _vf(W * 0.10)
+                            while tmpd.textbbox((0, 0), final_txt, font=cf)[2] > W * 0.38 and cf.size > 36:
+                                cf = _vf(cf.size - 4)
                             d.text((W // 2 + 3, cy + 3), f"{va_}  -  {vb_}", font=cf, fill=(0, 0, 0, 230), anchor="mm")
                             d.text((W // 2, cy), f"{va_}  -  {vb_}", font=cf, fill=WHITE, anchor="mm")
                     st_ = _vease((t - 3.6) / 0.35)
