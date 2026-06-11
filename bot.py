@@ -390,10 +390,10 @@ Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE) :
 Barème = POTENTIEL D'ENGAGEMENT sur X en France (réactions, partages, commentaires). Question clé pour CHAQUE article : "Est-ce que des gens vont COMMENTER, S'INDIGNER, CÉLÉBRER, RIRE ou PARTAGER ?" Une info qui ne provoque AUCUNE émotion (colère, joie, choc, rire, fierté) = MAX 5, même si elle est "importante" sur le papier.
 
 - 9-10 : fait MAJEUR en cours — mort d'une personnalité de premier plan, attentat, catastrophe, France qualifiée/éliminée en Coupe du Monde, démission du gouvernement, verdict d'un procès national. (Jamais : rapport, étude, sondage, classement, prévision → max 7.)
-- 8 : ce qui fait halluciner ou vibrer la France. EXEMPLES CALIBRÉS : un arbitre de la Coupe du Monde privé de visa pour les USA = 8 ; l'usine du produit de YouTubeurs très connus (McFly et Carlito...) qui brûle = 8 ; un ministre s'exprime sur une affaire nationale brûlante = 8 ; grosse victoire des Bleus = 8.
+- 8 : ce qui fait halluciner ou vibrer la France. EXEMPLES CALIBRÉS : un arbitre de la Coupe du Monde privé de visa pour les USA = 8 ; l'usine du produit de YouTubeurs très connus (McFly et Carlito...) qui brûle = 8 ; un ministre s'exprime sur une affaire nationale brûlante = 8 ; grosse victoire des Bleus = 8 ; une banque envoie par erreur une notification de test à des millions de clients = 8 (insolite viral national).
 - 7 : résultat de match notable, garde à vue d'une personnalité, buzz viral national, sortie d'un jeu très attendu, drama d'influenceur connu, fait divers marquant.
 - 6 : insolite sympa, info locale forte, lancement notable grand public.
-- 0-5 : le reste. EXEMPLES CALIBRÉS de scores BAS : "Apple ouvre les bundles d'abonnements entre éditeurs sur l'App Store" = 3 (annonce business B2B, tout le monde s'en fiche) ; partenariat entre entreprises = 3 ; mise à jour d'application = 2 ; étude/baromètre = 4 ; "ce qui pourrait changer d'ici 2030" = 3 ; revue de presse / "vu de l'étranger" / édito = 3.
+- 0-5 : le reste. EXEMPLES CALIBRÉS de scores BAS : "Apple ouvre les bundles d'abonnements entre éditeurs sur l'App Store" = 3 (annonce business B2B, tout le monde s'en fiche) ; partenariat entre entreprises = 3 ; mise à jour d'application = 2 ; étude/baromètre = 4 ; "ce qui pourrait changer d'ici 2030" = 3 ; revue de presse / "vu de l'étranger" / édito = 3 ; négociations européennes sur des quotas ou mécanismes = 3.
 
 ⛔ PLAFONDS STRICTS :
 - Annonce produit/business/tech SANS émotion directe pour le grand public (bundles, partenariats, API, résultats trimestriels, levées de fonds, fonctionnalités) → MAX 4. Test : si la réaction attendue en commentaire est "🥱", c'est MAX 4.
@@ -424,11 +424,13 @@ IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
         analyses.append({"score": 0, "category": "france", "is_duplicate": False, "needs_video": False})
     return analyses[:len(articles)]
 
-def gen_tweet_complet(title, summary, source, category, video_url=None):
+def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, correction=None):
     """Génère tweet + titre image + image_query + mots-clés majeurs."""
     today = datetime.now().strftime("%d %B %Y")
     label = LABELS[category]
     video_str = ""
+    art_str  = f"\n- EXTRAIT DE L'ARTICLE (fait foi sur les faits et qualifications) : {article_text[:1200]}" if article_text else ""
+    corr_str = f"\n\n🚨 CORRECTION OBLIGATOIRE — ta version précédente contenait une ERREUR FACTUELLE : {correction}. Corrige-la impérativement." if correction else ""
 
     # Style adaptatif selon catégorie — TOUJOURS court et télégraphique (fil d'actu)
     if category == "hommage":
@@ -455,7 +457,7 @@ Aujourd'hui : {today}.
 Article à traiter :
 - Source : {source}
 - Titre  : {title}
-- Résumé : {summary}{video_str}
+- Résumé : {summary}{video_str}{art_str}{corr_str}
 
 Génère QUATRE choses :
 
@@ -474,6 +476,12 @@ Génère QUATRE choses :
 5. **body** : corps du tweet (sans préfixe — il sera ajouté automatiquement).
 
 {style_instr}
+
+⚖️ RIGUEUR FACTUELLE ABSOLUE (sujets judiciaires, décès, accusations) — PRIORITÉ N°1 :
+- Recopie les qualifications juridiques EXACTEMENT comme dans la source : "homicide involontaire" reste INVOLONTAIRE, jamais "meurtre" ni "volontaire". "Meurtre" = uniquement si la source écrit "meurtre". Idem pour assassinat, viol, agression, terrorisme, féminicide.
+- Si la qualification n'est pas écrite dans la source, n'en mets AUCUNE (écris "mort de", "décès de", "mis en cause pour").
+- Personne mise en cause/suspectée = TOUJOURS "soupçonné de", "présumé" (présomption d'innocence).
+- N'invente JAMAIS un chiffre, un âge, un lieu ou une circonstance absents de la source.
 
 RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules ; va DIRECTEMENT à l'info.
@@ -504,6 +512,55 @@ Réponds avec ce JSON UNIQUEMENT :
     person         = result.get("person", "").strip()
 
     return body, headline_court, image_query, keywords, person
+
+# ── GARDE-FOU FACTUEL : vérifie que les termes sensibles du tweet existent bien dans la source ──
+SENSITIVE_TOPIC_RX = re.compile(r"mort|morte|décès|décéd|tué|homicide|meurtre|assassin|viol|agress|attentat|terroris|féminicide|procès|mis en examen|garde à vue|empoisonn", re.I)
+
+def _fact_guard(body, source_text):
+    """Renvoie la liste des erreurs factuelles détectées (termes sensibles absents de la source)."""
+    b, s = body.lower(), source_text.lower()
+    issues = []
+    if "involontaire" in s and re.search(r"(?<!in)volontaire", b):
+        issues.append('tu as écrit "volontaire" alors que la source dit "INVOLONTAIRE"')
+    for term in ("meurtre", "assassinat", "viol", "terroriste", "terrorisme", "féminicide", "empoisonnement"):
+        if term in b and term not in s:
+            issues.append(f'tu as écrit "{term}" alors que ce mot n\'est PAS dans la source')
+    return issues
+
+def _fact_hardfix(body, source_text):
+    """Dernier recours déterministe si la régénération échoue encore."""
+    s = source_text.lower()
+    if "involontaire" in s:
+        body = re.sub(r"(?<![Ii]n)volontaires?", "involontaire", body)
+    if "meurtre" not in s:
+        body = re.sub(r"[Mm]eurtres?", "homicide", body)
+    return body
+
+def gen_tweet_verified(title, summary, source, category, url=None):
+    """gen_tweet_complet + lecture de l'article sur sujets sensibles + vérification factuelle (1 retry)."""
+    src_text = f"{title} {summary}"
+    article_text = None
+    if SENSITIVE_TOPIC_RX.search(title) or SENSITIVE_TOPIC_RX.search(summary or ""):
+        if url:
+            try:
+                article_text = fetch_article_text(url, max_chars=1200)
+                if article_text and len(article_text) > 150:
+                    src_text += " " + article_text
+                else:
+                    article_text = None
+            except Exception:
+                article_text = None
+    body, headline, image_query, keywords, person = gen_tweet_complet(
+        title, summary, source, category, article_text=article_text)
+    issues = _fact_guard(body + " " + headline, src_text)
+    if issues:
+        print(f"  ⚖️ Erreur factuelle détectée ({'; '.join(issues)}) → régénération")
+        body, headline, image_query, keywords, person = gen_tweet_complet(
+            title, summary, source, category, article_text=article_text, correction="; ".join(issues))
+        if _fact_guard(body + " " + headline, src_text):
+            body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
+            print("  ⚖️ Correction forcée appliquée")
+    return body, headline, image_query, keywords, person
 
 def build_full_tweet(body, category):
     emoji = EMOJIS[category]
@@ -1047,6 +1104,9 @@ def post_to_facebook(message, png_bytes=None, video_path=None):
     """Poste sur la Page Facebook : photo + texte, ou vidéo, ou texte seul."""
     if not (FACEBOOK_PAGE_TOKEN and FACEBOOK_PAGE_ID):
         return None
+    if meta_backoff_active():
+        print("  ⏸️ Facebook sauté (pause Meta en cours)")
+        return None
     try:
         import urllib.request, json, os
         # Nettoyage du texte : Facebook n'aime pas les hashtags partout, mais on garde le contenu tel quel
@@ -1105,6 +1165,8 @@ def post_to_facebook(message, png_bytes=None, video_path=None):
         except:
             body = ""
         print(f"  ❌ Post Facebook échoué : {e} | détail : {body}")
+        if _detect_meta_limit(body):
+            record_meta_block(body)
         return None
     except Exception as e:
         print(f"  ❌ Post Facebook échoué : {e}")
@@ -1173,6 +1235,9 @@ def post_to_instagram(caption, png_bytes=None, video_path=None):
     """
     if not (INSTAGRAM_ACCOUNT_ID and FACEBOOK_PAGE_TOKEN):
         return None
+    if meta_backoff_active():
+        print("  ⏸️ Instagram sauté (pause Meta en cours)")
+        return None
     if not png_bytes:
         return None  # Instagram exige une image/vidéo, pas de post texte seul
 
@@ -1227,6 +1292,8 @@ def post_to_instagram(caption, png_bytes=None, video_path=None):
         except:
             body = ""
         print(f"  ❌ Post Instagram échoué : {e} | détail : {body}")
+        if _detect_meta_limit(body):
+            record_meta_block(body)
         return None
     except Exception as e:
         print(f"  ❌ Post Instagram échoué : {e}")
@@ -1736,6 +1803,9 @@ def carousel_to_text(carousel):
     return out.strip()
 
 def post_carousel_to_instagram(slides_png, caption):
+    if meta_backoff_active():
+        print("  ⏸️ Carrousel Instagram sauté (pause Meta en cours)")
+        return None
     """Publie un carrousel (2 à 10 images) sur Instagram via l'API Graph."""
     if not (INSTAGRAM_ACCOUNT_ID and FACEBOOK_PAGE_TOKEN):
         return None
@@ -1994,9 +2064,10 @@ def build_victory_card(raw_photo, res, source, W=1200, H=675):
 # CARTE HOMMAGE (décès d'une personnalité) — portrait N&B + nom + dates (sobre)
 # ═══════════════════════════════════════════════════════════════════════════
 DEATH_MARKERS = (
-    "est mort", "est morte", "décès de", "décédé", "décédée", "s'est éteint", "s'est éteinte",
-    "meurt", "décède", "mort à l'âge", "morte à l'âge", "nous a quittés", "disparition de",
-    "à l'âge de", "a perdu la vie", "perd la vie", "retrouvé mort", "retrouvée morte",
+    "est mort", "est morte", "décès de", "décès d'", "décédé", "décédée", "s'est éteint", "s'est éteinte",
+    "meurt", "décède", "mort de ", "mort d'", "mort à l'âge", "morte à l'âge", "nous a quittés",
+    "nous a quitté", "disparition de", "à l'âge de", "a perdu la vie", "perd la vie",
+    "retrouvé mort", "retrouvée morte", "n'est plus", "tire sa révérence", "carnet noir", "décédait",
 )
 # Exclusions : bilans collectifs / accidents / expressions (pas un hommage individuel)
 DEATH_EXCLUDE = (
@@ -2476,6 +2547,8 @@ BREAKING_EXCLUDE = (
     "tribune", "chronique", "interview", "portrait", "décryptage", "decryptage", "infographie",
     "vue de l'étranger", "vu de l'étranger", "revue de presse", "édito", "edito",
     "ce qu'il faut retenir", "récap", "recap", "résumé de la", "en images",
+    "retour sur", "anniversaire", "commémor", "replay", "podcast", "quiz",
+    "horoscope", "programme tv", "diaporama", "il y a 10 ans", "il y a 20 ans",
     "témoignage", "temoignage", "préconise", "preconise", "recommande", "palmarès", "palmares",
     "prévision", "prevision", "selon une étude", "selon un rapport", "avis de", "dossier",
 )
@@ -2545,6 +2618,32 @@ def followup_recent(conn, minutes=240):
         (f"-{minutes} minutes",)
     ).fetchone() is not None
 
+_META_CONN = None   # connexion DB partagée pour la détection de blocage Meta
+
+def meta_backoff_active(minutes=180):
+    """Vrai si Meta a renvoyé 'request limit' récemment → on saute FB/IG le temps que ça se calme."""
+    if _META_CONN is None:
+        return False
+    try:
+        return _META_CONN.execute(
+            "SELECT 1 FROM special_log WHERE kind='meta_block' AND sent_at > datetime('now', ?)",
+            (f"-{minutes} minutes",)).fetchone() is not None
+    except Exception:
+        return False
+
+def record_meta_block(detail=""):
+    if _META_CONN is None:
+        return
+    try:
+        log_special(_META_CONN, "meta_block", [])
+        print(f"  🛑 Limite Meta détectée → Facebook/Instagram en pause 3h (auto)")
+    except Exception:
+        pass
+
+def _detect_meta_limit(err_body):
+    b = str(err_body)
+    return '"code":4' in b.replace(" ", "") or "request limit" in b.lower() or "2207051" in b
+
 def ig_allowed(conn, minutes=90):
     """Anti-blocage Instagram : espace les publications API (Insta freine les cadences trop élevées)."""
     return conn.execute(
@@ -2568,10 +2667,10 @@ def breaking_recent(conn, minutes=BREAKING_GAP_MIN):
 
 # ── PRÉ-CLASSEMENT GRATUIT (Python) : choisit les candidats qui méritent l'analyse Claude ──
 PRERANK_HOT = [
-    (5, r"coupe du monde|mondial 2026|équipe de france|les bleus|mbapp|\bpsg\b|\bom\b|wembanyama|roland.garros|tour de france|ligue des champions"),
+    (5, r"coupe du monde|mondial 2026|équipe de france|les bleus|mbapp|\bpsg\b|\bom\b|wembanyama|roland.garros|tour de france|ligue des champions|huitième de finale|quart de finale|demi-finale|match d'ouverture"),
     (5, r"\bmort\b|\bmorte\b|décès|décéd|\btué|fusillade|attentat|incendie|explosion|enlèvement|disparition|crash|effondr|otage"),
-    (4, r"garde à vue|mis en examen|démission|interpell|condamn|verdict|procès|scandale|polémique|visa refus|expuls|suspendu"),
-    (4, r"squeezie|mcfly|carlito|inoxtag|hanouna|l[ée]na situations|booba|\bjul\b|\bgims\b|ninho|tibo inshape|amixem|michou|domingo"),
+    (4, r"garde à vue|mis en examen|démission|interpell|condamn|verdict|procès|scandale|polémique|visa refus|expuls|suspendu|braquage|prise d'otage|évasion|kidnapping|féminicide"),
+    (4, r"squeezie|mcfly|carlito|inoxtag|hanouna|l[ée]na situations|booba|\bjul\b|\bgims\b|ninho|tibo inshape|amixem|michou|domingo|mister v|kameto|zerator|gotaga|maghla"),
     (3, r"clash|\bbuzz\b|viral|historique|inédit|panne (géante|nationale|mondiale)|grève|manifestation|bloqu"),
     (2, r"victoire|défaite|qualifi|élimin|finale|sacre|remporte"),
 ]
@@ -2581,6 +2680,7 @@ PRERANK_COLD = [
     (-3, r"étude|rapport|sondage|classement|baromètre"),
     (-3, r"pourrait|devrait|envisage|prévoit|à l'horizon|d'ici 20\d\d"),
     (-2, r"comment |pourquoi |voici |conseils|astuces|guide"),
+    (-4, r"horoscope|programme tv|replay|podcast|diaporama|quiz|recette|bons plans|promo|soldes|comparatif|notre sélection|que regarder|que faire ce"),
 ]
 def prerank_candidates(cands, keep):
     """Classement heuristique gratuit : mots chauds/froids + écho multi-sources.
@@ -2600,12 +2700,29 @@ def prerank_candidates(cands, keep):
         s += random.random() * 0.5       # micro-aléa pour départager
         scored_idx.append((s, i))
     scored_idx.sort(key=lambda x: -x[0])
-    return [cands[i] for _, i in scored_idx[:keep]]
+    # Dédup intra-lot : un même sujet repris par plusieurs sources n'est analysé qu'UNE fois
+    # (≥3 mots significatifs communs = quasi-doublon ; l'écho a déjà boosté son score)
+    kept, kept_sigs = [], []
+    for s, i in scored_idx:
+        if any(len(sigs[i] & ks) >= 3 for ks in kept_sigs):
+            continue
+        kept.append(cands[i]); kept_sigs.append(sigs[i])
+        if len(kept) >= keep:
+            break
+    return kept
+
+# Mots ULTRA-CHAUDS : une vraie urgence est souvent en ligne avant que 3 médias la reprennent.
+# Pour ces sujets, 2 sources concordantes suffisent (au lieu de 3) → détection plus rapide.
+ULTRA_HOT_RX = re.compile(
+    r"\bmort\b|\bmorte\b|décès|décéd|attentat|fusillade|explosion|incendie majeur|crash|"
+    r"prise d'otage|otages?\b|effondrement|séisme|tremblement de terre|tsunami|"
+    r"évacuation|déraillement|assassinat|tirs\b|coup d'état|démission du", re.I)
 
 def detect_breaking(conn, candidates):
     """
     Détecte une actu 'breaking' = un même sujet repris MAINTENANT par plusieurs sources
     distinctes. Gratuit (analyse de titres uniquement). Renvoie le candidat le plus repris.
+    Seuil DYNAMIQUE : 2 sources suffisent si le titre est ultra-chaud, 3 sinon.
     """
     if breaking_recent(conn):
         return None
@@ -2614,7 +2731,7 @@ def detect_breaking(conn, candidates):
     for i, (c, wi) in enumerate(enriched):
         if len(wi) < 2:
             continue
-        if _is_soft_news(c["title"]):      # rapport / étude / analyse / sondage... → jamais breaking
+        if _is_soft_news(c["title"]):      # rapport / étude / revue de presse... → jamais breaking
             continue
         sources = set()
         for j, (d, wj) in enumerate(enriched):
@@ -2622,8 +2739,8 @@ def detect_breaking(conn, candidates):
                 continue
             if len(wi & wj) >= 2:          # ≥2 mots significatifs en commun
                 sources.add(d["source"])
-        # le sujet (le candidat lui-même + les autres sources) doit couvrir ≥ BREAKING_SOURCES sources
-        if len(sources) + 1 >= BREAKING_SOURCES and len(sources) > best_count:
+        required = 2 if ULTRA_HOT_RX.search(c["title"]) else BREAKING_SOURCES
+        if len(sources) + 1 >= required and len(sources) >= best_count:
             best, best_count = c, len(sources)
     return best
 
@@ -2631,9 +2748,11 @@ def publish_breaking(conn, item, cat, urgent=True):
     """Publie vite une actu (X + Facebook + Instagram).
     urgent=True → label rouge 'Breaking'. urgent=False → label normal de la catégorie (buzz/insolite)."""
     add_recent(conn, item["title"])
+    if _is_obituary(item.get("title", ""), item.get("summary", "")):
+        cat = "hommage"   # décès → ton sobre, même en breaking (le label URGENT reste si urgent=True)
     label_cat = "breaking" if urgent else cat
-    body, headline_court, image_query, keywords, person = gen_tweet_complet(
-        item["title"], item["summary"], item["source"], cat
+    body, headline_court, image_query, keywords, person = gen_tweet_verified(
+        item["title"], item["summary"], item["source"], cat, url=item.get("url")
     )
     tweet_final = build_full_tweet(body, label_cat)
     photo = extract_photo(item["entry"]) if "entry" in item else None
@@ -2641,8 +2760,14 @@ def publish_breaking(conn, item, cat, urgent=True):
     png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                              article_url=item.get("url"), person=person, prefetched=(raw_src, has_real))
     vid = build_video("news", {"headline": headline_court}, label_cat, raw_src, item["source"], urgent=urgent)
-    post_to_twitter(tweet_final, png_bytes, vid)
-    post_to_facebook(tweet_final, png_bytes, vid)
+    try:
+        post_to_twitter(tweet_final, png_bytes, vid)
+    except Exception as e:
+        print(f"  ❌ X isolé : {e}")
+    try:
+        post_to_facebook(tweet_final, png_bytes, vid)
+    except Exception as e:
+        print(f"  ❌ Facebook isolé : {e}")
     png_ig, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                           article_url=item.get("url"), person=person, W=1080, H=1350,
                           prefetched=(raw_src, has_real), headline_bottom=True)
@@ -2672,6 +2797,8 @@ def _strip_html(text):
     return text[:400]
 
 def check_feeds(conn):
+    global _META_CONN
+    _META_CONN = conn
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
 
     # ── DÉCRYPTAGE QUOTIDIEN : carrousel Instagram + texte X/Facebook (1×/jour) ──
@@ -2689,8 +2816,15 @@ def check_feeds(conn):
             cover_paysage, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
                                          carousel["image_query"], prefetched=(raw_src, has_real))
             vid_thread = build_video("news", {"headline": carousel["cover_title"][:90]}, "monde", raw_src, "Pulse")
-            url = post_to_twitter(xfb, cover_paysage, vid_thread)
-            post_to_facebook(xfb, cover_paysage, vid_thread)
+            url = None
+            try:
+                url = post_to_twitter(xfb, cover_paysage, vid_thread)
+            except Exception as e:
+                print(f"  ❌ X isolé : {e}")
+            try:
+                post_to_facebook(xfb, cover_paysage, vid_thread)
+            except Exception as e:
+                print(f"  ❌ Facebook isolé : {e}")
             if vid_thread and os.path.exists(vid_thread):
                 import shutil as _sh
                 _sh.rmtree(os.path.dirname(vid_thread), ignore_errors=True)
@@ -2906,8 +3040,8 @@ def check_feeds(conn):
             else:
                 add_recent(conn, item["title"])
                 video = None
-                body, headline_court, image_query, keywords, person = gen_tweet_complet(
-                    item["title"], item["summary"], item["source"], cat
+                body, headline_court, image_query, keywords, person = gen_tweet_verified(
+                    item["title"], item["summary"], item["source"], cat, url=item.get("url")
                 )
                 tweet_final = build_full_tweet(body, cat)
                 photo       = extract_photo(item["entry"])
@@ -2955,8 +3089,14 @@ def check_feeds(conn):
                 if not video_path:   # vidéo animée Pulse sur TOUS les posts (barre néon couleur catégorie)
                     video_path = build_video("news", {"headline": headline_court}, cat, raw_src, item["source"])
 
-            post_to_twitter(tweet_final, png_bytes, video_path)
-            post_to_facebook(tweet_final, png_bytes, video_path)
+            try:
+                post_to_twitter(tweet_final, png_bytes, video_path)
+            except Exception as e:
+                print(f"  ❌ X isolé : {e}")
+            try:
+                post_to_facebook(tweet_final, png_bytes, video_path)
+            except Exception as e:
+                print(f"  ❌ Facebook isolé : {e}")
             if ig_allowed(conn):
                 post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
                 log_special(conn, "ig_post", [])
