@@ -3,6 +3,8 @@ Pulse NewsBot — bot d'actualité française.
 Génère des tweets engageants avec image PNG, envoyés par email + posté sur X.
 """
 import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib, random
+import socket
+socket.setdefaulttimeout(12)   # aucun flux RSS/site mort ne peut geler un run
 import urllib.request, urllib.parse, urllib.error, re
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from email.mime.multipart import MIMEMultipart
@@ -426,7 +428,7 @@ def gen_tweet_complet(title, summary, source, category, video_url=None):
     """Génère tweet + titre image + image_query + mots-clés majeurs."""
     today = datetime.now().strftime("%d %B %Y")
     label = LABELS[category]
-    video_str = f"\nIntègre ce lien à la fin du tweet : {video_url}" if video_url else ""
+    video_str = ""
 
     # Style adaptatif selon catégorie — TOUJOURS court et télégraphique (fil d'actu)
     if category == "hommage":
@@ -678,89 +680,6 @@ def extract_photo(entry):
             if "image" in e.get("type", ""):
                 return e.get("href")
     return None
-
-def extract_video(entry):
-    """Cherche une vidéo dans l'article RSS (MP4, HLS, WebM...)."""
-    VIDEO_EXTS  = (".mp4", ".mov", ".webm", ".m3u8", ".avi", ".mkv")
-    VIDEO_TYPES = ("video/", "application/x-mpegurl", "application/vnd.apple.mpegurl")
-    if hasattr(entry, "media_content") and entry.media_content:
-        for m in entry.media_content:
-            t, url = m.get("type", "").lower(), m.get("url", "")
-            if any(t.startswith(vt) for vt in VIDEO_TYPES): return url
-            if any(url.lower().endswith(ext) for ext in VIDEO_EXTS): return url
-    if hasattr(entry, "enclosures") and entry.enclosures:
-        for e in entry.enclosures:
-            t   = e.get("type", "").lower()
-            url = e.get("href", "") or e.get("url", "")
-            if any(t.startswith(vt) for vt in VIDEO_TYPES): return url
-            if any(url.lower().endswith(ext) for ext in VIDEO_EXTS): return url
-    content = ""
-    if hasattr(entry, "content") and entry.content:
-        content = entry.content[0].get("value", "")
-    elif hasattr(entry, "summary"):
-        content = entry.summary or ""
-    import re as _re
-    matches = _re.findall(r'https?://[^\s"\'<>]+\.(?:mp4|m3u8|mov|webm)', content, _re.IGNORECASE)
-    return matches[0] if matches else None
-
-def extract_video_from_page(article_url):
-    """Cherche une vidéo (og:video) sur la page de l'article."""
-    if not article_url:
-        return None
-    try:
-        req = urllib.request.Request(article_url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=10) as r:
-            html = r.read(300000).decode("utf-8", errors="ignore")
-        # og:video:url ou og:video
-        for prop in ('property=["\']og:video(?::url|:secure_url)?["\']',):
-            m = re.search(r'<meta[^>]+' + prop + r'[^>]+content=["\']([^"\']+)["\']', html, re.IGNORECASE)
-            if not m:
-                m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+' + prop, html, re.IGNORECASE)
-            if m:
-                v = m.group(1).strip()
-                # On ignore les embeds YouTube/Dailymotion (copyright + pas téléchargeables simplement)
-                if any(x in v.lower() for x in ("youtube.com", "youtu.be", "dailymotion", "/embed/")):
-                    return None
-                if v.startswith("//"):
-                    v = "https:" + v
-                if v.startswith("http") and any(v.lower().split("?")[0].endswith(e) for e in (".mp4", ".m3u8", ".mov", ".webm")):
-                    return v
-    except Exception as e:
-        print(f"  ⚠️ og:video: {e}")
-    return None
-
-def download_and_convert_video(video_url, max_duration=90):
-    """Télécharge et convertit une vidéo en MP4 720p compatible X via FFmpeg."""
-    import subprocess, tempfile, os
-    try:
-        subprocess.run(["ffmpeg", "-version"], capture_output=True, check=True)
-    except (subprocess.CalledProcessError, FileNotFoundError):
-        print("  ⚠️ FFmpeg non disponible.")
-        return None
-    try:
-        out_path = tempfile.mktemp(suffix=".mp4")
-        cmd = [
-            "ffmpeg", "-y", "-i", video_url,
-            "-t", str(max_duration),
-            "-vf", "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2",
-            "-c:v", "libx264", "-preset", "fast", "-crf", "23",
-            "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart",
-            "-max_muxing_queue_size", "1024", out_path
-        ]
-        result = subprocess.run(cmd, capture_output=True, timeout=120)
-        if result.returncode != 0:
-            print(f"  ⚠️ FFmpeg erreur: {result.stderr.decode()[-200:]}")
-            return None
-        size_mb = os.path.getsize(out_path) / (1024 * 1024)
-        if size_mb > 512:
-            print(f"  ⚠️ Vidéo trop lourde ({size_mb:.0f} MB).")
-            os.remove(out_path); return None
-        print(f"  🎬 Vidéo convertie ({size_mb:.1f} MB)")
-        return out_path
-    except subprocess.TimeoutExpired:
-        print("  ⚠️ FFmpeg timeout."); return None
-    except Exception as e:
-        print(f"  ⚠️ Vidéo erreur: {e}"); return None
 
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
     """
@@ -1414,7 +1333,7 @@ def gather_all_headlines():
             feed = feedparser.parse(fi["url"])
             for entry in feed.entries[:5]:
                 title = entry.get("title", "")
-                summ  = entry.get("summary", entry.get("description", ""))
+                summ  = _strip_html(entry.get("summary", entry.get("description", "")))
                 if title:
                     summ = re.sub(r"<[^>]+>", "", summ)  # nettoie le HTML
                     headlines.append(f"[{fi['source']}] {title} — {summ[:200]}")
@@ -2332,6 +2251,11 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     pts.append((a_[0] + (b_[0]-a_[0]) * r, a_[1] + (b_[1]-a_[1]) * r)); break
             return pts
         ecg_col = (205, 208, 224) if sober else NEON
+        glow_full = None
+        if not sober:   # halo néon précalculé une seule fois (gros gain de vitesse)
+            gl = Image.new('RGBA', (W, H), (0, 0, 0, 0)); gld = ImageDraw.Draw(gl)
+            gld.line(ECG, fill=ecg_col + (110,), width=7, joint="curve")
+            glow_full = gl.filter(ImageFilter.GaussianBlur(4))
 
         # ── zones texte (anti-collision : tout est ancré AU-DESSUS du pied de page) ──
         FOOTER_Y = H - int(H * 0.115)            # zone réservée source/date
@@ -2352,7 +2276,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                 z = 1.0 + 0.07 * (t / DUR)
                 cw, chh = int(photo_big.width / z), int(photo_big.height / z)
                 cx, cy = (photo_big.width - cw) // 2, int((photo_big.height - chh) * 0.45)
-                fr = photo_big.crop((cx, cy, cx + cw, cy + chh)).resize((W, H), Image.LANCZOS).convert("RGBA")
+                fr = photo_big.crop((cx, cy, cx + cw, cy + chh)).resize((W, H), Image.BILINEAR).convert("RGBA")
                 img = fr if pa >= 1 else Image.blend(img, fr, pa)
             img.alpha_composite(bands)
             # barre néon défilante (nuances de la catégorie)
@@ -2367,15 +2291,14 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             la = _vease(t / 0.6)
             if la > 0:
                 d.text((int(W * 0.04), int(H * 0.055)), "PULSE", font=LOGO_F, fill=WHITE + (int(255 * la),))
-            pts = ecg_pts(_vease((t - 0.3) / 0.9))
+            frac = _vease((t - 0.3) / 0.9)
+            pts = ecg_pts(frac)
             if len(pts) >= 2:
-                if not sober:
-                    lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); ld = ImageDraw.Draw(lay)
-                    ld.line(pts, fill=ecg_col + (110,), width=7, joint="curve")
-                    img.alpha_composite(lay.filter(ImageFilter.GaussianBlur(4)))
+                if glow_full is not None and frac >= 1:
+                    img.alpha_composite(glow_full)
                 d = ImageDraw.Draw(img)
                 d.line(pts, fill=ecg_col, width=3, joint="curve")
-                if _vease((t - 0.3) / 0.9) >= 1 and not sober:
+                if frac >= 1 and not sober:
                     r = 4 + 1.6 * (1 + math.sin(t * 5.5)) / 2
                     e = ECG[-1]
                     d.ellipse([e[0]-r, e[1]-r, e[0]+r, e[1]+r], fill=ecg_col)
@@ -2514,8 +2437,12 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
 
         out_mp4 = os.path.join(out_dir, "pulse_video.mp4")
         subprocess.run([ffmpeg_bin, "-y", "-loglevel", "error", "-framerate", str(FPS),
-                        "-i", f"{out_dir}/f_%03d.png", "-c:v", "libx264", "-pix_fmt", "yuv420p",
-                        "-crf", "20", "-movflags", "+faststart", out_mp4], check=True, timeout=300)
+                        "-i", f"{out_dir}/f_%03d.png", "-c:v", "libx264", "-preset", "veryfast",
+                        "-threads", "0", "-pix_fmt", "yuv420p", "-crf", "21",
+                        "-movflags", "+faststart", out_mp4], check=True, timeout=300)
+        for n in range(N):   # libère le disque : on ne garde que le MP4
+            try: os.remove(f"{out_dir}/f_{n:03d}.png")
+            except OSError: pass
         print(f"  🎬 Vidéo générée ({kind})")
         return out_mp4
     except Exception as e:
@@ -2719,12 +2646,25 @@ def publish_breaking(conn, item, cat, urgent=True):
         log_special(conn, "ig_post", [])
     else:
         print("  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)")
+    if vid and os.path.exists(vid):
+        import shutil as _sh
+        _sh.rmtree(os.path.dirname(vid), ignore_errors=True)
     mark_cat(conn, label_cat)
     log_keywords(conn, keywords)
     log_special(conn, "breaking", keywords)   # partage l'anti-spam (1 fast-track / 25 min)
     if item.get("url"):
         mark_seen(conn, item["url"], item["title"])
     return keywords
+
+def _strip_html(text):
+    """Nettoie un résumé RSS : balises HTML, entités, liens, espaces — Claude reçoit du texte propre."""
+    if not text:
+        return ""
+    text = re.sub(r'<[^>]+>', ' ', text)                  # balises
+    text = re.sub(r'&[a-zA-Z#0-9]+;', ' ', text)          # entités (&amp; &nbsp; ...)
+    text = re.sub(r'https?://\S+', '', text)              # liens bruts
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text[:400]
 
 def check_feeds(conn):
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
@@ -2743,8 +2683,12 @@ def check_feeds(conn):
             raw_src, has_real = carousel["og_bytes"], True
             cover_paysage, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
                                          carousel["image_query"], prefetched=(raw_src, has_real))
-            url = post_to_twitter(xfb, cover_paysage)
-            post_to_facebook(xfb, cover_paysage)
+            vid_thread = build_video("news", {"headline": carousel["cover_title"][:90]}, "monde", raw_src, "Pulse")
+            url = post_to_twitter(xfb, cover_paysage, vid_thread)
+            post_to_facebook(xfb, cover_paysage, vid_thread)
+            if vid_thread and os.path.exists(vid_thread):
+                import shutil as _sh
+                _sh.rmtree(os.path.dirname(vid_thread), ignore_errors=True)
 
             # Carrousel Instagram : couverture (4:5) + slides de contenu (fond photo flouté)
             total = len(carousel["slides"]) + 1
@@ -2756,6 +2700,7 @@ def check_feeds(conn):
                 slides_png.append(build_carousel_slide(s["titre"], s["points"], i, total,
                                                        is_last=(i == total), bg_photo=raw_src))
             post_carousel_to_instagram(slides_png, build_ig_caption(body, carousel.get("keywords")))
+            log_special(conn, "ig_post", [])   # le carrousel compte dans l'espacement anti-blocage Instagram
 
             if url:
                 log_special(conn, "thread", carousel["keywords"])
@@ -2785,10 +2730,10 @@ def check_feeds(conn):
     for fi in RSS_FEEDS:
         try:
             feed = feedparser.parse(fi["url"])
-            for entry in feed.entries[:2]:
+            for entry in feed.entries[:3]:
                 url   = entry.get("link", "")
                 title = entry.get("title", "")
-                summ  = entry.get("summary", entry.get("description", ""))
+                summ  = _strip_html(entry.get("summary", entry.get("description", "")))
                 if url and title and not is_seen(conn, url):
                     # Pré-filtre GRATUIT : si le titre contient un mot-clé déjà publié (12h),
                     # on rejette SANS payer Claude — SAUF si c'est le RÉSULTAT d'un match (1 dérogation/4h)
@@ -2962,15 +2907,9 @@ def check_feeds(conn):
                 tweet_final = build_full_tweet(body, cat)
                 photo       = extract_photo(item["entry"])
 
-            # Cherche une vidéo dans l'article RSS, puis sur la page de l'article
+            # ⚖️ Les vidéos d'articles tiers ne sont JAMAIS republiées (droit d'auteur / risque de strike).
+            #    Les seules vidéos publiées sont celles générées par Pulse (build_video).
             video_path = None
-            if "entry" in item:
-                video_url = extract_video(item["entry"])
-                if not video_url:
-                    video_url = extract_video_from_page(item.get("url"))
-                if video_url:
-                    print(f"  🎬 Vidéo trouvée : {video_url[:60]}...")
-                    video_path = download_and_convert_video(video_url)
 
             # Image paysage (X + Facebook) — on récupère aussi l'image source pour réutilisation
             raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, cat)
@@ -3018,6 +2957,9 @@ def check_feeds(conn):
                 log_special(conn, "ig_post", [])
             else:
                 print("  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)")
+            if video_path and os.path.exists(video_path):
+                import shutil as _sh
+                _sh.rmtree(os.path.dirname(video_path), ignore_errors=True)
 
             # Nettoyage du fichier vidéo temporaire (après X + Facebook)
             if video_path:
