@@ -292,7 +292,27 @@ def last_publish_time(conn):
     except:
         return None
 
-def should_publish_now(conn, min_minutes=45, max_minutes=105):
+def _paris_hour():
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("Europe/Paris")).hour
+    except Exception:
+        from datetime import timezone, timedelta
+        return datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=2))).hour
+
+def _cadence_minutes(h):
+    """Rythme de publication selon l'heure FRANÇAISE (pics d'audience X : matin, midi, soirée)."""
+    if 0 <= h < 6:
+        return 150, 240, "nuit (quasi-pause, le breaking passe toujours)"
+    if h in (7, 8, 12, 13, 18, 19, 20, 21):
+        return 35, 75, "prime-time (cadence soutenue)"
+    return 55, 110, "journée"
+
+def should_publish_now(conn, min_minutes=None, max_minutes=None):
+    if min_minutes is None or max_minutes is None:
+        h = _paris_hour()
+        min_minutes, max_minutes, mode = _cadence_minutes(h)
+        print(f"  🕐 {h}h (Paris) — rythme {mode} : {min_minutes}-{max_minutes} min")
     last = last_publish_time(conn)
     if not last:
         return True
@@ -539,19 +559,19 @@ def _fact_hardfix(body, source_text):
     return body
 
 def gen_tweet_verified(title, summary, source, category, url=None):
-    """gen_tweet_complet + lecture de l'article sur sujets sensibles + vérification factuelle (1 retry)."""
+    """gen_tweet_complet + lecture de l'ARTICLE COMPLET (chiffres et faits exacts pour chaque
+    tweet, pas seulement le résumé RSS) + vérification factuelle (1 retry)."""
     src_text = f"{title} {summary}"
     article_text = None
-    if SENSITIVE_TOPIC_RX.search(title) or SENSITIVE_TOPIC_RX.search(summary or ""):
-        if url:
-            try:
-                article_text = fetch_article_text(url, max_chars=1200)
-                if article_text and len(article_text) > 150:
-                    src_text += " " + article_text
-                else:
-                    article_text = None
-            except Exception:
+    if url:
+        try:
+            article_text = fetch_article_text(url, max_chars=1200)
+            if article_text and len(article_text) > 150:
+                src_text += " " + article_text
+            else:
                 article_text = None
+        except Exception:
+            article_text = None
     body, headline, image_query, keywords, person = gen_tweet_complet(
         title, summary, source, category, article_text=article_text)
     issues = _fact_guard(body + " " + headline, src_text)
@@ -1703,6 +1723,16 @@ def fetch_article_text(url, max_chars=3000):
         print(f"  ⚠️ fetch_article_text: {e}")
         return ""
 
+def recent_thread_topics(conn, days=7, limit=5):
+    """Thèmes des derniers décryptages, pour ne jamais répéter le même sujet dans la semaine."""
+    try:
+        rows = conn.execute(
+            "SELECT keywords FROM special_log WHERE kind='thread' AND sent_at > datetime('now', ?) "
+            "ORDER BY sent_at DESC LIMIT ?", (f"-{days} days", limit)).fetchall()
+        return [r[0] for r in rows if r and r[0]]
+    except Exception:
+        return []
+
 def gen_carousel(conn):
     """
     Décryptage chiffré : (1) Claude choisit LE sujet de fond du jour,
@@ -1718,6 +1748,8 @@ def gen_carousel(conn):
     today = datetime.now().strftime("%d %B %Y")
     try:
         # ÉTAPE 1 : choisir LE sujet de fond du jour
+        deja = recent_thread_topics(conn)
+        deja_str = ("\n⛔ THÈMES DÉJÀ TRAITÉS cette semaine — choisis un sujet DIFFÉRENT : " + " | ".join(deja)) if deja else ""
         pick = claude(f"""Tu es Pulse, média d'actualité française. Aujourd'hui : {today}.
 
 Articles du jour (numérotés) :
@@ -1726,6 +1758,8 @@ Articles du jour (numérotés) :
 Sujets déjà traités ces 7 derniers jours (à éviter) : {avoid_str}
 
 Choisis les sujets qui font PARLER et donnent envie de cliquer : affaire/scandale en cours, polémique, drame marquant, événement sportif majeur, décision qui touche directement le portefeuille ou le quotidien des gens, gros buzz. ⛔ ÉVITE ABSOLUMENT les sujets froids/institutionnels : débats techniques (quotas, tarification, mécanismes européens), réformes "à venir", rapports prospectifs, négociations de procédure. Si un sujet ressemble à un cours d'économie, ne le choisis pas.
+
+{deja_str}
 
 Donne ton TOP 3 par ordre de préférence (le meilleur en premier).
 
