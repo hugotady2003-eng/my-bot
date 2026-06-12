@@ -1870,6 +1870,49 @@ def post_carousel_to_instagram(slides_png, caption):
 # ═══════════════════════════════════════════════════════════════════════════
 # CARTE DE VICTOIRE (sport) — photo du match floutée + score + vainqueur
 # ═══════════════════════════════════════════════════════════════════════════
+# ── DRAPEAUX RONDS pour les matchs internationaux (flagcdn.com, domaine public) ──
+COUNTRY_FLAGS = {
+    "france": "fr", "mexique": "mx", "afrique du sud": "za", "etats-unis": "us", "usa": "us",
+    "canada": "ca", "bresil": "br", "argentine": "ar", "espagne": "es", "angleterre": "gb-eng",
+    "allemagne": "de", "italie": "it", "portugal": "pt", "pays-bas": "nl", "belgique": "be",
+    "croatie": "hr", "maroc": "ma", "senegal": "sn", "algerie": "dz", "tunisie": "tn",
+    "cameroun": "cm", "cote d'ivoire": "ci", "ghana": "gh", "nigeria": "ng", "egypte": "eg",
+    "japon": "jp", "coree du sud": "kr", "australie": "au", "arabie saoudite": "sa", "qatar": "qa",
+    "iran": "ir", "uruguay": "uy", "colombie": "co", "chili": "cl", "perou": "pe",
+    "equateur": "ec", "paraguay": "py", "suisse": "ch", "autriche": "at", "pologne": "pl",
+    "danemark": "dk", "suede": "se", "norvege": "no", "ecosse": "gb-sct", "pays de galles": "gb-wls",
+    "irlande": "ie", "serbie": "rs", "turquie": "tr", "grece": "gr", "ukraine": "ua",
+    "panama": "pa", "costa rica": "cr", "honduras": "hn", "jamaique": "jm", "haiti": "ht",
+    "nouvelle-zelande": "nz", "ouzbekistan": "uz", "jordanie": "jo", "cap-vert": "cv", "curacao": "cw",
+}
+_FLAG_CACHE = {}
+
+def _flag_circle(country, diameter=160):
+    """Drapeau rond (bord à dessiner par l'appelant). None si pays inconnu ou réseau KO."""
+    try:
+        import unicodedata, io as _io, urllib.request
+        key = unicodedata.normalize("NFD", (country or "").lower().strip())
+        key = "".join(ch for ch in key if unicodedata.category(ch) != "Mn")
+        iso = COUNTRY_FLAGS.get(key)
+        if not iso:
+            return None
+        if iso not in _FLAG_CACHE:
+            req = urllib.request.Request(f"https://flagcdn.com/w160/{iso}.png",
+                                         headers={"User-Agent": "Mozilla/5.0"})
+            _FLAG_CACHE[iso] = urllib.request.urlopen(req, timeout=8).read()
+        im = Image.open(_io.BytesIO(_FLAG_CACHE[iso])).convert("RGB")
+        side = min(im.size)
+        im = im.crop(((im.width - side) // 2, (im.height - side) // 2,
+                      (im.width + side) // 2, (im.height + side) // 2))
+        im = im.resize((diameter, diameter), Image.LANCZOS)
+        mask = Image.new("L", (diameter, diameter), 0)
+        ImageDraw.Draw(mask).ellipse([0, 0, diameter - 1, diameter - 1], fill=255)
+        out = Image.new("RGBA", (diameter, diameter), (0, 0, 0, 0))
+        out.paste(im, (0, 0), mask)
+        return out
+    except Exception:
+        return None
+
 def extract_sport_result(title, summary):
     """Extrait un résultat sportif TERMINÉ : match (sports co), tennis (sets) ou course (vainqueur seul)."""
     try:
@@ -1970,6 +2013,15 @@ def build_victory_card(raw_photo, res, source, W=1200, H=675):
         ly = Image.new('RGBA', base.size, (0, 0, 0, 0)); fn(ImageDraw.Draw(ly))
         base.alpha_composite(ly.filter(ImageFilter.GaussianBlur(blur)))
 
+    # Match entre PAYS (Coupe du Monde...) → style "compte foot pro" : photo nette + drapeaux ronds
+    flags = None
+    if res.get("type", "match") == "match":
+        _D = int(min(W, H) * 0.155)
+        _fa = _flag_circle(res.get("team_a", ""), _D)
+        _fb = _flag_circle(res.get("team_b", ""), _D)
+        if _fa is not None and _fb is not None:
+            flags = (_fa, _fb)
+
     # ── fond : photo floutée (recadrage cover LANCZOS) ou dégradé marque navy→violet→magenta ──
     bg = None
     if raw_photo:
@@ -1980,7 +2032,9 @@ def build_victory_card(raw_photo, res, source, W=1200, H=675):
                 nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
             else:
                 nh = int(ph.width / tr); ph = ph.crop((0, (ph.height - nh) // 2, ph.width, (ph.height - nh) // 2 + nh))
-            bg = ph.resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(7))
+            bg = ph.resize((W, H), Image.LANCZOS)
+            if flags is None:
+                bg = bg.filter(ImageFilter.GaussianBlur(7))   # international → photo NETTE plein cadre
         except Exception:
             bg = None
     if bg is None:
@@ -2016,15 +2070,47 @@ def build_victory_card(raw_photo, res, source, W=1200, H=675):
     typ = res.get("type", "match")
     winner = res.get("winner", "")
     is_draw = (typ == "match" and winner == "NUL")
-    banner = "MATCH NUL" if is_draw else "★  VICTOIRE  ★"
-    bcol = SILVER if is_draw else GOLD
-    by = int(H * 0.225)
-    shadow(img, lambda l: l.text((W // 2, by), banner, font=f(W * 0.032), fill=(0, 0, 0, 235), anchor="mm"), 10); d = ImageDraw.Draw(img)
-    d.text((W // 2, by), banner, font=f(W * 0.032), fill=bcol, anchor="mm")
+    if flags is None:
+        banner = "MATCH NUL" if is_draw else "★  VICTOIRE  ★"
+        bcol = SILVER if is_draw else GOLD
+        by = int(H * 0.225)
+        shadow(img, lambda l: l.text((W // 2, by), banner, font=f(W * 0.032), fill=(0, 0, 0, 235), anchor="mm"), 10); d = ImageDraw.Draw(img)
+        d.text((W // 2, by), banner, font=f(W * 0.032), fill=bcol, anchor="mm")
 
     cy = int(H * 0.50)
 
-    if typ == "race":
+    if typ == "match" and flags is not None:
+        # ── style "compte foot pro" : bas assombri, drapeaux ronds, score géant, SCORE FINAL ──
+        ov2 = Image.new('RGBA', (W, H), (0, 0, 0, 0)); od2 = ImageDraw.Draw(ov2)
+        for y in range(int(H * 0.40), H):
+            a = int(220 * ((y - H * 0.40) / (H * 0.60)) ** 1.2)
+            od2.line([(0, y), (W, y)], fill=(8, 8, 16, a))
+        img = Image.alpha_composite(img, ov2); d = ImageDraw.Draw(img)
+        D = flags[0].width
+        row_y = int(H * 0.68)
+        lax, rax = int(W * 0.20), int(W * 0.80)
+        ring_w = max(3, D // 26)
+        for (fl, xx, win) in [(flags[0], lax, winner == "A"), (flags[1], rax, winner == "B")]:
+            shadow(img, lambda l, xx=xx: l.ellipse([xx - D // 2 - 4, row_y - D // 2 - 4,
+                                                    xx + D // 2 + 4, row_y + D // 2 + 4], fill=(0, 0, 0, 210)), 10)
+            img.alpha_composite(fl, (xx - D // 2, row_y - D // 2)); d = ImageDraw.Draw(img)
+            ring = GOLD if (win and not is_draw) else (255, 255, 255)
+            d.ellipse([xx - D // 2, row_y - D // 2, xx + D // 2, row_y + D // 2], outline=ring, width=ring_w)
+        score = f"{res.get('score_a', '')} - {res.get('score_b', '')}"
+        cf = fit(d, score, int(W * 0.40), W * 0.105, mins=36)
+        shadow(img, lambda l, cf=cf: l.text((W // 2, row_y), score, font=cf, fill=(0, 0, 0, 240), anchor="mm"), 14); d = ImageDraw.Draw(img)
+        d.text((W // 2, row_y), score, font=cf, fill=WHITE, anchor="mm")
+        fy = row_y + D // 2 + int(H * 0.052)
+        for (xx, nm) in [(lax, res.get("team_a", "")), (rax, res.get("team_b", ""))]:
+            fn = fit(d, nm.upper(), int(W * 0.26), W * 0.021)
+            d.text((xx, fy), nm.upper(), font=fn, fill=WHITE, anchor="mm")
+        lbl = "MATCH NUL" if is_draw else "SCORE FINAL"
+        sf = f(W * 0.016)
+        stw = d.textbbox((0, 0), lbl, font=sf)[2]
+        d.text((W // 2, fy), lbl, font=sf, fill=GOLD, anchor="mm")
+        d.line([(W // 2 - stw // 2 - int(W * 0.065), fy), (W // 2 - stw // 2 - int(W * 0.016), fy)], fill=GOLD, width=2)
+        d.line([(W // 2 + stw // 2 + int(W * 0.016), fy), (W // 2 + stw // 2 + int(W * 0.065), fy)], fill=GOLD, width=2)
+    elif typ == "race":
         # course / contre-la-montre / GP : le vainqueur en très grand, OR
         name = res.get("winner_name", "").upper()
         fn = fit(d, name, int(W * 0.84), W * 0.085)
@@ -2263,6 +2349,12 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         W, H, FPS, DUR = VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR
         N = int(FPS * DUR)
         sober = (kind == "hommage")
+        flags_v = None
+        if kind == "victory" and data.get("type") == "match":
+            _fa = _flag_circle(data.get("team_a", ""), int(min(W, H) * 0.16))
+            _fb = _flag_circle(data.get("team_b", ""), int(min(W, H) * 0.16))
+            if _fa is not None and _fb is not None:
+                flags_v = (_fa, _fb)
         GOLD, WHITE, DIM = (255, 210, 74), (255, 255, 255), (222, 218, 238)
         NEON, RED = (255, 80, 200), (226, 48, 70)
 
@@ -2282,7 +2374,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                 if sober:
                     from PIL import ImageOps as _IO
                     ph = Image.blend(_IO.grayscale(ph).convert("RGB"), Image.new("RGB", ph.size, (0, 0, 0)), 0.18)
-                elif kind == "victory":
+                elif kind == "victory" and flags_v is None:
                     ph = ph.filter(ImageFilter.GaussianBlur(5))
                 photo_big = ph
             except Exception:
@@ -2299,6 +2391,12 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             t = y / H
             a = int(155 * (1 - t / 0.22)) if t < 0.22 else (int(238 * ((t - 0.44) / 0.56)) if t > 0.44 else 0)
             if a > 0: bd.line([(0, y), (W, y)], fill=(10, 8, 30, min(238, a)))
+        intl_grad = None
+        if flags_v is not None:
+            intl_grad = Image.new("RGBA", (W, H), (0, 0, 0, 0)); _ig = ImageDraw.Draw(intl_grad)
+            for y in range(int(H * 0.40), H):
+                a = int(220 * ((y - H * 0.40) / (H * 0.60)) ** 1.2)
+                _ig.line([(0, y), (W, y)], fill=(8, 8, 16, a))
         BAR_H = 9
         strip = _neon_strip(category, W, BAR_H, sober=sober)
         period = strip.width
@@ -2350,6 +2448,8 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                 fr = photo_big.crop((cx, cy, cx + cw, cy + chh)).resize((W, H), Image.BILINEAR).convert("RGBA")
                 img = fr if pa >= 1 else Image.blend(img, fr, pa)
             img.alpha_composite(bands)
+            if intl_grad is not None:
+                img.alpha_composite(intl_grad)
             # barre néon défilante (nuances de la catégorie)
             off = int((t * W * 0.22) % period)
             bar = Image.new("RGB", (W, BAR_H))
@@ -2430,6 +2530,51 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     if da_ > 0 and data.get("detail"):
                         d.text((W // 2, cy - int(H * 0.10)), data["detail"], font=_vf(W * 0.022, False),
                                fill=DIM + (int(255 * da_),), anchor="mm")
+                elif flags_v is not None:
+                    # ── match international : drapeaux ronds + score qui compte (style compte foot pro) ──
+                    D = flags_v[0].width
+                    row_y = int(H * 0.68)
+                    lax, rax = int(W * 0.20), int(W * 0.80)
+                    fl_a = _vease((t - 1.3) / 0.5)
+                    if fl_a > 0:
+                        ring_w = max(3, D // 26)
+                        for (fl, xx, win_) in [(flags_v[0], lax, winner == "A"), (flags_v[1], rax, winner == "B")]:
+                            tmpfl = fl
+                            if fl_a < 1:
+                                tmpfl = fl.copy()
+                                tmpfl.putalpha(tmpfl.split()[3].point(lambda px: int(px * fl_a)))
+                            img.alpha_composite(tmpfl, (xx - D // 2, row_y - D // 2))
+                            d = ImageDraw.Draw(img)
+                            gold_now = win_ and winner != "NUL" and t >= 4.2
+                            ring = GOLD if gold_now else (255, 255, 255)
+                            d.ellipse([xx - D // 2, row_y - D // 2, xx + D // 2, row_y + D // 2],
+                                      outline=ring + (int(255 * fl_a),), width=ring_w)
+                        fy = row_y + D // 2 + int(H * 0.052)
+                        for (xx, nm) in [(lax, data.get("team_a", "")), (rax, data.get("team_b", ""))]:
+                            fn = _vf(W * 0.020)
+                            while tmpd.textbbox((0, 0), nm.upper(), font=fn)[2] > W * 0.26 and fn.size > 16:
+                                fn = _vf(fn.size - 2)
+                            d.text((xx, fy), nm.upper(), font=fn, fill=WHITE + (int(255 * fl_a),), anchor="mm")
+                    prog = _vease((t - 2.2) / 1.1)
+                    sa_f, sb_f = int(data.get("score_a", 0)), int(data.get("score_b", 0))
+                    if prog > 0:
+                        final_txt = f"{sa_f} - {sb_f}"
+                        cf = _vf(W * 0.105)
+                        while tmpd.textbbox((0, 0), final_txt, font=cf)[2] > W * 0.40 and cf.size > 36:
+                            cf = _vf(cf.size - 4)
+                        cur = f"{int(round(prog * sa_f))} - {int(round(prog * sb_f))}"
+                        d.text((W // 2 + 3, row_y + 3), cur, font=cf, fill=(0, 0, 0, 230), anchor="mm")
+                        d.text((W // 2, row_y), cur, font=cf, fill=WHITE, anchor="mm")
+                    sf_a = _vease((t - 3.8) / 0.5)
+                    if sf_a > 0:
+                        lbl = "MATCH NUL" if winner == "NUL" else "SCORE FINAL"
+                        sf = _vf(W * 0.016)
+                        stw = tmpd.textbbox((0, 0), lbl, font=sf)[2]
+                        fy2 = row_y + D // 2 + int(H * 0.052)
+                        d.text((W // 2, fy2), lbl, font=sf, fill=GOLD + (int(255 * sf_a),), anchor="mm")
+                        ga = int(255 * sf_a)
+                        d.line([(W // 2 - stw // 2 - int(W * 0.065), fy2), (W // 2 - stw // 2 - int(W * 0.016), fy2)], fill=GOLD + (ga,), width=2)
+                        d.line([(W // 2 + stw // 2 + int(W * 0.016), fy2), (W // 2 + stw // 2 + int(W * 0.065), fy2)], fill=GOLD + (ga,), width=2)
                 else:
                     na, nb = (data.get("player_a"), data.get("player_b")) if typ == "tennis" else (data.get("team_a"), data.get("team_b"))
                     sl = _vease((t - 1.5) / 0.7)
