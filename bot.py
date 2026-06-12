@@ -490,7 +490,9 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
 - Longueur cible COURTE : environ 200 à 330 caractères. Jamais un long pavé.
 - 🇫🇷 FRANÇAIS IMPECCABLE : aucun mot ni expression en anglais (traduis tout), aucune faute d'orthographe/grammaire/accord, aucun mot tronqué. RELIS-toi avant de répondre.
-- 2-3 hashtags INTÉGRÉS DANS LES PHRASES : transforme un mot-clé DÉJÀ présent en hashtag en lui collant "#" (ex : "à #Mexico", "la #CoupeDuMonde2026", "le #PSG").
+- 1 à 2 hashtags INTÉGRÉS DANS LES PHRASES (3 max si vraiment justifié) : colle "#" sur un mot DÉJÀ présent.
+- 🎯 CHOIX DU HASHTAG — vise le SUJET, jamais le décor. Le hashtag principal = LE nom propre central de l'actu (entreprise, personne, club, événement, jeu vidéo). Test : "cette actu parle de quoi en UN mot ?" → c'est CE mot qui prend le #. Ex : actu sur l'entrée en Bourse de SpaceX → #SpaceX (PAS #Bourse ni #TimesSquare) ; actu sur Mbappé → #Mbappé (pas #football) ; match des Bleus → #CoupeDuMonde2026 ; sortie de GTA 6 → #GTA6.
+- ⛔ Pas de hashtag décoratif ou périphérique : lieux secondaires, mots génériques (#Bourse, #France, #Justice, #Tech) sont INTERDITS sauf s'ils sont précisément LE sujet de l'actu.
 - ⛔ INTÉGRATION PROPRE — ne casse JAMAIS le texte : ne DUPLIQUE pas un mot ("à Mexico #Mexico" = INTERDIT), ne mets pas de "#" au milieu d'un mot, n'ajoute pas de mot juste pour caser un hashtag, et NE mets PAS de bloc de hashtags à la fin. Le hashtag doit se lire naturellement dans la phrase.
 - RETOUR À LA LIGNE après la 1ʳᵉ phrase (jamais un gros bloc lourd) : phrase d'accroche, puis LIGNE VIDE, puis la 2ᵉ phrase, puis LIGNE VIDE, puis la source. Soit : Phrase 1.\\n\\nPhrase 2.\\n\\n(Source)
 - Exemple EXACT du rendu attendu (court, aéré, hashtags intégrés) :
