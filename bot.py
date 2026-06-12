@@ -2439,6 +2439,29 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     pts.append((a_[0] + (b_[0]-a_[0]) * r, a_[1] + (b_[1]-a_[1]) * r)); break
             return pts
         ecg_col = (205, 208, 224) if sober else NEON
+        # pastille catégorie NÉON : halo flouté couleur catégorie + anneau net + texte CENTRÉ
+        pill_layer = None
+        if kind != "hommage" and not urgent:
+            _tp = ImageDraw.Draw(Image.new("RGB", (8, 8)))
+            lbl_p = LABELS.get(category, category.upper())[:18]
+            pf_p = _vf(W * 0.019)
+            tw_p = _tp.textbbox((0, 0), lbl_p, font=pf_p)[2]
+            cc = STYLES.get(category, {}).get("color", "#e0e0f0").lstrip("#")
+            cr = tuple(int(cc[i:i + 2], 16) for i in (0, 2, 4))
+            bright = tuple(min(255, int(c + (255 - c) * 0.55)) for c in cr)   # cœur lumineux du néon
+            padx, hgt = int(W * 0.022), int(H * 0.064)
+            x2p = W - int(W * 0.04); x1p = x2p - (tw_p + padx * 2)
+            y0p = int(H * 0.060); y1p = y0p + hgt
+            pill_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            pld = ImageDraw.Draw(pill_layer)
+            pld.rounded_rectangle([x1p, y0p, x2p, y1p], radius=hgt // 2,
+                                  outline=cr + (210,), width=max(5, int(W * 0.0055)))
+            pill_layer = pill_layer.filter(ImageFilter.GaussianBlur(5))       # halo néon
+            pld = ImageDraw.Draw(pill_layer)
+            pld.rounded_rectangle([x1p, y0p, x2p, y1p], radius=hgt // 2,
+                                  fill=(10, 8, 28, 150), outline=bright + (255,), width=2)
+            pld.text(((x1p + x2p) // 2, (y0p + y1p) // 2 + 1), lbl_p, font=pf_p,
+                     fill=bright + (255,), anchor="mm")
         glow_full = None
         if not sober:   # halo néon précalculé une seule fois (gros gain de vitesse)
             gl = Image.new('RGBA', (W, H), (0, 0, 0, 0)); gld = ImageDraw.Draw(gl)
@@ -2450,7 +2473,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         tmpd = ImageDraw.Draw(Image.new("RGB", (8, 8)))
         HFONT, HLINES, LH, HY0 = None, [], 0, 0
         if kind == "news":
-            headline = str(data.get("headline", ""))[:90]
+            headline = re.sub(r'#(\w+)', r'\1', str(data.get("headline", "")))[:90]   # hashtags retirés
             HFONT, HLINES = _wrap_fit(tmpd, headline, int(W * 0.92), int(W * 0.052), max_lines=2)
             LH = int(HFONT.size * 1.22)
             HY0 = FOOTER_Y - int(H * 0.035) - LH * len(HLINES)   # bloc collé au-dessus du pied de page
@@ -2458,14 +2481,14 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         out_dir = tempfile.mkdtemp(prefix="pulsevid_")
         for n in range(N):
             t = n / FPS
-            img = grad_bg.copy().convert("RGBA")
-            pa = _vease((t - 0.9) / 1.0)
-            if photo_big is not None and pa > 0:
+            if photo_big is not None:
+                # la photo est là dès la PREMIÈRE frame, avec son zoom lent (Ken Burns)
                 z = 1.0 + 0.07 * (t / DUR)
                 cw, chh = int(photo_big.width / z), int(photo_big.height / z)
                 cx, cy = (photo_big.width - cw) // 2, int((photo_big.height - chh) * 0.45)
-                fr = photo_big.crop((cx, cy, cx + cw, cy + chh)).resize((W, H), Image.BILINEAR).convert("RGBA")
-                img = fr if pa >= 1 else Image.blend(img, fr, pa)
+                img = photo_big.crop((cx, cy, cx + cw, cy + chh)).resize((W, H), Image.BILINEAR).convert("RGBA")
+            else:
+                img = grad_bg.copy().convert("RGBA")
             img.alpha_composite(bands)
             if intl_grad is not None:
                 img.alpha_composite(intl_grad)
@@ -2512,15 +2535,14 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     d.ellipse([box[0] + padx - rr, cyp - rr, box[0] + padx + rr, cyp + rr],
                               fill=(255, 255, 255, int(255 * sa * blink)))
                     d.text((cxp + int(W * 0.012), cyp), txt, font=pf, fill=WHITE + (int(255 * sa),), anchor="mm")
-                else:
-                    lbl = LABELS.get(category, category.upper())[:18]
-                    pf = _vf(W * 0.019)
-                    tw = d.textbbox((0, 0), lbl, font=pf)[2]
-                    x1 = W - int(W * 0.04) - tw - int(W * 0.030); y0p = int(H * 0.065); y1p = y0p + int(H * 0.060)
-                    d.rounded_rectangle([x1, y0p, W - int(W * 0.04), y1p], radius=int(H * 0.030),
-                                        outline=(255, 255, 255, int(190 * sa)), width=2)
-                    d.text((W - int(W * 0.04) - int(W * 0.015), (y0p + y1p) // 2), lbl,
-                           font=pf, fill=WHITE + (int(255 * sa),), anchor="rm")
+                elif pill_layer is not None:
+                    if sa >= 1:
+                        img.alpha_composite(pill_layer)
+                    else:
+                        tmp_p = pill_layer.copy()
+                        tmp_p.putalpha(tmp_p.split()[3].point(lambda px: int(px * sa)))
+                        img.alpha_composite(tmp_p)
+                    d = ImageDraw.Draw(img)
 
             # ── contenu central selon le type ──
             if kind == "news":
