@@ -2162,12 +2162,31 @@ DEATH_EXCLUDE = (
     "meurt de rire",
 )
 
+# Une AFFAIRE qui mentionne un décès passé n'est PAS un hommage : suites judiciaires,
+# enquêtes, procès, commémorations → catégorie normale (justice/faits divers).
+OBITUARY_BLOCKERS = (
+    "cour de cassation", "cour d'appel", "tribunal", "assises", "procès", "verdict",
+    "requalification", "requalifi", "mis en examen", "mise en examen", "meurtrier", "accusé",
+    "suspect", "enquête", "instruction", "condamn", "acquitt", "relaxe", "relaxé",
+    "non-lieu", "indemnis", "plaignant", "porte plainte", "garde à vue", "interpell",
+    "réquisitoire", "plaidoirie", "parquet", "juge", "audience",
+    "commémor", "anniversaire", "an après", "ans après", "émeutes", "justice pour",
+    "rouvre", "rouvrant", "réouverture", "rebondissement", "révélations sur",
+)
+
 def _is_obituary(title, summary):
-    """Vrai si l'article annonce le décès d'UNE personnalité (pas un bilan collectif)."""
+    """Vrai UNIQUEMENT si l'article ANNONCE le décès d'une personnalité (pas un bilan
+    collectif, pas une suite judiciaire ou commémorative d'un décès passé)."""
     t = (title + " " + summary).lower()
     if any(x in t for x in DEATH_EXCLUDE):
         return False
-    return any(m in t for m in DEATH_MARKERS)
+    if any(x in t for x in OBITUARY_BLOCKERS):
+        return False   # affaire / procès / commémoration → pas un hommage
+    # décès daté d'une année passée ("tué en juin 2023") = pas une annonce fraîche
+    m = re.search(r"(?:tué|tuée|mort|morte|décédé|décédée|disparu|disparue)[^.]{0,25}?\ben\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre\s+)?((?:19|20)\d{2})", t)
+    if m and int(m.group(1)) < datetime.now().year:
+        return False
+    return any(m_ in t for m_ in DEATH_MARKERS)
 
 def extract_obituary(title, summary, url=None):
     """Extrait nom / naissance / âge / métier — UNIQUEMENT depuis l'article (zéro invention).
