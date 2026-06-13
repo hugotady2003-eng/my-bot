@@ -1769,13 +1769,15 @@ Donne ton TOP 3 par ordre de préférence (le meilleur en premier).
 Réponds avec ce JSON UNIQUEMENT :
 {{"indices": [<n°1>, <n°2>, <n°3>], "sujet":"<2-4 mots sur le n°1>", "cover_title":"<accroche ≤60 caractères pour le n°1>", "image_query":"<5 mots-clés anglais pour photo>", "keywords":["m1","m2","m3"]}}""", max_tokens=300)
 
-        # On prend le premier candidat du top 3 qui a une VRAIE photo (og:image) — jamais de photo de stock
+        # On privilégie le 1er sujet du top 3 qui a une VRAIE photo (og:image).
+        # Sinon on garde quand même le meilleur sujet : la couverture utilisera image_query (jamais SANS image).
         indices = pick.get("indices") or ([pick["index"]] if isinstance(pick.get("index"), int) else [])
-        art, og_bytes = None, None
-        for idx in indices[:3]:
-            if not isinstance(idx, int) or idx < 0 or idx >= len(arts):
-                continue
-            cand = arts[idx]
+        valid = [arts[i] for i in indices[:3] if isinstance(i, int) and 0 <= i < len(arts)]
+        if not valid:
+            print("  ⚠️ Décryptage : aucun sujet exploitable — on retentera au prochain passage.")
+            return None
+        art, og_bytes = valid[0], None
+        for cand in valid:
             try:
                 og = fetch_og_image(cand["url"])
             except Exception:
@@ -1783,9 +1785,6 @@ Réponds avec ce JSON UNIQUEMENT :
             if og:
                 art, og_bytes = cand, og
                 break
-        if art is None:
-            print("  ⚠️ Décryptage : aucun candidat avec une vraie photo — on retentera au prochain passage.")
-            return None
 
         # ÉTAPE 2 : lire l'article complet (pour les vrais chiffres)
         article_text = fetch_article_text(art["url"], max_chars=4000)
@@ -1826,7 +1825,7 @@ Réponds avec ce JSON UNIQUEMENT :
             "slides":      slides,
             "url":         art["url"],
             "summary":     art["summary"],
-            "og_bytes":    og_bytes,   # vraie photo de l'article, déjà vérifiée
+            "og_bytes":    og_bytes,   # og:image si trouvée, sinon None → repli image_query à la publication
         }
     except Exception as e:
         print(f"  ⚠️ gen_carousel: {e}")
@@ -3235,8 +3234,15 @@ def check_feeds(conn):
                             for k in carousel.get("keywords", [])[:3] if k.strip())
             xfb = body + (("\n\n" + tags) if tags else "")
 
-            # Image de couverture : VRAIE photo de l'article, déjà vérifiée par gen_carousel (jamais de stock)
-            raw_src, has_real = carousel["og_bytes"], True
+            # Image de couverture : og:image de l'article si dispo, sinon vraie photo via image_query (jamais SANS image)
+            if carousel.get("og_bytes"):
+                raw_src, has_real = carousel["og_bytes"], True
+            else:
+                raw_src, has_real = get_best_image(carousel.get("url"), None, None,
+                                                   carousel["image_query"], "monde")
+            if not raw_src:
+                print("  ⚠️ Décryptage : aucune image disponible — report au prochain passage.")
+                return
             cover_paysage, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
                                          carousel["image_query"], prefetched=(raw_src, has_real))
             vid_thread = build_video("news", {"headline": carousel["cover_title"][:90]}, "monde", raw_src, "Pulse")
