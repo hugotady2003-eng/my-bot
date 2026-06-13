@@ -83,6 +83,9 @@ RSS_FEEDS = [
     {"url": "https://positivr.fr/feed/",                               "source": "Positivr"},
     # 🎬 Pop culture / Réseaux sociaux / Créateurs / Buzz
     {"url": "https://www.konbini.com/fr/feed/",                        "source": "Konbini"},
+    {"url": "https://www.dexerto.fr/feed/",                      "source": "Dexerto"},
+    {"url": "https://www.bfmtv.com/rss/people/",                 "source": "BFM People"},
+    {"url": "https://www.public.fr/feed",                        "source": "Public"},
     {"url": "https://www.numerama.com/pop-culture/feed/",              "source": "Numerama Pop"},
     {"url": "https://www.melty.fr/feed",                               "source": "Melty"},
     {"url": "https://www.programme-tv.net/rss/actualites.xml",         "source": "Programme TV"},
@@ -2748,6 +2751,189 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         return None
 
 # ═══════════════════════════════════════════════════════════════════════════
+# CARTES-LISTES (récap du soir, matchs du jour) + MODE COUPE DU MONDE
+# ═══════════════════════════════════════════════════════════════════════════
+JOURS_FR = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
+MOIS_FR  = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
+            "août", "septembre", "octobre", "novembre", "décembre"]
+
+def _date_fr():
+    d = datetime.now()
+    return f"{JOURS_FR[d.weekday()]} {d.day} {MOIS_FR[d.month - 1]}"
+
+def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
+    """Carte-liste DA Pulse : dégradé marque + titre + lignes numérotées. items = [str, ...]"""
+    import io
+    WHITE, DIM = (255, 255, 255), (222, 218, 238)
+    def f(px, bold=True):
+        p = f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"
+        return ImageFont.truetype(p, int(px))
+    def lerp(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
+    c1, c2, c3 = (18, 14, 62), (62, 24, 138), (160, 40, 130)
+    col = Image.new('RGB', (1, H))
+    for y in range(H):
+        t = y / H
+        col.putpixel((0, y), lerp(c1, c2, t / 0.6) if t < 0.6 else lerp(c2, c3, (t - 0.6) / 0.4))
+    img = col.resize((W, H)).convert('RGBA')
+    d = ImageDraw.Draw(img)
+    for x in range(W):
+        d.line([(x, 0), (x, max(6, int(H * 0.012)))], fill=lerp((90, 140, 255), (255, 80, 200), x / W))
+    _pulse_brand(img, d, W, H); d = ImageDraw.Draw(img)
+    d.text((W - int(W * 0.04), int(H * 0.085)), _date_fr().upper(), font=f(W * 0.018),
+           fill=DIM, anchor="rm")
+    # titre principal
+    tf = f(W * 0.040)
+    while d.textbbox((0, 0), title_main, font=tf)[2] > W * 0.90 and tf.size > 24:
+        tf = f(tf.size - 2)
+    ty = int(H * 0.195)
+    d.text((int(W * 0.05) + 2, ty + 2), title_main, font=tf, fill=(0, 0, 0, 200))
+    d.text((int(W * 0.05), ty), title_main, font=tf, fill=accent)
+    # lignes
+    items = items[:6]
+    top, bottom = int(H * 0.30), H - int(H * 0.10)
+    row_h = (bottom - top) // max(1, len(items))
+    for i, txt in enumerate(items):
+        cy = top + i * row_h + row_h // 2
+        r = int(min(W, H) * 0.026)
+        cxn = int(W * 0.075)
+        d.ellipse([cxn - r, cy - r, cxn + r, cy + r], outline=accent, width=3)
+        d.text((cxn, cy + 1), str(i + 1), font=f(r * 1.15), fill=accent, anchor="mm")
+        ft = f(W * 0.026)
+        maxw = W - cxn - r - int(W * 0.09)
+        while d.textbbox((0, 0), txt, font=ft)[2] > maxw and ft.size > 15:
+            ft = f(ft.size - 1)
+        if d.textbbox((0, 0), txt, font=ft)[2] > maxw:
+            while d.textbbox((0, 0), txt + "…", font=ft)[2] > maxw and " " in txt:
+                txt = txt.rsplit(" ", 1)[0]
+            txt += "…"
+        d.text((cxn + r + int(W * 0.025), cy), txt, font=ft, fill=WHITE, anchor="lm")
+    d.text((int(W * 0.04), H - int(H * 0.062)), "Pulse", font=f(W * 0.020), fill=WHITE)
+    d.text((W - int(W * 0.04), H - int(H * 0.055)), "@PULSEactus", font=f(W * 0.016, False),
+           fill=DIM, anchor="rm")
+    buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
+
+def publish_recap(conn):
+    """🌙 Récap du soir : les 5 infos qui ont marqué la journée (depuis les publications du jour)."""
+    rows = conn.execute(
+        "SELECT title FROM recent_titles WHERE date(added_at) = date('now') ORDER BY added_at DESC LIMIT 18"
+    ).fetchall()
+    titles = [r[0] for r in rows if r and r[0]]
+    if len(titles) < 3:
+        return False
+    arts = "\n".join(f"- {t}" for t in titles)
+    r = claude(f"""Voici les actus publiées AUJOURD'HUI par un compte d'actualité français :
+{arts}
+
+Choisis les 5 PLUS MARQUANTES (les plus importantes/émotionnelles), de la plus forte à la moins forte.
+Pour chacune : reformule en UNE ligne percutante de 65 caractères MAXIMUM (français impeccable, factuel,
+rien d'inventé) + un emoji pertinent.
+
+Réponds avec ce JSON UNIQUEMENT :
+{{"items":[{{"e":"⚽","t":"..."}},{{"e":"🚨","t":"..."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}}]}}""",
+        max_tokens=450)
+    items = [(str(it.get("e", "•"))[:2], str(it.get("t", "")).strip()[:80])
+             for it in (r.get("items") or []) if it.get("t")][:5]
+    if len(items) < 3:
+        return False
+    body = f"🌙 LE RÉCAP | Ce qu'il faut retenir de ce {_date_fr()} :\n\n"
+    body += "\n".join(f"{e} {t}" for e, t in items)
+    body += "\n\n(Pulse)"
+    png    = build_list_card("CE QU'IL FAUT RETENIR", [t for _, t in items], 1200, 675)
+    png_ig = build_list_card("CE QU'IL FAUT RETENIR", [t for _, t in items], 1080, 1350)
+    try:
+        post_to_twitter(body, png)
+    except Exception as e:
+        print(f"  ❌ X isolé : {e}")
+    try:
+        post_to_facebook(body, png)
+    except Exception as e:
+        print(f"  ❌ Facebook isolé : {e}")
+    if ig_allowed(conn):
+        post_to_instagram(build_ig_caption(body, []), png_ig)
+        log_special(conn, "ig_post", [])
+    log_special(conn, "recap", [t for _, t in items][:2])
+    print("  🌙 Récap du soir publié")
+    return True
+
+# ── MODE COUPE DU MONDE (calendrier fourni via cdm2026.txt à la racine du repo) ──
+def load_cdm(path="cdm2026.txt"):
+    """Lit le calendrier : lignes 'AAAA-MM-JJ|HH:MM|Équipe A|Équipe B|Phase'. # = commentaire."""
+    out = []
+    try:
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                p = [x.strip() for x in line.split("|")]
+                if len(p) >= 4:
+                    out.append({"date": p[0], "heure": p[1], "a": p[2], "b": p[3],
+                                "phase": p[4] if len(p) > 4 else ""})
+    except FileNotFoundError:
+        pass
+    except Exception as e:
+        print(f"  ⚠️ cdm2026.txt illisible : {e}")
+    return out
+
+def publish_cdm_day(conn):
+    """🏆 Chaque matin pendant la CDM : les matchs du jour."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    matchs = [m for m in load_cdm() if m["date"] == today]
+    if not matchs:
+        return False
+    matchs.sort(key=lambda m: m["heure"])
+    items = [f"{m['heure']}  {m['a']} – {m['b']}" + (f"  ({m['phase']})" if m["phase"] else "")
+             for m in matchs][:6]
+    body = f"🏆 #CoupeDuMonde2026 | Les matchs de ce {_date_fr()} :\n\n"
+    body += "\n".join(f"⚽ {m['heure']} · {m['a']} – {m['b']}" for m in matchs[:6])
+    body += "\n\n(Pulse)"
+    png    = build_list_card("LES MATCHS DU JOUR", items, 1200, 675)
+    png_ig = build_list_card("LES MATCHS DU JOUR", items, 1080, 1350)
+    try:
+        post_to_twitter(body, png)
+    except Exception as e:
+        print(f"  ❌ X isolé : {e}")
+    try:
+        post_to_facebook(body, png)
+    except Exception as e:
+        print(f"  ❌ Facebook isolé : {e}")
+    if ig_allowed(conn):
+        post_to_instagram(build_ig_caption(body, ["coupedumonde2026"]), png_ig)
+        log_special(conn, "ig_post", [])
+    log_special(conn, "cdm_jour", [today])
+    print(f"  🏆 Matchs du jour publiés ({len(matchs)})")
+    return True
+
+def publish_cdm_prono(conn):
+    """🔮 La veille d'un match de la France : sondage pronostic natif sur X."""
+    from datetime import timedelta
+    demain = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+    for m in load_cdm():
+        if m["date"] != demain:
+            continue
+        if "france" not in (m["a"] + m["b"]).lower():
+            continue
+        key = f"{m['date']}-{m['a']}-{m['b']}"
+        done = conn.execute(
+            "SELECT 1 FROM special_log WHERE kind='prono' AND keywords=? AND sent_at > datetime('now','-3 days')",
+            (key,)).fetchone()
+        if done:
+            continue
+        adv = m["b"] if m["a"].lower() == "france" else m["a"]
+        question = f"🔮 #CoupeDuMonde2026 | Votre prono pour {m['a']} – {m['b']} demain ?"
+        options = ["Victoire France 🇫🇷", "Match nul", f"Victoire {adv}"[:25]]
+        post_poll(question, options)
+        try:
+            post_to_facebook(question + "\n\nDites-nous votre pronostic en commentaire 👇")
+        except Exception as e:
+            print(f"  ❌ Facebook isolé : {e}")
+        conn.execute("INSERT INTO special_log (kind, keywords) VALUES ('prono', ?)", (key,))
+        conn.commit()
+        print(f"  🔮 Prono publié : {m['a']} – {m['b']}")
+        return True
+    return False
+
+# ═══════════════════════════════════════════════════════════════════════════
 # MODE BREAKING — détection multi-sources + publication immédiate
 # ═══════════════════════════════════════════════════════════════════════════
 BREAKING_STOPWORDS = set("""
@@ -3022,6 +3208,22 @@ def check_feeds(conn):
     global _META_CONN
     _META_CONN = conn
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
+
+    # ── MODE COUPE DU MONDE : matchs du jour (matin) + prono la veille des matchs de la France ──
+    try:
+        if not special_done_today(conn, "cdm_jour") and _paris_hour() >= 8:
+            publish_cdm_day(conn)
+        if _paris_hour() >= 18:
+            publish_cdm_prono(conn)
+    except Exception as e:
+        print(f"  ⚠️ Mode CDM : {e}")
+
+    # ── RÉCAP DU SOIR : les 5 infos qui ont marqué la journée (1×/jour, après 21h Paris) ──
+    try:
+        if not special_done_today(conn, "recap") and _paris_hour() >= 21:
+            publish_recap(conn)
+    except Exception as e:
+        print(f"  ⚠️ Récap du soir : {e}")
 
     # ── DÉCRYPTAGE QUOTIDIEN : carrousel Instagram + texte X/Facebook (1×/jour) ──
     if not special_done_today(conn, "thread") and datetime.now().hour >= 9:
