@@ -420,6 +420,7 @@ Barème = POTENTIEL D'ENGAGEMENT sur X en France (réactions, partages, commenta
 
 ⛔ PLAFONDS STRICTS :
 - Annonce produit/business/tech SANS émotion directe pour le grand public (bundles, partenariats, API, résultats trimestriels, levées de fonds, fonctionnalités) → MAX 4. Test : si la réaction attendue en commentaire est "🥱", c'est MAX 4.
+- ⚠️ EXCEPTION : une DÉCISION POLITIQUE/RÉGLEMENTAIRE soudaine et radicale sur une techno grand public (interdiction, suspension, blocage, censure d'un service ou d'une IA connue type ChatGPT/Claude/TikTok) n'est PAS du B2B banal → score 7-8. C'est un coup de tonnerre qui fait réagir (ex : "les États-Unis interdisent tel modèle d'IA hors de leur territoire" = 7).
 - FUTUR potentiel ou PROCESSUS technique ("pourrait", "envisage", "d'ici 20XX", négociations, quotas, consultations, projets de loi sans vote) → MAX 5.
 - Angle ÉDITORIAL (revue de presse, "vu de l'étranger", tribune, portrait, décryptage d'un autre média) → MAX 5 : on veut le FAIT, pas le commentaire du fait.
 
@@ -3079,6 +3080,8 @@ PRERANK_HOT = [
     (4, r"garde à vue|mis en examen|démission|interpell|condamn|verdict|procès|scandale|polémique|visa refus|expuls|suspendu|braquage|prise d'otage|évasion|kidnapping|féminicide"),
     (4, r"squeezie|mcfly|carlito|inoxtag|hanouna|l[ée]na situations|booba|\bjul\b|\bgims\b|ninho|tibo inshape|amixem|michou|domingo|mister v|kameto|zerator|gotaga|maghla"),
     (3, r"clash|\bbuzz\b|viral|historique|inédit|panne (géante|nationale|mondiale)|grève|manifestation|bloqu"),
+    (4, r"\binterdit\b|interdiction|interdic|suspendu|suspension|banni|banni|censur|sanction|bloque l'accès|coupe l'accès|piratage|cyberattaque|fuite de données|faille"),
+    (3, r"chatgpt|openai|anthropic|\bclaude\b|\bgemini\b|\bgrok\b|\bmeta ai\b|deepseek|nvidia|intelligence artificielle|\bia\b générative"),
     (2, r"victoire|défaite|qualifi|élimin|finale|sacre|remporte"),
 ]
 PRERANK_COLD = [
@@ -3120,10 +3123,40 @@ def prerank_candidates(cands, keep):
 
 # Mots ULTRA-CHAUDS : une vraie urgence est souvent en ligne avant que 3 médias la reprennent.
 # Pour ces sujets, 2 sources concordantes suffisent (au lieu de 3) → détection plus rapide.
-ULTRA_HOT_RX = re.compile(
-    r"\bmort\b|\bmorte\b|décès|décéd|attentat|fusillade|explosion|incendie majeur|crash|"
-    r"prise d'otage|otages?\b|effondrement|séisme|tremblement de terre|tsunami|"
-    r"évacuation|déraillement|assassinat|tirs\b|coup d'état|démission du", re.I)
+# Familles d'événements ULTRA-CHAUDS : 2 sources concordantes suffisent à déclencher le breaking
+# (au lieu de 3). Couvre TOUT ce qui, par nature, est une urgence ou un séisme médiatique immédiat.
+ULTRA_HOT_RX = re.compile("|".join([
+    # ── Mort / violence / terrorisme ──
+    r"\bmort\b", r"\bmorte\b", r"\bmorts\b", r"décès", r"décéd", r"\btué", r"\btuée",
+    r"assassin", r"attentat", r"fusillade", r"\btirs?\b", r"coups? de feu", r"fusil",
+    r"attaque au couteau", r"prise d'otage", r"otages?\b", r"tuerie", r"massacre",
+    r"abattu", r"poignardé", r"décapit", r"kamikaze", r"terroris",
+    # ── Catastrophes / accidents majeurs ──
+    r"explosion", r"déflagration", r"incendie", r"crash", r"accident d'avion", r"déraillement",
+    r"effondrement", r"effondre", r"séisme", r"tremblement de terre", r"tsunami", r"inondation",
+    r"ouragan", r"tornade", r"éruption", r"naufrage", r"catastrophe", r"évacuation", r"noyade",
+    r"carambolage", r"\bnucléaire\b", r"fuite radioactive",
+    # ── Disparitions / enlèvements / alertes ──
+    r"disparition", r"disparu", r"enlèvement", r"enlevé", r"kidnapp", r"alerte enlèvement",
+    r"porté disparu", r"recherche activement",
+    # ── Politique / institutionnel majeur (rupture soudaine) ──
+    r"démission", r"démissionne", r"limog", r"renvers", r"motion de censure adoptée",
+    r"dissolution", r"coup d'état", r"putsch", r"état d'urgence", r"destitution", r"censuré",
+    r"déclare la guerre", r"frappe", r"bombarde", r"missile", r"offensive", r"cessez-le-feu",
+    r"interpellé", r"arrêté", r"écroué", r"placé en garde à vue",
+    # ── Justice retentissante ──
+    r"condamné à", r"verdict", r"acquitté", r"relaxé", r"mis en examen", r"inculp",
+    # ── Sport : exploits/chocs nationaux instantanés ──
+    r"qualifié", r"qualifie", r"éliminé", r"élimine", r"champion", r"sacré", r"finale",
+    r"remporte", r"bat\b", r"forfait", r"blessure", r"record du monde", r"démission du sélectionneur",
+    # ── Buzz / pop culture / société (déflagration immédiate) ──
+    r"choc", r"scandale", r"polémique", r"affaire", r"révélation", r"accusé de", r"accusée de",
+    r"plainte", r"clash", r"\bbad buzz\b", r"démasqué", r"dévoile", r"annonce surprise",
+    r"séparation", r"rupture", r"divorce", r"enceinte", r"décision historique", r"démission surprise",
+    # ── Pannes / cyber d'ampleur ──
+    r"panne (géante|nationale|mondiale|massive|g[ée]ante)", r"cyberattaque", r"piratage massif",
+    r"fuite de données", r"\brappel\b massif", r"rappel produit",
+]), re.I)
 
 def detect_breaking(conn, candidates):
     """
