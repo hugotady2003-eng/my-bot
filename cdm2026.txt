@@ -1,0 +1,22 @@
+# ═══ CALENDRIER COUPE DU MONDE 2026 — fichier lu par le bot ═══
+# Format : DATE|HEURE (heure française)|ÉQUIPE A|ÉQUIPE B|PHASE
+# Lignes commençant par # = ignorées. Heures françaises.
+#
+# Le bot poste automatiquement :
+#   • chaque matin (≥8h Paris) : la liste des matchs du jour présents ici
+#   • la veille (≥18h) d'un match avec "France" : un sondage pronostic sur X
+#
+# ⚠️ Seuls les matchs des BLEUS + l'ouverture sont remplis (sources sûres au 13/06/2026).
+#    Ajoute les autres affiches au fur et à mesure si tu veux les "matchs du jour" complets.
+#    Pour les phases finales, ajoute les lignes une fois les qualifiés connus.
+
+# ── Match d'ouverture ──
+2026-06-11|21:00|Mexique|Afrique du Sud|Match d'ouverture
+
+# ── Équipe de France — phase de groupes (Groupe I) ──
+2026-06-16|21:00|France|Sénégal|Groupe I
+2026-06-22|23:00|France|Irak|Groupe I
+2026-06-26|21:00|Norvège|France|Groupe I
+
+# ── À COMPLÉTER : 8es (à partir du 4 juillet), quarts, demies, finale le 19 juillet ──
+# 2026-07-19|17:00|?|?|Finale
