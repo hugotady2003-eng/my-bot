@@ -1768,7 +1768,7 @@ Choisis les sujets qui font PARLER et donnent envie de cliquer : affaire/scandal
 Donne ton TOP 3 par ordre de préférence (le meilleur en premier).
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"indices": [<n°1>, <n°2>, <n°3>], "sujet":"<2-4 mots sur le n°1>", "cover_title":"<accroche ≤60 caractères pour le n°1>", "image_query":"<5 mots-clés anglais pour photo>", "keywords":["m1","m2","m3"]}}""", max_tokens=300)
+{{"indices": [<n°1>, <n°2>, <n°3>], "sujet":"<2-4 mots sur le n°1>", "cover_title":"<accroche ≤60 caractères pour le n°1>", "image_query":"<5 mots-clés ANGLAIS décrivant une PHOTO du sujet n°1, ex 'paris police protest night'>", "keywords":["<1 à 2 NOMS PROPRES du sujet n°1 pour hashtag : entreprise/personne/lieu/événement central, ex 'SpaceX' ou 'Nahel'>"]}}""", max_tokens=300)
 
         # On privilégie le 1er sujet du top 3 qui a une VRAIE photo (og:image).
         # Sinon on garde quand même le meilleur sujet : la couverture utilisera image_query (jamais SANS image).
@@ -3269,19 +3269,24 @@ def check_feeds(conn):
         if carousel:
             # Texte X + Facebook (assemblé depuis le carrousel, sans 2e appel Claude)
             body = carousel_to_text(carousel)
-            tags = " ".join("#" + re.sub(r'[^0-9A-Za-zÀ-ÿ]', '', k).capitalize()
-                            for k in carousel.get("keywords", [])[:3] if k.strip())
+            tags = " ".join("#" + re.sub(r'[^0-9A-Za-zÀ-ÿ]', '', k)
+                            for k in carousel.get("keywords", [])[:2] if k and k.strip())
             xfb = body + (("\n\n" + tags) if tags else "")
 
-            # Image de couverture : og:image de l'article si dispo, sinon vraie photo via image_query (jamais SANS image)
+            # Image de couverture : og:image de l'article si dispo, sinon vraie photo via image_query.
+            raw_src, has_real = None, False
             if carousel.get("og_bytes"):
                 raw_src, has_real = carousel["og_bytes"], True
-            else:
-                raw_src, has_real = get_best_image(carousel.get("url"), None, None,
-                                                   carousel["image_query"], "monde")
             if not raw_src:
-                print("  ⚠️ Décryptage : aucune image disponible — report au prochain passage.")
-                return
+                try:
+                    raw_src, has_real = get_best_image(carousel.get("url"), None, None,
+                                                       carousel["image_query"], "monde")
+                except Exception:
+                    raw_src = None
+            if not raw_src:
+                print("  ⚠️ Décryptage reporté (aucune image) — le run continue.")
+                carousel = None
+        if carousel:
             cover_paysage, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
                                          carousel["image_query"], prefetched=(raw_src, has_real))
             vid_thread = build_video("news", {"headline": carousel["cover_title"][:90]}, "monde", raw_src, "Pulse")
