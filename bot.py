@@ -2337,7 +2337,7 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1200, H=675):
 # ═══════════════════════════════════════════════════════════════════════════
 # VIDÉOS ANIMÉES (motion design Pulse) — 0 appel Claude, rendu local + ffmpeg
 # ═══════════════════════════════════════════════════════════════════════════
-VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1280, 720, 24, 7.0
+VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1280, 720, 20, 6.5
 
 def _vf(px, bold=True, italic=False, serif=False):
     if serif:
@@ -2366,6 +2366,97 @@ def _neon_strip(category, W, h, sober=False):
         for y in range(h):
             strip.putpixel((x, y), c)
     return strip
+
+def _vease_io(t):
+    """Ease-in-out (accélère puis décélère) — plus organique que l'ease-out simple."""
+    t = max(0.0, min(1.0, t))
+    return 4 * t * t * t if t < 0.5 else 1 - (-2 * t + 2) ** 3 / 2
+
+def _vease_out_back(t, s=1.70158):
+    """Léger dépassement à l'arrivée (effet 'pop' premium)."""
+    t = max(0.0, min(1.0, t))
+    t -= 1
+    return 1 + (s + 1) * t ** 3 + s * t ** 2
+
+def _cat_rgb(category, sober=False):
+    if sober:
+        return (150, 154, 172)
+    cc = STYLES.get(category, {}).get("color", "#b060ff").lstrip("#")
+    try:
+        return tuple(int(cc[i:i + 2], 16) for i in (0, 2, 4))
+    except Exception:
+        return (176, 96, 255)
+
+_PARTICLE_CACHE = {}
+def _particles(W, H, n=26, seed=7):
+    """Petites particules floues statiques (positions/tailles fixes) — la dérive se fait au compositing."""
+    key = (W, H, n, seed)
+    if key in _PARTICLE_CACHE:
+        return _PARTICLE_CACHE[key]
+    import random as _r
+    rnd = _r.Random(seed)
+    base = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(base)
+    for _ in range(n):
+        x, y = rnd.randint(0, W), rnd.randint(0, H)
+        r = rnd.randint(2, 6)
+        a = rnd.randint(40, 120)
+        d.ellipse([x - r, y - r, x + r, y + r], fill=(255, 255, 255, a))
+    base = base.filter(ImageFilter.GaussianBlur(2))
+    _PARTICLE_CACHE[key] = base
+    return base
+
+_GRAIN_CACHE = {}
+def _grain(W, H, seed=11):
+    """Grain photographique léger (texture fixe, appliquée en overlay doux)."""
+    key = (W, H, seed)
+    if key in _GRAIN_CACHE:
+        return _GRAIN_CACHE[key]
+    import random as _r
+    rnd = _r.Random(seed)
+    small = Image.new("L", (W // 3, H // 3))
+    small.putdata([rnd.randint(108, 148) for _ in range((W // 3) * (H // 3))])
+    g = small.resize((W, H)).convert("RGBA")
+    g.putalpha(20)
+    _GRAIN_CACHE[key] = g
+    return g
+
+_VIGNETTE_CACHE = {}
+def _vignette(W, H):
+    """Vignettage radial sombre (concentre le regard au centre)."""
+    if (W, H) in _VIGNETTE_CACHE:
+        return _VIGNETTE_CACHE[(W, H)]
+    mask = Image.new("L", (W, H), 0)
+    md = ImageDraw.Draw(mask)
+    md.ellipse([-W * 0.25, -H * 0.25, W * 1.25, H * 1.25], fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(min(W, H) // 6))
+    alpha = Image.eval(mask, lambda px: 150 - int(px * 150 / 255))
+    dark = Image.new("RGBA", (W, H), (6, 6, 16, 0))
+    dark.putalpha(alpha)
+    _VIGNETTE_CACHE[(W, H)] = dark
+    return dark
+
+def _glass_panel(size, radius, tint=(255, 255, 255), tint_a=18, border_a=70, accent=None):
+    """Carte 'verre dépoli' : fond translucide + bord lumineux + liseré d'accent optionnel.
+    À coller sur un fond DÉJÀ flouté (le flou de l'arrière-plan donne l'effet glassmorphism)."""
+    w, h = size
+    panel = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    pd = ImageDraw.Draw(panel)
+    pd.rounded_rectangle([0, 0, w - 1, h - 1], radius=radius, fill=tint + (tint_a,))
+    sheen = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(sheen)
+    for yy in range(h):
+        a = int(26 * (1 - yy / h))
+        if a > 0:
+            sd.line([(0, yy), (w, yy)], fill=(255, 255, 255, a))
+    mask = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], radius=radius, fill=255)
+    panel.paste(sheen, (0, 0), mask)
+    pd = ImageDraw.Draw(panel)
+    pd.rounded_rectangle([0, 0, w - 1, h - 1], radius=radius, outline=(255, 255, 255, border_a), width=2)
+    if accent is not None:
+        pd.rounded_rectangle([1, 1, w - 2, h - 2], radius=radius - 1, outline=accent + (90,), width=1)
+    return panel
 
 def _wrap_fit(d, text, maxw, start_px, max_lines=2, min_px=30):
     """Police auto-réduite pour tenir en ≤ max_lines ; tronque avec … en dernier recours."""
@@ -2507,15 +2598,51 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             gld.line(ECG, fill=ecg_col + (110,), width=7, joint="curve")
             glow_full = gl.filter(ImageFilter.GaussianBlur(4))
 
+        # ── COUCHES GLASSMORPHISM (précalculées 1× — coût quasi nul par frame) ──
+        accent_rgb   = _cat_rgb(category, sober=sober)
+        layer_part   = _particles(W, H, n=(16 if sober else 28))
+        # vignette + grain fusionnés en UNE seule couche de finition (1 composite/frame au lieu de 2)
+        finish = _vignette(W, H).copy()
+        finish.alpha_composite(_grain(W, H))
+        # fond flouté de base (le verre laisse deviner la photo derrière) :
+        if photo_big is not None:
+            glass_bg = photo_big.resize((W, H), Image.BILINEAR).filter(ImageFilter.GaussianBlur(26))
+            glass_bg = Image.eval(glass_bg, lambda px: int(px * 0.72)).convert("RGBA")  # assombri
+        else:
+            glass_bg = grad_bg.filter(ImageFilter.GaussianBlur(20)).convert("RGBA")
+        # halo d'accent diffus en bas (lumière colorée de la catégorie)
+        accent_glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        _ag = ImageDraw.Draw(accent_glow)
+        _ag.ellipse([int(W * 0.1), int(H * 0.78), int(W * 0.9), int(H * 1.25)],
+                    fill=accent_rgb + (70,))
+        accent_glow = accent_glow.filter(ImageFilter.GaussianBlur(min(W, H) // 5))
+        # le halo d'accent est STATIQUE → on le fusionne une fois dans le fond flouté d'intro
+        glass_bg.alpha_composite(accent_glow)
+        # panneau de verre du titre (news) précalculé une seule fois
+        glass_title_panel = None
+        if kind == "news":
+            pass  # construit plus bas une fois HLINES/LH connus
+
         # ── zones texte (anti-collision : tout est ancré AU-DESSUS du pied de page) ──
         FOOTER_Y = H - int(H * 0.115)            # zone réservée source/date
         tmpd = ImageDraw.Draw(Image.new("RGB", (8, 8)))
         HFONT, HLINES, LH, HY0 = None, [], 0, 0
         if kind == "news":
             headline = re.sub(r'#(\w+)', r'\1', str(data.get("headline", "")))[:90]   # hashtags retirés
-            HFONT, HLINES = _wrap_fit(tmpd, headline, int(W * 0.92), int(W * 0.052), max_lines=2)
-            LH = int(HFONT.size * 1.22)
-            HY0 = FOOTER_Y - int(H * 0.035) - LH * len(HLINES)   # bloc collé au-dessus du pied de page
+            # largeur de texte calée sur l'intérieur du panneau (marges confortables des deux côtés)
+            HFONT, HLINES = _wrap_fit(tmpd, headline, int(W * 0.80), int(W * 0.048), max_lines=3)
+            LH = int(HFONT.size * 1.26)
+            HY0 = FOOTER_Y - int(H * 0.040) - LH * len(HLINES)   # bloc collé au-dessus du pied de page
+            # panneau de verre précalculé (construit 1× au lieu de chaque frame)
+            _pad_top, _pad_bot = int(H * 0.030), int(H * 0.034)
+            _block_h = LH * len(HLINES)
+            GP_X0 = int(W * 0.05)
+            GP_Y0 = HY0 - _pad_top
+            GP_W = W - 2 * GP_X0
+            GP_H = _block_h + _pad_top + _pad_bot
+            GP_PADTOP, GP_BLOCKH = _pad_top, _block_h
+            glass_title_panel = _glass_panel((GP_W, GP_H), radius=int(H * 0.045),
+                                             tint_a=22, border_a=80, accent=accent_rgb)
 
         out_dir = tempfile.mkdtemp(prefix="pulsevid_")
         for n in range(N):
@@ -2528,6 +2655,16 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                 img = photo_big.crop((cx, cy, cx + cw, cy + chh)).resize((W, H), Image.BILINEAR).convert("RGBA")
             else:
                 img = grad_bg.copy().convert("RGBA")
+            # Intro premium : on part du fond flouté "verre" et la photo nette se révèle (0→1.1s)
+            rev = _vease_io(t / 1.1)
+            if rev < 1:
+                img = Image.blend(glass_bg, img, rev)
+            else:
+                img.alpha_composite(accent_glow)   # halo d'accent (le fond d'intro l'a déjà fusionné)
+            # particules qui dérivent doucement (parallaxe lente vers le haut + oscillation)
+            pdx = int(math.sin(t * 0.6) * W * 0.012)
+            pdy = int(-(t / DUR) * H * 0.06)
+            img.alpha_composite(layer_part, (pdx, pdy))
             img.alpha_composite(bands)
             if intl_grad is not None:
                 img.alpha_composite(intl_grad)
@@ -2585,13 +2722,30 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
 
             # ── contenu central selon le type ──
             if kind == "news":
+                # Panneau de verre dépoli (précalculé) qui glisse vers le haut (transition premium)
+                panel_in = _vease_out_back((t - 1.4) / 0.8)
+                if panel_in > 0:
+                    slide = int((1 - panel_in) * H * 0.12)
+                    pan = glass_title_panel
+                    if panel_in < 1:
+                        pan = pan.copy()
+                        pan.putalpha(pan.split()[3].point(lambda v: int(v * min(1, panel_in))))
+                    img.alpha_composite(pan, (GP_X0, GP_Y0 + slide))
+                    d = ImageDraw.Draw(img)
+                    if panel_in > 0.6:
+                        la2 = (panel_in - 0.6) / 0.4
+                        ax = GP_X0 + int(W * 0.018)
+                        d.rounded_rectangle([ax, GP_Y0 + slide + GP_PADTOP,
+                                             ax + 5, GP_Y0 + slide + GP_PADTOP + GP_BLOCKH],
+                                            radius=2, fill=accent_rgb + (int(230 * la2),))
                 for i, line in enumerate(HLINES):
-                    wa = _vease((t - (1.9 + i * 0.25)) / 0.45)
+                    wa = _vease((t - (1.7 + i * 0.16)) / 0.5)
                     if wa <= 0: continue
-                    dy = int((1 - wa) * 16)
-                    y = HY0 + i * LH + dy
-                    d.text((int(W * 0.04) + 2, y + 2), line, font=HFONT, fill=(0, 0, 0, int(200 * wa)))
-                    d.text((int(W * 0.04), y), line, font=HFONT, fill=WHITE + (int(255 * wa),))
+                    dx = int((1 - wa) * 26)        # le texte glisse depuis la gauche
+                    y = HY0 + i * LH
+                    xline = GP_X0 + int(W * 0.045) + dx   # marge confortable après le liseré d'accent
+                    d.text((xline + 2, y + 2), line, font=HFONT, fill=(0, 0, 0, int(150 * wa)))
+                    d.text((xline, y), line, font=HFONT, fill=WHITE + (int(255 * wa),))
             elif kind == "victory":
                 typ, winner = data.get("type", "match"), data.get("winner", "")
                 cy = int(H * 0.50)
@@ -2734,6 +2888,8 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                        fill=WHITE + (int(255 * fa),))
                 d.text((W - int(W * 0.04), H - int(H * 0.070)), f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
                        font=_vf(W * 0.016, False), fill=DIM + (int(230 * fa),), anchor="rm")
+            # ── finition photographique : vignettage + grain fusionnés (1 seul composite) ──
+            img.alpha_composite(finish)
             img.convert("RGB").save(f"{out_dir}/f_{n:03d}.png")
 
         out_mp4 = os.path.join(out_dir, "pulse_video.mp4")
