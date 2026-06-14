@@ -2990,6 +2990,9 @@ SPORT_RESULT_MARKERS = (
     "victoire", "défaite", "defaite", "s'impose", "l'emporte", "remporte", "vainqueur",
     "qualifié", "qualifie", "éliminé", "elimine", "élimination", "champion", "sacré",
     "score final", "résultat final", "terminé", "fin du match", "au coup de sifflet final",
+    "tenu en échec", "match nul", "domine", "dominé", "fait plier", "fait match nul",
+    "arrache", "renverse", "écrase", "humilie", "surclasse", "dispose de", "vient à bout",
+    "concède le nul", "partage les points", "chute face", "s'incline", "corrige",
 )
 # Indices d'un match EN COURS (ou à venir) → ce n'est PAS un résultat final
 SPORT_LIVE_CUES = (
@@ -3007,6 +3010,8 @@ def _is_sport_result(title):
         return True
     # le verbe "battre" conjugué (mais pas "débat", "combat", "bateau"...)
     if re.search(r"\b(bat|battent|battu|battue|battus|battues)\b", t):
+        return True
+    if re.search(r"\d{1,2}\s?[-:–]\s?\d{1,2}", title):   # score chiffré "2-0", "(1-1)", "4 - 1" → match terminé
         return True
     return False
 
@@ -3059,7 +3064,7 @@ def ig_allowed(conn, minutes=90):
         (f"-{minutes} minutes",)
     ).fetchone() is None
 
-def sport_result_recent(conn, minutes=240):
+def sport_result_recent(conn, minutes=90):
     """Vrai si un RÉSULTAT sportif a déjà été publié récemment (limite à 1 dérogation / 4h)."""
     return conn.execute(
         "SELECT 1 FROM special_log WHERE kind='sport_result' AND sent_at > datetime('now', ?)",
@@ -3083,6 +3088,7 @@ PRERANK_HOT = [
     (4, r"\binterdit\b|interdiction|interdic|suspendu|suspension|banni|banni|censur|sanction|bloque l'accès|coupe l'accès|piratage|cyberattaque|fuite de données|faille"),
     (3, r"chatgpt|openai|anthropic|\bclaude\b|\bgemini\b|\bgrok\b|\bmeta ai\b|deepseek|nvidia|intelligence artificielle|\bia\b générative"),
     (2, r"victoire|défaite|qualifi|élimin|finale|sacre|remporte"),
+    (4, r"\b\d{1,2}\s?[-:–]\s?\d{1,2}\b"),   # un score chiffré dans le titre = match terminé à pousser
 ]
 PRERANK_COLD = [
     (-4, r"app store|bundle|abonnement|partenariat|trimestriel|levée de fonds|lève des fonds|acquisition|\bapi\b|mise à jour|fonctionnalité|s'associe"),
@@ -3391,9 +3397,15 @@ def check_feeds(conn):
         else:
             print(f"  → Sujet pas assez repris pour un fast-track (score {a.get('score')}).")
 
-    # ── PUBLICATION NORMALE (rythme aléatoire) ──
-    if not should_publish_now(conn):
+    # ── PUBLICATION NORMALE (rythme selon l'heure) ──
+    # Dérogation : un RÉSULTAT sportif frais (ex: match de CDM la nuit) passe malgré le délai,
+    # tant qu'aucun résultat n'a été publié depuis 90 min (anti-spam). Sinon il vieillirait trop.
+    sport_result_waiting = allow_sport_result and any(
+        _is_sport_result(c["title"]) for c in candidates)
+    if not sport_result_waiting and not should_publish_now(conn):
         return
+    if sport_result_waiting and not should_publish_now(conn):
+        print("  ⚽ Dérogation cadence : un résultat sportif frais est prioritaire")
 
     if not candidates:
         print("  → Aucun article nouveau.")
