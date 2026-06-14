@@ -709,48 +709,116 @@ def detect_face_center(pil_img):
     except Exception:
         return None
 
-def get_best_image(article_url, photo_url, person, image_query, category):
-    """
-    Choisit la MEILLEURE image dispo, par ordre de priorité :
-    1. og:image de l'article (HD, en rapport avec le sujet)
-    2. photo de la personnalité (Wikipedia) si l'article parle de quelqu'un
-    3. miniature RSS si assez grande
-    4. Unsplash (recherche par mots-clés)
-    5. Unsplash fallback catégorie
-    Retourne (raw_bytes, is_real_photo).
-    """
-    # 1. og:image de l'article
-    og = fetch_og_image(article_url)
-    if og:
-        raw = fetch_img(og)
-        if raw and img_dimensions_ok(raw):
+def fetch_article_images(article_url, max_imgs=8):
+    """Récupère les VRAIES photos d'un article (og:image + grandes <img> de la page),
+    triées par priorité/taille. Filtre logos, icônes, pubs, pixels de tracking, SVG/GIF."""
+    if not article_url:
+        return []
+    try:
+        req = urllib.request.Request(article_url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            base = r.geturl()
+            html = r.read(600000).decode("utf-8", errors="ignore")
+    except Exception:
+        return []
+    cands = []
+    for prop in (r'og:image:secure_url', r'og:image:url', r'og:image',
+                 r'twitter:image:src', r'twitter:image'):
+        for m in re.finditer(r'<meta[^>]+(?:property|name)=["\']' + prop + r'["\'][^>]+content=["\']([^"\']+)["\']', html, re.I):
+            cands.append((m.group(1).strip(), 10_000_000))
+    for im in re.finditer(r'<img[^>]+>', html, re.I):
+        tag = im.group(0)
+        src = None
+        msrc = re.search(r'(?:data-src|data-original|src)=["\']([^"\']+)["\']', tag, re.I)
+        if msrc:
+            src = msrc.group(1).strip()
+        mset = re.search(r'srcset=["\']([^"\']+)["\']', tag, re.I)
+        if mset:
+            parts = [p.strip().split(" ")[0] for p in mset.group(1).split(",") if p.strip()]
+            if parts:
+                src = parts[-1]
+        if not src:
+            continue
+        w = h = 0
+        mw = re.search(r'width=["\']?(\d+)', tag); mh = re.search(r'height=["\']?(\d+)', tag)
+        if mw: w = int(mw.group(1))
+        if mh: h = int(mh.group(1))
+        cands.append((src, w * h if (w and h) else 1))
+    seen, out = set(), []
+    BAD = ("logo", "icon", "sprite", "avatar", "placeholder", "pixel", "tracking",
+           "/ads/", "advert", "banner", "1x1", "blank.", "spacer", "favicon", ".svg", ".gif",
+           "emoji", "share", "btn", "button", "widget")
+    for url, score in sorted(cands, key=lambda x: -x[1]):
+        if not url or url.startswith("data:"):
+            continue
+        full = urllib.parse.urljoin(base, url)
+        low = full.lower()
+        if any(b in low for b in BAD):
+            continue
+        if full in seen:
+            continue
+        seen.add(full)
+        out.append(full)
+        if len(out) >= max_imgs:
+            break
+    return out
+
+def get_best_image(article_url, photo_url, person, image_query, category, allow_stock=False):
+    """Choisit la MEILLEURE VRAIE photo en rapport avec l'article. Ordre :
+    1. Toutes les images de l'article (og:image + grandes <img>), la plus grande et nette d'abord
+    2. Miniature RSS si assez grande
+    3. Portrait Wikipedia de la personnalité citée
+    Par défaut JAMAIS de stock (allow_stock=False) → renvoie (None, False) si aucune vraie photo,
+    pour que l'appelant reporte le post plutôt que publier une image générique.
+    Retourne (raw_bytes, is_real_photo)."""
+    HQ_W, HQ_H = 700, 450   # seuil de qualité relevé (netteté garantie après recadrage)
+
+    # 1. VRAIES photos de l'article : on teste plusieurs candidats, on garde la plus grande valide
+    best_raw, best_px = None, 0
+    for img_url in fetch_article_images(article_url):
+        raw = fetch_img(img_url)
+        if not raw:
+            continue
+        try:
+            from PIL import Image as _I
+            import io as _io
+            w, h = _I.open(_io.BytesIO(raw)).size
+        except Exception:
+            continue
+        if w < HQ_W or h < HQ_H:
+            continue
+        px = w * h
+        if px > best_px:
+            best_raw, best_px = raw, px
+        if best_px >= 1280 * 720:   # déjà du HD franc → inutile de chercher plus
+            break
+    if best_raw:
+        return best_raw, True
+
+    # 2. Miniature RSS (souvent la photo de l'article) si assez grande
+    if photo_url:
+        raw = fetch_img(photo_url)
+        if raw and img_dimensions_ok(raw, min_w=HQ_W, min_h=HQ_H):
             return raw, True
 
-    # 2. Photo de la personnalité
+    # 3. Portrait Wikipedia de la personnalité citée (vraie photo, pertinente)
     if person:
         portrait = fetch_wikipedia_portrait(person)
         if portrait:
             raw = fetch_img(portrait)
-            if raw and img_dimensions_ok(raw):
+            if raw and img_dimensions_ok(raw, min_w=400, min_h=400):
                 print(f"  👤 Photo de {person} (Wikipedia)")
                 return raw, True
 
-    # 3. Miniature RSS si assez grande
-    if photo_url:
-        raw = fetch_img(photo_url)
-        if raw and img_dimensions_ok(raw):
-            return raw, True
-
-    # 4. Unsplash recherche
-    if image_query:
+    # 4. Stock UNIQUEMENT si explicitement autorisé ET hors sport
+    #    (une photo stock "sport" est presque toujours hors-sujet : triathlon sur un sujet foot...)
+    if allow_stock and image_query and category != "sport":
         u = search_unsplash(image_query, category)
         raw = fetch_img(u)
         if raw and img_dimensions_ok(raw, min_w=800, min_h=400):
             return raw, False
 
-    # 5. Fallback catégorie
-    raw = fetch_img(UNSPLASH_FALLBACK.get(category))
-    return (raw, False) if raw else (None, False)
+    return None, False
 
 def extract_photo(entry):
     """Cherche une image dans l'article RSS."""
@@ -3170,6 +3238,8 @@ SPORT_RESULT_MARKERS = (
     "tenu en échec", "match nul", "domine", "dominé", "fait plier", "fait match nul",
     "arrache", "renverse", "écrase", "humilie", "surclasse", "dispose de", "vient à bout",
     "concède le nul", "partage les points", "chute face", "s'incline", "corrige",
+    "succès", "large succès", "victoire de", "déroule", "balaie", "atomise",
+    "se qualifie", "valide son billet", "rejoint", "n'a fait qu'une bouchée", "domine",
 )
 # Indices d'un match EN COURS (ou à venir) → ce n'est PAS un résultat final
 SPORT_LIVE_CUES = (
@@ -3265,6 +3335,8 @@ PRERANK_HOT = [
     (4, r"\binterdit\b|interdiction|interdic|suspendu|suspension|banni|banni|censur|sanction|bloque l'accès|coupe l'accès|piratage|cyberattaque|fuite de données|faille"),
     (3, r"chatgpt|openai|anthropic|\bclaude\b|\bgemini\b|\bgrok\b|\bmeta ai\b|deepseek|nvidia|intelligence artificielle|\bia\b générative"),
     (2, r"victoire|défaite|qualifi|élimin|finale|sacre|remporte"),
+    (6, r"(coupe du monde|mondial|cdm).{0,50}(\d{1,2}\s?[-:–]\s?\d{1,2}|succès|s'impose|écrase|bat |élimin|victoire|qualifi)"),
+    (6, r"(\d{1,2}\s?[-:–]\s?\d{1,2}|s'impose|écrase|succès).{0,50}(coupe du monde|mondial|cdm)"),
     (4, r"\b\d{1,2}\s?[-:–]\s?\d{1,2}\b"),   # un score chiffré dans le titre = match terminé à pousser
 ]
 PRERANK_COLD = [
@@ -3274,6 +3346,7 @@ PRERANK_COLD = [
     (-3, r"pourrait|devrait|envisage|prévoit|à l'horizon|d'ici 20\d\d"),
     (-2, r"comment |pourquoi |voici |conseils|astuces|guide"),
     (-4, r"horoscope|programme tv|replay|podcast|diaporama|quiz|recette|bons plans|promo|soldes|comparatif|notre sélection|que regarder|que faire ce"),
+    (-3, r"triathlon|marathon de|championnats? du monde de|coupe du monde de (handball|rugby|natation|judo)|open de|tournoi de"),
 ]
 def prerank_candidates(cands, keep):
     """Classement heuristique gratuit : mots chauds/froids + écho multi-sources.
