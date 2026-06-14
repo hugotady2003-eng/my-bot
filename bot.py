@@ -2349,6 +2349,23 @@ def _vf(px, bold=True, italic=False, serif=False):
 def _vlerp(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
 def _vease(t): t = max(0.0, min(1.0, t)); return 1 - (1 - t) ** 3
 
+def _ease_quint(t):
+    """Ease-out quintique : très doux à l'arrivée, mouvement 'premium' qui se pose en douceur."""
+    t = max(0.0, min(1.0, t))
+    return 1 - (1 - t) ** 5
+
+def _ease_soft(t):
+    """Ease-in-out sinusoïdal : démarrage ET arrivée tout en douceur (le plus fluide)."""
+    import math as _m
+    t = max(0.0, min(1.0, t))
+    return 0.5 - 0.5 * _m.cos(_m.pi * t)
+
+def _appear(t, start, dur):
+    """Progression d'apparition normalisée [0..1] avec courbe douce, depuis 'start' sur 'dur' secondes."""
+    if dur <= 0:
+        return 1.0 if t >= start else 0.0
+    return _ease_quint((t - start) / dur)
+
 def _neon_strip(category, W, h, sober=False):
     """Bande dégradée multi-nuances (couleurs de la catégorie) qui servira de barre néon défilante."""
     if sober:
@@ -2676,11 +2693,13 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                 bar.paste(strip, (xx, 0)); xx += period
             img.paste(bar, (0, 0))
             d = ImageDraw.Draw(img)
-            # logo + ECG
-            la = _vease(t / 0.6)
+            # logo + ECG (apparition fluide : fondu doux + léger glissement depuis la gauche)
+            la = _appear(t, 0.15, 0.9)
             if la > 0:
-                d.text((int(W * 0.04), int(H * 0.055)), "PULSE", font=LOGO_F, fill=WHITE + (int(255 * la),))
-            frac = _vease((t - 0.3) / 0.9)
+                lx_off = int((1 - la) * 22)
+                d.text((int(W * 0.04) - lx_off, int(H * 0.055)), "PULSE", font=LOGO_F,
+                       fill=WHITE + (int(255 * la),))
+            frac = _ease_soft((t - 0.4) / 1.1)
             pts = ecg_pts(frac)
             if len(pts) >= 2:
                 if glow_full is not None and frac >= 1:
@@ -2691,17 +2710,18 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     r = 4 + 1.6 * (1 + math.sin(t * 5.5)) / 2
                     e = ECG[-1]
                     d.ellipse([e[0]-r, e[1]-r, e[0]+r, e[1]+r], fill=ecg_col)
-            # pastille haut droite
-            sa = _vease((t - 0.9) / 0.35)
+            # pastille haut droite (apparition fluide : fondu + léger glissement depuis la droite)
+            sa = _appear(t, 0.7, 0.7)
+            px_off = int((1 - sa) * 24)
             if sa > 0:
                 if kind == "hommage":
-                    d.text((W - int(W * 0.04), int(H * 0.085)), "H O M M A G E", font=_vf(W * 0.020),
+                    d.text((W - int(W * 0.04) + px_off, int(H * 0.085)), "H O M M A G E", font=_vf(W * 0.020),
                            fill=(205, 208, 224, int(255 * sa)), anchor="rm")
                 elif urgent:
-                    s = 1.0 + 0.5 * (1 - sa)
+                    s = 1.0
                     pf = _vf(W * 0.024 * s)
                     txt = "URGENT"; tw = d.textbbox((0, 0), txt, font=pf)[2]
-                    cxp, cyp = W - int(W * 0.04) - tw // 2 - int(W * 0.030), int(H * 0.095)
+                    cxp, cyp = W - int(W * 0.04) - tw // 2 - int(W * 0.030) + px_off, int(H * 0.095)
                     padx, pady = int(W * 0.022 * s), int(H * 0.022 * s)
                     box = [cxp - tw // 2 - padx, cyp - pady - int(W * 0.012 * s),
                            cxp + tw // 2 + padx + int(W * 0.018 * s), cyp + pady + int(W * 0.012 * s)]
@@ -2722,28 +2742,29 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
 
             # ── contenu central selon le type ──
             if kind == "news":
-                # Panneau de verre dépoli (précalculé) qui glisse vers le haut (transition premium)
-                panel_in = _vease_out_back((t - 1.4) / 0.8)
+                # Panneau de verre qui monte en douceur (slide + fade fluide, sans rebond sec)
+                panel_in = _ease_quint((t - 1.5) / 1.0)
                 if panel_in > 0:
-                    slide = int((1 - panel_in) * H * 0.12)
+                    slide = int((1 - panel_in) * H * 0.10)
                     pan = glass_title_panel
                     if panel_in < 1:
                         pan = pan.copy()
                         pan.putalpha(pan.split()[3].point(lambda v: int(v * min(1, panel_in))))
                     img.alpha_composite(pan, (GP_X0, GP_Y0 + slide))
                     d = ImageDraw.Draw(img)
-                    if panel_in > 0.6:
-                        la2 = (panel_in - 0.6) / 0.4
+                    if panel_in > 0.5:
+                        la2 = _ease_quint((panel_in - 0.5) / 0.5)
                         ax = GP_X0 + int(W * 0.018)
+                        ah = int(GP_BLOCKH * la2)   # le liseré se "déroule" verticalement
                         d.rounded_rectangle([ax, GP_Y0 + slide + GP_PADTOP,
-                                             ax + 5, GP_Y0 + slide + GP_PADTOP + GP_BLOCKH],
-                                            radius=2, fill=accent_rgb + (int(230 * la2),))
+                                             ax + 5, GP_Y0 + slide + GP_PADTOP + ah],
+                                            radius=2, fill=accent_rgb + (230,))
                 for i, line in enumerate(HLINES):
-                    wa = _vease((t - (1.7 + i * 0.16)) / 0.5)
+                    wa = _appear(t, 1.9 + i * 0.22, 0.85)   # apparition décalée et douce par ligne
                     if wa <= 0: continue
-                    dx = int((1 - wa) * 26)        # le texte glisse depuis la gauche
+                    dx = int((1 - wa) * 30)        # glissement fluide depuis la gauche
                     y = HY0 + i * LH
-                    xline = GP_X0 + int(W * 0.045) + dx   # marge confortable après le liseré d'accent
+                    xline = GP_X0 + int(W * 0.045) + dx
                     d.text((xline + 2, y + 2), line, font=HFONT, fill=(0, 0, 0, int(150 * wa)))
                     d.text((xline, y), line, font=HFONT, fill=WHITE + (int(255 * wa),))
             elif kind == "victory":
@@ -2754,13 +2775,13 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     fz = _vf(min(W * 0.085, W * 0.085))
                     while tmpd.textbbox((0, 0), name, font=fz)[2] > W * 0.84 and fz.size > 30:
                         fz = _vf(fz.size - 4)
-                    na_ = _vease((t - 1.6) / 0.6)
+                    na_ = _appear(t, 1.5, 0.9)
                     if na_ > 0:
                         sc = 1.08 - 0.08 * na_
                         f2 = _vf(fz.size * sc)
                         d.text((W // 2 + 2, cy + 2), name, font=f2, fill=(0, 0, 0, int(220 * na_)), anchor="mm")
                         d.text((W // 2, cy), name, font=f2, fill=GOLD + (int(255 * na_),), anchor="mm")
-                    da_ = _vease((t - 2.4) / 0.5)
+                    da_ = _appear(t, 2.3, 0.7)
                     if da_ > 0 and data.get("detail"):
                         d.text((W // 2, cy - int(H * 0.10)), data["detail"], font=_vf(W * 0.022, False),
                                fill=DIM + (int(255 * da_),), anchor="mm")
@@ -2769,7 +2790,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     D = flags_v[0].width
                     row_y = int(H * 0.68)
                     lax, rax = int(W * 0.20), int(W * 0.80)
-                    fl_a = _vease((t - 1.3) / 0.5)
+                    fl_a = _appear(t, 1.2, 0.8)
                     if fl_a > 0:
                         ring_w = max(3, D // 26)
                         for (fl, xx, win_) in [(flags_v[0], lax, winner == "A"), (flags_v[1], rax, winner == "B")]:
@@ -2789,7 +2810,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                             while tmpd.textbbox((0, 0), nm.upper(), font=fn)[2] > W * 0.26 and fn.size > 16:
                                 fn = _vf(fn.size - 2)
                             d.text((xx, fy), nm.upper(), font=fn, fill=WHITE + (int(255 * fl_a),), anchor="mm")
-                    prog = _vease((t - 2.2) / 1.1)
+                    prog = _ease_soft((t - 2.1) / 1.4)
                     sa_f, sb_f = int(data.get("score_a", 0)), int(data.get("score_b", 0))
                     if prog > 0:
                         final_txt = f"{sa_f} - {sb_f}"
@@ -2799,7 +2820,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                         cur = f"{int(round(prog * sa_f))} - {int(round(prog * sb_f))}"
                         d.text((W // 2 + 3, row_y + 3), cur, font=cf, fill=(0, 0, 0, 230), anchor="mm")
                         d.text((W // 2, row_y), cur, font=cf, fill=WHITE, anchor="mm")
-                    sf_a = _vease((t - 3.8) / 0.5)
+                    sf_a = _appear(t, 3.9, 0.7)
                     if sf_a > 0:
                         lbl = "MATCH NUL" if winner == "NUL" else "SCORE FINAL"
                         sf = _vf(W * 0.016)
@@ -2811,7 +2832,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                         d.line([(W // 2 + stw // 2 + int(W * 0.016), fy2), (W // 2 + stw // 2 + int(W * 0.065), fy2)], fill=GOLD + (ga,), width=2)
                 else:
                     na, nb = (data.get("player_a"), data.get("player_b")) if typ == "tennis" else (data.get("team_a"), data.get("team_b"))
-                    sl = _vease((t - 1.5) / 0.7)
+                    sl = _appear(t, 1.4, 0.95)
                     lax, rax = int(W * 0.17), int(W * 0.83)
                     offx = int((1 - sl) * W * 0.22)
                     for xx_, txt_, win_ in [(lax - offx, (na or "").upper(), winner == "A"),
@@ -2824,12 +2845,12 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                         gold_now = win_ and t >= 4.0
                         d.text((xx_, cy - int(H * 0.03)), txt_, font=ftm,
                                fill=(GOLD if gold_now else WHITE) + (int(255 * sl),), anchor="mm")
-                        if win_ and _vease((t - 4.2) / 0.4) > 0:
-                            va = _vease((t - 4.2) / 0.4)
+                        if win_ and _appear(t, 4.2, 0.6) > 0:
+                            va = _appear(t, 4.2, 0.6)
                             d.text((xx_, cy + int(H * 0.055)), "✔ VAINQUEUR", font=_vf(W * 0.018),
                                    fill=GOLD + (int(255 * va),), anchor="mm")
                     if typ == "tennis":
-                        ca_ = _vease((t - 2.3) / 0.6)
+                        ca_ = _appear(t, 2.2, 0.85)
                         if ca_ > 0:
                             sets = data.get("sets", "") or "—"
                             cf = _vf(W * 0.05)
@@ -2838,7 +2859,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                             d.text((W // 2 + 2, cy + 2), sets, font=cf, fill=(0, 0, 0, int(220 * ca_)), anchor="mm")
                             d.text((W // 2, cy), sets, font=cf, fill=WHITE + (int(255 * ca_),), anchor="mm")
                     else:
-                        prog = _vease((t - 2.3) / 1.1)
+                        prog = _ease_soft((t - 2.2) / 1.4)
                         sa_f, sb_f = int(data.get("score_a", 0)), int(data.get("score_b", 0))
                         va_, vb_ = int(round(prog * sa_f)), int(round(prog * sb_f))
                         if prog > 0:
@@ -2849,7 +2870,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                                 cf = _vf(cf.size - 4)
                             d.text((W // 2 + 3, cy + 3), f"{va_}  -  {vb_}", font=cf, fill=(0, 0, 0, 230), anchor="mm")
                             d.text((W // 2, cy), f"{va_}  -  {vb_}", font=cf, fill=WHITE, anchor="mm")
-                    st_ = _vease((t - 3.6) / 0.35)
+                    st_ = _appear(t, 3.7, 0.6)
                     if st_ > 0 and winner != "NUL":
                         sc = 1.0 + 0.5 * (1 - st_)
                         bf = _vf(W * 0.032 * sc)
@@ -2864,11 +2885,11 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                 while tmpd.textbbox((0, 0), name.upper(), font=fz)[2] > W * 0.86 and fz.size > 28:
                     fz = _vf(fz.size - 4, serif=True)
                 ny = FOOTER_Y - int(H * 0.205)
-                na_ = _vease((t - 1.8) / 0.9)
+                na_ = _appear(t, 1.7, 1.1)
                 if na_ > 0:
                     dy = int((1 - na_) * 14)
                     d.text((int(W * 0.045), ny + dy), name.upper(), font=fz, fill=WHITE + (int(255 * na_),))
-                fa2 = _vease((t - 2.8) / 0.8)
+                fa2 = _appear(t, 2.9, 1.0)
                 if fa2 > 0:
                     y2 = ny + fz.size + int(H * 0.022)
                     d.rectangle([int(W * 0.046), y2, int(W * 0.046) + int(W * 0.11), y2 + 3],
@@ -2876,13 +2897,13 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     if data.get("dates"):
                         d.text((int(W * 0.045), y2 + int(H * 0.022)), data["dates"], font=_vf(W * 0.024, False),
                                fill=(196, 200, 216, int(255 * fa2)))
-                fa3 = _vease((t - 3.4) / 0.8)
+                fa3 = _appear(t, 3.6, 1.0)
                 if fa3 > 0 and data.get("desc"):
                     d.text((int(W * 0.045), ny + fz.size + int(H * 0.085)), data["desc"], font=_vf(W * 0.020, False),
                            fill=(165, 168, 186, int(255 * fa3)))
 
             # pied de page (zone réservée — rien ne descend dessus)
-            fa = _vease((t - (DUR - 2.2)) / 0.6)
+            fa = _appear(t, DUR - 2.4, 0.9)
             if fa > 0:
                 d.text((int(W * 0.04), H - int(H * 0.082)), "Pulse", font=_vf(W * 0.020),
                        fill=WHITE + (int(255 * fa),))
