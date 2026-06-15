@@ -317,12 +317,12 @@ def _paris_hour():
         return datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=2))).hour
 
 def _cadence_minutes(h):
-    """Rythme de publication selon l'heure FRANÇAISE (pics d'audience X : matin, midi, soirée)."""
-    if 0 <= h < 6:
-        return 150, 240, "nuit (quasi-pause, le breaking passe toujours)"
-    if h in (7, 8, 12, 13, 18, 19, 20, 21):
-        return 35, 75, "prime-time (cadence soutenue)"
-    return 55, 110, "journée"
+    """Rythme de publication. Base ~1h30 partout (probabilité croissante jusqu'à 2h30),
+    nuit fortement ralentie. PLUS d'accélération prime-time (trop coûteux). Les alertes
+    (breaking, résultats sport) restent prioritaires et ne passent pas par ce rythme."""
+    if 0 <= h < 7:
+        return 180, 300, "nuit (quasi-pause, le breaking passe toujours)"
+    return 90, 150, "journée (base 1h30)"
 
 def should_publish_now(conn, min_minutes=None, max_minutes=None):
     if min_minutes is None or max_minutes is None:
