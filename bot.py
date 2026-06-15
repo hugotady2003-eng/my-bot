@@ -563,13 +563,15 @@ def _fact_hardfix(body, source_text):
     return body
 
 def gen_tweet_verified(title, summary, source, category, url=None):
-    """gen_tweet_complet + lecture de l'ARTICLE COMPLET (chiffres et faits exacts pour chaque
-    tweet, pas seulement le résumé RSS) + vérification factuelle (1 retry)."""
+    """gen_tweet_complet + lecture de l'article UNIQUEMENT sur sujets sensibles
+    (mort, procès, accusations… où la précision juridique est vitale) + vérification factuelle.
+    Sur les sujets non sensibles, le titre + résumé RSS suffisent → coût minimal."""
     src_text = f"{title} {summary}"
     article_text = None
-    if url:
+    # Lecture de l'article SEULEMENT si le sujet est sensible (sinon ça triple les tokens pour rien)
+    if url and (SENSITIVE_TOPIC_RX.search(title) or SENSITIVE_TOPIC_RX.search(summary or "")):
         try:
-            article_text = fetch_article_text(url, max_chars=1200)
+            article_text = fetch_article_text(url, max_chars=1000)
             if article_text and len(article_text) > 150:
                 src_text += " " + article_text
             else:
