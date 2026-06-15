@@ -773,9 +773,12 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
     Par défaut JAMAIS de stock (allow_stock=False) → renvoie (None, False) si aucune vraie photo,
     pour que l'appelant reporte le post plutôt que publier une image générique.
     Retourne (raw_bytes, is_real_photo)."""
-    HQ_W, HQ_H = 700, 450   # seuil de qualité relevé (netteté garantie après recadrage)
+    HQ_W, HQ_H = 500, 320   # seuil raisonnable : accepte les photos de presse standard (640×427, 600×400...)
 
-    # 1. VRAIES photos de l'article : on teste plusieurs candidats, on garde la plus grande valide
+    # 1. VRAIES photos de l'article : on teste les candidats, on garde la plus grande.
+    #    Plancher absolu 380px (en dessous = vignette inutilisable). Entre plancher et seuil idéal,
+    #    on accepte quand même : une vraie photo un peu petite vaut mieux qu'une carte sans photo.
+    FLOOR_W, FLOOR_H = 380, 240
     best_raw, best_px = None, 0
     for img_url in fetch_article_images(article_url):
         raw = fetch_img(img_url)
@@ -787,7 +790,7 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
             w, h = _I.open(_io.BytesIO(raw)).size
         except Exception:
             continue
-        if w < HQ_W or h < HQ_H:
+        if w < FLOOR_W or h < FLOOR_H:
             continue
         px = w * h
         if px > best_px:
@@ -800,7 +803,7 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
     # 2. Miniature RSS (souvent la photo de l'article) si assez grande
     if photo_url:
         raw = fetch_img(photo_url)
-        if raw and img_dimensions_ok(raw, min_w=HQ_W, min_h=HQ_H):
+        if raw and img_dimensions_ok(raw, min_w=420, min_h=260):
             return raw, True
 
     # 3. Portrait Wikipedia de la personnalité citée (vraie photo, pertinente)
