@@ -3691,14 +3691,28 @@ def check_feeds(conn):
         return
     # Dérogation : un RÉSULTAT sportif frais (ex: match de CDM la nuit) passe malgré le délai,
     # tant qu'aucun résultat n'a été publié depuis 90 min (anti-spam). Sinon il vieillirait trop.
-    if not sport_result_waiting and not should_publish_now(conn):
-        return
-    if sport_result_waiting and not should_publish_now(conn):
-        print("  ⚽ Dérogation cadence : un résultat sportif frais est prioritaire")
+    # ⚠️ IMPORTANT : si on entre par cette dérogation, on ne publie QUE le résultat sport
+    # (sinon la sélection éditoriale choisirait un autre sujet, contournant la cadence à tort).
+    cadence_ok = should_publish_now(conn)
+    force_sport_only = False
+    if not cadence_ok:
+        if sport_result_waiting:
+            print("  ⚽ Dérogation cadence : SEUL un résultat sportif frais peut passer")
+            force_sport_only = True
+        else:
+            return
 
     if not candidates:
         print("  → Aucun article nouveau.")
         return
+
+    # En mode dérogation cadence : on ne traite (et n'analyse) QUE les résultats sportifs frais.
+    # Économie : on n'envoie pas 13 articles à Claude pour finalement n'en publier aucun.
+    if force_sport_only:
+        candidates = [c for c in candidates if _is_sport_result(c["title"])]
+        if not candidates:
+            print("  ⚽ Dérogation : aucun résultat sportif à traiter — on attend.")
+            return
 
     print(f"  → {len(candidates)} articles à analyser...")
     if blocked_kws:
@@ -3766,6 +3780,16 @@ def check_feeds(conn):
                 item["score"] = min(10, item["score"] + 2)
 
     scored.sort(key=lambda x: x["score"], reverse=True)
+
+    # En mode dérogation cadence, on ne garde QUE le(s) résultat(s) sportif(s) frais :
+    # la dérogation existe pour publier le score du match, pas pour débloquer un autre sujet.
+    if force_sport_only:
+        scored = [it for it in scored
+                  if it["analysis"].get("category") == "sport" and _is_sport_result(it.get("title", ""))]
+        if not scored:
+            print("  ⚽ Dérogation : finalement aucun vrai résultat sportif exploitable — on attend.")
+            return
+
     top, used = [], set()
     for item in scored:
         cat = item["analysis"]["category"]
@@ -3773,10 +3797,11 @@ def check_feeds(conn):
             top.append(item); used.add(cat)
         if len(top) >= MAX_PAR_PASSE: break
 
-    # Histoire du jour (1×/jour, vérifié Wikipedia)
-    histoire = gen_histoire_du_jour(conn)
-    if histoire and "histoire" not in used and len(top) < MAX_PAR_PASSE + 1:
-        top.append(histoire); used.add("histoire")
+    # Histoire du jour (1×/jour, vérifié Wikipedia) — JAMAIS en mode dérogation sport
+    if not force_sport_only:
+        histoire = gen_histoire_du_jour(conn)
+        if histoire and "histoire" not in used and len(top) < MAX_PAR_PASSE + 1:
+            top.append(histoire); used.add("histoire")
 
     if not top:
         print("  → Rien à publier.")
