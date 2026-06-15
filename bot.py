@@ -295,6 +295,19 @@ def last_publish_time(conn):
     except:
         return None
 
+# ── Plafond quotidien GLOBAL de publications (toutes sources confondues) ──
+DAILY_POST_CAP = 22          # objectif ~20-25 posts/jour : plafond ferme à 22 (breaking+sport+normaux)
+DAILY_POST_SOFT = 17         # au-delà, on ne garde QUE le très chaud (breaking/résultats forts)
+
+def posts_today(conn):
+    """Nombre de publications déjà faites aujourd'hui (chaque post passe par add_recent)."""
+    try:
+        row = conn.execute(
+            "SELECT COUNT(*) FROM recent_titles WHERE date(added_at) = date('now')").fetchone()
+        return row[0] if row else 0
+    except Exception:
+        return 0
+
 def _paris_hour():
     try:
         from zoneinfo import ZoneInfo
@@ -3626,8 +3639,9 @@ def check_feeds(conn):
     recent = get_recent(conn)
 
     # ── MODE BREAKING : un même sujet repris par plusieurs sources → publication IMMÉDIATE ──
+    nb_today = posts_today(conn)
     breaking = detect_breaking(conn, candidates)
-    if breaking:
+    if breaking and nb_today < DAILY_POST_CAP:   # le breaking passe tant qu'on est sous le plafond ferme (24)
         print(f"  🚨 Breaking potentiel (multi-sources) : {breaking['title'][:55]}")
         try:
             a = analyse_batch([breaking], recent, blocked_kws)[0]
@@ -3644,9 +3658,9 @@ def check_feeds(conn):
                 return
             except Exception as e:
                 print(f"  ❌ Breaking échoué : {e}")
-        elif not a.get("is_duplicate") and int(a.get("score", 0)) >= BUZZ_SCORE:
+        elif not a.get("is_duplicate") and int(a.get("score", 0)) >= BUZZ_SCORE and nb_today < DAILY_POST_SOFT:
             try:
-                # Buzz viral (repris par plusieurs sources) → publié vite, mais label NORMAL (insolite/tech...)
+                # Buzz viral → publié vite (label normal), mais seulement sous le seuil souple (20)
                 kws = publish_breaking(conn, breaking, a.get("category", "france"), urgent=False)
                 print(f"  ⚡ BUZZ publié rapidement (label normal) : {breaking['title'][:55]}")
                 if kws:
@@ -3656,12 +3670,21 @@ def check_feeds(conn):
                 print(f"  ❌ Buzz échoué : {e}")
         else:
             print(f"  → Sujet pas assez repris pour un fast-track (score {a.get('score')}).")
+    elif breaking:
+        print(f"  🛑 Plafond quotidien atteint ({nb_today}) — breaking ignoré pour ne pas spammer.")
 
     # ── PUBLICATION NORMALE (rythme selon l'heure) ──
-    # Dérogation : un RÉSULTAT sportif frais (ex: match de CDM la nuit) passe malgré le délai,
-    # tant qu'aucun résultat n'a été publié depuis 90 min (anti-spam). Sinon il vieillirait trop.
+    # Plafond GLOBAL : au-delà du seuil souple (20), seuls les résultats sport frais peuvent encore passer.
+    if nb_today >= DAILY_POST_CAP:
+        print(f"  🛑 Plafond quotidien ferme atteint ({nb_today}/{DAILY_POST_CAP}) — stop publications.")
+        return
     sport_result_waiting = allow_sport_result and any(
         _is_sport_result(c["title"]) for c in candidates)
+    if nb_today >= DAILY_POST_SOFT and not sport_result_waiting:
+        print(f"  🛑 Seuil souple atteint ({nb_today}/{DAILY_POST_SOFT}) — on garde la place au chaud (sport/breaking).")
+        return
+    # Dérogation : un RÉSULTAT sportif frais (ex: match de CDM la nuit) passe malgré le délai,
+    # tant qu'aucun résultat n'a été publié depuis 90 min (anti-spam). Sinon il vieillirait trop.
     if not sport_result_waiting and not should_publish_now(conn):
         return
     if sport_result_waiting and not should_publish_now(conn):
