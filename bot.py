@@ -2297,6 +2297,12 @@ OBITUARY_BLOCKERS = (
     "réquisitoire", "plaidoirie", "parquet", "juge", "audience",
     "commémor", "anniversaire", "an après", "ans après", "émeutes", "justice pour",
     "rouvre", "rouvrant", "réouverture", "rebondissement", "révélations sur",
+    # ── Personne VIVANTE déclarée morte par erreur (administrative) → surtout PAS un hommage ──
+    "déclaré mort", "déclarée morte", "déclaré décédé", "déclarée décédée",
+    "mort par erreur", "morte par erreur", "déclaré mort par erreur", "à tort",
+    "par erreur", "encore en vie", "toujours en vie", "bien vivant", "bien vivante",
+    "n'est pas mort", "n'est pas morte", "pas vraiment mort", "faussement déclaré",
+    "erreur administrative", "rayé des vivants", "considéré comme mort", "considérée comme morte",
 )
 
 def _is_obituary(title, summary):
