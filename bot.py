@@ -1785,11 +1785,21 @@ def gather_articles_with_urls(limit_per_feed=4):
                 if not title:
                     continue
                 summ = re.sub(r"<[^>]+>", "", entry.get("summary", entry.get("description", "")))
+                # Date de publication (epoch) pour juger la fraîcheur — clé pour le suivi live des matchs
+                pub_ts = None
+                for fld in ("published_parsed", "updated_parsed"):
+                    val = entry.get(fld)
+                    if val:
+                        try:
+                            pub_ts = time.mktime(val); break
+                        except Exception:
+                            pass
                 arts.append({
                     "title":   title,
                     "summary": summ[:200],
                     "url":     entry.get("link", ""),
                     "source":  fi["source"],
+                    "pub_ts":  pub_ts,
                 })
         except:
             pass
@@ -3149,16 +3159,32 @@ def _detect_france_match(candidates):
                   "face à", "contre", "vs", "-")
     score_rx = re.compile(r"\b\d{1,2}\s?[-:–]\s?\d{1,2}\b")
 
+    # ── FRAÎCHEUR : un vrai post mi-temps/score ne vient QUE d'un article publié à l'instant.
+    #    On exige une date de publication < 3h. Sans date fiable, on REJETTE (évite les
+    #    articles "retour sur", récaps, ou matchs d'hier qui rouvrent un faux live). ──
+    FRESH_SECONDS = 3 * 3600
+    now_ts = time.time()
+    # marqueurs qui trahissent un article rétrospectif (jamais un live)
+    RETRO_CUES = ("retour sur", "il y a un an", "il y a 1 an", "l'an dernier", "rétro",
+                  "retro", "anniversaire", "revivez", "ce jour-là", "ce jour la",
+                  "souvenez", "à l'époque", "a l'epoque", "archive", "il y a deux ans",
+                  "rediffusion", "replay", "best of", "résumé de la soirée d'hier", "hier soir")
+
     match_arts = []
     for c in candidates:
         t = (c.get("title", "") + " " + c.get("summary", "")).lower()
         if "france" not in t and "bleus" not in t:
             continue
-        # doit être un contexte FOOT (pas politique/société France)
         if not any(ctx in t for ctx in FOOT_CONTEXT):
             continue
-        # doit ressembler à un match (score, mi-temps, ou verbe de match)
         if not (score_rx.search(t) or any(cue in t for cue in MATCH_CUES)):
+            continue
+        # filtre rétrospectif
+        if any(r in t for r in RETRO_CUES):
+            continue
+        # filtre fraîcheur : article publié dans les 3 dernières heures uniquement
+        pub = c.get("pub_ts")
+        if pub is None or (now_ts - pub) > FRESH_SECONDS or (now_ts - pub) < -1800:
             continue
         match_arts.append(c)
 
