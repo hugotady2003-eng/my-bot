@@ -226,6 +226,7 @@ def mark_cat(conn, cat):
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     conn.execute("INSERT INTO category_log (category,last_sent) VALUES (?,?) ON CONFLICT(category) DO UPDATE SET last_sent=excluded.last_sent", (cat, now))
     conn.commit()
+    _touch_publish_time()   # filet de sécurité : horodatage fichier persisté via le workflow Git
 
 def get_cached_analysis(conn, url):
     h   = hashlib.md5(url.encode()).hexdigest()
@@ -287,13 +288,33 @@ def log_special(conn, kind, keywords):
     conn.commit()
 
 def last_publish_time(conn):
+    """Heure de la dernière publication = la PLUS RÉCENTE entre la base (category_log)
+    et un fichier d'horodatage (last_publish.txt). Le fichier est un filet de sécurité
+    si la base seen_articles.db n'est pas persistée entre deux runs GitHub."""
+    candidates = []
     row = conn.execute("SELECT MAX(last_sent) FROM category_log WHERE last_sent != '2000-01-01'").fetchone()
-    if not row or not row[0]:
-        return None
+    if row and row[0]:
+        try:
+            candidates.append(datetime.strptime(row[0], "%Y-%m-%d %H:%M:%S"))
+        except Exception:
+            pass
     try:
-        return datetime.strptime(row[0], "%Y-%m-%d %H:%M:%S")
-    except:
-        return None
+        with open("last_publish.txt", encoding="utf-8") as fh:
+            ts = datetime.strptime(fh.read().strip()[:19], "%Y-%m-%d %H:%M:%S")
+            # Ignore une date FUTURE (corruption) : sinon elle bloquerait toute publication.
+            if ts <= datetime.now() + timedelta(minutes=5):
+                candidates.append(ts)
+    except Exception:
+        pass
+    return max(candidates) if candidates else None
+
+def _touch_publish_time():
+    """Écrit l'heure de publication dans last_publish.txt (persisté via le workflow Git)."""
+    try:
+        with open("last_publish.txt", "w", encoding="utf-8") as fh:
+            fh.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    except Exception:
+        pass
 
 # ── Plafond quotidien GLOBAL de publications (toutes sources confondues) ──
 DAILY_POST_CAP = 22          # objectif ~20-25 posts/jour : plafond ferme à 22 (breaking+sport+normaux)
@@ -2333,6 +2354,15 @@ def _is_obituary(title, summary):
         return False
     if any(x in t for x in OBITUARY_BLOCKERS):
         return False   # affaire / procès / commémoration → pas un hommage
+    # Mort MÉTAPHORIQUE : "la mort de la presse / du cinéma / d'une époque / du débat"...
+    # (suivi d'un nom abstrait, pas d'une personne) → ce n'est pas un décès réel.
+    if re.search(r"\bmort\s+(?:de\s+la|du|des|d'une|de\s+l')\s+"
+                 r"(presse|cinéma|cinema|télé|television|télévision|radio|musique|culture|"
+                 r"démocratie|democratie|gauche|droite|industrie|économie|economie|monnaie|"
+                 r"vérité|verite|époque|epoque|innocence|vie privée|vie privee|liberté|liberte|"
+                 r"french touch|french tech|presse écrite|presse papier|2g|3g)\b", t):
+        return False
+    # "mort clinique", "mort cérébrale", "frôler la mort", "mort de rire/peur/faim" déjà gérés par DEATH_EXCLUDE
     # décès daté d'une année passée ("tué en juin 2023") = pas une annonce fraîche
     m = re.search(r"(?:tué|tuée|mort|morte|décédé|décédée|disparu|disparue)[^.]{0,25}?\ben\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre\s+)?((?:19|20)\d{2})", t)
     if m and int(m.group(1)) < datetime.now().year:
@@ -3392,7 +3422,7 @@ direct video vidéo photos selon vers tout tous toute toutes encore aujourd hui 
 """.split())
 
 def _sig_words(title):
-    words = re.findall(r"[0-9A-Za-zÀ-ÿ]+", title.lower())
+    words = re.findall(r"[0-9A-Za-zÀ-ÿ]+", (title or "").lower())
     return {w for w in words if len(w) >= 4 and w not in BREAKING_STOPWORDS}
 
 # Marqueurs de contenu "mou" (rapport, étude, analyse...) qui ne sont JAMAIS un breaking
@@ -3459,7 +3489,17 @@ def _is_sport_result(title):
     # le verbe "battre" conjugué (mais pas "débat", "combat", "bateau"...)
     if re.search(r"\b(bat|battent|battu|battue|battus|battues)\b", t):
         return True
-    if re.search(r"\d{1,2}\s?[-:–]\s?\d{1,2}", title):   # score chiffré "2-0", "(1-1)", "4 - 1" → match terminé
+    # Un match REPORTÉ / ANNULÉ / À VENIR n'est pas un résultat (même avec une date type "7-1")
+    if any(w in t for w in ("reporté", "reportée", "annulé", "annulée", "programmé", "programmée",
+                            "aura lieu", "se jouera", "prévu le", "à venir", "fixé au", "décalé")):
+        return False
+    # Score chiffré "2-0", "(1-1)", "4 - 1" → match terminé. MAIS on écarte les DATES :
+    #   "7-1-2026" (jj-mm-aaaa), ou un nombre collé à une année ("au 7-1 2026").
+    m = re.search(r"(?<!\d)(\d{1,2})\s?[-:–]\s?(\d{1,2})(?!\s?[-/.]\s?\d)(?!\s?\d{2,})", title)
+    if m:
+        a, b = int(m.group(1)), int(m.group(2))
+        # un vrai score de sport a des valeurs plausibles (0–30 hors exceptions) ; une date a
+        # un 2e nombre ≤ 12 (mois) souvent suivi d'année — déjà exclu par le lookahead ci-dessus.
         return True
     return False
 
@@ -3623,12 +3663,17 @@ def detect_breaking(conn, candidates):
     """
     if breaking_recent(conn):
         return None
+    # Sujets déjà publiés récemment (anti-republication d'un breaking d'hier repris aujourd'hui).
+    published_sigs = [_sig_words(t) for t in get_recent(conn)]
     enriched = [(c, _sig_words(c["title"])) for c in candidates]
     best, best_count = None, 0
     for i, (c, wi) in enumerate(enriched):
         if len(wi) < 2:
             continue
         if _is_soft_news(c["title"]):      # rapport / étude / revue de presse... → jamais breaking
+            continue
+        # déjà couvert récemment (≥2 mots significatifs communs avec un post récent) → pas un nouveau breaking
+        if any(len(wi & ps) >= 2 for ps in published_sigs):
             continue
         sources = set()
         for j, (d, wj) in enumerate(enriched):
@@ -3700,18 +3745,22 @@ def check_feeds(conn):
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
 
     # ── MODE COUPE DU MONDE : matchs du jour (matin) + prono la veille des matchs de la France ──
+    # Chaque rendez-vous fixe qui publie fait 'return' → UN SEUL post par run (pas de rafale).
     try:
         if not special_done_today(conn, "cdm_jour") and _paris_hour() >= 8:
-            publish_cdm_day(conn)
+            if publish_cdm_day(conn):
+                return
         if _paris_hour() >= 18:
-            publish_cdm_prono(conn)
+            if publish_cdm_prono(conn):
+                return
     except Exception as e:
         print(f"  ⚠️ Mode CDM : {e}")
 
     # ── RÉCAP DU SOIR : les 5 infos qui ont marqué la journée (1×/jour, après 21h Paris) ──
     try:
         if not special_done_today(conn, "recap") and _paris_hour() >= 21:
-            publish_recap(conn)
+            if publish_recap(conn):
+                return
     except Exception as e:
         print(f"  ⚠️ Récap du soir : {e}")
 
@@ -3902,6 +3951,34 @@ def check_feeds(conn):
     print(f"  → {len(candidates)} articles à analyser...")
     if blocked_kws:
         print(f"  🚫 Mots-clés bloqués (12h) : {', '.join(blocked_kws)}")
+
+    # ── Anti-doublon RENFORCÉ : on écarte tout article trop proche d'un titre DÉJÀ publié
+    #    récemment (≥2 mots significatifs communs). Évite de re-tweeter le même sujet sous
+    #    une formulation légèrement différente (ex: deux articles "Coupe du monde 48 équipes"). ──
+    published_sigs = [_sig_words(t) for t in recent]
+    # ── Filtre ARTICLE-GUIDE / marronnier périmé : un papier "découvrez le calendrier",
+    #    "tout savoir", "débute bientôt"... n'est pas une actu, et renvoie dans le vide sur X. ──
+    GUIDE_RX = re.compile(
+        r"(tout savoir sur|tout ce qu'il faut savoir|on vous explique|"
+        r"calendrier complet|guide complet|à quelle heure (et où |voir |suivre)|"
+        r"où (et comment |regarder|voir) (le|la|les|ce|cette)|comment (voir|suivre|regarder) (le|la|les|en direct)|"
+        r"débute (bientôt|ce|demain|la semaine)|va (commencer|débuter) (bientôt|ce|demain|le)|"
+        r"c'est (bientôt|parti pour le)|notre dossier|le programme complet (de|du|des)|"
+        r"toutes les infos pratiques|mode d'emploi)", re.I)
+
+    filtered_candidates = []
+    for c in candidates:
+        title = c.get("title", "")
+        # marronnier / article-guide → écarté (sans coût Claude)
+        if GUIDE_RX.search(title) or GUIDE_RX.search(c.get("summary", "")):
+            mark_seen(conn, c["url"], title); continue
+        # doublon avec un sujet déjà publié récemment
+        sw = _sig_words(title)
+        if len(sw) >= 2 and any(len(sw & ps) >= 2 for ps in published_sigs):
+            print(f"  ♻️ Doublon d'un sujet déjà publié, écarté : {title[:50]}")
+            mark_seen(conn, c["url"], title); continue
+        filtered_candidates.append(c)
+    candidates = filtered_candidates
 
     scored      = []
     to_analyse  = []
