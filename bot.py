@@ -2439,7 +2439,7 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1200, H=675):
 # ═══════════════════════════════════════════════════════════════════════════
 # VIDÉOS ANIMÉES (motion design Pulse) — 0 appel Claude, rendu local + ffmpeg
 # ═══════════════════════════════════════════════════════════════════════════
-VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1280, 720, 20, 6.5
+VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1080, 1350, 18, 6.0
 
 def _vf(px, bold=True, italic=False, serif=False):
     if serif:
@@ -3645,7 +3645,8 @@ def publish_breaking(conn, item, cat, urgent=True):
     photo = extract_photo(item["entry"]) if "entry" in item else None
     raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, label_cat)
     png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
-                             article_url=item.get("url"), person=person, prefetched=(raw_src, has_real))
+                             article_url=item.get("url"), person=person, W=1080, H=1350,
+                             prefetched=(raw_src, has_real), headline_bottom=True)
     vid = build_video("news", {"headline": headline_court}, label_cat, raw_src, item["source"], urgent=urgent)
     try:
         post_to_twitter(tweet_final, png_bytes, vid)
@@ -4042,7 +4043,7 @@ def check_feeds(conn):
                 png_bytes, png_nm = build_png(
                     headline_court, item["source"], cat, photo, image_query,
                     article_url=item.get("url"), person=person,
-                    prefetched=(raw_src, has_real)
+                    W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True
                 )
                 png_ig, _ = build_png(
                     headline_court, item["source"], cat, photo, image_query,
