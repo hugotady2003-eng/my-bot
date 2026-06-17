@@ -2336,6 +2336,10 @@ OBITUARY_BLOCKERS = (
     "suspect", "enquête", "instruction", "condamn", "acquitt", "relaxe", "relaxé",
     "non-lieu", "indemnis", "plaignant", "porte plainte", "garde à vue", "interpell",
     "réquisitoire", "plaidoirie", "parquet", "juge", "audience",
+    "coupable", "reconnu coupable", "plaide coupable", "tueur", "tueuse", "criminel",
+    "serial killer", "violeur", "agresseur", "kidnappeur", "ravisseur", "auteur présumé",
+    "auteur du meurtre", "responsable de la mort", "à perpétuité", "réclusion", "prison à vie",
+    "torture", "viol", "agression sexuelle", "pédocriminel", "terroriste",
     "commémor", "anniversaire", "an après", "ans après", "émeutes", "justice pour",
     "rouvre", "rouvrant", "réouverture", "rebondissement", "révélations sur",
     # ── Personne VIVANTE déclarée morte par erreur (administrative) → surtout PAS un hommage ──
@@ -2347,27 +2351,91 @@ OBITUARY_BLOCKERS = (
 )
 
 def _is_obituary(title, summary):
-    """Vrai UNIQUEMENT si l'article ANNONCE le décès d'une personnalité (pas un bilan
-    collectif, pas une suite judiciaire ou commémorative d'un décès passé)."""
+    """Vrai UNIQUEMENT si l'article ANNONCE le décès d'une PERSONNE (personnalité).
+    Approche robuste (pas une simple liste de mots) :
+      1. exclusions dures (bilans collectifs, criminels, affaires, mort métaphorique, erreur admin)
+      2. un marqueur de décès doit matcher en MOT ENTIER (jamais en sous-chaîne)
+      3. les tournures 'mort de X' ne comptent que si X n'est PAS une émotion/chose abstraite.
+    """
     t = (title + " " + summary).lower()
-    if any(x in t for x in DEATH_EXCLUDE):
+
+    # ── 1a. Exclusions DURES par mots entiers (bilans, expressions, négations) ──
+    if re.search(r"\b(morts|tués|tues|victimes|bilan|blessés|disparus|disparues)\b", t):
         return False
-    if any(x in t for x in OBITUARY_BLOCKERS):
-        return False   # affaire / procès / commémoration → pas un hommage
-    # Mort MÉTAPHORIQUE : "la mort de la presse / du cinéma / d'une époque / du débat"...
-    # (suivi d'un nom abstrait, pas d'une personne) → ce n'est pas un décès réel.
+    if re.search(r"\bpeine de mort\b|\bmise à mort\b|\bà mort\b|\bmort cérébrale\b|"
+                 r"\bmort clinique\b|\bmort subite\b|\bne meurt (jamais|pas)\b|\bpour mourir\b", t):
+        return False
+    # 'mort de rire/peur/faim/fatigue...' = expression, même précédé de 'est mort' → exclu d'emblée
+    if re.search(r"\bmort[e]?\s+d[e']\s*(?:l[ae'] )?"
+                 r"(rire|peur|faim|fatigue|honte|trouille|ennui|épuisement|epuisement|"
+                 r"chaud|froid|soif|jalousie|stress|vieillesse)\b", t):
+        return False
+
+    # ── 1b. Contexte CRIMINEL / JUDICIAIRE → jamais un hommage (victime ou criminel) ──
+    #    (un tueur condamné, un procès, une enquête sur un meurtre ne sont PAS un hommage)
+    if re.search(r"\b(coupable|meurtri\w+|tueur|tueuse|criminel\w*|violeur|violeurs|agresseur|"
+                 r"kidnappeur|ravisseur|assassin|accusé\w*|suspect\w*|inculp\w+|"
+                 r"condamn\w+|acquitt\w+|relax\w+|mis en examen|mise en examen|"
+                 r"garde à vue|interpell\w+|écrou\w+|réclusion|perpétuité|prison à vie|"
+                 r"procès|verdict|réquisitoire|plaidoirie|assises|tribunal|parquet|"
+                 r"cour de cassation|cour d'appel|non-lieu|instruction judiciaire|"
+                 r"enquête|enquete|torture|\bviol\b|\bviols\b|agression sexuelle|"
+                 r"pédocrimin\w+|terroriste|terrorisme|auteur (présumé|du meurtre|des faits))\b", t):
+        return False
+
+    # ── 1c. Commémoration / suite / anniversaire d'un décès PASSÉ → pas une annonce ──
+    if re.search(r"\b(commémor\w+|hommage rendu|anniversaire|un an après|\d+ ans? après|"
+                 r"émeutes|justice pour|rouvre|rouvr\w+|réouverture|rebondissement|"
+                 r"révélations sur|il y a un an|il y a \d+ ans)\b", t):
+        return False
+
+    # ── 1d. Personne VIVANTE déclarée morte par erreur → surtout PAS un hommage ──
+    if re.search(r"\b(déclaré[e]? mort[e]?|déclaré[e]? décédé[e]?|mort[e]? par erreur|"
+                 r"à tort|par erreur|encore en vie|toujours en vie|bien vivant[e]?|"
+                 r"n'est pas mort[e]?|pas vraiment mort[e]?|faussement déclaré|"
+                 r"erreur administrative|rayé des vivants|considéré[e]? comme mort[e]?)\b", t):
+        return False
+
+    # ── 1e. Mort MÉTAPHORIQUE : 'la mort de/du/des [chose abstraite]' ──
     if re.search(r"\bmort\s+(?:de\s+la|du|des|d'une|de\s+l')\s+"
-                 r"(presse|cinéma|cinema|télé|television|télévision|radio|musique|culture|"
-                 r"démocratie|democratie|gauche|droite|industrie|économie|economie|monnaie|"
-                 r"vérité|verite|époque|epoque|innocence|vie privée|vie privee|liberté|liberte|"
-                 r"french touch|french tech|presse écrite|presse papier|2g|3g)\b", t):
+                 r"(presse|cinéma|cinema|télé|télévision|television|radio|musique|culture|"
+                 r"démocratie|democratie|gauche|droite|industrie|économie|economie|monnaie|euro|"
+                 r"vérité|verite|époque|epoque|innocence|vie privée|liberté|liberte|dollar|"
+                 r"french touch|french tech|presse écrite|presse papier|jeu|saga|série|serie|"
+                 r"2g|3g|4g|diesel|essence|voiture thermique)\b", t):
         return False
-    # "mort clinique", "mort cérébrale", "frôler la mort", "mort de rire/peur/faim" déjà gérés par DEATH_EXCLUDE
-    # décès daté d'une année passée ("tué en juin 2023") = pas une annonce fraîche
-    m = re.search(r"(?:tué|tuée|mort|morte|décédé|décédée|disparu|disparue)[^.]{0,25}?\ben\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre\s+)?((?:19|20)\d{2})", t)
+
+    # ── 1f. Décès daté d'une année PASSÉE ('tué en 2023') = pas une annonce fraîche ──
+    m = re.search(r"(?:tué|tuée|mort|morte|décédé|décédée|disparu|disparue)[^.]{0,25}?"
+                  r"\ben\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|"
+                  r"octobre|novembre|décembre\s+)?((?:19|20)\d{2})", t)
     if m and int(m.group(1)) < datetime.now().year:
         return False
-    return any(m_ in t for m_ in DEATH_MARKERS)
+
+    # ── 2. Marqueurs de décès, TOUS testés en MOT ENTIER (regex) ──
+    #    'meurt' ne matchera donc jamais dans 'meurtre'. 'mort de' est traité à part (étape 3).
+    death_patterns = [
+        r"est mort[e]?\b", r"\bdécès d[e']", r"\bdécédé[e]?\b", r"\bdécède\b", r"\bdécédait\b",
+        r"s'est éteint[e]?\b", r"\bmeurt\b", r"mort[e]? à l'âge", r"nous a quitté[s]?\b",
+        r"\bà l'âge de\b", r"a perdu la vie", r"\bperd la vie\b", r"retrouvé[e]? mort[e]?\b",
+        r"n'est plus de ce monde", r"tire sa révérence", r"\bcarnet noir\b",
+        r"s'en est allé[e]?\b", r"emporté[e]? par (un|une|le|la|à)",
+    ]
+    for pat in death_patterns:
+        if re.search(pat, t):
+            return True
+
+    # ── 3. 'mort de/d' X' : décès SEULEMENT si X n'est pas une émotion / cause abstraite ──
+    mde = re.search(r"\bmort[e]?\s+d[e']\s*(?:l[ae'] )?(\w+)", t)
+    if mde:
+        suite = mde.group(1)
+        FAUSSES_CAUSES = {"rire", "peur", "faim", "fatigue", "honte", "trouille", "ennui",
+                          "épuisement", "epuisement", "chaud", "froid", "soif", "jalousie",
+                          "stress", "vieillesse"}  # 'mort de vieillesse' = expression, pas annonce
+        if suite not in FAUSSES_CAUSES:
+            return True
+
+    return False
 
 def extract_obituary(title, summary, url=None):
     """Extrait nom / naissance / âge / métier — UNIQUEMENT depuis l'article (zéro invention).
