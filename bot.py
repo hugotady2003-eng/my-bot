@@ -881,22 +881,32 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             try:
                 photo = Image.open(io.BytesIO(raw)).convert('RGB')
                 src_w, src_h = photo.size
+                src_ratio = src_w / src_h
+                dst_ratio = W / H
                 scale = max(W / src_w, H / src_h)
                 new_w, new_h = int(src_w * scale + 0.5), int(src_h * scale + 0.5)
                 photo = photo.resize((new_w, new_h), Image.LANCZOS)
-                if scale < 1:   # on a réduit la photo → légère accentuation pour une netteté parfaite
+                if scale < 1:
                     photo = photo.filter(ImageFilter.UnsharpMask(radius=2, percent=60, threshold=3))
-                # Cadrage INTELLIGENT : on centre sur le VISAGE s'il y en a un détecté
-                # (sinon léger biais vers le haut). Fini les visages coupés.
+                # Cadrage INTELLIGENT : on centre sur le VISAGE détecté.
                 face = detect_face_center(photo) if has_real_photo else None
                 if face:
                     fcx, fcy = face
                     left = int(fcx - W / 2)
-                    top  = int(fcy - H * 0.42)   # visage à ~42% du haut, avec de l'air au-dessus
+                    # Visage placé plus haut si le titre occupe le bas (headline_bottom),
+                    # pour que le sujet ne soit jamais mangé par le bandeau de texte.
+                    if headline_bottom and dst_ratio < 1:
+                        top = int(fcy - H * 0.28)
+                    else:
+                        top = int(fcy - H * (0.40 if dst_ratio >= 1 else 0.34))
                 else:
                     left = (new_w - W) // 2
-                    top  = int((new_h - H) * 0.2)
-                # On garde le cadre à l'intérieur de l'image
+                    # Sur une carte VERTICALE avec une photo PAYSAGE (très recadrée en hauteur),
+                    # on remonte le cadre pour garder le sujet visible au-dessus du titre du bas.
+                    if dst_ratio < 1 and src_ratio > 1.2:
+                        top = int((new_h - H) * (0.28 if headline_bottom else 0.42))
+                    else:
+                        top = int((new_h - H) * 0.2)
                 left = max(0, min(left, new_w - W))
                 top  = max(0, min(top,  new_h - H))
                 photo = photo.crop((left, top, left + W, top + H))
@@ -2439,7 +2449,7 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1200, H=675):
 # ═══════════════════════════════════════════════════════════════════════════
 # VIDÉOS ANIMÉES (motion design Pulse) — 0 appel Claude, rendu local + ffmpeg
 # ═══════════════════════════════════════════════════════════════════════════
-VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1080, 1350, 18, 6.0
+VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1280, 720, 20, 6.5
 
 def _vf(px, bold=True, italic=False, serif=False):
     if serif:
