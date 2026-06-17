@@ -3125,6 +3125,147 @@ Réponds avec ce JSON UNIQUEMENT :
     return True
 
 # ── MODE COUPE DU MONDE (calendrier fourni via cdm2026.txt à la racine du repo) ──
+def _france_match_today():
+    """Renvoie le match de la France prévu aujourd'hui (dict du calendrier) ou None."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    for m in load_cdm():
+        if m["date"] == today and "france" in (m["a"] + m["b"]).lower():
+            return m
+    return None
+
+def _detect_france_match(candidates):
+    """Détecte AUTOMATIQUEMENT dans les flux RSS un match de l'équipe de France de foot
+    (sans calendrier). Renvoie (adversaire, articles_du_match) ou (None, []).
+    Cherche les titres qui parlent du match des Bleus : 'France', un adversaire, et un
+    contexte de match (mi-temps / score / verbe de résultat)."""
+    # Marqueurs qui prouvent qu'on parle d'un MATCH de foot des Bleus (pas d'un autre sujet France)
+    FOOT_CONTEXT = ("équipe de france", "equipe de france", "les bleus", "bleus",
+                    "coupe du monde", "mondial", "didier deschamps", "deschamps",
+                    "mbappé", "mbappe")
+    MATCH_CUES = ("mi-temps", "mi temps", "à la pause", "score final", "coup d'envoi",
+                  "s'impose", "l'emporte", "battu", "victoire", "défaite", "defaite",
+                  "match nul", "tenu en échec", "élimin", "elimin", "qualifi", "but de",
+                  "ouvre le score", "égalise", "egalise", "mène", "remporte", "affronte",
+                  "face à", "contre", "vs", "-")
+    score_rx = re.compile(r"\b\d{1,2}\s?[-:–]\s?\d{1,2}\b")
+
+    match_arts = []
+    for c in candidates:
+        t = (c.get("title", "") + " " + c.get("summary", "")).lower()
+        if "france" not in t and "bleus" not in t:
+            continue
+        # doit être un contexte FOOT (pas politique/société France)
+        if not any(ctx in t for ctx in FOOT_CONTEXT):
+            continue
+        # doit ressembler à un match (score, mi-temps, ou verbe de match)
+        if not (score_rx.search(t) or any(cue in t for cue in MATCH_CUES)):
+            continue
+        match_arts.append(c)
+
+    if not match_arts:
+        return None, []
+
+    # Devine l'adversaire : le pays cité le plus souvent (hors France) dans les titres du match
+    PAYS = ("sénégal", "senegal", "irak", "norvège", "norvege", "brésil", "bresil", "argentine",
+            "espagne", "allemagne", "angleterre", "portugal", "maroc", "belgique", "croatie",
+            "pays-bas", "italie", "danemark", "suisse", "pologne", "mexique", "états-unis",
+            "etats-unis", "usa", "canada", "japon", "corée", "coree", "australie", "tunisie",
+            "ghana", "nigéria", "nigeria", "cameroun", "égypte", "egypte", "uruguay", "colombie",
+            "autriche", "écosse", "ecosse", "turquie", "grèce", "grece", "serbie", "ukraine")
+    from collections import Counter
+    cnt = Counter()
+    for art in match_arts:
+        t = (art.get("title", "") + " " + art.get("summary", "")).lower()
+        for p in PAYS:
+            if p in t:
+                cnt[p] += 1
+    adversaire = cnt.most_common(1)[0][0].capitalize() if cnt else "l'adversaire"
+    return adversaire, match_arts
+
+def publish_france_live(conn, candidates):
+    """⚽🇫🇷 Suit AUTOMATIQUEMENT le match de la France détecté dans les flux RSS :
+    poste la MI-TEMPS puis le SCORE FINAL (2 posts max), sans calendrier à maintenir.
+    Retourne True si un post a été fait."""
+    adversaire, match_articles = _detect_france_match(candidates)
+    if not match_articles:
+        return False
+
+    # Clé anti-doublon : le jour + l'adversaire (un seul match France/jour en pratique)
+    match_key = f"{datetime.now().strftime('%Y-%m-%d')}-France-{adversaire}"
+
+    # ── 1) SCORE FINAL (prioritaire) : article avec marqueur de fin de match ──
+    FINAL_CUES = ("score final", "terminé", "termine", "fin du match", "coup de sifflet final",
+                  "s'impose", "l'emporte", "battu", "battue", "victoire", "défaite", "defaite",
+                  "élimin", "elimin", "qualifi", "match nul", "tenu en échec", "se quitte",
+                  "remporte", "écrase", "ecrase", "domine")
+    HALF_CUES = ("mi-temps", "mi temps", "à la pause", "a la pause", "première période",
+                 "premiere periode", "1re période", "45e minute", "à la mi-temps")
+
+    already_final = conn.execute(
+        "SELECT 1 FROM special_log WHERE kind='fr_final' AND keywords=?", (match_key,)).fetchone()
+    already_half = conn.execute(
+        "SELECT 1 FROM special_log WHERE kind='fr_half' AND keywords=?", (match_key,)).fetchone()
+
+    for art in match_articles:
+        t = (art.get("title", "") + " " + art.get("summary", "")).lower()
+        # SCORE FINAL
+        if not already_final and any(cue in t for cue in FINAL_CUES) and re.search(r"\d{1,2}\s?[-:–]\s?\d{1,2}", t):
+            try:
+                result = extract_sport_result(art)   # 1 appel Claude → score précis
+                if result and result.get("type") == "match":
+                    raw, _ = get_best_image(art.get("url"), art.get("photo_url"), None, None, "sport")
+                    card = build_victory_card(raw, result, art.get("source", ""), 1200, 675)
+                    video = build_video("victory", result, "sport", raw, art.get("source", ""))
+                    sa, sb = result.get("score_a"), result.get("score_b")
+                    ta, tb = result.get("team_a"), result.get("team_b")
+                    txt = f"⚽ 🇫🇷 SCORE FINAL | {ta} {sa}-{sb} {tb}\n\n#CoupeDuMonde2026 #France"
+                    _post_all_platforms(conn, txt, card, video, "sport")
+                    conn.execute("INSERT INTO special_log (kind, keywords) VALUES ('fr_final', ?)", (match_key,))
+                    conn.commit()
+                    mark_cat(conn, "sport")
+                    print(f"  ⚽🇫🇷 SCORE FINAL publié : {ta} {sa}-{sb} {tb}")
+                    return True
+            except Exception as e:
+                print(f"  ❌ Score final France échoué : {e}")
+        # MI-TEMPS
+        if not already_half and any(cue in t for cue in HALF_CUES):
+            sc = re.search(r"(\d{1,2})\s?[-:–]\s?(\d{1,2})", t)
+            if sc:
+                score_str = f"{sc.group(1)}-{sc.group(2)}"
+                try:
+                    raw, _ = get_best_image(art.get("url"), art.get("photo_url"), None, None, "sport")
+                    data = {"headline": f"Mi-temps : France {score_str} {adversaire}"}
+                    video = build_video("news", data, "sport", raw, art.get("source", ""))
+                    card, _ = build_png(f"⏸️ MI-TEMPS — France {score_str} {adversaire}",
+                                        art.get("source", ""), "sport",
+                                        article_url=art.get("url"), prefetched=(raw, raw is not None))
+                    txt = f"⏸️ 🇫🇷 MI-TEMPS | France {score_str} {adversaire}\n\n#CoupeDuMonde2026 #France"
+                    _post_all_platforms(conn, txt, card, video, "sport")
+                    conn.execute("INSERT INTO special_log (kind, keywords) VALUES ('fr_half', ?)", (match_key,))
+                    conn.commit()
+                    mark_cat(conn, "sport")
+                    print(f"  ⏸️🇫🇷 MI-TEMPS publiée : France {score_str} {adversaire}")
+                    return True
+                except Exception as e:
+                    print(f"  ❌ Mi-temps France échouée : {e}")
+    return False
+
+def _post_all_platforms(conn, text, image_bytes, video_path, category):
+    """Publie un même contenu sur X (vidéo) + Facebook + Instagram, chaque plateforme isolée."""
+    try:
+        post_to_twitter(text, png_bytes=image_bytes, video_path=video_path)
+    except Exception as e:
+        print(f"  ❌ X isolé : {e}")
+    try:
+        post_to_facebook(text, png_bytes=image_bytes, video_path=video_path)
+    except Exception as e:
+        print(f"  ❌ Facebook isolé : {e}")
+    try:
+        if ig_allowed(conn) and image_bytes:
+            post_to_instagram(text, png_bytes=image_bytes)
+    except Exception as e:
+        print(f"  ❌ Instagram isolé : {e}")
+
 def load_cdm(path="cdm2026.txt"):
     """Lit le calendrier : lignes 'AAAA-MM-JJ|HH:MM|Équipe A|Équipe B|Phase'. # = commentaire."""
     out = []
@@ -3678,6 +3819,13 @@ def check_feeds(conn):
             print(f"  → Sujet pas assez repris pour un fast-track (score {a.get('score')}).")
     elif breaking:
         print(f"  🛑 Plafond quotidien atteint ({nb_today}) — breaking ignoré pour ne pas spammer.")
+
+    # ── MATCH DE LA FRANCE : mi-temps + score final (prioritaire, contourne la cadence) ──
+    try:
+        if publish_france_live(conn, candidates):
+            return
+    except Exception as e:
+        print(f"  ⚠️ Suivi match France : {e}")
 
     # ── PUBLICATION NORMALE (rythme selon l'heure) ──
     # Plafond GLOBAL : au-delà du seuil souple (20), seuls les résultats sport frais peuvent encore passer.
