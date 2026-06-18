@@ -7,6 +7,14 @@ import socket
 socket.setdefaulttimeout(12)   # aucun flux RSS/site mort ne peut geler un run
 import urllib.request, urllib.parse, urllib.error, re
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
+
+# En-têtes proches d'un vrai navigateur → réduit fortement les 403/404 des sites de presse
+_BROWSER_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
+}
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
@@ -636,7 +644,7 @@ def search_unsplash(query, category):
     if UNSPLASH_KEY:
         try:
             url = f"https://api.unsplash.com/search/photos?query={urllib.parse.quote(query)}&per_page=1&client_id={UNSPLASH_KEY}"
-            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
             with urllib.request.urlopen(req, timeout=8) as r:
                 data = json.loads(r.read())
             if data.get("results"):
@@ -648,9 +656,25 @@ def search_unsplash(query, category):
         return UNSPLASH_FALLBACK.get(category)
 
 def fetch_img(url):
+    if not url:
+        return None
+    # En-têtes proches d'un vrai navigateur + Referer = beaucoup moins de 403/404 sur les sites de presse
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=10) as r:
+        from urllib.parse import urlsplit
+        parts = urlsplit(url)
+        referer = f"{parts.scheme}://{parts.netloc}/"
+    except Exception:
+        referer = url
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
+        "Referer": referer,
+    }
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=12) as r:
             return r.read()
     except Exception as e:
         print(f"  ⚠️ Fetch image: {e}")
@@ -661,7 +685,7 @@ def fetch_og_image(article_url):
     if not article_url:
         return None
     try:
-        req = urllib.request.Request(article_url, headers={"User-Agent": "Mozilla/5.0"})
+        req = urllib.request.Request(article_url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
             html = r.read(400000).decode("utf-8", errors="ignore")
         # Plusieurs sources possibles, par ordre de préférence
@@ -751,7 +775,7 @@ def fetch_article_images(article_url, max_imgs=8):
     if not article_url:
         return []
     try:
-        req = urllib.request.Request(article_url, headers={"User-Agent": "Mozilla/5.0"})
+        req = urllib.request.Request(article_url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
             base = r.geturl()
             html = r.read(600000).decode("utf-8", errors="ignore")
@@ -1842,7 +1866,7 @@ def fetch_article_text(url, max_chars=3000):
         return ""
     try:
         import html as _html
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
             page = r.read(500000).decode("utf-8", errors="ignore")
         page = re.sub(r'<(script|style)[^>]*>.*?</\1>', ' ', page, flags=re.DOTALL | re.IGNORECASE)
@@ -1906,13 +1930,17 @@ Réponds avec ce JSON UNIQUEMENT :
             return None
         art, og_bytes = valid[0], None
         for cand in valid:
+            # Cascade COMPLÈTE (og:image + autres images de l'article + Wikipedia), pas juste og:image.
             try:
-                og = fetch_og_image(cand["url"])
+                raw, real = get_best_image(cand.get("url"), cand.get("photo_url"),
+                                           cand.get("person"), None, "actu")
             except Exception:
-                og = None
-            if og:
-                art, og_bytes = cand, og
+                raw, real = None, False
+            if raw:
+                art, og_bytes = cand, raw
                 break
+        # Si aucun des 3 sujets n'a de vraie photo → couverture sur fond DA (géré à la publication),
+        # jamais de stock générique hors-sujet.
 
         # ÉTAPE 2 : lire l'article complet (pour les vrais chiffres)
         article_text = fetch_article_text(art["url"], max_chars=4000)
