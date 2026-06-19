@@ -490,6 +490,15 @@ IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
         analyses.append({"score": 0, "category": "france", "is_duplicate": False, "needs_video": False})
     return analyses[:len(articles)]
 
+def _smart_truncate(s, max_len=80):
+    """Coupe une chaîne sur un mot ENTIER, jamais en plein milieu d'un mot ou d'une phrase.
+    Utilisé partout où un texte généré par Claude doit être borné pour l'affichage."""
+    s = (s or "").strip()
+    if len(s) <= max_len:
+        return s
+    cut = s[:max_len].rsplit(" ", 1)[0].rstrip(" ,;:.-'\u2019")
+    return cut if cut else s[:max_len].rstrip()
+
 def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, correction=None):
     """Génère tweet + titre image + image_query + mots-clés majeurs."""
     today = datetime.now().strftime("%d %B %Y")
@@ -574,7 +583,7 @@ Réponds avec ce JSON UNIQUEMENT :
         body = re.sub(rf"^{label_test}\s*[—-]\s*", "", body, flags=re.IGNORECASE)
     body = re.sub(r"^[\U0001F300-\U0001F9FF\u2600-\u27BF\s]+", "", body).strip()
 
-    headline_court = result.get("headline_court", title)[:80].strip()
+    headline_court = _smart_truncate(result.get("headline_court", title), 80)
     image_query    = result.get("image_query", category).strip()
     keywords       = result.get("keywords_majeurs", [])
     person         = result.get("person", "").strip()
@@ -1547,7 +1556,7 @@ OU
             "url":            "",
             "analysis":       {"category": "histoire", "needs_video": False},
             "tweet":          build_full_tweet(body, "histoire"),
-            "headline_court": result.get("headline_court", f"Éphéméride {today}")[:75],
+            "headline_court": _smart_truncate(result.get("headline_court", f"Éphéméride {today}"), 75),
             "image_query":    result.get("image_query", "history old"),
             "photo_url":      None,
             "keywords":       [],
@@ -2131,30 +2140,30 @@ Réponds avec ce JSON UNIQUEMENT (un de ces formats) :
         if not r or not r.get("ok"):
             return None
         t     = r.get("type")
-        comp  = str(r.get("competition", "")).strip()[:26]
+        comp  = _smart_truncate(str(r.get("competition", "")), 26)
         sport = str(r.get("sport", "")).strip().upper()[:14]
         if t == "match":
             sa, sb = int(r["score_a"]), int(r["score_b"])
-            ta, tb = str(r.get("team_a", "")).strip()[:22], str(r.get("team_b", "")).strip()[:22]
+            ta, tb = _smart_truncate(str(r.get("team_a", "")), 22), _smart_truncate(str(r.get("team_b", "")), 22)
             if not ta or not tb:
                 return None
             return {"type": "match", "sport": sport, "competition": comp,
                     "team_a": ta, "score_a": sa, "team_b": tb, "score_b": sb,
                     "winner": "A" if sa > sb else ("B" if sb > sa else "NUL")}
         if t == "tennis":
-            pa, pb = str(r.get("player_a", "")).strip()[:22], str(r.get("player_b", "")).strip()[:22]
+            pa, pb = _smart_truncate(str(r.get("player_a", "")), 22), _smart_truncate(str(r.get("player_b", "")), 22)
             win = r.get("winner")
             if not pa or not pb or win not in ("A", "B"):
                 return None
             return {"type": "tennis", "sport": sport or "TENNIS", "competition": comp,
                     "player_a": pa, "player_b": pb,
-                    "sets": str(r.get("sets", "")).strip()[:30], "winner": win}
+                    "sets": _smart_truncate(str(r.get("sets", "")), 30), "winner": win}
         if t == "race":
-            wn = str(r.get("winner_name", "")).strip()[:26]
+            wn = _smart_truncate(str(r.get("winner_name", "")), 26)
             if not wn:
                 return None
             return {"type": "race", "sport": sport, "competition": comp,
-                    "winner_name": wn, "detail": str(r.get("detail", "")).strip()[:30]}
+                    "winner_name": wn, "detail": _smart_truncate(str(r.get("detail", "")), 30)}
         return None
     except Exception as e:
         print(f"  ⚠️ extract_sport_result: {e}")
@@ -2493,7 +2502,7 @@ Réponds avec ce JSON UNIQUEMENT :
 Si ce n'est pas le décès d'une personne nommée, réponds {{"ok":false}}.""", max_tokens=220)
         if not r or not r.get("ok"):
             return None
-        name = str(r.get("name", "")).strip()[:40]
+        name = _smart_truncate(str(r.get("name", "")), 40)
         if not name:
             return None
         # L'année du décès vient de Python (vraie année), pas de Claude
@@ -2506,7 +2515,7 @@ Si ce n'est pas le décès d'une personne nommée, réponds {{"ok":false}}.""", 
                 dates = f"À {int(age)} ans"
         except (ValueError, TypeError):
             dates = ""
-        return {"name": name, "dates": dates, "desc": str(r.get("desc", "")).strip()[:40]}
+        return {"name": name, "dates": dates, "desc": _smart_truncate(str(r.get("desc", "")), 40)}
     except Exception as e:
         print(f"  ⚠️ extract_obituary: {e}")
         return None
@@ -3246,7 +3255,7 @@ rien d'inventé) + un emoji pertinent.
 Réponds avec ce JSON UNIQUEMENT :
 {{"items":[{{"e":"⚽","t":"..."}},{{"e":"🚨","t":"..."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}}]}}""",
         max_tokens=450)
-    items = [(str(it.get("e", "•"))[:2], str(it.get("t", "")).strip()[:80])
+    items = [(str(it.get("e", "•"))[:2], _smart_truncate(str(it.get("t", "")), 72))
              for it in (r.get("items") or []) if it.get("t")][:5]
     if len(items) < 3:
         return False
