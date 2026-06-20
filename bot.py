@@ -14,7 +14,27 @@ _BROWSER_HEADERS = {
                   "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
+    "Accept-Encoding": "gzip, deflate",   # un vrai navigateur l'envoie TOUJOURS ; son absence
+                                          # est elle-même un signal qui fait flaguer la requête
+                                          # comme un bot par certains pare-feux (Cloudflare...).
 }
+
+def _decode_html_body(raw_bytes, content_encoding):
+    """Décompresse le corps HTTP si besoin (gzip/deflate), puis décode en texte.
+    Indispensable dès qu'on envoie Accept-Encoding: gzip, deflate."""
+    try:
+        if "gzip" in content_encoding:
+            import gzip
+            raw_bytes = gzip.decompress(raw_bytes)
+        elif "deflate" in content_encoding:
+            import zlib
+            try:
+                raw_bytes = zlib.decompress(raw_bytes)
+            except zlib.error:
+                raw_bytes = zlib.decompress(raw_bytes, -zlib.MAX_WBITS)
+    except Exception:
+        pass   # si la décompression échoue, on retombe sur les octets bruts (mieux que planter)
+    return raw_bytes.decode("utf-8", errors="ignore")
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
@@ -696,7 +716,9 @@ def fetch_og_image(article_url):
     try:
         req = urllib.request.Request(article_url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
-            html = r.read(400000).decode("utf-8", errors="ignore")
+            raw_bytes = r.read(400000)
+            enc = (r.headers.get("Content-Encoding") or "").lower()
+        html = _decode_html_body(raw_bytes, enc)
         # Plusieurs sources possibles, par ordre de préférence
         patterns = [
             r'property=["\']og:image:secure_url["\']',
@@ -779,15 +801,18 @@ def detect_face_center(pil_img):
         return None
 
 def fetch_article_images(article_url, max_imgs=8):
-    """Récupère les VRAIES photos d'un article (og:image + grandes <img> de la page),
-    triées par priorité/taille. Filtre logos, icônes, pubs, pixels de tracking, SVG/GIF."""
+    """Récupère les VRAIES photos d'un article (og:image, JSON-LD schema.org, image_src,
+    + grandes <img> de la page), triées par priorité/taille. Filtre logos, icônes, pubs,
+    pixels de tracking, SVG/GIF."""
     if not article_url:
         return []
     try:
         req = urllib.request.Request(article_url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
             base = r.geturl()
-            html = r.read(600000).decode("utf-8", errors="ignore")
+            raw_bytes = r.read(900000)
+            enc = (r.headers.get("Content-Encoding") or "").lower()
+        html = _decode_html_body(raw_bytes, enc)
     except Exception:
         return []
     cands = []
@@ -795,6 +820,30 @@ def fetch_article_images(article_url, max_imgs=8):
                  r'twitter:image:src', r'twitter:image'):
         for m in re.finditer(r'<meta[^>]+(?:property|name)=["\']' + prop + r'["\'][^>]+content=["\']([^"\']+)["\']', html, re.I):
             cands.append((m.group(1).strip(), 10_000_000))
+    # <link rel="image_src" href="..."> : ancienne convention encore utilisée par certains sites
+    for m in re.finditer(r'<link[^>]+rel=["\']image_src["\'][^>]+href=["\']([^"\']+)["\']', html, re.I):
+        cands.append((m.group(1).strip(), 9_000_000))
+    # JSON-LD schema.org (NewsArticle/Article) : "image":"..." ou "image":["...","..."]
+    # Très fiable sur les sites de presse modernes, et présent même si l'og:image manque.
+    for block in re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
+        try:
+            data = json.loads(block.group(1).strip())
+        except Exception:
+            continue
+        for node in (data if isinstance(data, list) else [data]):
+            if not isinstance(node, dict):
+                continue
+            img = node.get("image")
+            if isinstance(img, str):
+                cands.append((img, 8_000_000))
+            elif isinstance(img, dict) and img.get("url"):
+                cands.append((img["url"], 8_000_000))
+            elif isinstance(img, list):
+                for it in img:
+                    if isinstance(it, str):
+                        cands.append((it, 8_000_000))
+                    elif isinstance(it, dict) and it.get("url"):
+                        cands.append((it["url"], 8_000_000))
     for im in re.finditer(r'<img[^>]+>', html, re.I):
         tag = im.group(0)
         src = None
@@ -893,15 +942,37 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
     return None, False
 
 def extract_photo(entry):
-    """Cherche une image dans l'article RSS."""
+    """Cherche une image DANS le flux RSS lui-même (gratuit, aucune requête web,
+    donc jamais bloqué par un anti-bot). Couvre toutes les formes courantes utilisées
+    par les CMS de presse français : media:content, media:thumbnail, enclosure,
+    champ image direct, et <img> intégré dans le résumé/contenu HTML du flux."""
     if hasattr(entry, "media_content") and entry.media_content:
         for m in entry.media_content:
-            if m.get("type", "").startswith("image"):
+            if m.get("type", "").startswith("image") or m.get("medium") == "image":
                 return m.get("url")
+            if m.get("url"):   # certains flux omettent le type mais donnent quand même une image
+                return m.get("url")
+    if hasattr(entry, "media_thumbnail") and entry.media_thumbnail:
+        url = entry.media_thumbnail[0].get("url")
+        if url:
+            return url
     if hasattr(entry, "enclosures") and entry.enclosures:
         for e in entry.enclosures:
-            if "image" in e.get("type", ""):
+            if "image" in e.get("type", "") or re.search(r"\.(jpe?g|png|webp)(\?|$)", e.get("href", ""), re.I):
                 return e.get("href")
+    if hasattr(entry, "image") and entry.get("image"):
+        url = entry.image.get("href") if hasattr(entry.image, "get") else None
+        if url:
+            return url
+    # <img> intégré dans le contenu/résumé HTML du flux (fréquent quand le flux inclut le corps)
+    for field in ("content", "summary"):
+        raw = entry.get(field)
+        if field == "content" and isinstance(raw, list) and raw:
+            raw = raw[0].get("value", "")
+        if isinstance(raw, str) and "<img" in raw.lower():
+            m = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', raw, re.I)
+            if m:
+                return m.group(1)
     return None
 
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
@@ -1877,7 +1948,9 @@ def fetch_article_text(url, max_chars=3000):
         import html as _html
         req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
-            page = r.read(500000).decode("utf-8", errors="ignore")
+            raw_bytes = r.read(500000)
+            enc = (r.headers.get("Content-Encoding") or "").lower()
+        page = _decode_html_body(raw_bytes, enc)
         page = re.sub(r'<(script|style)[^>]*>.*?</\1>', ' ', page, flags=re.DOTALL | re.IGNORECASE)
         paras = re.findall(r'<p[^>]*>(.*?)</p>', page, flags=re.DOTALL | re.IGNORECASE)
         text = " ".join(re.sub(r'<[^>]+>', '', p) for p in paras)
