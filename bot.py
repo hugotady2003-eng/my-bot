@@ -4090,7 +4090,16 @@ def check_feeds(conn):
     # ── MODE BREAKING : un même sujet repris par plusieurs sources → publication IMMÉDIATE ──
     nb_today = posts_today(conn)
     breaking = detect_breaking(conn, candidates)
-    if breaking and nb_today < DAILY_POST_CAP:   # le breaking passe tant qu'on est sous le plafond ferme (24)
+    # Garde-fou GRATUIT : un sujet multi-sources mais éditorialement banal (conseil des ministres,
+    # clôture de Bourse, déclaration politique routinière...) ne doit PAS payer l'appel Claude.
+    # Le pré-classement (gratuit) doit déjà juger le sujet "chaud" pour justifier la dépense.
+    if breaking is not None:
+        pre_score = sum(w for w, rx in PRERANK_HOT if re.search(rx, breaking["title"].lower())) + \
+                    sum(w for w, rx in PRERANK_COLD if re.search(rx, breaking["title"].lower()))
+        if pre_score < 3:
+            print(f"  ⚪ Multi-sources mais sujet banal (score pré-classement {pre_score}) → pas d'appel Claude")
+            breaking = None
+    if breaking and nb_today < DAILY_POST_CAP:   # le breaking passe tant qu'on est sous le plafond ferme
         print(f"  🚨 Breaking potentiel (multi-sources) : {breaking['title'][:55]}")
         try:
             a = analyse_batch([breaking], recent, blocked_kws)[0]
