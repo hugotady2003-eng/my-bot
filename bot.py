@@ -19,21 +19,45 @@ _BROWSER_HEADERS = {
                                           # comme un bot par certains pare-feux (Cloudflare...).
 }
 
+def _read_capped(response, cap=3_000_000, chunk=65536):
+    """Lit la réponse HTTP en entier (jusqu'à 'cap' octets), par morceaux.
+    Un .read(N) unique sur un flux gzip risquerait de tronquer le flux COMPRESSÉ en plein
+    milieu si la page dépasse N octets compressés → décompression impossible, page perdue."""
+    parts, total = [], 0
+    while total < cap:
+        block = response.read(chunk)
+        if not block:
+            break
+        parts.append(block)
+        total += len(block)
+    return b"".join(parts)
+
 def _decode_html_body(raw_bytes, content_encoding):
     """Décompresse le corps HTTP si besoin (gzip/deflate), puis décode en texte.
-    Indispensable dès qu'on envoie Accept-Encoding: gzip, deflate."""
+    Tolère un flux TRONQUÉ (lecture interrompue) : on récupère alors le maximum de
+    contenu décompressable au lieu de tout perdre (le <head>, qui contient
+    og:image/JSON-LD, arrive en tout début de flux donc se décompresse en premier)."""
+    import zlib
     try:
         if "gzip" in content_encoding:
-            import gzip
-            raw_bytes = gzip.decompress(raw_bytes)
+            try:
+                import gzip
+                raw_bytes = gzip.decompress(raw_bytes)
+            except Exception:
+                # flux gzip incomplet/tronqué → décompression partielle tolérante
+                d = zlib.decompressobj(16 + zlib.MAX_WBITS)
+                raw_bytes = d.decompress(raw_bytes)
         elif "deflate" in content_encoding:
-            import zlib
             try:
                 raw_bytes = zlib.decompress(raw_bytes)
             except zlib.error:
-                raw_bytes = zlib.decompress(raw_bytes, -zlib.MAX_WBITS)
+                try:
+                    raw_bytes = zlib.decompress(raw_bytes, -zlib.MAX_WBITS)
+                except zlib.error:
+                    d = zlib.decompressobj(-zlib.MAX_WBITS)
+                    raw_bytes = d.decompress(raw_bytes)
     except Exception:
-        pass   # si la décompression échoue, on retombe sur les octets bruts (mieux que planter)
+        pass   # si la décompression échoue totalement, on retombe sur les octets bruts
     return raw_bytes.decode("utf-8", errors="ignore")
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -716,7 +740,7 @@ def fetch_og_image(article_url):
     try:
         req = urllib.request.Request(article_url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
-            raw_bytes = r.read(400000)
+            raw_bytes = _read_capped(r, cap=1_500_000)
             enc = (r.headers.get("Content-Encoding") or "").lower()
         html = _decode_html_body(raw_bytes, enc)
         # Plusieurs sources possibles, par ordre de préférence
@@ -810,7 +834,7 @@ def fetch_article_images(article_url, max_imgs=8):
         req = urllib.request.Request(article_url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
             base = r.geturl()
-            raw_bytes = r.read(900000)
+            raw_bytes = _read_capped(r, cap=2_500_000)
             enc = (r.headers.get("Content-Encoding") or "").lower()
         html = _decode_html_body(raw_bytes, enc)
     except Exception:
@@ -888,15 +912,17 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
     3. Portrait Wikipedia de la personnalité citée
     Par défaut JAMAIS de stock (allow_stock=False) → renvoie (None, False) si aucune vraie photo,
     pour que l'appelant reporte le post plutôt que publier une image générique.
-    Retourne (raw_bytes, is_real_photo)."""
-    HQ_W, HQ_H = 500, 320   # seuil raisonnable : accepte les photos de presse standard (640×427, 600×400...)
+    Retourne (raw_bytes, is_real_photo). Journalise PRÉCISÉMENT l'étape qui échoue, pour pouvoir
+    diagnostiquer un manque d'image sans deviner (page bloquée ? 0 image trouvée ? trop petites ?)."""
+    HQ_W, HQ_H = 500, 320
 
-    # 1. VRAIES photos de l'article : on teste les candidats, on garde la plus grande.
-    #    Plancher absolu 380px (en dessous = vignette inutilisable). Entre plancher et seuil idéal,
-    #    on accepte quand même : une vraie photo un peu petite vaut mieux qu'une carte sans photo.
     FLOOR_W, FLOOR_H = 380, 240
     best_raw, best_px = None, 0
-    for img_url in fetch_article_images(article_url):
+    img_urls = fetch_article_images(article_url) if article_url else []
+    if article_url and not img_urls:
+        print(f"  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)")
+    rejected_small = 0
+    for img_url in img_urls:
         raw = fetch_img(img_url)
         if not raw:
             continue
@@ -907,20 +933,31 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
         except Exception:
             continue
         if w < FLOOR_W or h < FLOOR_H:
+            rejected_small += 1
             continue
         px = w * h
         if px > best_px:
             best_raw, best_px = raw, px
-        if best_px >= 1280 * 720:   # déjà du HD franc → inutile de chercher plus
+        if best_px >= 1280 * 720:
             break
     if best_raw:
         return best_raw, True
+    if img_urls and rejected_small == len(img_urls):
+        print(f"  🖼️ {len(img_urls)} image(s) trouvée(s) mais toutes trop petites (<{FLOOR_W}×{FLOOR_H})")
+    elif img_urls:
+        print(f"  🖼️ {len(img_urls)} image(s) trouvée(s) mais aucune n'a pu être téléchargée")
 
     # 2. Miniature RSS (souvent la photo de l'article) si assez grande
     if photo_url:
         raw = fetch_img(photo_url)
         if raw and img_dimensions_ok(raw, min_w=420, min_h=260):
             return raw, True
+        elif raw:
+            print(f"  🖼️ miniature RSS trop petite, écartée")
+        else:
+            print(f"  🖼️ miniature RSS injoignable")
+    else:
+        print(f"  🖼️ pas de miniature RSS fournie par le flux")
 
     # 3. Portrait Wikipedia de la personnalité citée (vraie photo, pertinente)
     if person:
@@ -939,6 +976,7 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
         if raw and img_dimensions_ok(raw, min_w=800, min_h=400):
             return raw, False
 
+    print(f"  🖼️ AUCUNE vraie photo trouvée pour cet article → carte sur fond dégradé")
     return None, False
 
 def extract_photo(entry):
@@ -1948,7 +1986,7 @@ def fetch_article_text(url, max_chars=3000):
         import html as _html
         req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
-            raw_bytes = r.read(500000)
+            raw_bytes = _read_capped(r, cap=1_500_000)
             enc = (r.headers.get("Content-Encoding") or "").lower()
         page = _decode_html_body(raw_bytes, enc)
         page = re.sub(r'<(script|style)[^>]*>.*?</\1>', ' ', page, flags=re.DOTALL | re.IGNORECASE)
