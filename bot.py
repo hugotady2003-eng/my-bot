@@ -3414,6 +3414,16 @@ def _detect_france_match(candidates):
                   "ouvre le score", "égalise", "egalise", "mène", "remporte", "affronte",
                   "face à", "contre", "vs", "-")
     score_rx = re.compile(r"\b\d{1,2}\s?[-:–]\s?\d{1,2}\b")
+    # Pays adversaires plausibles en CDM : leur présence + un score/résultat suffit à prouver
+    # qu'on parle d'un MATCH (même si le titre ne répète pas "Bleus"/"Coupe du monde").
+    PAYS = ("sénégal", "senegal", "irak", "norvège", "norvege", "brésil", "bresil", "argentine",
+            "espagne", "allemagne", "angleterre", "portugal", "maroc", "belgique", "croatie",
+            "pays-bas", "italie", "danemark", "suisse", "pologne", "mexique", "états-unis",
+            "etats-unis", "usa", "canada", "japon", "corée", "coree", "australie", "tunisie",
+            "ghana", "nigéria", "nigeria", "cameroun", "égypte", "egypte", "uruguay", "colombie",
+            "autriche", "écosse", "ecosse", "turquie", "grèce", "grece", "serbie", "ukraine",
+            "côte d'ivoire", "cote d'ivoire", "curaçao", "curacao", "afrique du sud", "iran",
+            "qatar", "équateur", "equateur", "venezuela", "paraguay", "chili", "panama", "jamaïque")
 
     # ── FRAÎCHEUR : un vrai post mi-temps/score ne vient QUE d'un article publié à l'instant.
     #    On exige une date de publication < 3h. Sans date fiable, on REJETTE (évite les
@@ -3431,7 +3441,12 @@ def _detect_france_match(candidates):
         t = (c.get("title", "") + " " + c.get("summary", "")).lower()
         if "france" not in t and "bleus" not in t:
             continue
-        if not any(ctx in t for ctx in FOOT_CONTEXT):
+        has_foot_ctx = any(ctx in t for ctx in FOOT_CONTEXT)
+        has_country_score = any(p in t for p in PAYS) and score_rx.search(t)
+        # Soit le contexte foot explicite (Bleus/CDM/Deschamps/Mbappé) est présent,
+        # soit le titre contient France + un pays adversaire + un score → match plausible
+        # même si le titre est court et factuel ("France-Norvège : victoire 2-0").
+        if not has_foot_ctx and not has_country_score:
             continue
         if not (score_rx.search(t) or any(cue in t for cue in MATCH_CUES)):
             continue
@@ -3448,12 +3463,6 @@ def _detect_france_match(candidates):
         return None, []
 
     # Devine l'adversaire : le pays cité le plus souvent (hors France) dans les titres du match
-    PAYS = ("sénégal", "senegal", "irak", "norvège", "norvege", "brésil", "bresil", "argentine",
-            "espagne", "allemagne", "angleterre", "portugal", "maroc", "belgique", "croatie",
-            "pays-bas", "italie", "danemark", "suisse", "pologne", "mexique", "états-unis",
-            "etats-unis", "usa", "canada", "japon", "corée", "coree", "australie", "tunisie",
-            "ghana", "nigéria", "nigeria", "cameroun", "égypte", "egypte", "uruguay", "colombie",
-            "autriche", "écosse", "ecosse", "turquie", "grèce", "grece", "serbie", "ukraine")
     from collections import Counter
     cnt = Counter()
     for art in match_arts:
@@ -3504,7 +3513,8 @@ def publish_france_live(conn, candidates):
                     _post_all_platforms(conn, txt, card, video, "sport")
                     conn.execute("INSERT INTO special_log (kind, keywords) VALUES ('fr_final', ?)", (match_key,))
                     conn.commit()
-                    mark_cat(conn, "sport")
+                    # PAS de mark_cat ici : le suivi France est un canal BONUS qui ne doit pas
+                    # retarder le rythme des autres actus (mark_cat réinitialiserait leur minuteur).
                     print(f"  ⚽🇫🇷 SCORE FINAL publié : {ta} {sa}-{sb} {tb}")
                     return True
             except Exception as e:
@@ -3525,7 +3535,8 @@ def publish_france_live(conn, candidates):
                     _post_all_platforms(conn, txt, card, video, "sport")
                     conn.execute("INSERT INTO special_log (kind, keywords) VALUES ('fr_half', ?)", (match_key,))
                     conn.commit()
-                    mark_cat(conn, "sport")
+                    # PAS de mark_cat ici : le suivi France est un canal BONUS qui ne doit pas
+                    # retarder le rythme des autres actus (mark_cat réinitialiserait leur minuteur).
                     print(f"  ⏸️🇫🇷 MI-TEMPS publiée : France {score_str} {adversaire}")
                     return True
                 except Exception as e:
@@ -4064,6 +4075,16 @@ def check_feeds(conn):
                 url   = entry.get("link", "")
                 title = entry.get("title", "")
                 summ  = _strip_html(entry.get("summary", entry.get("description", "")))
+                # Date de publication (epoch) — nécessaire pour le suivi live des matchs France
+                # (sans ça, _detect_france_match rejette TOUT par prudence : aucune date = pas de live)
+                pub_ts = None
+                for fld in ("published_parsed", "updated_parsed"):
+                    val = entry.get(fld)
+                    if val:
+                        try:
+                            pub_ts = time.mktime(val); break
+                        except Exception:
+                            pass
                 if url and title and not is_seen(conn, url):
                     # Pré-filtre GRATUIT : si le titre contient un mot-clé déjà publié (12h),
                     # on rejette SANS payer Claude — SAUF si c'est le RÉSULTAT d'un match (1 dérogation/4h)
@@ -4078,7 +4099,7 @@ def check_feeds(conn):
                             mark_seen(conn, url, title)
                             pre_filtered += 1
                             continue
-                    candidates.append({"url": url, "title": title, "summary": summ, "source": fi["source"], "entry": entry, "followup": is_fu})
+                    candidates.append({"url": url, "title": title, "summary": summ, "source": fi["source"], "entry": entry, "followup": is_fu, "pub_ts": pub_ts})
         except Exception as e:
             print(f"  ❌ RSS {fi['source']}: {e}")
 
@@ -4139,39 +4160,24 @@ def check_feeds(conn):
         print(f"  ⚠️ Suivi match France : {e}")
 
     # ── PUBLICATION NORMALE (rythme selon l'heure) ──
-    # Plafond GLOBAL : au-delà du seuil souple (20), seuls les résultats sport frais peuvent encore passer.
+    # Plafond GLOBAL : au-delà du seuil souple (20), on garde la place au chaud (breaking/France live).
     if nb_today >= DAILY_POST_CAP:
         print(f"  🛑 Plafond quotidien ferme atteint ({nb_today}/{DAILY_POST_CAP}) — stop publications.")
         return
-    sport_result_waiting = allow_sport_result and any(
-        _is_sport_result(c["title"]) for c in candidates)
-    if nb_today >= DAILY_POST_SOFT and not sport_result_waiting:
-        print(f"  🛑 Seuil souple atteint ({nb_today}/{DAILY_POST_SOFT}) — on garde la place au chaud (sport/breaking).")
+    if nb_today >= DAILY_POST_SOFT:
+        print(f"  🛑 Seuil souple atteint ({nb_today}/{DAILY_POST_SOFT}) — on garde la place au chaud (breaking/France live).")
         return
-    # Dérogation : un RÉSULTAT sportif frais (ex: match de CDM la nuit) passe malgré le délai,
-    # tant qu'aucun résultat n'a été publié depuis 90 min (anti-spam). Sinon il vieillirait trop.
-    # ⚠️ IMPORTANT : si on entre par cette dérogation, on ne publie QUE le résultat sport
-    # (sinon la sélection éditoriale choisirait un autre sujet, contournant la cadence à tort).
-    cadence_ok = should_publish_now(conn)
-    force_sport_only = False
-    if not cadence_ok:
-        if sport_result_waiting:
-            print("  ⚽ Dérogation cadence : SEUL un résultat sportif frais peut passer")
-            force_sport_only = True
-        else:
-            return
+    # Le SEUL contenu qui contourne la cadence est le suivi des matchs de la France
+    # (mi-temps/score final, géré par publish_france_live ci-dessus, déjà traité et limité à
+    # 2 posts/match). Tout le reste — y compris les résultats sportifs d'autres équipes —
+    # respecte la cadence normale comme n'importe quelle actu, pour ne pas monopoliser le rythme
+    # de publication pendant les périodes riches en sport (ex: Coupe du Monde).
+    if not should_publish_now(conn):
+        return
 
     if not candidates:
         print("  → Aucun article nouveau.")
         return
-
-    # En mode dérogation cadence : on ne traite (et n'analyse) QUE les résultats sportifs frais.
-    # Économie : on n'envoie pas 13 articles à Claude pour finalement n'en publier aucun.
-    if force_sport_only:
-        candidates = [c for c in candidates if _is_sport_result(c["title"])]
-        if not candidates:
-            print("  ⚽ Dérogation : aucun résultat sportif à traiter — on attend.")
-            return
 
     print(f"  → {len(candidates)} articles à analyser...")
     if blocked_kws:
@@ -4268,15 +4274,6 @@ def check_feeds(conn):
 
     scored.sort(key=lambda x: x["score"], reverse=True)
 
-    # En mode dérogation cadence, on ne garde QUE le(s) résultat(s) sportif(s) frais :
-    # la dérogation existe pour publier le score du match, pas pour débloquer un autre sujet.
-    if force_sport_only:
-        scored = [it for it in scored
-                  if it["analysis"].get("category") == "sport" and _is_sport_result(it.get("title", ""))]
-        if not scored:
-            print("  ⚽ Dérogation : finalement aucun vrai résultat sportif exploitable — on attend.")
-            return
-
     top, used = [], set()
     for item in scored:
         cat = item["analysis"]["category"]
@@ -4284,11 +4281,10 @@ def check_feeds(conn):
             top.append(item); used.add(cat)
         if len(top) >= MAX_PAR_PASSE: break
 
-    # Histoire du jour (1×/jour, vérifié Wikipedia) — JAMAIS en mode dérogation sport
-    if not force_sport_only:
-        histoire = gen_histoire_du_jour(conn)
-        if histoire and "histoire" not in used and len(top) < MAX_PAR_PASSE + 1:
-            top.append(histoire); used.add("histoire")
+    # Histoire du jour (1×/jour, vérifié Wikipedia)
+    histoire = gen_histoire_du_jour(conn)
+    if histoire and "histoire" not in used and len(top) < MAX_PAR_PASSE + 1:
+        top.append(histoire); used.add("histoire")
 
     if not top:
         print("  → Rien à publier.")
