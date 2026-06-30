@@ -2108,12 +2108,18 @@ Réponds avec ce JSON UNIQUEMENT :
         return None
 
 def carousel_to_text(carousel):
-    """Construit le texte du décryptage (X + Facebook) à partir du carrousel — sans 2e appel Claude."""
-    emojis = ["📌", "⚡", "🔍", "🔮", "✅"]
-    out = f"🧵 {carousel['cover_title']} — Le décryptage\n\n"
-    for i, s in enumerate(carousel["slides"]):
-        em = emojis[i] if i < len(emojis) else "•"
-        out += f"{em} {s['titre']}\n" + " ".join(s["points"]) + "\n\n"
+    """Construit le texte du décryptage (X + Facebook) : SYNTHÈSE scannable —
+    1 fait/chiffre par slide max (le plus parlant des 2-3), en liste verticale aérée.
+    Le détail complet (tous les points) reste dans le carrousel Instagram."""
+    out = f"🧵 {carousel['cover_title']}\n\n"
+    for s in carousel["slides"]:
+        pts = s.get("points") or []
+        if not pts:
+            continue
+        # garde le point le plus DENSE en info (présence d'un chiffre = signal de pertinence)
+        best = max(pts, key=lambda p: (bool(re.search(r"\d", p)), -len(p)))
+        out += f"▸ {best}\n"
+    out += "\nLe décryptage complet en image 👇"
     return out.strip()
 
 def post_carousel_to_instagram(slides_png, caption):
@@ -3515,6 +3521,10 @@ def publish_france_live(conn, candidates):
                     conn.commit()
                     # PAS de mark_cat ici : le suivi France est un canal BONUS qui ne doit pas
                     # retarder le rythme des autres actus (mark_cat réinitialiserait leur minuteur).
+                    # En revanche on marque l'article vu + on logue le texte publié, pour éviter
+                    # qu'il ne soit RE-publié (sous une autre formulation) par le flux normal.
+                    mark_seen(conn, art.get("url"), art.get("title", ""))
+                    add_recent(conn, art.get("title", f"France {sa}-{sb} {tb} score final"))
                     print(f"  ⚽🇫🇷 SCORE FINAL publié : {ta} {sa}-{sb} {tb}")
                     return True
             except Exception as e:
@@ -3537,6 +3547,10 @@ def publish_france_live(conn, candidates):
                     conn.commit()
                     # PAS de mark_cat ici : le suivi France est un canal BONUS qui ne doit pas
                     # retarder le rythme des autres actus (mark_cat réinitialiserait leur minuteur).
+                    # En revanche on marque l'article vu + on logue le texte publié, pour éviter
+                    # qu'il ne soit RE-publié (sous une autre formulation) par le flux normal.
+                    mark_seen(conn, art.get("url"), art.get("title", ""))
+                    add_recent(conn, art.get("title", f"France {score_str} {adversaire} mi-temps"))
                     print(f"  ⏸️🇫🇷 MI-TEMPS publiée : France {score_str} {adversaire}")
                     return True
                 except Exception as e:
