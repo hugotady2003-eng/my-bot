@@ -49,6 +49,7 @@ jobs:
           FACEBOOK_PAGE_ID:    ${{ secrets.FACEBOOK_PAGE_ID }}
           INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
           IMGBB_KEY:            ${{ secrets.IMGBB_KEY }}
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
         run: python bot_single_run.py
 
       - name: Garder le repo actif (évite la désactivation du cron)
