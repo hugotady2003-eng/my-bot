@@ -774,6 +774,61 @@ def fetch_og_image(article_url):
         print(f"  ⚠️ og:image: {e}")
     return None
 
+def _extract_person_name(title, summary=""):
+    """Extrait le nom probable d'une personne (Prénom Nom) mentionnée dans un titre/résumé.
+    Heuristique gratuite : cherche 2-3 mots capitalisés consécutifs (gère les particules)."""
+    txt = title + ". " + (summary or "")
+    # Prénom Nom (+ éventuel 2e nom / particule), en évitant les débuts de phrase seuls
+    pat = re.compile(r"\b([A-ZÉÈÀÂÎÔÛ][a-zà-ÿ'’-]+(?:\s+(?:de|du|van|von|le|la|el|al)\s+|\s+)"
+                     r"[A-ZÉÈÀÂÎÔÛ][a-zà-ÿ'’-]+(?:\s+[A-ZÉÈÀÂÎÔÛ][a-zà-ÿ'’-]+)?)")
+    STOP = {"Coupe", "Monde", "France", "Paris", "Ligue", "Cour", "État", "Union", "Assemblée",
+            "Conseil", "Nord", "Sud", "Est", "Ouest", "Real", "Premier", "Ministre", "Président"}
+    for m in pat.finditer(txt):
+        cand = m.group(1).strip()
+        first = cand.split()[0]
+        if first in STOP:
+            continue
+        return cand
+    return None
+
+def verify_death_wikipedia(name):
+    """Vérifie GRATUITEMENT sur Wikipedia FR si une personne est décédée.
+    Retourne : 'dead' (décès confirmé, catégorie/date de mort présente),
+               'alive' (page existe, AUCUN signe de décès),
+               'unknown' (pas de page claire → on ne tranche pas).
+    Zéro coût Claude. Appelé UNIQUEMENT sur l'article sélectionné avec mot de décès + nom."""
+    if not name:
+        return "unknown"
+    try:
+        # 1) Extrait de page + catégories (les personnes décédées ont une catégorie "Décès en AAAA")
+        api = ("https://fr.wikipedia.org/w/api.php?action=query&prop=extracts|categories"
+               "&exintro=1&explaintext=1&cllimit=50&format=json&redirects=1&titles="
+               + urllib.parse.quote(name))
+        req = urllib.request.Request(api, headers={"User-Agent": "PulseBot/1.0"})
+        with urllib.request.urlopen(req, timeout=8) as r:
+            data = json.loads(r.read())
+        pages = data.get("query", {}).get("pages", {})
+        for pid, page in pages.items():
+            if pid == "-1" or "missing" in page:
+                return "unknown"          # pas de page Wikipedia → on ne peut pas trancher
+            cats = " ".join(c.get("title", "").lower() for c in page.get("categories", []))
+            extract = (page.get("extract", "") or "").lower()
+            # Signes FORTS de décès : catégorie "décès en AAAA" ou "mort en AAAA"
+            if re.search(r"décès en \d{4}|morts? en \d{4}|décès à", cats):
+                return "dead"
+            # Dans l'intro : "est un ... mort le" / "était un" (imparfait = souvent décédé)
+            if re.search(r"\bmort[e]?\s+le\s+\d|\bdécédé[e]?\s+le\s+\d|"
+                         r"\((?:\d{1,2}\s+\w+\s+)?\d{4}\s*[-–]\s*(?:\d{1,2}\s+\w+\s+)?\d{4}\)", extract):
+                return "dead"
+            # Page existe, personne vivante décrite au présent, pas de marqueur de mort
+            if re.search(r"\best\s+un[e]?\b|\best\s+né[e]?\b", extract) and \
+               not re.search(r"\bmort|décéd|disparu", extract):
+                return "alive"
+            return "unknown"
+    except Exception as e:
+        print(f"  ⚠️ Vérif décès Wikipedia: {e}")
+    return "unknown"
+
 def fetch_wikipedia_portrait(name):
     """Récupère une photo HD d'une personnalité depuis Wikipedia FR."""
     if not name:
@@ -1872,6 +1927,129 @@ def _wrap(draw, text, font, max_w):
     if line: lines.append(line)
     return lines
 
+def _decrypt_soundtrack(path_wav, duration, sujet=""):
+    """Génère une nappe sonore d'ambiance (accords doux synthétiques) 100% libre de droit,
+    car créée par le bot lui-même. La tonalité s'adapte au sujet : grave/lente pour les
+    sujets sensibles (drame, guerre, crise), plus neutre et posée sinon."""
+    import wave
+    import numpy as np
+    sr = 44100
+    s = (sujet or "").lower()
+    sombre = any(w in s for w in ("mort", "guerre", "attentat", "crise", "drame", "violence",
+                                  "accident", "crash", "explosion", "meurtre", "conflit"))
+    if sombre:
+        chords = [(110.0, 130.81, 164.81), (98.0, 123.47, 146.83),
+                  (110.0, 130.81, 164.81), (87.31, 110.0, 130.81)]     # la mineur grave, lent
+        vol = 0.16
+    else:
+        chords = [(130.81, 164.81, 196.0), (146.83, 174.61, 220.0),
+                  (123.47, 155.56, 185.0), (130.81, 164.81, 196.0)]    # do médium, posé
+        vol = 0.18
+    n_total = int(sr * duration)
+    t = np.arange(n_total) / sr
+    sig = np.zeros(n_total)
+    seg = n_total // len(chords)
+    for ci, chord in enumerate(chords):
+        a, b = ci * seg, (ci + 1) * seg if ci < len(chords) - 1 else n_total
+        tt = t[a:b]
+        for f in chord:
+            # fondamentale + harmonique douce + léger vibrato → nappe chaleureuse, pas un bip
+            sig[a:b] += np.sin(2 * np.pi * f * tt + 0.15 * np.sin(2 * np.pi * 0.3 * tt))
+            sig[a:b] += 0.3 * np.sin(2 * np.pi * f * 2 * tt)
+        fade = min(int(sr * 0.8), (b - a) // 2)
+        sig[a:a + fade] *= np.linspace(0.25, 1.0, fade)
+        sig[b - fade:b] *= np.linspace(1.0, 0.25, fade)
+    sig = sig / (np.max(np.abs(sig)) + 1e-9) * vol
+    gf = int(sr * 1.2)
+    sig[:gf] *= np.linspace(0, 1, gf)
+    sig[-gf:] *= np.linspace(1, 0, gf)
+    pcm = (sig * 32767).astype(np.int16)
+    with wave.open(path_wav, "w") as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
+        w.writeframes(pcm.tobytes())
+
+def build_decrypt_video(slides_png, sujet=""):
+    """🎬 Vidéo DÉCRYPTAGE pour X/Facebook : diaporama 16:9 des slides du carrousel
+    (cover + slides d'infos), chaque slide posée sur son propre fond flouté, léger zoom,
+    fondu enchaîné, + nappe sonore d'ambiance générée (libre de droit).
+    → le tweet montre ENFIN tout le contenu du décryptage, pas juste un titre animé."""
+    import io, shutil, subprocess, tempfile
+    if os.environ.get("PULSE_VIDEO", "1") == "0" or not slides_png:
+        return None
+    ffmpeg_bin = shutil.which("ffmpeg")
+    if not ffmpeg_bin:
+        try:
+            import imageio_ffmpeg
+            ffmpeg_bin = imageio_ffmpeg.get_ffmpeg_exe()
+        except Exception:
+            return None
+    try:
+        print(f"  🎬 Génération vidéo décryptage ({len(slides_png)} slides)...")
+        W, H, FPS = 1280, 720, 18
+        PER_SLIDE, XFADE = 3.4, 0.55            # secondes par slide / durée du fondu
+        frames_slide = int(FPS * PER_SLIDE)
+        frames_fade = int(FPS * XFADE)
+
+        prepared = []
+        for png in slides_png:
+            sl = Image.open(io.BytesIO(png)).convert("RGB")
+            ratio = max(W / sl.width, H / sl.height)
+            bg = sl.resize((int(sl.width * ratio) + 2, int(sl.height * ratio) + 2), Image.LANCZOS)
+            bg = bg.crop(((bg.width - W) // 2, (bg.height - H) // 2,
+                          (bg.width - W) // 2 + W, (bg.height - H) // 2 + H))
+            bg = bg.filter(ImageFilter.GaussianBlur(22))
+            bg = Image.blend(bg, Image.new("RGB", (W, H), (10, 8, 26)), 0.45)
+            fh = int(H * 0.92); fw = int(sl.width * fh / sl.height)
+            fg = sl.resize((fw, fh), Image.LANCZOS)
+            prepared.append((bg, fg))
+
+        def compose(idx, zoom):
+            bg, fg = prepared[idx]
+            frame = bg.copy()
+            zw, zh = int(fg.width * zoom), int(fg.height * zoom)
+            fz = fg.resize((zw, zh), Image.LANCZOS)
+            frame.paste(fz, ((W - zw) // 2, (H - zh) // 2))
+            return frame
+
+        tmpdir = tempfile.mkdtemp(prefix="pulse_decrypt_")
+        raw_mp4 = os.path.join(tmpdir, "video_raw.mp4")
+        proc = subprocess.Popen(
+            [ffmpeg_bin, "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
+             "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
+             "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+             "-pix_fmt", "yuv420p", "-movflags", "+faststart", raw_mp4],
+            stdin=subprocess.PIPE)
+        n = len(prepared)
+        for i in range(n):
+            for f in range(frames_slide):
+                zoom = 1.0 + 0.04 * (f / frames_slide)          # Ken Burns discret
+                frame = compose(i, zoom)
+                if i < n - 1 and f >= frames_slide - frames_fade:
+                    alpha = (f - (frames_slide - frames_fade)) / frames_fade
+                    nxt = compose(i + 1, 1.0)
+                    frame = Image.blend(frame, nxt, alpha)
+                proc.stdin.write(frame.tobytes())
+        proc.stdin.close(); proc.wait()
+        if proc.returncode != 0 or not os.path.exists(raw_mp4):
+            shutil.rmtree(tmpdir, ignore_errors=True); return None
+
+        out_mp4 = os.path.join(tmpdir, "video.mp4")
+        try:
+            wav = os.path.join(tmpdir, "pad.wav")
+            _decrypt_soundtrack(wav, n * PER_SLIDE, sujet)
+            r = subprocess.run([ffmpeg_bin, "-y", "-loglevel", "error", "-i", raw_mp4, "-i", wav,
+                                "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", out_mp4],
+                               capture_output=True)
+            if r.returncode != 0 or not os.path.exists(out_mp4):
+                out_mp4 = raw_mp4      # vidéo muette plutôt que pas de vidéo
+        except Exception:
+            out_mp4 = raw_mp4
+        print(f"  🎬 Vidéo décryptage générée ({n} slides, ~{n*PER_SLIDE:.0f}s)")
+        return out_mp4
+    except Exception as e:
+        print(f"  ⚠️ Vidéo décryptage échouée : {e}")
+        return None
+
 def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 90, 200), bg_photo=None):
     """Génère une slide de contenu (PNG bytes) dans la DA Pulse, avec photo de fond floutée si dispo."""
     import io
@@ -2119,7 +2297,7 @@ def carousel_to_text(carousel):
         # garde le point le plus DENSE en info (présence d'un chiffre = signal de pertinence)
         best = max(pts, key=lambda p: (bool(re.search(r"\d", p)), -len(p)))
         out += f"▸ {best}\n"
-    out += "\nLe décryptage complet en image 👇"
+    out += "\n\nLe décryptage complet en vidéo 👇"
     return out.strip()
 
 def post_carousel_to_instagram(slides_png, caption):
@@ -2471,7 +2649,7 @@ def build_victory_card(raw_photo, res, source, W=1200, H=675):
 # ═══════════════════════════════════════════════════════════════════════════
 DEATH_MARKERS = (
     "est mort", "est morte", "décès de", "décès d'", "décédé", "décédée", "s'est éteint", "s'est éteinte",
-    "meurt", "décède", "mort de ", "mort d'", "mort à l'âge", "morte à l'âge", "nous a quittés",
+    "meurt", "décède", "mort à l'âge", "morte à l'âge", "nous a quittés",
     "nous a quitté", "disparition de", "à l'âge de", "a perdu la vie", "perd la vie",
     "retrouvé mort", "retrouvée morte", "n'est plus", "tire sa révérence", "carnet noir", "décédait",
 )
@@ -2519,10 +2697,16 @@ def _is_obituary(title, summary):
     if re.search(r"\bpeine de mort\b|\bmise à mort\b|\bà mort\b|\bmort cérébrale\b|"
                  r"\bmort clinique\b|\bmort subite\b|\bne meurt (jamais|pas)\b|\bpour mourir\b", t):
         return False
-    # 'mort de rire/peur/faim/fatigue...' = expression, même précédé de 'est mort' → exclu d'emblée
+    # 'mort de rire/peur/faim/fatigue...' = expression idiomatique, jamais un décès réel
     if re.search(r"\bmort[e]?\s+d[e']\s*(?:l[ae'] )?"
                  r"(rire|peur|faim|fatigue|honte|trouille|ennui|épuisement|epuisement|"
                  r"chaud|froid|soif|jalousie|stress|vieillesse)\b", t):
+        return False
+    # 'pas mort d'homme' / 'y'a pas mort d'homme' = expression française signifiant 'rien de grave'
+    # 'mort de sa belle mort' = expression signifiant 'décès naturel pacifique' (pas une annonce)
+    if re.search(r"\bpas mort d[e']|y.?a pas mort|mort de sa belle mort|"
+                 r"faire le mort|jouer le mort|joue le mort|"
+                 r"se faire passer pour mort|plus mort que vif|à moitié mort|à demi mort\b", t):
         return False
 
     # ── 1b. Contexte CRIMINEL / JUDICIAIRE → jamais un hommage (victime ou criminel) ──
@@ -2585,7 +2769,9 @@ def _is_obituary(title, summary):
         suite = mde.group(1)
         FAUSSES_CAUSES = {"rire", "peur", "faim", "fatigue", "honte", "trouille", "ennui",
                           "épuisement", "epuisement", "chaud", "froid", "soif", "jalousie",
-                          "stress", "vieillesse"}  # 'mort de vieillesse' = expression, pas annonce
+                          "stress", "vieillesse", "homme", "femme", "gens", "monde", "sens",
+                          "cause", "suite", "naturelle", "naturel", "lui", "elle", "ça",
+                          "quoi", "rien", "envie", "honte"}
         if suite not in FAUSSES_CAUSES:
             return True
 
@@ -4031,7 +4217,19 @@ def check_feeds(conn):
         if carousel:
             cover_paysage, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
                                          carousel["image_query"], prefetched=(raw_src, has_real))
-            vid_thread = build_video("news", {"headline": carousel["cover_title"][:90]}, "monde", raw_src, "Pulse")
+
+            # Carrousel Instagram : couverture (4:5) + slides de contenu (fond photo flouté)
+            total = len(carousel["slides"]) + 1
+            cover_ig, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
+                                    carousel["image_query"], W=1080, H=1350,
+                                    prefetched=(raw_src, has_real), headline_bottom=True)
+            slides_png = [cover_ig]
+            for i, s in enumerate(carousel["slides"], start=2):
+                slides_png.append(build_carousel_slide(s["titre"], s["points"], i, total,
+                                                       is_last=(i == total), bg_photo=raw_src))
+
+            # 🎬 Vidéo décryptage pour X/FB : diaporama des slides (montre TOUT le contenu) + musique.
+            vid_thread = build_decrypt_video(slides_png, carousel.get("sujet", ""))
             url = None
             try:
                 url = post_to_twitter(xfb, cover_paysage, vid_thread)
@@ -4045,15 +4243,6 @@ def check_feeds(conn):
                 import shutil as _sh
                 _sh.rmtree(os.path.dirname(vid_thread), ignore_errors=True)
 
-            # Carrousel Instagram : couverture (4:5) + slides de contenu (fond photo flouté)
-            total = len(carousel["slides"]) + 1
-            cover_ig, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
-                                    carousel["image_query"], W=1080, H=1350,
-                                    prefetched=(raw_src, has_real), headline_bottom=True)
-            slides_png = [cover_ig]
-            for i, s in enumerate(carousel["slides"], start=2):
-                slides_png.append(build_carousel_slide(s["titre"], s["points"], i, total,
-                                                       is_last=(i == total), bg_photo=raw_src))
             post_carousel_to_instagram(slides_png, build_ig_caption(body, carousel.get("keywords")))
             log_special(conn, "ig_post", [])   # le carrousel compte dans l'espacement anti-blocage Instagram
 
@@ -4311,8 +4500,33 @@ def check_feeds(conn):
             cat = item["analysis"]["category"]
             a   = item["analysis"]
             keywords = []
-            # Décès d'une personne → catégorie HOMMAGE (label 🕊️, ton sobre), jamais "faits divers"
-            if cat != "breaking" and _is_obituary(item.get("title", ""), item.get("summary", "")):
+            title_s, summary_s = item.get("title", ""), item.get("summary", "")
+
+            # ── VÉRIFICATION FINALE DÉCÈS (gratuite, Wikipedia) ──
+            # Déclenchée UNIQUEMENT sur l'article sélectionné (le plus intéressant), et seulement
+            # s'il contient un mot de décès ET un nom de personne → quelques appels/jour maximum.
+            # Corrige dans les DEUX sens : rattrape un vrai décès mal classé (ex: chef cuisinier
+            # en "culture"), et bloque un faux hommage (personne bien vivante).
+            DEATH_HINT = re.compile(r"\b(mort|morte|décès|décédé|décédée|disparition|"
+                                    r"s'est éteint|nous a quitté|meurt|obsèques|funérailles|"
+                                    r"in memoriam|hommage)\b", re.I)
+            already_obit = _is_obituary(title_s, summary_s)
+            if cat != "breaking" and DEATH_HINT.search(title_s + " " + summary_s):
+                person_name = _extract_person_name(title_s, summary_s)
+                if person_name:
+                    verdict = verify_death_wikipedia(person_name)
+                    if verdict == "dead":
+                        cat = "hommage"           # décès confirmé → hommage (même si classé culture/sport)
+                        print(f"  ✅ Décès CONFIRMÉ sur Wikipedia ({person_name}) → hommage")
+                    elif verdict == "alive" and already_obit:
+                        # les mots-clés criaient à l'hommage, mais Wikipedia dit la personne vivante
+                        print(f"  🚫 Faux décès bloqué : {person_name} est vivant(e) selon Wikipedia")
+                        continue                  # on n'publie pas ce faux hommage
+                    elif already_obit:
+                        cat = "hommage"           # Wikipedia incertain → on garde la décision mots-clés
+                elif already_obit:
+                    cat = "hommage"
+            elif cat != "breaking" and already_obit:
                 cat = "hommage"
 
             if "tweet" in item:
