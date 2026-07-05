@@ -1116,35 +1116,67 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 src_w, src_h = photo.size
                 src_ratio = src_w / src_h
                 dst_ratio = W / H
-                scale = max(W / src_w, H / src_h)
-                new_w, new_h = int(src_w * scale + 0.5), int(src_h * scale + 0.5)
-                photo = photo.resize((new_w, new_h), Image.LANCZOS)
-                if scale < 1:
-                    photo = photo.filter(ImageFilter.UnsharpMask(radius=2, percent=60, threshold=3))
-                # Cadrage INTELLIGENT : on centre sur le VISAGE détecté.
-                face = detect_face_center(photo) if has_real_photo else None
-                if face:
-                    fcx, fcy = face
-                    left = int(fcx - W / 2)
-                    # Visage placé plus haut si le titre occupe le bas (headline_bottom),
-                    # pour que le sujet ne soit jamais mangé par le bandeau de texte.
-                    if headline_bottom and dst_ratio < 1:
-                        top = int(fcy - H * 0.28)
+
+                # Cadrage SÛR : on ne coupe JAMAIS le sujet. On teste d'abord un recadrage
+                # "plein cadre" centré sur le visage ; on ne l'utilise QUE s'il ne risque pas
+                # de manger la tête. Sinon, on affiche la photo ENTIÈRE sur un fond DA flouté
+                # (dérivé de la photo) → aucune tête coupée, jamais, quel que soit le format.
+                cover_scale = max(W / src_w, H / src_h)
+                # À quel point faut-il agrandir pour remplir ? Au-delà d'un certain zoom sur une
+                # photo de format très différent du cadre, le "plein cadre" coupe forcément trop.
+                ratio_gap = max(dst_ratio / src_ratio, src_ratio / dst_ratio)
+                face = None
+                if has_real_photo:
+                    try:
+                        probe = photo.resize((int(src_w * cover_scale + 0.5),
+                                              int(src_h * cover_scale + 0.5)), Image.LANCZOS)
+                        face = detect_face_center(probe)
+                    except Exception:
+                        face = None
+
+                use_cover = (ratio_gap <= 1.5) or (face is not None and ratio_gap <= 2.2)
+
+                if use_cover:
+                    # Plein cadre (comme avant) mais en s'appuyant sur le visage s'il est connu.
+                    scale = cover_scale
+                    new_w, new_h = int(src_w * scale + 0.5), int(src_h * scale + 0.5)
+                    ph = photo.resize((new_w, new_h), Image.LANCZOS)
+                    if scale < 1:
+                        ph = ph.filter(ImageFilter.UnsharpMask(radius=2, percent=60, threshold=3))
+                    if face:
+                        fcx, fcy = face
+                        left = int(fcx - W / 2)
+                        top = int(fcy - H * 0.28) if (headline_bottom and dst_ratio < 1) \
+                              else int(fcy - H * (0.40 if dst_ratio >= 1 else 0.34))
                     else:
-                        top = int(fcy - H * (0.40 if dst_ratio >= 1 else 0.34))
+                        left = (new_w - W) // 2
+                        if dst_ratio < 1 and src_ratio > 1.2:
+                            top = int((new_h - H) * (0.28 if headline_bottom else 0.42))
+                        else:
+                            top = int((new_h - H) * 0.2)
+                    left = max(0, min(left, new_w - W))
+                    top  = max(0, min(top,  new_h - H))
+                    ph = ph.crop((left, top, left + W, top + H))
+                    alpha = 1.0 if has_real_photo else 0.80
+                    img = Image.blend(Image.new('RGB', (W, H), (13, 13, 20)), ph, alpha=alpha)
                 else:
-                    left = (new_w - W) // 2
-                    # Sur une carte VERTICALE avec une photo PAYSAGE (très recadrée en hauteur),
-                    # on remonte le cadre pour garder le sujet visible au-dessus du titre du bas.
-                    if dst_ratio < 1 and src_ratio > 1.2:
-                        top = int((new_h - H) * (0.28 if headline_bottom else 0.42))
-                    else:
-                        top = int((new_h - H) * 0.2)
-                left = max(0, min(left, new_w - W))
-                top  = max(0, min(top,  new_h - H))
-                photo = photo.crop((left, top, left + W, top + H))
-                alpha = 1.0 if has_real_photo else 0.80
-                img   = Image.blend(Image.new('RGB', (W, H), (13, 13, 20)), photo, alpha=alpha)
+                    # PHOTO ENTIÈRE sur fond flouté : on adapte le CADRE à la photo, pas l'inverse.
+                    # 1) fond = la photo agrandie pour couvrir, très floutée + assombrie (DA Pulse)
+                    bg = photo.resize((int(src_w * cover_scale + 0.5),
+                                       int(src_h * cover_scale + 0.5)), Image.LANCZOS)
+                    bg = bg.crop(((bg.width - W) // 2, (bg.height - H) // 2,
+                                  (bg.width - W) // 2 + W, (bg.height - H) // 2 + H))
+                    bg = bg.filter(ImageFilter.GaussianBlur(28))
+                    bg = Image.blend(bg, Image.new('RGB', (W, H), (13, 11, 30)), 0.5)
+                    # 2) photo entière (contain) placée par-dessus, jamais rognée
+                    #    (un peu plus haut si le titre est en bas, pour ne pas la coller au texte)
+                    fit_scale = min(W / src_w, H / src_h) * 0.94
+                    fw, fh = int(src_w * fit_scale), int(src_h * fit_scale)
+                    fitted = photo.resize((fw, fh), Image.LANCZOS)
+                    fx = (W - fw) // 2
+                    fy = int((H - fh) * (0.34 if headline_bottom else 0.5))
+                    bg.paste(fitted, (fx, fy))
+                    img = bg
             except Exception as e:
                 print(f"  ⚠️ Traitement image: {e}")
 
