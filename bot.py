@@ -3792,7 +3792,7 @@ def _publish_france_live_rss(conn, candidates):
         # SCORE FINAL
         if not already_final and any(cue in t for cue in FINAL_CUES) and re.search(r"\d{1,2}\s?[-:–]\s?\d{1,2}", t):
             try:
-                result = extract_sport_result(art)   # 1 appel Claude → score précis
+                result = extract_sport_result(art.get("title", ""), art.get("summary", ""))   # score précis
                 if result and result.get("type") == "match":
                     raw, _ = get_best_image(art.get("url"), art.get("photo_url"), None, None, "sport")
                     card = build_victory_card(raw, result, art.get("source", ""), 1200, 675)
