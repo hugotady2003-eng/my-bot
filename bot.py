@@ -570,6 +570,20 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
 - 1 à 2 phrases denses et factuelles : l'essentiel + le chiffre ou le fait clé
 - Concis, pas de contexte superflu"""
 
+    # Recette d'accroche (inspirée des sondages) — SAUF hommage, qui doit rester sobre et sans effet.
+    if category == "hommage":
+        hook_instr = ""
+    else:
+        hook_instr = (
+            "\n🎣 L'ACCROCHE (1ʳᵉ phrase) — LA PLUS IMPORTANTE, elle décide si les gens s'arrêtent ou scrollent :\n"
+            "La 1ʳᵉ phrase doit AGRIPPER en 2 secondes (comme un bon sondage qui donne envie de voter) :\n"
+            "- COMMENCE PAR CE QUI CHOQUE, SURPREND OU INTRIGUE : le chiffre le plus fort, le mot le plus marquant, le détail le plus inattendu, EN TÊTE de phrase (pas à la fin).\n"
+            "- CRÉE UNE ÉMOTION immédiate (indignation, stupeur, admiration, curiosité). Demande-toi : \"en lisant juste cette phrase, aurait-on envie de commenter ou de lire la suite ?\"\n"
+            "- CONCRET ET IMAGÉ, jamais abstrait : \"un homme de 92 ans\" plutôt que \"une personne âgée\" ; \"18 MILLIONS d'euros\" plutôt que \"une grosse somme\".\n"
+            "- Sujets clivants (politique, société, sécurité) : formule le FAIT pour que chacun ait aussitôt un avis — SANS prendre parti ni déformer l'info.\n"
+            "- ⛔ JAMAIS AU PRIX DE LA VÉRITÉ : accroche fondée sur un fait RÉEL de la source. Aucune exagération, aucun mot plus fort que la source, aucun teaser trompeur, aucune question racoleuse creuse. Elle rend le vrai fait saillant, elle ne l'invente ni ne l'amplifie."
+        )
+
     result = claude(f"""Tu es community manager de Pulse, compte Twitter d'actualité française.
 Aujourd'hui : {today}.
 
@@ -604,6 +618,7 @@ Génère QUATRE choses :
 
 RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules ; va DIRECTEMENT à l'info.
+{hook_instr}
 - TÉLÉGRAPHIQUE : 1 à 2 phrases MAXIMUM, denses et autonomes, comme une dépêche. Info COMPLÈTE, jamais un teaser.
 - Mets en avant le CHIFFRE ou le FAIT clé. Tu peux écrire UN mot ou chiffre important en MAJUSCULES pour l'emphase (avec parcimonie).
 - ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
@@ -1986,9 +2001,11 @@ def build_decrypt_video(slides_png, sujet=""):
     try:
         print(f"  🎬 Génération vidéo décryptage ({len(slides_png)} slides)...")
         W, H, FPS = 1280, 720, 18
-        PER_SLIDE, XFADE = 3.4, 0.55            # secondes par slide / durée du fondu
+        PER_SLIDE, XFADE = 5.5, 0.5             # + long pour laisser le temps de LIRE
+        REVEAL = 0.55                           # fraction du temps où le texte se dévoile
         frames_slide = int(FPS * PER_SLIDE)
         frames_fade = int(FPS * XFADE)
+        frames_reveal = int(frames_slide * REVEAL)
 
         prepared = []
         for png in slides_png:
@@ -2003,12 +2020,25 @@ def build_decrypt_video(slides_png, sujet=""):
             fg = sl.resize((fw, fh), Image.LANCZOS)
             prepared.append((bg, fg))
 
-        def compose(idx, zoom):
+        def compose(idx, zoom, reveal=1.0):
+            """reveal ∈ [0,1] : fraction de la slide dévoilée depuis le HAUT (lecture progressive).
+            La partie non encore révélée est assombrie/estompée → l'œil suit ligne par ligne."""
             bg, fg = prepared[idx]
             frame = bg.copy()
             zw, zh = int(fg.width * zoom), int(fg.height * zoom)
             fz = fg.resize((zw, zh), Image.LANCZOS)
-            frame.paste(fz, ((W - zw) // 2, (H - zh) // 2))
+            ox, oy = (W - zw) // 2, (H - zh) // 2
+            if reveal >= 1.0:
+                frame.paste(fz, (ox, oy))
+            else:
+                cut = max(1, int(zh * reveal))
+                # partie révélée (nette)
+                frame.paste(fz.crop((0, 0, zw, cut)), (ox, oy))
+                # partie pas encore lue : fortement assombrie (on la devine, on ne la lit pas)
+                if cut < zh:
+                    dim = fz.crop((0, cut, zw, zh))
+                    dim = Image.blend(dim, Image.new("RGB", dim.size, (10, 8, 26)), 0.82)
+                    frame.paste(dim, (ox, oy + cut))
             return frame
 
         tmpdir = tempfile.mkdtemp(prefix="pulse_decrypt_")
@@ -2022,11 +2052,14 @@ def build_decrypt_video(slides_png, sujet=""):
         n = len(prepared)
         for i in range(n):
             for f in range(frames_slide):
-                zoom = 1.0 + 0.04 * (f / frames_slide)          # Ken Burns discret
-                frame = compose(i, zoom)
+                zoom = 1.0 + 0.03 * (f / frames_slide)          # Ken Burns discret
+                # révélation progressive du texte sur la 1re partie du temps de slide,
+                # puis slide entière affichée le temps de finir la lecture
+                reveal = min(1.0, f / frames_reveal) if frames_reveal else 1.0
+                frame = compose(i, zoom, reveal)
                 if i < n - 1 and f >= frames_slide - frames_fade:
                     alpha = (f - (frames_slide - frames_fade)) / frames_fade
-                    nxt = compose(i + 1, 1.0)
+                    nxt = compose(i + 1, 1.0, 0.0)              # la suivante démarre masquée
                     frame = Image.blend(frame, nxt, alpha)
                 proc.stdin.write(frame.tobytes())
         proc.stdin.close(); proc.wait()
