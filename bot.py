@@ -2493,6 +2493,59 @@ def _pulse_brand(img, d, W, H, color=(255, 255, 255), ecg=True):
     r = max(3, int(W * 0.0035))
     d2.ellipse([pts[-1][0] - r, pts[-1][1] - r, pts[-1][0] + r, pts[-1][1] + r], fill=neon)
 
+def _fetch_crest_png(crest_url):
+    """Récupère un blason/drapeau d'équipe depuis l'API football-data et le convertit en
+    image PIL. Gère le cas SVG (non lisible par PIL) en le sautant proprement."""
+    if not crest_url:
+        return None
+    try:
+        if crest_url.lower().endswith(".svg"):
+            return None      # PIL ne lit pas le SVG et on n'ajoute pas de dépendance
+        raw = fetch_img(crest_url)
+        if not raw:
+            return None
+        import io
+        return Image.open(io.BytesIO(raw)).convert("RGBA")
+    except Exception:
+        return None
+
+def build_france_match_bg(live, W=1200, H=675):
+    """Fond FIABLE pour un post de match des Bleus : dégradé DA Pulse + les deux blasons
+    d'équipe (fournis par l'API football-data, donc toujours pertinents pour LA rencontre).
+    Si les blasons sont indisponibles (SVG/erreur), renvoie None → carte score sur fond DA."""
+    try:
+        import io
+        crest_a = _fetch_crest_png(live.get("crest_a"))
+        crest_b = _fetch_crest_png(live.get("crest_b"))
+        if not crest_a and not crest_b:
+            return None      # aucun blason exploitable → on laisse la carte score gérer le fond
+        # Dégradé nocturne DA Pulse
+        bg = Image.new("RGB", (W, H), (14, 11, 32))
+        top, bot = (30, 16, 70), (90, 20, 90)
+        px = bg.load()
+        for y in range(H):
+            t = y / H
+            r = int(top[0] + (bot[0] - top[0]) * t)
+            g = int(top[1] + (bot[1] - top[1]) * t)
+            b = int(top[2] + (bot[2] - top[2]) * t)
+            for x in range(W):
+                px[x, y] = (r, g, b)
+        # Blasons : un à gauche, un à droite, taille raisonnable
+        sz = int(H * 0.42)
+        def place(crest, cx):
+            if not crest:
+                return
+            c = crest.copy()
+            c.thumbnail((sz, sz), Image.LANCZOS)
+            bg.paste(c, (cx - c.width // 2, H // 2 - c.height // 2 - 40), c)
+        place(crest_a, int(W * 0.27))
+        place(crest_b, int(W * 0.73))
+        buf = io.BytesIO()
+        bg.save(buf, "JPEG", quality=90)
+        return buf.getvalue()
+    except Exception:
+        return None
+
 def build_victory_card(raw_photo, res, source, W=1200, H=675):
     """Carte de résultat sportif DA Pulse : photo du match floutée + score/vainqueur selon le sport.
     res = dict renvoyé par extract_sport_result (type match / tennis / race)."""
@@ -3691,6 +3744,8 @@ def fetch_france_match_live():
     for m in data.get("matches", []):
         home = (m.get("homeTeam") or {}).get("name", "") or ""
         away = (m.get("awayTeam") or {}).get("name", "") or ""
+        crest_home = (m.get("homeTeam") or {}).get("crest", "") or ""
+        crest_away = (m.get("awayTeam") or {}).get("crest", "") or ""
         # On ne suit QUE l'équipe de France (masculine A). "France" apparaît tel quel dans l'API.
         if home != "France" and away != "France":
             continue
@@ -3702,7 +3757,8 @@ def fetch_france_match_live():
         adversaire = away if france_home else home
 
         base = {"status": status, "team_a": home, "team_b": away,
-                "home": france_home, "adversaire": adversaire}
+                "home": france_home, "adversaire": adversaire,
+                "crest_a": crest_home, "crest_b": crest_away}
         if status == "FINISHED":
             base.update({"phase": "final",
                          "score_a": ft.get("home", 0) or 0, "score_b": ft.get("away", 0) or 0})
@@ -3739,7 +3795,7 @@ def publish_france_live(conn, candidates):
             result = {"type": "match", "team_a": ta, "team_b": tb, "score_a": sa, "score_b": sb,
                       "winner": "A" if sa > sb else ("B" if sb > sa else None),
                       "sport": "FOOT", "competition": "Coupe du Monde 2026"}
-            raw, _ = get_best_image(None, None, None, None, "sport")
+            raw = build_france_match_bg(live)   # fond fiable : blasons des 2 équipes (API)
             if phase == "final":
                 card = build_victory_card(raw, result, "", 1200, 675)
                 video = build_video("victory", result, "sport", raw, "")
