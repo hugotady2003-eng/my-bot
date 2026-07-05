@@ -3665,9 +3665,107 @@ def _detect_france_match(candidates):
     adversaire = cnt.most_common(1)[0][0].capitalize() if cnt else "l'adversaire"
     return adversaire, match_arts
 
+def fetch_france_match_live():
+    """Interroge l'API football-data.org pour connaître l'état RÉEL d'un match de la France
+    aujourd'hui (source fiable, pas d'ambiguïté 'analyse vs live' comme avec les articles RSS).
+    Nécessite la variable d'environnement FOOTBALL_DATA_TOKEN (clé gratuite football-data.org).
+    Retourne un dict {status, phase, team_a, team_b, score_a, score_b, adversaire, home} ou None.
+      - phase 'half'  → match à la pause (score de mi-temps disponible)
+      - phase 'final' → match terminé (score final)
+      - phase None    → match en cours mais ni pause ni fin (rien à publier maintenant)
+    """
+    token = os.environ.get("FOOTBALL_DATA_TOKEN", "").strip()
+    if not token:
+        return None
+    try:
+        # Tous les matchs du jour (l'API filtre sur 'now' en UTC par défaut, on force la date du jour)
+        today = datetime.utcnow().strftime("%Y-%m-%d")
+        url = f"https://api.football-data.org/v4/matches?dateFrom={today}&dateTo={today}"
+        req = urllib.request.Request(url, headers={"X-Auth-Token": token, "User-Agent": "PulseBot/1.0"})
+        with urllib.request.urlopen(req, timeout=12) as r:
+            data = json.loads(r.read())
+    except Exception as e:
+        print(f"  ⚠️ API football-data: {e}")
+        return None
+
+    for m in data.get("matches", []):
+        home = (m.get("homeTeam") or {}).get("name", "") or ""
+        away = (m.get("awayTeam") or {}).get("name", "") or ""
+        # On ne suit QUE l'équipe de France (masculine A). "France" apparaît tel quel dans l'API.
+        if home != "France" and away != "France":
+            continue
+        status = m.get("status", "")
+        score = m.get("score", {}) or {}
+        ft = score.get("fullTime", {}) or {}
+        ht = score.get("halfTime", {}) or {}
+        france_home = (home == "France")
+        adversaire = away if france_home else home
+
+        base = {"status": status, "team_a": home, "team_b": away,
+                "home": france_home, "adversaire": adversaire}
+        if status == "FINISHED":
+            base.update({"phase": "final",
+                         "score_a": ft.get("home", 0) or 0, "score_b": ft.get("away", 0) or 0})
+            return base
+        if status == "PAUSED":     # mi-temps : le score halfTime est renseigné
+            base.update({"phase": "half",
+                         "score_a": ht.get("home", 0) or 0, "score_b": ht.get("away", 0) or 0})
+            return base
+        if status == "IN_PLAY":    # match en cours hors pause → rien à publier maintenant
+            base.update({"phase": None,
+                         "score_a": ft.get("home", 0) or 0, "score_b": ft.get("away", 0) or 0})
+            return base
+    return None
+
 def publish_france_live(conn, candidates):
-    """⚽🇫🇷 Suit AUTOMATIQUEMENT le match de la France détecté dans les flux RSS :
-    poste la MI-TEMPS puis le SCORE FINAL (2 posts max), sans calendrier à maintenir.
+    """⚽🇫🇷 Suit le match de la France : poste la MI-TEMPS puis le SCORE FINAL (2 posts max).
+    SOURCE PRIORITAIRE = API football-data.org (statut réel du match : fiable, aucun faux positif
+    type 'France 0-0 Maroc' alors qu'aucun match n'a lieu). SECOURS = flux RSS si pas de clé API.
+    Ne compte PAS dans la cadence des autres actus (canal bonus)."""
+    live = fetch_france_match_live()
+    if live is not None:
+        phase = live.get("phase")
+        if phase not in ("half", "final"):
+            return False      # match pas à la pause / pas fini → rien à publier ce run
+        adversaire = live["adversaire"]
+        match_key = f"{datetime.now().strftime('%Y-%m-%d')}-France-{adversaire}"
+        kind = "fr_final" if phase == "final" else "fr_half"
+        if conn.execute("SELECT 1 FROM special_log WHERE kind=? AND keywords=?",
+                        (kind, match_key)).fetchone():
+            return False      # déjà publié pour ce match
+        ta, tb = live["team_a"], live["team_b"]
+        sa, sb = live["score_a"], live["score_b"]
+        try:
+            result = {"type": "match", "team_a": ta, "team_b": tb, "score_a": sa, "score_b": sb,
+                      "winner": "A" if sa > sb else ("B" if sb > sa else None),
+                      "sport": "FOOT", "competition": "Coupe du Monde 2026"}
+            raw, _ = get_best_image(None, None, None, None, "sport")
+            if phase == "final":
+                card = build_victory_card(raw, result, "", 1200, 675)
+                video = build_video("victory", result, "sport", raw, "")
+                txt = f"⚽ 🇫🇷 SCORE FINAL | {ta} {sa}-{sb} {tb}\n\n#CoupeDuMonde2026 #France"
+                label = "SCORE FINAL"
+            else:
+                data = {"headline": f"Mi-temps : {ta} {sa}-{sb} {tb}"}
+                video = build_video("news", data, "sport", raw, "")
+                card, _ = build_png(f"⏸️ MI-TEMPS — {ta} {sa}-{sb} {tb}", "", "sport",
+                                    prefetched=(raw, raw is not None))
+                txt = f"⏸️ 🇫🇷 MI-TEMPS | {ta} {sa}-{sb} {tb}\n\n#CoupeDuMonde2026 #France"
+                label = "MI-TEMPS"
+            _post_all_platforms(conn, txt, card, video, "sport")
+            conn.execute("INSERT INTO special_log (kind, keywords) VALUES (?, ?)", (kind, match_key))
+            conn.commit()
+            print(f"  ⚽🇫🇷 {label} publié (API) : {ta} {sa}-{sb} {tb}")
+            return True
+        except Exception as e:
+            print(f"  ❌ Publication France live (API) échouée : {e}")
+            return False
+    # Secours : détection RSS si aucune clé API football-data.org configurée
+    return _publish_france_live_rss(conn, candidates)
+
+def _publish_france_live_rss(conn, candidates):
+    """Secours (sans clé API) : détecte le match France dans les flux RSS.
+    Moins fiable que l'API mais évite de ne rien publier si FOOTBALL_DATA_TOKEN absent.
     Retourne True si un post a été fait."""
     adversaire, match_articles = _detect_france_match(candidates)
     if not match_articles:
