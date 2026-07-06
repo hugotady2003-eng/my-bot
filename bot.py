@@ -247,7 +247,7 @@ def init_db():
     ]:
         conn.execute(sql)
     conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
-    conn.execute("DELETE FROM keyword_log    WHERE last_sent   < datetime('now', '-12 hours')")
+    conn.execute("DELETE FROM keyword_log    WHERE last_sent   < datetime('now', '-2 hours')")
     conn.execute("DELETE FROM special_log    WHERE sent_at     < datetime('now', '-8 days')")
     conn.execute("DELETE FROM seen           WHERE seen_at     < datetime('now', '-45 days')")   # la base reste légère
     conn.commit()
@@ -297,7 +297,7 @@ def cache_analysis(conn, url, analysis):
     )
     conn.commit()
 
-def recent_keywords(conn, hours=12):
+def recent_keywords(conn, hours=2):
     """Retourne les mots-clés majeurs publiés dans les dernières heures."""
     return [r[0] for r in conn.execute(
         "SELECT keyword FROM keyword_log WHERE last_sent > datetime('now', ?)",
@@ -4750,7 +4750,7 @@ def check_feeds(conn):
 
     # ── SCAN RSS (à chaque run, gratuit) — sert au MODE BREAKING et à la publi normale ──
     print(f"  → Scan RSS...")
-    blocked_kws = recent_keywords(conn, hours=12)
+    blocked_kws = recent_keywords(conn, hours=2)
     allow_sport_result = not sport_result_recent(conn)   # autorise UN résultat de match malgré le blocage 12h
     allow_followup     = not followup_recent(conn)        # autorise UNE suite d'affaire malgré le blocage 12h
     candidates  = []
@@ -4820,7 +4820,7 @@ def check_feeds(conn):
                 kws = publish_breaking(conn, breaking, a.get("category", "breaking"), urgent=True)
                 print(f"  🚨 BREAKING publié immédiatement : {breaking['title'][:55]}")
                 if kws:
-                    print(f"  🔒 Mots-clés bloqués 12h: {', '.join(kws)}")
+                    print(f"  🔒 Mots-clés bloqués 2h: {', '.join(kws)}")
                 return
             except Exception as e:
                 print(f"  ❌ Breaking échoué : {e}")
@@ -4830,7 +4830,7 @@ def check_feeds(conn):
                 kws = publish_breaking(conn, breaking, a.get("category", "france"), urgent=False)
                 print(f"  ⚡ BUZZ publié rapidement (label normal) : {breaking['title'][:55]}")
                 if kws:
-                    print(f"  🔒 Mots-clés bloqués 12h: {', '.join(kws)}")
+                    print(f"  🔒 Mots-clés bloqués 2h: {', '.join(kws)}")
                 return
             except Exception as e:
                 print(f"  ❌ Buzz échoué : {e}")
@@ -4868,7 +4868,7 @@ def check_feeds(conn):
 
     print(f"  → {len(candidates)} articles à analyser...")
     if blocked_kws:
-        print(f"  🚫 Mots-clés bloqués (12h) : {', '.join(blocked_kws)}")
+        print(f"  🚫 Mots-clés bloqués (2h) : {', '.join(blocked_kws)}")
 
     # ── Anti-doublon RENFORCÉ : on écarte tout article trop proche d'un titre DÉJÀ publié
     #    récemment (≥2 mots significatifs communs). Évite de re-tweeter le même sujet sous
@@ -5075,28 +5075,31 @@ def check_feeds(conn):
                     real_vid_url = extract_video_url(item.get("entry")) if item.get("entry") else None
                     if real_vid_url:
                         video_path = fetch_video_file(real_vid_url)
-                    # 2) sinon : DIAPORAMA des vraies photos de l'article (plusieurs images qui défilent)
-                    if not video_path:
-                        photos = get_article_photos(item.get("url"), primary=raw_src if has_real else None)
-                        if not photos and raw_src:      # au moins la photo principale déjà téléchargée
-                            photos = [raw_src]
-                        if photos:
-                            video_path = build_news_slideshow_video(photos, headline_court, cat, item["source"])
-                    # 3) dernier repli : vidéo animée Pulse (barre néon)
+                    # 2) sinon : vidéo animée Pulse avec la SEULE photo principale (og:image), qui est
+                    #    la seule garantie d'être le bon sujet. On n'utilise plus de diaporama multi-images :
+                    #    les images secondaires d'un article ne sont pas fiables (photos d'articles liés, etc.).
                     if not video_path:
                         video_path = build_video("news", {"headline": headline_court}, cat, raw_src, item["source"])
 
+            posted_ok = False
             try:
-                post_to_twitter(tweet_final, png_bytes, video_path)
+                res_x = post_to_twitter(tweet_final, png_bytes, video_path)
+                posted_ok = posted_ok or (res_x is not False and res_x is not None)
             except Exception as e:
                 print(f"  ❌ X isolé : {e}")
             try:
-                post_to_facebook(tweet_final, png_bytes, video_path)
+                res_fb = post_to_facebook(tweet_final, png_bytes, video_path)
+                posted_ok = posted_ok or (res_fb is not False and res_fb is not None)
             except Exception as e:
                 print(f"  ❌ Facebook isolé : {e}")
             if ig_allowed(conn):
-                post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
-                log_special(conn, "ig_post", [])
+                try:
+                    res_ig = post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
+                    if res_ig is not False and res_ig is not None:
+                        posted_ok = True
+                    log_special(conn, "ig_post", [])
+                except Exception as e:
+                    print(f"  ❌ Instagram isolé : {e}")
             else:
                 print("  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)")
             if video_path and os.path.exists(video_path):
@@ -5111,6 +5114,14 @@ def check_feeds(conn):
                         _os.remove(video_path)
                 except: pass
 
+            # ⚠️ On ne "consomme" le sujet (blocage mots-clés 12h, marquage vu, cadence) QUE si
+            # au moins une plateforme a VRAIMENT publié. Sinon un échec réseau/403 ferait perdre
+            # le sujet pour 12h (cas Jubillar : X en 403 → sujet chaud verrouillé sans jamais sortir).
+            if not posted_ok:
+                print(f"  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : {item['title'][:55]}")
+                time.sleep(2)
+                return
+
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
             if item.get("followup"):
@@ -5121,7 +5132,7 @@ def check_feeds(conn):
                 mark_seen(conn, item["url"], item["title"])
             print(f"  ✅ Publié [{cat}]: {item['title'][:55]}")
             if keywords:
-                print(f"  🔒 Mots-clés bloqués 12h: {', '.join(keywords)}")
+                print(f"  🔒 Mots-clés bloqués 2h: {', '.join(keywords)}")
             time.sleep(4)
         except Exception as e:
             print(f"  ❌ Envoi '{item['title'][:40]}': {e}")
