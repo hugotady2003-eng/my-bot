@@ -3223,34 +3223,74 @@ def _wrap_fit(d, text, maxw, start_px, max_lines=2, min_px=30):
     lines[-1] += "…"
     return font, lines
 
-def get_article_photos(article_url, max_photos=4, min_w=380, min_h=240):
-    """Récupère PLUSIEURS vraies photos d'un article (pour un diaporama vidéo), triées
-    de la plus grande à la plus petite, dédoublonnées. Renvoie une liste de bytes (JPEG/PNG).
-    Best-effort : renvoie [] si la page est bloquée ou sans image assez grande."""
-    out, seen_sig = [], set()
+def _avg_hash(raw, hash_size=8):
+    """Empreinte perceptuelle simple (average-hash) avec PIL seul, sans dépendance.
+    Deux versions de la MÊME photo (compressions/tailles différentes) donnent la même
+    empreinte → permet un vrai dédoublonnage par contenu, pas par taille de fichier."""
     try:
-        img_urls = fetch_article_images(article_url) if article_url else []
+        from PIL import Image as _I
+        import io as _io
+        im = _I.open(_io.BytesIO(raw)).convert("L").resize((hash_size, hash_size), _I.LANCZOS)
+        px = list(im.getdata())
+        avg = sum(px) / len(px)
+        bits = 0
+        for i, p in enumerate(px):
+            if p >= avg:
+                bits |= (1 << i)
+        return bits
     except Exception:
-        img_urls = []
-    for img_url in img_urls:
-        if len(out) >= max_photos:
-            break
-        raw = fetch_img(img_url)
-        if not raw:
-            continue
+        return None
+
+def _hamming(a, b):
+    return bin(a ^ b).count("1") if (a is not None and b is not None) else 99
+
+def get_article_photos(article_url, max_photos=4, min_w=380, min_h=240, primary=None):
+    """Récupère PLUSIEURS vraies photos d'un article (diaporama vidéo), dédoublonnées PAR CONTENU,
+    en écartant logos/habillage (BFMTV, etc.). `primary` = photo principale déjà obtenue (og:image) :
+    si fournie, elle est placée EN PREMIER (c'est la plus fiable pour le sujet du tweet).
+    Best-effort : renvoie [] si la page est bloquée ou sans image assez grande."""
+    out, hashes = [], []
+
+    def _consider(raw):
+        """Ajoute une image si elle est assez grande, pas un logo, et pas un doublon de contenu."""
+        if not raw or len(out) >= max_photos:
+            return
         try:
             from PIL import Image as _I
             import io as _io
             w, h = _I.open(_io.BytesIO(raw)).size
         except Exception:
-            continue
+            return
         if w < min_w or h < min_h:
-            continue
-        sig = (len(raw), w, h)          # dédoublonnage simple (même image reprise en tailles diff.)
-        if sig in seen_sig:
-            continue
-        seen_sig.add(sig)
+            return
+        ratio = w / h
+        # Un logo/bandeau est souvent très allongé ou minuscule → on l'écarte
+        if ratio > 3.0 or ratio < 0.33:
+            return
+        hsh = _avg_hash(raw)
+        if hsh is not None and any(_hamming(hsh, prev) <= 6 for prev in hashes):
+            return          # trop proche d'une image déjà retenue → doublon de contenu
+        hashes.append(hsh)
         out.append(raw)
+
+    # 1) la photo principale (og:image) d'abord : c'est le sujet du tweet, la plus sûre
+    if primary:
+        _consider(primary)
+    # 2) les autres images de l'article
+    try:
+        img_urls = fetch_article_images(article_url) if article_url else []
+    except Exception:
+        img_urls = []
+    BRAND = ("/logo", "-logo", "logo-", "logo.", "watermark", "brand", "signature",
+             "/default", "placeholder", "vignette-defaut", "sprite", "favicon",
+             "chaine-", "channel-logo", "habillage")
+    for img_url in img_urls:
+        if len(out) >= max_photos:
+            break
+        low = img_url.lower()
+        if any(b in low for b in BRAND):
+            continue        # URL d'un logo/habillage → ignorée (on ne filtre PAS sur le nom du média)
+        _consider(fetch_img(img_url))
     return out
 
 def build_news_slideshow_video(photos, headline, category, source):
@@ -3950,10 +3990,31 @@ def _detect_france_match(candidates):
                   "souvenez", "à l'époque", "a l'epoque", "archive", "il y a deux ans",
                   "rediffusion", "replay", "best of", "résumé de la soirée d'hier", "hier soir")
 
+    # Contextes d'AUTRES sports → ce n'est PAS un match de foot des Bleus (ex: rugby "All Blacks
+    # 32-34", basket, hand...). On les exclut explicitement pour ne jamais coller un ⚽ dessus.
+    OTHER_SPORT = ("rugby", "xv de france", "all blacks", "quinze de france", "essai", "mêlée",
+                   "melee", "tournoi des six nations", "six nations", "top 14", "ovalie",
+                   "basket", "handball", "hand-ball", "volley", "水球", "water-polo",
+                   "roland-garros", "tennis", "jeu, set", "rugby à xiii", "treiziste",
+                   "nba", "euroligue", "waterpolo", "hockey")
+    # Un score de FOOTBALL ne dépasse jamais ~2 chiffres bas. 32-34 = rugby, 87-85 = basket...
+    def _plausible_foot_score(txt):
+        for mm in re.finditer(r"\b(\d{1,2})\s?[-:–]\s?(\d{1,2})\b", txt):
+            a, b = int(mm.group(1)), int(mm.group(2))
+            if a <= 15 and b <= 15:      # score de foot réaliste (borne large mais élimine rugby/basket)
+                return True
+        return False
+
     match_arts = []
     for c in candidates:
         t = (c.get("title", "") + " " + c.get("summary", "")).lower()
         if "france" not in t and "bleus" not in t:
+            continue
+        # ⛔ autre sport détecté → on ignore (jamais de faux "SCORE FINAL foot" sur du rugby)
+        if any(s in t for s in OTHER_SPORT):
+            continue
+        # ⛔ si un score est présent mais qu'il est IMPOSSIBLE au foot (ex: 32-34) → on ignore
+        if score_rx.search(t) and not _plausible_foot_score(t):
             continue
         has_foot_ctx = any(ctx in t for ctx in FOOT_CONTEXT)
         has_country_score = any(p in t for p in PAYS) and score_rx.search(t)
@@ -5016,7 +5077,7 @@ def check_feeds(conn):
                         video_path = fetch_video_file(real_vid_url)
                     # 2) sinon : DIAPORAMA des vraies photos de l'article (plusieurs images qui défilent)
                     if not video_path:
-                        photos = get_article_photos(item.get("url"))
+                        photos = get_article_photos(item.get("url"), primary=raw_src if has_real else None)
                         if not photos and raw_src:      # au moins la photo principale déjà téléchargée
                             photos = [raw_src]
                         if photos:
