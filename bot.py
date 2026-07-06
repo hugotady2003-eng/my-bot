@@ -3223,6 +3223,151 @@ def _wrap_fit(d, text, maxw, start_px, max_lines=2, min_px=30):
     lines[-1] += "…"
     return font, lines
 
+def get_article_photos(article_url, max_photos=4, min_w=380, min_h=240):
+    """Récupère PLUSIEURS vraies photos d'un article (pour un diaporama vidéo), triées
+    de la plus grande à la plus petite, dédoublonnées. Renvoie une liste de bytes (JPEG/PNG).
+    Best-effort : renvoie [] si la page est bloquée ou sans image assez grande."""
+    out, seen_sig = [], set()
+    try:
+        img_urls = fetch_article_images(article_url) if article_url else []
+    except Exception:
+        img_urls = []
+    for img_url in img_urls:
+        if len(out) >= max_photos:
+            break
+        raw = fetch_img(img_url)
+        if not raw:
+            continue
+        try:
+            from PIL import Image as _I
+            import io as _io
+            w, h = _I.open(_io.BytesIO(raw)).size
+        except Exception:
+            continue
+        if w < min_w or h < min_h:
+            continue
+        sig = (len(raw), w, h)          # dédoublonnage simple (même image reprise en tailles diff.)
+        if sig in seen_sig:
+            continue
+        seen_sig.add(sig)
+        out.append(raw)
+    return out
+
+def build_news_slideshow_video(photos, headline, category, source):
+    """🎬 Vidéo d'actu = DIAPORAMA des vraies photos de l'article (plusieurs images qui défilent),
+    Ken Burns doux + fondus enchaînés, bandeau titre en bas dans la DA Pulse. PAS d'effet 'glass'
+    (pas de flou/verre dépoli sur la photo principale) : les photos sont nettes, plein cadre.
+    Repli : si 0 photo exploitable, renvoie None → l'appelant utilise l'ancienne vidéo animée."""
+    import io, shutil, subprocess, tempfile
+    if os.environ.get("PULSE_VIDEO", "1") == "0" or not photos:
+        return None
+    ffmpeg_bin = shutil.which("ffmpeg")
+    if not ffmpeg_bin:
+        try:
+            import imageio_ffmpeg
+            ffmpeg_bin = imageio_ffmpeg.get_ffmpeg_exe()
+        except Exception:
+            return None
+    try:
+        W, H, FPS = VIDEO_W, VIDEO_H, VIDEO_FPS
+        PER, XFADE = 2.6, 0.5
+        frames_slide = int(FPS * PER)
+        frames_fade = int(FPS * XFADE)
+        accent = _cat_rgb(category)
+
+        def f(px, bold=True):
+            p = f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"
+            try: return ImageFont.truetype(p, int(px))
+            except Exception: return ImageFont.load_default()
+
+        # Prépare chaque photo : remplit le cadre 16:9 SANS flou (net, plein cadre, recadrage centré)
+        prepared = []
+        for raw in photos:
+            try:
+                ph = Image.open(io.BytesIO(raw)).convert("RGB")
+            except Exception:
+                continue
+            pr, tr = ph.width / ph.height, W / H
+            if pr > tr:      # photo plus large → on rogne les côtés
+                nw = int(ph.height * tr)
+                ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
+            else:            # photo plus haute → on rogne haut/bas
+                nh = int(ph.width / tr)
+                ph = ph.crop((0, (ph.height - nh) // 2, ph.width, (ph.height - nh) // 2 + nh))
+            # léger sur-cadre pour le Ken Burns (zoom lent)
+            ph = ph.resize((int(W * 1.12), int(H * 1.12)), Image.LANCZOS)
+            prepared.append(ph)
+        if not prepared:
+            return None
+
+        # Bandeau titre + source (dessiné une fois, collé sur chaque frame)
+        overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        od = ImageDraw.Draw(overlay)
+        for y in range(int(H * 0.52), H):       # dégradé sombre en bas pour lisibilité du titre
+            t = (y - H * 0.58) / (H * 0.42)
+            od.line([(0, y), (W, y)], fill=(8, 6, 24, int(230 * t)))
+        od.rectangle([0, H - 6, W, H], fill=accent + (255,))    # liseré couleur catégorie
+        # titre multi-lignes
+        title = headline[:120]
+        words, lines, cur = title.split(), [], ""
+        fnt = f(38)
+        for w_ in words:
+            test = (cur + " " + w_).strip()
+            if od.textbbox((0, 0), test, font=fnt)[2] > W - 90 and cur:
+                lines.append(cur); cur = w_
+            else:
+                cur = test
+        lines.append(cur)
+        lines = lines[:3]
+        y0 = H - 88 - len(lines) * 46
+        for ln in lines:
+            od.text((46, y0), ln, font=fnt, fill=(255, 255, 255, 255))
+            y0 += 46
+        if source:
+            od.text((46, H - 78), source, font=f(22, bold=False), fill=(210, 205, 230, 235))
+
+        def compose(idx, prog):
+            """prog ∈ [0,1] : avancement dans la slide (pour le zoom Ken Burns)."""
+            ph = prepared[idx]
+            zoom = 1.0 + 0.06 * prog
+            cw, ch = int(W * (1.12 / zoom)), int(H * (1.12 / zoom))
+            x = (ph.width - cw) // 2
+            y = (ph.height - ch) // 2
+            frame = ph.crop((x, y, x + cw, y + ch)).resize((W, H), Image.LANCZOS)
+            frame = frame.convert("RGBA")
+            frame.alpha_composite(overlay)
+            return frame.convert("RGB")
+
+        tmpdir = tempfile.mkdtemp(prefix="pulse_news_")
+        out_mp4 = os.path.join(tmpdir, "video.mp4")
+        proc = subprocess.Popen(
+            [ffmpeg_bin, "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
+             "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
+             "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+             "-pix_fmt", "yuv420p", "-movflags", "+faststart", out_mp4],
+            stdin=subprocess.PIPE)
+        n = len(prepared)
+        for i in range(n):
+            for fr in range(frames_slide):
+                prog = fr / frames_slide
+                frame = compose(i, prog)
+                if i < n - 1 and fr >= frames_slide - frames_fade:
+                    alpha = (fr - (frames_slide - frames_fade)) / frames_fade
+                    frame = Image.blend(frame, compose(i + 1, 0.0), alpha)
+                proc.stdin.write(frame.tobytes())
+        # si une seule photo, on tient un peu plus longtemps dessus
+        if n == 1:
+            for _ in range(int(FPS * 1.4)):
+                proc.stdin.write(compose(0, 1.0).tobytes())
+        proc.stdin.close(); proc.wait()
+        if proc.returncode != 0 or not os.path.exists(out_mp4):
+            shutil.rmtree(tmpdir, ignore_errors=True); return None
+        print(f"  🎬 Vidéo actu diaporama générée ({n} photo{'s' if n > 1 else ''})")
+        return out_mp4
+    except Exception as e:
+        print(f"  ⚠️ Diaporama actu échoué : {e}")
+        return None
+
 def build_video(kind, data, category, raw_photo, source, urgent=False):
     """Génère une vidéo MP4 animée (DA Pulse). kind: "news" | "victory" | "hommage".
     Renvoie le chemin du MP4, ou None si indisponible (le post retombe alors sur l'image)."""
@@ -4865,11 +5010,18 @@ def check_feeds(conn):
                     W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True
                 )
                 if not video_path:
-                    # 1) tenter d'attacher une VRAIE vidéo de l'article (MP4 direct) quand elle existe
+                    # 1) vraie vidéo de l'article (MP4 direct) si le média l'expose
                     real_vid_url = extract_video_url(item.get("entry")) if item.get("entry") else None
                     if real_vid_url:
                         video_path = fetch_video_file(real_vid_url)
-                    # 2) repli : vidéo animée Pulse (barre néon) si pas de vraie vidéo exploitable
+                    # 2) sinon : DIAPORAMA des vraies photos de l'article (plusieurs images qui défilent)
+                    if not video_path:
+                        photos = get_article_photos(item.get("url"))
+                        if not photos and raw_src:      # au moins la photo principale déjà téléchargée
+                            photos = [raw_src]
+                        if photos:
+                            video_path = build_news_slideshow_video(photos, headline_court, cat, item["source"])
+                    # 3) dernier repli : vidéo animée Pulse (barre néon)
                     if not video_path:
                         video_path = build_video("news", {"headline": headline_court}, cat, raw_src, item["source"])
 
