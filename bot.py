@@ -1049,6 +1049,65 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
     print(f"  🖼️ AUCUNE vraie photo trouvée pour cet article → carte sur fond dégradé")
     return None, False
 
+def extract_video_url(entry):
+    """Cherche une VRAIE vidéo téléchargeable (MP4 direct) dans le flux RSS de l'article.
+    X n'accepte QUE des fichiers MP4 : on ignore volontairement les lecteurs intégrés
+    (YouTube/Dailymotion) et le streaming HLS/m3u8, non ingérables. Retourne une URL .mp4
+    ou None. Best-effort : la plupart des médias FR n'exposent pas de MP4 direct → None fréquent."""
+    def _is_mp4(url, mime=""):
+        if not url:
+            return False
+        if "video" in (mime or "").lower() and "mp4" in (mime or "").lower():
+            return True
+        # URL se terminant par .mp4 (éventuel ?query derrière)
+        return bool(re.search(r"\.mp4(\?|$)", url, re.I))
+
+    # media:content (souvent utilisé pour la vidéo par les CMS)
+    if hasattr(entry, "media_content") and entry.media_content:
+        for m in entry.media_content:
+            url, mime = m.get("url", ""), m.get("type", "")
+            if m.get("medium") == "video" and _is_mp4(url, mime):
+                return url
+            if _is_mp4(url, mime):
+                return url
+    # enclosures (pièces jointes du flux)
+    if hasattr(entry, "enclosures") and entry.enclosures:
+        for e in entry.enclosures:
+            url, mime = e.get("href", ""), e.get("type", "")
+            if _is_mp4(url, mime):
+                return url
+    return None
+
+def fetch_video_file(video_url, max_mb=50):
+    """Télécharge un MP4 distant vers un fichier temporaire, avec plafond de taille
+    (X accepte gros mais on reste raisonnable). Retourne le chemin local ou None.
+    Vérifie que le contenu est bien une vidéo MP4 et pas une page HTML déguisée."""
+    if not video_url:
+        return None
+    try:
+        import tempfile
+        req = urllib.request.Request(video_url, headers=_BROWSER_HEADERS)
+        with urllib.request.urlopen(req, timeout=20) as r:
+            ctype = r.headers.get("Content-Type", "").lower()
+            clen = int(r.headers.get("Content-Length", "0") or 0)
+            if clen and clen > max_mb * 1024 * 1024:
+                print(f"  ⚠️ Vidéo actu trop lourde ({clen // (1024*1024)} Mo) → vidéo Pulse")
+                return None
+            if "html" in ctype:      # page web, pas un vrai fichier vidéo
+                return None
+            data = _read_capped(r, max_mb * 1024 * 1024 + 1024)
+        # signature MP4 : les octets 4-8 contiennent 'ftyp'
+        if len(data) < 12 or data[4:8] != b"ftyp":
+            return None
+        fd, path = tempfile.mkstemp(suffix=".mp4", prefix="pulse_actu_")
+        with os.fdopen(fd, "wb") as f:
+            f.write(data)
+        print(f"  🎥 Vidéo d'actu récupérée ({len(data) // (1024*1024)} Mo) → attachée au tweet")
+        return path
+    except Exception as e:
+        print(f"  ⚠️ Vidéo actu injoignable ({e}) → vidéo Pulse")
+        return None
+
 def extract_photo(entry):
     """Cherche une image DANS le flux RSS lui-même (gratuit, aucune requête web,
     donc jamais bloqué par un anti-bot). Couvre toutes les formes courantes utilisées
@@ -4805,8 +4864,14 @@ def check_feeds(conn):
                     article_url=item.get("url"), person=person,
                     W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True
                 )
-                if not video_path:   # vidéo animée Pulse sur TOUS les posts (barre néon couleur catégorie)
-                    video_path = build_video("news", {"headline": headline_court}, cat, raw_src, item["source"])
+                if not video_path:
+                    # 1) tenter d'attacher une VRAIE vidéo de l'article (MP4 direct) quand elle existe
+                    real_vid_url = extract_video_url(item.get("entry")) if item.get("entry") else None
+                    if real_vid_url:
+                        video_path = fetch_video_file(real_vid_url)
+                    # 2) repli : vidéo animée Pulse (barre néon) si pas de vraie vidéo exploitable
+                    if not video_path:
+                        video_path = build_video("news", {"headline": headline_court}, cat, raw_src, item["source"])
 
             try:
                 post_to_twitter(tweet_final, png_bytes, video_path)
