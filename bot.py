@@ -543,6 +543,31 @@ def _smart_truncate(s, max_len=80):
     cut = s[:max_len].rsplit(" ", 1)[0].rstrip(" ,;:.-'\u2019")
     return cut if cut else s[:max_len].rstrip()
 
+def _split_long_lead(body, max_lead=90):
+    """Anti-pavé : si la 1ʳᵉ ligne (avant le 1er saut de ligne double) dépasse max_lead caractères,
+    on la scinde à la 1ʳᵉ frontière de phrase (. ! ?) pour créer une accroche courte + un retour à
+    la ligne. Ne touche à rien si l'accroche est déjà courte ou déjà suivie d'un saut de ligne tôt."""
+    if not body:
+        return body
+    parts = body.split("\n\n", 1)
+    lead = parts[0].strip()
+    rest = parts[1] if len(parts) > 1 else ""
+    if len(lead) <= max_lead:
+        return body
+    # cherche une fin de phrase dans les premiers max_lead caractères
+    m = list(re.finditer(r"[.!?…](\s|$)", lead[:max_lead + 40]))
+    if m:
+        cut = m[0].end()
+        head = lead[:cut].strip()
+        tail = lead[cut:].strip()
+        new = head
+        if tail:
+            new += "\n\n" + tail
+        if rest:
+            new += "\n\n" + rest
+        return new.strip()
+    return body   # pas de frontière propre trouvée → on laisse tel quel
+
 def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, correction=None):
     """Génère tweet + titre image + image_query + mots-clés majeurs."""
     today = datetime.now().strftime("%d %B %Y")
@@ -577,6 +602,7 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
         hook_instr = (
             "\n🎣 L'ACCROCHE (1ʳᵉ phrase) — LA PLUS IMPORTANTE, elle décide si les gens s'arrêtent ou scrollent :\n"
             "La 1ʳᵉ phrase doit AGRIPPER en 2 secondes (comme un bon sondage qui donne envie de voter) :\n"
+            "- ⚡ COURTE ET PERCUTANTE : l'accroche fait UNE seule phrase BRÈVE (idéalement 8-15 mots, JAMAIS plus de ~120 caractères). Une accroche qui tient sur 1 ligne à l'écran, pas un pavé. Si ton accroche dépasse une ligne, COUPE : garde le choc, mets le reste dans la 2ᵉ phrase.\n"
             "- COMMENCE PAR CE QUI CHOQUE, SURPREND OU INTRIGUE : le chiffre le plus fort, le mot le plus marquant, le détail le plus inattendu, EN TÊTE de phrase (pas à la fin).\n"
             "- CRÉE UNE ÉMOTION immédiate (indignation, stupeur, admiration, curiosité). Demande-toi : \"en lisant juste cette phrase, aurait-on envie de commenter ou de lire la suite ?\"\n"
             "- CONCRET ET IMAGÉ, jamais abstrait : \"un homme de 92 ans\" plutôt que \"une personne âgée\" ; \"18 MILLIONS d'euros\" plutôt que \"une grosse somme\".\n"
@@ -611,6 +637,18 @@ Génère QUATRE choses :
 
 {style_instr}
 
+🧠 ADAPTE LE STYLE AU TYPE DE NEWS (c'est ce qui fait un bon compte, pas un moule unique) :
+Regarde de quoi parle l'actu et choisis l'angle qui la sert le mieux — base télégraphique façon CerfiaFR, mais modulée :
+- 🚨 BREAKING / FAIT DIVERS GRAVE → flash direct, factuel, tendu. Les faits bruts d'abord. Emoji d'alerte (🚨) possible en tête.
+- ⚖️ JUDICIAIRE / POLITIQUE SENSIBLE → sobre et précis, zéro sensationnalisme, qualifications exactes (voir rigueur).
+- 💰 ÉCONOMIE / SOCIÉTÉ AVEC CHIFFRE → mets le chiffre-choc en avant, rends-le concret (ce qu'il représente pour les gens).
+- ⚽ SPORT → vivant, punchy, l'exploit ou le résultat en avant, emoji du sport (⚽🏀🎾).
+- 🎬 CULTURE / INSOLITE / POSITIF → ton plus léger, curiosité ou sourire, on peut jouer sur la surprise.
+- 🌍 INTERNATIONAL → clair et pédagogue en une phrase, on situe l'enjeu sans jargon.
+Le BON réflexe : demande-toi \"si je voyais passer ça dans mon fil, qu'est-ce qui me ferait m'arrêter ?\" et écris ÇA.
+
+😀 EMOJIS : 1 à 3 emojis BIEN CHOISIS qui collent au sujet (pas de décor gratuit). Un en tête d'accroche si ça renforce (🚨 alerte, 💰 argent, ⚽ sport, 🕊️ jamais sur hommage), éventuellement un dans le texte. Jamais de guirlande d'emojis, jamais d'emoji qui banalise un sujet grave.
+
 ⚖️ RIGUEUR FACTUELLE ABSOLUE (sujets judiciaires, décès, accusations) — PRIORITÉ N°1 :
 - Recopie les qualifications juridiques EXACTEMENT comme dans la source : "homicide involontaire" reste INVOLONTAIRE, jamais "meurtre" ni "volontaire". "Meurtre" = uniquement si la source écrit "meurtre". Idem pour assassinat, viol, agression, terrorisme, féminicide.
 - Si la qualification n'est pas écrite dans la source, n'en mets AUCUNE (écris "mort de", "décès de", "mis en cause pour").
@@ -629,9 +667,9 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - 🎯 CHOIX DU HASHTAG — vise le SUJET, jamais le décor. Le hashtag principal = LE nom propre central de l'actu (entreprise, personne, club, événement, jeu vidéo). Test : "cette actu parle de quoi en UN mot ?" → c'est CE mot qui prend le #. Ex : actu sur l'entrée en Bourse de SpaceX → #SpaceX (PAS #Bourse ni #TimesSquare) ; actu sur Mbappé → #Mbappé (pas #football) ; match des Bleus → #CoupeDuMonde2026 ; sortie de GTA 6 → #GTA6.
 - ⛔ Pas de hashtag décoratif ou périphérique : lieux secondaires, mots génériques (#Bourse, #France, #Justice, #Tech) sont INTERDITS sauf s'ils sont précisément LE sujet de l'actu.
 - ⛔ INTÉGRATION PROPRE — ne casse JAMAIS le texte : ne DUPLIQUE pas un mot ("à Mexico #Mexico" = INTERDIT), ne mets pas de "#" au milieu d'un mot, n'ajoute pas de mot juste pour caser un hashtag, et NE mets PAS de bloc de hashtags à la fin. Le hashtag doit se lire naturellement dans la phrase.
-- RETOUR À LA LIGNE après la 1ʳᵉ phrase (jamais un gros bloc lourd) : phrase d'accroche, puis LIGNE VIDE, puis la 2ᵉ phrase, puis LIGNE VIDE, puis la source. Soit : Phrase 1.\\n\\nPhrase 2.\\n\\n(Source)
+- RETOUR À LA LIGNE VITE : l'accroche (1ʳᵉ phrase COURTE) puis LIGNE VIDE, puis la 2ᵉ phrase (détail/contexte), puis LIGNE VIDE, puis la source. Structure : Phrase1 courte.\\n\\nPhrase2.\\n\\n(Source). ⛔ JAMAIS deux longues phrases avant le 1er saut de ligne — l'accroche tient sur UNE ligne à l'écran, sinon c'est un pavé qui ne donne pas envie de lire.
 - Exemple EXACT du rendu attendu (court, aéré, hashtags intégrés) :
-  "À #Mexico, des MILLIERS de manifestants bloquent l'accès au stade à deux jours du match d'ouverture de la #CoupeDuMonde2026.\\n\\nIls réclament une hausse des salaires et l'abrogation d'une loi sur les retraites.\\n\\n(Le Figaro)"
+  "🚨 Des MILLIERS de manifestants bloquent le stade à #Mexico.\\n\\nÀ deux jours de l'ouverture de la #CoupeDuMonde2026, ils réclament une hausse des salaires et l'abrogation de la réforme des retraites.\\n\\n(Le Figaro)"
 - Dans le JSON, les sauts de ligne s'écrivent \\n
 
 Réponds avec ce JSON UNIQUEMENT :
@@ -641,7 +679,11 @@ Réponds avec ce JSON UNIQUEMENT :
     for label_test in LABELS.values():
         body = re.sub(rf"^{label_test}\s*\|\s*", "", body, flags=re.IGNORECASE)
         body = re.sub(rf"^{label_test}\s*[—-]\s*", "", body, flags=re.IGNORECASE)
-    body = re.sub(r"^[\U0001F300-\U0001F9FF\u2600-\u27BF\s]+", "", body).strip()
+    # (On NE retire PLUS l'emoji de tête : il fait désormais partie de l'accroche voulue.)
+
+    # 🩹 GARDE-FOU ANTI-PAVÉ : si la 1ʳᵉ phrase (avant le 1er saut de ligne) est trop longue,
+    # on coupe à la première frontière de phrase pour aérer et éviter le bloc lourd.
+    body = _split_long_lead(body)
 
     headline_court = _smart_truncate(result.get("headline_court", title), 80)
     image_query    = result.get("image_query", category).strip()
