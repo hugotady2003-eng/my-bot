@@ -662,6 +662,7 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules ; va DIRECTEMENT à l'info.
 {hook_instr}
 - TÉLÉGRAPHIQUE : 1 à 2 phrases MAXIMUM, denses et autonomes, comme une dépêche. Info COMPLÈTE, jamais un teaser.
+- ⛔⛔ INTERDICTION ABSOLUE DU TEASER / RACOLAGE : le tweet DONNE l'information, il ne l'appâte JAMAIS. Bannis totalement : "découvrez si...", "découvrez la suite", "on vous dit tout", "vous n'allez pas croire", "la réponse va vous surprendre", "cliquez pour savoir", "la raison est folle". Si Marine Le Pen peut se présenter → DIS-LE ("elle pourra se présenter" ou "elle est inéligible"). Ne demande jamais au lecteur d'aller chercher l'info ailleurs : elle est DANS le tweet, en clair. Un tweet qui cache le fait pour forcer le clic est un ÉCHEC.
 - Mets en avant le CHIFFRE ou le FAIT clé. Tu peux écrire UN mot ou chiffre important en MAJUSCULES pour l'emphase (avec parcimonie).
 - ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
 - Longueur cible COURTE : environ 200 à 330 caractères. Jamais un long pavé.
@@ -733,6 +734,24 @@ def _fact_hardfix(body, source_text):
         body = re.sub(r"[Mm]eurtres?", "homicide", body)
     return body
 
+TEASER_RX = re.compile(
+    r"découvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)|"
+    r"on vous (dit|explique) tout|vous n'allez pas (le )?croire|"
+    r"la (réponse|raison|vérité|suite)\s+(va|risque de|pourrait)\s+vous|"
+    r"cliquez\s+(ici|pour)|"
+    r"(voici\s+)?pourquoi\s*\.\.\.|"
+    r"la raison est (folle|dingue|incroyable)|"
+    r"\ba(\s+)?la\s+fin\b.*surprend|"
+    r"vous ne devinerez jamais|"
+    r"attendez de (voir|savoir)|"
+    r"la suite est|"
+    r"réponse (ci-dessous|dans l'article)",
+    re.IGNORECASE)
+
+def _is_teaser(text):
+    """Détecte une formulation racoleuse qui CACHE l'info au lieu de la donner (clickbait)."""
+    return bool(TEASER_RX.search(text or ""))
+
 def gen_tweet_verified(title, summary, source, category, url=None):
     """gen_tweet_complet + lecture de l'article UNIQUEMENT sur sujets sensibles
     (mort, procès, accusations… où la précision juridique est vitale) + vérification factuelle.
@@ -759,6 +778,21 @@ def gen_tweet_verified(title, summary, source, category, url=None):
         if _fact_guard(body + " " + headline, src_text):
             body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
             print("  ⚖️ Correction forcée appliquée")
+
+    # 🚫 GARDE-FOU ANTI-TEASER : un tweet qui CACHE l'info ("découvrez si...", "on vous dit tout")
+    # est un échec éditorial. On régénère UNE fois avec une consigne explicite de donner le fait.
+    if _is_teaser(body):
+        print(f"  🚫 Teaser/clickbait détecté → régénération (l'info doit être DONNÉE, pas appâtée)")
+        anti = ("Ton tweet précédent CACHAIT l'information (formulation racoleuse type 'découvrez si...', "
+                "'on vous dit tout'). INTERDIT. DONNE l'information en clair, directement, dans le tweet. "
+                "Le lecteur doit connaître le fait en te lisant, sans avoir à cliquer ailleurs.")
+        body, headline, image_query, keywords, person = gen_tweet_complet(
+            title, summary, source, category, article_text=article_text, correction=anti)
+        # Si ça tease encore, on retire au moins la tournure racoleuse la plus courante
+        if _is_teaser(body):
+            body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
+                          "", body, flags=re.IGNORECASE).strip()
+            print("  🚫 Tournure teaser retirée de force")
     return body, headline, image_query, keywords, person
 
 def build_full_tweet(body, category):
