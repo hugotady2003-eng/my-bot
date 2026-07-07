@@ -3103,9 +3103,10 @@ def _is_obituary(title, summary):
     # ── 1b. Contexte CRIMINEL / JUDICIAIRE → jamais un hommage (victime ou criminel) ──
     #    (un tueur condamné, un procès, une enquête sur un meurtre ne sont PAS un hommage)
     if re.search(r"\b(coupable|meurtri\w+|tueur|tueuse|criminel\w*|violeur|violeurs|agresseur|"
-                 r"kidnappeur|ravisseur|assassin|accusé\w*|suspect\w*|inculp\w+|"
+                 r"kidnappeur|ravisseur|assassin\w*|accusé\w*|suspect\w*|soup[çc]onn\w+|inculp\w+|"
                  r"condamn\w+|acquitt\w+|relax\w+|mis en examen|mise en examen|"
                  r"garde à vue|interpell\w+|écrou\w+|réclusion|perpétuité|prison à vie|"
+                 r"tentative d[e']\s*(assassinat|meurtre|homicide)|attentat|attaque (armée|au couteau|visait)|"
                  r"procès|verdict|réquisitoire|plaidoirie|assises|tribunal|parquet|"
                  r"cour de cassation|cour d'appel|non-lieu|instruction judiciaire|"
                  r"enquête|enquete|torture|\bviol\b|\bviols\b|agression sexuelle|"
