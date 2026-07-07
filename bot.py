@@ -3005,8 +3005,10 @@ Si ce n'est pas le décès d'une personne nommée, réponds {{"ok":false}}.""", 
         print(f"  ⚠️ extract_obituary: {e}")
         return None
 
-def build_hommage_card(raw_photo, name, dates, desc, source, W=1200, H=675):
-    """Carte hommage sobre : portrait en noir & blanc + nom + dates (DA Pulse discrète)."""
+def build_hommage_card(raw_photo, name, dates, desc, source, W=1080, H=1350):
+    """Carte hommage sobre en PORTRAIT : portrait de la personne cadré sur son VISAGE,
+    en noir & blanc, + nom + dates (DA Pulse discrète). Le visage est détecté pour ne jamais
+    le couper ; à défaut, léger biais vers le haut (le visage est rarement en bas d'un portrait)."""
     import io
     from PIL import ImageOps
     WHITE, GREY, FAINT = (245, 245, 248), (176, 180, 194), (140, 144, 158)
@@ -3020,16 +3022,30 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1200, H=675):
         while s > mins and d.textbbox((0, 0), txt, font=f(s, **kw))[2] > maxw: s -= 2
         return f(s, **kw)
 
-    # fond : portrait recadré (léger biais vers le haut pour le visage) + NOIR & BLANC
+    # fond : portrait recadré SUR LE VISAGE (detect_face_center) + NOIR & BLANC
     if raw_photo:
         try:
             ph = Image.open(io.BytesIO(raw_photo)).convert('RGB')
-            pr, tr = ph.width / ph.height, W / H
-            if pr > tr:
-                nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
+            tr = W / H
+            # on agrandit pour couvrir le cadre portrait, puis on recadre autour du visage
+            scale = max(W / ph.width, H / ph.height)
+            big = ph.resize((int(ph.width * scale + 0.5), int(ph.height * scale + 0.5)), Image.LANCZOS)
+            face = None
+            try:
+                face = detect_face_center(big)
+            except Exception:
+                face = None
+            if face:
+                fcx, fcy = face
+                left = int(fcx - W / 2)
+                # visage placé dans le tiers supérieur (portrait digne), jamais coupé en haut
+                top = int(fcy - H * 0.34)
             else:
-                nh = int(ph.width / tr); top = int((ph.height - nh) * 0.30); ph = ph.crop((0, top, ph.width, top + nh))
-            ph = ph.resize((W, H), Image.LANCZOS)
+                left = (big.width - W) // 2
+                top = int((big.height - H) * 0.18)   # léger biais vers le haut (visage rarement en bas)
+            left = max(0, min(left, big.width - W))
+            top = max(0, min(top, big.height - H))
+            ph = big.crop((left, top, left + W, top + H))
             bw = ImageOps.grayscale(ph).convert('RGB')
             bw = Image.blend(bw, Image.new('RGB', (W, H), (0, 0, 0)), 0.18)
         except Exception:
@@ -5064,7 +5080,7 @@ def check_feeds(conn):
                 print(f"  🏆 Carte résultat ({victory['type']}) publiée")
             elif obituary:
                 png_bytes = build_hommage_card(raw_src, obituary["name"], obituary["dates"],
-                                               obituary["desc"], item["source"], W=1200, H=675)
+                                               obituary["desc"], item["source"], W=1080, H=1350)
                 png_ig = build_hommage_card(raw_src, obituary["name"], obituary["dates"],
                                             obituary["desc"], item["source"], W=1080, H=1350)
                 video_path = build_video("hommage", obituary, "hommage", raw_src, item["source"])
