@@ -580,6 +580,7 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
             "- COMMENCE PAR CE QUI CHOQUE, SURPREND OU INTRIGUE : le chiffre le plus fort, le mot le plus marquant, le détail le plus inattendu, EN TÊTE de phrase (pas à la fin).\n"
             "- CRÉE UNE ÉMOTION immédiate (indignation, stupeur, admiration, curiosité). Demande-toi : \"en lisant juste cette phrase, aurait-on envie de commenter ou de lire la suite ?\"\n"
             "- CONCRET ET IMAGÉ, jamais abstrait : \"un homme de 92 ans\" plutôt que \"une personne âgée\" ; \"18 MILLIONS d'euros\" plutôt que \"une grosse somme\".\n"
+            "- 💥 CHIFFRE-CHOC : si l'article contient un chiffre FORT et surprenant (montant, pourcentage, nombre, record, comparaison), METS-LE EN VEDETTE dès la 1ʳᵉ phrase — c'est ce qui fait le plus réagir/commenter. Écris-le en toutes lettres marquantes (\"3 200 €/mois\", \"+47 % en un an\", \"1 Français sur 4\"). Donne-lui du relief (ce qu'il représente concrètement) SANS jamais l'arrondir à la hausse ni le sortir de son contexte réel. Pas de chiffre → n'en invente pas, garde une autre accroche.\n"
             "- Sujets clivants (politique, société, sécurité) : formule le FAIT pour que chacun ait aussitôt un avis — SANS prendre parti ni déformer l'info.\n"
             "- ⛔ JAMAIS AU PRIX DE LA VÉRITÉ : accroche fondée sur un fait RÉEL de la source. Aucune exagération, aucun mot plus fort que la source, aucun teaser trompeur, aucune question racoleuse creuse. Elle rend le vrai fait saillant, elle ne l'invente ni ne l'amplifie."
         )
@@ -1790,20 +1791,24 @@ Aujourd'hui nous sommes le {today} {current_yr}. Voici les événements historiq
 
 {events_str}
 
-CHOISIS UN événement qui est MONDIALEMENT CONNU :
-- 11 septembre, Apollo 11, chute du Mur, JFK, D-Day, Pearl Harbor, Mandela, Diana, Titanic, Tchernobyl, Mai 68, etc.
-- REJETTE les événements obscurs ou trop locaux.
+ÉTAPE 1 — CHOISIS LE MEILLEUR événement, dans cet ordre de priorité :
+1. Un événement MONDIALEMENT CONNU (11-Septembre, Apollo 11, chute du Mur, JFK, D-Day, Titanic, Tchernobyl, Mai 68, Mandela…)
+2. OU un événement qui RÉSONNE ENCORE aujourd'hui (origine d'un truc qu'on connaît, début d'un conflit toujours d'actualité, une "première fois" marquante)
+3. OU un événement avec une ANECDOTE surprenante, un détail fou, un chiffre hallucinant que peu de gens connaissent
+REJETTE le pur obscur/local sans portée (un traité oublié, une nomination administrative…).
+Si VRAIMENT rien ne sort du lot → {{"skip": true}}
 
-Si rien n'est assez célèbre dans la liste → {{"skip": true}}
-
-Sinon génère le tweet en FRANÇAIS.
-
-⚠️ IMPORTANT : utilise EXACTEMENT le nombre d'années indiqué entre parenthèses dans la liste ci-dessus. Ne recalcule rien. Si la liste dit "il y a 57 ans", écris "il y a 57 ans". Pas 56, pas 58.
+ÉTAPE 2 — ÉCRIS UN TWEET QUI ACCROCHE (pas une notice Wikipédia plate) :
+🎣 La 1ʳᵉ phrase doit donner envie de lire/réagir : commence par le détail le plus fort, surprenant ou émouvant — PAS par "Il y a X ans, il se passa…". Le nombre d'années peut venir juste après.
+   Exemples de bonnes accroches : "Le monde a retenu son souffle : il y a 55 ans, deux hommes marchaient sur la Lune." / "En 8 minutes, tout a basculé. Il y a 24 ans, le 11-Septembre…"
+- Raconte comme une histoire, avec le détail concret qui marque, pas une énumération de dates.
+- Si l'événement résonne avec aujourd'hui, fais le pont (ça fait réagir).
+- ⛔ RIGUEUR : n'invente aucun fait, aucune date, aucun chiffre. Utilise EXACTEMENT le nombre d'années entre parenthèses (si la liste dit "il y a 57 ans", écris "il y a 57 ans", pas 56 ni 58). L'accroche rend l'événement vivant, elle ne le déforme pas.
 
 Format :
 - headline_court (max 75 chars)
 - image_query (5 mots en anglais)
-- body : commence par "Il y a X ans, [événement]" (X = la valeur exacte de la liste), puis contexte/détails. Hashtags répartis. Fini par "(Source : Wikipédia)"
+- body : accroche forte puis le récit/contexte. Hashtags répartis. Fini par "(Source : Wikipédia)"
 
 JSON :
 {{"headline_court":"...","image_query":"...","body":"..."}}
@@ -4114,7 +4119,7 @@ def publish_france_live(conn, candidates):
         if phase not in ("half", "final"):
             return False      # match pas à la pause / pas fini → rien à publier ce run
         adversaire = live["adversaire"]
-        match_key = f"{datetime.now().strftime('%Y-%m-%d')}-France-{adversaire}"
+        match_key = f"{datetime.now().strftime('%Y')}-France-{adversaire.lower().strip()}"
         kind = "fr_final" if phase == "final" else "fr_half"
         if conn.execute("SELECT 1 FROM special_log WHERE kind=? AND keywords=?",
                         (kind, match_key)).fetchone():
@@ -4146,7 +4151,12 @@ def publish_france_live(conn, candidates):
         except Exception as e:
             print(f"  ❌ Publication France live (API) échouée : {e}")
             return False
-    # Secours : détection RSS si aucune clé API football-data.org configurée
+    # Secours RSS UNIQUEMENT si aucune clé API n'est configurée. Si la clé API EST présente,
+    # elle fait autorité : quand elle ne voit aucun match France aujourd'hui (live is None),
+    # on NE publie PAS de score via RSS — c'est ce qui évitait un vieux "France-Paraguay"
+    # republié depuis un article traînant dans les flux plusieurs jours après le match.
+    if os.environ.get("FOOTBALL_DATA_TOKEN", "").strip():
+        return False
     return _publish_france_live_rss(conn, candidates)
 
 def _publish_france_live_rss(conn, candidates):
@@ -4158,7 +4168,7 @@ def _publish_france_live_rss(conn, candidates):
         return False
 
     # Clé anti-doublon : le jour + l'adversaire (un seul match France/jour en pratique)
-    match_key = f"{datetime.now().strftime('%Y-%m-%d')}-France-{adversaire}"
+    match_key = f"{datetime.now().strftime('%Y')}-France-{adversaire.lower().strip()}"
 
     # ── 1) SCORE FINAL (prioritaire) : article avec marqueur de fin de match ──
     FINAL_CUES = ("score final", "terminé", "termine", "fin du match", "coup de sifflet final",
