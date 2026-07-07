@@ -245,12 +245,23 @@ def init_db():
             keywords TEXT,
             sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )""",
+        # Mémoire PAR SUJET : ce qu'on a déjà publié sur chaque histoire en cours.
+        # Permet à un gros sujet de ressortir s'il apporte du NEUF (plafond/jour + écart mini),
+        # au lieu du verrou binaire par mot-clé. Source unique du suivi éditorial d'un sujet.
+        """CREATE TABLE IF NOT EXISTS topic_memory (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            topic_sig TEXT,
+            headline TEXT,
+            keywords TEXT,
+            sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )""",
     ]:
         conn.execute(sql)
     conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
     conn.execute("DELETE FROM keyword_log    WHERE last_sent   < datetime('now', '-2 hours')")
     conn.execute("DELETE FROM special_log    WHERE sent_at     < datetime('now', '-8 days')")
     conn.execute("DELETE FROM seen           WHERE seen_at     < datetime('now', '-45 days')")   # la base reste légère
+    conn.execute("DELETE FROM topic_memory    WHERE sent_at     < datetime('now', '-2 days')")
     conn.commit()
     return conn
 
@@ -373,6 +384,11 @@ def _touch_publish_time():
 DAILY_POST_CAP = 22          # objectif ~20-25 posts/jour : plafond ferme à 22 (breaking+sport+normaux)
 DAILY_POST_SOFT = 17         # au-delà, on ne garde QUE le très chaud (breaking/résultats forts)
 
+# ── Mémoire par sujet : un gros sujet qui ÉVOLUE peut ressortir dans la journée ──
+# (ne fait PAS grimper le total quotidien : il PREND la place d'une opportunité plus faible)
+TOPIC_MAX_PER_DAY = 3        # nb max de tweets sur un MÊME sujet dans la journée
+TOPIC_MIN_GAP_MIN = 60       # écart minimum (minutes) entre deux tweets sur le même sujet
+
 def posts_today(conn):
     """Nombre de publications déjà faites aujourd'hui (chaque post passe par add_recent)."""
     try:
@@ -480,13 +496,14 @@ Aujourd'hui : {today}
 
 Voici {len(articles)} articles à analyser.
 
-Titres récemment publiés (à éviter en doublon sémantique) :
+Titres DÉJÀ PUBLIÉS récemment (ta référence pour juger les doublons) :
 {recent_str}
 
-⚠️ MOTS-CLÉS DÉJÀ PUBLIÉS dans les 12 dernières heures (NE PAS y revenir) :
-{blocked_str}
+Sujets déjà abordés récemment (mots-clés) : {blocked_str}
 
-Si un article traite d'un sujet contenant un de ces mots-clés bloqués, mets is_duplicate=true.
+RÈGLE DOUBLON — LIS ATTENTIVEMENT :
+- is_duplicate=true UNIQUEMENT si l'article répète essentiellement les MÊMES FAITS qu'un titre déjà publié ci-dessus (même information, rien de neuf pour le lecteur).
+- is_duplicate=false si l'article apporte un VRAI nouveau développement sur un sujet en cours : une réaction, un recours/un appel, un verdict, un nouveau bilan, une décision officielle, une interpellation, un rebondissement. Un sujet MAJEUR qui évolue MÉRITE une nouvelle publication — ne le bloque PAS juste parce qu'on en a déjà parlé. Note-le alors sur son vrai potentiel d'engagement.
 
 Articles :
 {articles_str}
@@ -569,13 +586,28 @@ def _split_long_lead(body, max_lead=90):
         return new.strip()
     return body   # pas de frontière propre trouvée → on laisse tel quel
 
-def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, correction=None):
-    """Génère tweet + titre image + image_query + mots-clés majeurs."""
+def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, prev_angles=None, correction=None):
+    """Génère tweet + titre image + image_query + mots-clés majeurs.
+    prev_angles = titres déjà publiés par Pulse sur CE sujet (suite = nouvel angle obligatoire)."""
     today = datetime.now().strftime("%d %B %Y")
     label = LABELS[category]
     video_str = ""
     art_str  = f"\n- EXTRAIT DE L'ARTICLE (fait foi sur les faits et qualifications) : {article_text[:1200]}" if article_text else ""
     corr_str = f"\n\n🚨 CORRECTION OBLIGATOIRE — ta version précédente contenait une ERREUR FACTUELLE : {correction}. Corrige-la impérativement." if correction else ""
+
+    # 🔁 SUITE D'UN SUJET DÉJÀ TRAITÉ : on montre à Claude ce que Pulse a DÉJÀ publié
+    # sur cette histoire aujourd'hui pour qu'il apporte un NOUVEL angle (jamais une redite).
+    prev_str = ""
+    if prev_angles:
+        prev_list = "\n".join(f"  • {h}" for h in prev_angles[:3] if h)
+        if prev_list:
+            prev_str = (
+                "\n\n🔁 SUJET DÉJÀ COUVERT PAR PULSE AUJOURD'HUI — angle(s) déjà publié(s) :\n" + prev_list +
+                "\nCe tweet est une SUITE : il DOIT apporter du neuf au lecteur.\n"
+                "- Mets en avant l'ÉLÉMENT NOUVEAU (réaction, recours/appel, verdict, nouveau bilan, décision officielle, rebondissement).\n"
+                "- Rappelle le contexte en QUELQUES MOTS seulement (quelqu'un qui découvre le sujet ici doit comprendre).\n"
+                "- Écris une accroche DIFFÉRENTE : ne réutilise ni la même formulation ni le même angle que ci-dessus."
+            )
 
     # Style adaptatif selon catégorie — TOUJOURS court et télégraphique (fil d'actu)
     if category == "hommage":
@@ -620,7 +652,7 @@ Aujourd'hui : {today}.
 Article à traiter :
 - Source : {source}
 - Titre  : {title}
-- Résumé : {summary}{video_str}{art_str}{corr_str}
+- Résumé : {summary}{video_str}{art_str}{corr_str}{prev_str}
 
 Génère QUATRE choses :
 
@@ -636,15 +668,23 @@ Génère QUATRE choses :
 
 4. **person** : si l'article parle d'UNE personnalité publique précise (politique, sportif, artiste, créateur de contenu, PDG...), donne son nom complet tel qu'il apparaîtrait sur Wikipédia (ex: "Emmanuel Macron", "Kylian Mbappé", "Squeezie"). Sinon mets "".
 
-5. **body** : corps du tweet (sans préfixe — il sera ajouté automatiquement).
+5. **pays** : le code ISO à 2 lettres du pays PRINCIPALEMENT concerné par l'actu (ex: "FR" France, "ES" Espagne, "US" États-Unis, "UA" Ukraine, "IT" Italie, "DE" Allemagne, "GB" Royaume-Uni, "CH" Suisse). Si l'actu est franco-française → "FR". Si aucun pays précis (sujet mondial, techno générale...) → "".
+
+6. **body** : corps du tweet (sans préfixe — il sera ajouté automatiquement).
 
 {style_instr}
+
+✍️ MISE EN FORME PERCUTANTE (style CerfiaFR) :
+- 🔠 MAJUSCULES DE PUNCH : mets 1 à 2 mots-clés FORTS en MAJUSCULES pour créer du relief (ex: "largement REJETÉE", "VIOLENT cambriolage", "RECORD battu"). Maximum 1-2 par tweet, sur le mot qui compte — jamais des phrases entières en majuscules, ça crie.
+- 🔸 PUCES pour les actus DENSES : si l'article contient BEAUCOUP de données chiffrées (étude, bilan, rapport avec plusieurs statistiques), structure le corps avec des puces "🔸" (une donnée par puce) pour aérer et rendre lisible. Sinon (actu simple), garde le format phrases + sauts de ligne classique. N'utilise les puces QUE quand il y a vraiment plusieurs chiffres/faits à lister.
+- 🔢 CHIFFRES PRÉCIS jamais arrondis mous : "132 députés", "82,4 %", "289 voix nécessaires" — reprends les chiffres EXACTS de l'article, c'est ce qui inspire confiance.
 
 🧠 ADAPTE LE STYLE AU TYPE DE NEWS (c'est ce qui fait un bon compte, pas un moule unique) :
 Regarde de quoi parle l'actu et choisis l'angle qui la sert le mieux — base télégraphique façon CerfiaFR, mais modulée :
 - 🚨 BREAKING / FAIT DIVERS GRAVE → flash direct, factuel, tendu. Les faits bruts d'abord. Emoji d'alerte (🚨) possible en tête.
 - ⚖️ JUDICIAIRE / POLITIQUE SENSIBLE → sobre et précis, zéro sensationnalisme, qualifications exactes (voir rigueur).
-- 💰 ÉCONOMIE / SOCIÉTÉ AVEC CHIFFRE → mets le chiffre-choc en avant, rends-le concret (ce qu'il représente pour les gens).
+- 💰 ÉCONOMIE / SOCIÉTÉ AVEC CHIFFRE → mets le chiffre-choc en avant et réponds à \"pourquoi ça me concerne ?\" (pouvoir d'achat, emploi, factures, impôts) — rends-le concret pour les gens.
+- 🔬 SCIENCE / ÉTUDE / RAPPORT → vulgarise : le RÉSULTAT marquant en tête, dis pourquoi c'est important, garde SEULEMENT les 2-3 chiffres les plus parlants (le reste alourdit), zéro jargon.
 - ⚽ SPORT → vivant, punchy, l'exploit ou le résultat en avant, emoji du sport (⚽🏀🎾).
 - 🎬 CULTURE / INSOLITE / POSITIF → ton plus léger, curiosité ou sourire, on peut jouer sur la surprise.
 - 🌍 INTERNATIONAL → clair et pédagogue en une phrase, on situe l'enjeu sans jargon.
@@ -676,6 +716,8 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
   "🚨 Des MILLIERS de manifestants bloquent le stade à #Mexico.\\n\\nÀ deux jours de l'ouverture de la #CoupeDuMonde2026, ils réclament une hausse des salaires et l'abrogation de la réforme des retraites.\\n\\n(Le Figaro)"
 - Dans le JSON, les sauts de ligne s'écrivent \\n
 
+✅ AVANT DE RÉPONDRE, relis-toi en silence et corrige si besoin : (1) l'info principale est visible dès la 1ʳᵉ phrase, (2) l'accroche donne envie SANS teaser, (3) faits, chiffres et qualifications 100 % fidèles à la source, (4) la structure colle au type d'actu, (5) 1-3 emojis utiles, (6) le hashtag = LE sujet, (7) français impeccable. Ne renvoie que la version corrigée.
+
 Réponds avec ce JSON UNIQUEMENT :
 {{"headline_court":"...","image_query":"...","person":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""", max_tokens=900)
 
@@ -693,6 +735,7 @@ Réponds avec ce JSON UNIQUEMENT :
     image_query    = result.get("image_query", category).strip()
     keywords       = result.get("keywords_majeurs", [])
     person         = result.get("person", "").strip()
+    pays           = result.get("pays", "").strip()
 
     # 🏷️ GARDE-FOU HASHTAG : un tweet ne doit jamais partir SANS hashtag (sauf hommage, qui reste sobre).
     # Si le modèle en a oublié, on en pose UN pertinent, tiré du nom de la personne ou du 1er mot-clé,
@@ -709,7 +752,7 @@ Réponds avec ce JSON UNIQUEMENT :
             else:
                 body = body.rstrip() + " " + hashtag
 
-    return body, headline_court, image_query, keywords, person
+    return body, headline_court, image_query, keywords, person, pays
 
 # ── GARDE-FOU FACTUEL : vérifie que les termes sensibles du tweet existent bien dans la source ──
 SENSITIVE_TOPIC_RX = re.compile(r"mort|morte|décès|décéd|tué|homicide|meurtre|assassin|viol|agress|attentat|terroris|féminicide|procès|mis en examen|garde à vue|empoisonn", re.I)
@@ -752,7 +795,7 @@ def _is_teaser(text):
     """Détecte une formulation racoleuse qui CACHE l'info au lieu de la donner (clickbait)."""
     return bool(TEASER_RX.search(text or ""))
 
-def gen_tweet_verified(title, summary, source, category, url=None):
+def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=None):
     """gen_tweet_complet + lecture de l'article UNIQUEMENT sur sujets sensibles
     (mort, procès, accusations… où la précision juridique est vitale) + vérification factuelle.
     Sur les sujets non sensibles, le titre + résumé RSS suffisent → coût minimal."""
@@ -768,13 +811,13 @@ def gen_tweet_verified(title, summary, source, category, url=None):
                 article_text = None
         except Exception:
             article_text = None
-    body, headline, image_query, keywords, person = gen_tweet_complet(
-        title, summary, source, category, article_text=article_text)
+    body, headline, image_query, keywords, person, pays = gen_tweet_complet(
+        title, summary, source, category, article_text=article_text, prev_angles=prev_angles)
     issues = _fact_guard(body + " " + headline, src_text)
     if issues:
         print(f"  ⚖️ Erreur factuelle détectée ({'; '.join(issues)}) → régénération")
-        body, headline, image_query, keywords, person = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text, correction="; ".join(issues))
+        body, headline, image_query, keywords, person, pays = gen_tweet_complet(
+            title, summary, source, category, article_text=article_text, prev_angles=prev_angles, correction="; ".join(issues))
         if _fact_guard(body + " " + headline, src_text):
             body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
             print("  ⚖️ Correction forcée appliquée")
@@ -786,19 +829,35 @@ def gen_tweet_verified(title, summary, source, category, url=None):
         anti = ("Ton tweet précédent CACHAIT l'information (formulation racoleuse type 'découvrez si...', "
                 "'on vous dit tout'). INTERDIT. DONNE l'information en clair, directement, dans le tweet. "
                 "Le lecteur doit connaître le fait en te lisant, sans avoir à cliquer ailleurs.")
-        body, headline, image_query, keywords, person = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text, correction=anti)
+        body, headline, image_query, keywords, person, pays = gen_tweet_complet(
+            title, summary, source, category, article_text=article_text, prev_angles=prev_angles, correction=anti)
         # Si ça tease encore, on retire au moins la tournure racoleuse la plus courante
         if _is_teaser(body):
             body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
                           "", body, flags=re.IGNORECASE).strip()
             print("  🚫 Tournure teaser retirée de force")
-    return body, headline, image_query, keywords, person
+    return body, headline, image_query, keywords, person, pays
 
-def build_full_tweet(body, category):
+def _flag_emoji(country_code):
+    """Convertit un code pays ISO ('FR', 'ES', 'US'...) en drapeau emoji. '' ou invalide → ''."""
+    if not country_code:
+        return ""
+    cc = country_code.strip().upper()
+    if len(cc) != 2 or not cc.isalpha():
+        return ""
+    # Les drapeaux emoji = 2 "Regional Indicator Symbols" (A=U+1F1E6)
+    try:
+        return chr(0x1F1E6 + ord(cc[0]) - ord('A')) + chr(0x1F1E6 + ord(cc[1]) - ord('A'))
+    except Exception:
+        return ""
+
+def build_full_tweet(body, category, country=""):
     emoji = EMOJIS[category]
     label = LABELS[category]
-    return f"{emoji} {label} | {body}"
+    flag = _flag_emoji(country)
+    # En-tête : "emoji [drapeau] LABEL | ..." — le drapeau situe le pays, le LABEL (catégorie) est conservé.
+    head = f"{emoji} {flag} {label} |".replace("  ", " ") if flag else f"{emoji} {label} |"
+    return f"{head} {body}"
 
 # ═══════════════════════════════════════════════════════════════════════════
 # IMAGES
@@ -1237,6 +1296,47 @@ def extract_photo(entry):
                 return m.group(1)
     return None
 
+# ─────────────────────────────────────────────────────────────
+# LOGO PULSE — image détourée (fond transparent) embarquée en base64.
+# Source UNIQUE : paste_pulse_logo() remplace l'ancien texte « Pulse »
+# partout où le logo est assez grand (cartes + vidéos). Les rendus
+# SOBRES (hommage) gardent volontairement le texte. Repli auto sur le
+# texte si le logo échoue → jamais de rendu sans marque.
+# ─────────────────────────────────────────────────────────────
+_PULSE_LOGO_B64 = "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"
+_pulse_logo_cache = {}
+
+def _pulse_logo(target_h):
+    """Logo PULSE (RGBA) redimensionné à la hauteur target_h (px), mis en cache."""
+    target_h = max(1, int(target_h))
+    logo = _pulse_logo_cache.get(target_h)
+    if logo is None:
+        import io, base64
+        from PIL import Image
+        base = Image.open(io.BytesIO(base64.b64decode(_PULSE_LOGO_B64))).convert("RGBA")
+        w = max(1, round(base.width * target_h / base.height))
+        logo = base.resize((w, target_h), Image.LANCZOS)
+        _pulse_logo_cache[target_h] = logo
+    return logo
+
+def paste_pulse_logo(img, x, y, target_h, opacity=1.0):
+    """Colle le logo PULSE sur `img` à (x, y), à la hauteur target_h.
+    Renvoie la largeur du logo posé, ou 0 si échec (le caller retombe alors
+    sur le texte). `opacity` (0..1) sert au fondu dans les vidéos."""
+    try:
+        logo = _pulse_logo(target_h)
+        if opacity < 0.999:
+            op = max(0.0, min(1.0, opacity))
+            a = logo.getchannel("A").point(lambda p: int(p * op))
+            tmp = logo.copy(); tmp.putalpha(a); logo = tmp
+        if img.mode == "RGBA":
+            img.alpha_composite(logo, (int(x), int(y)))
+        else:
+            img.paste(logo, (int(x), int(y)), logo)
+        return logo.width
+    except Exception:
+        return 0
+
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
     """
     PNG DA Pulse, taille paramétrable (W×H).
@@ -1386,7 +1486,8 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         f_sm    = font(small_sz, bold=False)
 
         # ─── LOGO PULSE ───
-        draw.text((margin, int(H * 0.044)), "Pulse", font=f_logo, fill=(255, 255, 255))
+        if category == "hommage" or paste_pulse_logo(img, margin, int(H * 0.044), int(H * 0.062)) == 0:
+            draw.text((margin, int(H * 0.044)), "Pulse", font=f_logo, fill=(255, 255, 255))
 
         # ─── BADGE CATÉGORIE ───
         badge_hex = s["color"].lstrip("#")
@@ -2419,7 +2520,8 @@ def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 
         draw.line([(x, 0), (x, 10)], fill=_lerp((90, 140, 255), (255, 80, 200), x / W))
 
     # logo
-    draw.text((margin, int(H * 0.045)), "Pulse", font=_cfont(int(W * 0.05)), fill=(255, 255, 255))
+    if paste_pulse_logo(img, margin, int(H * 0.045), int(H * 0.045)) == 0:
+        draw.text((margin, int(H * 0.045)), "Pulse", font=_cfont(int(W * 0.05)), fill=(255, 255, 255))
 
     # pastille page i/N
     pl = f"{idx}/{total}"
@@ -4048,8 +4150,10 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             # pied de page (zone réservée — rien ne descend dessus)
             fa = _appear(t, DUR - 2.4, 0.9)
             if fa > 0:
-                d.text((int(W * 0.04), H - int(H * 0.082)), "Pulse", font=_vf(W * 0.020),
-                       fill=WHITE + (int(255 * fa),))
+                _logo_h = int(H * 0.052)
+                if sober or paste_pulse_logo(img, int(W * 0.04), H - int(H * 0.05) - _logo_h, _logo_h, opacity=fa) == 0:
+                    d.text((int(W * 0.04), H - int(H * 0.082)), "Pulse", font=_vf(W * 0.020),
+                           fill=WHITE + (int(255 * fa),))
                 d.text((W - int(W * 0.04), H - int(H * 0.070)), f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
                        font=_vf(W * 0.016, False), fill=DIM + (int(230 * fa),), anchor="rm")
             # ── finition photographique : vignettage + grain fusionnés (1 seul composite) ──
@@ -4666,6 +4770,74 @@ def followup_recent(conn, minutes=240):
         (f"-{minutes} minutes",)
     ).fetchone() is not None
 
+# ── MÉMOIRE PAR SUJET (intelligence éditoriale) ───────────────────────────────
+# Un sujet = une histoire qui peut évoluer. On regroupe les articles par SIGNATURE
+# (mots saillants communs), on retient combien de fois on en a parlé aujourd'hui et
+# quand, puis on autorise une SUITE uniquement si : sous le plafond du jour (TOPIC_MAX_PER_DAY)
+# ET assez de temps écoulé (TOPIC_MIN_GAP_MIN). La VALEUR AJOUTÉE, elle, est jugée par
+# Claude dans l'appel d'analyse existant (aucun appel API supplémentaire).
+def _topic_sig_words(title):
+    """Mots saillants d'un titre (réutilise _sig_words) : sert à reconnaître un même sujet."""
+    return _sig_words(title)
+
+def log_topic(conn, title, keywords):
+    """Enregistre un sujet qu'on vient de publier (signature + titre + angle + heure)."""
+    try:
+        sig = " ".join(sorted(_topic_sig_words(title)))
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        conn.execute(
+            "INSERT INTO topic_memory (topic_sig, headline, keywords, sent_at) VALUES (?,?,?,?)",
+            (sig, title or "", ", ".join(keywords or []), now)
+        )
+        conn.commit()
+    except Exception as e:
+        print(f"  ⚠️ log_topic: {e}")
+
+def topic_history(conn, title, min_overlap=2):
+    """Publications d'AUJOURD'HUI portant sur le même sujet que `title`.
+    Renvoie (nb, dernier_datetime|None, [titres_déjà_publiés]).
+    'Même sujet' = au moins `min_overlap` mots saillants en commun."""
+    sig = _topic_sig_words(title)
+    if not sig:
+        return 0, None, []
+    today = datetime.now().strftime("%Y-%m-%d")
+    try:
+        rows = conn.execute(
+            "SELECT topic_sig, headline, sent_at FROM topic_memory WHERE sent_at LIKE ?",
+            (f"{today}%",)
+        ).fetchall()
+    except Exception:
+        return 0, None, []
+    n, last, heads = 0, None, []
+    for topic_sig, head, sent_at in rows:
+        other = set((topic_sig or "").split())
+        if len(sig & other) >= min_overlap:
+            n += 1
+            if head:
+                heads.append(head)
+            try:
+                dt = datetime.strptime((sent_at or "")[:19], "%Y-%m-%d %H:%M:%S")
+                if last is None or dt > last:
+                    last = dt
+            except Exception:
+                pass
+    return n, last, heads
+
+def topic_gate(conn, title):
+    """Décide si un sujet DÉJÀ traité aujourd'hui a le droit de ressortir MAINTENANT.
+    Renvoie (autorisé: bool, code: str, titres_déjà_publiés: list).
+    code ∈ {'new','followup','cap','too_soon'}. Ne juge PAS la valeur (Claude s'en charge)."""
+    n, last, heads = topic_history(conn, title)
+    if n == 0:
+        return True, "new", heads
+    if n >= TOPIC_MAX_PER_DAY:
+        return False, "cap", heads
+    if last is not None:
+        gap_min = (datetime.now() - last).total_seconds() / 60.0
+        if gap_min < TOPIC_MIN_GAP_MIN:
+            return False, "too_soon", heads
+    return True, "followup", heads
+
 _META_CONN = None   # connexion DB partagée pour la détection de blocage Meta
 
 def meta_backoff_active(minutes=180):
@@ -4840,10 +5012,11 @@ def publish_breaking(conn, item, cat, urgent=True):
     if _is_obituary(item.get("title", ""), item.get("summary", "")):
         cat = "hommage"   # décès → ton sobre, même en breaking (le label URGENT reste si urgent=True)
     label_cat = "breaking" if urgent else cat
-    body, headline_court, image_query, keywords, person = gen_tweet_verified(
-        item["title"], item["summary"], item["source"], cat, url=item.get("url")
+    _bn, _bl, _prev_heads = topic_history(conn, item.get("title", ""))
+    body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
+        item["title"], item["summary"], item["source"], cat, url=item.get("url"), prev_angles=_prev_heads
     )
-    tweet_final = build_full_tweet(body, label_cat)
+    tweet_final = build_full_tweet(body, label_cat, country=pays)
     photo = extract_photo(item["entry"]) if "entry" in item else None
     raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, label_cat)
     png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
@@ -4871,6 +5044,7 @@ def publish_breaking(conn, item, cat, urgent=True):
         _sh.rmtree(os.path.dirname(vid), ignore_errors=True)
     mark_cat(conn, label_cat)
     log_keywords(conn, keywords)
+    log_topic(conn, item.get("title", ""), keywords)   # mémoire par sujet (suivi éditorial)
     log_special(conn, "breaking", keywords)   # partage l'anti-spam (1 fast-track / 25 min)
     if item.get("url"):
         mark_seen(conn, item["url"], item["title"])
@@ -4987,8 +5161,7 @@ def check_feeds(conn):
     # ── SCAN RSS (à chaque run, gratuit) — sert au MODE BREAKING et à la publi normale ──
     print(f"  → Scan RSS...")
     blocked_kws = recent_keywords(conn, hours=2)
-    allow_sport_result = not sport_result_recent(conn)   # autorise UN résultat de match malgré le blocage 12h
-    allow_followup     = not followup_recent(conn)        # autorise UNE suite d'affaire malgré le blocage 12h
+    allow_sport_result = not sport_result_recent(conn)   # autorise UN résultat de match malgré le blocage
     candidates  = []
     pre_filtered = 0
     for fi in RSS_FEEDS:
@@ -5009,19 +5182,27 @@ def check_feeds(conn):
                         except Exception:
                             pass
                 if url and title and not is_seen(conn, url):
-                    # Pré-filtre GRATUIT : si le titre contient un mot-clé déjà publié (12h),
-                    # on rejette SANS payer Claude — SAUF si c'est le RÉSULTAT d'un match (1 dérogation/4h)
+                    # Pré-filtre GRATUIT (sans coût Claude) : un titre qui touche un sujet déjà
+                    # traité aujourd'hui n'est PLUS jeté d'office. La mémoire par sujet décide si
+                    # une SUITE est permise maintenant (plafond/jour + écart mini) ; Claude jugera
+                    # ensuite la valeur ajoutée. SAUF résultat de match (dérogation dédiée).
                     title_low = title.lower()
                     is_fu = False
                     if blocked_kws and any(kw in title_low for kw in blocked_kws):
                         if allow_sport_result and _is_sport_result(title):
-                            pass  # résultat final d'un match déjà couvert
-                        elif allow_followup and _is_followup(title) and not _is_soft_news(title):
-                            is_fu = True  # nouveau développement d'un gros sujet (ex: un ministre s'exprime)
+                            pass  # résultat final d'un match déjà couvert (1 dérogation/4h)
                         else:
-                            mark_seen(conn, url, title)
-                            pre_filtered += 1
-                            continue
+                            allowed, code, _heads = topic_gate(conn, title)
+                            if allowed:
+                                is_fu = True   # développement d'un sujet en cours → part en analyse
+                            elif code == "too_soon":
+                                # trop tôt sur ce sujet : on le REVERRA au prochain run (pas marqué vu)
+                                pre_filtered += 1
+                                continue
+                            else:  # 'cap' : plafond du sujet atteint pour aujourd'hui
+                                mark_seen(conn, url, title)
+                                pre_filtered += 1
+                                continue
                     candidates.append({"url": url, "title": title, "summary": summ, "source": fi["source"], "entry": entry, "followup": is_fu, "pub_ts": pub_ts})
         except Exception as e:
             print(f"  ❌ RSS {fi['source']}: {e}")
@@ -5127,8 +5308,10 @@ def check_feeds(conn):
         if GUIDE_RX.search(title) or GUIDE_RX.search(c.get("summary", "")):
             mark_seen(conn, c["url"], title); continue
         # doublon avec un sujet déjà publié récemment
+        # (on NE l'applique PAS aux développements d'un sujet en cours : la mémoire par sujet
+        #  les a déjà validés, et Claude jugera ensuite s'ils apportent réellement du neuf)
         sw = _sig_words(title)
-        if len(sw) >= 2 and any(len(sw & ps) >= 2 for ps in published_sigs):
+        if not c.get("followup") and len(sw) >= 2 and any(len(sw & ps) >= 2 for ps in published_sigs):
             print(f"  ♻️ Doublon d'un sujet déjà publié, écarté : {title[:50]}")
             mark_seen(conn, c["url"], title); continue
         filtered_candidates.append(c)
@@ -5265,10 +5448,11 @@ def check_feeds(conn):
             else:
                 add_recent(conn, item["title"])
                 video = None
-                body, headline_court, image_query, keywords, person = gen_tweet_verified(
-                    item["title"], item["summary"], item["source"], cat, url=item.get("url")
+                _hn, _hl, _prev_heads = topic_history(conn, item["title"])
+                body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
+                    item["title"], item["summary"], item["source"], cat, url=item.get("url"), prev_angles=_prev_heads
                 )
-                tweet_final = build_full_tweet(body, cat)
+                tweet_final = build_full_tweet(body, cat, country=pays)
                 photo       = extract_photo(item["entry"])
 
             # ⚖️ Les vidéos d'articles tiers ne sont JAMAIS republiées (droit d'auteur / risque de strike).
@@ -5375,8 +5559,7 @@ def check_feeds(conn):
 
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
-            if item.get("followup"):
-                log_special(conn, "followup", keywords)   # 1 suite d'affaire / 4h
+            log_topic(conn, item.get("title", ""), keywords)   # mémoire par sujet (suivi éditorial)
             if cat == "sport" and _is_sport_result(item.get("title", "")):
                 log_special(conn, "sport_result", keywords)   # 1 dérogation résultat / 4h
             if item.get("url"):
