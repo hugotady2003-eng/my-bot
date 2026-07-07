@@ -174,6 +174,7 @@ STYLES = {
     "ia":            {"color": "#e040fb", "label": "IA",            "bar": [(224,64,251),(170,0,255)],    "overlay": (10,2,20)},
     "insolite":      {"color": "#ffd180", "label": "Insolite",      "bar": [(255,209,128),(255,152,0)],   "overlay": (16,10,2)},
     "positivity":    {"color": "#ff80ab", "label": "Positif",       "bar": [(255,128,171),(244,143,177)], "overlay": (20,4,12)},
+    "gta6":          {"color": "#00d17a", "label": "GTA 6",         "bar": [(0,209,122),(255,64,129)],    "overlay": (10,2,16)},
 }
 
 EMOJIS = {
@@ -181,7 +182,7 @@ EMOJIS = {
     "economie": "📈", "societe": "👥", "faitsdivers": "🚓", "hommage": "🕊️", "histoire": "📜",
     "culture": "🎭",  "sport": "🏆", "science": "🔬",
     "sante":    "🏥", "environnement": "🌱",
-    "tech":     "💻", "ia": "🤖", "insolite": "😲", "positivity": "❤️",
+    "tech":     "💻", "ia": "🤖", "insolite": "😲", "positivity": "❤️", "gta6": "🎮",
 }
 
 LABELS = {
@@ -193,7 +194,7 @@ LABELS = {
     "science": "SCIENCE", "sante": "SANTÉ",
     "environnement": "ENVIRONNEMENT",
     "tech": "TECH", "ia": "IA",
-    "insolite": "INSOLITE", "positivity": "POSITIF",
+    "insolite": "INSOLITE", "positivity": "POSITIF", "gta6": "GTA 6",
 }
 
 UNSPLASH_FALLBACK = {
@@ -689,6 +690,21 @@ Réponds avec ce JSON UNIQUEMENT :
     image_query    = result.get("image_query", category).strip()
     keywords       = result.get("keywords_majeurs", [])
     person         = result.get("person", "").strip()
+
+    # 🏷️ GARDE-FOU HASHTAG : un tweet ne doit jamais partir SANS hashtag (sauf hommage, qui reste sobre).
+    # Si le modèle en a oublié, on en pose UN pertinent, tiré du nom de la personne ou du 1er mot-clé,
+    # ajouté proprement en fin de tweet (avant la source si elle est là).
+    if category != "hommage" and "#" not in body:
+        tag_src = person if person else (keywords[0] if keywords else "")
+        tag = re.sub(r"[^0-9A-Za-zÀ-ÿ]", "", tag_src)   # nettoie espaces/accents parasites pour un # valide
+        if tag and len(tag) >= 2:
+            hashtag = "#" + tag[0].upper() + tag[1:]
+            # insère avant une éventuelle source finale "(...)", sinon à la fin
+            msrc = re.search(r"\n*\([^()]{1,40}\)\s*$", body)
+            if msrc:
+                body = body[:msrc.start()].rstrip() + " " + hashtag + "\n\n" + body[msrc.start():].lstrip("\n")
+            else:
+                body = body.rstrip() + " " + hashtag
 
     return body, headline_court, image_query, keywords, person
 
@@ -1809,6 +1825,121 @@ def fetch_wikipedia_onthisday():
     except Exception as e:
         print(f"  ⚠️ Wikipedia: {e}")
         return []
+
+def gen_gta6_hype(conn):
+    """🎮 Canal GTA 6 (sortie 19 nov. 2026) : 1 à 2 tweets/jour sur les THÉORIES et RUMEURS de la
+    communauté (leaks, spéculations map/histoire/personnages), TOUJOURS clairement étiquetées
+    'THÉORIE' / 'RUMEUR'. N'entre PAS en concurrence avec une éventuelle news officielle GTA
+    (celle-ci passe par le flux normal). Renvoie un item spécial ou None. Max 2/jour."""
+    KIND = "gta6"
+    MAX_PAR_JOUR = 2
+    # Canal actif jusqu'à ~1 mois après la sortie (19 nov. 2026), puis on arrête (plus de "hype d'avant-sortie").
+    if datetime.now() > datetime(2026, 12, 20):
+        return None
+    # Combien déjà publiés aujourd'hui ?
+    today = datetime.now().strftime("%Y-%m-%d")
+    deja = conn.execute("SELECT COUNT(*) FROM special_log WHERE kind=? AND sent_at LIKE ?",
+                        (KIND, f"{today}%")).fetchone()[0]
+    if deja >= MAX_PAR_JOUR:
+        return None
+    # Espacement : au moins 5h depuis le dernier tweet GTA 6 (pour étaler les 1-2/jour, jamais 2 d'affilée).
+    last_gta = conn.execute("SELECT sent_at FROM special_log WHERE kind=? ORDER BY sent_at DESC LIMIT 1",
+                            (KIND,)).fetchone()
+    if last_gta:
+        try:
+            from datetime import datetime as _dt
+            delta_h = (datetime.now() - _dt.fromisoformat(last_gta[0])).total_seconds() / 3600
+            if delta_h < 5:
+                return None
+        except Exception:
+            pass
+    # Parcimonie : on ne tente PAS à chaque run (sinon appel Claude toutes les 15 min). ~1 run sur 4.
+    import random as _rr
+    if _rr.random() > 0.25:
+        return None
+    # Anti-répétition : sujets déjà traités ces 10 derniers jours
+    recents = recent_special_topics(conn, KIND, days=10)
+    recent_str = " / ".join(recents[-20:]) if recents else "(aucun)"
+
+    # Palette de thèmes communautaires pour varier les angles jour après jour
+    THEMES = ("la MAP et sa taille (Vice City / Leonida, zones cachées, easter eggs)",
+              "l'HISTOIRE et les personnages (Jason & Lucia, inspirations Bonnie & Clyde)",
+              "le GAMEPLAY spéculé (interactions, IA des PNJ, activités, immersion)",
+              "le MODE ONLINE et l'après-lancement (contenu, économie in-game)",
+              "les LEAKS et fuites (ce que la communauté pense avoir repéré dans les trailers)",
+              "les RECORDS attendus (ventes jour 1, budget, comparaisons)",
+              "les théories sur la BANDE-SON, les radios, la culture pop de Vice City",
+              "le COMPTE À REBOURS et la hype (J-X, attentes des fans)")
+    import random as _r
+    theme = _r.choice(THEMES)
+
+    # Conscience de la date : avant / semaine de sortie / après → ton adapté (toujours dans l'air du temps)
+    release = datetime(2026, 11, 19)
+    now = datetime.now()
+    jours = (release - now).days
+    if jours > 7:
+        temporalite = (f"Nous sommes à J-{jours} de la sortie (19 nov. 2026). Parle au FUTUR "
+                       f"(la hype monte, les fans spéculent sur ce qui arrive). Tu peux mentionner le compte à rebours.")
+    elif jours >= 0:
+        temporalite = (f"C'EST LA SEMAINE DE SORTIE (J-{jours} !). Ton d'excitation maximale, "
+                       f"dernières théories avant de découvrir la vérité dans quelques jours.")
+    else:
+        temporalite = (f"Le jeu est SORTI depuis {abs(jours)} jour(s) (le 19 nov. 2026). Parle au PASSÉ/PRÉSENT : "
+                       f"ce que les joueurs DÉCOUVRENT, les théories CONFIRMÉES ou DÉMENTIES par le jeu réel, "
+                       f"les easter eggs trouvés. NE dis JAMAIS que le jeu 'va sortir' : il est déjà là.")
+
+    try:
+        result = claude(f"""Tu écris pour Pulse, compte Twitter français. Sujet : GTA 6 (sortie officielle le 19 NOVEMBRE 2026, sur PS5 et Xbox Series X/S).
+
+⏰ CONTEXTE TEMPOREL (crucial pour être dans l'air du temps) : {temporalite}
+
+Génère UN tweet court et accrocheur autour de ce thème communautaire : {theme}.
+
+⚠️ RÈGLE ABSOLUE — C'EST UNE THÉORIE / RUMEUR DE FANS, PAS UN FAIT :
+- Le tweet doit être CLAIREMENT présenté comme une théorie, une rumeur ou une spéculation de la communauté. Emploie des marqueurs nets : "Théorie :", "Selon des fans", "La communauté spécule", "Rumeur non confirmée", "Ce ne serait qu'une théorie"...
+- N'affirme JAMAIS une rumeur comme un fait officiel. Ne prétends pas que Rockstar a confirmé quoi que ce soit qui ne l'a pas été.
+- Les SEULS faits officiels sûrs : date du 19 nov. 2026, PS5 + Xbox Series X/S, 2 protagonistes Jason et Lucia, cadre Leonida/Vice City inspiré de la Floride, prix 79,99$/99,99$. Le reste = spéculation à étiqueter comme telle.
+- Ne cite pas de fausse source précise. Reste sur "la communauté", "des fans", "des théories qui circulent".
+
+STYLE (développé mais TRÈS lisible — on explique la rumeur en entier, sans faire un pavé) :
+- 🎮 en tête. 1ʳᵉ ligne = l'accroche COURTE et intrigante (la théorie résumée en une punchline qui donne envie de lire).
+- LIGNE VIDE. Puis EXPLIQUE la théorie en 2-3 phrases : d'où elle vient (un détail de trailer, une observation de fans...), ce qu'elle avance précisément, et POURQUOI la communauté y croit. Chaque idée sur sa propre ligne ou séparée par une ligne vide — JAMAIS un bloc compact.
+- LIGNE VIDE. Puis la mention claire "⚠️ Théorie non confirmée / rumeur de fans" + le hashtag #GTA6.
+- Aéré : utilise les sauts de ligne pour respirer. Une info par ligne, des phrases courtes. C'est plus long qu'un tweet normal mais ça reste FLUIDE à lire, jamais indigeste.
+- Longueur cible : 400 à 600 caractères (assez pour bien expliquer, sans noyer). Français impeccable, 2-3 emojis bien placés max (🎮 🤯 👀 🌴 🔍).
+- Sujets déjà traités récemment (À ÉVITER pour varier) : {recent_str}
+
+Réponds en JSON UNIQUEMENT :
+{{"headline_court":"... (max 70 char, pour l'image)","image_query":"GTA 6 Vice City ... (anglais)","body":"🎮 ...","keywords":["gta6","..",".."]}}""", max_tokens=700)
+    except Exception as e:
+        print(f"  ⚠️ GTA6 hype: {e}")
+        return None
+
+    body = (result.get("body") or "").strip()
+    if not body or len(body) < 20:
+        return None
+    body = _split_long_lead(body)
+    # Garde-fou : s'assurer qu'un marqueur "théorie/rumeur/spéculation" est présent
+    if not re.search(r"th[ée]orie|rumeur|sp[ée]cul|selon des fans|non confirm|la communaut[ée]", body, re.I):
+        body += "\n\n⚠️ Théorie non confirmée."
+    if "#gta6" not in body.lower():
+        body += " #GTA6"
+
+    headline = _smart_truncate(result.get("headline_court", "GTA 6 — théorie de la communauté"), 80)
+    return {
+        "url": f"gta6-{today}-{deja+1}",
+        "title": headline,
+        "headline_court": headline,
+        "summary": "",
+        "source": "Théorie communauté",
+        "photo_url": None,
+        "analysis": {"category": "gta6", "needs_video": False},
+        "tweet": build_full_tweet(body, "gta6"),
+        "keywords": result.get("keywords", ["gta6", "rumeur", "theorie"]),
+        "image_query": result.get("image_query", "GTA 6 Vice City neon"),
+        "person": "",
+        "_special_kind": "gta6",
+    }
 
 def gen_histoire_du_jour(conn):
     if "histoire" in cats_today(conn):
@@ -5041,6 +5172,11 @@ def check_feeds(conn):
     if histoire and "histoire" not in used and len(top) < MAX_PAR_PASSE + 1:
         top.append(histoire); used.add("histoire")
 
+    # 🎮 GTA 6 — théories/rumeurs communauté (1 à 2×/jour, hors cadence, marqué "théorie")
+    gta = gen_gta6_hype(conn)
+    if gta and "gta6" not in used:
+        top.append(gta); used.add("gta6")
+
     if not top:
         print("  → Rien à publier.")
         return
@@ -5189,6 +5325,16 @@ def check_feeds(conn):
                 print(f"  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : {item['title'][:55]}")
                 time.sleep(2)
                 return
+
+            # 🎮 GTA 6 = canal bonus : on logue pour le compteur (max 2/jour) mais on NE touche PAS
+            # à mark_cat → il ne retarde pas le rythme des autres actus (comme le suivi France live).
+            if item.get("_special_kind") == "gta6":
+                log_special(conn, "gta6", item.get("keywords", ["gta6"]))
+                if item.get("url"):
+                    mark_seen(conn, item["url"], item["title"])
+                print(f"  🎮 GTA 6 (théorie) publié : {item['title'][:50]}")
+                time.sleep(4)
+                continue
 
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
