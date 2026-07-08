@@ -586,6 +586,59 @@ def _split_long_lead(body, max_lead=90):
         return new.strip()
     return body   # pas de frontière propre trouvée → on laisse tel quel
 
+# ── GARDE-FOU HASHTAG (source unique) ────────────────────────────────────────
+# Règle éditoriale : 1 hashtag minimum, qui doit être LE SUJET (nom propre) et se lire
+# NATURELLEMENT dans la phrase — jamais un bloc raccroché en fin de tweet, jamais un mot
+# générique (#Disparition, #Justice, #France...). On pose donc le « # » sur un mot DÉJÀ
+# présent dans le texte. Le repli (ajout en fin) ne sert que si aucun candidat n'y figure.
+_GENERIC_TAGS = {
+    "actualite", "actualité", "info", "infos", "news", "breaking", "urgent", "alerte",
+    "france", "justice", "bourse", "tech", "politique", "economie", "économie", "sport",
+    "monde", "societe", "société", "disparition", "enquete", "enquête", "proces", "procès",
+    "accident", "incendie", "meteo", "météo", "faitsdivers", "police", "sante", "santé",
+}
+
+def _hashtag_candidates(person, keywords):
+    """Candidats ordonnés : nom de famille, puis prénom, puis mots-clés majeurs."""
+    cands = []
+    if person:
+        parts = [p for p in str(person).split() if p]
+        if parts:
+            cands.append(parts[-1])          # le NOM de famille d'abord (#Mbappé, pas #Kylian)
+            cands.extend(parts[:-1])
+    cands.extend([str(k) for k in (keywords or [])])
+    out, seen = [], set()
+    for c in cands:
+        w = re.sub(r"[^0-9A-Za-zÀ-ÿ]", "", c)
+        if len(w) >= 3 and w.lower() not in seen:
+            seen.add(w.lower()); out.append(w)
+    return out
+
+def _attach_hashtag(body, person, keywords):
+    """Garantit UN hashtag, intégré dans la phrase si possible. Ne touche à rien s'il y en a déjà."""
+    if not body or "#" in body:
+        return body
+    cands = _hashtag_candidates(person, keywords)
+    if not cands:
+        return body
+    # la source finale « (Le Monde) » est une zone protégée : on n'y pose jamais de #
+    msrc = re.search(r"\n*\([^()]{1,40}\)\s*$", body)
+    core, tail = (body[:msrc.start()], body[msrc.start():]) if msrc else (body, "")
+
+    # 1) INTÉGRATION : le premier candidat réellement présent dans le texte reçoit le #
+    for w in cands:
+        m = re.search(rf"(?<![#\w]){re.escape(w)}(?!\w)", core, re.I)
+        if m:
+            found = core[m.start():m.end()]                      # garde la casse d'origine
+            tagged = "#" + found[0].upper() + found[1:]
+            return core[:m.start()] + tagged + core[m.end():] + tail
+
+    # 2) REPLI : aucun candidat dans le texte → on ajoute en fin, en évitant les mots génériques
+    pick = next((w for w in cands if w.lower() not in _GENERIC_TAGS), cands[0])
+    tag = "#" + pick[0].upper() + pick[1:]
+    core = core.rstrip() + " " + tag
+    return core + ("\n\n" + tail.lstrip("\n") if tail else "")
+
 def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, prev_angles=None, correction=None):
     """Génère tweet + titre image + image_query + mots-clés majeurs.
     prev_angles = titres déjà publiés par Pulse sur CE sujet (suite = nouvel angle obligatoire)."""
@@ -738,19 +791,8 @@ Réponds avec ce JSON UNIQUEMENT :
     pays           = result.get("pays", "").strip()
 
     # 🏷️ GARDE-FOU HASHTAG : un tweet ne doit jamais partir SANS hashtag (sauf hommage, qui reste sobre).
-    # Si le modèle en a oublié, on en pose UN pertinent, tiré du nom de la personne ou du 1er mot-clé,
-    # ajouté proprement en fin de tweet (avant la source si elle est là).
-    if category != "hommage" and "#" not in body:
-        tag_src = person if person else (keywords[0] if keywords else "")
-        tag = re.sub(r"[^0-9A-Za-zÀ-ÿ]", "", tag_src)   # nettoie espaces/accents parasites pour un # valide
-        if tag and len(tag) >= 2:
-            hashtag = "#" + tag[0].upper() + tag[1:]
-            # insère avant une éventuelle source finale "(...)", sinon à la fin
-            msrc = re.search(r"\n*\([^()]{1,40}\)\s*$", body)
-            if msrc:
-                body = body[:msrc.start()].rstrip() + " " + hashtag + "\n\n" + body[msrc.start():].lstrip("\n")
-            else:
-                body = body.rstrip() + " " + hashtag
+    if category != "hommage":
+        body = _attach_hashtag(body, person, keywords)
 
     return body, headline_court, image_query, keywords, person, pays
 
@@ -4237,26 +4279,52 @@ def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
     buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
 
 def publish_recap(conn):
-    """🌙 Récap du soir : les 5 infos qui ont marqué la journée (depuis les publications du jour)."""
+    """🌙 Récap du soir : les 5 infos qui ont marqué la journée (état FINAL, pas les titres du matin)."""
     rows = conn.execute(
-        "SELECT title FROM recent_titles WHERE date(added_at) = date('now') ORDER BY added_at DESC LIMIT 18"
+        "SELECT title FROM recent_titles WHERE date(added_at) = date('now') ORDER BY id DESC LIMIT 18"
     ).fetchall()
     titles = [r[0] for r in rows if r and r[0]]
     if len(titles) < 3:
         return False
+    titles = list(reversed(titles))   # du MATIN au SOIR : la dernière mention d'un sujet = son état final
+    # Date + heure de Paris : indispensable pour corriger les formulations devenues obsolètes.
+    try:
+        from zoneinfo import ZoneInfo
+        now_p = datetime.now(ZoneInfo("Europe/Paris"))
+    except Exception:
+        now_p = datetime.now()
+    now_str = f"{JOURS_FR[now_p.weekday()]} {now_p.day} {MOIS_FR[now_p.month - 1]} {now_p.year}, {now_p.hour}h{now_p.minute:02d}"
     arts = "\n".join(f"- {t}" for t in titles)
-    r = claude(f"""Voici les actus publiées AUJOURD'HUI par un compte d'actualité français :
+    r = claude(f"""Tu es le rédacteur en chef de Pulse, compte d'actualité français. Tu écris LE RÉCAP DU SOIR.
+Nous sommes {now_str}. Tu as suivi TOUTE la journée.
+
+Actus publiées aujourd'hui, du MATIN au SOIR (l'ordre compte) :
 {arts}
 
-Choisis les 5 PLUS MARQUANTES (les plus importantes/émotionnelles), de la plus forte à la moins forte.
-Pour chacune : reformule en UNE ligne percutante de 65 caractères MAXIMUM (français impeccable, factuel,
-rien d'inventé) + un emoji pertinent.
+Objectif : donner à un lecteur pressé LES infos à retenir de la journée, comme un journaliste qui a suivi l'actu — pas une IA qui recolle des titres.
+
+RÈGLES :
+1. 🕐 INTELLIGENCE TEMPORELLE : nous sommes {now_str}. Reformule tout ce qui est devenu FAUX. Un titre qui ANNONÇAIT un événement à venir ("verdict mardi", "ce soir", "demain") alors qu'il est déjà PASSÉ doit être réécrit à l'état ACCOMPLI ("verdict rendu", "condamné"). N'emploie "aujourd'hui/ce soir/mardi/demain" QUE si c'est encore exact maintenant.
+2. 🧵 UN SUJET = UNE LIGNE, À L'ÉTAT FINAL : si un sujet revient plusieurs fois (il a évolué), fusionne-le en UNE seule ligne reflétant sa DERNIÈRE évolution. Ex : enquête ouverte → suspect interpellé → mis en examen ⇒ une seule ligne « mis en examen ». JAMAIS deux lignes sur la même histoire.
+3. 🎯 SÉLECTION : garde les 5 infos les plus MARQUANTES de la journée (importance, impact, mémorisation), pas les 5 dernières. De la plus forte à la moins forte.
+4. ✍️ STRUCTURE de chaque ligne : « Sujet : information essentielle » — courte (≤ ~70 caractères), compréhensible SANS avoir suivi l'actu, factuelle, rien d'inventé, français impeccable, aucun style SEO. Un emoji pertinent en tête (jamais festif sur un drame).
+5. ✅ AVANT DE RÉPONDRE, vérifie chaque ligne : encore vraie à {now_str} ? compréhensible seule ? mérite le top 5 ? formulation naturelle ? Corrige sinon.
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"items":[{{"e":"⚽","t":"..."}},{{"e":"🚨","t":"..."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}}]}}""",
-        max_tokens=450)
-    items = [(str(it.get("e", "•"))[:2], _smart_truncate(str(it.get("t", "")), 72))
-             for it in (r.get("items") or []) if it.get("t")][:5]
+{{"items":[{{"e":"⚖️","t":"Sujet : info essentielle"}},{{"e":"🚨","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}}]}}""",
+        max_tokens=500)
+    # Filet anti-doublon : même si Claude sort 2 lignes sur le même sujet, on ne garde que la 1ʳᵉ
+    # (≥2 mots saillants communs = même histoire) → « un sujet = une ligne » garanti mécaniquement.
+    raw = [(str(it.get("e", "•"))[:2], _smart_truncate(str(it.get("t", "")), 72))
+           for it in (r.get("items") or []) if it.get("t")]
+    items, seen_sigs = [], []
+    for e, t in raw:
+        sw = _sig_words(t)
+        if len(sw) >= 2 and any(len(sw & ps) >= 2 for ps in seen_sigs):
+            continue
+        items.append((e, t)); seen_sigs.append(sw)
+        if len(items) >= 5:
+            break
     if len(items) < 3:
         return False
     body = f"🌙 LE RÉCAP | Ce qu'il faut retenir de ce {_date_fr()} :\n\n"
@@ -5019,10 +5087,15 @@ def publish_breaking(conn, item, cat, urgent=True):
     tweet_final = build_full_tweet(body, label_cat, country=pays)
     photo = extract_photo(item["entry"]) if "entry" in item else None
     raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, label_cat)
-    png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
-                             article_url=item.get("url"), person=person, W=1080, H=1350,
-                             prefetched=(raw_src, has_real), headline_bottom=True)
-    vid = build_video("news", {"headline": headline_court}, label_cat, raw_src, item["source"], urgent=urgent)
+    if has_real:
+        png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
+                                 article_url=item.get("url"), person=person, W=1080, H=1350,
+                                 prefetched=(raw_src, has_real), headline_bottom=True)
+        vid = build_video("news", {"headline": headline_court}, label_cat, raw_src, item["source"], urgent=urgent)
+    else:
+        # 🚫 Aucune vraie photo → breaking publié SANS image (texte seul), pas de vidéo dégradée.
+        png_bytes, vid = None, None
+        print("  🚫 Aucune vraie photo → breaking SANS image (texte seul)")
     try:
         post_to_twitter(tweet_final, png_bytes, vid)
     except Exception as e:
@@ -5031,10 +5104,14 @@ def publish_breaking(conn, item, cat, urgent=True):
         post_to_facebook(tweet_final, png_bytes, vid)
     except Exception as e:
         print(f"  ❌ Facebook isolé : {e}")
-    png_ig, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
-                          article_url=item.get("url"), person=person, W=1080, H=1350,
-                          prefetched=(raw_src, has_real), headline_bottom=True)
-    if ig_allowed(conn):
+    png_ig = None
+    if has_real:
+        png_ig, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
+                              article_url=item.get("url"), person=person, W=1080, H=1350,
+                              prefetched=(raw_src, has_real), headline_bottom=True)
+    if png_ig is None:
+        print("  ⏸️ Instagram sauté (pas d'image, texte seul)")
+    elif ig_allowed(conn):
         post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
         log_special(conn, "ig_post", [])
     else:
@@ -5484,6 +5561,15 @@ def check_feeds(conn):
                                             obituary["desc"], item["source"], W=1080, H=1350)
                 video_path = build_video("hommage", obituary, "hommage", raw_src, item["source"])
                 print(f"  🕊️ Carte hommage : {obituary['name']}")
+            elif not has_real:
+                # 🚫 Aucune vraie photo → on publie SANS visuel généré (ni carte, ni vidéo sur
+                # fond dégradé). On garde UNIQUEMENT une VRAIE vidéo de l'article si le média l'expose.
+                png_bytes = png_ig = png_nm = None
+                if not video_path:
+                    real_vid_url = extract_video_url(item.get("entry")) if item.get("entry") else None
+                    if real_vid_url:
+                        video_path = fetch_video_file(real_vid_url)
+                print("  🚫 Aucune vraie photo → publication SANS image (texte seul)")
             else:
                 png_bytes, png_nm = build_png(
                     headline_court, item["source"], cat, photo, image_query,
@@ -5517,7 +5603,9 @@ def check_feeds(conn):
                 posted_ok = posted_ok or (res_fb is not False and res_fb is not None)
             except Exception as e:
                 print(f"  ❌ Facebook isolé : {e}")
-            if ig_allowed(conn):
+            if png_ig is None:
+                print("  ⏸️ Instagram sauté pour ce post (pas d'image, texte seul)")
+            elif ig_allowed(conn):
                 try:
                     res_ig = post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
                     if res_ig is not False and res_ig is not None:
