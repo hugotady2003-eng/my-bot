@@ -2005,119 +2005,241 @@ def fetch_wikipedia_onthisday():
         print(f"  ⚠️ Wikipedia: {e}")
         return []
 
-def gen_gta6_hype(conn):
-    """🎮 Canal GTA 6 (sortie 19 nov. 2026) : 1 à 2 tweets/jour sur les THÉORIES et RUMEURS de la
-    communauté (leaks, spéculations map/histoire/personnages), TOUJOURS clairement étiquetées
-    'THÉORIE' / 'RUMEUR'. N'entre PAS en concurrence avec une éventuelle news officielle GTA
-    (celle-ci passe par le flux normal). Renvoie un item spécial ou None. Max 2/jour."""
+# ═══════════════════════════════════════════════════════════════════════════
+# 🎮 RUBRIQUE GTA VI — mini-rédaction spécialisée (temporaire, jusqu'à fin déc. 2026)
+# Principe : on ne PUBLIE QUE ce qui vient d'un VRAI article identifiable (jamais d'invention).
+# Chaque info reçoit un NIVEAU DE FIABILITÉ (1 officiel → 4 spéculation, rejetée) et une
+# CATÉGORIE (map, gameplay, personnages...) pour varier les sujets jour après jour.
+# ═══════════════════════════════════════════════════════════════════════════
+GTA6_RELEASE = datetime(2026, 11, 19)
+GTA6_END     = datetime(2027, 1, 1)     # rubrique désactivée automatiquement après fin déc. 2026
+
+GTA6_RX = re.compile(r"\bgta\s?(6|vi)\b|grand theft auto\s*(6|vi)\b", re.I)
+
+# Niveau 1 : annonce officielle Rockstar (priorité maximale)
+_GTA6_L1_RX = re.compile(
+    r"rockstar\s*(games)?\s*(annonce|confirme|dévoile|devoile|publie|officialise|présente)"
+    r"|communiqué officiel|officialise|bande[-\s]?annonce officielle|nouveau trailer|trailer\s*\d"
+    r"|date de sortie (officielle|confirmée)|report(é|e)\b|repouss|sortie repouss", re.I)
+# Niveau 2 : information fortement crédible (fichiers, recoupements, déclarations confirmées)
+_GTA6_L2_RX = re.compile(
+    r"datamin|fichiers? du jeu|code du jeu|dataminer|recoup|plusieurs médias|confirmé par"
+    r"|acteur|actrice|doubleur|doubleuse|fiche (produit|store)|page (store|steam|psn)"
+    r"|précommande|precommande|configuration requise|specs?\b", re.I)
+# Niveau 3 : rumeur crédible (à étiqueter comme telle)
+_GTA6_L3_RX = re.compile(
+    r"rumeur|leak|fuite|insider|selon (des|les|un)|théorie|theorie|spécul|specul"
+    r"|aurait|serait|pourrait|d'après (des|les)", re.I)
+# Contenus sans valeur éditoriale (guides, récaps) → écartés
+_GTA6_SKIP_RX = re.compile(r"tout (ce qu'on sait|savoir)|on fait le point|récap|recap|\bguide\b|soldes|promo", re.I)
+
+# Catégories de la rubrique (clé, emoji, libellé, détection) — sert à VARIER les sujets
+GTA6_CATEGORIES = [
+    ("map",        "🏙️", "Carte et environnement", r"\bmap\b|carte|leonida|monde ouvert|open world|ville|zone|easter egg"),
+    ("viceCity",   "🌴", "Vice City",              r"vice ?city"),
+    ("vehicules",  "🚗", "Véhicules",              r"véhicule|vehicule|voiture|bagnole|moto|avion|bateau|conduite"),
+    ("gameplay",   "🎮", "Gameplay",               r"gameplay|jouabilité|mécanique|missions?|braquage|activités|pnj|\bia\b"),
+    ("perso",      "👥", "Personnages",            r"personnage|protagoniste|jason|lucia|héros|antagoniste"),
+    ("histoire",   "📖", "Histoire",               r"histoire|scénario|scenario|intrigue|narration"),
+    ("economie",   "💰", "Économie du jeu",        r"économie|argent in-?game|microtransaction|shark card|monnaie"),
+    ("armes",      "🔫", "Armes",                  r"\barmes?\b|fusil|pistolet|arsenal"),
+    ("rockstar",   "🏢", "Rockstar Games",         r"rockstar|take[-\s]?two|houser"),
+    ("date",       "📅", "Date de sortie",         r"date de sortie|sortie du jeu|report|repouss|lancement"),
+    ("dev",        "🛠️", "Développement",          r"développement|developpement|studio|crunch|production"),
+    ("screens",    "📸", "Nouveaux screenshots",   r"screenshot|capture|image officielle|artwork"),
+    ("trailer",    "🎬", "Trailers",               r"trailer|bande[-\s]?annonce"),
+    ("bo",         "🎵", "Bande-son",              r"bande[-\s]?son|musique|radio|soundtrack|ost"),
+    ("communaute", "🔍", "Découvertes communauté", r"communauté|fans|joueurs ont|découverte|décrypt"),
+    ("technique",  "⚙️", "Aspects techniques",     r"technique|fps|60 ?fps|résolution|moteur|rage\b|performances?"),
+    ("graphismes", "🎨", "Graphismes",             r"graphisme|réalisme|realisme|visuel|ray[-\s]?tracing"),
+    ("editions",   "📦", "Éditions du jeu",        r"édition|edition collector|bonus de précommande|steelbook"),
+]
+
+def _gta6_level(title, summary, source):
+    """Niveau de fiabilité : 1 = officiel Rockstar, 2 = fortement crédible, 3 = rumeur crédible,
+    4 = spéculation sans élément solide (NE DOIT PAS être publiée)."""
+    t = f"{title} {summary}"
+    if _GTA6_SKIP_RX.search(title or ""):
+        return 4
+    if "rockstar" in (source or "").lower() or _GTA6_L1_RX.search(t):
+        return 1
+    if _GTA6_L2_RX.search(t):
+        return 2
+    if _GTA6_L3_RX.search(t):
+        return 3
+    return 4
+
+def _gta6_category(title, summary):
+    """Classe l'info dans une catégorie de la rubrique (pour varier les sujets)."""
+    t = f"{title} {summary}".lower()
+    for key, emoji, label, rx in GTA6_CATEGORIES:
+        if re.search(rx, t):
+            return key, emoji, label
+    return "actu", "🎮", "Actualité GTA 6"
+
+def _gta6_recent_cats(conn, days=2):
+    """Catégories GTA 6 déjà publiées ces derniers jours (pour ne pas se répéter)."""
+    rows = conn.execute(
+        "SELECT keywords FROM special_log WHERE kind='gta6' AND sent_at > datetime('now', ?)",
+        (f"-{days} days",)).fetchall()
+    cats = set()
+    for r in rows:
+        m = re.search(r"cat:(\w+)", r[0] or "")
+        if m:
+            cats.add(m.group(1))
+    return cats
+
+def gen_gta6_hype(conn, candidates=None):
+    """🎮 Rubrique GTA VI : mini-rédaction spécialisée, ancrée sur de VRAIS articles.
+    Sélectionne l'info la plus fiable/variée du moment (niveaux 1-3 ; niveau 4 rejeté),
+    la rédige comme un journaliste spécialisé, et garantit une image. Max 2/jour.
+    Une annonce OFFICIELLE Rockstar (niveau 1) est prioritaire et passe hors cadence.
+    Renvoie un item spécial ou None (le silence vaut mieux qu'une info sans valeur)."""
     KIND = "gta6"
     MAX_PAR_JOUR = 2
-    # Canal actif jusqu'à ~1 mois après la sortie (19 nov. 2026), puis on arrête (plus de "hype d'avant-sortie").
-    if datetime.now() > datetime(2026, 12, 20):
+    if datetime.now() >= GTA6_END:          # rubrique désactivée automatiquement après fin déc. 2026
         return None
-    # Combien déjà publiés aujourd'hui ?
     today = datetime.now().strftime("%Y-%m-%d")
     deja = conn.execute("SELECT COUNT(*) FROM special_log WHERE kind=? AND sent_at LIKE ?",
                         (KIND, f"{today}%")).fetchone()[0]
     if deja >= MAX_PAR_JOUR:
         return None
-    # Espacement : au moins 5h depuis le dernier tweet GTA 6 (pour étaler les 1-2/jour, jamais 2 d'affilée).
-    last_gta = conn.execute("SELECT sent_at FROM special_log WHERE kind=? ORDER BY sent_at DESC LIMIT 1",
-                            (KIND,)).fetchone()
-    if last_gta:
-        try:
-            from datetime import datetime as _dt
-            delta_h = (datetime.now() - _dt.fromisoformat(last_gta[0])).total_seconds() / 3600
-            if delta_h < 5:
-                return None
-        except Exception:
-            pass
-    # Parcimonie : on ne tente PAS à chaque run (sinon appel Claude toutes les 15 min). ~1 run sur 4.
-    import random as _rr
-    if _rr.random() > 0.25:
-        return None
-    # Anti-répétition : sujets déjà traités ces 10 derniers jours
+
+    # ── 1. On ne travaille QUE sur de vrais articles GTA 6 des flux (jamais d'invention) ──
+    pool = []
+    for c in (candidates or []):
+        blob = f"{c.get('title','')} {c.get('summary','')}"
+        if not GTA6_RX.search(blob):
+            continue
+        lvl = _gta6_level(c.get("title", ""), c.get("summary", ""), c.get("source", ""))
+        if lvl >= 4:                        # spéculation sans élément solide → jamais publiée
+            continue
+        key, emoji, label = _gta6_category(c.get("title", ""), c.get("summary", ""))
+        pool.append({"c": c, "level": lvl, "cat": key, "emoji": emoji, "label": label})
+    if not pool:
+        return None                          # rien de solide aujourd'hui → on ne publie rien
+
+    # ── 2. Anti-répétition : on écarte un sujet déjà traité récemment ──
     recents = recent_special_topics(conn, KIND, days=10)
-    recent_str = " / ".join(recents[-20:]) if recents else "(aucun)"
+    recent_sigs = [_sig_words(t) for t in recents if t]
+    fresh = []
+    for p in pool:
+        sw = _sig_words(p["c"].get("title", ""))
+        if len(sw) >= 2 and any(len(sw & rs) >= 2 for rs in recent_sigs):
+            continue
+        fresh.append(p)
+    pool = fresh or pool
 
-    # Palette de thèmes communautaires pour varier les angles jour après jour
-    THEMES = ("la MAP et sa taille (Vice City / Leonida, zones cachées, easter eggs)",
-              "l'HISTOIRE et les personnages (Jason & Lucia, inspirations Bonnie & Clyde)",
-              "le GAMEPLAY spéculé (interactions, IA des PNJ, activités, immersion)",
-              "le MODE ONLINE et l'après-lancement (contenu, économie in-game)",
-              "les LEAKS et fuites (ce que la communauté pense avoir repéré dans les trailers)",
-              "les RECORDS attendus (ventes jour 1, budget, comparaisons)",
-              "les théories sur la BANDE-SON, les radios, la culture pop de Vice City",
-              "le COMPTE À REBOURS et la hype (J-X, attentes des fans)")
-    import random as _r
-    theme = _r.choice(THEMES)
+    # ── 3. Priorité : fiabilité d'abord, puis VARIÉTÉ (catégorie pas vue ces 2 jours) ──
+    recent_cats = _gta6_recent_cats(conn, days=2)
+    pool.sort(key=lambda p: (p["level"], 1 if p["cat"] in recent_cats else 0))
+    best = pool[0]
+    level, art = best["level"], best["c"]
 
-    # Conscience de la date : avant / semaine de sortie / après → ton adapté (toujours dans l'air du temps)
-    release = datetime(2026, 11, 19)
-    now = datetime.now()
-    jours = (release - now).days
+    # ── 4. Cadence : l'officiel (niveau 1) est prioritaire et passe hors cadence ──
+    if level > 1:
+        last_gta = conn.execute("SELECT sent_at FROM special_log WHERE kind=? ORDER BY sent_at DESC LIMIT 1",
+                                (KIND,)).fetchone()
+        if last_gta:
+            try:
+                from datetime import datetime as _dt
+                if (datetime.now() - _dt.fromisoformat(last_gta[0])).total_seconds() / 3600 < 5:
+                    return None              # au moins 5h entre deux tweets GTA 6
+            except Exception:
+                pass
+        import random as _rr
+        if _rr.random() > 0.35:              # parcimonie : on ne tente pas à chaque run (coût API)
+            return None
+
+    # ── 5. Conscience de la date (avant / semaine de sortie / après) ──
+    jours = (GTA6_RELEASE - datetime.now()).days
     if jours > 7:
-        temporalite = (f"Nous sommes à J-{jours} de la sortie (19 nov. 2026). Parle au FUTUR "
-                       f"(la hype monte, les fans spéculent sur ce qui arrive). Tu peux mentionner le compte à rebours.")
+        temporalite = (f"Nous sommes à J-{jours} de la sortie (19 nov. 2026). Parle au FUTUR : "
+                       f"la hype monte, les fans attendent.")
     elif jours >= 0:
-        temporalite = (f"C'EST LA SEMAINE DE SORTIE (J-{jours} !). Ton d'excitation maximale, "
-                       f"dernières théories avant de découvrir la vérité dans quelques jours.")
+        temporalite = f"C'EST LA SEMAINE DE SORTIE (J-{jours} !). Ton d'excitation, la sortie est imminente."
     else:
-        temporalite = (f"Le jeu est SORTI depuis {abs(jours)} jour(s) (le 19 nov. 2026). Parle au PASSÉ/PRÉSENT : "
-                       f"ce que les joueurs DÉCOUVRENT, les théories CONFIRMÉES ou DÉMENTIES par le jeu réel, "
-                       f"les easter eggs trouvés. NE dis JAMAIS que le jeu 'va sortir' : il est déjà là.")
+        temporalite = (f"Le jeu est SORTI depuis {abs(jours)} jour(s). Parle au PASSÉ/PRÉSENT : ce que les "
+                       f"joueurs DÉCOUVRENT. NE dis JAMAIS que le jeu 'va sortir' : il est déjà là.")
+
+    # ── 6. Consignes de rédaction adaptées au NIVEAU DE FIABILITÉ ──
+    if level == 1:
+        fiabilite = ("NIVEAU 1 — ANNONCE OFFICIELLE ROCKSTAR. C'est un FAIT confirmé. Écris-le comme une "
+                     "news factuelle et forte. N'emploie AUCUN mot de rumeur (pas de 'théorie', "
+                     "'rumeur', 'il se pourrait'). Ne mets AUCUN avertissement de non-confirmation.")
+        longueur = "Longueur : 200 à 400 caractères. Direct, percutant."
+    elif level == 2:
+        fiabilite = ("NIVEAU 2 — INFORMATION FORTEMENT CRÉDIBLE (fichiers du jeu, recoupements, déclaration "
+                     "confirmée). Présente-la comme sérieuse mais NON officielle : précise d'où elle vient "
+                     "(ex : 'repéré dans les fichiers du jeu', 'confirmé par l'acteur'). Pas de 'Rockstar confirme' "
+                     "si Rockstar n'a rien dit.")
+        longueur = "Longueur : 250 à 450 caractères."
+    else:
+        fiabilite = ("NIVEAU 3 — RUMEUR CRÉDIBLE. Elle DOIT être présentée comme une rumeur non confirmée. "
+                     "Marqueurs obligatoires : 'Rumeur :', 'Selon...', 'Ce ne serait qu'une théorie', "
+                     "'non confirmé'. N'affirme JAMAIS la rumeur comme un fait. Ne prétends jamais que "
+                     "Rockstar a confirmé quoi que ce soit.")
+        longueur = "Longueur : 350 à 550 caractères (explique la rumeur : d'où elle vient, ce qu'elle avance, pourquoi les fans y croient)."
 
     try:
-        result = claude(f"""Tu écris pour Pulse, compte Twitter français. Sujet : GTA 6 (sortie officielle le 19 NOVEMBRE 2026, sur PS5 et Xbox Series X/S).
+        result = claude(f"""Tu es le journaliste de Pulse spécialisé GTA VI (sortie le 19 NOVEMBRE 2026, PS5 / Xbox Series X|S).
+Tu écris en français, pour une communauté de fans passionnés.
 
-⏰ CONTEXTE TEMPOREL (crucial pour être dans l'air du temps) : {temporalite}
+⏰ CONTEXTE TEMPOREL : {temporalite}
 
-Génère UN tweet court et accrocheur autour de ce thème communautaire : {theme}.
+📰 L'ARTICLE (ta SEULE source — n'invente RIEN, n'ajoute aucun fait absent d'ici) :
+- Titre : {art.get('title','')}
+- Résumé : {art.get('summary','')}
+- Média : {art.get('source','')}
+- Catégorie de la rubrique : {best['emoji']} {best['label']}
 
-⚠️ RÈGLE ABSOLUE — C'EST UNE THÉORIE / RUMEUR DE FANS, PAS UN FAIT :
-- Le tweet doit être CLAIREMENT présenté comme une théorie, une rumeur ou une spéculation de la communauté. Emploie des marqueurs nets : "Théorie :", "Selon des fans", "La communauté spécule", "Rumeur non confirmée", "Ce ne serait qu'une théorie"...
-- N'affirme JAMAIS une rumeur comme un fait officiel. Ne prétends pas que Rockstar a confirmé quoi que ce soit qui ne l'a pas été.
-- Les SEULS faits officiels sûrs : date du 19 nov. 2026, PS5 + Xbox Series X/S, 2 protagonistes Jason et Lucia, cadre Leonida/Vice City inspiré de la Floride, prix 79,99$/99,99$. Le reste = spéculation à étiqueter comme telle.
-- Ne cite pas de fausse source précise. Reste sur "la communauté", "des fans", "des théories qui circulent".
+🔎 FIABILITÉ — {fiabilite}
 
-STYLE (développé mais TRÈS lisible — on explique la rumeur en entier, sans faire un pavé) :
-- 🎮 en tête. 1ʳᵉ ligne = l'accroche COURTE et intrigante (la théorie résumée en une punchline qui donne envie de lire).
-- LIGNE VIDE. Puis EXPLIQUE la théorie en 2-3 phrases : d'où elle vient (un détail de trailer, une observation de fans...), ce qu'elle avance précisément, et POURQUOI la communauté y croit. Chaque idée sur sa propre ligne ou séparée par une ligne vide — JAMAIS un bloc compact.
-- LIGNE VIDE. Puis la mention claire "⚠️ Théorie non confirmée / rumeur de fans" + le hashtag #GTA6.
-- Aéré : utilise les sauts de ligne pour respirer. Une info par ligne, des phrases courtes. C'est plus long qu'un tweet normal mais ça reste FLUIDE à lire, jamais indigeste.
-- Longueur cible : 400 à 600 caractères (assez pour bien expliquer, sans noyer). Français impeccable, 2-3 emojis bien placés max (🎮 🤯 👀 🌴 🔍).
-- Sujets déjà traités récemment (À ÉVITER pour varier) : {recent_str}
+MISSION : ne résume pas l'article, réponds à « pourquoi cette info intéresse les fans de GTA VI ? ».
+Apporte du contexte, un rappel ou une conséquence quand c'est pertinent et VRAI.
+
+STYLE :
+- 🎮 (ou {best['emoji']}) en tête. 1ʳᵉ ligne = accroche COURTE qui donne l'info (jamais de teaser type "vous n'allez pas croire").
+- LIGNE VIDE, puis le détail : une idée par ligne, phrases courtes, JAMAIS un pavé.
+- Termine par le média entre parenthèses : ({art.get('source','')})
+- {longueur}
+- 2-3 emojis max, bien choisis (🎮 🌴 👀 🔍 🚗). Le hashtag #GTA6 doit apparaître, intégré naturellement.
+- Faits, chiffres et citations STRICTEMENT fidèles à l'article. Aucune fausse source.
 
 Réponds en JSON UNIQUEMENT :
-{{"headline_court":"... (max 70 char, pour l'image)","image_query":"GTA 6 Vice City ... (anglais)","body":"🎮 ...","keywords":["gta6","..",".."]}}""", max_tokens=700)
+{{"headline_court":"... (max 70 char, pour l'image)","image_query":"GTA 6 ... (anglais, décrit une image du sujet)","body":"🎮 ...","keywords":["GTA6","..",".."]}}""", max_tokens=700)
     except Exception as e:
-        print(f"  ⚠️ GTA6 hype: {e}")
+        print(f"  ⚠️ GTA6: {e}")
         return None
 
     body = (result.get("body") or "").strip()
     if not body or len(body) < 20:
         return None
     body = _split_long_lead(body)
-    # Garde-fou : s'assurer qu'un marqueur "théorie/rumeur/spéculation" est présent
-    if not re.search(r"th[ée]orie|rumeur|sp[ée]cul|selon des fans|non confirm|la communaut[ée]", body, re.I):
-        body += "\n\n⚠️ Théorie non confirmée."
-    if "#gta6" not in body.lower():
-        body += " #GTA6"
 
-    headline = _smart_truncate(result.get("headline_court", "GTA 6 — théorie de la communauté"), 80)
+    # Garde-fou rumeur : UNIQUEMENT pour les niveaux 2-3 (jamais sur une annonce officielle !)
+    if level >= 3 and not re.search(r"th[ée]orie|rumeur|sp[ée]cul|selon|non confirm|la communaut[ée]", body, re.I):
+        body += "\n\n⚠️ Rumeur non confirmée."
+    if "#gta6" not in body.lower():
+        body = _attach_hashtag(body, "", ["GTA6"])
+
+    headline = _smart_truncate(result.get("headline_court", "GTA 6"), 80)
     return {
-        "url": f"gta6-{today}-{deja+1}",
-        "title": headline,
+        "url": art.get("url"),                       # VRAI article → og:image réelle + anti-doublon
+        "title": art.get("title", headline),
         "headline_court": headline,
-        "summary": "",
-        "source": "Théorie communauté",
-        "photo_url": None,
+        "summary": art.get("summary", ""),
+        "source": art.get("source", ""),
+        "entry": art.get("entry"),
+        "photo_url": extract_photo(art["entry"]) if art.get("entry") else None,
         "analysis": {"category": "gta6", "needs_video": False},
         "tweet": build_full_tweet(body, "gta6"),
-        "keywords": result.get("keywords", ["gta6", "rumeur", "theorie"]),
+        "keywords": result.get("keywords", ["GTA6"]),
         "image_query": result.get("image_query", "GTA 6 Vice City neon"),
         "person": "",
         "_special_kind": "gta6",
+        "_gta6_cat": best["cat"],
+        "_gta6_level": level,
     }
 
 def gen_histoire_du_jour(conn):
@@ -4966,6 +5088,38 @@ PRERANK_HOT = [
     (6, r"(coupe du monde|mondial|cdm).{0,50}(\d{1,2}\s?[-:–]\s?\d{1,2}|succès|s'impose|écrase|bat |élimin|victoire|qualifi)"),
     (6, r"(\d{1,2}\s?[-:–]\s?\d{1,2}|s'impose|écrase|succès).{0,50}(coupe du monde|mondial|cdm)"),
     (4, r"\b\d{1,2}\s?[-:–]\s?\d{1,2}\b"),   # un score chiffré dans le titre = match terminé à pousser
+
+    # ── ⚖️ LOI & INSTITUTIONS (angle mort historique : une loi qui change la vie du pays) ──
+    (4, r"\bloi\b|projet de loi|proposition de loi|adopt(e|é|ée)\b|\bvot(e|é|ée)\b|promulg|décret|ordonnance"
+        r"|sénat|assemblée nationale|conseil constitutionnel|cour de cassation|conseil d'état|cour suprême"
+        r"|référendum|motion de censure|\b49\.?3\b|remaniement|constitution|amendement|abrog"),
+    # ── 🚓 POLICE & USAGE DE LA FORCE ──
+    (4, r"policier|policière|gendarme|\bcrs\b|\bigpn\b|arme létale|légitime défense|refus d'obtempérer"
+        r"|violences policières|bavure|présomption d'innocence|garde des sceaux|ministre de l'intérieur"
+        r"|tir(s|e)? (mortel|sur)|coup de feu"),
+    # ── 🌍 GUERRE & INTERNATIONAL ──
+    (4, r"\bguerre\b|frappes?|bombard|missile|drone|offensive|invasion|cessez-le-feu|trêve|représailles"
+        r"|\botan\b|\bonu\b|sanctions? contre|embargo|\bgaza\b|ukraine|\biran\b|détroit d'ormuz|corée du nord"),
+    # ── 🏥 SANTÉ PUBLIQUE & ALERTES SANITAIRES ──
+    (4, r"épidémie|pandémie|contamination|intoxication|listeria|salmonell|\be\.? ?coli\b|rappel (produit|massif|de lots?)"
+        r"|pénurie de médicaments|scandale sanitaire|\bvirus\b|grippe aviaire|empoisonn"),
+    # ── 🌡️ CLIMAT & CATASTROPHES NATURELLES ──
+    (4, r"vigilance rouge|alerte rouge|canicule|séisme|tremblement de terre|tsunami|inondation|crue"
+        r"|tempête|ouragan|tornade|éruption|évacuation|sécheresse historique|feu de forêt"),
+    # ── 💶 ÉCONOMIE DU QUOTIDIEN (« en quoi ça me concerne ? ») ──
+    (3, r"pouvoir d'achat|inflation|hausse des prix|carburant|prix de l'essence|facture d'électricité|prix du gaz"
+        r"|\bimpôt|nouvelle taxe|\bsmic\b|retraites?\b|chômage|licenciement|plan social|faillite|pénurie"
+        r"|augmentation des prix|gel des prix"),
+    # ── 🚆 TRANSPORTS & SERVICES PUBLICS ──
+    (3, r"\bsncf\b|\bratp\b|aéroport|trafic interrompu|coupure (de courant|d'électricité)|panne géante"
+        r"|grève des|vol annulé|circulation interrompue"),
+    # ── 👤 GRANDES PERSONNALITÉS & POUVOIR ──
+    (3, r"macron|premier ministre|président de la république|élysée|matignon|\bpape\b|\btrump\b|poutine"
+        r"|zelensky|netanyahu|von der leyen"),
+    # ── 🎓 ÉDUCATION & JEUNESSE ──
+    (2, r"harcèlement scolaire|réforme (du|des) (bac|lycée|collège)|professeur agressé|fermeture d'école"),
+    # ── 🏆 GRANDS RENDEZ-VOUS CULTURELS ──
+    (2, r"césars?\b|oscars?\b|palme d'or|prix goncourt|eurovision|jeux olympiques|\bjo 20\d\d\b"),
 ]
 PRERANK_COLD = [
     (-4, r"app store|bundle|abonnement|partenariat|trimestriel|levée de fonds|lève des fonds|acquisition|\bapi\b|mise à jour|fonctionnalité|s'associe"),
@@ -4976,33 +5130,60 @@ PRERANK_COLD = [
     (-4, r"horoscope|programme tv|replay|podcast|diaporama|quiz|recette|bons plans|promo|soldes|comparatif|notre sélection|que regarder|que faire ce"),
     (-3, r"triathlon|marathon de|championnats? du monde de|coupe du monde de (handball|rugby|natation|judo)|open de|tournoi de"),
 ]
-def prerank_candidates(cands, keep):
+PRERANK_WILDCARD = 4     # places réservées : un sujet majeur au vocabulaire imprévu doit atteindre Claude
+
+def prerank_candidates(cands, keep, wildcard=PRERANK_WILDCARD):
     """Classement heuristique gratuit : mots chauds/froids + écho multi-sources.
-    Fini le tirage au sort : les articles les plus prometteurs partent en analyse."""
+    ⚠️ Une liste de mots-clés ne sera JAMAIS exhaustive : un sujet majeur peut arriver avec un
+    vocabulaire imprévu (ex : une loi sur le tir des policiers = 0 mot chaud). On réserve donc
+    `wildcard` places aux articles les plus RÉCENTS non retenus au score — hors contenus
+    manifestement froids (horoscope, promos...). Le classement final reste fait par Claude."""
     sigs = [_sig_words(c["title"]) for c in cands]
-    scored_idx = []
+    scored_idx, cold_of = [], {}
     for i, c in enumerate(cands):
         t = (c["title"] + " " + (c.get("summary") or "")[:120]).lower()
-        s = 0.0
+        s, cold = 0.0, 0.0
         for w, rx in PRERANK_HOT:
             if re.search(rx, t): s += w
         for w, rx in PRERANK_COLD:
-            if re.search(rx, t): s += w
+            if re.search(rx, t): cold += w
+        s += cold
+        cold_of[i] = cold
         echo = sum(1 for j in range(len(cands))
                    if j != i and cands[j]["source"] != c["source"] and len(sigs[i] & sigs[j]) >= 2)
         s += min(6, echo * 2)            # repris par plusieurs médias = important
         s += random.random() * 0.5       # micro-aléa pour départager
         scored_idx.append((s, i))
     scored_idx.sort(key=lambda x: -x[0])
-    # Dédup intra-lot : un même sujet repris par plusieurs sources n'est analysé qu'UNE fois
-    # (≥3 mots significatifs communs = quasi-doublon ; l'écho a déjà boosté son score)
-    kept, kept_sigs = [], []
-    for s, i in scored_idx:
+
+    kept, kept_sigs, kept_idx = [], [], set()
+
+    def _take(i):
+        # Dédup intra-lot : un même sujet repris par plusieurs sources n'est analysé qu'UNE fois
         if any(len(sigs[i] & ks) >= 3 for ks in kept_sigs):
-            continue
-        kept.append(cands[i]); kept_sigs.append(sigs[i])
-        if len(kept) >= keep:
-            break
+            return False
+        kept.append(cands[i]); kept_sigs.append(sigs[i]); kept_idx.add(i)
+        return True
+
+    # 1) Le gros du lot : les meilleurs scores (les favoris ne sont jamais évincés)
+    par_score = max(1, keep - max(0, wildcard))
+    for s, i in scored_idx:
+        if len(kept) >= par_score: break
+        _take(i)
+
+    # 2) Places JOKER : les articles les plus récents non retenus (anti-angle-mort du vocabulaire)
+    if wildcard > 0 and len(kept) < keep:
+        rest = [i for i in range(len(cands)) if i not in kept_idx and cold_of[i] > -3]
+        rest.sort(key=lambda i: -(cands[i].get("pub_ts") or 0))
+        for i in rest:
+            if len(kept) >= keep: break
+            _take(i)
+
+    # 3) S'il reste des places (peu de candidats récents), on complète par score
+    for s, i in scored_idx:
+        if len(kept) >= keep: break
+        if i in kept_idx: continue
+        _take(i)
     return kept
 
 # Mots ULTRA-CHAUDS : une vraie urgence est souvent en ligne avant que 3 médias la reprennent.
@@ -5469,9 +5650,13 @@ def check_feeds(conn):
     if histoire and "histoire" not in used and len(top) < MAX_PAR_PASSE + 1:
         top.append(histoire); used.add("histoire")
 
-    # 🎮 GTA 6 — théories/rumeurs communauté (1 à 2×/jour, hors cadence, marqué "théorie")
-    gta = gen_gta6_hype(conn)
+    # 🎮 GTA 6 — rubrique spécialisée, ancrée sur de VRAIS articles (max 2/jour, hors cadence)
+    gta = gen_gta6_hype(conn, candidates)
     if gta and "gta6" not in used:
+        # Anti-doublon : si le même article est déjà pris par le flux normal, la rubrique
+        # spécialisée l'emporte (traitement éditorial dédié) et on retire la version générique.
+        if gta.get("url"):
+            top = [it for it in top if it.get("url") != gta["url"]]
         top.append(gta); used.add("gta6")
 
     if not top:
@@ -5561,9 +5746,10 @@ def check_feeds(conn):
                                             obituary["desc"], item["source"], W=1080, H=1350)
                 video_path = build_video("hommage", obituary, "hommage", raw_src, item["source"])
                 print(f"  🕊️ Carte hommage : {obituary['name']}")
-            elif not has_real:
+            elif not has_real and cat != "gta6":
                 # 🚫 Aucune vraie photo → on publie SANS visuel généré (ni carte, ni vidéo sur
                 # fond dégradé). On garde UNIQUEMENT une VRAIE vidéo de l'article si le média l'expose.
+                # Exception : la rubrique GTA 6 exige TOUJOURS une image (carte Pulse à défaut de photo).
                 png_bytes = png_ig = png_nm = None
                 if not video_path:
                     real_vid_url = extract_video_url(item.get("entry")) if item.get("entry") else None
@@ -5638,10 +5824,11 @@ def check_feeds(conn):
             # 🎮 GTA 6 = canal bonus : on logue pour le compteur (max 2/jour) mais on NE touche PAS
             # à mark_cat → il ne retarde pas le rythme des autres actus (comme le suivi France live).
             if item.get("_special_kind") == "gta6":
-                log_special(conn, "gta6", item.get("keywords", ["gta6"]))
+                # on mémorise la CATÉGORIE + le sujet : sert à varier les thèmes et à éviter les redites
+                log_special(conn, "gta6", [f"cat:{item.get('_gta6_cat','actu')}", item.get("title", "")])
                 if item.get("url"):
                     mark_seen(conn, item["url"], item["title"])
-                print(f"  🎮 GTA 6 (théorie) publié : {item['title'][:50]}")
+                print(f"  🎮 GTA 6 (niveau {item.get('_gta6_level','?')} · {item.get('_gta6_cat','')}) : {item['title'][:45]}")
                 time.sleep(4)
                 continue
 
