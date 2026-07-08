@@ -3562,6 +3562,9 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1080, H=1350):
 # VIDÉOS ANIMÉES (motion design Pulse) — 0 appel Claude, rendu local + ffmpeg
 # ═══════════════════════════════════════════════════════════════════════════
 VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1280, 720, 20, 6.5
+# 📱 Vidéos d'ACTU : format PORTRAIT 4:5 — occupe bien plus de hauteur dans le fil X,
+# façon « carte info » (photo plein cadre + dégradé noir en bas + titre qui s'écrit).
+NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR = 1080, 1350, 7.5
 
 def _vf(px, bold=True, italic=False, serif=False):
     if serif:
@@ -3922,6 +3925,8 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
     try:
         print(f"  🎬 Génération vidéo ({kind})...")
         W, H, FPS, DUR = VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR
+        if kind == "news":
+            W, H, DUR = NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR   # portrait 4:5 pour le fil X
         N = int(FPS * DUR)
         sober = (kind == "hommage")
         flags_v = None
@@ -4054,21 +4059,36 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         tmpd = ImageDraw.Draw(Image.new("RGB", (8, 8)))
         HFONT, HLINES, LH, HY0 = None, [], 0, 0
         if kind == "news":
-            headline = re.sub(r'#(\w+)', r'\1', str(data.get("headline", "")))[:90]   # hashtags retirés
-            # largeur de texte calée sur l'intérieur du panneau (marges confortables des deux côtés)
-            HFONT, HLINES = _wrap_fit(tmpd, headline, int(W * 0.80), int(W * 0.048), max_lines=3)
-            LH = int(HFONT.size * 1.26)
-            HY0 = FOOTER_Y - int(H * 0.040) - LH * len(HLINES)   # bloc collé au-dessus du pied de page
-            # panneau de verre précalculé (construit 1× au lieu de chaque frame)
-            _pad_top, _pad_bot = int(H * 0.030), int(H * 0.034)
-            _block_h = LH * len(HLINES)
-            GP_X0 = int(W * 0.05)
-            GP_Y0 = HY0 - _pad_top
-            GP_W = W - 2 * GP_X0
-            GP_H = _block_h + _pad_top + _pad_bot
-            GP_PADTOP, GP_BLOCKH = _pad_top, _block_h
-            glass_title_panel = _glass_panel((GP_W, GP_H), radius=int(H * 0.045),
-                                             tint_a=22, border_a=80, accent=accent_rgb)
+            headline = re.sub(r'#(\w+)', r'\1', str(data.get("headline", "")))[:120]   # hashtags retirés
+            # Portrait : titre large, gros, jusqu'à 5 lignes (style « carte info »)
+            HFONT, HLINES = _wrap_fit(tmpd, headline, int(W * 0.86), int(W * 0.062), max_lines=5)
+            LH = int(HFONT.size * 1.24)
+            HY0 = FOOTER_Y - int(H * 0.035) - LH * len(HLINES)   # bloc collé au-dessus du pied de page
+
+            # 🌑 Dégradé noir montant du bas : la photo reste nette en haut, le texte est lisible en bas.
+            # Montée douce au-dessus du titre, puis noir DENSE dès la 1ʳᵉ ligne (contraste type "carte info").
+            _y_soft = max(0, HY0 - int(H * 0.20))    # début de l'assombrissement
+            _y_text = max(_y_soft + 1, HY0 - int(H * 0.02))
+            _col_s = Image.new("RGBA", (1, H), (0, 0, 0, 0))
+            for y in range(H):
+                if y <= _y_soft:
+                    a = 0
+                elif y < _y_text:
+                    a = int(208 * (((y - _y_soft) / (_y_text - _y_soft)) ** 1.25))
+                else:
+                    a = 208 + int(44 * (y - _y_text) / max(1, H - _y_text))
+                _col_s.putpixel((0, y), (0, 0, 0, min(252, a)))
+            news_scrim = _col_s.resize((W, H))
+
+            # ✍️ Texte découpé en MOTS : chacun apparaît l'un après l'autre (effet « qui s'écrit »)
+            HWORDS, _x0 = [], int(W * 0.07)
+            for i, line in enumerate(HLINES):
+                x = _x0
+                for word in line.split(" "):
+                    if word:
+                        HWORDS.append((x, HY0 + i * LH, word))
+                        x += int(tmpd.textlength(word + " ", font=HFONT))
+            glass_title_panel = None
 
         out_dir = tempfile.mkdtemp(prefix="pulsevid_")
         for n in range(N):
@@ -4091,7 +4111,8 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             pdx = int(math.sin(t * 0.6) * W * 0.012)
             pdy = int(-(t / DUR) * H * 0.06)
             img.alpha_composite(layer_part, (pdx, pdy))
-            img.alpha_composite(bands)
+            if kind != "news":
+                img.alpha_composite(bands)   # news : remplacé par le dégradé noir du bas
             if intl_grad is not None:
                 img.alpha_composite(intl_grad)
             # barre néon défilante (nuances de la catégorie)
@@ -4151,31 +4172,27 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
 
             # ── contenu central selon le type ──
             if kind == "news":
-                # Panneau de verre qui monte en douceur (slide + fade fluide, sans rebond sec)
-                panel_in = _ease_quint((t - 1.5) / 1.0)
-                if panel_in > 0:
-                    slide = int((1 - panel_in) * H * 0.10)
-                    pan = glass_title_panel
-                    if panel_in < 1:
-                        pan = pan.copy()
-                        pan.putalpha(pan.split()[3].point(lambda v: int(v * min(1, panel_in))))
-                    img.alpha_composite(pan, (GP_X0, GP_Y0 + slide))
-                    d = ImageDraw.Draw(img)
-                    if panel_in > 0.5:
-                        la2 = _ease_quint((panel_in - 0.5) / 0.5)
-                        ax = GP_X0 + int(W * 0.018)
-                        ah = int(GP_BLOCKH * la2)   # le liseré se "déroule" verticalement
-                        d.rounded_rectangle([ax, GP_Y0 + slide + GP_PADTOP,
-                                             ax + 5, GP_Y0 + slide + GP_PADTOP + ah],
-                                            radius=2, fill=accent_rgb + (230,))
-                for i, line in enumerate(HLINES):
-                    wa = _appear(t, 1.9 + i * 0.22, 0.85)   # apparition décalée et douce par ligne
+                # 🌑 Dégradé noir sur le bas de la photo (monte doucement dans la 1ʳᵉ seconde)
+                sc_in = _vease_io(t / 0.9)
+                sc = news_scrim
+                if sc_in < 1:
+                    sc = sc.copy()
+                    sc.putalpha(sc.split()[3].point(lambda v: int(v * sc_in)))
+                img.alpha_composite(sc)
+                d = ImageDraw.Draw(img)
+
+                # ✍️ Le titre s'écrit MOT PAR MOT
+                bar_in = _ease_quint((t - 0.9) / 0.6)
+                if bar_in > 0:                       # petit liseré d'accent qui se déroule
+                    bh = int(LH * len(HLINES) * bar_in)
+                    bx = int(W * 0.035)
+                    d.rounded_rectangle([bx, HY0, bx + 6, HY0 + bh], radius=3, fill=accent_rgb + (235,))
+                for k, (wx, wy, word) in enumerate(HWORDS):
+                    wa = _appear(t, 1.15 + k * 0.085, 0.30)   # chaque mot arrive juste après le précédent
                     if wa <= 0: continue
-                    dx = int((1 - wa) * 30)        # glissement fluide depuis la gauche
-                    y = HY0 + i * LH
-                    xline = GP_X0 + int(W * 0.045) + dx
-                    d.text((xline + 2, y + 2), line, font=HFONT, fill=(0, 0, 0, int(150 * wa)))
-                    d.text((xline, y), line, font=HFONT, fill=WHITE + (int(255 * wa),))
+                    dy = int((1 - wa) * 14)                   # léger glissement vers le haut
+                    d.text((wx + 2, wy + dy + 3), word, font=HFONT, fill=(0, 0, 0, int(170 * wa)))
+                    d.text((wx, wy + dy), word, font=HFONT, fill=WHITE + (int(255 * wa),))
             elif kind == "victory":
                 typ, winner = data.get("type", "match"), data.get("winner", "")
                 cy = int(H * 0.50)
@@ -4315,7 +4332,9 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             fa = _appear(t, DUR - 2.4, 0.9)
             if fa > 0:
                 _logo_h = int(H * 0.052)
-                if sober or paste_pulse_logo(img, int(W * 0.04), H - int(H * 0.05) - _logo_h, _logo_h, opacity=fa) == 0:
+                if kind == "news":
+                    pass   # marque déjà présente en haut (en-tête animé) → pas de doublon
+                elif sober or paste_pulse_logo(img, int(W * 0.04), H - int(H * 0.05) - _logo_h, _logo_h, opacity=fa) == 0:
                     d.text((int(W * 0.04), H - int(H * 0.082)), "Pulse", font=_vf(W * 0.020),
                            fill=WHITE + (int(255 * fa),))
                 d.text((W - int(W * 0.04), H - int(H * 0.070)), f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
