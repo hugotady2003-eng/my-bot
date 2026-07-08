@@ -1363,10 +1363,12 @@ def extract_video_from_page(html, base_url=""):
         if not m:
             m = re.search(r'<meta[^>]+name=["\']' + prop + r'["\'][^>]+content=["\']([^"\']+)["\']', html, re.I)
         if m and _ok_mp4(m.group(1)):
-            # titre associé (pour la validation de cohérence en aval)
-            t = re.search(r'<meta[^>]+property=["\']og:video:title["\'][^>]+content=["\']([^"\']+)["\']', html, re.I)
-            title = re.search(r'<meta[^>]+property=["\']og:title["\'][^>]+content=["\']([^"\']+)["\']', html, re.I)
-            meta = (t.group(1) if t else (title.group(1) if title else "")).strip()
+            # titre associé (pour la validation de cohérence en aval) — on respecte le guillemet
+            # délimiteur pour ne pas tronquer sur une apostrophe française ("Trump promet d'intensifier").
+            def _meta_content(html, propname):
+                mm = re.search(r'<meta[^>]+property=["\']' + propname + r'["\'][^>]+content=("|\')(.*?)\1', html, re.I)
+                return mm.group(2).strip() if mm else ""
+            meta = _meta_content(html, "og:video:title") or _meta_content(html, "og:title")
             return _abs(m.group(1)), meta
 
     # ── 2) JSON-LD VideoObject — bloc structuré schema.org (éditorial par nature) ──
@@ -5721,7 +5723,16 @@ def publish_breaking(conn, item, cat, urgent=True):
         png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                                  article_url=item.get("url"), person=person, W=1080, H=1350,
                                  prefetched=(raw_src, has_real), headline_bottom=True)
-        vid = build_video("news", {"headline": headline_court}, label_cat, raw_src, item["source"], urgent=urgent)
+        # Vidéo : UNIQUEMENT une VRAIE vidéo de l'article (MP4 du flux, sinon vidéo éditoriale de
+        # la page). Plus de vidéo Pulse animée : à défaut de vraie vidéo, on poste l'image seule.
+        vid = None
+        rv = extract_video_url(item.get("entry")) if item.get("entry") else None
+        if rv:
+            vid = fetch_video_file(rv)
+        if not vid and video_worth_searching(label_cat):
+            vp, _m = fetch_article_video(item.get("url"))
+            if vp:
+                vid = vp
     else:
         # 🚫 Aucune vraie photo → breaking publié SANS image (texte seul), pas de vidéo dégradée.
         png_bytes, vid = None, None
@@ -6253,11 +6264,10 @@ def check_feeds(conn):
                         vp, _vmeta = fetch_article_video(item.get("url"))
                         if vp:
                             video_path = vp
-                    # 3) sinon : vidéo animée Pulse avec la SEULE photo principale (og:image), qui est
-                    #    la seule garantie d'être le bon sujet. On n'utilise plus de diaporama multi-images :
-                    #    les images secondaires d'un article ne sont pas fiables (photos d'articles liés, etc.).
-                    if not video_path:
-                        video_path = build_video("news", {"headline": headline_court}, cat, raw_src, item["source"])
+                    # 3) sinon : IMAGE SEULE (carte Pulse avec la photo de l'article). La vidéo animée
+                    #    Pulse à partir de la photo est volontairement désactivée — on préfère publier
+                    #    simplement l'image. (build_video existe toujours et reste utilisé pour le
+                    #    décryptage, l'hommage et la victoire sportive.)
 
             posted_ok = False
             try:
