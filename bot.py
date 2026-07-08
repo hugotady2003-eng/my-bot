@@ -5132,6 +5132,33 @@ PRERANK_COLD = [
 ]
 PRERANK_WILDCARD = 4     # places réservées : un sujet majeur au vocabulaire imprévu doit atteindre Claude
 
+# ── 📣 ÉCHO MÉDIATIQUE : combien de MÉDIAS DIFFÉRENTS couvrent le même sujet ? ──
+# Le meilleur signal d'importance réelle d'une actu : quand toute la presse en parle,
+# c'est que ça compte. À l'inverse, un sujet repris par un seul média reste une info isolée.
+# Sert AU CLASSEMENT FINAL (pas seulement à choisir qui part en analyse) : une actu couverte
+# par 5 médias doit passer devant une curiosité scientifique publiée par un seul.
+def source_echo(cands):
+    """{url: nombre de médias distincts couvrant ce sujet} (≥2 mots saillants communs = même sujet)."""
+    sigs = [_sig_words(c.get("title", "")) for c in cands]
+    echo = {}
+    for i, c in enumerate(cands):
+        srcs = {c.get("source")}
+        for j, d in enumerate(cands):
+            if i != j and len(sigs[i] & sigs[j]) >= 2:
+                srcs.add(d.get("source"))
+        echo[c.get("url")] = len(srcs)
+    return echo
+
+def echo_bonus(n_sources):
+    """Bonus de score selon la couverture médiatique.
+    Plafonné à +2 : l'écho DÉPARTAGE deux sujets proches, il ne doit jamais faire passer une info
+    moyenne devant un scoop majeur (un breaking exclusif à 9/10 reste devant un 6/10 repris partout).
+    Bonus SEULEMENT, jamais de malus : une exclusivité ou un breaking sorti en premier est encore
+    seul par nature — on ne le punit pas."""
+    if n_sources >= 3: return 2      # largement repris : toute la presse en parle
+    if n_sources == 2: return 1      # confirmé par un second média
+    return 0                         # source unique → ni bonus, ni pénalité
+
 def prerank_candidates(cands, keep, wildcard=PRERANK_WILDCARD):
     """Classement heuristique gratuit : mots chauds/froids + écho multi-sources.
     ⚠️ Une liste de mots-clés ne sera JAMAIS exhaustive : un sujet majeur peut arriver avec un
@@ -5586,6 +5613,7 @@ def check_feeds(conn):
             if score < SCORE_MINIMUM:
                 mark_seen(conn, c["url"], c["title"]); continue
             scored.append({**c, "analysis": a, "score": score})
+            print(f"  ♻️ {score}/10 [{a.get('category')}] (déjà analysé, cache) : {c['title'][:50]}")
         else:
             to_analyse.append(c)
 
@@ -5623,6 +5651,17 @@ def check_feeds(conn):
             item["analysis"]["category"] = "france"
             print(f"  ⬇️ 'breaking' déclassé (contenu non urgent) : {item['title'][:50]}")
 
+    # 📣 ÉCHO MÉDIATIQUE — le signal d'importance le plus fiable : combien de médias en parlent ?
+    # Appliqué à TOUS les candidats retenus (batch ET cache), avant les autres bonus, pour qu'une
+    # actu largement reprise passe devant une info isolée notée pareil par Claude.
+    _echo = source_echo(candidates)
+    for item in scored:
+        n = _echo.get(item.get("url"), 1)
+        item["_echo"] = n
+        b = echo_bonus(n)
+        if b:
+            item["score"] = min(10, item["score"] + b)
+
     # Boost catégorie pas encore vue aujourd'hui
     missing = set(STYLES.keys()) - cats_today(conn)
     for item in scored:
@@ -5637,6 +5676,11 @@ def check_feeds(conn):
                 item["score"] = min(10, item["score"] + 2)
 
     scored.sort(key=lambda x: x["score"], reverse=True)
+
+    if scored:
+        print("  🏁 Classement final (score · médias qui en parlent) :")
+        for it in scored[:5]:
+            print(f"     {it['score']}/10 · {it.get('_echo', 1)} média(s) — {it['title'][:48]}")
 
     top, used = [], set()
     for item in scored:
