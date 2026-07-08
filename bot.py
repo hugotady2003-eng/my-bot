@@ -1304,7 +1304,120 @@ def fetch_video_file(video_url, max_mb=50):
         print(f"  ⚠️ Vidéo actu injoignable ({e}) → vidéo Pulse")
         return None
 
-def extract_photo(entry):
+# 🎥 Catégories où une VIDÉO apporte une vraie valeur (grille éditoriale) : faits divers,
+# catastrophes, météo, manifs, sport, déclarations, direct, politique. Inutile pour les
+# chiffres/études/annonces administratives/infos purement textuelles → on n'y visite pas la page.
+_VIDEO_WORTHY_CATS = {
+    "faitsdivers", "sport", "monde", "politique", "environnement", "societe", "culture",
+}
+def video_worth_searching(category):
+    """Décide si chercher une vidéo pour cette catégorie vaut le coup (coût maîtrisé)."""
+    return (category or "").lower() in _VIDEO_WORTHY_CATS
+
+def extract_video_from_page(html, base_url=""):
+    """🎥 Cherche la VRAIE vidéo ÉDITORIALE dans la page d'un article (og:video, JSON-LD
+    VideoObject, puis <video> en dernier recours), en REJETANT les pubs.
+
+    Principe : liste BLANCHE d'emplacements que seuls les CMS de presse utilisent pour la vidéo
+    de l'article — pas une liste noire de régies (course perdue). og:video et JSON-LD sont
+    structurellement éditoriaux (jamais de pub dans l'aperçu de partage). Le <video> brut n'est
+    accepté qu'après filtrage anti-régie. Ne renvoie que des URLs .mp4 franches (X n'accepte pas
+    le HLS/.m3u8). Retourne (url_mp4, meta_texte) ou (None, "")."""
+    if not html:
+        return None, ""
+
+    # Domaines de régies publicitaires / players tiers → rejet immédiat
+    AD_DOMAINS = ("doubleclick", "googlesyndication", "googleadservices", "imasdk", "2mdn",
+                  "adsystem", "adservice", "teads", "outbrain", "taboola", "smartadserver",
+                  "adnxs", "criteo", "moatads", "innovid", "spotx", "springserve", "adform",
+                  "/ads/", "/ad/", "advert", "sponsor", "prebid", "ayads", "dailymotion.com/ad")
+
+    def _ok_mp4(url):
+        """URL plausible = .mp4 franc, pas une régie, pas du streaming HLS."""
+        if not url:
+            return False
+        u = url.strip()
+        if u.startswith("//"):
+            u = "https:" + u
+        low = u.lower()
+        if not low.startswith("http"):
+            return False
+        if ".m3u8" in low or "manifest" in low:          # streaming : inattachable sur X
+            return False
+        if any(bad in low for bad in AD_DOMAINS):          # régie pub → rejeté
+            return False
+        return bool(re.search(r"\.mp4(\?|#|$)", low))
+
+    def _abs(url):
+        u = url.strip()
+        if u.startswith("//"):
+            return "https:" + u
+        return u
+
+    # ── 1) og:video — la vidéo OFFICIELLE de partage de l'article (jamais une pub) ──
+    for prop in (r'og:video:secure_url', r'og:video:url', r'og:video',
+                 r'twitter:player:stream'):
+        m = re.search(r'<meta[^>]+property=["\']' + prop + r'["\'][^>]+content=["\']([^"\']+)["\']', html, re.I)
+        if not m:
+            m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']' + prop + r'["\']', html, re.I)
+        if not m:
+            m = re.search(r'<meta[^>]+name=["\']' + prop + r'["\'][^>]+content=["\']([^"\']+)["\']', html, re.I)
+        if m and _ok_mp4(m.group(1)):
+            # titre associé (pour la validation de cohérence en aval)
+            t = re.search(r'<meta[^>]+property=["\']og:video:title["\'][^>]+content=["\']([^"\']+)["\']', html, re.I)
+            title = re.search(r'<meta[^>]+property=["\']og:title["\'][^>]+content=["\']([^"\']+)["\']', html, re.I)
+            meta = (t.group(1) if t else (title.group(1) if title else "")).strip()
+            return _abs(m.group(1)), meta
+
+    # ── 2) JSON-LD VideoObject — bloc structuré schema.org (éditorial par nature) ──
+    for block in re.findall(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.I | re.S):
+        if '"VideoObject"' not in block and "'VideoObject'" not in block:
+            continue
+        for cu in re.findall(r'"contentUrl"\s*:\s*"([^"]+)"', block):
+            if _ok_mp4(cu):
+                nm = re.search(r'"name"\s*:\s*"([^"]+)"', block)
+                return _abs(cu), (nm.group(1).strip() if nm else "")
+
+    # ── 3) <video>/<source> en DERNIER RECOURS — filtré contre les blocs publicitaires ──
+    for vm in re.finditer(r'<video\b([^>]*)>(.*?)</video>', html, re.I | re.S):
+        attrs, inner = vm.group(1), vm.group(2)
+        blob = (attrs + " " + inner[:200]).lower()
+        # marqueurs de pub dans les attributs/classe/id → on saute ce lecteur
+        if any(w in blob for w in ("ad", "advert", "sponsor", "preroll", "promo", "publicit")):
+            # 'ad' seul est trop large ; on ne saute que sur des motifs francs
+            if re.search(r'\b(ad|ads|advert|sponsor|preroll|promo|publicit)[-_a-z]*\b', blob):
+                continue
+        src = re.search(r'src=["\']([^"\']+)["\']', attrs, re.I)
+        if not src:
+            src = re.search(r'<source[^>]+src=["\']([^"\']+)["\']', inner, re.I)
+        if src and _ok_mp4(src.group(1)):
+            return _abs(src.group(1)), ""
+
+    return None, ""
+
+def fetch_article_video(article_url, max_mb=50):
+    """Best-effort : visite la page de l'article, y cherche une vidéo ÉDITORIALE (jamais pub),
+    et la télécharge en MP4 local prêt pour X. Retourne (chemin_local, meta) ou (None, "").
+    Robuste : toute erreur réseau/HTML → (None, "") → le bot garde sa vidéo Pulse."""
+    if not article_url:
+        return None, ""
+    try:
+        req = urllib.request.Request(article_url, headers=_BROWSER_HEADERS)
+        with urllib.request.urlopen(req, timeout=15) as r:
+            raw = _read_capped(r, cap=1_800_000)
+            enc = (r.headers.get("Content-Encoding") or "").lower()
+        html = _decode_html_body(raw, enc)
+    except Exception as e:
+        print(f"  ⚠️ Page article illisible pour vidéo ({e})")
+        return None, ""
+    vurl, meta = extract_video_from_page(html, base_url=article_url)
+    if not vurl:
+        return None, ""
+    path = fetch_video_file(vurl, max_mb=max_mb)   # vérifie signature MP4 + plafond taille
+    if path:
+        print(f"  🎥 Vidéo éditoriale trouvée dans l'article → attachée")
+        return path, meta
+    return None, ""
     """Cherche une image DANS le flux RSS lui-même (gratuit, aucune requête web,
     donc jamais bloqué par un anti-bot). Couvre toutes les formes courantes utilisées
     par les CMS de presse français : media:content, media:thumbnail, enclosure,
@@ -2513,39 +2626,32 @@ def _wrap(draw, text, font, max_w):
     return lines
 
 # ═══════════════════════════════════════════════════════════════════════════
-# 🎵 MOTEUR SONORE PULSE — nappes d'ambiance composées PAR LE BOT (numpy) :
-# 100 % libres de droits, 0 €, 0 dépendance. Une AMBIANCE par famille de catégorie,
-# PLUSIEURS VARIANTES par ambiance (progressions/tempo différents), et anti-répétition
-# persistante : la dernière variante jouée est mémorisée en base et évitée au tirage.
+# 🎵 MOTEUR SONORE PULSE — chaque famille de catégorie a une VRAIE identité sonore,
+# construite avec des ÉLÉMENTS différents (pas six variations de la même nappe) :
+#   tension  → riser + IMPACT SOUDAIN + tic-tac urgent + drone grave   (breaking)
+#   energie  → kick 4/4 + charley + basse + plucks lumineux            (sport)
+#   sobre    → nappe posée + note grave espacée                        (politique...)
+#   tech     → arpège 16e avec écho, aérien                            (tech/science/GTA)
+#   leger    → plucks façon marimba, majeur, sautillant                (culture/insolite)
+#   solennel → notes de piano rares et graves, très discret            (hommage)
+# 100 % composé par le bot (numpy) : libre de droits, 0 €, 0 dépendance.
+# Plusieurs variantes par ambiance + anti-répétition persistante en base.
 # ═══════════════════════════════════════════════════════════════════════════
-# Chaque variante : (accords en Hz, tempo_bpm, pulse 0/1, arpège 0/1, brillance, volume)
 _A, _C, _D, _E, _F, _G, _B = 110.0, 130.81, 146.83, 164.81, 174.61, 196.0, 123.47
-SOUND_MOODS = {
-    "tension": [   # breaking / urgent : drone grave + pulsation qui avance
-        ([(_A/2, _A, _E), (_G/2, _G, _D), (_A/2, _A, _E), (_F/2, _F, _C)], 92, 1, 0, 0.20, 0.16),
-        ([(_E/2, _E, _B), (_D/2, _D, _A), (_E/2, _E, _B), (_C/2, _C, _G)], 100, 1, 0, 0.25, 0.16),
-    ],
-    "energie": [   # sport : rythmé, lumineux
-        ([(_C, _E, _G), (_F, _A, _C*2), (_G, _B, _D*2), (_C, _E, _G)], 118, 1, 1, 0.45, 0.17),
-        ([(_D, _F*1.0595, _A), (_G, _B, _D*2), (_A, _C*2, _E*2), (_D, _F*1.0595, _A)], 126, 1, 1, 0.5, 0.17),
-        ([(_F, _A, _C*2), (_C, _E, _G), (_G, _B, _D*2), (_F, _A, _C*2)], 112, 1, 1, 0.4, 0.17),
-    ],
-    "sobre": [     # politique / justice / monde / éco : posé, neutre
-        ([(_C, _E, _G), (_D, _F, _A), (_B, _D, _F*1.0595), (_C, _E, _G)], 72, 0, 0, 0.25, 0.15),
-        ([(_A, _C*2, _E*2), (_F, _A, _C*2), (_G, _B, _D*2), (_A, _C*2, _E*2)], 66, 0, 0, 0.2, 0.15),
-    ],
-    "tech": [      # tech / science / GTA 6 : aérien, arpège synthé
-        ([(_C, _G, _E*2), (_A, _E*2, _C*2), (_F, _C*2, _A), (_G, _D*2, _B)], 96, 0, 1, 0.6, 0.16),
-        ([(_E, _B, _G*2/1.0595), (_C, _G, _E*2), (_D, _A, _F*2), (_E, _B, _G*2/1.0595)], 104, 0, 1, 0.55, 0.16),
-    ],
-    "leger": [     # culture / insolite / positif : chaleureux, majeur
-        ([(_C, _E, _G), (_F, _A, _C*2), (_C, _E, _G), (_G, _B, _D*2)], 88, 0, 1, 0.4, 0.16),
-        ([(_G, _B, _D*2), (_C, _E, _G), (_D, _F*1.0595, _A), (_G, _B, _D*2)], 84, 0, 1, 0.35, 0.16),
-    ],
-    "solennel": [  # hommage : très discret, lent, grave — sobriété éditoriale
-        ([(_A/2, _C, _E), (_F/2, _A/2, _C), (_G/2, _B/2, _D), (_A/2, _C, _E)], 52, 0, 0, 0.1, 0.10),
-        ([(_D/2, _F/2, _A/2), (_A/2, _C, _E), (_G/2, _B/2, _D), (_D/2, _F/2, _A/2)], 48, 0, 0, 0.08, 0.10),
-    ],
+SOUND_MOODS = {   # (accords, bpm)
+    "tension": [([(_A/2, _A, _E), (_G/2, _G, _D), (_A/2, _A, _E), (_F/2, _F, _C)], 104),
+                ([(_E/2, _E, _B), (_D/2, _D, _A), (_E/2, _E, _B), (_C/2, _C, _G)], 112)],
+    "energie": [([(_C, _E, _G), (_F, _A, _C*2), (_G, _B, _D*2), (_C, _E, _G)], 124),
+                ([(_D, _F*1.0595, _A), (_G, _B, _D*2), (_A, _C*2, _E*2), (_D, _F*1.0595, _A)], 128),
+                ([(_F, _A, _C*2), (_C, _E, _G), (_G, _B, _D*2), (_F, _A, _C*2)], 120)],
+    "sobre":   [([(_C, _E, _G), (_D, _F, _A), (_B, _D, _F*1.0595), (_C, _E, _G)], 70),
+                ([(_A, _C*2, _E*2), (_F, _A, _C*2), (_G, _B, _D*2), (_A, _C*2, _E*2)], 64)],
+    "tech":    [([(_C, _G, _E*2), (_A, _E*2, _C*2), (_F, _C*2, _A), (_G, _D*2, _B)], 100),
+                ([(_E, _B, _G*2/1.0595), (_C, _G, _E*2), (_D, _A, _F*2), (_E, _B, _G*2/1.0595)], 108)],
+    "leger":   [([(_C, _E, _G), (_F, _A, _C*2), (_C, _E, _G), (_G, _B, _D*2)], 96),
+                ([(_G, _B, _D*2), (_C, _E, _G), (_D, _F*1.0595, _A), (_G, _B, _D*2)], 92)],
+    "solennel":[([(_A/2, _C, _E), (_F/2, _A/2, _C), (_G/2, _B/2, _D), (_A/2, _C, _E)], 50),
+                ([(_D/2, _F/2, _A/2), (_A/2, _C, _E), (_G/2, _B/2, _D), (_D/2, _F/2, _A/2)], 46)],
 }
 _CAT_TO_MOOD = {
     "breaking": "tension", "urgent": "tension", "faitsdivers": "tension",
@@ -2557,8 +2663,65 @@ _CAT_TO_MOOD = {
     "hommage": "solennel",
 }
 
+# ── petits instruments (numpy) ────────────────────────────────────────────────
+def _snd_add(buf, sr, at_s, sig):
+    i = int(at_s * sr)
+    if i < 0 or i >= len(buf): return
+    j = min(len(buf), i + len(sig)); buf[i:j] += sig[:j - i]
+
+def _snd_kick(np, sr, amp=1.0):
+    """Grosse caisse : sinus qui plonge 130→46 Hz, décroissance rapide."""
+    n = int(sr * 0.30); t = np.arange(n) / sr
+    f = 46 + 84 * np.exp(-t * 26)
+    return amp * np.sin(2 * np.pi * np.cumsum(f) / sr) * np.exp(-t * 10)
+
+def _snd_tick(np, sr, amp=0.5, seed=3, dur=0.045):
+    """Tic bref (bruit aigu très court) : tic-tac d'urgence / charley."""
+    n = int(sr * dur)
+    no = np.diff(np.random.RandomState(seed).randn(n), prepend=0.0)
+    no /= (np.max(np.abs(no)) + 1e-9)
+    return amp * no * np.exp(-np.arange(n) / (sr * 0.012))
+
+def _snd_pluck(np, sr, freq, dur=0.7, amp=0.5, bright=0.5):
+    """Note pincée (marimba/pluck) : harmoniques + décroissance."""
+    n = int(sr * dur); t = np.arange(n) / sr
+    sig = (np.sin(2 * np.pi * freq * t) + bright * 0.6 * np.sin(2 * np.pi * freq * 2 * t)
+           + bright * 0.25 * np.sin(2 * np.pi * freq * 3 * t))
+    return amp * sig * np.exp(-t * (4.5 / dur))
+
+def _snd_boom(np, sr, amp=1.0):
+    """IMPACT : boum grave + souffle, longue traîne — l'entrée 'soudaine' du breaking."""
+    n = int(sr * 1.8); t = np.arange(n) / sr
+    f = 40 + 46 * np.exp(-t * 7)
+    core = np.sin(2 * np.pi * np.cumsum(f) / sr) * np.exp(-t * 2.0)
+    no = np.random.RandomState(7).randn(n) * np.exp(-t * 5.5) * 0.5
+    k = max(2, int(sr * 0.002)); no = np.convolve(no, np.ones(k) / k, mode="same")
+    return amp * (core + no)
+
+def _snd_riser(np, sr, dur=0.9, amp=0.7):
+    """Montée (bruit + sinus qui grimpe) : la demi-seconde qui annonce l'impact."""
+    n = int(sr * dur); t = np.arange(n) / sr
+    f = 180 + 1500 * (t / dur) ** 2
+    no = np.random.RandomState(5).randn(n) * 0.5
+    k = max(2, int(sr * 0.0012)); no = np.convolve(no, np.ones(k) / k, mode="same")
+    return amp * (t / dur) ** 2 * (0.55 * np.sin(2 * np.pi * np.cumsum(f) / sr) + no)
+
+def _snd_pad(np, sr, buf, chords, dur, vol=1.0, dark=False):
+    """Nappe d'accords (fond harmonique), répartie sur toute la durée."""
+    n_total = len(buf); t = np.arange(n_total) / sr
+    seg = n_total // len(chords)
+    for ci, chord in enumerate(chords):
+        a, b = ci * seg, ((ci + 1) * seg if ci < len(chords) - 1 else n_total)
+        tt = t[a:b]
+        for f in chord:
+            buf[a:b] += vol * np.sin(2 * np.pi * f * tt + 0.15 * np.sin(2 * np.pi * 0.3 * tt))
+            if not dark:
+                buf[a:b] += vol * 0.3 * np.sin(2 * np.pi * f * 2 * tt)
+        fade = min(int(sr * 0.6), (b - a) // 2)
+        buf[a:a + fade] *= np.linspace(0.3, 1.0, fade)
+        buf[b - fade:b] *= np.linspace(1.0, 0.3, fade)
+
 def _last_sound_variant():
-    """Dernière variante jouée ('mood:index') — lue en base pour l'anti-répétition."""
     try:
         c = sqlite3.connect("seen_articles.db")
         row = c.execute("SELECT keywords FROM special_log WHERE kind='sound' ORDER BY id DESC LIMIT 1").fetchone()
@@ -2576,53 +2739,112 @@ def _log_sound_variant(tag):
         pass
 
 def build_soundtrack(path_wav, duration, category="actu", sujet=""):
-    """Compose la nappe d'ambiance de la vidéo selon la CATÉGORIE (variante tirée au sort,
-    en évitant la dernière jouée). `sujet` peut assombrir un thème neutre (drame, guerre...)."""
+    """Bande-son de la vidéo selon la CATÉGORIE : chaque ambiance a ses propres éléments
+    (impact, kick, tic-tac, arpège, piano rare...). Variante tirée au sort en évitant la
+    dernière jouée (mémoire en base). Un sujet dramatique assombrit un thème léger."""
     import wave
     import numpy as np
     mood = _CAT_TO_MOOD.get((category or "").lower(), "sobre")
     s = (sujet or "").lower()
-    if mood in ("leger", "tech", "sobre") and any(w in s for w in
+    if mood in ("leger", "tech") and any(w in s for w in
             ("mort", "guerre", "attentat", "crise", "drame", "violence",
              "accident", "crash", "explosion", "meurtre", "conflit")):
-        mood = "tension" if mood != "sobre" else "sobre"
+        mood = "tension"
     variants = SOUND_MOODS[mood]
     last = _last_sound_variant()
     pool = [i for i in range(len(variants)) if f"{mood}:{i}" != last] or list(range(len(variants)))
     vi = random.choice(pool)
-    chords, bpm, pulse, arp, bright, vol = variants[vi]
+    chords, bpm = variants[vi]
     _log_sound_variant(f"{mood}:{vi}")
 
     sr = 44100
     n_total = max(sr, int(sr * duration))
-    t = np.arange(n_total) / sr
-    sig = np.zeros(n_total)
-    seg = n_total // len(chords)
+    buf = np.zeros(n_total)
     beat = 60.0 / bpm
-    for ci, chord in enumerate(chords):
-        a, b = ci * seg, ((ci + 1) * seg if ci < len(chords) - 1 else n_total)
-        tt = t[a:b]
-        for f in chord:
-            sig[a:b] += np.sin(2 * np.pi * f * tt + 0.15 * np.sin(2 * np.pi * 0.3 * tt))
-            sig[a:b] += bright * 0.5 * np.sin(2 * np.pi * f * 2 * tt)
-        fade = min(int(sr * 0.8), (b - a) // 2)
-        sig[a:a + fade] *= np.linspace(0.25, 1.0, fade)
-        sig[b - fade:b] *= np.linspace(1.0, 0.25, fade)
-        if arp:  # arpège discret : les notes de l'accord égrenées sur le temps
-            ph = (tt / beat) % 1.0
-            idxs = np.minimum((ph * 3).astype(int), 2)
-            fr = np.take(np.array(chord) * 2, idxs)
-            env = np.exp(-4.0 * (ph * beat))
-            sig[a:b] += 0.35 * env * np.sin(2 * np.pi * fr * tt)
-    if pulse:    # pulsation sourde type "coeur" sur chaque temps (breaking / sport)
-        ph = (t / beat) % 1.0
-        env = np.exp(-9.0 * ph)
-        sig += 0.5 * env * np.sin(2 * np.pi * 55.0 * t)
-    sig = sig / (np.max(np.abs(sig)) + 1e-9) * vol
-    gf = int(sr * 1.2)
-    sig[:gf] *= np.linspace(0, 1, gf)
-    sig[-gf:] *= np.linspace(1, 0, gf)
-    pcm = (sig * 32767).astype(np.int16)
+
+    if mood == "tension":
+        # 🚨 SOUDAIN : montée (0.9 s) → IMPACT → drone grave + tic-tac urgent + pouls
+        _snd_add(buf, sr, 0.0, _snd_riser(np, sr, dur=0.9, amp=1.1))
+        _snd_add(buf, sr, 0.9, _snd_boom(np, sr, amp=2.6))
+        pad = np.zeros(n_total); _snd_pad(np, sr, pad, chords, duration, vol=0.28, dark=True)
+        ramp = np.clip((np.arange(n_total) / sr - 0.9) / 0.4, 0, 1)   # le fond n'arrive qu'APRÈS l'impact
+        buf += pad * ramp
+        tk = 1.1
+        while tk < duration - 0.3:
+            _snd_add(buf, sr, tk, _snd_tick(np, sr, amp=1.3))         # tic-tac d'urgence, 2/temps
+            tk += beat / 2
+        kk = 1.1
+        while kk < duration - 0.5:
+            _snd_add(buf, sr, kk, _snd_kick(np, sr, amp=1.5))         # pouls sourd
+            kk += beat
+        vol, fade_in = 0.22, False
+    elif mood == "energie":
+        # ⚽ kick 4/4 + charley en contretemps + basse + plucks de l'accord
+        pad = np.zeros(n_total); _snd_pad(np, sr, pad, chords, duration, vol=0.16); buf += pad
+        seg = duration / len(chords)
+        tt = 0.0; bi = 0
+        while tt < duration - 0.3:
+            _snd_add(buf, sr, tt, _snd_kick(np, sr, amp=2.0))
+            _snd_add(buf, sr, tt + beat / 2, _snd_tick(np, sr, amp=0.7, seed=11))
+            ch = chords[min(int(tt / seg), len(chords) - 1)]
+            _snd_add(buf, sr, tt, _snd_pluck(np, sr, ch[0] / 2, dur=0.35, amp=0.9, bright=0.2))   # basse
+            if bi % 2 == 1:
+                _snd_add(buf, sr, tt, _snd_pluck(np, sr, ch[(bi // 2) % 3] * 2, dur=0.5, amp=0.75, bright=0.7))
+            tt += beat; bi += 1
+        vol, fade_in = 0.21, True
+    elif mood == "tech":
+        # 💻 arpège en doubles-croches + écho, nappe aérienne
+        pad = np.zeros(n_total); _snd_pad(np, sr, pad, chords, duration, vol=0.20); buf += pad
+        seg = duration / len(chords); step = beat / 4
+        tt, k = 0.4, 0
+        while tt < duration - 0.4:
+            ch = chords[min(int(tt / seg), len(chords) - 1)]
+            f = ch[k % 3] * 2
+            _snd_add(buf, sr, tt, _snd_pluck(np, sr, f, dur=0.30, amp=0.85, bright=0.8))
+            _snd_add(buf, sr, tt + step * 1.5, _snd_pluck(np, sr, f, dur=0.30, amp=0.38, bright=0.8))  # écho
+            tt += step; k += 1
+        vol, fade_in = 0.18, True
+    elif mood == "leger":
+        # 🎭 marimba sautillante (fond-tierce-quinte-tierce), nappe chaude
+        pad = np.zeros(n_total); _snd_pad(np, sr, pad, chords, duration, vol=0.22); buf += pad
+        seg = duration / len(chords); pattern = [0, 1, 2, 1]
+        tt, k = 0.2, 0
+        while tt < duration - 0.3:
+            ch = chords[min(int(tt / seg), len(chords) - 1)]
+            _snd_add(buf, sr, tt, _snd_pluck(np, sr, ch[pattern[k % 4]] * 2, dur=0.45, amp=0.95, bright=0.35))
+            tt += beat / 2; k += 1
+        vol, fade_in = 0.18, True
+    elif mood == "solennel":
+        # 🕯️ notes de piano rares et graves sur nappe très douce — sobriété
+        pad = np.zeros(n_total); _snd_pad(np, sr, pad, chords, duration, vol=0.5, dark=True); buf += pad
+        seg = duration / len(chords)
+        tt, k = 0.8, 0
+        while tt < duration - 1.0:
+            ch = chords[min(int(tt / seg), len(chords) - 1)]
+            _snd_add(buf, sr, tt, _snd_pluck(np, sr, ch[k % 2], dur=2.6, amp=0.9, bright=0.15))
+            tt += beat * 2; k += 1
+        vol, fade_in = 0.11, True
+    else:  # sobre
+        # 🏛️ nappe posée + note grave espacée
+        pad = np.zeros(n_total); _snd_pad(np, sr, pad, chords, duration, vol=0.6); buf += pad
+        seg = duration / len(chords)
+        tt = 0.5
+        while tt < duration - 0.8:
+            ch = chords[min(int(tt / seg), len(chords) - 1)]
+            _snd_add(buf, sr, tt, _snd_pluck(np, sr, ch[0] / 2, dur=1.6, amp=0.4, bright=0.2))
+            tt += beat * 2
+        vol, fade_in = 0.16, True
+
+    # Compression douce (tanh) : un impact fort (breaking) ne doit pas écraser tout le reste
+    # à la normalisation — le boum reste puissant, le tic-tac et le drone restent audibles derrière.
+    ref = np.percentile(np.abs(buf), 99.0) + 1e-9
+    buf = np.tanh(buf / (ref * 1.4))
+    buf = buf / (np.max(np.abs(buf)) + 1e-9) * vol
+    gf = int(sr * 1.0)
+    if fade_in:
+        buf[:gf] *= np.linspace(0, 1, gf)       # tension garde son départ SOUDAIN (pas de fondu d'entrée)
+    buf[-gf:] *= np.linspace(1, 0, gf)
+    pcm = (buf * 32767).astype(np.int16)
     with wave.open(path_wav, "w") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
         w.writeframes(pcm.tobytes())
@@ -6001,7 +6223,14 @@ def check_feeds(conn):
                     real_vid_url = extract_video_url(item.get("entry")) if item.get("entry") else None
                     if real_vid_url:
                         video_path = fetch_video_file(real_vid_url)
-                print("  🚫 Aucune vraie photo → publication SANS image (texte seul)")
+                    if not video_path and item.get("analysis", {}).get("needs_video") and video_worth_searching(cat):
+                        vp, _vmeta = fetch_article_video(item.get("url"))
+                        if vp:
+                            video_path = vp
+                if video_path:
+                    print("  🚫 Pas de photo mais vidéo éditoriale trouvée → tweet avec vidéo")
+                else:
+                    print("  🚫 Aucune vraie photo → publication SANS image (texte seul)")
             else:
                 png_bytes, png_nm = build_png(
                     headline_court, item["source"], cat, photo, image_query,
@@ -6014,11 +6243,17 @@ def check_feeds(conn):
                     W=1080, H=1350, prefetched=(raw_src, has_real), headline_bottom=True
                 )
                 if not video_path:
-                    # 1) vraie vidéo de l'article (MP4 direct) si le média l'expose
+                    # 1) vraie vidéo de l'article (MP4 direct) si le flux RSS l'expose
                     real_vid_url = extract_video_url(item.get("entry")) if item.get("entry") else None
                     if real_vid_url:
                         video_path = fetch_video_file(real_vid_url)
-                    # 2) sinon : vidéo animée Pulse avec la SEULE photo principale (og:image), qui est
+                    # 2) sinon, si une vidéo a une vraie valeur ici (needs_video), on cherche la vidéo
+                    #    ÉDITORIALE dans la PAGE de l'article (og:video/JSON-LD, jamais une pub).
+                    if not video_path and item.get("analysis", {}).get("needs_video") and video_worth_searching(cat):
+                        vp, _vmeta = fetch_article_video(item.get("url"))
+                        if vp:
+                            video_path = vp
+                    # 3) sinon : vidéo animée Pulse avec la SEULE photo principale (og:image), qui est
                     #    la seule garantie d'être le bon sujet. On n'utilise plus de diaporama multi-images :
                     #    les images secondaires d'un article ne sont pas fiables (photos d'articles liés, etc.).
                     if not video_path:
