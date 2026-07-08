@@ -2512,38 +2512,112 @@ def _wrap(draw, text, font, max_w):
     if line: lines.append(line)
     return lines
 
-def _decrypt_soundtrack(path_wav, duration, sujet=""):
-    """Génère une nappe sonore d'ambiance (accords doux synthétiques) 100% libre de droit,
-    car créée par le bot lui-même. La tonalité s'adapte au sujet : grave/lente pour les
-    sujets sensibles (drame, guerre, crise), plus neutre et posée sinon."""
+# ═══════════════════════════════════════════════════════════════════════════
+# 🎵 MOTEUR SONORE PULSE — nappes d'ambiance composées PAR LE BOT (numpy) :
+# 100 % libres de droits, 0 €, 0 dépendance. Une AMBIANCE par famille de catégorie,
+# PLUSIEURS VARIANTES par ambiance (progressions/tempo différents), et anti-répétition
+# persistante : la dernière variante jouée est mémorisée en base et évitée au tirage.
+# ═══════════════════════════════════════════════════════════════════════════
+# Chaque variante : (accords en Hz, tempo_bpm, pulse 0/1, arpège 0/1, brillance, volume)
+_A, _C, _D, _E, _F, _G, _B = 110.0, 130.81, 146.83, 164.81, 174.61, 196.0, 123.47
+SOUND_MOODS = {
+    "tension": [   # breaking / urgent : drone grave + pulsation qui avance
+        ([(_A/2, _A, _E), (_G/2, _G, _D), (_A/2, _A, _E), (_F/2, _F, _C)], 92, 1, 0, 0.20, 0.16),
+        ([(_E/2, _E, _B), (_D/2, _D, _A), (_E/2, _E, _B), (_C/2, _C, _G)], 100, 1, 0, 0.25, 0.16),
+    ],
+    "energie": [   # sport : rythmé, lumineux
+        ([(_C, _E, _G), (_F, _A, _C*2), (_G, _B, _D*2), (_C, _E, _G)], 118, 1, 1, 0.45, 0.17),
+        ([(_D, _F*1.0595, _A), (_G, _B, _D*2), (_A, _C*2, _E*2), (_D, _F*1.0595, _A)], 126, 1, 1, 0.5, 0.17),
+        ([(_F, _A, _C*2), (_C, _E, _G), (_G, _B, _D*2), (_F, _A, _C*2)], 112, 1, 1, 0.4, 0.17),
+    ],
+    "sobre": [     # politique / justice / monde / éco : posé, neutre
+        ([(_C, _E, _G), (_D, _F, _A), (_B, _D, _F*1.0595), (_C, _E, _G)], 72, 0, 0, 0.25, 0.15),
+        ([(_A, _C*2, _E*2), (_F, _A, _C*2), (_G, _B, _D*2), (_A, _C*2, _E*2)], 66, 0, 0, 0.2, 0.15),
+    ],
+    "tech": [      # tech / science / GTA 6 : aérien, arpège synthé
+        ([(_C, _G, _E*2), (_A, _E*2, _C*2), (_F, _C*2, _A), (_G, _D*2, _B)], 96, 0, 1, 0.6, 0.16),
+        ([(_E, _B, _G*2/1.0595), (_C, _G, _E*2), (_D, _A, _F*2), (_E, _B, _G*2/1.0595)], 104, 0, 1, 0.55, 0.16),
+    ],
+    "leger": [     # culture / insolite / positif : chaleureux, majeur
+        ([(_C, _E, _G), (_F, _A, _C*2), (_C, _E, _G), (_G, _B, _D*2)], 88, 0, 1, 0.4, 0.16),
+        ([(_G, _B, _D*2), (_C, _E, _G), (_D, _F*1.0595, _A), (_G, _B, _D*2)], 84, 0, 1, 0.35, 0.16),
+    ],
+    "solennel": [  # hommage : très discret, lent, grave — sobriété éditoriale
+        ([(_A/2, _C, _E), (_F/2, _A/2, _C), (_G/2, _B/2, _D), (_A/2, _C, _E)], 52, 0, 0, 0.1, 0.10),
+        ([(_D/2, _F/2, _A/2), (_A/2, _C, _E), (_G/2, _B/2, _D), (_D/2, _F/2, _A/2)], 48, 0, 0, 0.08, 0.10),
+    ],
+}
+_CAT_TO_MOOD = {
+    "breaking": "tension", "urgent": "tension", "faitsdivers": "tension",
+    "sport": "energie",
+    "politique": "sobre", "justice": "sobre", "monde": "sobre", "economie": "sobre",
+    "france": "sobre", "societe": "sobre", "environnement": "sobre", "sante": "sobre",
+    "tech": "tech", "science": "tech", "gta6": "tech",
+    "culture": "leger", "insolite": "leger", "positif": "leger", "people": "leger",
+    "hommage": "solennel",
+}
+
+def _last_sound_variant():
+    """Dernière variante jouée ('mood:index') — lue en base pour l'anti-répétition."""
+    try:
+        c = sqlite3.connect("seen_articles.db")
+        row = c.execute("SELECT keywords FROM special_log WHERE kind='sound' ORDER BY id DESC LIMIT 1").fetchone()
+        c.close()
+        return (row[0] or "") if row else ""
+    except Exception:
+        return ""
+
+def _log_sound_variant(tag):
+    try:
+        c = sqlite3.connect("seen_articles.db")
+        c.execute("INSERT INTO special_log (kind, keywords) VALUES ('sound', ?)", (tag,))
+        c.commit(); c.close()
+    except Exception:
+        pass
+
+def build_soundtrack(path_wav, duration, category="actu", sujet=""):
+    """Compose la nappe d'ambiance de la vidéo selon la CATÉGORIE (variante tirée au sort,
+    en évitant la dernière jouée). `sujet` peut assombrir un thème neutre (drame, guerre...)."""
     import wave
     import numpy as np
-    sr = 44100
+    mood = _CAT_TO_MOOD.get((category or "").lower(), "sobre")
     s = (sujet or "").lower()
-    sombre = any(w in s for w in ("mort", "guerre", "attentat", "crise", "drame", "violence",
-                                  "accident", "crash", "explosion", "meurtre", "conflit"))
-    if sombre:
-        chords = [(110.0, 130.81, 164.81), (98.0, 123.47, 146.83),
-                  (110.0, 130.81, 164.81), (87.31, 110.0, 130.81)]     # la mineur grave, lent
-        vol = 0.16
-    else:
-        chords = [(130.81, 164.81, 196.0), (146.83, 174.61, 220.0),
-                  (123.47, 155.56, 185.0), (130.81, 164.81, 196.0)]    # do médium, posé
-        vol = 0.18
-    n_total = int(sr * duration)
+    if mood in ("leger", "tech", "sobre") and any(w in s for w in
+            ("mort", "guerre", "attentat", "crise", "drame", "violence",
+             "accident", "crash", "explosion", "meurtre", "conflit")):
+        mood = "tension" if mood != "sobre" else "sobre"
+    variants = SOUND_MOODS[mood]
+    last = _last_sound_variant()
+    pool = [i for i in range(len(variants)) if f"{mood}:{i}" != last] or list(range(len(variants)))
+    vi = random.choice(pool)
+    chords, bpm, pulse, arp, bright, vol = variants[vi]
+    _log_sound_variant(f"{mood}:{vi}")
+
+    sr = 44100
+    n_total = max(sr, int(sr * duration))
     t = np.arange(n_total) / sr
     sig = np.zeros(n_total)
     seg = n_total // len(chords)
+    beat = 60.0 / bpm
     for ci, chord in enumerate(chords):
-        a, b = ci * seg, (ci + 1) * seg if ci < len(chords) - 1 else n_total
+        a, b = ci * seg, ((ci + 1) * seg if ci < len(chords) - 1 else n_total)
         tt = t[a:b]
         for f in chord:
-            # fondamentale + harmonique douce + léger vibrato → nappe chaleureuse, pas un bip
             sig[a:b] += np.sin(2 * np.pi * f * tt + 0.15 * np.sin(2 * np.pi * 0.3 * tt))
-            sig[a:b] += 0.3 * np.sin(2 * np.pi * f * 2 * tt)
+            sig[a:b] += bright * 0.5 * np.sin(2 * np.pi * f * 2 * tt)
         fade = min(int(sr * 0.8), (b - a) // 2)
         sig[a:a + fade] *= np.linspace(0.25, 1.0, fade)
         sig[b - fade:b] *= np.linspace(1.0, 0.25, fade)
+        if arp:  # arpège discret : les notes de l'accord égrenées sur le temps
+            ph = (tt / beat) % 1.0
+            idxs = np.minimum((ph * 3).astype(int), 2)
+            fr = np.take(np.array(chord) * 2, idxs)
+            env = np.exp(-4.0 * (ph * beat))
+            sig[a:b] += 0.35 * env * np.sin(2 * np.pi * fr * tt)
+    if pulse:    # pulsation sourde type "coeur" sur chaque temps (breaking / sport)
+        ph = (t / beat) % 1.0
+        env = np.exp(-9.0 * ph)
+        sig += 0.5 * env * np.sin(2 * np.pi * 55.0 * t)
     sig = sig / (np.max(np.abs(sig)) + 1e-9) * vol
     gf = int(sr * 1.2)
     sig[:gf] *= np.linspace(0, 1, gf)
@@ -2552,14 +2626,20 @@ def _decrypt_soundtrack(path_wav, duration, sujet=""):
     with wave.open(path_wav, "w") as w:
         w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
         w.writeframes(pcm.tobytes())
+    return f"{mood}:{vi}"
 
-def build_decrypt_video(slides_png, sujet=""):
-    """🎬 Vidéo DÉCRYPTAGE pour X/Facebook : diaporama 16:9 des slides du carrousel
-    (cover + slides d'infos), chaque slide posée sur son propre fond flouté, léger zoom,
-    fondu enchaîné, + nappe sonore d'ambiance générée (libre de droit).
-    → le tweet montre ENFIN tout le contenu du décryptage, pas juste un titre animé."""
+def _decrypt_soundtrack(path_wav, duration, sujet=""):
+    """Compat : la nappe du décryptage passe désormais par le moteur unique."""
+    return build_soundtrack(path_wav, duration, category="sobre-decrypt", sujet=sujet)
+
+def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=(255, 90, 200)):
+    """🎬 Vidéo DÉCRYPTAGE (X/Facebook) — portrait 1080×1350.
+    Les slides SONT la vidéo (plein cadre, pas de fond ajouté). Le texte S'ÉCRIT mot par mot,
+    et la durée de chaque slide est calculée sur sa QUANTITÉ DE TEXTE (temps de lecture garanti,
+    quel que soit le nombre de caractères). Se termine par une slide d'abonnement.
+    slides_data = liste de {"titre":..., "points":[...]} (les données, pas des PNG)."""
     import io, shutil, subprocess, tempfile
-    if os.environ.get("PULSE_VIDEO", "1") == "0" or not slides_png:
+    if os.environ.get("PULSE_VIDEO", "1") == "0" or not slides_data:
         return None
     ffmpeg_bin = shutil.which("ffmpeg")
     if not ffmpeg_bin:
@@ -2569,47 +2649,46 @@ def build_decrypt_video(slides_png, sujet=""):
         except Exception:
             return None
     try:
-        print(f"  🎬 Génération vidéo décryptage ({len(slides_png)} slides)...")
-        W, H, FPS = 1280, 720, 18
-        PER_SLIDE, XFADE = 5.5, 0.5             # + long pour laisser le temps de LIRE
-        REVEAL = 0.55                           # fraction du temps où le texte se dévoile
-        frames_slide = int(FPS * PER_SLIDE)
+        print(f"  🎬 Génération vidéo décryptage ({len(slides_data)} slides)...")
+        W, H, FPS = PORTRAIT_W, PORTRAIT_H, 18
+        XFADE = 0.45
         frames_fade = int(FPS * XFADE)
-        frames_reveal = int(frames_slide * REVEAL)
+        total_n = len(slides_data) + 1   # pastilles : cover = 1/N, slides = 2..N
 
-        prepared = []
-        for png in slides_png:
-            sl = Image.open(io.BytesIO(png)).convert("RGB")
-            ratio = max(W / sl.width, H / sl.height)
-            bg = sl.resize((int(sl.width * ratio) + 2, int(sl.height * ratio) + 2), Image.LANCZOS)
-            bg = bg.crop(((bg.width - W) // 2, (bg.height - H) // 2,
-                          (bg.width - W) // 2 + W, (bg.height - H) // 2 + H))
-            bg = bg.filter(ImageFilter.GaussianBlur(22))
-            bg = Image.blend(bg, Image.new("RGB", (W, H), (10, 8, 26)), 0.45)
-            fh = int(H * 0.92); fw = int(sl.width * fh / sl.height)
-            fg = sl.resize((fw, fh), Image.LANCZOS)
-            prepared.append((bg, fg))
+        # ── ⏱️ DURÉE INTELLIGENTE : chaque slide reste le temps d'être LUE ──
+        # Vitesse de lecture confortable ≈ 15 caractères/seconde. La durée = écriture du texte
+        # (≈ 8 mots/s) + temps de lecture complet, bornée [3,5 s ; 11 s] pour rester rythmée.
+        def slide_duration(titre, points):
+            chars = len(titre or "") + sum(len(p) for p in points)
+            words = len((titre or "").split()) + sum(len(p.split()) for p in points)
+            write_t = words / 8.0                       # phase d'écriture
+            read_t  = chars / 15.0                      # relecture complète
+            return max(3.5, min(11.0, 1.0 + max(write_t, read_t))), words
 
-        def compose(idx, zoom, reveal=1.0):
-            """reveal ∈ [0,1] : fraction de la slide dévoilée depuis le HAUT (lecture progressive).
-            La partie non encore révélée est assombrie/estompée → l'œil suit ligne par ligne."""
-            bg, fg = prepared[idx]
-            frame = bg.copy()
-            zw, zh = int(fg.width * zoom), int(fg.height * zoom)
-            fz = fg.resize((zw, zh), Image.LANCZOS)
-            ox, oy = (W - zw) // 2, (H - zh) // 2
-            if reveal >= 1.0:
-                frame.paste(fz, (ox, oy))
-            else:
-                cut = max(1, int(zh * reveal))
-                # partie révélée (nette)
-                frame.paste(fz.crop((0, 0, zw, cut)), (ox, oy))
-                # partie pas encore lue : fortement assombrie (on la devine, on ne la lit pas)
-                if cut < zh:
-                    dim = fz.crop((0, cut, zw, zh))
-                    dim = Image.blend(dim, Image.new("RGB", dim.size, (10, 8, 26)), 0.82)
-                    frame.paste(dim, (ox, oy + cut))
-            return frame
+        # ── pré-rendu des ÉTATS de chaque slide (1 image par mot, fond mis en cache) ──
+        # La mise en page vient de build_carousel_slide (source unique) via reveal=k/mots.
+        seq = []   # liste de (frames de la slide) sous forme (states, frames_total, frames_write)
+        # 1) COVER : la carte (déjà rendue) plein cadre, statique
+        cov = Image.open(io.BytesIO(cover_png)).convert("RGB")
+        if cov.size != (W, H):
+            cov = cov.resize((W, H), Image.LANCZOS)
+        seq.append(([cov], int(FPS * 2.8), 0))
+        # 2) SLIDES DE CONTENU : états mot par mot
+        for i, sd in enumerate(slides_data, start=2):
+            titre, points = sd.get("titre", ""), sd.get("points") or []
+            dur, words = slide_duration(titre, points)
+            bg = build_carousel_bg(i, total_n, accent=accent, bg_photo=bg_photo)
+            states = [build_carousel_slide(titre, points, i, total_n,
+                                           is_last=(i == total_n), accent=accent,
+                                           reveal=(k / max(1, words)), as_image=True, bg_cache=bg)
+                      for k in range(0, words + 1)]
+            frames_total = int(FPS * dur)
+            frames_write = int(FPS * (words / 8.0))
+            seq.append((states, frames_total, frames_write))
+        # 3) SLIDE FINALE : abonnement (statique, ~3 s)
+        seq.append(([build_follow_slide(accent=accent)], int(FPS * 3.0), 0))
+
+        total_dur = sum(ft for _, ft, _ in seq) / FPS
 
         tmpdir = tempfile.mkdtemp(prefix="pulse_decrypt_")
         raw_mp4 = os.path.join(tmpdir, "video_raw.mp4")
@@ -2619,17 +2698,21 @@ def build_decrypt_video(slides_png, sujet=""):
              "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
              "-pix_fmt", "yuv420p", "-movflags", "+faststart", raw_mp4],
             stdin=subprocess.PIPE)
-        n = len(prepared)
-        for i in range(n):
-            for f in range(frames_slide):
-                zoom = 1.0 + 0.03 * (f / frames_slide)          # Ken Burns discret
-                # révélation progressive du texte sur la 1re partie du temps de slide,
-                # puis slide entière affichée le temps de finir la lecture
-                reveal = min(1.0, f / frames_reveal) if frames_reveal else 1.0
-                frame = compose(i, zoom, reveal)
-                if i < n - 1 and f >= frames_slide - frames_fade:
-                    alpha = (f - (frames_slide - frames_fade)) / frames_fade
-                    nxt = compose(i + 1, 1.0, 0.0)              # la suivante démarre masquée
+
+        def state_at(states, f, frames_write):
+            """État (image) à la frame f : le texte s'écrit pendant frames_write, puis reste complet."""
+            if len(states) == 1 or frames_write <= 0:
+                return states[-1]
+            k = min(len(states) - 1, int(len(states) * f / max(1, frames_write)))
+            return states[k]
+
+        for si, (states, frames_total, frames_write) in enumerate(seq):
+            for f in range(frames_total):
+                frame = state_at(states, f, frames_write)
+                # fondu enchaîné vers la slide suivante (qui démarre texte vide)
+                if si < len(seq) - 1 and f >= frames_total - frames_fade:
+                    alpha = (f - (frames_total - frames_fade)) / frames_fade
+                    nxt = seq[si + 1][0][0]
                     frame = Image.blend(frame, nxt, alpha)
                 proc.stdin.write(frame.tobytes())
         proc.stdin.close(); proc.wait()
@@ -2639,7 +2722,7 @@ def build_decrypt_video(slides_png, sujet=""):
         out_mp4 = os.path.join(tmpdir, "video.mp4")
         try:
             wav = os.path.join(tmpdir, "pad.wav")
-            _decrypt_soundtrack(wav, n * PER_SLIDE, sujet)
+            _decrypt_soundtrack(wav, total_dur, sujet)
             r = subprocess.run([ffmpeg_bin, "-y", "-loglevel", "error", "-i", raw_mp4, "-i", wav,
                                 "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", out_mp4],
                                capture_output=True)
@@ -2647,56 +2730,82 @@ def build_decrypt_video(slides_png, sujet=""):
                 out_mp4 = raw_mp4      # vidéo muette plutôt que pas de vidéo
         except Exception:
             out_mp4 = raw_mp4
-        print(f"  🎬 Vidéo décryptage générée ({n} slides, ~{n*PER_SLIDE:.0f}s)")
+        print(f"  🎬 Vidéo décryptage générée ({len(slides_data)} slides + abonnement, ~{total_dur:.0f}s)")
         return out_mp4
     except Exception as e:
         print(f"  ⚠️ Vidéo décryptage échouée : {e}")
         return None
 
-def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 90, 200), bg_photo=None):
-    """Génère une slide de contenu (PNG bytes) dans la DA Pulse, avec photo de fond floutée si dispo."""
+def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 90, 200), bg_photo=None,
+                         reveal=1.0, as_image=False, bg_cache=None):
+    """Génère une slide de contenu dans la DA Pulse.
+    reveal ∈ [0,1] : fraction des MOTS affichés (titre d'abord, puis les puces) — permet à la vidéo
+    de faire « s'écrire » le texte au fur et à mesure SANS dupliquer la mise en page (source unique).
+    as_image=True renvoie l'image PIL (pour la vidéo) au lieu des bytes PNG.
+    bg_cache : fond pré-calculé à réutiliser (perf vidéo : le fond ne change pas entre les états)."""
     import io
     W, H = 1080, 1350
     margin = int(W * 0.07)
 
-    # Fond : photo de l'article floutée + assombrie (plus riche qu'un simple dégradé), sinon dégradé néon
-    img = None
-    if bg_photo:
-        try:
-            ph = Image.open(io.BytesIO(bg_photo)).convert('RGB')
-            pr, tr = ph.width / ph.height, W / H
-            if pr > tr:
-                nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
-            else:
-                nh = int(ph.width / tr); ph = ph.crop((0, (ph.height - nh) // 2, ph.width, (ph.height - nh) // 2 + nh))
-            base = ph.resize((W, H)).filter(ImageFilter.GaussianBlur(18))
-            # voile violet sombre Pulse par-dessus pour la lisibilité
-            tint = Image.new('RGB', (W, H), (18, 12, 46))
-            img = Image.blend(base, tint, 0.78)
-        except Exception:
-            img = None
-    if img is None:
-        img = _neon_bg(W, H)
-    draw = ImageDraw.Draw(img)
+    if bg_cache is not None:
+        img = bg_cache.copy()
+        draw = ImageDraw.Draw(img)
+    else:
+        # Fond : photo de l'article floutée + assombrie (plus riche qu'un simple dégradé), sinon dégradé néon
+        img = None
+        if bg_photo:
+            try:
+                ph = Image.open(io.BytesIO(bg_photo)).convert('RGB')
+                pr, tr = ph.width / ph.height, W / H
+                if pr > tr:
+                    nw = int(ph.height * tr); ph = ph.crop(((ph.width - nw) // 2, 0, (ph.width - nw) // 2 + nw, ph.height))
+                else:
+                    nh = int(ph.width / tr); ph = ph.crop((0, (ph.height - nh) // 2, ph.width, (ph.height - nh) // 2 + nh))
+                base = ph.resize((W, H)).filter(ImageFilter.GaussianBlur(18))
+                tint = Image.new('RGB', (W, H), (18, 12, 46))
+                img = Image.blend(base, tint, 0.78)
+            except Exception:
+                img = None
+        if img is None:
+            img = _neon_bg(W, H)
+        draw = ImageDraw.Draw(img)
 
-    # barre néon en haut
-    for x in range(W):
-        draw.line([(x, 0), (x, 10)], fill=_lerp((90, 140, 255), (255, 80, 200), x / W))
+        # barre néon en haut
+        for x in range(W):
+            draw.line([(x, 0), (x, 10)], fill=_lerp((90, 140, 255), (255, 80, 200), x / W))
 
-    # logo
-    if paste_pulse_logo(img, margin, int(H * 0.045), int(H * 0.045)) == 0:
-        draw.text((margin, int(H * 0.045)), "Pulse", font=_cfont(int(W * 0.05)), fill=(255, 255, 255))
+        # logo
+        if paste_pulse_logo(img, margin, int(H * 0.045), int(H * 0.045)) == 0:
+            draw.text((margin, int(H * 0.045)), "Pulse", font=_cfont(int(W * 0.05)), fill=(255, 255, 255))
 
-    # pastille page i/N
-    pl = f"{idx}/{total}"
-    fp = _cfont(int(W * 0.028), bold=True)
-    bb = draw.textbbox((0, 0), pl, font=fp); pw = bb[2] - bb[0] + 34; ph = bb[3] - bb[1] + 22
-    px0 = W - pw - margin; py0 = int(H * 0.045)
-    pov = Image.new('RGBA', (W, H), (0, 0, 0, 0)); pdd = ImageDraw.Draw(pov)
-    pdd.rounded_rectangle([px0, py0, px0 + pw, py0 + ph], radius=ph // 2,
-                          fill=(255, 255, 255, 40), outline=(255, 255, 255, 150), width=2)
-    img = Image.alpha_composite(img.convert('RGBA'), pov).convert('RGB'); draw = ImageDraw.Draw(img)
-    draw.text((px0 + 17, py0 + 8), pl, font=fp, fill=(255, 255, 255))
+        # pastille page i/N
+        pl = f"{idx}/{total}"
+        fp = _cfont(int(W * 0.028), bold=True)
+        bb = draw.textbbox((0, 0), pl, font=fp); pw = bb[2] - bb[0] + 34; ph2 = bb[3] - bb[1] + 22
+        px0 = W - pw - margin; py0 = int(H * 0.045)
+        pov = Image.new('RGBA', (W, H), (0, 0, 0, 0)); pdd = ImageDraw.Draw(pov)
+        pdd.rounded_rectangle([px0, py0, px0 + pw, py0 + ph2], radius=ph2 // 2,
+                              fill=(255, 255, 255, 40), outline=(255, 255, 255, 150), width=2)
+        img = Image.alpha_composite(img.convert('RGBA'), pov).convert('RGB'); draw = ImageDraw.Draw(img)
+        draw.text((px0 + 17, py0 + 8), pl, font=fp, fill=(255, 255, 255))
+
+    # ── TEXTE : compteur global de mots (titre puis puces) ; on ne dessine que les `visible` premiers ──
+    title_wc = len(title.split())
+    total_wc = title_wc + sum(len(p.split()) for p in points)
+    visible = total_wc if reveal >= 1.0 else int(round(max(0.0, min(1.0, reveal)) * total_wc))
+    widx = 0   # index global du prochain mot
+
+    def _draw_words(x0, y, line, font, fill):
+        """Dessine les mots d'une ligne un par un (respecte le compteur global `widx`)."""
+        nonlocal widx
+        x = x0
+        for word in line.split(" "):
+            if not word:
+                continue
+            if widx < visible:
+                draw.text((x, y), word, font=font, fill=fill)
+            widx += 1
+            x += draw.textlength(word + " ", font=font)
 
     # titre (auto-dimensionné pour tenir)
     y = int(H * 0.15)
@@ -2706,28 +2815,61 @@ def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 
             tsize = trysize; break
     f_title = _cfont(tsize)
     for ln in _wrap(draw, title, f_title, int(W * 0.86)):
-        draw.text((margin, y), ln, font=f_title, fill=(255, 255, 255)); y += int(tsize * 1.15)
+        _draw_words(margin, y, ln, f_title, (255, 255, 255)); y += int(tsize * 1.15)
 
-    # trait d'accent
+    # trait d'accent : apparaît quand le TITRE est entièrement écrit
     y += 12
-    draw.rounded_rectangle([margin, y, margin + int(W * 0.18), y + 10], radius=5, fill=accent)
+    if title and visible >= title_wc:
+        draw.rounded_rectangle([margin, y, margin + int(W * 0.18), y + 10], radius=5, fill=accent)
     y += int(H * 0.045)
 
-    # points à puces (auto-dimensionnés selon le nombre)
+    # points à puces (auto-dimensionnés selon le nombre) — la puce apparaît avec son 1er mot
     psize = int(W * 0.044) if len(points) <= 3 else int(W * 0.039)
     f_pt = _cfont(psize, bold=False)
     for pt in points:
-        draw.ellipse([margin, y + 13, margin + 18, y + 31], fill=accent)
+        if widx < visible:
+            draw.ellipse([margin, y + 13, margin + 18, y + 31], fill=accent)
         for ln in _wrap(draw, pt, f_pt, int(W * 0.80)):
-            draw.text((margin + 40, y), ln, font=f_pt, fill=(238, 232, 250)); y += int(psize * 1.32)
+            _draw_words(margin + 40, y, ln, f_pt, (238, 232, 250)); y += int(psize * 1.32)
         y += int(H * 0.018)
 
-    # CTA sur la dernière slide (flèche → qui s'affiche bien, pas d'emoji couleur)
-    if is_last:
+    # CTA sur la dernière slide : quand tout le texte est écrit
+    if is_last and visible >= total_wc:
         draw.text((margin, int(H * 0.9)), "→ Plus d'infos sur X : @PULSEactus",
                   font=_cfont(int(W * 0.04), bold=True), fill=accent)
 
+    if as_image:
+        return img
     buf = io.BytesIO(); img.save(buf, format="PNG"); return buf.getvalue()
+
+def build_carousel_bg(idx, total, accent=(255, 90, 200), bg_photo=None):
+    """Fond « chrome » d'une slide (dégradé/photo + barre + logo + pastille), SANS texte —
+    pré-calculé une fois par slide pour l'animation vidéo (perf)."""
+    return build_carousel_slide("", [], idx, total, accent=accent, bg_photo=bg_photo,
+                                reveal=0.0, as_image=True)
+
+def build_follow_slide(accent=(255, 90, 200)):
+    """Slide de FIN de la vidéo décryptage : appel à s'abonner, dans la DA Pulse."""
+    W, H = 1080, 1350
+    img = _neon_bg(W, H)
+    draw = ImageDraw.Draw(img)
+    for x in range(W):
+        draw.line([(x, 0), (x, 10)], fill=_lerp((90, 140, 255), (255, 80, 200), x / W))
+    # grand logo centré
+    lw = paste_pulse_logo(img, 0, 0, int(H * 0.075))
+    if lw:
+        img2 = _neon_bg(W, H); d2 = ImageDraw.Draw(img2)
+        for x in range(W):
+            d2.line([(x, 0), (x, 10)], fill=_lerp((90, 140, 255), (255, 80, 200), x / W))
+        paste_pulse_logo(img2, (W - lw) // 2, int(H * 0.34), int(H * 0.075))
+        img, draw = img2, d2
+    else:
+        draw.text((W // 2, int(H * 0.37)), "PULSE", font=_cfont(int(W * 0.09)), fill=(255, 255, 255), anchor="mm")
+    draw.text((W // 2, int(H * 0.50)), "Suis toute l'actu en temps réel",
+              font=_cfont(int(W * 0.045)), fill=(255, 255, 255), anchor="mm")
+    draw.text((W // 2, int(H * 0.575)), "Abonne-toi → @PULSEactus",
+              font=_cfont(int(W * 0.05), bold=True), fill=accent, anchor="mm")
+    return img
 
 def gather_articles_with_urls(limit_per_feed=4):
     """Récupère les articles récents avec leur URL (pour pouvoir lire l'article complet)."""
@@ -2868,8 +3010,15 @@ RÈGLES ABSOLUES :
 - EXACTEMENT 4 slides de contenu. Titre court (≤ 32 caractères) + 2 à 3 points.
 - Chaque point : UNE phrase courte et factuelle (≤ 110 caractères), avec un chiffre ou un fait précis. PAS d'emoji dans les points.
 
+EN PLUS des slides, écris le TEASER pour X ("tweet_points") : 3 puces AUTONOMES qui résument le sujet
+pour quelqu'un qui ne verra JAMAIS les slides. Chaque puce = une phrase COMPLÈTE et compréhensible SEULE
+(qui/quoi/où), un fait ou un chiffre précis, ≤ 120 caractères, zéro jargon. Lues à la suite, les 3 puces
+doivent raconter l'histoire en entier. Relis-les : si une puce n'est pas comprise sans contexte, réécris-la.
+Donne aussi "keywords" : 1 à 2 NOMS PROPRES centraux de CET article (entreprise/personne/lieu/événement),
+pour le hashtag du tweet.
+
 Réponds avec ce JSON UNIQUEMENT :
-{{"cover_title":"<accroche de couverture ≤60 caractères, percutante>","slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1100)
+{{"cover_title":"<accroche de couverture ≤60 caractères, percutante>","tweet_points":["...","...","..."],"keywords":["..."],"slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1300)
 
         slides = result.get("slides", [])
         slides = [s for s in slides if s.get("titre") and s.get("points")][:4]
@@ -2879,7 +3028,11 @@ Réponds avec ce JSON UNIQUEMENT :
             "sujet":       pick.get("sujet", "Décryptage")[:40],
             "cover_title": (result.get("cover_title") or pick.get("cover_title") or art["title"])[:80],
             "image_query": pick.get("image_query", "news france"),
-            "keywords":    pick.get("keywords", []),
+            # keywords de l'étape 3 (qui a LU l'article réellement décrypté) prioritaires : l'étape 1
+            # décrivait le sujet n°1 du top 3, or on peut avoir basculé sur le n°2/n°3 (photo) →
+            # c'est ce décalage qui produisait des hashtags HORS SUJET.
+            "keywords":    (result.get("keywords") or pick.get("keywords", []))[:2],
+            "tweet_points": [str(p).strip() for p in (result.get("tweet_points") or []) if str(p).strip()][:3],
             "slides":      slides,
             "url":         art["url"],
             "summary":     art["summary"],
@@ -2890,17 +3043,22 @@ Réponds avec ce JSON UNIQUEMENT :
         return None
 
 def carousel_to_text(carousel):
-    """Construit le texte du décryptage (X + Facebook) : SYNTHÈSE scannable —
-    1 fait/chiffre par slide max (le plus parlant des 2-3), en liste verticale aérée.
-    Le détail complet (tous les points) reste dans le carrousel Instagram."""
+    """Construit le texte du décryptage (X + Facebook).
+    Priorité aux "tweet_points" : 3 puces écrites POUR le tweet, compréhensibles SEULES.
+    Repli (ancien comportement) : collage du meilleur point de chaque slide — moins lisible,
+    car ces points ont été écrits pour être lus SOUS le titre de leur slide."""
     out = f"🧵 {carousel['cover_title']}\n\n"
-    for s in carousel["slides"]:
-        pts = s.get("points") or []
-        if not pts:
-            continue
-        # garde le point le plus DENSE en info (présence d'un chiffre = signal de pertinence)
-        best = max(pts, key=lambda p: (bool(re.search(r"\d", p)), -len(p)))
-        out += f"▸ {best}\n"
+    pts = carousel.get("tweet_points") or []
+    if len(pts) >= 2:
+        for p in pts:
+            out += f"▸ {p}\n"
+    else:
+        for s in carousel["slides"]:
+            spts = s.get("points") or []
+            if not spts:
+                continue
+            best = max(spts, key=lambda p: (bool(re.search(r"\d", p)), -len(p)))
+            out += f"▸ {best}\n"
     out += "\n\nLe décryptage complet en vidéo 👇"
     return out.strip()
 
@@ -3562,9 +3720,10 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1080, H=1350):
 # VIDÉOS ANIMÉES (motion design Pulse) — 0 appel Claude, rendu local + ffmpeg
 # ═══════════════════════════════════════════════════════════════════════════
 VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1280, 720, 20, 6.5
-# 📱 Vidéos d'ACTU : format PORTRAIT 4:5 — occupe bien plus de hauteur dans le fil X,
-# façon « carte info » (photo plein cadre + dégradé noir en bas + titre qui s'écrit).
-NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR = 1080, 1350, 7.5
+# 📱 TOUTES les vidéos Pulse sont en PORTRAIT 4:5 : elles occupent bien plus de hauteur
+# dans le fil X (façon « carte info »). news = photo plein cadre + dégradé noir + titre qui s'écrit.
+PORTRAIT_W, PORTRAIT_H = 1080, 1350
+NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR = PORTRAIT_W, PORTRAIT_H, 7.5
 
 def _vf(px, bold=True, italic=False, serif=False):
     if serif:
@@ -3924,9 +4083,9 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             return None
     try:
         print(f"  🎬 Génération vidéo ({kind})...")
-        W, H, FPS, DUR = VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR
+        W, H, FPS, DUR = PORTRAIT_W, PORTRAIT_H, VIDEO_FPS, VIDEO_DUR   # portrait 4:5 pour le fil X
         if kind == "news":
-            W, H, DUR = NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR   # portrait 4:5 pour le fil X
+            DUR = NEWS_VIDEO_DUR      # un peu plus long : le titre s'écrit mot par mot
         N = int(FPS * DUR)
         sober = (kind == "hommage")
         flags_v = None
@@ -4088,6 +4247,9 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     if word:
                         HWORDS.append((x, HY0 + i * LH, word))
                         x += int(tmpd.textlength(word + " ", font=HFONT))
+            # cadence adaptative : l'écriture s'étale sur ~4 s et se termine ~1,5 s avant la fin,
+            # que le titre fasse 8 mots ou 25 (sinon un titre court s'écrit d'un bloc).
+            WSTEP = min(0.20, max(0.06, 4.0 / max(1, len(HWORDS) - 1)))
             glass_title_panel = None
 
         out_dir = tempfile.mkdtemp(prefix="pulsevid_")
@@ -4123,23 +4285,30 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                 bar.paste(strip, (xx, 0)); xx += period
             img.paste(bar, (0, 0))
             d = ImageDraw.Draw(img)
-            # logo + ECG (apparition fluide : fondu doux + léger glissement depuis la gauche)
+            # 🔷 EN-TÊTE : le VRAI logo PULSE détouré, en fondu doux (il embarque déjà son battement).
+            # Hommage : texte sobre conservé. Repli : si le logo échoue, on retombe sur texte + ECG animé.
             la = _appear(t, 0.15, 0.9)
-            if la > 0:
+            _logo_drawn = False
+            if la > 0 and not sober:
+                if paste_pulse_logo(img, int(W * 0.04), int(H * 0.030), int(H * 0.042), opacity=la) > 0:
+                    _logo_drawn = True
+                    d = ImageDraw.Draw(img)
+            if la > 0 and not _logo_drawn:
                 lx_off = int((1 - la) * 22)
                 d.text((int(W * 0.04) - lx_off, int(H * 0.055)), "PULSE", font=LOGO_F,
                        fill=WHITE + (int(255 * la),))
-            frac = _ease_soft((t - 0.4) / 1.1)
-            pts = ecg_pts(frac)
-            if len(pts) >= 2:
-                if glow_full is not None and frac >= 1:
-                    img.alpha_composite(glow_full)
-                d = ImageDraw.Draw(img)
-                d.line(pts, fill=ecg_col, width=3, joint="curve")
-                if frac >= 1 and not sober:
-                    r = 4 + 1.6 * (1 + math.sin(t * 5.5)) / 2
-                    e = ECG[-1]
-                    d.ellipse([e[0]-r, e[1]-r, e[0]+r, e[1]+r], fill=ecg_col)
+            if not _logo_drawn:
+                frac = _ease_soft((t - 0.4) / 1.1)
+                pts = ecg_pts(frac)
+                if len(pts) >= 2:
+                    if glow_full is not None and frac >= 1:
+                        img.alpha_composite(glow_full)
+                    d = ImageDraw.Draw(img)
+                    d.line(pts, fill=ecg_col, width=3, joint="curve")
+                    if frac >= 1 and not sober:
+                        r = 4 + 1.6 * (1 + math.sin(t * 5.5)) / 2
+                        e = ECG[-1]
+                        d.ellipse([e[0]-r, e[1]-r, e[0]+r, e[1]+r], fill=ecg_col)
             # pastille haut droite (apparition fluide : fondu + léger glissement depuis la droite)
             sa = _appear(t, 0.7, 0.7)
             px_off = int((1 - sa) * 24)
@@ -4188,14 +4357,14 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     bx = int(W * 0.035)
                     d.rounded_rectangle([bx, HY0, bx + 6, HY0 + bh], radius=3, fill=accent_rgb + (235,))
                 for k, (wx, wy, word) in enumerate(HWORDS):
-                    wa = _appear(t, 1.15 + k * 0.085, 0.30)   # chaque mot arrive juste après le précédent
+                    wa = _appear(t, 1.15 + k * WSTEP, 0.34)   # chaque mot arrive juste après le précédent
                     if wa <= 0: continue
                     dy = int((1 - wa) * 14)                   # léger glissement vers le haut
                     d.text((wx + 2, wy + dy + 3), word, font=HFONT, fill=(0, 0, 0, int(170 * wa)))
                     d.text((wx, wy + dy), word, font=HFONT, fill=WHITE + (int(255 * wa),))
             elif kind == "victory":
                 typ, winner = data.get("type", "match"), data.get("winner", "")
-                cy = int(H * 0.50)
+                cy = int(H * 0.70)   # portrait : bloc score dans le bas, sur la zone assombrie
                 if typ == "race":
                     name = data.get("winner_name", "").upper()
                     fz = _vf(min(W * 0.085, W * 0.085))
@@ -4300,8 +4469,8 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                     if st_ > 0 and winner != "NUL":
                         sc = 1.0 + 0.5 * (1 - st_)
                         bf = _vf(W * 0.032 * sc)
-                        d.text((W // 2 + 2, int(H * 0.205) + 2), "★  VICTOIRE  ★", font=bf, fill=(0, 0, 0, int(220 * st_)), anchor="mm")
-                        d.text((W // 2, int(H * 0.205)), "★  VICTOIRE  ★", font=bf, fill=GOLD + (int(255 * st_),), anchor="mm")
+                        d.text((W // 2 + 2, int(H * 0.605) + 2), "★  VICTOIRE  ★", font=bf, fill=(0, 0, 0, int(220 * st_)), anchor="mm")
+                        d.text((W // 2, int(H * 0.605)), "★  VICTOIRE  ★", font=bf, fill=GOLD + (int(255 * st_),), anchor="mm")
                     elif st_ > 0:
                         d.text((W // 2, int(H * 0.205)), "MATCH NUL", font=_vf(W * 0.032),
                                fill=(220, 224, 235, int(255 * st_)), anchor="mm")
@@ -4331,12 +4500,8 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             # pied de page (zone réservée — rien ne descend dessus)
             fa = _appear(t, DUR - 2.4, 0.9)
             if fa > 0:
-                _logo_h = int(H * 0.052)
-                if kind == "news":
-                    pass   # marque déjà présente en haut (en-tête animé) → pas de doublon
-                elif sober or paste_pulse_logo(img, int(W * 0.04), H - int(H * 0.05) - _logo_h, _logo_h, opacity=fa) == 0:
-                    d.text((int(W * 0.04), H - int(H * 0.082)), "Pulse", font=_vf(W * 0.020),
-                           fill=WHITE + (int(255 * fa),))
+                # Marque : uniquement l'en-tête animé "PULSE" en haut à gauche.
+                # (On ne la répète PAS en pied de page — doublon visuel inutile.)
                 d.text((W - int(W * 0.04), H - int(H * 0.070)), f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
                        font=_vf(W * 0.016, False), fill=DIM + (int(230 * fa),), anchor="rm")
             # ── finition photographique : vignettage + grain fusionnés (1 seul composite) ──
@@ -4351,6 +4516,22 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         for n in range(N):   # libère le disque : on ne garde que le MP4
             try: os.remove(f"{out_dir}/f_{n:03d}.png")
             except OSError: pass
+        # 🎵 Nappe d'ambiance selon la catégorie (hommage = solennelle très discrète).
+        # En cas de pépin audio : vidéo muette plutôt que pas de vidéo.
+        try:
+            wav = os.path.join(out_dir, "pad.wav")
+            snd_cat = "hommage" if sober else ("sport" if kind == "victory" else category)
+            tag = build_soundtrack(wav, DUR, category=snd_cat,
+                                   sujet=str(data.get("headline", "") or data.get("name", "")))
+            withsnd = os.path.join(out_dir, "pulse_video_snd.mp4")
+            r = subprocess.run([ffmpeg_bin, "-y", "-loglevel", "error", "-i", out_mp4, "-i", wav,
+                                "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", withsnd],
+                               capture_output=True, timeout=120)
+            if r.returncode == 0 and os.path.exists(withsnd):
+                out_mp4 = withsnd
+                print(f"  🎵 Ambiance sonore : {tag}")
+        except Exception as e:
+            print(f"  ⚠️ Ambiance sonore ignorée : {e}")
         print(f"  🎬 Vidéo générée ({kind})")
         return out_mp4
     except Exception as e:
@@ -5393,11 +5574,11 @@ def check_feeds(conn):
     if not special_done_today(conn, "thread") and datetime.now().hour >= 9:
         carousel = gen_carousel(conn)
         if carousel:
-            # Texte X + Facebook (assemblé depuis le carrousel, sans 2e appel Claude)
+            # Texte X + Facebook (assemblé depuis le carrousel, sans 2e appel Claude).
+            # Hashtag INTÉGRÉ dans la phrase via la source unique _attach_hashtag (posé sur un nom
+            # propre déjà présent) — fini les "#Mot1 #Mot2" empilés en fin de tweet.
             body = carousel_to_text(carousel)
-            tags = " ".join("#" + re.sub(r'[^0-9A-Za-zÀ-ÿ]', '', k)
-                            for k in carousel.get("keywords", [])[:2] if k and k.strip())
-            xfb = body + (("\n\n" + tags) if tags else "")
+            xfb = _attach_hashtag(body, "", carousel.get("keywords", []))
 
             # Image de couverture : og:image de l'article si dispo, sinon vraie photo via image_query.
             raw_src, has_real = None, False
@@ -5426,8 +5607,10 @@ def check_feeds(conn):
                 slides_png.append(build_carousel_slide(s["titre"], s["points"], i, total,
                                                        is_last=(i == total), bg_photo=raw_src))
 
-            # 🎬 Vidéo décryptage pour X/FB : diaporama des slides (montre TOUT le contenu) + musique.
-            vid_thread = build_decrypt_video(slides_png, carousel.get("sujet", ""))
+            # 🎬 Vidéo décryptage pour X/FB : les slides SONT la vidéo, texte qui s'écrit,
+            # durée adaptée à la quantité de texte, slide d'abonnement en fin.
+            vid_thread = build_decrypt_video(cover_ig, carousel["slides"], carousel.get("sujet", ""),
+                                             bg_photo=raw_src)
             url = None
             try:
                 url = post_to_twitter(xfb, cover_paysage, vid_thread)
