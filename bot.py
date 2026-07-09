@@ -276,6 +276,21 @@ def init_db():
         )""",
     ]:
         conn.execute(sql)
+    # 🔧 MIGRATIONS : CREATE TABLE IF NOT EXISTS ne modifie PAS une table déjà présente dans un
+    # cache restauré. On ajoute donc explicitement les colonnes manquantes sur les bases existantes,
+    # sinon toute lecture d'une colonne récente plante ("no such column"). Idempotent et sûr.
+    def _ensure_column(table, column, ddl):
+        try:
+            cols = [r[1] for r in conn.execute(f"PRAGMA table_info({table})").fetchall()]
+            if column not in cols:
+                conn.execute(f"ALTER TABLE {table} ADD COLUMN {ddl}")
+        except Exception:
+            pass
+    _ensure_column("topic_echo_alert", "sources_at_alert", "sources_at_alert INTEGER DEFAULT 0")
+    _ensure_column("topic_echo_alert", "alerted_at", "alerted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    _ensure_column("post_log", "category", "category TEXT")
+    _ensure_column("post_log", "posted_at", "posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    conn.commit()
     conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
     # 🔥 Écho médiatique : on ne garde que 12h (au-delà, un sujet n'est plus "chaud")
     conn.execute("DELETE FROM topic_echo WHERE first_seen < datetime('now', '-12 hours')")
