@@ -264,6 +264,7 @@ def init_db():
         )""",
         """CREATE TABLE IF NOT EXISTS topic_echo_alert (
             topic_key TEXT PRIMARY KEY,
+            sources_at_alert INTEGER DEFAULT 0,
             alerted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )""",
         # Journal des VRAIES publications (1 ligne par post réellement sorti). Sert au compteur
@@ -5733,49 +5734,72 @@ def _topic_key(title):
     Deux titres du même événement partagent la même clé même s'ils sont formulés différemment."""
     return " ".join(sorted(_sig_words(title)))
 
-def topic_echo_touch(conn, title, source):
-    """Mémorise que `source` a parlé de ce sujet (mémoire 12h). Ne compte JAMAIS deux fois le même
-    média (UNIQUE topic_key+source). Renvoie (nb_medias_distincts, deja_alerte: bool).
-    On regroupe par CHEVAUCHEMENT de mots (≥2 communs), pas par égalité stricte de clé, car les
-    médias formulent différemment — sinon on ne compterait jamais 2 titres du même événement ensemble."""
+def topic_echo_add(conn, title, source):
+    """Enregistre qu'un MÉDIA parle d'un sujet (mémoire 12h), appelé sur CHAQUE article frais du flux
+    (avant tout pré-filtre), pour que même un sujet déjà tweeté accumule ses médias. Ne compte jamais
+    deux fois le même média (UNIQUE topic_key+source). Renvoie le sujet canonique, ou None si trop court.
+    Regroupe par CHEVAUCHEMENT (≥2 mots communs) : deux formulations du même événement = un seul sujet."""
     sig = _sig_words(title)
     if len(sig) < 2:
-        return 0, False
-    # sujet canonique = une clé déjà vue qui partage ≥2 mots ; sinon on crée la clé de ce titre
+        return None
     rows = conn.execute(
         "SELECT topic_key, source FROM topic_echo WHERE first_seen > datetime('now','-12 hours')"
     ).fetchall()
-    key = _topic_key(title)
-    sources_for_key = {}
+    seen_keys = {}
     for k, src in rows:
-        sources_for_key.setdefault(k, set()).add(src)
+        seen_keys.setdefault(k, set()).add(src)
     canon = None
-    for k in sources_for_key:
-        kw = set(k.split())
-        if len(sig & kw) >= 2:
+    for k in seen_keys:
+        if len(sig & set(k.split())) >= 2:
             canon = k
             break
     if canon is None:
-        canon = key
+        canon = " ".join(sorted(sig))
     conn.execute("INSERT OR IGNORE INTO topic_echo (topic_key, source) VALUES (?,?)", (canon, source))
     conn.commit()
-    n = conn.execute("SELECT COUNT(DISTINCT source) FROM topic_echo WHERE topic_key=?", (canon,)).fetchone()[0]
-    alerted = conn.execute("SELECT 1 FROM topic_echo_alert WHERE topic_key=?", (canon,)).fetchone() is not None
-    return n, alerted, canon
+    return canon
 
-def topic_echo_mark_alerted(conn, canon):
-    """Pose le drapeau anti-spam : ce sujet a déjà déclenché SON alerte (plus de breaking dessus)."""
-    conn.execute("INSERT OR IGNORE INTO topic_echo_alert (topic_key) VALUES (?)", (canon,))
+def topic_echo_status(conn, title):
+    """État d'écho d'un sujet : (n_medias_distincts_12h, deja_alerte, sources_au_moment_alerte, canon).
+    Sert à décider : nouveau sujet chaud (breaking) OU suivi (si un NOUVEAU média est apparu depuis)."""
+    sig = _sig_words(title)
+    if len(sig) < 2:
+        return 0, False, 0, None
+    rows = conn.execute(
+        "SELECT topic_key, source FROM topic_echo WHERE first_seen > datetime('now','-12 hours')"
+    ).fetchall()
+    seen_keys = {}
+    for k, src in rows:
+        seen_keys.setdefault(k, set()).add(src)
+    canon = None
+    for k in seen_keys:
+        if len(sig & set(k.split())) >= 2:
+            canon = k
+            break
+    if canon is None:
+        return 0, False, 0, " ".join(sorted(sig))
+    n = len(seen_keys.get(canon, set()))
+    row = conn.execute("SELECT sources_at_alert FROM topic_echo_alert WHERE topic_key=?", (canon,)).fetchone()
+    alerted = row is not None
+    at_alert = row[0] if row else 0
+    return n, alerted, at_alert, canon
+
+def topic_echo_mark_alerted(conn, canon, n_sources):
+    """Pose le drapeau anti-spam ET mémorise combien de médias parlaient du sujet à ce moment,
+    pour ne re-déclencher un SUIVI que si un NOUVEAU média rejoint le sujet ensuite."""
+    conn.execute(
+        "INSERT INTO topic_echo_alert (topic_key, sources_at_alert) VALUES (?,?) "
+        "ON CONFLICT(topic_key) DO UPDATE SET sources_at_alert=excluded.sources_at_alert",
+        (canon, n_sources))
     conn.commit()
 
 def detect_breaking(conn, candidates, return_all=False):
-    """🔥 Détecte les actus 'breaking' via l'ÉCHO MÉDIATIQUE PERSISTANT (12h) : un sujet devient
-    chaud quand il a été repris par ≥ BREAKING_SOURCES MÉDIAS DISTINCTS sur les 12 dernières heures,
-    même si ces médias ont publié à des runs différents (ex: attentat qui se propage minute par minute).
-    Anti-spam : une fois l'alerte déclenchée pour un sujet, on ne la refait pas (drapeau topic_echo_alert) ;
-    le suivi éventuel passe alors par topic_gate (Claude juge s'il y a du neuf).
-    return_all=False → renvoie le sujet le plus chaud (compat). return_all=True → liste de tous les
-    sujets chauds (dédupliqués par sujet canonique), triés par nb de médias décroissant."""
+    """🔥 Détecte les sujets chauds via l'ÉCHO MÉDIATIQUE PERSISTANT (12h) : ≥ BREAKING_SOURCES
+    médias DISTINCTS sur 12h (le comptage est alimenté en amont, sur chaque article frais du flux,
+    même les sujets déjà tweetés). Renvoie des candidats annotés :
+      • _echo_kind='breaking' : sujet jamais alerté qui franchit le seuil → alerte.
+      • _echo_kind='followup' : sujet déjà alerté MAIS un NOUVEAU média est apparu depuis → suite si du neuf.
+    return_all=True → liste triée (nb médias décroissant). Anti-spam et valeur éditoriale gérés en aval."""
     if breaking_recent(conn) and not return_all:
         return None
     published_sigs = [_sig_words(t) for t in get_recent(conn)]
@@ -5784,22 +5808,26 @@ def detect_breaking(conn, candidates, return_all=False):
         wi = _sig_words(c["title"])
         if len(wi) < 2:
             continue
-        if _is_soft_news(c["title"]):          # rapport / étude / revue de presse → jamais breaking
+        if _is_soft_news(c["title"]):
             continue
-        res = topic_echo_touch(conn, c["title"], c["source"])
-        if not isinstance(res, tuple) or len(res) < 3:
+        n_sources, already_alerted, at_alert, canon = topic_echo_status(conn, c["title"])
+        if not canon or n_sources < (2 if ULTRA_HOT_RX.search(c["title"]) else BREAKING_SOURCES):
             continue
-        n_sources, already_alerted, canon = res
         if already_alerted:
-            continue                            # alerte déjà faite pour ce sujet → suivi géré ailleurs
-        if any(len(wi & ps) >= 2 for ps in published_sigs):
-            continue                            # déjà couvert récemment par Pulse → pas un NOUVEAU breaking
-        required = 2 if ULTRA_HOT_RX.search(c["title"]) else BREAKING_SOURCES
-        if n_sources >= required:
-            c["_topic_canon"] = canon
-            # on garde, par sujet canonique, le candidat avec le plus de médias
-            if canon not in hot or n_sources > hot[canon][1]:
-                hot[canon] = (c, n_sources)
+            # suivi possible UNIQUEMENT si un NOUVEAU média a rejoint le sujet depuis l'alerte
+            if n_sources <= at_alert:
+                continue
+            kind = "followup"
+        else:
+            # nouveau sujet chaud : pas déjà couvert récemment par Pulse
+            if any(len(wi & ps) >= 2 for ps in published_sigs):
+                continue
+            kind = "breaking"
+        c["_topic_canon"] = canon
+        c["_echo_kind"] = kind
+        c["_echo_n"] = n_sources
+        if canon not in hot or n_sources > hot[canon][1]:
+            hot[canon] = (c, n_sources)
     ordered = [c for c, n in sorted(hot.values(), key=lambda x: -x[1])]
     if return_all:
         return ordered
@@ -5870,9 +5898,10 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
     # (il est un bonus qui ne doit pas voler le créneau). Un suivi/buzz, lui, repousse la cadence.
     if bump_cadence:
         mark_cat(conn, label_cat)
-    # 🔥 Anti-spam écho : ce sujet a déclenché SON alerte → plus de breaking dessus (suivi via topic_gate)
+    # 🔥 Anti-spam écho : ce sujet a déclenché SON alerte → mémorise le nb de médias à cet instant,
+    # pour ne re-déclencher un suivi que si un NOUVEAU média rejoint le sujet ensuite.
     if item.get("_topic_canon"):
-        topic_echo_mark_alerted(conn, item["_topic_canon"])
+        topic_echo_mark_alerted(conn, item["_topic_canon"], item.get("_echo_n", BREAKING_SOURCES))
     log_keywords(conn, keywords)
     log_topic(conn, item.get("title", ""), keywords)   # mémoire par sujet (suivi éditorial)
     log_special(conn, "breaking", keywords)   # partage l'anti-spam (1 fast-track / 25 min)
@@ -6014,6 +6043,13 @@ def check_feeds(conn):
                         except Exception:
                             pass
                 if url and title and not is_seen(conn, url):
+                    # 🔥 ÉCHO : on compte ce média sur le sujet AVANT tout pré-filtre, pour qu'un
+                    # sujet chaud accumule ses médias même s'il a déjà été tweeté (→ suivi possible).
+                    # Ne double jamais un même média sur un sujet (UNIQUE) ni un même article (is_seen).
+                    try:
+                        topic_echo_add(conn, title, fi["source"])
+                    except Exception:
+                        pass
                     # Pré-filtre GRATUIT (sans coût Claude) : un titre qui touche un sujet déjà
                     # traité aujourd'hui n'est PLUS jeté d'office. La mémoire par sujet décide si
                     # une SUITE est permise maintenant (plafond/jour + écart mini) ; Claude jugera
@@ -6063,19 +6099,27 @@ def check_feeds(conn):
             if pre_score < 3:
                 print(f"  ⚪ Sujet chaud mais banal (pré-classement {pre_score}) → suivant")
                 continue
-            # a-t-on DÉJÀ tweeté sur ce sujet ? (mémoire par sujet)
+            # a-t-on DÉJÀ tweeté sur ce sujet ? (mémoire par sujet + signal d'écho)
             allowed, code, prev_heads = topic_gate(conn, hot["title"])
-            is_followup = (code == "followup")
-            if code in ("cap", "too_soon"):
-                # déjà couvert et soit plafond sujet atteint, soit trop tôt (anti-spam suivi) → suivant
-                print(f"  ⏭️  Sujet chaud déjà traité ({code}) → suivant")
+            echo_kind = hot.get("_echo_kind", "breaking")
+            is_followup = (code == "followup") or (echo_kind == "followup")
+            if code == "cap":
+                print(f"  ⏭️  Sujet chaud déjà traité (plafond du jour) → suivant")
                 continue
-            print(f"  🚨 Sujet chaud : {hot['title'][:55]} (nouveau={code=='new'})")
-            try:
-                a = analyse_batch([hot], recent, blocked_kws)[0]
-                cache_analysis(conn, hot["url"], a)
-            except Exception:
-                a = {"score": BREAKING_SCORE, "category": "breaking", "is_duplicate": False}
+            if code == "too_soon":
+                print(f"  ⏭️  Sujet chaud déjà traité (trop tôt, anti-spam) → suivant")
+                continue
+            print(f"  🚨 Sujet chaud ({echo_kind}, {hot.get('_echo_n','?')} médias) : {hot['title'][:50]}")
+            # Mémoire d'analyse : ne PAS re-payer Claude si cet article a déjà été analysé à un run passé.
+            a = get_cached_analysis(conn, hot["url"])
+            if a is None:
+                try:
+                    a = analyse_batch([hot], recent, blocked_kws)[0]
+                    cache_analysis(conn, hot["url"], a)
+                except Exception:
+                    a = {"score": BREAKING_SCORE, "category": "breaking", "is_duplicate": False}
+            else:
+                print("  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)")
             # Claude juge : doublon = rien de neuf par rapport à nos tweets → on passe au sujet suivant
             if a.get("is_duplicate"):
                 print("  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant")
