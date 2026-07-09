@@ -91,6 +91,7 @@ BREAKING_SCORE = 9        # score minimum (analyse Claude) pour qu'une actu soit
 BUZZ_SCORE = 7            # score minimum pour un fast-track "buzz" (multi-sources) — label normal, pas URGENT
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
 BREAKING_GAP_MIN = 25     # délai mini (minutes) entre deux publications breaking (anti-spam)
+STALE_BREAKING_HOURS = 48 # au-delà, un article n'est plus assez frais pour un "breaking" (anti-réchauffé)
 SPORT_COOLDOWN_MIN = 120  # délai mini (minutes) entre deux posts SPORT (anti-spam sport en direct)
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -312,11 +313,13 @@ def mark_seen(conn, url, title):
     conn.commit()
 
 def get_recent(conn):
-    return [r[0] for r in conn.execute("SELECT title FROM recent_titles ORDER BY added_at DESC LIMIT 50").fetchall()]
+    # Mémoire anti-doublon montrée à Claude ET utilisée pour ne pas re-"breaker" un sujet déjà publié.
+    # 150 titres ≈ ~1 semaine de publications : le bot se souvient plus longtemps de ce qu'il a couvert.
+    return [r[0] for r in conn.execute("SELECT title FROM recent_titles ORDER BY added_at DESC LIMIT 150").fetchall()]
 
 def add_recent(conn, title):
     conn.execute("INSERT INTO recent_titles (title) VALUES (?)", (title,))
-    conn.execute("DELETE FROM recent_titles WHERE id NOT IN (SELECT id FROM recent_titles ORDER BY added_at DESC LIMIT 200)")
+    conn.execute("DELETE FROM recent_titles WHERE id NOT IN (SELECT id FROM recent_titles ORDER BY added_at DESC LIMIT 300)")
     conn.commit()
 
 def cats_today(conn):
@@ -6153,6 +6156,14 @@ def check_feeds(conn):
             if nb_today >= DAILY_POST_CAP:
                 print(f"  🛑 Plafond quotidien atteint ({nb_today}) — sujets chauds ignorés.")
                 break
+            # 🕒 GARDE-FOU FRAÎCHEUR : un article dont la publication remonte à plus de
+            # STALE_BREAKING_HOURS n'est plus assez frais pour un "breaking" (pas de réchauffé).
+            # Il reste éligible à une publication normale plus bas. pub_ts absent → on ne bloque pas.
+            pub_ts = hot.get("pub_ts")
+            if pub_ts and (time.time() - pub_ts) > STALE_BREAKING_HOURS * 3600:
+                age_h = int((time.time() - pub_ts) / 3600)
+                print(f"  🕒 Sujet chaud mais article ancien ({age_h}h) → pas de breaking sur du réchauffé → suivant")
+                continue
             # garde-fou gratuit : un sujet "chaud" mais éditorialement banal ne paie pas Claude
             pre_score = sum(w for w, rx in PRERANK_HOT if re.search(rx, hot["title"].lower())) + \
                         sum(w for w, rx in PRERANK_COLD if re.search(rx, hot["title"].lower()))
