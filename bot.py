@@ -255,9 +255,23 @@ def init_db():
             keywords TEXT,
             sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )""",
+        """CREATE TABLE IF NOT EXISTS topic_echo (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            topic_key TEXT,
+            source TEXT,
+            first_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE(topic_key, source)
+        )""",
+        """CREATE TABLE IF NOT EXISTS topic_echo_alert (
+            topic_key TEXT PRIMARY KEY,
+            alerted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )""",
     ]:
         conn.execute(sql)
     conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
+    # 🔥 Écho médiatique : on ne garde que 12h (au-delà, un sujet n'est plus "chaud")
+    conn.execute("DELETE FROM topic_echo WHERE first_seen < datetime('now', '-12 hours')")
+    conn.execute("DELETE FROM topic_echo_alert WHERE alerted_at < datetime('now', '-12 hours')")
     conn.execute("DELETE FROM keyword_log    WHERE last_sent   < datetime('now', '-2 hours')")
     conn.execute("DELETE FROM special_log    WHERE sent_at     < datetime('now', '-8 days')")
     conn.execute("DELETE FROM seen           WHERE seen_at     < datetime('now', '-45 days')")   # la base reste légère
@@ -1420,6 +1434,8 @@ def fetch_article_video(article_url, max_mb=50):
         print(f"  🎥 Vidéo éditoriale trouvée dans l'article → attachée")
         return path, meta
     return None, ""
+
+def extract_photo(entry):
     """Cherche une image DANS le flux RSS lui-même (gratuit, aucune requête web,
     donc jamais bloqué par un anti-bot). Couvre toutes les formes courantes utilisées
     par les CMS de presse français : media:content, media:thumbnail, enclosure,
@@ -3287,10 +3303,10 @@ def carousel_to_text(carousel):
     return out.strip()
 
 def post_carousel_to_instagram(slides_png, caption):
+    """Publie un carrousel (2 à 10 images) sur Instagram via l'API Graph."""
     if meta_backoff_active():
         print("  ⏸️ Carrousel Instagram sauté (pause Meta en cours)")
         return None
-    """Publie un carrousel (2 à 10 images) sur Instagram via l'API Graph."""
     if not (INSTAGRAM_ACCOUNT_ID and FACEBOOK_PAGE_TOKEN):
         return None
     if not slides_png or len(slides_png) < 2:
@@ -5674,40 +5690,92 @@ ULTRA_HOT_RX = re.compile("|".join([
     r"fuite de données", r"\brappel\b massif", r"rappel produit",
 ]), re.I)
 
-def detect_breaking(conn, candidates):
-    """
-    Détecte une actu 'breaking' = un même sujet repris MAINTENANT par plusieurs sources
-    distinctes. Gratuit (analyse de titres uniquement). Renvoie le candidat le plus repris.
-    Seuil DYNAMIQUE : 2 sources suffisent si le titre est ultra-chaud, 3 sinon.
-    """
-    if breaking_recent(conn):
+def _topic_key(title):
+    """Clé de regroupement d'un sujet : les mots significatifs triés (stable d'un média à l'autre).
+    Deux titres du même événement partagent la même clé même s'ils sont formulés différemment."""
+    return " ".join(sorted(_sig_words(title)))
+
+def topic_echo_touch(conn, title, source):
+    """Mémorise que `source` a parlé de ce sujet (mémoire 12h). Ne compte JAMAIS deux fois le même
+    média (UNIQUE topic_key+source). Renvoie (nb_medias_distincts, deja_alerte: bool).
+    On regroupe par CHEVAUCHEMENT de mots (≥2 communs), pas par égalité stricte de clé, car les
+    médias formulent différemment — sinon on ne compterait jamais 2 titres du même événement ensemble."""
+    sig = _sig_words(title)
+    if len(sig) < 2:
+        return 0, False
+    # sujet canonique = une clé déjà vue qui partage ≥2 mots ; sinon on crée la clé de ce titre
+    rows = conn.execute(
+        "SELECT topic_key, source FROM topic_echo WHERE first_seen > datetime('now','-12 hours')"
+    ).fetchall()
+    key = _topic_key(title)
+    sources_for_key = {}
+    for k, src in rows:
+        sources_for_key.setdefault(k, set()).add(src)
+    canon = None
+    for k in sources_for_key:
+        kw = set(k.split())
+        if len(sig & kw) >= 2:
+            canon = k
+            break
+    if canon is None:
+        canon = key
+    conn.execute("INSERT OR IGNORE INTO topic_echo (topic_key, source) VALUES (?,?)", (canon, source))
+    conn.commit()
+    n = conn.execute("SELECT COUNT(DISTINCT source) FROM topic_echo WHERE topic_key=?", (canon,)).fetchone()[0]
+    alerted = conn.execute("SELECT 1 FROM topic_echo_alert WHERE topic_key=?", (canon,)).fetchone() is not None
+    return n, alerted, canon
+
+def topic_echo_mark_alerted(conn, canon):
+    """Pose le drapeau anti-spam : ce sujet a déjà déclenché SON alerte (plus de breaking dessus)."""
+    conn.execute("INSERT OR IGNORE INTO topic_echo_alert (topic_key) VALUES (?)", (canon,))
+    conn.commit()
+
+def detect_breaking(conn, candidates, return_all=False):
+    """🔥 Détecte les actus 'breaking' via l'ÉCHO MÉDIATIQUE PERSISTANT (12h) : un sujet devient
+    chaud quand il a été repris par ≥ BREAKING_SOURCES MÉDIAS DISTINCTS sur les 12 dernières heures,
+    même si ces médias ont publié à des runs différents (ex: attentat qui se propage minute par minute).
+    Anti-spam : une fois l'alerte déclenchée pour un sujet, on ne la refait pas (drapeau topic_echo_alert) ;
+    le suivi éventuel passe alors par topic_gate (Claude juge s'il y a du neuf).
+    return_all=False → renvoie le sujet le plus chaud (compat). return_all=True → liste de tous les
+    sujets chauds (dédupliqués par sujet canonique), triés par nb de médias décroissant."""
+    if breaking_recent(conn) and not return_all:
         return None
-    # Sujets déjà publiés récemment (anti-republication d'un breaking d'hier repris aujourd'hui).
     published_sigs = [_sig_words(t) for t in get_recent(conn)]
-    enriched = [(c, _sig_words(c["title"])) for c in candidates]
-    best, best_count = None, 0
-    for i, (c, wi) in enumerate(enriched):
+    hot = {}   # canon -> (candidat, n_sources)
+    for c in candidates:
+        wi = _sig_words(c["title"])
         if len(wi) < 2:
             continue
-        if _is_soft_news(c["title"]):      # rapport / étude / revue de presse... → jamais breaking
+        if _is_soft_news(c["title"]):          # rapport / étude / revue de presse → jamais breaking
             continue
-        # déjà couvert récemment (≥2 mots significatifs communs avec un post récent) → pas un nouveau breaking
+        res = topic_echo_touch(conn, c["title"], c["source"])
+        if not isinstance(res, tuple) or len(res) < 3:
+            continue
+        n_sources, already_alerted, canon = res
+        if already_alerted:
+            continue                            # alerte déjà faite pour ce sujet → suivi géré ailleurs
         if any(len(wi & ps) >= 2 for ps in published_sigs):
-            continue
-        sources = set()
-        for j, (d, wj) in enumerate(enriched):
-            if i == j or d["source"] == c["source"]:
-                continue
-            if len(wi & wj) >= 2:          # ≥2 mots significatifs en commun
-                sources.add(d["source"])
+            continue                            # déjà couvert récemment par Pulse → pas un NOUVEAU breaking
         required = 2 if ULTRA_HOT_RX.search(c["title"]) else BREAKING_SOURCES
-        if len(sources) + 1 >= required and len(sources) >= best_count:
-            best, best_count = c, len(sources)
-    return best
+        if n_sources >= required:
+            c["_topic_canon"] = canon
+            # on garde, par sujet canonique, le candidat avec le plus de médias
+            if canon not in hot or n_sources > hot[canon][1]:
+                hot[canon] = (c, n_sources)
+    ordered = [c for c, n in sorted(hot.values(), key=lambda x: -x[1])]
+    if return_all:
+        return ordered
+    if breaking_recent(conn):
+        return None
+    return ordered[0] if ordered else None
 
-def publish_breaking(conn, item, cat, urgent=True):
+def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
     """Publie vite une actu (X + Facebook + Instagram).
-    urgent=True → label rouge 'Breaking'. urgent=False → label normal de la catégorie (buzz/insolite)."""
+    urgent=True → label rouge 'Breaking'. urgent=False → label normal de la catégorie (buzz/insolite).
+    bump_cadence : repousse-t-il le minuteur de cadence des news normales ? Par défaut, un vrai
+    breaking (urgent=True) ne le repousse PAS ; un buzz/suivi (urgent=False) le repousse."""
+    if bump_cadence is None:
+        bump_cadence = not urgent
     add_recent(conn, item["title"])
     if _is_obituary(item.get("title", ""), item.get("summary", "")):
         cat = "hommage"   # décès → ton sobre, même en breaking (le label URGENT reste si urgent=True)
@@ -5760,7 +5828,13 @@ def publish_breaking(conn, item, cat, urgent=True):
     if vid and os.path.exists(vid):
         import shutil as _sh
         _sh.rmtree(os.path.dirname(vid), ignore_errors=True)
-    mark_cat(conn, label_cat)
+    # Cadence : un VRAI breaking (urgent) NE réinitialise PAS le minuteur des news normales
+    # (il est un bonus qui ne doit pas voler le créneau). Un suivi/buzz, lui, repousse la cadence.
+    if bump_cadence:
+        mark_cat(conn, label_cat)
+    # 🔥 Anti-spam écho : ce sujet a déclenché SON alerte → plus de breaking dessus (suivi via topic_gate)
+    if item.get("_topic_canon"):
+        topic_echo_mark_alerted(conn, item["_topic_canon"])
     log_keywords(conn, keywords)
     log_topic(conn, item.get("title", ""), keywords)   # mémoire par sujet (suivi éditorial)
     log_special(conn, "breaking", keywords)   # partage l'anti-spam (1 fast-track / 25 min)
@@ -5932,49 +6006,77 @@ def check_feeds(conn):
 
     recent = get_recent(conn)
 
-    # ── MODE BREAKING : un même sujet repris par plusieurs sources → publication IMMÉDIATE ──
+    # ── MODE BREAKING : sujets chauds (écho 12h) → publication immédiate, PLUSIEURS sujets/run ──
+    # On parcourt tous les sujets chauds (triés par nb de médias). Pour chacun :
+    #   • jamais tweeté dessus → BREAKING (contourne la cadence, ne la réinitialise pas)
+    #   • déjà tweeté → Claude/topic_gate jugent s'il y a du NEUF → suivi (soumis à la cadence) ;
+    #     sinon on passe au sujet chaud suivant.
+    # Le 1er qui publie arrête le run (1 post/run). Si aucun ne publie → on continue vers les news.
     nb_today = posts_today(conn)
-    breaking = detect_breaking(conn, candidates)
-    # Garde-fou GRATUIT : un sujet multi-sources mais éditorialement banal (conseil des ministres,
-    # clôture de Bourse, déclaration politique routinière...) ne doit PAS payer l'appel Claude.
-    # Le pré-classement (gratuit) doit déjà juger le sujet "chaud" pour justifier la dépense.
-    if breaking is not None:
-        pre_score = sum(w for w, rx in PRERANK_HOT if re.search(rx, breaking["title"].lower())) + \
-                    sum(w for w, rx in PRERANK_COLD if re.search(rx, breaking["title"].lower()))
-        if pre_score < 3:
-            print(f"  ⚪ Multi-sources mais sujet banal (score pré-classement {pre_score}) → pas d'appel Claude")
-            breaking = None
-    if breaking and nb_today < DAILY_POST_CAP:   # le breaking passe tant qu'on est sous le plafond ferme
-        print(f"  🚨 Breaking potentiel (multi-sources) : {breaking['title'][:55]}")
-        try:
-            a = analyse_batch([breaking], recent, blocked_kws)[0]
-            cache_analysis(conn, breaking["url"], a)
-        except Exception:
-            a = {"score": BREAKING_SCORE, "category": "breaking", "is_duplicate": False}
-        if not a.get("is_duplicate") and int(a.get("score", 0)) >= BREAKING_SCORE:
+    hot_topics = detect_breaking(conn, candidates, return_all=True)
+    if hot_topics and not breaking_recent(conn):
+        for hot in hot_topics:
+            if nb_today >= DAILY_POST_CAP:
+                print(f"  🛑 Plafond quotidien atteint ({nb_today}) — sujets chauds ignorés.")
+                break
+            # garde-fou gratuit : un sujet "chaud" mais éditorialement banal ne paie pas Claude
+            pre_score = sum(w for w, rx in PRERANK_HOT if re.search(rx, hot["title"].lower())) + \
+                        sum(w for w, rx in PRERANK_COLD if re.search(rx, hot["title"].lower()))
+            if pre_score < 3:
+                print(f"  ⚪ Sujet chaud mais banal (pré-classement {pre_score}) → suivant")
+                continue
+            # a-t-on DÉJÀ tweeté sur ce sujet ? (mémoire par sujet)
+            allowed, code, prev_heads = topic_gate(conn, hot["title"])
+            is_followup = (code == "followup")
+            if code in ("cap", "too_soon"):
+                # déjà couvert et soit plafond sujet atteint, soit trop tôt (anti-spam suivi) → suivant
+                print(f"  ⏭️  Sujet chaud déjà traité ({code}) → suivant")
+                continue
+            print(f"  🚨 Sujet chaud : {hot['title'][:55]} (nouveau={code=='new'})")
             try:
-                # Vrai breaking (drame, urgence) → label rouge URGENT
-                kws = publish_breaking(conn, breaking, a.get("category", "breaking"), urgent=True)
-                print(f"  🚨 BREAKING publié immédiatement : {breaking['title'][:55]}")
-                if kws:
-                    print(f"  🔒 Mots-clés bloqués 2h: {', '.join(kws)}")
-                return
-            except Exception as e:
-                print(f"  ❌ Breaking échoué : {e}")
-        elif not a.get("is_duplicate") and int(a.get("score", 0)) >= BUZZ_SCORE and nb_today < DAILY_POST_SOFT:
-            try:
-                # Buzz viral → publié vite (label normal), mais seulement sous le seuil souple (20)
-                kws = publish_breaking(conn, breaking, a.get("category", "france"), urgent=False)
-                print(f"  ⚡ BUZZ publié rapidement (label normal) : {breaking['title'][:55]}")
-                if kws:
-                    print(f"  🔒 Mots-clés bloqués 2h: {', '.join(kws)}")
-                return
-            except Exception as e:
-                print(f"  ❌ Buzz échoué : {e}")
-        else:
-            print(f"  → Sujet pas assez repris pour un fast-track (score {a.get('score')}).")
-    elif breaking:
-        print(f"  🛑 Plafond quotidien atteint ({nb_today}) — breaking ignoré pour ne pas spammer.")
+                a = analyse_batch([hot], recent, blocked_kws)[0]
+                cache_analysis(conn, hot["url"], a)
+            except Exception:
+                a = {"score": BREAKING_SCORE, "category": "breaking", "is_duplicate": False}
+            # Claude juge : doublon = rien de neuf par rapport à nos tweets → on passe au sujet suivant
+            if a.get("is_duplicate"):
+                print("  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant")
+                continue
+            score = int(a.get("score", 0))
+            if is_followup:
+                # SUIVI d'un sujet déjà tweeté : soumis à la cadence (anti-spam), et il la repousse.
+                if not should_publish_now(conn):
+                    print("  ⏸️  Info complémentaire mais cadence pas prête → pas maintenant")
+                    continue
+                if score >= BUZZ_SCORE:
+                    try:
+                        publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True)
+                        print(f"  ➕ Suivi publié (info complémentaire) : {hot['title'][:50]}")
+                        return
+                    except Exception as e:
+                        print(f"  ❌ Suivi échoué : {e}")
+                else:
+                    print(f"  → Pas assez d'info neuve pour un suivi (score {score}) → suivant")
+                    continue
+            else:
+                # NOUVEAU sujet chaud → BREAKING : contourne la cadence, ne la réinitialise pas.
+                if score >= BREAKING_SCORE:
+                    try:
+                        publish_breaking(conn, hot, a.get("category", "breaking"), urgent=True, bump_cadence=False)
+                        print(f"  🚨 BREAKING publié immédiatement : {hot['title'][:55]}")
+                        return
+                    except Exception as e:
+                        print(f"  ❌ Breaking échoué : {e}")
+                elif score >= BUZZ_SCORE and nb_today < DAILY_POST_SOFT:
+                    try:
+                        publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True)
+                        print(f"  ⚡ BUZZ publié rapidement : {hot['title'][:55]}")
+                        return
+                    except Exception as e:
+                        print(f"  ❌ Buzz échoué : {e}")
+                else:
+                    print(f"  → Sujet chaud pas assez fort (score {score}) → suivant")
+                    continue
 
     # ── MATCH DE LA FRANCE : mi-temps + score final (prioritaire, contourne la cadence) ──
     try:
