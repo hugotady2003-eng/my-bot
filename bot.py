@@ -734,8 +734,12 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
     if category == "hommage":
         style_instr = """STYLE HOMMAGE (décès d'une personne) :
 - Ton SOBRE, respectueux et factuel — aucun sensationnalisme, aucune formule accrocheuse
-- 1 à 2 phrases : qui était la personne, les circonstances si connues
-- Pas de mot en MAJUSCULES pour l'emphase, pas de point d'exclamation"""
+- 1 à 2 phrases : qui était la personne, ce qui l'a rendue connue
+- Pas de mot en MAJUSCULES pour l'emphase, pas de point d'exclamation
+- ⚠️ JAMAIS DE DATE DE DÉCÈS ni de jour ("le 7 mai", "décédée mercredi", "ce lundi", "hier"...).
+  Ne mentionne AUCUNE date précise : les articles mélangent souvent la date d'hospitalisation
+  et celle du décès, ce qui conduit à des erreurs. Indique UNIQUEMENT l'âge s'il est connu
+  ("à 75 ans"). Ne déduis, ne devine, n'infère jamais une date de décès."""
     elif category in ("breaking", "faitsdivers"):
         style_instr = """STYLE FLASH :
 - 1 phrase factuelle et dense : les faits bruts (qui, quoi, où) + le chiffre clé
@@ -861,8 +865,34 @@ Réponds avec ce JSON UNIQUEMENT :
     # 🏷️ GARDE-FOU HASHTAG : un tweet ne doit jamais partir SANS hashtag (sauf hommage, qui reste sobre).
     if category != "hommage":
         body = _attach_hashtag(body, person, keywords)
+    else:
+        # 🕊️ GARDE-FOU HOMMAGE : on RETIRE toute date de décès résiduelle (le prompt l'interdit déjà,
+        # mais un modèle peut se tromper). On ne garde JAMAIS une date — seul l'âge est autorisé —
+        # car les articles confondent souvent date d'hospitalisation et date du décès.
+        body = _strip_death_date(body)
 
     return body, headline_court, image_query, keywords, person, pays
+
+def _strip_death_date(text):
+    """Supprime les dates/jours de décès d'un texte d'hommage, en gardant l'âge et le sens.
+    Enlève : 'le 7 mai', 'le 7 mai 2026', 'ce mercredi', 'mercredi', 'hier/hier soir/cette nuit'
+    quand ils qualifient le décès. Ne touche PAS à l'âge ('à 75 ans') ni aux années de carrière."""
+    if not text:
+        return text
+    mois = r"janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre"
+    jours = r"lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche"
+    t = text
+    # "est décédée le 7 mai (2026)" / "morte le 3 juin" → "est décédée" / "morte"
+    t = re.sub(rf"\s+(le\s+)?\d{{1,2}}(?:er)?\s+(?:{mois})(?:\s+\d{{4}})?", "", t, flags=re.I)
+    # "décédée ce mercredi" / "morte mercredi soir" / "s'est éteinte hier soir" → retire le repère de jour
+    t = re.sub(rf"\s+(ce\s+|ce\s+soir\s+|cette\s+nuit\s+)?(?:{jours})(\s+(?:soir|matin|après-midi))?", "", t, flags=re.I)
+    t = re.sub(r"\s+(hier(?:\s+soir|\s+matin)?|cette\s+nuit|ce\s+matin|ce\s+soir|aujourd'hui|la\s+nuit\s+dernière)", "", t, flags=re.I)
+    # nettoyage d'espaces/ponctuation laissés par la suppression
+    t = re.sub(r"\s{2,}", " ", t)
+    t = re.sub(r"\s+([,.;:])", r"\1", t)
+    t = re.sub(r"\(\s*\)", "", t)          # parenthèses vidées
+    t = re.sub(r",\s*,", ",", t)
+    return t.strip()
 
 # ── GARDE-FOU FACTUEL : vérifie que les termes sensibles du tweet existent bien dans la source ──
 SENSITIVE_TOPIC_RX = re.compile(r"mort|morte|décès|décéd|tué|homicide|meurtre|assassin|viol|agress|attentat|terroris|féminicide|procès|mis en examen|garde à vue|empoisonn", re.I)
@@ -3885,6 +3915,21 @@ def _is_obituary(title, summary):
         if suite not in FAUSSES_CAUSES:
             return True
 
+    # ── 3b. 'Mort du / de la / de l' / des + [personne]' (tournure de titre de presse) ──
+    #    Ex : « Mort du chanteur Johnny Hallyday », « Mort de l'actrice Jeanne Moreau ».
+    #    On exige un mot désignant une personne pour éviter « mort du diesel/cinéma » (déjà exclus en 1e).
+    if re.search(r"\bmort[e]?\s+(?:du|de la|de l'|des)\s+"
+                 r"(chanteu\w+|chanteuse|acteur|actrice|com[ée]dien\w*|artiste|musicien\w*|"
+                 r"r[ée]alisateur\w*|r[ée]alisatrice|[ée]crivain\w*|auteur\w*|autrice|"
+                 r"rappeur\w*|rappeuse|animateur\w*|animatrice|journaliste|pr[ée]sentateur\w*|"
+                 r"pr[ée]sentatrice|humoriste|dessinateur\w*|peintre|sculpteur\w*|photographe|"
+                 r"cin[ée]aste|producteur\w*|productrice|danseur\w*|danseuse|pianiste|guitariste|"
+                 r"violoniste|compositeur\w*|parolier\w*|footballeur\w*|sportif\w*|sportive|"
+                 r"champion\w*|l[ée]gende|ic[ôo]ne|star|vedette|ministre|d[ée]put[ée]\w*|"
+                 r"s[ée]nateur\w*|maire|pr[ée]sident\w*|philosophe|[ée]conomiste|scientifique|"
+                 r"chercheur\w*|prix nobel|acad[ée]micien\w*)\b", t):
+        return True
+
     return False
 
 def extract_obituary(title, summary, url=None):
@@ -6156,21 +6201,35 @@ def check_feeds(conn):
                     print(f"  → Pas assez d'info neuve pour un suivi (score {score}) → suivant")
                     continue
             else:
-                # NOUVEAU sujet chaud → BREAKING : contourne la cadence, ne la réinitialise pas.
-                if score >= BREAKING_SCORE:
+                # NOUVEAU sujet chaud.
+                is_obit = _is_obituary(hot.get("title", ""), hot.get("summary", ""))
+                # Un DÉCÈS de personnalité (obituaire avéré) est traité comme un vrai breaking dès un
+                # score ≥ BUZZ_SCORE : la valeur d'un hommage est dans l'immédiateté. Le score continue
+                # de filtrer les décès mineurs (personnalité peu connue → score bas → rythme normal).
+                breaking_immediat = (score >= BREAKING_SCORE) or (is_obit and score >= BUZZ_SCORE)
+                if breaking_immediat:
+                    # VRAI breaking (attentat, catastrophe, décès marquant) → contourne la cadence,
+                    # ne la réinitialise pas. Un décès garde le label sobre (géré dans publish_breaking).
                     try:
-                        publish_breaking(conn, hot, a.get("category", "breaking"), urgent=True, bump_cadence=False)
-                        print(f"  🚨 BREAKING publié immédiatement : {hot['title'][:55]}")
+                        publish_breaking(conn, hot, a.get("category", "breaking"),
+                                         urgent=not is_obit, bump_cadence=False)
+                        tag = "🕊️ Hommage" if is_obit else "🚨 BREAKING"
+                        print(f"  {tag} publié immédiatement : {hot['title'][:55]}")
                         return
                     except Exception as e:
                         print(f"  ❌ Breaking échoué : {e}")
                 elif score >= BUZZ_SCORE and nb_today < DAILY_POST_SOFT:
+                    # BUZZ (sujet chaud mais PAS urgent) → soumis à la CADENCE comme une news normale,
+                    # pour ne pas inonder le fil. S'il n'est pas l'heure, on le laisse pour plus tard.
+                    if not should_publish_now(conn):
+                        print(f"  ⏳ Sujet chaud (score {score}) mais cadence pas prête → on attend le bon moment")
+                        continue
                     try:
                         publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True)
-                        print(f"  ⚡ BUZZ publié rapidement : {hot['title'][:55]}")
+                        print(f"  ⚡ Sujet chaud publié (dans le rythme) : {hot['title'][:55]}")
                         return
                     except Exception as e:
-                        print(f"  ❌ Buzz échoué : {e}")
+                        print(f"  ❌ Publication sujet chaud échouée : {e}")
                 else:
                     print(f"  → Sujet chaud pas assez fort (score {score}) → suivant")
                     continue
