@@ -266,6 +266,13 @@ def init_db():
             topic_key TEXT PRIMARY KEY,
             alerted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )""",
+        # Journal des VRAIES publications (1 ligne par post réellement sorti). Sert au compteur
+        # quotidien (remis à zéro à minuit HEURE DE PARIS), séparé de recent_titles (anti-doublon).
+        """CREATE TABLE IF NOT EXISTS post_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            category TEXT,
+            posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )""",
     ]:
         conn.execute(sql)
     conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
@@ -303,6 +310,12 @@ def cats_today(conn):
 def mark_cat(conn, cat):
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     conn.execute("INSERT INTO category_log (category,last_sent) VALUES (?,?) ON CONFLICT(category) DO UPDATE SET last_sent=excluded.last_sent", (cat, now))
+    # Journal des VRAIES publications (une ligne par post réellement sorti) → compteur du jour fiable,
+    # séparé de recent_titles (anti-doublon). mark_cat n'est appelé qu'après une publication réussie.
+    try:
+        conn.execute("INSERT INTO post_log (category) VALUES (?)", (cat,))
+    except Exception:
+        pass
     conn.commit()
     _touch_publish_time()   # filet de sécurité : horodatage fichier persisté via le workflow Git
 
@@ -403,14 +416,39 @@ DAILY_POST_SOFT = 17         # au-delà, on ne garde QUE le très chaud (breakin
 TOPIC_MAX_PER_DAY = 3        # nb max de tweets sur un MÊME sujet dans la journée
 TOPIC_MIN_GAP_MIN = 60       # écart minimum (minutes) entre deux tweets sur le même sujet
 
-def posts_today(conn):
-    """Nombre de publications déjà faites aujourd'hui (chaque post passe par add_recent)."""
+def _paris_today_bounds():
+    """Renvoie (début_jour_paris_en_UTC, maintenant_UTC) au format 'YYYY-MM-DD HH:MM:SS'
+    pour compter 'aujourd'hui' selon l'heure de PARIS, alors que SQLite stocke en UTC."""
+    from datetime import timezone as _tz
     try:
+        from zoneinfo import ZoneInfo
+        pz = ZoneInfo("Europe/Paris")
+    except Exception:
+        from datetime import timedelta as _td
+        pz = _tz(_td(hours=2))
+    now_p = datetime.now(pz)
+    start_p = now_p.replace(hour=0, minute=0, second=0, microsecond=0)
+    start_u = start_p.astimezone(_tz.utc).strftime("%Y-%m-%d %H:%M:%S")
+    now_u = now_p.astimezone(_tz.utc).strftime("%Y-%m-%d %H:%M:%S")
+    return start_u, now_u
+
+def posts_today(conn):
+    """Nombre de publications RÉELLES aujourd'hui (journal post_log), à l'heure de Paris.
+    Ne compte QUE les vrais posts sortis (via mark_cat), pas les titres vus/anti-doublon."""
+    try:
+        start_u, now_u = _paris_today_bounds()
         row = conn.execute(
-            "SELECT COUNT(*) FROM recent_titles WHERE date(added_at) = date('now')").fetchone()
+            "SELECT COUNT(*) FROM post_log WHERE posted_at >= ? AND posted_at <= ?",
+            (start_u, now_u)).fetchone()
         return row[0] if row else 0
     except Exception:
-        return 0
+        # repli : ancien comptage (ne casse jamais la publication)
+        try:
+            row = conn.execute(
+                "SELECT COUNT(*) FROM recent_titles WHERE date(added_at) = date('now')").fetchone()
+            return row[0] if row else 0
+        except Exception:
+            return 0
 
 def _paris_hour():
     try:
