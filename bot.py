@@ -292,7 +292,10 @@ def init_db():
     _ensure_column("post_log", "category", "category TEXT")
     _ensure_column("post_log", "posted_at", "posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     conn.commit()
-    conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-24 hours')")
+    # 💰 Cache d'analyse : gardé 45 JOURS (aligné sur `seen`). Le score/la catégorie d'un article
+    #    ne changent jamais → aucune raison de le ré-analyser. Avant, la purge à 24h forçait une
+    #    ré-analyse quotidienne de tous les articles encore présents dans les flux (coût API inutile).
+    conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-45 days')")
     # 🔥 Écho médiatique : on ne garde que 12h (au-delà, un sujet n'est plus "chaud")
     conn.execute("DELETE FROM topic_echo WHERE first_seen < datetime('now', '-12 hours')")
     conn.execute("DELETE FROM topic_echo_alert WHERE alerted_at < datetime('now', '-12 hours')")
@@ -1959,8 +1962,8 @@ def send_email(subject, tweet_text, title, source, url, video, png_bytes, png_na
 # ═══════════════════════════════════════════════════════════════════════════
 # POST TWITTER
 # ═══════════════════════════════════════════════════════════════════════════
-def post_to_twitter(tweet_text, png_bytes=None, video_path=None):
-    """Poste sur X avec vidéo MP4 (prioritaire) ou image PNG."""
+def post_to_twitter(tweet_text, png_bytes=None, video_path=None, reply_to_id=None):
+    """Poste sur X avec vidéo MP4 (prioritaire) ou image PNG. reply_to_id → poste en réponse (fil)."""
     if not all([TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET]):
         print("  ⚠️ Twitter API non configurée.")
         return None
@@ -1988,7 +1991,8 @@ def post_to_twitter(tweet_text, png_bytes=None, video_path=None):
                 media_ids = [media.media_id]
             except Exception as e:
                 print(f"  ⚠️ Upload image X échoué : {e}")
-        response = client_v2.create_tweet(text=tweet_text, media_ids=media_ids)
+        response = client_v2.create_tweet(text=tweet_text, media_ids=media_ids, in_reply_to_tweet_id=reply_to_id) if reply_to_id \
+                   else client_v2.create_tweet(text=tweet_text, media_ids=media_ids)
         tweet_id = response.data.get("id")
         url      = f"https://x.com/i/web/status/{tweet_id}" if tweet_id else None
         if url:
@@ -1998,6 +2002,234 @@ def post_to_twitter(tweet_text, png_bytes=None, video_path=None):
     except Exception as e:
         print(f"  ❌ Post X échoué : {e}")
         return None
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 📊 DATA CARDS — 2ᵉ tweet avec un graphique de vraie donnée, en rapport avec l'article
+#    Pilote : ÉCONOMIE. Données VÉRIFIÉES et FIGÉES (rafraîchies ~1×/an), chacune sourcée.
+#    Éteint par défaut : passer STAT_CARDS_ENABLED à True APRÈS avoir vérifié les chiffres.
+# ═══════════════════════════════════════════════════════════════════════════
+STAT_CARDS_ENABLED = False          # ⚠️ mettre True seulement après vérification des données
+STAT_COOLDOWN_DAYS = 7              # un même graphique ne ressort pas avant N jours
+
+# Sujets SENSIBLES : jamais de graphique auto (sobriété + éthique). Filet de sécurité réutilisable.
+_STAT_EXCLUDE_RX = re.compile(
+    r"viol|agression sexuelle|p[ée]docrimin|p[ée]dophil|inceste|mineur|enfant|"
+    r"f[ée]minicide|attentat|terroris|meurtre|homicide|tuerie|fusillade|d[ée]c[èe]s|mort",
+    re.I)
+
+# Chaque série : vraie donnée annuelle officielle. 'dec' = décimales à afficher, 'unit' = suffixe.
+STAT_SERIES = {
+    "chomage": {
+        "kicker": "ÉCONOMIE",
+        "title": "Le taux de chômage en France depuis 2015",
+        "years":  [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+        "values": [10.4, 10.1,  9.4,  9.0,  8.4,  8.0,  7.9,  7.3,  7.4,  7.4],
+        "unit": "%", "dec": 1,
+        "source": "INSEE, enquête Emploi (taux de chômage BIT, moyenne annuelle)",
+        "caption": "Le chômage en France sur dix ans, en données officielles.",
+        "hashtag": "#chômage",
+        "match": re.compile(r"\bch[ôo]mage\b|ch[ôo]meur|demandeur[s]? d.emploi|"
+                            r"france travail|p[ôo]le emploi|plein[- ]emploi|taux d.emploi", re.I),
+    },
+    "inflation": {
+        "kicker": "ÉCONOMIE",
+        "title": "L'inflation en France depuis 2015",
+        "years":  [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+        "values": [ 0.0,  0.2,  1.0,  1.8,  1.1,  0.5,  1.6,  5.2,  4.9,  2.0],
+        "unit": "%", "dec": 1,
+        "source": "INSEE, indice des prix à la consommation (moyenne annuelle)",
+        "caption": "L'inflation en France sur dix ans, en données officielles.",
+        "hashtag": "#inflation",
+        "match": re.compile(r"\binflation\b|prix à la consommation|hausse des prix|"
+                            r"indice des prix|pouvoir d.achat|vie ch[èe]re|co[ûu]t de la vie", re.I),
+    },
+    "dette": {
+        "kicker": "ÉCONOMIE",
+        "title": "La dette publique de la France (% du PIB)",
+        "years":  [2015, 2016, 2017, 2018, 2019, 2020,  2021,  2022,  2023,  2024],
+        "values": [95.6, 98.0, 98.4, 98.0, 97.4, 114.7, 112.8, 111.4, 109.8, 113.0],
+        "unit": "%", "dec": 0,
+        "source": "INSEE / Eurostat, dette publique au sens de Maastricht (% du PIB)",
+        "caption": "La dette publique française, en % du PIB.",
+        "hashtag": "#dettepublique",
+        "match": re.compile(r"dette publique|dette de la france|dette de l.[ée]tat|"
+                            r"endettement|milliards de dette|3\s?000 milliards", re.I),
+    },
+}
+
+def match_stat_topic(title, summary):
+    """Renvoie la clé de série éco pertinente pour cet article, ou None.
+    Conservateur : mieux vaut aucun graphique qu'un graphique hors-sujet.
+    Aucun graphique sur un sujet sensible (filtre d'exclusion)."""
+    t = ((title or "") + " " + (summary or "")).strip()
+    if not t:
+        return None
+    if _STAT_EXCLUDE_RX.search(t):
+        return None
+    for key in ("dette", "inflation", "chomage"):   # ordre de priorité
+        if STAT_SERIES[key]["match"].search(t):
+            return key
+    return None
+
+def _nice_bounds(vmin, vmax):
+    """Bornes + pas d'axe 'ronds' pour ~4-6 lignes de grille."""
+    span = max(vmax - vmin, 1e-6)
+    raw = span / 4.0
+    import math as _m
+    mag = 10 ** _m.floor(_m.log10(raw))
+    for m in (1, 2, 2.5, 5, 10):
+        if raw <= m * mag:
+            step = m * mag; break
+    else:
+        step = 10 * mag
+    lo = _m.floor((vmin - step * 0.4) / step) * step
+    hi = _m.ceil((vmax + step * 0.4) / step) * step
+    return lo, hi, step
+
+def render_stat_chart(key):
+    """Génère le PNG (bytes) d'une data card à partir d'une série vérifiée. Rendu pro (sur-échantillonnage ×3)."""
+    from PIL import Image, ImageDraw, ImageFont, ImageFilter
+    import numpy as _np, io as _io, math as _m
+    s = STAT_SERIES[key]
+    years, values = s["years"], s["values"]
+    S = 3; W = H = 1080; CW, CH = W*S, H*S
+    TL, BR = (43,12,82), (7,20,66)
+    CA, CB = (176,38,255), (255,45,149)
+    WHITE = (255,255,255)
+
+    def fnt(px, bold=True):
+        for p in (f"/usr/share/fonts/truetype/noto/NotoSans-{'Bold' if bold else 'Regular'}.ttf",
+                  f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"):
+            try: return ImageFont.truetype(p, px)
+            except Exception: pass
+        return ImageFont.load_default()
+
+    def fmt(v):
+        return (f"{v:.{s['dec']}f}".replace(".", ",")) + (" " + s["unit"] if s["unit"] else "")
+
+    # fond dégradé diagonal (numpy = rapide et propre)
+    xs = _np.linspace(0, 1, CW); ys = _np.linspace(0, 1, CH)
+    tx, ty = _np.meshgrid(xs, ys); tt = (tx + ty) / 2.0
+    arr = _np.stack([TL[i] + (BR[i]-TL[i]) * tt for i in range(3)], axis=-1).astype("uint8")
+    img = Image.fromarray(arr, "RGB").convert("RGBA")
+    d = ImageDraw.Draw(img)
+
+    m_left, m_right, m_top, m_bot = 150*S, 185*S, 430*S, 200*S
+    px0, py0, px1, py1 = m_left, CH-m_bot, CW-m_right, m_top
+    vmin, vmax, step = _nice_bounds(min(values), max(values))
+    def X(i): return px0 + (px1-px0) * i/(len(years)-1)
+    def Y(v): return py0 + (py1-py0) * (v-vmin)/(vmax-vmin)
+
+    # grille + labels Y
+    fg = fnt(30*S, bold=False)
+    g = vmin
+    while g <= vmax + 1e-6:
+        yy = Y(g)
+        d.line([(px0, yy), (px1, yy)], fill=(255,255,255,32), width=max(1, S))
+        d.text((px0-18*S, yy), fmt(g), font=fg, fill=(255,255,255,150), anchor="rm")
+        g += step
+
+    # courbe lissée (Catmull-Rom) + halo
+    pts = [(X(i), Y(v)) for i, v in enumerate(values)]
+    p = _np.array(pts, float); p = _np.vstack([p[0], p, p[-1]]); curve = []
+    for i in range(1, len(p)-2):
+        p0, p1, p2, p3 = p[i-1], p[i], p[i+1], p[i+2]
+        for u in range(30):
+            t = u/30.0; t2, t3 = t*t, t*t*t
+            curve.append((
+                0.5*((2*p1[0])+(-p0[0]+p2[0])*t+(2*p0[0]-5*p1[0]+4*p2[0]-p3[0])*t2+(-p0[0]+3*p1[0]-3*p2[0]+p3[0])*t3),
+                0.5*((2*p1[1])+(-p0[1]+p2[1])*t+(2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*t2+(-p0[1]+3*p1[1]-3*p2[1]+p3[1])*t3)))
+    curve.append(tuple(p[-2]))
+    wpx = 10*S
+    glow = Image.new("RGBA", img.size, (0,0,0,0)); gd = ImageDraw.Draw(glow)
+    for i in range(len(curve)-1):
+        gd.line([curve[i], curve[i+1]], fill=(255,80,180,120), width=wpx*3)
+    img.alpha_composite(glow.filter(ImageFilter.GaussianBlur(wpx*1.5)))
+    r = wpx//2
+    for i in range(len(curve)-1):
+        c = tuple(int(CA[j] + (CB[j]-CA[j]) * i/(len(curve)-1)) for j in range(3)) + (255,)
+        d.line([curve[i], curve[i+1]], fill=c, width=wpx)
+        d.ellipse([curve[i][0]-r, curve[i][1]-r, curve[i][0]+r, curve[i][1]+r], fill=c)
+
+    # labels X (années)
+    fx = fnt(30*S, bold=True)
+    for i, yr in enumerate(years):
+        d.text((X(i), py0+26*S), str(yr), font=fx, fill=(255,255,255,190), anchor="mt")
+
+    # points début / fin + valeurs
+    x0, y0v = X(0), Y(values[0]); xN, yN = X(len(years)-1), Y(values[-1])
+    d.ellipse([x0-12*S, y0v-12*S, x0+12*S, y0v+12*S], fill=WHITE)
+    d.text((x0, y0v-26*S), fmt(values[0]), font=fnt(38*S), fill=(255,255,255,230), anchor="mb")
+    d.ellipse([xN-15*S, yN-15*S, xN+15*S, yN+15*S], fill=WHITE)
+    d.text((xN+26*S, yN), fmt(values[-1]), font=fnt(54*S), fill=WHITE, anchor="lm")
+
+    # titre (kicker + titre auto-ajusté sur la largeur)
+    d.text((150*S, 130*S), s["kicker"], font=fnt(34*S), fill=(255,90,170,255))
+    tf = fnt(60*S); avail = CW - 150*S - 70*S; words = s["title"].split(); lines, cur = [], ""
+    for w in words:
+        test = (cur + " " + w).strip()
+        if d.textlength(test, font=tf) <= avail: cur = test
+        else:
+            if cur: lines.append(cur)
+            cur = w
+    if cur: lines.append(cur)
+    yy = 190*S
+    for line in lines:
+        d.text((150*S, yy), line, font=tf, fill=WHITE); yy += 76*S
+
+    # pied : source + handle
+    d.text((150*S, CH-118*S), "Source : " + s["source"], font=fnt(24*S, bold=False), fill=(255,255,255,140))
+    d.text((CW-90*S, CH-70*S), "@PULSEactus", font=fnt(40*S), fill=(255,255,255,230), anchor="rm")
+
+    out = _io.BytesIO()
+    img.convert("RGB").resize((W, H), Image.LANCZOS).save(out, format="PNG", quality=95)
+    return out.getvalue()
+
+def _stat_ensure(conn):
+    conn.execute("CREATE TABLE IF NOT EXISTS stat_posted (series TEXT, posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+
+def stat_recently_posted(conn, key, days=STAT_COOLDOWN_DAYS):
+    _stat_ensure(conn)
+    row = conn.execute("SELECT COUNT(*) FROM stat_posted WHERE series=? AND posted_at >= datetime('now', ?)",
+                       (key, f"-{days} days")).fetchone()
+    return bool(row and row[0])
+
+def stat_mark_posted(conn, key):
+    _stat_ensure(conn)
+    conn.execute("INSERT INTO stat_posted (series) VALUES (?)", (key,))
+    conn.commit()
+
+def _tweet_id_from_url(url):
+    try:
+        tid = str(url).rstrip("/").split("/")[-1]
+        return tid if tid.isdigit() else None
+    except Exception:
+        return None
+
+def post_stat_followup(conn, item, main_x_url):
+    """Si l'article touche un thème éco couvert, poste un 2ᵉ tweet (graphique) EN RÉPONSE au tweet principal.
+    Entièrement isolé : n'interrompt jamais le flux principal. Éteint tant que STAT_CARDS_ENABLED est False."""
+    try:
+        if not STAT_CARDS_ENABLED:
+            return
+        tid = _tweet_id_from_url(main_x_url)
+        if not tid:
+            return
+        key = match_stat_topic(item.get("title", ""), item.get("summary", ""))
+        if not key:
+            return
+        if stat_recently_posted(conn, key):
+            print(f"  📊 Graphique '{key}' déjà posté récemment → pas de doublon")
+            return
+        s = STAT_SERIES[key]
+        png = render_stat_chart(key)
+        caption = f"📊 Le contexte en données 👇\n\n{s['caption']}\n\nSource : {s['source'].split('(')[0].strip()} {s['hashtag']}"
+        url = post_to_twitter(caption[:275], png_bytes=png, reply_to_id=tid)
+        if url:
+            stat_mark_posted(conn, key)
+            print(f"  📊 Graphique éco publié en réponse ({key}) : {url}")
+    except Exception as e:
+        print(f"  ⚠️ Data card ignorée (isolée) : {e}")
 
 # ═══════════════════════════════════════════════════════════════════════════
 # POST FACEBOOK
@@ -5935,9 +6167,14 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
         png_bytes, vid = None, None
         print("  🚫 Aucune vraie photo → breaking SANS image (texte seul)")
     try:
-        post_to_twitter(tweet_final, png_bytes, vid)
+        _xurl = post_to_twitter(tweet_final, png_bytes, vid)
     except Exception as e:
+        _xurl = None
         print(f"  ❌ X isolé : {e}")
+    try:
+        post_stat_followup(conn, item, _xurl)   # 📊 2ᵉ tweet graphique si thème éco (isolé)
+    except Exception as e:
+        print(f"  ⚠️ Data card isolée : {e}")
     try:
         post_to_facebook(tweet_final, png_bytes, vid)
     except Exception as e:
@@ -6539,11 +6776,16 @@ def check_feeds(conn):
                     #    décryptage, l'hommage et la victoire sportive.)
 
             posted_ok = False
+            res_x = None
             try:
                 res_x = post_to_twitter(tweet_final, png_bytes, video_path)
                 posted_ok = posted_ok or (res_x is not False and res_x is not None)
             except Exception as e:
                 print(f"  ❌ X isolé : {e}")
+            try:
+                post_stat_followup(conn, item, res_x)   # 📊 2ᵉ tweet graphique si thème éco (isolé)
+            except Exception as e:
+                print(f"  ⚠️ Data card isolée : {e}")
             try:
                 res_fb = post_to_facebook(tweet_final, png_bytes, video_path)
                 posted_ok = posted_ok or (res_fb is not False and res_fb is not None)
