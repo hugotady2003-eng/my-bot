@@ -822,6 +822,10 @@ Génère QUATRE choses :
 
 6. **body** : corps du tweet (sans préfixe — il sera ajouté automatiquement).
 
+🔎 COMPRÉHENSIBLE PAR TOUS (RÈGLE D'OR) : le tweet doit être limpide pour quelqu'un qui n'a JAMAIS suivi le sujet. Tout SIGLE, ORGANISME, INSTITUTION ou terme technique que le grand public ne connaît pas forcément doit être expliqué en 2-4 mots juste après, entre parenthèses.
+   Ex : « le FSB (les services secrets russes) » · « la CJUE (la justice de l'UE) » · « le CETA (l'accord commercial UE-Canada) » · « la CNIL (le gendarme des données personnelles) » · « l'AME (l'aide médicale pour étrangers) » · « le HCR (l'agence de l'ONU pour les réfugiés) ».
+   Les sigles ULTRA-connus n'ont PAS besoin d'explication (ONU, OTAN, UE, SNCF, PSG, SMIC, RSA, RATP, OMS). Dans le doute, EXPLIQUE : mieux vaut un lecteur qui comprend qu'un lecteur qui décroche.
+
 {style_instr}
 
 ✍️ MISE EN FORME PERCUTANTE (style CerfiaFR) :
