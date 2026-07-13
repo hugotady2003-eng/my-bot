@@ -5291,8 +5291,9 @@ Réponds avec ce JSON UNIQUEMENT :
     body = f"🌙 LE RÉCAP | Ce qu'il faut retenir de ce {_date_fr()} :\n\n"
     body += "\n".join(f"{e} {t}" for e, t in items)
     body += "\n\n(Pulse)"
-    png    = build_list_card("CE QU'IL FAUT RETENIR", [t for _, t in items], 1200, 675)
-    png_ig = build_list_card("CE QU'IL FAUT RETENIR", [t for _, t in items], 1080, 1350)
+    # 📱 Carte du récap en format VERTICAL (1080×1350) : elle occupe plus de place à l'écran sur
+    #    mobile → lignes plus grandes et bien plus lisibles. Même carte pour X, Facebook et Instagram.
+    png = build_list_card("CE QU'IL FAUT RETENIR", [t for _, t in items], 1080, 1350)
     try:
         post_to_twitter(body, png)
     except Exception as e:
@@ -5302,7 +5303,7 @@ Réponds avec ce JSON UNIQUEMENT :
     except Exception as e:
         print(f"  ❌ Facebook isolé : {e}")
     if ig_allowed(conn):
-        post_to_instagram(build_ig_caption(body, []), png_ig)
+        post_to_instagram(build_ig_caption(body, []), png)
         log_special(conn, "ig_post", [])
     log_special(conn, "recap", [t for _, t in items][:2])
     print("  🌙 Récap du soir publié")
