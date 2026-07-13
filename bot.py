@@ -1602,6 +1602,18 @@ def paste_pulse_logo(img, x, y, target_h, opacity=1.0):
     except Exception:
         return 0
 
+def _feather_paste(bg, fg, x, y, frac=0.07):
+    """Colle fg sur bg avec des bords en FONDU progressif (dégradé), au lieu d'un bord net.
+    La photo se dissout doucement dans le fond flouté (dérivé de la même image) → plus de
+    bordure brute visible entre la photo de l'article et la carte. Renvoie bg modifié."""
+    fw, fh = fg.size
+    feather = max(24, int(min(fw, fh) * frac))          # largeur du fondu (~7% du petit côté)
+    mask = Image.new("L", (fw, fh), 0)
+    ImageDraw.Draw(mask).rectangle([feather, feather, fw - feather - 1, fh - feather - 1], fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(feather))
+    bg.paste(fg, (x, y), mask)
+    return bg
+
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
     """
     PNG DA Pulse, taille paramétrable (W×H).
@@ -1694,8 +1706,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                     fitted = photo.resize((fw, fh), Image.LANCZOS)
                     fx = (W - fw) // 2
                     fy = int((H - fh) * (0.34 if headline_bottom else 0.5))
-                    bg.paste(fitted, (fx, fy))
-                    img = bg
+                    img = _feather_paste(bg, fitted, fx, fy)   # bords en fondu → plus de bordure nette
             except Exception as e:
                 print(f"  ⚠️ Traitement image: {e}")
 
