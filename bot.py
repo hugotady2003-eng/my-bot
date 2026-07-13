@@ -514,8 +514,23 @@ def should_publish_now(conn, min_minutes=None, max_minutes=None):
 # ═══════════════════════════════════════════════════════════════════════════
 # CLAUDE API
 # ═══════════════════════════════════════════════════════════════════════════
+_CLAUDE_CALLS = 0   # compteur d'appels Claude PAYÉS sur le run courant (remis à 0 à chaque run)
+
+import atexit as _atexit
+@_atexit.register
+def _print_claude_meter():
+    # S'affiche à la toute fin du processus (donc en fin de run GitHub Actions), quel que soit
+    # le chemin de sortie. On n'affiche rien si aucun appel n'a été fait (run en attente de cadence).
+    try:
+        if _CLAUDE_CALLS:
+            print(f"  🧮 Coût du run : {_CLAUDE_CALLS} appel(s) Claude payé(s) ce cycle")
+    except Exception:
+        pass
+
 def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001"):
     """Appel Claude avec parsing JSON blindé + 1 nouvelle tentative en cas d'erreur réseau/API."""
+    global _CLAUDE_CALLS
+    _CLAUDE_CALLS += 1
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     last_err = None
     for attempt in (1, 2):
@@ -543,6 +558,8 @@ def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001"):
 
 def claude_text(prompt, max_tokens=700, model="claude-haiku-4-5-20251001"):
     """Comme claude() mais renvoie du texte brut (pas de JSON)."""
+    global _CLAUDE_CALLS
+    _CLAUDE_CALLS += 1
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     msg = client.messages.create(
         model=model, max_tokens=max_tokens,
@@ -823,7 +840,11 @@ Regarde de quoi parle l'actu et choisis l'angle qui la sert le mieux — base t�
 - 🌍 INTERNATIONAL → clair et pédagogue en une phrase, on situe l'enjeu sans jargon.
 Le BON réflexe : demande-toi \"si je voyais passer ça dans mon fil, qu'est-ce qui me ferait m'arrêter ?\" et écris ÇA.
 
-😀 EMOJIS : 1 à 3 emojis BIEN CHOISIS qui collent au sujet (pas de décor gratuit). Un en tête d'accroche si ça renforce (🚨 alerte, 💰 argent, ⚽ sport, 🕊️ jamais sur hommage), éventuellement un dans le texte. Jamais de guirlande d'emojis, jamais d'emoji qui banalise un sujet grave.
+😀 EMOJI DU SUJET (comme dans les sondages) : ajoute UN emoji qui capte le SUJET PRÉCIS ou un élément-clé de l'actu — dans le texte OU à la fin. Choisis-le selon le SENS réel, jamais un décor gratuit.
+   Exemples : ⚽ foot/match · 🏀🎾🏉 autres sports · ⚖️ justice/procès/tribunal · 🚔 police/enquête · 🔥 incendie · 🌊 inondation · 🌪️ tempête · 🌡️ canicule · ✈️ aviation · 🚄 SNCF/train · 🚗 route/accident · 💶 budget/dette/prix/euros · 📈 hausse · 📉 baisse · 🗳️ élection/vote · 🏛️ politique/gouvernement · 🏥 santé/hôpital · 💊 médicament · 🎬 cinéma · 🎵 musique · 🚀 espace/tech · 💻 numérique · 🐕 animal · 🌍 international.
+   - Sois MALIN sur les mots ambigus : « feu vert » (un accord) n'est PAS 🔥 ; une « vague » de chaleur n'est PAS 🌊. L'emoji suit le vrai sens, pas le mot.
+   - ⚠️ Si AUCUN emoji ne colle VRAIMENT au sujet, n'en mets AUCUN. Mieux vaut zéro emoji qu'un emoji générique ou hors-sujet.
+   - Tu peux ajouter un 2ᵉ emoji en tête d'accroche s'il renforce (🚨 alerte/breaking). Jamais de guirlande d'emojis, JAMAIS d'emoji sur un hommage ni qui banalise un sujet grave.
 
 ⚖️ RIGUEUR FACTUELLE ABSOLUE (sujets judiciaires, décès, accusations) — PRIORITÉ N°1 :
 - Recopie les qualifications juridiques EXACTEMENT comme dans la source : "homicide involontaire" reste INVOLONTAIRE, jamais "meurtre" ni "volontaire". "Meurtre" = uniquement si la source écrit "meurtre". Idem pour assassinat, viol, agression, terrorisme, féminicide.
@@ -849,7 +870,7 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
   "🚨 Des MILLIERS de manifestants bloquent le stade à #Mexico.\\n\\nÀ deux jours de l'ouverture de la #CoupeDuMonde2026, ils réclament une hausse des salaires et l'abrogation de la réforme des retraites.\\n\\n(Le Figaro)"
 - Dans le JSON, les sauts de ligne s'écrivent \\n
 
-✅ AVANT DE RÉPONDRE, relis-toi en silence et corrige si besoin : (1) l'info principale est visible dès la 1ʳᵉ phrase, (2) l'accroche donne envie SANS teaser, (3) faits, chiffres et qualifications 100 % fidèles à la source, (4) la structure colle au type d'actu, (5) 1-3 emojis utiles, (6) le hashtag = LE sujet, (7) français impeccable. Ne renvoie que la version corrigée.
+✅ AVANT DE RÉPONDRE, relis-toi en silence et corrige si besoin : (1) l'info principale est visible dès la 1ʳᵉ phrase, (2) l'accroche donne envie SANS teaser, (3) faits, chiffres et qualifications 100 % fidèles à la source, (4) la structure colle au type d'actu, (5) un emoji qui colle au sujet précis (ou AUCUN si rien ne colle vraiment), (6) le hashtag = LE sujet, (7) français impeccable. Ne renvoie que la version corrigée.
 
 Réponds avec ce JSON UNIQUEMENT :
 {{"headline_court":"...","image_query":"...","person":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""", max_tokens=900)
@@ -1348,7 +1369,7 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
         if raw and img_dimensions_ok(raw, min_w=800, min_h=400):
             return raw, False
 
-    print(f"  🖼️ AUCUNE vraie photo trouvée pour cet article → carte sur fond dégradé")
+    print(f"  🖼️ Aucune vraie photo exploitable pour cet article")
     return None, False
 
 def extract_video_url(entry):
@@ -2009,7 +2030,7 @@ def post_to_twitter(tweet_text, png_bytes=None, video_path=None, reply_to_id=Non
         tweet_id = response.data.get("id")
         url      = f"https://x.com/i/web/status/{tweet_id}" if tweet_id else None
         if url:
-            media_type = "🎬 vidéo" if video_path else "🖼️ image"
+            media_type = "🎬 vidéo" if video_path else ("🖼️ image" if png_bytes else "📝 texte seul")
             print(f"  🐦 Posté sur X ({media_type}) : {url}")
         return url
     except Exception as e:
@@ -2021,7 +2042,7 @@ def post_to_twitter(tweet_text, png_bytes=None, video_path=None, reply_to_id=Non
 #    Pilote : ÉCONOMIE. Données VÉRIFIÉES et FIGÉES (rafraîchies ~1×/an), chacune sourcée.
 #    Éteint par défaut : passer STAT_CARDS_ENABLED à True APRÈS avoir vérifié les chiffres.
 # ═══════════════════════════════════════════════════════════════════════════
-STAT_CARDS_ENABLED = False          # ⚠️ mettre True seulement après vérification des données
+STAT_CARDS_ENABLED = True           # ✅ activé — données vérifiées contre l'INSEE (juillet 2026)
 STAT_COOLDOWN_DAYS = 7              # un même graphique ne ressort pas avant N jours
 
 # Sujets SENSIBLES : jamais de graphique auto (sobriété + éthique). Filet de sécurité réutilisable.
@@ -2060,7 +2081,7 @@ STAT_SERIES = {
         "kicker": "ÉCONOMIE",
         "title": "La dette publique de la France (% du PIB)",
         "years":  [2015, 2016, 2017, 2018, 2019, 2020,  2021,  2022,  2023,  2024],
-        "values": [95.6, 98.0, 98.4, 98.0, 97.4, 114.7, 112.8, 111.4, 109.8, 113.0],
+        "values": [95.6, 98.0, 98.4, 98.0, 97.4, 114.7, 112.8, 111.4, 109.5, 112.6],
         "unit": "%", "dec": 0,
         "source": "INSEE / Eurostat, dette publique au sens de Maastricht (% du PIB)",
         "caption": "La dette publique française, en % du PIB.",
@@ -6232,8 +6253,9 @@ def _strip_html(text):
     return text[:400]
 
 def check_feeds(conn):
-    global _META_CONN
+    global _META_CONN, _CLAUDE_CALLS
     _META_CONN = conn
+    _CLAUDE_CALLS = 0
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
 
     # ── MODE COUPE DU MONDE : matchs du jour (matin) + prono la veille des matchs de la France ──
