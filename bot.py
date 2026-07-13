@@ -626,14 +626,16 @@ IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
         analyses.append({"score": 0, "category": "france", "is_duplicate": False, "needs_video": False})
     return analyses[:len(articles)]
 
-def _smart_truncate(s, max_len=80):
+def _smart_truncate(s, max_len=80, add_ellipsis=False):
     """Coupe une chaîne sur un mot ENTIER, jamais en plein milieu d'un mot ou d'une phrase.
-    Utilisé partout où un texte généré par Claude doit être borné pour l'affichage."""
+    Utilisé partout où un texte généré par Claude doit être borné pour l'affichage.
+    add_ellipsis=True → ajoute « … » UNIQUEMENT si la chaîne a réellement été coupée."""
     s = (s or "").strip()
     if len(s) <= max_len:
         return s
     cut = s[:max_len].rsplit(" ", 1)[0].rstrip(" ,;:.-'\u2019")
-    return cut if cut else s[:max_len].rstrip()
+    cut = cut if cut else s[:max_len].rstrip()
+    return (cut + "…") if add_ellipsis else cut
 
 def _split_long_lead(body, max_lead=90):
     """Anti-pavé : si la 1ʳᵉ ligne (avant le 1er saut de ligne double) dépasse max_lead caractères,
@@ -2715,29 +2717,28 @@ Aujourd'hui nous sommes le {today} {current_yr}. Voici les événements historiq
 
 {events_str}
 
-ÉTAPE 1 — CHOISIS LE MEILLEUR événement, dans cet ordre de priorité :
-1. Un événement MONDIALEMENT CONNU (11-Septembre, Apollo 11, chute du Mur, JFK, D-Day, Titanic, Tchernobyl, Mai 68, Mandela…)
-2. OU un événement qui RÉSONNE ENCORE aujourd'hui (origine d'un truc qu'on connaît, début d'un conflit toujours d'actualité, une "première fois" marquante)
-3. OU un événement avec une ANECDOTE surprenante, un détail fou, un chiffre hallucinant que peu de gens connaissent
-REJETTE le pur obscur/local sans portée (un traité oublié, une nomination administrative…).
-Si VRAIMENT rien ne sort du lot → {{"skip": true}}
+ÉTAPE 1 — CHOISIS L'événement le plus FORT du jour, dans cet ordre :
+1. Un fait SURPRENANT et RELATABLE, du genre « quoi, c'était il y a si peu ?! » : un droit de société acquis étonnamment tard, une « première fois » du quotidien, un chiffre hallucinant. Ex : « il y a 61 ans, les femmes mariées obtenaient enfin le droit d'ouvrir un compte en banque sans l'accord de leur mari ».
+2. OU un événement MONDIALEMENT connu ET marquant (11-Septembre, Apollo 11, chute du Mur, D-Day…), s'il a un angle fort.
+3. OU une anecdote / un détail fou que peu de gens connaissent.
+REJETTE l'obscur, l'administratif, le « déjà vu mille fois sans angle neuf ».
+⚠️ SOIS TRÈS EXIGEANT : si le jour n'offre RIEN de vraiment marquant ou surprenant, réponds {{"skip": true}}. Mieux vaut NE RIEN publier qu'un éphéméride banal — c'est un choix assumé, pas un échec.
 
-ÉTAPE 2 — ÉCRIS UN TWEET QUI ACCROCHE (pas une notice Wikipédia plate) :
-🎣 La 1ʳᵉ phrase doit donner envie de lire/réagir : commence par le détail le plus fort, surprenant ou émouvant — PAS par "Il y a X ans, il se passa…". Le nombre d'années peut venir juste après.
-   Exemples de bonnes accroches : "Le monde a retenu son souffle : il y a 55 ans, deux hommes marchaient sur la Lune." / "En 8 minutes, tout a basculé. Il y a 24 ans, le 11-Septembre…"
-- Raconte comme une histoire, avec le détail concret qui marque, pas une énumération de dates.
-- Si l'événement résonne avec aujourd'hui, fais le pont (ça fait réagir).
-- ⛔ RIGUEUR : n'invente aucun fait, aucune date, aucun chiffre. Utilise EXACTEMENT le nombre d'années entre parenthèses (si la liste dit "il y a 57 ans", écris "il y a 57 ans", pas 56 ni 58). L'accroche rend l'événement vivant, elle ne le déforme pas.
+ÉTAPE 2 — ÉCRIS UN TWEET COURT, FACTUEL, PERCUTANT (registre sobre, PAS une dissertation) :
+- 2 à 4 phrases MAXIMUM. Concis, chaque mot compte. Va droit au fait.
+- Commence par le fait le plus fort/surprenant, puis « il y a X ans » et le contexte essentiel — pas plus.
+- CONCRET et FACTUEL. ⛔ INTERDIT le lyrisme et les envolées : pas de « cathédrale de la solidarité », « acte de rébellion contre l'indifférence », « la planète bat au même rythme », « moment suspendu », « cathédrales »… On informe, on ne fait pas de poésie.
+- ⛔ RIGUEUR : n'invente aucun fait/date/chiffre. Utilise EXACTEMENT le nombre d'années donné (« il y a 57 ans » → écris 57, pas 56 ni 58).
 
 Format :
 - headline_court (max 75 chars)
 - image_query (5 mots en anglais)
-- body : accroche forte puis le récit/contexte. Hashtags répartis. Fini par "(Source : Wikipédia)"
+- body : le fait fort d'emblée, puis le contexte court. 1-2 hashtags pertinents max. Fini par « (Source : Wikipédia) »
 
 JSON :
 {{"headline_court":"...","image_query":"...","body":"..."}}
 OU
-{{"skip": true}}""", max_tokens=600)
+{{"skip": true}}""", max_tokens=450)
 
         if result.get("skip"):
             print("  📜 Aucun événement assez connu — skip.")
@@ -5203,7 +5204,7 @@ RÈGLES :
 1. 🕐 INTELLIGENCE TEMPORELLE : nous sommes {now_str}. Reformule tout ce qui est devenu FAUX. Un titre qui ANNONÇAIT un événement à venir ("verdict mardi", "ce soir", "demain") alors qu'il est déjà PASSÉ doit être réécrit à l'état ACCOMPLI ("verdict rendu", "condamné"). N'emploie "aujourd'hui/ce soir/mardi/demain" QUE si c'est encore exact maintenant.
 2. 🧵 UN SUJET = UNE LIGNE, À L'ÉTAT FINAL : si un sujet revient plusieurs fois (il a évolué), fusionne-le en UNE seule ligne reflétant sa DERNIÈRE évolution. Ex : enquête ouverte → suspect interpellé → mis en examen ⇒ une seule ligne « mis en examen ». JAMAIS deux lignes sur la même histoire.
 3. 🎯 SÉLECTION : garde les 5 infos les plus MARQUANTES de la journée (importance, impact, mémorisation), pas les 5 dernières. De la plus forte à la moins forte.
-4. ✍️ STRUCTURE de chaque ligne : « Sujet : information essentielle » — courte (≤ ~70 caractères), compréhensible SANS avoir suivi l'actu, factuelle, rien d'inventé, français impeccable, aucun style SEO. Un emoji pertinent en tête (jamais festif sur un drame).
+4. ✍️ STRUCTURE de chaque ligne : « Sujet : information essentielle » — une phrase COMPLÈTE qui se suffit à elle-même (JAMAIS coupée ou en suspens, ex. jamais finir par « toujours en », « derrière Marine Le »), courte (≤ ~90 caractères), compréhensible SANS avoir suivi l'actu, factuelle, rien d'inventé, français impeccable, aucun style SEO. Un emoji pertinent en tête (jamais festif sur un drame).
 5. ✅ AVANT DE RÉPONDRE, vérifie chaque ligne : encore vraie à {now_str} ? compréhensible seule ? mérite le top 5 ? formulation naturelle ? Corrige sinon.
 
 Réponds avec ce JSON UNIQUEMENT :
@@ -5211,7 +5212,7 @@ Réponds avec ce JSON UNIQUEMENT :
         max_tokens=500)
     # Filet anti-doublon : même si Claude sort 2 lignes sur le même sujet, on ne garde que la 1ʳᵉ
     # (≥2 mots saillants communs = même histoire) → « un sujet = une ligne » garanti mécaniquement.
-    raw = [(str(it.get("e", "•"))[:2], _smart_truncate(str(it.get("t", "")), 72))
+    raw = [(str(it.get("e", "•"))[:2], _smart_truncate(str(it.get("t", "")), 100, add_ellipsis=True))
            for it in (r.get("items") or []) if it.get("t")]
     items, seen_sigs = [], []
     for e, t in raw:
