@@ -654,6 +654,19 @@ def _smart_truncate(s, max_len=80, add_ellipsis=False):
     cut = cut if cut else s[:max_len].rstrip()
     return (cut + "…") if add_ellipsis else cut
 
+def _recap_line(text, max_len=82):
+    """Ligne de récap : on veut une phrase COURTE et COMPLÈTE. Si elle dépasse, on coupe à la
+    dernière frontière de proposition (virgule/point/point-virgule/tiret) pour garder une phrase
+    qui se lit ENTIÈRE, SANS « … ». Le « … » n'est utilisé qu'en tout dernier recours."""
+    t = (text or "").strip()
+    if len(t) <= max_len:
+        return t
+    window = t[:max_len]
+    cut = max(window.rfind(", "), window.rfind(". "), window.rfind("; "), window.rfind(" — "), window.rfind(" – "))
+    if cut >= 45:                      # coupe nette à une virgule/point → lecture complète, pas de « … »
+        return window[:cut].rstrip(" ,;:—–-").strip()
+    return _smart_truncate(t, max_len, add_ellipsis=True)   # dernier recours (phrase sans ponctuation)
+
 def _split_long_lead(body, max_lead=90):
     """Anti-pavé : si la 1ʳᵉ ligne (avant le 1er saut de ligne double) dépasse max_lead caractères,
     on la scinde à la 1ʳᵉ frontière de phrase (. ! ?) pour créer une accroche courte + un retour à
@@ -861,6 +874,7 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 {hook_instr}
 - TÉLÉGRAPHIQUE : 1 à 2 phrases MAXIMUM, denses et autonomes, comme une dépêche. Info COMPLÈTE, jamais un teaser.
 - ⛔⛔ INTERDICTION ABSOLUE DU TEASER / RACOLAGE : le tweet DONNE l'information, il ne l'appâte JAMAIS. Bannis totalement : "découvrez si...", "découvrez la suite", "on vous dit tout", "vous n'allez pas croire", "la réponse va vous surprendre", "cliquez pour savoir", "la raison est folle". Si Marine Le Pen peut se présenter → DIS-LE ("elle pourra se présenter" ou "elle est inéligible"). Ne demande jamais au lecteur d'aller chercher l'info ailleurs : elle est DANS le tweet, en clair. Un tweet qui cache le fait pour forcer le clic est un ÉCHEC.
+- 🎙️ NE RELAIE JAMAIS LA PUB D'UN AUTRE MÉDIA : beaucoup d'articles (BFMTV, etc.) servent à promouvoir LEUR podcast, émission, dossier ou reportage. IGNORE totalement cette promo. Ne finis JAMAIS par "on en parle dans le podcast", "à écouter dans notre émission", "à retrouver dans notre dossier", "rendez-vous dans…". Ne pose pas non plus de questions creuses qui renvoient à ce contenu ("Pourquoi ce choix ? On en parle dans…"). Extrais UNIQUEMENT le fait d'actualité (le quoi/qui/quand) et donne-le en clair. Si l'article n'a qu'une promo sans réel fait, garde juste le fait vérifiable et rien d'autre.
 - Mets en avant le CHIFFRE ou le FAIT clé. Tu peux écrire UN mot ou chiffre important en MAJUSCULES pour l'emphase (avec parcimonie).
 - ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
 - Longueur cible COURTE : environ 200 à 330 caractères. Jamais un long pavé.
@@ -961,7 +975,14 @@ TEASER_RX = re.compile(
     r"vous ne devinerez jamais|"
     r"attendez de (voir|savoir)|"
     r"la suite est|"
-    r"réponse (ci-dessous|dans l'article)",
+    r"réponse (ci-dessous|dans l'article)|"
+    # 🎙️ Renvoi vers le contenu d'un autre média (teaser + pub) : « on en parle dans le podcast »…
+    r"on (en|vous en|t'en) parle dans|"
+    r"dans (le|la|notre|ce|le nouveau|notre nouveau|leur|un nouvel?) (podcast|[ée]mission|reportage|dossier|d[ée]cryptage|num[ée]ro|[ée]pisode)|"
+    r"[àa] r[ée][ée]couter|[àa] (r[ée])?[ée]couter (dans|sur|notre|le)|"
+    r"[àa] retrouver (dans|sur)|[àa] (re)?voir dans (le|notre|ce)|[àa] lire dans (le|notre)|"
+    r"rendez-vous (dans|sur) (le|notre|ce|l')|"
+    r"on (d[ée]crypte|d[ée]taille|raconte|explique|revient) .{0,25} dans (le|notre|ce|l')",
     re.IGNORECASE)
 
 def _is_teaser(text):
@@ -1000,8 +1021,10 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
     if _is_teaser(body):
         print(f"  🚫 Teaser/clickbait détecté → régénération (l'info doit être DONNÉE, pas appâtée)")
         anti = ("Ton tweet précédent CACHAIT l'information (formulation racoleuse type 'découvrez si...', "
-                "'on vous dit tout'). INTERDIT. DONNE l'information en clair, directement, dans le tweet. "
-                "Le lecteur doit connaître le fait en te lisant, sans avoir à cliquer ailleurs.")
+                "'on vous dit tout') OU relayait la promo d'un autre média ('on en parle dans le podcast', "
+                "'à écouter dans notre émission', questions creuses renvoyant à ce contenu). INTERDIT. "
+                "DONNE le FAIT d'actualité en clair, directement, dans le tweet — sans aucune promo de podcast/"
+                "émission/dossier, sans question creuse. Le lecteur doit connaître le fait en te lisant, sans cliquer ailleurs.")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
             title, summary, source, category, article_text=article_text, prev_angles=prev_angles, correction=anti)
         # Si ça tease encore, on retire au moins la tournure racoleuse la plus courante
@@ -5240,15 +5263,20 @@ RÈGLES :
 1. 🕐 INTELLIGENCE TEMPORELLE : nous sommes {now_str}. Reformule tout ce qui est devenu FAUX. Un titre qui ANNONÇAIT un événement à venir ("verdict mardi", "ce soir", "demain") alors qu'il est déjà PASSÉ doit être réécrit à l'état ACCOMPLI ("verdict rendu", "condamné"). N'emploie "aujourd'hui/ce soir/mardi/demain" QUE si c'est encore exact maintenant.
 2. 🧵 UN SUJET = UNE LIGNE, À L'ÉTAT FINAL : si un sujet revient plusieurs fois (il a évolué), fusionne-le en UNE seule ligne reflétant sa DERNIÈRE évolution. Ex : enquête ouverte → suspect interpellé → mis en examen ⇒ une seule ligne « mis en examen ». JAMAIS deux lignes sur la même histoire.
 3. 🎯 SÉLECTION : garde les 5 infos les plus MARQUANTES de la journée (importance, impact, mémorisation), pas les 5 dernières. De la plus forte à la moins forte.
-4. ✍️ STRUCTURE de chaque ligne : « Sujet : information essentielle » — une phrase COMPLÈTE qui se suffit à elle-même (JAMAIS coupée ou en suspens, ex. jamais finir par « toujours en », « derrière Marine Le »), courte (≤ ~90 caractères), compréhensible SANS avoir suivi l'actu, factuelle, rien d'inventé, français impeccable, aucun style SEO. Un emoji pertinent en tête (jamais festif sur un drame).
-5. ✅ AVANT DE RÉPONDRE, vérifie chaque ligne : encore vraie à {now_str} ? compréhensible seule ? mérite le top 5 ? formulation naturelle ? Corrige sinon.
+4. ✍️ CHAQUE LIGNE = UNE PHRASE COURTE ET COMPLÈTE (c'est LA règle la plus importante, tu t'es trompé dessus avant) :
+   - MODÈLE à imiter EXACTEMENT : « Mort de Sam Neill : l'acteur de Jurassic Park s'est éteint à 78 ans. » → courte, ENTIÈRE, on comprend tout d'un coup d'œil.
+   - 80 CARACTÈRES MAXIMUM, idéalement 55-70. Compte-les. Une ligne trop longue devient minuscule et illisible sur l'image.
+   - La phrase est ENTIÈRE : « Sujet : le fait », terminée. JAMAIS coupée, JAMAIS en suspens, JAMAIS de « … ». Interdit de finir par « ravagés par les », « face à une crise de », « l'ambassadeur russe ».
+   - Si l'info est trop riche pour tenir court, garde SEULEMENT le fait principal et SUPPRIME les détails secondaires (chiffres en trop, précisions, causes). Ex : au lieu de « Incendies en Île-de-France : plus de 800 hectares de la forêt de Fontainebleau ravagés par les flammes, pompiers toujours mobilisés » → « Incendies : 800 hectares de la forêt de Fontainebleau partis en fumée. »
+   - Compréhensible SANS avoir suivi l'actu. Un emoji pertinent en tête (jamais festif sur un drame).
+5. ✅ AVANT DE RÉPONDRE, vérifie chaque ligne : ≤ 80 caractères ET une phrase COMPLÈTE (jamais de « … » ni de fin en suspens) ? encore vraie à {now_str} ? compréhensible seule ? mérite le top 5 ? formulation naturelle ? Corrige sinon.
 
 Réponds avec ce JSON UNIQUEMENT :
 {{"items":[{{"e":"⚖️","t":"Sujet : info essentielle"}},{{"e":"🚨","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}}]}}""",
         max_tokens=500)
     # Filet anti-doublon : même si Claude sort 2 lignes sur le même sujet, on ne garde que la 1ʳᵉ
     # (≥2 mots saillants communs = même histoire) → « un sujet = une ligne » garanti mécaniquement.
-    raw = [(str(it.get("e", "•"))[:2], _smart_truncate(str(it.get("t", "")), 100, add_ellipsis=True))
+    raw = [(str(it.get("e", "•"))[:2], _recap_line(str(it.get("t", ""))))
            for it in (r.get("items") or []) if it.get("t")]
     items, seen_sigs = [], []
     for e, t in raw:
