@@ -680,6 +680,18 @@ def _split_long_lead(body, max_lead=90):
         return body
     # cherche une fin de phrase dans les premiers max_lead caractères
     m = list(re.finditer(r"[.!?…](\s|$)", lead[:max_lead + 40]))
+    # ⚠️ NE JAMAIS couper sur le point d'une INITIALE (« E. Jean Carroll », « J. K. Rowling »)
+    # ni d'une abréviation courante (« M. Dupont », « etc. ») — sinon on scinde un nom en deux.
+    _ABBR = ("m", "mme", "mlle", "dr", "pr", "st", "ste", "etc", "cf", "av", "apr", "jc", "min", "max")
+    def _vraie_fin_de_phrase(pos):
+        before = lead[:pos]
+        if re.search(r"(^|\s)[A-ZÀ-Ÿ]$", before):          # initiale : 1 seule lettre majuscule
+            return False
+        w = re.search(r"([A-Za-zÀ-ÿ]+)$", before)           # abréviation en fin de mot
+        if w and w.group(1).lower() in _ABBR:
+            return False
+        return True
+    m = [x for x in m if _vraie_fin_de_phrase(x.start())]
     if m:
         cut = m[0].end()
         head = lead[:cut].strip()
@@ -5438,19 +5450,27 @@ def fetch_france_match_live():
     """
     token = os.environ.get("FOOTBALL_DATA_TOKEN", "").strip()
     if not token:
+        print("  ⚠️ FOOTBALL_DATA_TOKEN ABSENT → pas de suivi live fiable du match (ajoute la clé dans les secrets GitHub).")
         return None
     try:
-        # Tous les matchs du jour (l'API filtre sur 'now' en UTC par défaut, on force la date du jour)
+        # Fenêtre aujourd'hui → demain (UTC) : les matchs de Coupe du Monde aux horaires américains
+        # tombent souvent la nuit / au petit matin en Europe, donc parfois sur la date UTC du lendemain.
         today = datetime.utcnow().strftime("%Y-%m-%d")
-        url = f"https://api.football-data.org/v4/matches?dateFrom={today}&dateTo={today}"
+        tomorrow = (datetime.utcnow() + timedelta(days=1)).strftime("%Y-%m-%d")
+        url = f"https://api.football-data.org/v4/matches?dateFrom={today}&dateTo={tomorrow}"
         req = urllib.request.Request(url, headers={"X-Auth-Token": token, "User-Agent": "PulseBot/1.0"})
         with urllib.request.urlopen(req, timeout=12) as r:
             data = json.loads(r.read())
     except Exception as e:
-        print(f"  ⚠️ API football-data: {e}")
+        print(f"  ⚠️ API football-data (clé invalide ou quota dépassé ?) : {e}")
         return None
 
-    for m in data.get("matches", []):
+    matches = data.get("matches", [])
+    fr_matches = [m for m in matches
+                  if ((m.get("homeTeam") or {}).get("name") == "France"
+                      or (m.get("awayTeam") or {}).get("name") == "France")]
+    print(f"  ⚽ API football-data : {len(matches)} match(s) sur 48h, dont France : {len(fr_matches)}")
+    for m in matches:
         home = (m.get("homeTeam") or {}).get("name", "") or ""
         away = (m.get("awayTeam") or {}).get("name", "") or ""
         crest_home = (m.get("homeTeam") or {}).get("crest", "") or ""
@@ -5459,6 +5479,7 @@ def fetch_france_match_live():
         if home != "France" and away != "France":
             continue
         status = m.get("status", "")
+        print(f"  ⚽🇫🇷 Match France détecté : {home} vs {away} — statut API = {status}")
         score = m.get("score", {}) or {}
         ft = score.get("fullTime", {}) or {}
         ht = score.get("halfTime", {}) or {}
