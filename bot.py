@@ -868,6 +868,8 @@ Le BON réflexe : demande-toi \"si je voyais passer ça dans mon fil, qu'est-ce 
 - Si la qualification n'est pas écrite dans la source, n'en mets AUCUNE (écris "mort de", "décès de", "mis en cause pour").
 - Personne mise en cause/suspectée = TOUJOURS "soupçonné de", "présumé" (présomption d'innocence).
 - N'invente JAMAIS un chiffre, un âge, un lieu ou une circonstance absents de la source.
+- ⛔ SUPERLATIFS INTERDITS SANS SOURCE : n'écris JAMAIS « le/la plus [grand·important...] de l'histoire », « jamais vu », « record absolu », « sans précédent », « inédit », « historique » SAUF si la source le dit EXPLICITEMENT. Sinon reste factuel (« un défilé de 6 700 soldats », PAS « le plus imposant jamais organisé »).
+- ⛔ NE DÉFORME PAS LE SENS : n'attribue JAMAIS un fait, une origine ou un mérite à la mauvaise culture / personne / pays / groupe. Ex : un haka est une tradition MAORI / du Pacifique — ne le présente JAMAIS comme une « tradition française ». Reste fidèle à QUI fait quoi et à quelle culture/pays appartient quoi.
 
 RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules ; va DIRECTEMENT à l'info.
@@ -1464,6 +1466,16 @@ def fetch_video_file(video_url, max_mb=50):
 _VIDEO_WORTHY_CATS = {
     "faitsdivers", "sport", "monde", "politique", "environnement", "societe", "culture",
 }
+# 🛡️ Diffuseurs TV les plus susceptibles de faire retirer une vidéo (DMCA) : on ne reposte
+# JAMAIS leur vidéo, même si elle est accessible (protection du compte, déjà suspendu une fois).
+# Les journaux régionaux et sites spécialisés (IGN, etc.) restent autorisés.
+_RISKY_VIDEO_SOURCES = ("bfm", "tf1", "lci", "francetv", "france télé", "france tele",
+                        "france 2", "france 3", "france 5", "france info", "franceinfo",
+                        "m6", "cnews", "canal+", "rmc", "europe 1", "cstar", "tmc")
+def _video_source_ok(source):
+    """False pour les diffuseurs à risque DMCA : on n'utilise pas leur vidéo."""
+    s = (source or "").lower()
+    return not any(r in s for r in _RISKY_VIDEO_SOURCES)
 def video_worth_searching(category):
     """Décide si chercher une vidéo pour cette catégorie vaut le coup (coût maîtrisé)."""
     return (category or "").lower() in _VIDEO_WORTHY_CATS
@@ -3621,7 +3633,9 @@ Crée un carrousel clair, CONCRET et CHIFFRÉ qui explique le sujet étape par �
 
 RÈGLES ABSOLUES :
 - Utilise UNIQUEMENT les informations de l'article ci-dessus. N'invente AUCUN chiffre.
+- ⛔ SUPERLATIFS INTERDITS SANS SOURCE : n'écris JAMAIS « le/la plus [grand·imposant·important...] de l'histoire », « jamais vu/organisé », « du jamais-vu », « record absolu », « sans précédent », « inédit », « historique » SAUF si l'article le dit EXPLICITEMENT. Sinon reste factuel (« un défilé de 6 700 soldats », PAS « le défilé le plus imposant jamais organisé »).
 - REFORMULE avec tes propres mots, ne recopie jamais des phrases entières (droit d'auteur).
+- ⛔ NE DÉFORME PAS LE SENS en reformulant : n'attribue JAMAIS un fait, une origine ou un mérite à la mauvaise culture / personne / pays / groupe. Ex : un haka est une tradition MAORI / du Pacifique exécutée ici par des soldats ultramarins d'Océanie — ne le transforme JAMAIS en « tradition guerrière française ». Reste fidèle à QUI fait quoi et à quelle culture/pays appartient quoi.
 - 📊 LES CHIFFRES D'ABORD : vise AU MOINS 4 données chiffrées sur l'ensemble du carrousel (montants en €, pourcentages, quantités, nombres de personnes, dates, classements...). Fais une slide "Les chiffres clés" si l'article s'y prête.
 - ⛔ INTERDIT les phrases vagues et creuses du type "le marché se complexifie", "de plus en plus diverse et imprévisible", "les habitudes changent", "un phénomène croissant". CHAQUE point doit apporter une info CONCRÈTE : un chiffre, un nom propre, un lieu, une date ou un fait précis.
 - Si l'article manque de chiffres, mets en avant les faits les plus concrets (noms, pays concernés, décisions précises) — JAMAIS de généralités.
@@ -6224,7 +6238,7 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
         rv = extract_video_url(item.get("entry")) if item.get("entry") else None
         if rv:
             vid = fetch_video_file(rv)
-        if not vid and video_worth_searching(label_cat):
+        if not vid and video_worth_searching(label_cat) and _video_source_ok(item.get("source", "")):
             vp, _m = fetch_article_video(item.get("url"))
             if vp:
                 vid = vp
@@ -6807,7 +6821,7 @@ def check_feeds(conn):
                     real_vid_url = extract_video_url(item.get("entry")) if item.get("entry") else None
                     if real_vid_url:
                         video_path = fetch_video_file(real_vid_url)
-                    if not video_path and item.get("analysis", {}).get("needs_video") and video_worth_searching(cat):
+                    if not video_path and video_worth_searching(cat) and _video_source_ok(item.get("source", "")):
                         vp, _vmeta = fetch_article_video(item.get("url"))
                         if vp:
                             video_path = vp
@@ -6833,7 +6847,7 @@ def check_feeds(conn):
                         video_path = fetch_video_file(real_vid_url)
                     # 2) sinon, si une vidéo a une vraie valeur ici (needs_video), on cherche la vidéo
                     #    ÉDITORIALE dans la PAGE de l'article (og:video/JSON-LD, jamais une pub).
-                    if not video_path and item.get("analysis", {}).get("needs_video") and video_worth_searching(cat):
+                    if not video_path and video_worth_searching(cat) and _video_source_ok(item.get("source", "")):
                         vp, _vmeta = fetch_article_video(item.get("url"))
                         if vp:
                             video_path = vp
@@ -6844,6 +6858,11 @@ def check_feeds(conn):
 
             posted_ok = False
             res_x = None
+            _pub_ts = item.get("pub_ts")
+            if _pub_ts:
+                _age_h = (time.time() - _pub_ts) / 3600
+                _frais = "frais ✅" if _age_h <= 6 else ("récent" if _age_h <= 24 else "ANCIEN ⚠️")
+                print(f"  🕒 Âge de l'article à la publication : {_age_h:.1f}h ({_frais})")
             try:
                 res_x = post_to_twitter(tweet_final, png_bytes, video_path)
                 posted_ok = posted_ok or (res_x is not False and res_x is not None)
