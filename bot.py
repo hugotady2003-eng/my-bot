@@ -1674,17 +1674,57 @@ def paste_pulse_logo(img, x, y, target_h, opacity=1.0):
     except Exception:
         return 0
 
-def _feather_paste(bg, fg, x, y, frac=0.07):
-    """Colle fg sur bg avec des bords en FONDU progressif (dégradé), au lieu d'un bord net.
-    La photo se dissout doucement dans le fond flouté (dérivé de la même image) → plus de
-    bordure brute visible entre la photo de l'article et la carte. Renvoie bg modifié."""
+def _feather_paste(bg, fg, x, y, frac=0.10):
+    """Colle fg sur bg avec un FONDU UNIFORME sur les QUATRE bords (pas seulement les coins).
+    Chaque bord de la photo se dissout de la même façon dans le fond → plus de bordure nette,
+    et pas d'effet « coins flous / bords nets » (l'ancien flou de rectangle effaçait trop les coins)."""
+    import numpy as _np
     fw, fh = fg.size
-    feather = max(24, int(min(fw, fh) * frac))          # largeur du fondu (~7% du petit côté)
-    mask = Image.new("L", (fw, fh), 0)
-    ImageDraw.Draw(mask).rectangle([feather, feather, fw - feather - 1, fh - feather - 1], fill=255)
-    mask = mask.filter(ImageFilter.GaussianBlur(feather))
+    feather = max(30, int(min(fw, fh) * frac))
+    ys, xs = _np.mgrid[0:fh, 0:fw]
+    # distance de chaque pixel au bord le plus proche → dégradé identique sur les 4 côtés
+    dist = _np.minimum(_np.minimum(xs, fw - 1 - xs), _np.minimum(ys, fh - 1 - ys)).astype("float32")
+    alpha = _np.clip(dist / feather, 0.0, 1.0)          # 0 au bord → 1 à 'feather' vers l'intérieur
+    mask = Image.fromarray((alpha * 255.0).astype("uint8"), "L")
+    mask = mask.filter(ImageFilter.GaussianBlur(feather * 0.35))   # léger adoucissement du dégradé
     bg.paste(fg, (x, y), mask)
     return bg
+
+# ── PILULES-CATÉGORIES PRÉ-DESSINÉES (image fournie par l'utilisateur) ──────────
+# Le bot découpe la pilule dans 'pulse_pills.png' (une seule image à uploader dans le repo).
+# Coordonnées de chaque pilule dans l'image. Catégories absentes → le bot dessine la sienne.
+_PILL_COORDS = {
+    "politique": (50, 576, 326, 659),   "science": (373, 576, 651, 659), "faitsdivers": (698, 576, 977, 659),
+    "culture": (50, 862, 326, 946),     "environnement": (371, 862, 652, 946), "sport": (698, 862, 975, 946),
+    "positivity": (48, 1215, 323, 1298), "positif": (48, 1215, 323, 1298),
+    "economie": (371, 1215, 652, 1298), "tech": (699, 1215, 977, 1298), "technologie": (699, 1215, 977, 1298),
+}
+_PILL_SHEET = None
+_PILL_SHEET_TRIED = False
+def _category_pill(category, target_h):
+    """Pilule pré-dessinée (RGBA) pour la catégorie, mise à la hauteur target_h — ou None si aucune
+    pilule fournie pour cette catégorie (le bot dessinera alors la sienne). Tolérant : jamais d'erreur."""
+    global _PILL_SHEET, _PILL_SHEET_TRIED
+    box = _PILL_COORDS.get((category or "").lower())
+    if not box:
+        return None
+    if not _PILL_SHEET_TRIED:
+        _PILL_SHEET_TRIED = True
+        for p in ("pulse_pills.png", "assets/pulse_pills.png", "pills_src.png"):
+            try:
+                _PILL_SHEET = Image.open(p).convert("RGBA"); break
+            except Exception:
+                _PILL_SHEET = None
+    if _PILL_SHEET is None:
+        return None
+    try:
+        x0, y0, x1, y1 = box
+        pad = 10
+        pill = _PILL_SHEET.crop((max(0, x0 - pad), max(0, y0 - pad), x1 + pad, y1 + pad))
+        w, h = pill.size
+        return pill.resize((max(1, int(target_h * w / h)), int(target_h)), Image.LANCZOS)
+    except Exception:
+        return None
 
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
     """
@@ -1837,22 +1877,31 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         if category == "hommage" or paste_pulse_logo(img, margin, int(H * 0.044), int(H * 0.062)) == 0:
             draw.text((margin, int(H * 0.044)), "Pulse", font=f_logo, fill=(255, 255, 255))
 
-        # ─── BADGE CATÉGORIE ───
-        badge_hex = s["color"].lstrip("#")
-        badge_rgb = tuple(int(badge_hex[i:i+2], 16) for i in (0, 2, 4))
-        cat_text  = s["label"]
-        bb = draw.textbbox((0, 0), cat_text, font=f_badge)
-        bw = bb[2] - bb[0] + 36
-        bh = bb[3] - bb[1] + 18
-        bx = W - bw - margin
-        by = int(H * 0.039)
-        bov   = Image.new('RGBA', (W, H), (0, 0, 0, 0))
-        bdraw = ImageDraw.Draw(bov)
-        bdraw.rounded_rectangle([bx, by, bx + bw, by + bh], radius=bh // 2,
-                                fill=(*badge_rgb, 50), outline=(*badge_rgb, 200), width=2)
-        img  = Image.alpha_composite(img.convert('RGBA'), bov).convert('RGB')
-        draw = ImageDraw.Draw(img)
-        draw.text((bx + 18, by + 9), cat_text, font=f_badge, fill=badge_rgb)
+        # ─── BADGE CATÉGORIE : pilule pré-dessinée si fournie, sinon dessin maison ───
+        _pill = _category_pill(category, int(H * 0.092))
+        if _pill is not None:
+            px = W - _pill.width - margin
+            py = int(H * 0.036)
+            img = img.convert("RGBA")
+            img.alpha_composite(_pill, (px, py))
+            img = img.convert("RGB")
+            draw = ImageDraw.Draw(img)
+        else:
+            badge_hex = s["color"].lstrip("#")
+            badge_rgb = tuple(int(badge_hex[i:i+2], 16) for i in (0, 2, 4))
+            cat_text  = s["label"]
+            bb = draw.textbbox((0, 0), cat_text, font=f_badge)
+            bw = bb[2] - bb[0] + 36
+            bh = bb[3] - bb[1] + 18
+            bx = W - bw - margin
+            by = int(H * 0.039)
+            bov   = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+            bdraw = ImageDraw.Draw(bov)
+            bdraw.rounded_rectangle([bx, by, bx + bw, by + bh], radius=bh // 2,
+                                    fill=(*badge_rgb, 50), outline=(*badge_rgb, 200), width=2)
+            img  = Image.alpha_composite(img.convert('RGBA'), bov).convert('RGB')
+            draw = ImageDraw.Draw(img)
+            draw.text((bx + 18, by + 9), cat_text, font=f_badge, fill=badge_rgb)
 
         # ─── TITRE EN BAS (style Instagram : toujours visible, même avec photo) ───
         if headline_bottom:
@@ -6536,11 +6585,23 @@ def check_feeds(conn):
                 continue
             score = int(a.get("score", 0))
             if is_followup:
-                # SUIVI d'un sujet déjà tweeté : soumis à la cadence (anti-spam), et il la repousse.
-                if not should_publish_now(conn):
-                    print("  ⏸️  Info complémentaire mais cadence pas prête → pas maintenant")
-                    continue
-                if score >= BUZZ_SCORE:
+                if score >= BREAKING_SCORE:
+                    # 🚨➕ SUIVI D'UN VRAI BREAKING (événement majeur EN COURS) : c'est À PART.
+                    # Il passe TOUT DE SUITE — sans tenir compte du délai de cadence entre tweets —
+                    # et il ne remet PAS le compteur à zéro (les actus normales ne sont pas retardées).
+                    # Anti-spam assuré en amont : un suivi n'existe QUE si un NOUVEAU média a couvert
+                    # le développement (jamais deux fois la même info).
+                    try:
+                        publish_breaking(conn, hot, a.get("category", "breaking"), urgent=True, bump_cadence=False)
+                        print(f"  🚨➕ Suivi de BREAKING publié immédiatement : {hot['title'][:50]}")
+                        return
+                    except Exception as e:
+                        print(f"  ❌ Suivi breaking échoué : {e}")
+                elif score >= BUZZ_SCORE:
+                    # Suivi d'un sujet chaud NON-breaking : soumis à la cadence (anti-spam) + la repousse.
+                    if not should_publish_now(conn):
+                        print("  ⏸️  Info complémentaire mais cadence pas prête → pas maintenant")
+                        continue
                     try:
                         publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True)
                         print(f"  ➕ Suivi publié (info complémentaire) : {hot['title'][:50]}")
