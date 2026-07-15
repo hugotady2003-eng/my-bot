@@ -1694,10 +1694,14 @@ def _feather_paste(bg, fg, x, y, frac=0.10):
 # Le bot découpe la pilule dans 'pulse_pills.png' (une seule image à uploader dans le repo).
 # Coordonnées de chaque pilule dans l'image. Catégories absentes → le bot dessine la sienne.
 _PILL_COORDS = {
-    "politique": (50, 576, 326, 659),   "science": (373, 576, 651, 659), "faitsdivers": (698, 576, 977, 659),
-    "culture": (50, 862, 326, 946),     "environnement": (371, 862, 652, 946), "sport": (698, 862, 975, 946),
-    "positivity": (48, 1215, 323, 1298), "positif": (48, 1215, 323, 1298),
-    "economie": (371, 1215, 652, 1298), "tech": (699, 1215, 977, 1298), "technologie": (699, 1215, 977, 1298),
+    "politique": (79, 66, 507, 172),    "science": (548, 66, 967, 172),     "faitsdivers": (1004, 66, 1446, 172),
+    "culture": (79, 207, 507, 313),     "environnement": (548, 207, 966, 313), "sport": (1005, 207, 1445, 313),
+    "positivity": (79, 347, 506, 451),  "positif": (79, 347, 506, 451),
+    "economie": (548, 347, 967, 451),   "tech": (1005, 347, 1445, 451),     "technologie": (1005, 347, 1445, 451),
+    "breaking": (79, 486, 505, 591),    "france": (548, 486, 966, 591),     "monde": (1005, 486, 1446, 591),
+    "societe": (78, 622, 505, 725),     "hommage": (549, 622, 966, 725),    "histoire": (1005, 622, 1445, 725),
+    "sante": (79, 756, 505, 858),       "ia": (549, 756, 966, 858),         "insolite": (1005, 756, 1445, 858),
+    "gta6": (549, 885, 966, 984),
 }
 _PILL_SHEET = None
 _PILL_SHEET_TRIED = False
@@ -1878,10 +1882,10 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             draw.text((margin, int(H * 0.044)), "Pulse", font=f_logo, fill=(255, 255, 255))
 
         # ─── BADGE CATÉGORIE : pilule pré-dessinée si fournie, sinon dessin maison ───
-        _pill = _category_pill(category, int(H * 0.092))
+        _pill = _category_pill(category, int(H * 0.078))
         if _pill is not None:
             px = W - _pill.width - margin
-            py = int(H * 0.036)
+            py = int(H * 0.040)
             img = img.convert("RGBA")
             img.alpha_composite(_pill, (px, py))
             img = img.convert("RGB")
