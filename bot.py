@@ -1730,6 +1730,40 @@ def _category_pill(category, target_h):
     except Exception:
         return None
 
+_EMOJI_RX = re.compile(
+    "[\U0001F1E6-\U0001F1FF\U0001F300-\U0001FAFF\U00002600-\U000027BF"
+    "\U0001F900-\U0001F9FF\U00002190-\U000021FF\U00002B00-\U00002BFF\uFE0F\u200D\u20E3]"
+)
+_EMOJI_FONT_PATH = "__unset__"
+def _emoji_image(ch, size):
+    """Rend un emoji en image COULEUR (RGBA), hauteur ~size px. None si indisponible ou vide.
+    Tolérant : ne lève jamais d'erreur (fallback = pas d'emoji, le reste de la carte est intact)."""
+    global _EMOJI_FONT_PATH
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+        ch = (ch or "").strip()
+        if not ch:
+            return None
+        if _EMOJI_FONT_PATH == "__unset__":
+            import glob
+            hits = (glob.glob("/usr/share/fonts/**/NotoColorEmoji.ttf", recursive=True) or
+                    glob.glob("/usr/share/fonts/**/*ColorEmoji*.ttf", recursive=True) or
+                    glob.glob("/usr/share/fonts/**/*emoji*.ttf", recursive=True))
+            _EMOJI_FONT_PATH = hits[0] if hits else None
+        if not _EMOJI_FONT_PATH:
+            return None
+        f = ImageFont.truetype(_EMOJI_FONT_PATH, 109)   # NotoColorEmoji : taille bitmap native
+        canvas = Image.new("RGBA", (160, 160), (0, 0, 0, 0))
+        ImageDraw.Draw(canvas).text((80, 80), ch, font=f, embedded_color=True, anchor="mm")
+        bb = canvas.getbbox()
+        if not bb:
+            return None
+        crop = canvas.crop(bb)
+        sc = size / crop.height
+        return crop.resize((max(1, int(crop.width * sc)), int(size)), Image.LANCZOS)
+    except Exception:
+        return None
+
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
     """
     PNG DA Pulse, taille paramétrable (W×H).
@@ -1744,8 +1778,8 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         s = STYLES[category]
         margin = int(W * 0.037)   # marge proportionnelle (~44px en 1200, ~40px en 1080)
 
-        if len(headline_court) > 90:
-            headline_court = headline_court[:87].rsplit(" ", 1)[0] + "..."
+        if len(headline_court) > 120:
+            headline_court = headline_court[:118].rsplit(" ", 1)[0]
 
         # ─── FOND ───
         img = Image.new('RGB', (W, H), (13, 13, 20))
@@ -1882,10 +1916,10 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             draw.text((margin, int(H * 0.044)), "Pulse", font=f_logo, fill=(255, 255, 255))
 
         # ─── BADGE CATÉGORIE : pilule pré-dessinée si fournie, sinon dessin maison ───
-        _pill = _category_pill(category, int(H * 0.078))
+        _pill = _category_pill(category, int(H * 0.052))
         if _pill is not None:
             px = W - _pill.width - margin
-            py = int(H * 0.040)
+            py = int(H * 0.048)
             img = img.convert("RGBA")
             img.alpha_composite(_pill, (px, py))
             img = img.convert("RGB")
@@ -1925,6 +1959,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             # Titre : on retire les hashtags (inutiles/moches sur une image) et on
             # auto-dimensionne pour que RIEN ne déborde (titre court = très gros).
             clean_title = re.sub(r'#(\w+)', r'\1', headline_court)
+            clean_title = _EMOJI_RX.sub('', clean_title)        # retire les emojis du TEXTE (plus de « tofu »)
             clean_title = re.sub(r'\s{2,}', ' ', clean_title).strip()
             max_w = int(W * 0.90)
             sizes = [int(W * x) for x in (0.092, 0.082, 0.072, 0.063, 0.055, 0.048)]
@@ -1979,9 +2014,20 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             ft      = font(chosen_size)
             line_h  = int(chosen_size * 1.14)
             total_h = len(chosen_lines) * line_h
-            # Bloc de texte centré vers ~66% de la hauteur → commence bien plus haut
+            # 🎨 Emoji COULEUR en accent juste au-dessus du titre = repère visuel du sujet.
+            #    Jamais sur un hommage (sobriété). Fallback silencieux si emoji indisponible.
+            _acc = None if category == "hommage" else _emoji_image(EMOJIS.get(category, ""), int(chosen_size * 1.28))
+            acc_gap = int(chosen_size * 0.26) if _acc else 0
+            acc_h   = _acc.height if _acc else 0
+            block_h = acc_h + acc_gap + total_h
             center_y = int(H * 0.66)
-            ty0 = center_y - total_h // 2
+            block_top = center_y - block_h // 2
+            if _acc is not None:
+                img = img.convert("RGBA")
+                img.alpha_composite(_acc, (margin, block_top))
+                img = img.convert("RGB")
+                draw = ImageDraw.Draw(img)
+            ty0 = block_top + acc_h + acc_gap
 
             # OMBRE PORTÉE DOUCE (floutée) au lieu d'un contour noir net
             shadow = Image.new('RGBA', (W, H), (0, 0, 0, 0))
