@@ -654,10 +654,10 @@ def _smart_truncate(s, max_len=80, add_ellipsis=False):
     cut = cut if cut else s[:max_len].rstrip()
     return (cut + "…") if add_ellipsis else cut
 
-def _recap_line(text, max_len=82):
-    """Ligne de récap : on veut une phrase COURTE et COMPLÈTE. Si elle dépasse, on coupe à la
-    dernière frontière de proposition (virgule/point/point-virgule/tiret) pour garder une phrase
-    qui se lit ENTIÈRE, SANS « … ». Le « … » n'est utilisé qu'en tout dernier recours."""
+def _recap_line(text, max_len=130):
+    """Ligne de récap : on laisse passer la phrase ENTIÈRE (la carte fait le retour à la ligne).
+    On ne coupe qu'en tout dernier recours si c'est vraiment démesuré, à une frontière de
+    proposition (virgule/point) pour rester lisible, SANS « … » tant que possible."""
     t = (text or "").strip()
     if len(t) <= max_len:
         return t
@@ -5289,25 +5289,49 @@ def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
     ty = int(H * 0.195)
     d.text((int(W * 0.05) + 2, ty + 2), title_main, font=tf, fill=(0, 0, 0, 200))
     d.text((int(W * 0.05), ty), title_main, font=tf, fill=accent)
-    # lignes
+    # ── lignes : police PLUS GRANDE et fixe + retour à la ligne intelligent (2 lignes max),
+    #    au lieu de rétrécir le texte ou de le couper avec "…" ──
     items = items[:6]
-    top, bottom = int(H * 0.30), H - int(H * 0.10)
-    row_h = (bottom - top) // max(1, len(items))
+    top, bottom = int(H * 0.285), H - int(H * 0.095)
+    n = max(1, len(items))
+    slot_h = (bottom - top) // n
+    r = int(min(W, H) * 0.023)
+    cxn = int(W * 0.072)
+    text_x = cxn + r + int(W * 0.028)
+    maxw = W - text_x - int(W * 0.045)
+    body_f = f(W * 0.0345)                         # police fixe, nettement plus grande
+    line_h = int(body_f.size * 1.22)
+    def _wrap(text, font, mw, max_lines=2):
+        words = (text or "").split(); lines = []; cur = ""
+        for w in words:
+            t = (cur + " " + w).strip()
+            if d.textbbox((0, 0), t, font=font)[2] <= mw:
+                cur = t
+            else:
+                if cur: lines.append(cur)
+                cur = w
+                if len(lines) >= max_lines:
+                    cur = ""; break
+        if cur and len(lines) < max_lines:
+            lines.append(cur)
+        # si le texte dépasse 2 lignes (rare) : "…" propre sur la dernière ligne
+        if len(" ".join(lines).split()) < len(words) and lines:
+            last = lines[-1]
+            while d.textbbox((0, 0), last + "…", font=font)[2] > mw and " " in last:
+                last = last.rsplit(" ", 1)[0]
+            lines[-1] = last + "…"
+        return lines[:max_lines]
     for i, txt in enumerate(items):
-        cy = top + i * row_h + row_h // 2
-        r = int(min(W, H) * 0.026)
-        cxn = int(W * 0.075)
+        cy = top + i * slot_h + slot_h // 2
+        lines = _wrap(txt, body_f, maxw, 2)
+        block_h = len(lines) * line_h
+        # pastille numérotée alignée au centre du bloc de texte
         d.ellipse([cxn - r, cy - r, cxn + r, cy + r], outline=accent, width=3)
         d.text((cxn, cy + 1), str(i + 1), font=f(r * 1.15), fill=accent, anchor="mm")
-        ft = f(W * 0.026)
-        maxw = W - cxn - r - int(W * 0.09)
-        while d.textbbox((0, 0), txt, font=ft)[2] > maxw and ft.size > 15:
-            ft = f(ft.size - 1)
-        if d.textbbox((0, 0), txt, font=ft)[2] > maxw:
-            while d.textbbox((0, 0), txt + "…", font=ft)[2] > maxw and " " in txt:
-                txt = txt.rsplit(" ", 1)[0]
-            txt += "…"
-        d.text((cxn + r + int(W * 0.025), cy), txt, font=ft, fill=WHITE, anchor="lm")
+        ly = cy - block_h // 2 + int(line_h * 0.08)
+        for ln in lines:
+            d.text((text_x, ly), ln, font=body_f, fill=WHITE)
+            ly += line_h
     d.text((int(W * 0.04), H - int(H * 0.062)), "Pulse", font=f(W * 0.020), fill=WHITE)
     d.text((W - int(W * 0.04), H - int(H * 0.055)), "@PULSEactus", font=f(W * 0.016, False),
            fill=DIM, anchor="rm")
@@ -5341,6 +5365,7 @@ Objectif : donner à un lecteur pressé LES infos à retenir de la journée, com
 RÈGLES :
 1. 🕐 INTELLIGENCE TEMPORELLE : nous sommes {now_str}. Reformule tout ce qui est devenu FAUX. Un titre qui ANNONÇAIT un événement à venir ("verdict mardi", "ce soir", "demain") alors qu'il est déjà PASSÉ doit être réécrit à l'état ACCOMPLI ("verdict rendu", "condamné"). N'emploie "aujourd'hui/ce soir/mardi/demain" QUE si c'est encore exact maintenant.
 2. 🧵 UN SUJET = UNE LIGNE, À L'ÉTAT FINAL : si un sujet revient plusieurs fois (il a évolué), fusionne-le en UNE seule ligne reflétant sa DERNIÈRE évolution. Ex : enquête ouverte → suspect interpellé → mis en examen ⇒ une seule ligne « mis en examen ». JAMAIS deux lignes sur la même histoire.
+   ⚠️ MAIS NE CONFONDS JAMAIS DEUX ÉVÉNEMENTS DIFFÉRENTS : garde chaque fait avec les BONS acteurs. Ex : si l'Espagne bat la France ET que l'Argentine bat l'Angleterre, ce sont DEUX matchs distincts — n'écris SURTOUT PAS « l'Espagne bat l'Angleterre ». Chaque équipe/personne/pays avec son vrai adversaire, son vrai résultat, sa vraie affaire. Ne mélange jamais deux histoires en une seule phrase fausse.
 3. 🎯 SÉLECTION : garde les 5 infos les plus MARQUANTES de la journée (importance, impact, mémorisation), pas les 5 dernières. De la plus forte à la moins forte.
 4. ✍️ CHAQUE LIGNE = UNE PHRASE COURTE ET COMPLÈTE (c'est LA règle la plus importante, tu t'es trompé dessus avant) :
    - MODÈLE à imiter EXACTEMENT : « Mort de Sam Neill : l'acteur de Jurassic Park s'est éteint à 78 ans. » → courte, ENTIÈRE, on comprend tout d'un coup d'œil.
