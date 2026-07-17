@@ -1788,6 +1788,8 @@ def _paste_rounded_shadow(bg, fg, x, y, radius=None, shadow_blur=None, shadow_al
         bg.paste(fg, (x, y))
         return bg.convert("RGB") if bg.mode != "RGB" else bg
 
+_IMG_SS = 2   # super-résolution des cartes : 2× = texte/graphismes nets ("4K-like"), résiste à la compression X
+
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
     """
     PNG DA Pulse, taille paramétrable (W×H).
@@ -1799,6 +1801,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         from PIL import Image, ImageDraw, ImageFont, ImageFilter
         import io
 
+        W, H = int(W * _IMG_SS), int(H * _IMG_SS)   # super-résolution 2× → rendu net
         s = STYLES[category]
         margin = int(W * 0.037)   # marge proportionnelle (~44px en 1200, ~40px en 1080)
 
@@ -1986,7 +1989,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             clean_title = _EMOJI_RX.sub('', clean_title)        # retire les emojis du TEXTE (plus de « tofu »)
             clean_title = re.sub(r'\s{2,}', ' ', clean_title).strip()
             max_w = int(W * 0.90)
-            sizes = [int(W * x) for x in (0.092, 0.082, 0.072, 0.063, 0.055, 0.048)]
+            sizes = [int(W * x) for x in (0.084, 0.075, 0.066, 0.058, 0.051, 0.044)]
 
             def _wrap_words(ft):
                 lines, line = [], ""
@@ -2038,20 +2041,8 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             ft      = font(chosen_size)
             line_h  = int(chosen_size * 1.14)
             total_h = len(chosen_lines) * line_h
-            # 🎨 Emoji COULEUR en accent juste au-dessus du titre = repère visuel du sujet.
-            #    Jamais sur un hommage (sobriété). Fallback silencieux si emoji indisponible.
-            _acc = None if category == "hommage" else _emoji_image(EMOJIS.get(category, ""), int(chosen_size * 1.28))
-            acc_gap = int(chosen_size * 0.26) if _acc else 0
-            acc_h   = _acc.height if _acc else 0
-            block_h = acc_h + acc_gap + total_h
             center_y = int(H * 0.66)
-            block_top = center_y - block_h // 2
-            if _acc is not None:
-                img = img.convert("RGBA")
-                img.alpha_composite(_acc, (margin, block_top))
-                img = img.convert("RGB")
-                draw = ImageDraw.Draw(img)
-            ty0 = block_top + acc_h + acc_gap
+            ty0 = center_y - total_h // 2
 
             # OMBRE PORTÉE DOUCE (floutée) au lieu d'un contour noir net
             shadow = Image.new('RGBA', (W, H), (0, 0, 0, 0))
@@ -2068,9 +2059,21 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
 
             # Texte blanc net par-dessus (sans contour)
             ty = ty0
+            last_y = ty0
             for ln in chosen_lines:
                 draw.text((margin, ty), ln, font=ft, fill=(255, 255, 255))
+                last_y = ty
                 ty += line_h
+            # 🎨 Emoji COULEUR intégré à la FIN du titre (dernière ligne). Jamais sur un hommage.
+            if category != "hommage":
+                _em = _emoji_image(EMOJIS.get(category, ""), int(chosen_size * 0.98))
+                if _em is not None:
+                    lw = int(draw.textlength(chosen_lines[-1], font=ft)) if chosen_lines else 0
+                    ex = margin + lw + int(chosen_size * 0.24)
+                    ey = last_y + (line_h - _em.height) // 2
+                    if ex + _em.width <= W - int(W * 0.03):
+                        img = img.convert("RGBA"); img.alpha_composite(_em, (ex, ey)); img = img.convert("RGB")
+                        draw = ImageDraw.Draw(img)
             show_text = False  # on n'affiche pas le titre centré en plus
 
         # ─── TITRE CENTRÉ (seulement si pas de vraie photo et pas en mode bas) ───
@@ -2116,8 +2119,8 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         draw.text((W - bb2[2] - margin, by2), date_str, font=f_sm, fill=(255, 255, 255, 200))
 
         buf = io.BytesIO()
-        img.save(buf, format='PNG')
-        return buf.getvalue(), f"pulse-{category}-{now.strftime('%d%m%Y-%H%M')}.png"
+        img.convert('RGB').save(buf, format='JPEG', quality=95, optimize=True, progressive=True)
+        return buf.getvalue(), f"pulse-{category}-{now.strftime('%d%m%Y-%H%M')}.jpg"
 
     except Exception as e:
         print(f"  ⚠️ PNG erreur: {e}")
@@ -4353,6 +4356,15 @@ def _is_obituary(title, summary):
     if m and int(m.group(1)) < datetime.now().year:
         return False
 
+    # ── 1g. NOMINATION / SUCCESSION POLITIQUE → jamais un hommage : quelqu'un qui PREND ses
+    #    fonctions est vivant. Ex : « Burnham succède à Starmer, il prendra ses fonctions » n'est
+    #    PAS un décès. (Ciblé sur la prise de poste, pas les mentions biographiques d'un défunt.) ──
+    if re.search(r"succède à|succèdent à|prend(ra|rait|nent)? ses fonctions|prise de fonctions?|"
+                 r"investiture|prête serment|prestation de serment|remaniement ministériel|"
+                 r"nouveau premier ministre|nouvelle première ministre|accède au pouvoir|"
+                 r"forme (un|son) (nouveau )?gouvernement", t):
+        return False
+
     # ── 2. Marqueurs de décès, TOUS testés en MOT ENTIER (regex) ──
     #    'meurt' ne matchera donc jamais dans 'meurtre'. 'mort de' est traité à part (étape 3).
     death_patterns = [
@@ -5419,6 +5431,7 @@ def _gradient_text_layer(text, font, colors, pad=8):
 def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
     """Carte-liste DA Pulse : dégradé marque + titre + lignes numérotées. items = [str, ...]"""
     import io
+    W, H = int(W * _IMG_SS), int(H * _IMG_SS)   # super-résolution 2× → rendu net
     WHITE, DIM = (255, 255, 255), (222, 218, 238)
     def f(px, bold=True):
         p = f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"
@@ -5527,7 +5540,7 @@ def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
     d.text((int(W * 0.04), H - int(H * 0.062)), "Pulse", font=f(W * 0.020), fill=WHITE)
     d.text((W - int(W * 0.04), H - int(H * 0.055)), "@PULSEactus", font=f(W * 0.016, False),
            fill=DIM, anchor="rm")
-    buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
+    buf = io.BytesIO(); img.convert('RGB').save(buf, format="JPEG", quality=95, optimize=True, progressive=True); return buf.getvalue()
 
 def publish_recap(conn):
     """🌙 Récap du soir : les 5 infos qui ont marqué la journée (état FINAL, pas les titres du matin)."""
