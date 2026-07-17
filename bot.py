@@ -1764,6 +1764,30 @@ def _emoji_image(ch, size):
     except Exception:
         return None
 
+def _paste_rounded_shadow(bg, fg, x, y, radius=None, shadow_blur=None, shadow_alpha=175):
+    """Colle fg sur bg avec COINS ARRONDIS + ombre portée douce (look 'carte' moderne).
+    L'ombre floue fond naturellement la photo dans le fond → plus de bordure nette visible."""
+    try:
+        fw, fh = fg.size
+        if radius is None:
+            radius = max(14, int(min(fw, fh) * 0.055))
+        if shadow_blur is None:
+            shadow_blur = max(12, int(min(fw, fh) * 0.05))
+        pad = shadow_blur * 2 + 10
+        sh = Image.new("RGBA", (fw + pad * 2, fh + pad * 2), (0, 0, 0, 0))
+        ImageDraw.Draw(sh).rounded_rectangle([pad, pad, pad + fw - 1, pad + fh - 1],
+                                             radius=radius, fill=(0, 0, 0, shadow_alpha))
+        sh = sh.filter(ImageFilter.GaussianBlur(shadow_blur))
+        bg = bg.convert("RGBA")
+        bg.alpha_composite(sh, (x - pad, y - pad + int(shadow_blur * 0.35)))  # ombre décalée vers le bas
+        mask = Image.new("L", (fw, fh), 0)
+        ImageDraw.Draw(mask).rounded_rectangle([0, 0, fw - 1, fh - 1], radius=radius, fill=255)
+        bg.paste(fg.convert("RGBA"), (x, y), mask)
+        return bg.convert("RGB")
+    except Exception:
+        bg.paste(fg, (x, y))
+        return bg.convert("RGB") if bg.mode != "RGB" else bg
+
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
     """
     PNG DA Pulse, taille paramétrable (W×H).
@@ -1856,7 +1880,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                     fitted = photo.resize((fw, fh), Image.LANCZOS)
                     fx = (W - fw) // 2
                     fy = int((H - fh) * (0.34 if headline_bottom else 0.5))
-                    img = _feather_paste(bg, fitted, fx, fy)   # bords en fondu → plus de bordure nette
+                    img = _paste_rounded_shadow(bg, fitted, fx, fy)   # coins arrondis + ombre douce → transition naturelle
             except Exception as e:
                 print(f"  ⚠️ Traitement image: {e}")
 
@@ -4241,6 +4265,25 @@ OBITUARY_BLOCKERS = (
     "erreur administrative", "rayé des vivants", "considéré comme mort", "considérée comme morte",
 )
 
+def _is_urgent_alert(title, summary):
+    """Détecte une alerte de DANGER IMMINENT qui doit passer coûte que coûte (contourne la cadence) :
+    tsunami, évacuation, alerte rouge, attentat/fusillade en cours, séisme de forte magnitude.
+    Conçu pour éviter les faux positifs (mots-clés de danger physique réel, pas métaphoriques)."""
+    t = (str(title or "") + " " + str(summary or "")).lower()
+    strong = ("tsunami", "alerte rouge", "évacuation", "évacuer", "attentat",
+              "fusillade", "prise d'otage", "mettez-vous à l'abri", "se mettre à l'abri",
+              "immédiatement en hauteur", "alerte enlèvement")
+    if any(k in t for k in strong):
+        return True
+    if "séisme" in t or "tremblement de terre" in t or "magnitude" in t:
+        m = re.search(r"magnitude\s*(\d[\.,]?\d?)", t)
+        if m:
+            try:
+                return float(m.group(1).replace(",", ".")) >= 5.5
+            except Exception:
+                return False
+    return False
+
 def _is_obituary(title, summary):
     """Vrai UNIQUEMENT si l'article ANNONCE le décès d'une PERSONNE (personnalité).
     Approche robuste (pas une simple liste de mots) :
@@ -5308,6 +5351,71 @@ def _date_fr():
     d = datetime.now()
     return f"{JOURS_FR[d.weekday()]} {d.day} {MOIS_FR[d.month - 1]}"
 
+def _liquid_glass_bg(W, H):
+    """Fond « Liquid Glass » Pulse : dégradé profond + bulles FLOUES à dégradé de couleur (chaque
+    bulle passe d'une couleur Pulse à une autre en son sein). Robuste : renvoie None si erreur."""
+    try:
+        import numpy as np
+        ys, xs = np.mgrid[0:H, 0:W].astype("float32")
+        t = np.clip(xs / W * 0.55 + ys / H * 0.55, 0, 1)          # diagonale
+        c1 = np.array([15, 11, 46], "float32")
+        c2 = np.array([52, 22, 112], "float32")
+        c3 = np.array([126, 38, 116], "float32")
+        rgb = np.empty((H, W, 3), "float32")
+        m = t < 0.55
+        rgb[m] = c1 + (c2 - c1) * (t[m] / 0.55)[:, None]
+        rgb[~m] = c2 + (c3 - c2) * ((t[~m] - 0.55) / 0.45)[:, None]
+        S = float(min(W, H))
+        # bulles : (cx, cy, rayon, couleur_centre, couleur_bord) — dégradé DANS la bulle
+        bubbles = [
+            (0.26*W, 0.28*H, 0.46*S, (255,122,212), (98,112,255)),
+            (0.82*W, 0.56*H, 0.40*S, (132,94,255),  (255,150,232)),
+            (0.58*W, 0.10*H, 0.26*S, (255,184,120), (255,92,182)),
+            (0.10*W, 0.84*H, 0.34*S, (98,182,255),  (152,92,255)),
+            (0.92*W, 0.14*H, 0.22*S, (255,122,202), (122,122,255)),
+            (0.46*W, 0.72*H, 0.32*S, (152,92,255),  (98,152,255)),
+        ]
+        for cx, cy, r, cA, cB in bubbles:
+            dist = np.sqrt((xs - cx) ** 2 + (ys - cy) ** 2) / r
+            falloff = np.clip(1.0 - dist, 0, 1) ** 1.5
+            cA = np.array(cA, "float32"); cB = np.array(cB, "float32")
+            grad = cA[None, None, :] + (cB - cA)[None, None, :] * np.clip(dist, 0, 1)[:, :, None]
+            a = (falloff * 0.48)[:, :, None]
+            rgb = rgb * (1 - a) + grad * a
+        # léger voile sombre = garde le texte blanc lisible par-dessus les bulles
+        rgb *= 0.88
+        img = Image.fromarray(np.clip(rgb, 0, 255).astype("uint8"), "RGB")
+        img = img.filter(ImageFilter.GaussianBlur(S * 0.028))     # flou = effet verre liquide
+        return img.convert("RGBA")
+    except Exception:
+        return None
+
+def _gradient_text_layer(text, font, colors, pad=8):
+    """Renvoie un calque RGBA du `text` rempli d'un DÉGRADÉ horizontal (liste de couleurs RGB),
+    rogné au plus juste. None en cas d'erreur (l'appelant garde le texte plat)."""
+    try:
+        import numpy as np
+        big = Image.new("L", (2600, 520), 0)
+        ImageDraw.Draw(big).text((pad, pad), text, font=font, fill=255)
+        bb = big.getbbox()
+        if not bb:
+            return None
+        mask = big.crop(bb)
+        w, h = mask.size
+        n = len(colors)
+        arr = np.zeros((h, w, 4), "uint8")
+        for x in range(w):
+            u = (x / (w - 1)) * (n - 1) if w > 1 else 0
+            i0 = int(u); i1 = min(i0 + 1, n - 1); fr = u - i0
+            arr[:, x, 0] = int(colors[i0][0] + (colors[i1][0] - colors[i0][0]) * fr)
+            arr[:, x, 1] = int(colors[i0][1] + (colors[i1][1] - colors[i0][1]) * fr)
+            arr[:, x, 2] = int(colors[i0][2] + (colors[i1][2] - colors[i0][2]) * fr)
+        layer = Image.fromarray(arr, "RGBA")
+        layer.putalpha(mask)
+        return layer
+    except Exception:
+        return None
+
 def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
     """Carte-liste DA Pulse : dégradé marque + titre + lignes numérotées. items = [str, ...]"""
     import io
@@ -5317,37 +5425,69 @@ def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
         return ImageFont.truetype(p, int(px))
     def lerp(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
     c1, c2, c3 = (18, 14, 62), (62, 24, 138), (160, 40, 130)
-    col = Image.new('RGB', (1, H))
-    for y in range(H):
-        t = y / H
-        col.putpixel((0, y), lerp(c1, c2, t / 0.6) if t < 0.6 else lerp(c2, c3, (t - 0.6) / 0.4))
-    img = col.resize((W, H)).convert('RGBA')
+    img = _liquid_glass_bg(W, H)
+    if img is None:
+        col = Image.new('RGB', (1, H))
+        for y in range(H):
+            t = y / H
+            col.putpixel((0, y), lerp(c1, c2, t / 0.6) if t < 0.6 else lerp(c2, c3, (t - 0.6) / 0.4))
+        img = col.resize((W, H)).convert('RGBA')
     d = ImageDraw.Draw(img)
     for x in range(W):
         d.line([(x, 0), (x, max(6, int(H * 0.012)))], fill=lerp((90, 140, 255), (255, 80, 200), x / W))
     _pulse_brand(img, d, W, H); d = ImageDraw.Draw(img)
     d.text((W - int(W * 0.04), int(H * 0.085)), _date_fr().upper(), font=f(W * 0.018),
            fill=DIM, anchor="rm")
-    # titre principal
-    tf = f(W * 0.040)
+    # ── titre principal : STYLE personnalisé (dégradé Pulse + ombre douce + barre d'accent) ──
+    tf = f(W * 0.045)
     while d.textbbox((0, 0), title_main, font=tf)[2] > W * 0.90 and tf.size > 24:
         tf = f(tf.size - 2)
-    ty = int(H * 0.195)
-    d.text((int(W * 0.05) + 2, ty + 2), title_main, font=tf, fill=(0, 0, 0, 200))
-    d.text((int(W * 0.05), ty), title_main, font=tf, fill=accent)
-    # ── lignes : police PLUS GRANDE et fixe + retour à la ligne intelligent (2 lignes max),
-    #    au lieu de rétrécir le texte ou de le couper avec "…" ──
+    tx, ty = int(W * 0.05), int(H * 0.180)
+    grad_cols = [(255, 214, 92), (255, 128, 196), (150, 158, 255)]   # or → rose → bleu (thème Pulse)
+    _tl = _gradient_text_layer(title_main, tf, grad_cols)
+    if _tl is not None:
+        sh = Image.new("RGBA", img.size, (0, 0, 0, 0))               # ombre douce (glow sombre)
+        sh.paste((0, 0, 0, 190), (tx + 3, ty + 5), _tl.split()[3])
+        sh = sh.filter(ImageFilter.GaussianBlur(6))
+        img.alpha_composite(sh)
+        img.alpha_composite(_tl, (tx, ty))
+        title_w, title_h = _tl.width, _tl.height
+        d = ImageDraw.Draw(img)
+    else:
+        d.text((tx + 2, ty + 2), title_main, font=tf, fill=(0, 0, 0, 200))
+        d.text((tx, ty), title_main, font=tf, fill=accent)
+        bb = d.textbbox((0, 0), title_main, font=tf); title_w, title_h = bb[2] - bb[0], bb[3] - bb[1]
+    # barre d'accent dégradée arrondie sous le titre
+    try:
+        import numpy as np
+        bar_w = max(60, int(title_w * 0.42)); bar_h = max(6, int(H * 0.0085))
+        c0, c1 = (255, 128, 196), (120, 150, 255)
+        ba = np.zeros((bar_h, bar_w, 4), "uint8")
+        for x in range(bar_w):
+            u = x / (bar_w - 1)
+            ba[:, x] = [int(c0[0] + (c1[0] - c0[0]) * u), int(c0[1] + (c1[1] - c0[1]) * u),
+                        int(c0[2] + (c1[2] - c0[2]) * u), 255]
+        bar = Image.fromarray(ba, "RGBA")
+        bm = Image.new("L", (bar_w, bar_h), 0)
+        ImageDraw.Draw(bm).rounded_rectangle([0, 0, bar_w - 1, bar_h - 1], radius=bar_h // 2, fill=255)
+        bar.putalpha(bm)
+        img.alpha_composite(bar, (tx, ty + title_h + int(H * 0.020)))
+        d = ImageDraw.Draw(img)
+    except Exception:
+        pass
+    # ── lignes : emoji COULEUR par item (fallback numéro) + retour à la ligne intelligent sur
+    #    3 lignes max (fini le « de… » coupé), police fixe et grande ──
     items = items[:6]
-    top, bottom = int(H * 0.285), H - int(H * 0.095)
+    top, bottom = int(H * 0.285), H - int(H * 0.085)
     n = max(1, len(items))
     slot_h = (bottom - top) // n
-    r = int(min(W, H) * 0.023)
-    cxn = int(W * 0.072)
-    text_x = cxn + r + int(W * 0.028)
+    r = int(min(W, H) * 0.024)
+    cxn = int(W * 0.074)
+    text_x = cxn + r + int(W * 0.026)
     maxw = W - text_x - int(W * 0.045)
-    body_f = f(W * 0.0345)                         # police fixe, nettement plus grande
-    line_h = int(body_f.size * 1.22)
-    def _wrap(text, font, mw, max_lines=2):
+    body_f = f(W * 0.0332)                          # police fixe, grande
+    line_h = int(body_f.size * 1.2)
+    def _wrap(text, font, mw, max_lines=3):
         words = (text or "").split(); lines = []; cur = ""
         for w in words:
             t = (cur + " " + w).strip()
@@ -5360,20 +5500,26 @@ def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
                     cur = ""; break
         if cur and len(lines) < max_lines:
             lines.append(cur)
-        # si le texte dépasse 2 lignes (rare) : "…" propre sur la dernière ligne
+        # si le texte dépasse le max de lignes (très rare) : « … » propre sur la dernière ligne
         if len(" ".join(lines).split()) < len(words) and lines:
             last = lines[-1]
             while d.textbbox((0, 0), last + "…", font=font)[2] > mw and " " in last:
                 last = last.rsplit(" ", 1)[0]
             lines[-1] = last + "…"
         return lines[:max_lines]
-    for i, txt in enumerate(items):
+    for i, it in enumerate(items):
+        emoji_ch, txt = (it if isinstance(it, (tuple, list)) else ("", it))
         cy = top + i * slot_h + slot_h // 2
-        lines = _wrap(txt, body_f, maxw, 2)
+        lines = _wrap(str(txt), body_f, maxw, 3)
         block_h = len(lines) * line_h
-        # pastille numérotée alignée au centre du bloc de texte
-        d.ellipse([cxn - r, cy - r, cxn + r, cy + r], outline=accent, width=3)
-        d.text((cxn, cy + 1), str(i + 1), font=f(r * 1.15), fill=accent, anchor="mm")
+        # puce : emoji COULEUR si dispo, sinon pastille numérotée (fallback)
+        _em = _emoji_image(emoji_ch, int(r * 2.05)) if emoji_ch else None
+        if _em is not None:
+            img.alpha_composite(_em, (cxn - _em.width // 2, cy - _em.height // 2))
+            d = ImageDraw.Draw(img)
+        else:
+            d.ellipse([cxn - r, cy - r, cxn + r, cy + r], outline=accent, width=3)
+            d.text((cxn, cy + 1), str(i + 1), font=f(r * 1.15), fill=accent, anchor="mm")
         ly = cy - block_h // 2 + int(line_h * 0.08)
         for ln in lines:
             d.text((text_x, ly), ln, font=body_f, fill=WHITE)
@@ -5443,7 +5589,7 @@ Réponds avec ce JSON UNIQUEMENT :
     body += "\n\n(Pulse)"
     # 📱 Carte du récap en format VERTICAL (1080×1350) : elle occupe plus de place à l'écran sur
     #    mobile → lignes plus grandes et bien plus lisibles. Même carte pour X, Facebook et Instagram.
-    png = build_list_card("CE QU'IL FAUT RETENIR", [t for _, t in items], 1080, 1350)
+    png = build_list_card("CE QU'IL FAUT RETENIR", [(e, t) for e, t in items], 1080, 1350)
     try:
         post_to_twitter(body, png)
     except Exception as e:
@@ -6689,18 +6835,22 @@ def check_feeds(conn):
             else:
                 # NOUVEAU sujet chaud.
                 is_obit = _is_obituary(hot.get("title", ""), hot.get("summary", ""))
+                urgent_alert = _is_urgent_alert(hot.get("title", ""), hot.get("summary", ""))
                 # Un DÉCÈS de personnalité (obituaire avéré) est traité comme un vrai breaking dès un
                 # score ≥ BUZZ_SCORE : la valeur d'un hommage est dans l'immédiateté. Le score continue
                 # de filtrer les décès mineurs (personnalité peu connue → score bas → rythme normal).
-                breaking_immediat = (score >= BREAKING_SCORE) or (is_obit and score >= BUZZ_SCORE)
+                # Une ALERTE DE DANGER IMMINENT (tsunami, évacuation, séisme fort, attentat…) contourne
+                # AUSSI la cadence dès score ≥ BUZZ_SCORE : ces infos ne doivent JAMAIS attendre.
+                breaking_immediat = (score >= BREAKING_SCORE) or (is_obit and score >= BUZZ_SCORE) \
+                                    or (urgent_alert and score >= BUZZ_SCORE)
                 if breaking_immediat:
                     # VRAI breaking (attentat, catastrophe, décès marquant) → contourne la cadence,
                     # ne la réinitialise pas. Un décès garde le label sobre (géré dans publish_breaking).
                     try:
                         publish_breaking(conn, hot, a.get("category", "breaking"),
                                          urgent=not is_obit, bump_cadence=False)
-                        tag = "🕊️ Hommage" if is_obit else "🚨 BREAKING"
-                        print(f"  {tag} publié immédiatement : {hot['title'][:55]}")
+                        tag = "🕊️ Hommage" if is_obit else ("🚨🌊 ALERTE URGENTE" if urgent_alert else "🚨 BREAKING")
+                        print(f"  {tag} publié immédiatement (contourne la cadence) : {hot['title'][:55]}")
                         return
                     except Exception as e:
                         print(f"  ❌ Breaking échoué : {e}")
