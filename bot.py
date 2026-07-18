@@ -6556,8 +6556,8 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
         png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                                  article_url=item.get("url"), person=person, W=1080, H=1350,
                                  prefetched=(raw_src, has_real), headline_bottom=True)
-        # Vidéo : UNIQUEMENT une VRAIE vidéo de l'article (MP4 du flux, sinon vidéo éditoriale de
-        # la page). Plus de vidéo Pulse animée : à défaut de vraie vidéo, on poste l'image seule.
+        # Vidéo : d'abord une VRAIE vidéo de l'article (MP4 du flux, sinon vidéo éditoriale de la
+        # page) ; à défaut, vidéo Pulse 9:16 construite sur la VRAIE photo de l'article.
         vid = None
         rv = extract_video_url(item.get("entry")) if item.get("entry") else None
         if rv:
@@ -6566,6 +6566,9 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
             vp, _m = fetch_article_video(item.get("url"))
             if vp:
                 vid = vp
+        if not vid and raw_src and label_cat != "hommage":
+            vid = build_video("news", {"headline": headline_court}, label_cat,
+                              raw_src, item["source"], urgent=urgent)
     else:
         # 🚫 Aucune vraie photo → breaking publié SANS image (texte seul), pas de vidéo dégradée.
         png_bytes, vid = None, None
@@ -7191,10 +7194,12 @@ def check_feeds(conn):
                         vp, _vmeta = fetch_article_video(item.get("url"))
                         if vp:
                             video_path = vp
-                    # 3) sinon : IMAGE SEULE (carte Pulse avec la photo de l'article). La vidéo animée
-                    #    Pulse à partir de la photo est volontairement désactivée — on préfère publier
-                    #    simplement l'image. (build_video existe toujours et reste utilisé pour le
-                    #    décryptage, l'hommage et la victoire sportive.)
+                    # 3) sinon : VIDÉO PULSE 9:16 à partir de la VRAIE photo de l'article
+                    #    (titre qui s'écrit). Le format vertical passe en lecture plein écran sur X.
+                    #    L'image reste attachée : si l'envoi de la vidéo échoue, le tweet sort en image.
+                    if not video_path and has_real and raw_src:
+                        video_path = build_video("news", {"headline": headline_court}, cat,
+                                                 raw_src, item["source"])
 
             posted_ok = False
             res_x = None
