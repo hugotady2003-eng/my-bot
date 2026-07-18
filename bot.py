@@ -3446,18 +3446,30 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
         for i, sd in enumerate(slides_data, start=2):
             titre, points = sd.get("titre", ""), sd.get("points") or []
             dur, words = slide_duration(titre, points)
-            bg = build_carousel_bg(i, total_n, accent=accent, bg_photo=bg_photo)
+            bg = build_carousel_bg(i, total_n, accent=accent, bg_photo=bg_photo, W=W, H=H)
             states = [build_carousel_slide(titre, points, i, total_n,
                                            is_last=(i == total_n), accent=accent,
-                                           reveal=(k / max(1, words)), as_image=True, bg_cache=bg)
+                                           reveal=(k / max(1, words)), as_image=True, bg_cache=bg,
+                                           W=W, H=H)
                       for k in range(0, words + 1)]
             frames_total = int(FPS * dur)
             frames_write = int(FPS * (words / 8.0))
             seq.append((states, frames_total, frames_write))
         # 3) SLIDE FINALE : abonnement (statique, ~3 s)
-        seq.append(([build_follow_slide(accent=accent)], int(FPS * 3.0), 0))
+        seq.append(([build_follow_slide(accent=accent, W=W, H=H)], int(FPS * 3.0), 0))
 
+        # ⏱️ Plafond de durée : sous 60 s, X relance la vidéo en boucle dans le fil (watch time).
         total_dur = sum(ft for _, ft, _ in seq) / FPS
+        if total_dur > VIDEO_MAX_DUR and len(seq) > 2:
+            fixed   = seq[0][1] + seq[-1][1]                        # cover + slide d'abonnement
+            budget  = max(1, int(FPS * VIDEO_MAX_DUR) - fixed)      # frames restantes pour le contenu
+            content = sum(ft for _, ft, _ in seq[1:-1]) or 1
+            k = budget / content
+            seq = ([seq[0]]
+                   + [(s, max(int(FPS * 2.2), int(ft * k)), int(fw * k)) for s, ft, fw in seq[1:-1]]
+                   + [seq[-1]])
+            total_dur = sum(ft for _, ft, _ in seq) / FPS
+            print(f"  ⏱️ Décryptage ramené à {total_dur:.0f}s (boucle auto sous 60s)")
 
         tmpdir = tempfile.mkdtemp(prefix="pulse_decrypt_")
         raw_mp4 = os.path.join(tmpdir, "video_raw.mp4")
@@ -3506,14 +3518,13 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
         return None
 
 def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 90, 200), bg_photo=None,
-                         reveal=1.0, as_image=False, bg_cache=None):
+                         reveal=1.0, as_image=False, bg_cache=None, W=1080, H=1350):
     """Génère une slide de contenu dans la DA Pulse.
     reveal ∈ [0,1] : fraction des MOTS affichés (titre d'abord, puis les puces) — permet à la vidéo
     de faire « s'écrire » le texte au fur et à mesure SANS dupliquer la mise en page (source unique).
     as_image=True renvoie l'image PIL (pour la vidéo) au lieu des bytes PNG.
     bg_cache : fond pré-calculé à réutiliser (perf vidéo : le fond ne change pas entre les états)."""
     import io
-    W, H = 1080, 1350
     margin = int(W * 0.07)
 
     if bg_cache is not None:
@@ -3604,22 +3615,24 @@ def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 
 
     # CTA sur la dernière slide : quand tout le texte est écrit
     if is_last and visible >= total_wc:
-        draw.text((margin, int(H * 0.9)), "→ Plus d'infos sur X : @PULSEactus",
+        # en 9:16 (vidéo X), on remonte le CTA au-dessus de l'interface immersive ;
+        # en 4:5 (carrousel Instagram), position inchangée.
+        _cta_y = int(H * 0.9) if (H / max(1, W)) < 1.4 else H - int(H * VIDEO_SAFE_BOTTOM)
+        draw.text((margin, _cta_y), "→ Plus d'infos sur X : @PULSEactus",
                   font=_cfont(int(W * 0.04), bold=True), fill=accent)
 
     if as_image:
         return img
     buf = io.BytesIO(); img.save(buf, format="PNG"); return buf.getvalue()
 
-def build_carousel_bg(idx, total, accent=(255, 90, 200), bg_photo=None):
+def build_carousel_bg(idx, total, accent=(255, 90, 200), bg_photo=None, W=1080, H=1350):
     """Fond « chrome » d'une slide (dégradé/photo + barre + logo + pastille), SANS texte —
     pré-calculé une fois par slide pour l'animation vidéo (perf)."""
     return build_carousel_slide("", [], idx, total, accent=accent, bg_photo=bg_photo,
-                                reveal=0.0, as_image=True)
+                                reveal=0.0, as_image=True, W=W, H=H)
 
-def build_follow_slide(accent=(255, 90, 200)):
+def build_follow_slide(accent=(255, 90, 200), W=1080, H=1350):
     """Slide de FIN de la vidéo décryptage : appel à s'abonner, dans la DA Pulse."""
-    W, H = 1080, 1350
     img = _neon_bg(W, H)
     draw = ImageDraw.Draw(img)
     for x in range(W):
@@ -4534,9 +4547,15 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1080, H=1350):
 # VIDÉOS ANIMÉES (motion design Pulse) — 0 appel Claude, rendu local + ffmpeg
 # ═══════════════════════════════════════════════════════════════════════════
 VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1280, 720, 20, 6.5
-# 📱 TOUTES les vidéos Pulse sont en PORTRAIT 4:5 : elles occupent bien plus de hauteur
-# dans le fil X (façon « carte info »). news = photo plein cadre + dégradé noir + titre qui s'écrit.
-PORTRAIT_W, PORTRAIT_H = 1080, 1350
+# 📱 TOUTES les vidéos Pulse sont en PORTRAIT 9:16 (1080×1920).
+# X n'accepte QUE trois ratios vidéo (16:9, 1:1, 9:16) et ajoute des bandes noires aux autres :
+# le 4:5 était donc letterboxé. Le 9:16 est aussi le seul format lu en PLEIN ÉCRAN dans le
+# lecteur immersif de X (onglet Vidéo), ce qui maximise les impressions du fil principal.
+PORTRAIT_W, PORTRAIT_H = 1080, 1920
+# ⚠️ Zone basse réservée à l'interface de X en lecture immersive (texte du post + boutons) :
+# ~400 px sur 1920 → aucun contenu critique (titre, source) ne doit y descendre.
+VIDEO_SAFE_BOTTOM = 0.21
+VIDEO_MAX_DUR = 58.0          # < 60 s : la vidéo boucle automatiquement dans le fil
 NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR = PORTRAIT_W, PORTRAIT_H, 7.5
 
 def _vf(px, bold=True, italic=False, serif=False):
@@ -5028,7 +5047,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             pass  # construit plus bas une fois HLINES/LH connus
 
         # ── zones texte (anti-collision : tout est ancré AU-DESSUS du pied de page) ──
-        FOOTER_Y = H - int(H * 0.115)            # zone réservée source/date
+        FOOTER_Y = H - int(H * VIDEO_SAFE_BOTTOM)   # source/date, au-dessus de l'interface X
         tmpd = ImageDraw.Draw(Image.new("RGB", (8, 8)))
         HFONT, HLINES, LH, HY0 = None, [], 0, 0
         if kind == "news":
@@ -5316,7 +5335,8 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             if fa > 0:
                 # Marque : uniquement l'en-tête animé "PULSE" en haut à gauche.
                 # (On ne la répète PAS en pied de page — doublon visuel inutile.)
-                d.text((W - int(W * 0.04), H - int(H * 0.070)), f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
+                d.text((W - int(W * 0.04), H - int(H * (VIDEO_SAFE_BOTTOM + 0.028))),
+                       f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
                        font=_vf(W * 0.016, False), fill=DIM + (int(230 * fa),), anchor="rm")
             # ── finition photographique : vignettage + grain fusionnés (1 seul composite) ──
             img.alpha_composite(finish)
