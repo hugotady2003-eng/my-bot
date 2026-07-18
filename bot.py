@@ -2006,8 +2006,13 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             clean_title = re.sub(r'#(\w+)', r'\1', headline_court)
             clean_title = _EMOJI_RX.sub('', clean_title)        # retire les emojis du TEXTE (plus de « tofu »)
             clean_title = re.sub(r'\s{2,}', ' ', clean_title).strip()
-            max_w = int(W * 0.90)
-            sizes = [int(W * x) for x in (0.084, 0.075, 0.066, 0.058, 0.051, 0.044)]
+            # Largeur de la colonne de texte : pleine largeur en portrait ; en format LARGE (16:9),
+            # on limite à ~74 % pour éviter des lignes interminables et garder la photo respirante.
+            max_w = int(W * (0.74 if W / max(1, H) > 1.2 else 0.90))
+            # ⚠️ La taille du titre se calcule sur la HAUTEUR, pas la largeur : sinon un cadre large
+            #    (16:9) produit un texte énorme sur un cadre court. Ces fractions reproduisent
+            #    EXACTEMENT les tailles historiques du portrait 1080×1350 (aucune régression).
+            sizes = [int(H * x) for x in (0.0672, 0.0600, 0.0528, 0.0464, 0.0408, 0.0352)]
 
             def _wrap_words(ft):
                 lines, line = [], ""
@@ -2028,7 +2033,9 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             for fsize in sizes:
                 ft = font(fsize)
                 lines = _wrap_words(ft)
-                if len(lines) <= 4 and _all_words_fit(ft):
+                # 🛡️ le bloc de titre ne doit JAMAIS occuper plus d'un tiers de la hauteur,
+                #    quel que soit le format de la carte (portrait, carré ou 16:9).
+                if len(lines) <= 4 and _all_words_fit(ft) and len(lines) * fsize * 1.14 <= H * 0.34:
                     chosen_lines, chosen_size = lines, fsize
                     break
             if chosen_lines is None:
@@ -4588,6 +4595,11 @@ PORTRAIT_W, PORTRAIT_H = 1080, 1920
 # ~400 px sur 1920 → aucun contenu critique (titre, source) ne doit y descendre.
 VIDEO_SAFE_BOTTOM = 0.21
 VIDEO_MAX_DUR = 58.0          # < 60 s : la vidéo boucle automatiquement dans le fil
+# 🎬 Vidéo « carte animée » des actus : 16:9 plein cadre (aucune bande noire).
+# Les images sont calculées en 2× (3840×2160) puis réduites en 1920×1080 → texte très net.
+CARD_VIDEO_W, CARD_VIDEO_H = 1920, 1080
+CARD_VIDEO_SS = 2
+VIDEO_MIX_RATIO = 0.5         # part des actus publiées en vidéo animée (le reste en carte fixe)
 NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR = PORTRAIT_W, PORTRAIT_H, 7.5
 
 def _vf(px, bold=True, italic=False, serif=False):
@@ -5405,43 +5417,30 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         return None
 
 def build_card_video(headline, source, category, raw_photo, photo_url=None, image_query=None,
-                     article_url=None, person=None, dur=7.0, fps=20):
-    """Vidéo 9:16 (1080×1920) qui montre EXACTEMENT la carte Pulse publiée en image — même photo,
-    mêmes coins arrondis, même pastille, même emoji — avec le titre qui s'ÉCRIT mot à mot.
-    Les frames viennent de build_png : aucune mise en page dupliquée (une seule source de vérité).
-    Renvoie le chemin du MP4, ou None → l'appelant publie alors simplement l'image."""
+                     article_url=None, person=None, dur=7.0, fps=25):
+    """Vidéo 16:9 (1920×1080) PLEIN CADRE montrant la carte Pulse — même photo, mêmes coins
+    arrondis, même pastille, même emoji — avec le titre qui s'ÉCRIT mot à mot.
+    Les images viennent de build_png : aucune mise en page dupliquée. Elles sont calculées en 2×
+    (3840×2160) puis réduites en 1920×1080 → texte net, sans aucune bande noire.
+    Renvoie le chemin du MP4, ou None → l'appelant publie alors simplement la carte fixe."""
     try:
         import subprocess, tempfile, imageio_ffmpeg
-        CARD_W, CARD_H = 1080, 1350
-        W, H = PORTRAIT_W, PORTRAIT_H
-        # la carte est placée au-dessus de la zone d'interface de X (bas de l'écran)
-        card_y = max(0, (H - int(H * VIDEO_SAFE_BOTTOM) - CARD_H) // 2)
+        W, H = CARD_VIDEO_W, CARD_VIDEO_H
 
-        # un état par mot (max 14) : on rend peu d'images et on étire leur durée → rendu rapide
-        words  = max(1, len(str(headline or "").split()))
-        n      = max(2, min(words + 1, 14))
-        cards  = []
+        # un état par mot (max 14) : peu d'images rendues, durées étirées → rendu rapide
+        words = max(1, len(str(headline or "").split()))
+        n     = max(2, min(words + 1, 14))
+        tmpdir = tempfile.mkdtemp(prefix="pulse_card_")
         for i in range(n):
             c = build_png(headline, source, category, photo_url, image_query,
-                          article_url=article_url, person=person, W=CARD_W, H=CARD_H,
+                          article_url=article_url, person=person, W=W, H=H,
                           prefetched=(raw_photo, True), headline_bottom=True,
-                          reveal=i / (n - 1), ss=1, as_image=True)
+                          reveal=i / (n - 1), ss=CARD_VIDEO_SS, as_image=True)
             if c is None:
                 return None
-            cards.append(c)
-
-        # fond : dégradé sombre Pulse (la carte doit ressortir, pas de bandes noires brutes)
-        bg = Image.new("RGB", (W, H))
-        bd = ImageDraw.Draw(bg)
-        for y in range(H):
-            t = y / H
-            bd.line([(0, y), (W, y)], fill=(int(13 + 22 * t), int(11 + 14 * t), int(34 + 46 * t)))
-
-        tmpdir = tempfile.mkdtemp(prefix="pulse_card_")
-        for i, c in enumerate(cards):
-            f = bg.copy()
-            f.paste(c, (0, card_y))
-            f.save(f"{tmpdir}/s_{i:03d}.png")
+            if c.size != (W, H):
+                c = c.resize((W, H), Image.LANCZOS)     # 2× → 1920×1080 : texte lissé, très net
+            c.save(f"{tmpdir}/s_{i:03d}.png")
 
         write_dur = min(3.4, dur * 0.5)              # phase d'écriture
         step      = write_dur / max(1, n - 1)
@@ -5455,8 +5454,8 @@ def build_card_video(headline, source, category, raw_photo, photo_url=None, imag
         ff  = imageio_ffmpeg.get_ffmpeg_exe()
         out = f"{tmpdir}/pulse_card.mp4"
         subprocess.run([ff, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst,
-                        "-r", str(fps), "-c:v", "libx264", "-preset", "veryfast",
-                        "-pix_fmt", "yuv420p", "-crf", "21", "-movflags", "+faststart", out],
+                        "-r", str(fps), "-c:v", "libx264", "-preset", "slow", "-tune", "stillimage",
+                        "-pix_fmt", "yuv420p", "-crf", "17", "-movflags", "+faststart", out],
                        check=True, timeout=300)
         for i in range(n):
             try: os.remove(f"{tmpdir}/s_{i:03d}.png")
@@ -5475,10 +5474,10 @@ def build_card_video(headline, source, category, raw_photo, photo_url=None, imag
                 print(f"  🎵 Ambiance sonore : {tag}")
         except Exception as e:
             print(f"  ⚠️ Ambiance sonore ignorée : {e}")
-        print(f"  🎬 Carte animée générée ({write_dur + hold:.1f}s, 9:16)")
+        print(f"  🎬 Carte animée générée ({write_dur + hold:.1f}s, 16:9 {W}×{H})")
         return out
     except Exception as e:
-        print(f"  ⚠️ build_card_video: {e} → image classique")
+        print(f"  ⚠️ build_card_video: {e} → carte fixe")
         return None
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -6686,7 +6685,7 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
             vp, _m = fetch_article_video(item.get("url"))
             if vp:
                 vid = vp
-        if not vid and raw_src and label_cat != "hommage":
+        if not vid and raw_src and label_cat != "hommage" and random.random() < VIDEO_MIX_RATIO:
             vid = build_card_video(headline_court, item["source"], label_cat, raw_src,
                                    photo_url=photo, image_query=image_query,
                                    article_url=item.get("url"), person=person)
@@ -7340,10 +7339,10 @@ def check_feeds(conn):
                         vp, _vmeta = fetch_article_video(item.get("url"))
                         if vp:
                             video_path = vp
-                    # 3) sinon : la CARTE PULSE elle-même, animée en 9:16 (le titre s'écrit).
-                    #    Même rendu que l'image publiée — photo, coins arrondis, pastille, emoji.
-                    #    L'image reste attachée : si l'envoi de la vidéo échoue, le tweet sort en image.
-                    if not video_path and has_real and raw_src:
+                    # 3) sinon : une fois sur deux, la CARTE PULSE animée en 16:9 (le titre s'écrit) ;
+                    #    l'autre fois, la carte fixe → le fil alterne et ne devient pas monotone.
+                    #    L'image reste attachée : si l'envoi de la vidéo échoue, le tweet sort en carte.
+                    if not video_path and has_real and raw_src and random.random() < VIDEO_MIX_RATIO:
                         video_path = build_card_video(headline_court, item["source"], cat, raw_src,
                                                       photo_url=photo, image_query=image_query,
                                                       article_url=item.get("url"), person=person)
