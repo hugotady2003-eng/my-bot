@@ -1790,7 +1790,7 @@ def _paste_rounded_shadow(bg, fg, x, y, radius=None, shadow_blur=None, shadow_al
 
 _IMG_SS = 2   # super-résolution des cartes : 2× = texte/graphismes nets ("4K-like"), résiste à la compression X
 
-def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False):
+def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False, reveal=1.0, ss=None, as_image=False):
     """
     PNG DA Pulse, taille paramétrable (W×H).
     - Paysage 1200×675 pour X/Facebook (défaut)
@@ -1801,7 +1801,8 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         from PIL import Image, ImageDraw, ImageFont, ImageFilter
         import io
 
-        W, H = int(W * _IMG_SS), int(H * _IMG_SS)   # super-résolution 2× → rendu net
+        _ss = _IMG_SS if ss is None else max(1, int(ss))
+        W, H = int(W * _ss), int(H * _ss)   # super-résolution (1× pour les images de vidéo)
         s = STYLES[category]
         margin = int(W * 0.037)   # marge proportionnelle (~44px en 1200, ~40px en 1080)
 
@@ -2044,11 +2045,23 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             center_y = int(H * 0.66)
             ty0 = center_y - total_h // 2
 
+            # ✍️ Animation : la mise en page est calculée sur le titre COMPLET (rien ne bouge),
+            #    on n'affiche que les `reveal` premiers mots. reveal = 1.0 → carte normale.
+            _lines = chosen_lines
+            if reveal < 1.0:
+                _wtot = sum(len(l.split()) for l in chosen_lines)
+                _show = int(_wtot * max(0.0, reveal))
+                _lines, _n = [], 0
+                for l in chosen_lines:
+                    _w = l.split()
+                    _lines.append(" ".join(_w[:max(0, min(len(_w), _show - _n))]))
+                    _n += len(_w)
+
             # OMBRE PORTÉE DOUCE (floutée) au lieu d'un contour noir net
             shadow = Image.new('RGBA', (W, H), (0, 0, 0, 0))
             sdraw  = ImageDraw.Draw(shadow)
             ty = ty0
-            for ln in chosen_lines:
+            for ln in _lines:
                 sdraw.text((margin + 4, ty + 6), ln, font=ft, fill=(0, 0, 0, 235))
                 ty += line_h
             shadow = shadow.filter(ImageFilter.GaussianBlur(12))
@@ -2060,12 +2073,12 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             # Texte blanc net par-dessus (sans contour)
             ty = ty0
             last_y = ty0
-            for ln in chosen_lines:
+            for ln in _lines:
                 draw.text((margin, ty), ln, font=ft, fill=(255, 255, 255))
                 last_y = ty
                 ty += line_h
             # 🎨 Emoji COULEUR intégré à la FIN du titre (dernière ligne). Jamais sur un hommage.
-            if category != "hommage":
+            if category != "hommage" and reveal >= 1.0:
                 _em = _emoji_image(EMOJIS.get(category, ""), int(chosen_size * 0.98))
                 if _em is not None:
                     lw = int(draw.textlength(chosen_lines[-1], font=ft)) if chosen_lines else 0
@@ -2118,13 +2131,15 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         bb2 = draw.textbbox((0, 0), date_str, font=f_sm)
         draw.text((W - bb2[2] - margin, by2), date_str, font=f_sm, fill=(255, 255, 255, 200))
 
+        if as_image:
+            return img.convert('RGB')
         buf = io.BytesIO()
         img.convert('RGB').save(buf, format='JPEG', quality=95, optimize=True, progressive=True)
         return buf.getvalue(), f"pulse-{category}-{now.strftime('%d%m%Y-%H%M')}.jpg"
 
     except Exception as e:
         print(f"  ⚠️ PNG erreur: {e}")
-        return None, None
+        return None if as_image else (None, None)
 
 # ═══════════════════════════════════════════════════════════════════════════
 # EMAIL
@@ -5372,6 +5387,83 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         print(f"  ⚠️ build_video: {e} → image classique")
         return None
 
+def build_card_video(headline, source, category, raw_photo, photo_url=None, image_query=None,
+                     article_url=None, person=None, dur=7.0, fps=20):
+    """Vidéo 9:16 (1080×1920) qui montre EXACTEMENT la carte Pulse publiée en image — même photo,
+    mêmes coins arrondis, même pastille, même emoji — avec le titre qui s'ÉCRIT mot à mot.
+    Les frames viennent de build_png : aucune mise en page dupliquée (une seule source de vérité).
+    Renvoie le chemin du MP4, ou None → l'appelant publie alors simplement l'image."""
+    try:
+        import subprocess, tempfile, imageio_ffmpeg
+        CARD_W, CARD_H = 1080, 1350
+        W, H = PORTRAIT_W, PORTRAIT_H
+        # la carte est placée au-dessus de la zone d'interface de X (bas de l'écran)
+        card_y = max(0, (H - int(H * VIDEO_SAFE_BOTTOM) - CARD_H) // 2)
+
+        # un état par mot (max 14) : on rend peu d'images et on étire leur durée → rendu rapide
+        words  = max(1, len(str(headline or "").split()))
+        n      = max(2, min(words + 1, 14))
+        cards  = []
+        for i in range(n):
+            c = build_png(headline, source, category, photo_url, image_query,
+                          article_url=article_url, person=person, W=CARD_W, H=CARD_H,
+                          prefetched=(raw_photo, True), headline_bottom=True,
+                          reveal=i / (n - 1), ss=1, as_image=True)
+            if c is None:
+                return None
+            cards.append(c)
+
+        # fond : dégradé sombre Pulse (la carte doit ressortir, pas de bandes noires brutes)
+        bg = Image.new("RGB", (W, H))
+        bd = ImageDraw.Draw(bg)
+        for y in range(H):
+            t = y / H
+            bd.line([(0, y), (W, y)], fill=(int(13 + 22 * t), int(11 + 14 * t), int(34 + 46 * t)))
+
+        tmpdir = tempfile.mkdtemp(prefix="pulse_card_")
+        for i, c in enumerate(cards):
+            f = bg.copy()
+            f.paste(c, (0, card_y))
+            f.save(f"{tmpdir}/s_{i:03d}.png")
+
+        write_dur = min(3.4, dur * 0.5)              # phase d'écriture
+        step      = write_dur / max(1, n - 1)
+        hold      = max(1.5, dur - write_dur)        # la carte complète reste affichée
+        lst = f"{tmpdir}/list.txt"
+        with open(lst, "w") as fh:
+            for i in range(n):
+                fh.write(f"file 's_{i:03d}.png'\nduration {step if i < n - 1 else hold:.3f}\n")
+            fh.write(f"file 's_{n-1:03d}.png'\n")     # dernière image répétée (exigence de ffmpeg)
+
+        ff  = imageio_ffmpeg.get_ffmpeg_exe()
+        out = f"{tmpdir}/pulse_card.mp4"
+        subprocess.run([ff, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst,
+                        "-r", str(fps), "-c:v", "libx264", "-preset", "veryfast",
+                        "-pix_fmt", "yuv420p", "-crf", "21", "-movflags", "+faststart", out],
+                       check=True, timeout=300)
+        for i in range(n):
+            try: os.remove(f"{tmpdir}/s_{i:03d}.png")
+            except OSError: pass
+
+        # nappe sonore discrète (si elle échoue : vidéo muette, jamais d'échec de publication)
+        try:
+            wav = f"{tmpdir}/pad.wav"
+            tag = build_soundtrack(wav, write_dur + hold, category=category, sujet=str(headline or ""))
+            snd = f"{tmpdir}/pulse_card_snd.mp4"
+            r = subprocess.run([ff, "-y", "-loglevel", "error", "-i", out, "-i", wav,
+                                "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", snd],
+                               capture_output=True, timeout=120)
+            if r.returncode == 0 and os.path.exists(snd):
+                out = snd
+                print(f"  🎵 Ambiance sonore : {tag}")
+        except Exception as e:
+            print(f"  ⚠️ Ambiance sonore ignorée : {e}")
+        print(f"  🎬 Carte animée générée ({write_dur + hold:.1f}s, 9:16)")
+        return out
+    except Exception as e:
+        print(f"  ⚠️ build_card_video: {e} → image classique")
+        return None
+
 # ═══════════════════════════════════════════════════════════════════════════
 # CARTES-LISTES (récap du soir, matchs du jour) + MODE COUPE DU MONDE
 # ═══════════════════════════════════════════════════════════════════════════
@@ -6567,8 +6659,9 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
             if vp:
                 vid = vp
         if not vid and raw_src and label_cat != "hommage":
-            vid = build_video("news", {"headline": headline_court}, label_cat,
-                              raw_src, item["source"], urgent=urgent)
+            vid = build_card_video(headline_court, item["source"], label_cat, raw_src,
+                                   photo_url=photo, image_query=image_query,
+                                   article_url=item.get("url"), person=person)
     else:
         # 🚫 Aucune vraie photo → breaking publié SANS image (texte seul), pas de vidéo dégradée.
         png_bytes, vid = None, None
@@ -7194,12 +7287,13 @@ def check_feeds(conn):
                         vp, _vmeta = fetch_article_video(item.get("url"))
                         if vp:
                             video_path = vp
-                    # 3) sinon : VIDÉO PULSE 9:16 à partir de la VRAIE photo de l'article
-                    #    (titre qui s'écrit). Le format vertical passe en lecture plein écran sur X.
+                    # 3) sinon : la CARTE PULSE elle-même, animée en 9:16 (le titre s'écrit).
+                    #    Même rendu que l'image publiée — photo, coins arrondis, pastille, emoji.
                     #    L'image reste attachée : si l'envoi de la vidéo échoue, le tweet sort en image.
                     if not video_path and has_real and raw_src:
-                        video_path = build_video("news", {"headline": headline_court}, cat,
-                                                 raw_src, item["source"])
+                        video_path = build_card_video(headline_court, item["source"], cat, raw_src,
+                                                      photo_url=photo, image_query=image_query,
+                                                      article_url=item.get("url"), person=person)
 
             posted_ok = False
             res_x = None
