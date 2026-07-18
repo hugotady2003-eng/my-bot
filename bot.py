@@ -91,7 +91,8 @@ BREAKING_SCORE = 9        # score minimum (analyse Claude) pour qu'une actu soit
 BUZZ_SCORE = 7            # score minimum pour un fast-track "buzz" (multi-sources) — label normal, pas URGENT
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
 BREAKING_GAP_MIN = 25     # délai mini (minutes) entre deux publications breaking (anti-spam)
-STALE_BREAKING_HOURS = 48 # au-delà, un article n'est plus assez frais pour un "breaking" (anti-réchauffé)
+STALE_BREAKING_HOURS = 12 # au-delà, un article n'est plus assez frais pour un "breaking" (anti-réchauffé)
+STALE_NEWS_HOURS = 24     # au-delà, ce n'est plus une actualité : écarté du fil normal (sauf suivi)
 SPORT_COOLDOWN_MIN = 120  # délai mini (minutes) entre deux posts SPORT (anti-spam sport en direct)
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -605,19 +606,35 @@ Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE) :
   ...
 ]}}
 
-Barème = POTENTIEL D'ENGAGEMENT sur X en France (réactions, partages, commentaires). Question clé pour CHAQUE article : "Est-ce que des gens vont COMMENTER, S'INDIGNER, CÉLÉBRER, RIRE ou PARTAGER ?" Une info qui ne provoque AUCUNE émotion (colère, joie, choc, rire, fierté) = MAX 5, même si elle est "importante" sur le papier.
+Barème = la plus HAUTE de DEUX notes. Un bon compte d'actualité fait RÉAGIR **et** rend SERVICE.
+  A) ENGAGEMENT : « des gens vont COMMENTER, S'INDIGNER, CÉLÉBRER, RIRE, PARTAGER ? »
+  B) IMPACT CONCRET : « est-ce que ça change la vie, la santé, la sécurité, l'argent ou les droits des Français, au point qu'il faut le SAVOIR ou AGIR ? »
+score = max(A, B). Une info sans émotion mais très utile monte haut par B. Une info virale sans utilité monte haut par A. Ni l'un ni l'autre = 0-4.
 
-- 9-10 : fait MAJEUR en cours — mort d'une personnalité de premier plan, attentat, catastrophe, France qualifiée/éliminée en Coupe du Monde, démission du gouvernement, verdict d'un procès national. (Jamais : rapport, étude, sondage, classement, prévision → max 7.)
-- 8 : ce qui fait halluciner ou vibrer la France. EXEMPLES CALIBRÉS : un arbitre de la Coupe du Monde privé de visa pour les USA = 8 ; l'usine du produit de YouTubeurs très connus (McFly et Carlito...) qui brûle = 8 ; un ministre s'exprime sur une affaire nationale brûlante = 8 ; grosse victoire des Bleus = 8 ; une banque envoie par erreur une notification de test à des millions de clients = 8 (insolite viral national).
-- 7 : résultat de match notable, garde à vue d'une personnalité, buzz viral national, sortie d'un jeu très attendu, drama d'influenceur connu, fait divers marquant.
-- 6 : insolite sympa, info locale forte, lancement notable grand public.
-- 0-5 : le reste. EXEMPLES CALIBRÉS de scores BAS : "Apple ouvre les bundles d'abonnements entre éditeurs sur l'App Store" = 3 (annonce business B2B, tout le monde s'en fiche) ; partenariat entre entreprises = 3 ; mise à jour d'application = 2 ; étude/baromètre = 4 ; "ce qui pourrait changer d'ici 2030" = 3 ; revue de presse / "vu de l'étranger" / édito = 3 ; négociations européennes sur des quotas ou mécanismes = 3.
+- 9-10 : fait MAJEUR en cours — mort d'une personnalité de premier plan, attentat, catastrophe, France qualifiée/éliminée en Coupe du Monde, démission du gouvernement, verdict d'un procès national. OU alerte VITALE immédiate : tsunami, évacuation, alerte enlèvement, rappel d'un produit dangereux à grande échelle. (Jamais : rapport, étude, sondage, classement, prévision → max 7.)
+- 8 : ce qui fait halluciner ou vibrer la France. EXEMPLES CALIBRÉS : un arbitre de la Coupe du Monde privé de visa pour les USA = 8 ; l'usine du produit de YouTubeurs très connus (McFly et Carlito...) qui brûle = 8 ; un ministre s'exprime sur une affaire nationale brûlante = 8 ; grosse victoire des Bleus = 8 ; une banque envoie par erreur une notification de test à des millions de clients = 8. OU une décision ACTÉE qui change la vie des Français : loi définitivement adoptée (fin de vie, retraites, impôts) = 8 ; rappel de produits contaminés (listeria, salmonelle) = 8 ; interdiction nationale d'un produit ou d'un service = 8.
+- 7 : résultat de match notable, garde à vue d'une personnalité, buzz viral national, sortie d'un jeu très attendu, drama d'influenceur connu, fait divers marquant. OU info de SERVICE forte : vigilance rouge (canicule, crue, tempête, neige) = 7 ; autorisation européenne d'un traitement contre une maladie majeure (Alzheimer, cancer) = 7 ; décision qui touche le portefeuille de millions de foyers = 7.
+- 6 : insolite sympa, info locale forte, lancement notable grand public. OU un chiffre national qui parle au quotidien : inflation, chômage, prix de l'énergie, salaires, pouvoir d'achat = 6 ; étude sur la vie quotidienne avec un chiffre concret et parlant (sommeil, écrans, alimentation) = 6.
+- 0-5 : le reste. EXEMPLES CALIBRÉS de scores BAS : "Apple ouvre les bundles d'abonnements entre éditeurs sur l'App Store" = 3 (annonce business B2B, tout le monde s'en fiche) ; partenariat entre entreprises = 3 ; mise à jour d'application = 2 ; "ce qui pourrait changer d'ici 2030" SANS chiffres ni décision actée = 3 ; revue de presse / "vu de l'étranger" / édito = 3 ; négociations européennes sur des quotas ou mécanismes = 3.
 
-⛔ PLAFONDS STRICTS :
-- Annonce produit/business/tech SANS émotion directe pour le grand public (bundles, partenariats, API, résultats trimestriels, levées de fonds, fonctionnalités) → MAX 4. Test : si la réaction attendue en commentaire est "🥱", c'est MAX 4.
+⛔ PLAFONDS STRICTS — ils s'appliquent UNIQUEMENT si l'article n'a NI engagement NI impact concret :
+- Annonce produit/business/tech SANS conséquence directe pour le grand public (bundles, partenariats, API, résultats trimestriels, levées de fonds, fonctionnalités) → MAX 4. Test : si la réaction attendue en commentaire est "🥱" ET que personne n'a besoin de le savoir, c'est MAX 4.
 - ⚠️ EXCEPTION : une DÉCISION POLITIQUE/RÉGLEMENTAIRE soudaine et radicale sur une techno grand public (interdiction, suspension, blocage, censure d'un service ou d'une IA connue type ChatGPT/Claude/TikTok) n'est PAS du B2B banal → score 7-8. C'est un coup de tonnerre qui fait réagir (ex : "les États-Unis interdisent tel modèle d'IA hors de leur territoire" = 7).
-- FUTUR potentiel ou PROCESSUS technique ("pourrait", "envisage", "d'ici 20XX", négociations, quotas, consultations, projets de loi sans vote) → MAX 5.
+- FUTUR potentiel ou PROCESSUS technique ("pourrait", "envisage", "d'ici 20XX", négociations, quotas, consultations, projets de loi sans vote) → MAX 5. ⚠️ EXCEPTION : si le changement est ACTÉ (voté, publié, décrété) et touche DIRECTEMENT la vie, l'argent, la santé ou les droits du lecteur, note-le sur son IMPACT (6-8), même s'il s'applique plus tard.
 - Angle ÉDITORIAL (revue de presse, "vu de l'étranger", tribune, portrait, décryptage d'un autre média) → MAX 5 : on veut le FAIT, pas le commentaire du fait.
+- 🚫 CONDITION COMMUNE À TOUTES CES EXCEPTIONS : l'article doit LIVRER l'information (chiffres, montants, dates, conditions, décision précise). Un titre-appât qui promet sans donner ("ce qui va changer", "on vous dit tout", "voici pourquoi", "la raison est surprenante") reste MAX 4 : sans les faits, on ne peut pas en écrire un tweet honnête.
+
+🌍 INTERNATIONAL — filtre SÉVÈRE : une actu étrangère ne parle aux Français que si elle est ÉNORME.
+- Passent haut (7-9) : attentat, catastrophe naturelle meurtrière de grande ampleur (séisme, tempête, inondation avec un lourd bilan), guerre qui bascule, mort ou scandale d'une STAR mondiale, coup d'éclat d'une GRANDE MARQUE connue de tous (Apple, Netflix, Nintendo, Tesla, Amazon, Disney...).
+- Restent BAS (MAX 4) : politique intérieure d'un pays étranger, fait divers local à l'étranger, entreprise étrangère inconnue du grand public, élection ou remaniement local, économie régionale.
+- Test simple : « un Français en parlerait-il à un ami ? » Si non → MAX 4.
+
+🚓 FAITS DIVERS — des drames, il y en a TOUS LES JOURS. Seuls les SPECTACULAIRES comptent.
+- 7-9 : bilan lourd, circonstances hors du commun, traque nationale, victime ou auteur connu, affaire qui devient un sujet de société.
+- MAX 4 : accident de la route ordinaire, incendie d'habitation ou de local sans ampleur, agression isolée, drame local sans retentissement — MÊME avec des blessés, MÊME avec un mort. Un décès ne suffit PAS à faire monter la note : ce qui compte, c'est l'AMPLEUR et le caractère exceptionnel. (Ex : "accident de car scolaire, 3 blessés légers dans le Cantal" = 3.)
+- ⚠️ L'AMPLEUR VAUT AUTANT QUE LES VICTIMES : un sinistre de grande échelle vaut 7-8 MÊME SANS MORT — feu de forêt de plusieurs centaines ou milliers d'hectares, évacuations de riverains ou de campings, villages menacés, moyens aériens engagés (Canadair), autoroute ou ville coupée, inondation qui submerge une commune, tempête qui prive des dizaines de milliers de foyers d'électricité. (Ex : "un incendie ravage 3 000 hectares dans le Var, 500 personnes évacuées" = 8, même sans victime.)
+
+🏛️ POLITIQUE LOCALE → MAX 3 : démission d'un maire, conseil municipal, élection ou polémique d'une petite commune (ex : "le maire d'une ville de 8 000 habitants démissionne" = 2). SAUF si l'affaire devient nationale (mise en examen, scandale repris partout).
 
 🇫🇷 HIÉRARCHIE DE L'ENGAGEMENT en France :
 1) Football (Bleus, Mbappé, PSG, OM, Coupe du Monde 2026, Ligue des champions)
@@ -626,7 +643,7 @@ Barème = POTENTIEL D'ENGAGEMENT sur X en France (réactions, partages, commenta
 4) NBA/Wembanyama, Roland-Garros, Tour de France, F1, boxe/MMA
 5) Influenceurs/people/télé (Squeezie, McFly et Carlito, Inoxtag, Hanouna...) et gaming (GTA, PlayStation, Nintendo) — une grosse actu ici vaut 7-8, autant que la politique chaude
 6) Insolite viral (pannes nationales, bugs cocasses, records absurdes)
-Un bon fil = un mix de tout ça. Une info locale marquante peut scorer aussi haut qu'une info internationale.
+Un bon fil = un mix de tout ça. Une info locale peut scorer haut UNIQUEMENT si elle est spectaculaire ou hors du commun — un fait divers local banal reste en bas, même dramatique.
 
 Catégories possibles (choisis la plus juste) :
 breaking, france, monde, politique, economie, societe, faitsdivers, histoire,
@@ -6373,6 +6390,12 @@ PRERANK_HOT = [
     # ── 🏥 SANTÉ PUBLIQUE & ALERTES SANITAIRES ──
     (4, r"épidémie|pandémie|contamination|intoxication|listeria|salmonell|\be\.? ?coli\b|rappel (produit|massif|de lots?)"
         r"|pénurie de médicaments|scandale sanitaire|\bvirus\b|grippe aviaire|empoisonn"),
+    # ── 💊 AVANCÉES MÉDICALES & VIE QUOTIDIENNE (utiles, même sans buzz) ──
+    (3, r"traitement contre|nouveau traitement|médicament (contre|autorisé)|autorisation de mise sur le marché"
+        r"|\bvaccin\b|essai clinique|alzheimer|parkinson|cancer|diabète|remboursé par (la )?sécu|haute autorité de santé"),
+    (3, r"sommeil|dorm(ent|ir|ent-ils)|temps d'écran|\bécrans\b|espérance de vie"
+        r"|alimentation des français|santé mentale|les français (consomment|mangent|boivent|travaillent|gagnent)"
+        r"|pouvoir d'achat des ménages|budget des familles"),
     # ── 🌡️ CLIMAT & CATASTROPHES NATURELLES ──
     (4, r"vigilance rouge|alerte rouge|canicule|séisme|tremblement de terre|tsunami|inondation|crue"
         r"|tempête|ouragan|tornade|éruption|évacuation|sécheresse historique|feu de forêt"),
@@ -6633,6 +6656,11 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
     breaking (urgent=True) ne le repousse PAS ; un buzz/suivi (urgent=False) le repousse."""
     if bump_cadence is None:
         bump_cadence = not urgent
+    _pts = item.get("pub_ts")
+    if _pts:
+        _ah = (time.time() - _pts) / 3600
+        _q = "frais ✅" if _ah <= 6 else ("récent" if _ah <= 24 else "ANCIEN ⚠️")
+        print(f"  🕒 Âge de l'article : {_ah:.1f}h ({_q})")
     add_recent(conn, item["title"])
     if _is_obituary(item.get("title", ""), item.get("summary", "")):
         cat = "hommage"   # décès → ton sobre, même en breaking (le label URGENT reste si urgent=True)
@@ -7133,15 +7161,40 @@ def check_feeds(conn):
             if item["analysis"].get("category") == "sport" and _is_live_sport(item):
                 item["score"] = min(10, item["score"] + 2)
 
-    scored.sort(key=lambda x: x["score"], reverse=True)
+    # ⏱️ PRIORITÉ À LA FRAÎCHEUR : à intérêt comparable, la plus RÉCENTE passe devant.
+    #    Le score lui-même n'est pas modifié (il sert aux seuils breaking/buzz) : seul l'ORDRE change.
+    _now_ts = time.time()
+    def _freshness(it):
+        ts = it.get("pub_ts")
+        if not ts:
+            return 0.0                      # date inconnue → ni bonus ni malus
+        h = (_now_ts - ts) / 3600
+        if h <= 1:  return 2.0
+        if h <= 3:  return 1.2
+        if h <= 6:  return 0.5
+        if h <= 12: return 0.0
+        if h <= 24: return -1.5
+        return -3.0                          # au-delà d'un jour : ce n'est plus une actualité
+    def _age_h(it):
+        ts = it.get("pub_ts")
+        return None if not ts else (_now_ts - ts) / 3600
+    scored.sort(key=lambda x: (x["score"] + _freshness(x), x["score"]), reverse=True)
 
     if scored:
-        print("  🏁 Classement final (score · médias qui en parlent) :")
+        print("  🏁 Classement final (score · médias · âge) :")
         for it in scored[:5]:
-            print(f"     {it['score']}/10 · {it.get('_echo', 1)} média(s) — {it['title'][:48]}")
+            a = _age_h(it)
+            age = "âge ?" if a is None else (f"{a:.1f}h" + (" ⚠️" if a > 24 else ""))
+            print(f"     {it['score']}/10 · {it.get('_echo', 1)} média(s) · {age} — {it['title'][:44]}")
 
     top, used = [], set()
     for item in scored:
+        # 🗞️ Anti-réchauffé : une actu de plus de STALE_NEWS_HOURS n'est plus une nouvelle,
+        #    sauf si c'est un vrai développement (suivi) d'un sujet en cours.
+        a = _age_h(item)
+        if a is not None and a > STALE_NEWS_HOURS and not item.get("followup"):
+            print(f"     ⏳ Écarté (trop ancien, {a:.0f}h) : {item['title'][:44]}")
+            continue
         cat = item["analysis"]["category"]
         if cat not in used:
             top.append(item); used.add(cat)
