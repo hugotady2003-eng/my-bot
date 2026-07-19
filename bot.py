@@ -1480,10 +1480,35 @@ def fetch_video_file(video_url, max_mb=50):
         # signature MP4 : les octets 4-8 contiennent 'ftyp'
         if len(data) < 12 or data[4:8] != b"ftyp":
             return None
+        # 🛡️ Anti-fichier vide : seuil très bas, uniquement pour écarter un fichier tronqué.
+        #    (Le POIDS n'est PAS un bon juge : une vraie vidéo de 5 s bien compressée fait 30 Ko.)
+        if len(data) < 20 * 1024:
+            print(f"  ⚠️ Vidéo d'actu tronquée ({len(data) // 1024} Ko) → ignorée, on garde la carte")
+            return None
         fd, path = tempfile.mkstemp(suffix=".mp4", prefix="pulse_actu_")
         with os.fdopen(fd, "wb") as f:
             f.write(data)
-        print(f"  🎥 Vidéo d'actu récupérée ({len(data) // (1024*1024)} Mo) → attachée au tweet")
+        # 🛡️ ...et trop courte : moins de 1,5 s, ce n'est pas une vidéo éditoriale.
+        #    En cas de doute (analyse impossible), on GARDE la vidéo.
+        try:
+            import subprocess as _sp, imageio_ffmpeg as _iff
+            _err = _sp.run([_iff.get_ffmpeg_exe(), "-i", path],
+                           capture_output=True, text=True, timeout=20).stderr
+            _m = re.search(r"Duration: (\d+):(\d+):(\d+\.\d+)", _err)
+            if _m:
+                _d = int(_m.group(1)) * 3600 + int(_m.group(2)) * 60 + float(_m.group(3))
+                if _d < 1.5:
+                    print(f"  ⚠️ Vidéo d'actu trop courte ({_d:.1f}s) → ignorée, on garde la carte")
+                    os.remove(path)
+                    return None
+        except Exception:
+            pass
+        _sz = f"{len(data) / (1024*1024):.1f} Mo" if len(data) >= 1024 * 1024 else f"{len(data) // 1024} Ko"
+        try:
+            _dom = urllib.parse.urlparse(video_url).netloc.replace("www.", "")
+        except Exception:
+            _dom = "?"
+        print(f"  🎥 Vidéo d'actu récupérée ({_sz}) chez {_dom} → attachée au tweet")
         return path
     except Exception as e:
         print(f"  ⚠️ Vidéo actu injoignable ({e}) → vidéo Pulse")
@@ -1492,8 +1517,13 @@ def fetch_video_file(video_url, max_mb=50):
 # 🎥 Catégories où une VIDÉO apporte une vraie valeur (grille éditoriale) : faits divers,
 # catastrophes, météo, manifs, sport, déclarations, direct, politique. Inutile pour les
 # chiffres/études/annonces administratives/infos purement textuelles → on n'y visite pas la page.
+# 🎥 Catégories où l'on va chercher la vraie vidéo de l'article. On tente PARTOUT : quand un
+# journal expose sa vidéo, c'est le meilleur visuel possible, et le coût est d'une seule requête
+# par tweet publié. Seul l'HOMMAGE est exclu : il garde son traitement sobre (portrait fixe).
 _VIDEO_WORTHY_CATS = {
     "faitsdivers", "sport", "monde", "politique", "environnement", "societe", "culture",
+    "france", "breaking", "insolite", "tech", "ia", "sante", "science", "economie",
+    "positivity", "histoire", "gta6",
 }
 # 🛡️ Diffuseurs TV les plus susceptibles de faire retirer une vidéo (DMCA) : on ne reposte
 # JAMAIS leur vidéo, même si elle est accessible (protection du compte, déjà suspendu une fois).
