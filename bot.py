@@ -899,6 +899,8 @@ Le BON réflexe : demande-toi \"si je voyais passer ça dans mon fil, qu'est-ce 
 - N'invente JAMAIS un chiffre, un âge, un lieu ou une circonstance absents de la source.
 - ⛔ SUPERLATIFS INTERDITS SANS SOURCE : n'écris JAMAIS « le/la plus [grand·important...] de l'histoire », « jamais vu », « record absolu », « sans précédent », « inédit », « historique » SAUF si la source le dit EXPLICITEMENT. Sinon reste factuel (« un défilé de 6 700 soldats », PAS « le plus imposant jamais organisé »).
 - ⛔ NE DÉFORME PAS LE SENS : n'attribue JAMAIS un fait, une origine ou un mérite à la mauvaise culture / personne / pays / groupe. Ex : un haka est une tradition MAORI / du Pacifique — ne le présente JAMAIS comme une « tradition française ». Reste fidèle à QUI fait quoi et à quelle culture/pays appartient quoi.
+- ⛔ N'INVENTE JAMAIS LE CONTEXTE D'UN ÉVÉNEMENT SPORTIF OU PROGRAMMÉ : le tour de compétition (quart, demi, finale), l'adversaire, le stade, la date ou l'horaire ne s'écrivent QUE s'ils figurent EXPLICITEMENT dans la source. Si la source n'en parle pas, n'en parle pas — un match, un procès ou une élection dont tu ne connais pas la date ne s'annonce pas.
+- ⛔ NE TRANSFORME PAS UN BILAN EN ANNONCE : si la source parle d'un événement DÉJÀ joué, terminé ou d'une élimination (« a échoué », « défaite », « éliminé », « bilan », « retour sur »), écris-le au passé. N'écris JAMAIS « avant le match », « à quelques heures de », « ce soir » pour un événement déjà passé.
 
 RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules ; va DIRECTEMENT à l'info.
@@ -1020,7 +1022,72 @@ def _is_teaser(text):
     """Détecte une formulation racoleuse qui CACHE l'info au lieu de la donner (clickbait)."""
     return bool(TEASER_RX.search(text or ""))
 
-def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=None):
+_HEURE_RX = re.compile(r"\b(?:à|dès|vers)\s+(\d{1,2})\s*h(?:\s*(\d{2}))?\b", re.IGNORECASE)
+_FUTUR_RX = re.compile(
+    r"\b(commence|commencera|débute|debute|débutera|coup d'envoi|donne le coup d'envoi|"
+    r"affrontera|affronteront|va affronter|vont affronter|aura lieu|auront lieu|"
+    r"est attendu|sont attendus|est prévu|sont prévus|se tiendra|se déroulera|"
+    r"rendez-vous|à suivre|s'élance|démarre|démarrera|entre en lice|ouvre ses portes|"
+    r"prendra la parole|s'exprimera|doit (commencer|débuter|avoir lieu|s'exprimer))\b",
+    re.IGNORECASE)
+_JOURS_FR_SEM = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
+
+_ANTICIP_RX = re.compile(
+    r"\bavant (?:le|la|les|son|sa|leur|ce|cette) (?:match|rencontre|quart|demi|finale|huitième|"
+    r"barrage|élection|scrutin|cérémonie|procès|audience|verdict|conférence|discours|sommet|"
+    r"coup d'envoi|début)|"
+    r"\b[àa] (?:quelques|moins de) (?:heures|minutes|jours) (?:de|du|d')|"
+    r"\b[àa] la veille (?:de|du|d')|"
+    r"\bce (?:soir|midi|matin)\b|\bcette nuit\b|\bcet après-midi\b|"
+    r"\bprochain match\b|\bva affronter\b|\baffrontera\b|\bva disputer\b|\bdisputera\b|"
+    r"\bse prépare [àa] affronter\b|\bdans (?:quelques|moins de) (?:heures|jours)\b",
+    re.IGNORECASE)
+
+def _annonce_perimee(text, now=None, pub_ts=None, stale_h=18):
+    """Vrai si le tweet annonce comme À VENIR quelque chose qui ne l'est plus.
+    Deux cas :
+      a) un HORAIRE explicite déjà écoulé aujourd'hui (« commence à 21h » publié à 22h16) ;
+      b) une ANTICIPATION d'événement (« avant le quart de finale », « ce soir ») alors que
+         l'ARTICLE SOURCE date de plus de stale_h heures — l'événement a donc déjà eu lieu.
+    Ne se déclenche pas si l'événement est situé un autre jour, ni sans tournure de futur."""
+    t = str(text or "")
+    if not t:
+        return False
+    now = now or datetime.now()
+    bas = t.lower()
+    autre_jour = bool(re.search(
+        r"\b(demain|après-demain|apres-demain|prochaine? (semaine|mois|année)|semaine prochaine|"
+        r"le \d{1,2}\s*(janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|"
+        r"septembre|octobre|novembre|décembre|decembre))\b", bas))
+    autres = [j for i, j in enumerate(_JOURS_FR_SEM) if i != now.weekday()]
+    if any(re.search(r"\b" + j + r"\b", bas) for j in autres):
+        autre_jour = True
+
+    # (b) article ancien + tournure d'anticipation → l'événement est forcément passé
+    if pub_ts and not autre_jour:
+        try:
+            if (now.timestamp() - float(pub_ts)) / 3600 > stale_h and _ANTICIP_RX.search(t):
+                return True
+        except (TypeError, ValueError):
+            pass
+
+    # (a) horaire explicite déjà écoulé aujourd'hui
+    if not _FUTUR_RX.search(t) or autre_jour:
+        return False
+    for h, m in _HEURE_RX.findall(t):
+        try:
+            hh, mm = int(h), int(m or 0)
+        except ValueError:
+            continue
+        if not (0 <= hh <= 23 and 0 <= mm <= 59):
+            continue
+        prevu = now.replace(hour=hh, minute=mm, second=0, microsecond=0)
+        # marge de 20 min : un événement qui vient de démarrer reste annonçable
+        if (now - prevu).total_seconds() > 20 * 60:
+            return True
+    return False
+
+def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=None, pub_ts=None):
     """gen_tweet_complet + lecture de l'article UNIQUEMENT sur sujets sensibles
     (mort, procès, accusations… où la précision juridique est vitale) + vérification factuelle.
     Sur les sujets non sensibles, le titre + résumé RSS suffisent → coût minimal."""
@@ -1063,6 +1130,23 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
             body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
                           "", body, flags=re.IGNORECASE).strip()
             print("  🚫 Tournure teaser retirée de force")
+
+    # ⏰ Annonce périmée : le tweet présente comme À VENIR un horaire déjà passé aujourd'hui.
+    if _annonce_perimee(body, pub_ts=pub_ts):
+        print("  ⏰ Annonce périmée détectée (horaire déjà passé) → régénération")
+        corr = (f"Il est actuellement {datetime.now().strftime('%Hh%M')}. Ton tweet précédent annonçait "
+                "comme À VENIR un événement dont l'heure est DÉJÀ PASSÉE. INTERDIT. "
+                "Si l'événement a commencé ou est terminé, écris-le au présent ou au passé "
+                "(« a débuté », « est en cours », « s'est achevé ») et donne l'information réellement "
+                "nouvelle. N'annonce JAMAIS un horaire déjà écoulé comme un rendez-vous à venir.")
+        body2, headline2, iq2, kw2, p2, pays2 = gen_tweet_complet(
+            title, summary, source, category, article_text=article_text,
+            prev_angles=prev_angles, correction=corr)
+        if body2 and not _annonce_perimee(body2, pub_ts=pub_ts):
+            body, headline, image_query, keywords, person, pays = body2, headline2, iq2, kw2, p2, pays2
+        else:
+            print("  ⛔ Toujours périmé après régénération → sujet abandonné")
+            return None, None, None, None, None, None
     return body, headline, image_query, keywords, person, pays
 
 def _flag_emoji(country_code):
@@ -6696,8 +6780,12 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
     label_cat = "breaking" if urgent else cat
     _bn, _bl, _prev_heads = topic_history(conn, item.get("title", ""))
     body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
-        item["title"], item["summary"], item["source"], cat, url=item.get("url"), prev_angles=_prev_heads
+        item["title"], item["summary"], item["source"], cat, url=item.get("url"),
+        prev_angles=_prev_heads, pub_ts=item.get("pub_ts")
     )
+    if not body:
+        print(f"  ⛔ Breaking abandonné (annonce périmée) : {item['title'][:50]}")
+        return None
     tweet_final = build_full_tweet(body, label_cat, country=pays)
     photo = extract_photo(item["entry"]) if "entry" in item else None
     raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, label_cat)
@@ -7296,8 +7384,12 @@ def check_feeds(conn):
                 video = None
                 _hn, _hl, _prev_heads = topic_history(conn, item["title"])
                 body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
-                    item["title"], item["summary"], item["source"], cat, url=item.get("url"), prev_angles=_prev_heads
+                    item["title"], item["summary"], item["source"], cat, url=item.get("url"),
+                    prev_angles=_prev_heads, pub_ts=item.get("pub_ts")
                 )
+                if not body:
+                    print(f"  ⛔ Sujet abandonné (annonce périmée) : {item['title'][:50]}")
+                    continue
                 tweet_final = build_full_tweet(body, cat, country=pays)
                 photo       = extract_photo(item["entry"])
 
