@@ -1913,12 +1913,153 @@ _PILL_COORDS = {
     "sante": (79, 756, 505, 858),       "ia": (549, 756, 966, 858),         "insolite": (1005, 756, 1445, 858),
     "gta6": (549, 885, 966, 984),
 }
+# ── PILULES ANIMÉES (GIF) — utilisées sur les VIDÉOS ────────────────────────────
+# Chaque catégorie a son GIF (660×135, 26 images, ~3,15 s, fond transparent), déposé dans
+# 'pills/'. Sur une vidéo, la pilule STATIQUE n'est pas dessinée : le GIF est superposé par
+# ffmpeg au même emplacement, en boucle. Si le GIF manque, on retombe sur la pilule statique.
+_PILL_GIF_MAP = {
+    "politique": "politique.gif",   "science": "science.gif",       "faitsdivers": "faits-divers.gif",
+    "culture": "culture.gif",       "environnement": "environnement.gif", "sport": "sport.gif",
+    "positivity": "positif.gif",    "positif": "positif.gif",       "economie": "economie.gif",
+    "tech": "technologie.gif",      "technologie": "technologie.gif",
+    "breaking": "urgent.gif",       "urgent": "urgent.gif",         "france": "france.gif",
+    "monde": "monde.gif",           "societe": "societe.gif",       "hommage": "hommage.gif",
+    "histoire": "histoire.gif",     "sante": "sante.gif",           "ia": "ia.gif",
+    "insolite": "insolite.gif",     "gta6": "gta-6.gif",
+}
+_PILL_GIF_DIRS = ("pills", "assets/pills", "assets", ".")
+
+def _pill_gif_path(category):
+    """Chemin du GIF de la catégorie, ou None. Jamais d'erreur."""
+    try:
+        name = _PILL_GIF_MAP.get((category or "").lower())
+        if not name:
+            return None
+        for d in _PILL_GIF_DIRS:
+            fp = os.path.join(d, name)
+            if os.path.exists(fp):
+                return fp
+    except Exception:
+        pass
+    return None
+
+def _overlay_animated_pill(video_path, category, W, H, tmpdir, until=None):
+    """Superpose la pilule ANIMÉE sur une vidéo déjà rendue, au même emplacement que la
+    pilule statique (haut-droite, hauteur 0.052×H). `until` = secondes pendant lesquelles
+    elle reste affichée (None = toute la vidéo).
+    🛡️ Tolérant : au moindre problème, renvoie la vidéo d'origine — jamais d'échec de publication."""
+    gif = _pill_gif_path(category)
+    if not gif or not video_path or not os.path.exists(video_path):
+        return video_path
+    try:
+        with Image.open(gif) as g:
+            gw, gh = g.size
+        ph = max(2, int(H * 0.052))
+        pw = max(2, int(round(ph * gw / gh)))
+        pw += pw % 2; ph += ph % 2                      # dimensions paires (exigence h264)
+        margin = int(W * 0.037)
+        x, y = W - pw - margin, int(H * 0.048)
+        out = os.path.join(tmpdir, "pill_" + os.path.basename(video_path))
+        enable = f":enable='lte(t,{float(until):.2f})'" if until else ""
+        import imageio_ffmpeg as _iff, subprocess as _sp
+        ff = _iff.get_ffmpeg_exe()
+        # ⚠️ Le GIF est joué UNE FOIS (animation d'entrée) puis sa dernière image est FIGÉE
+        #    (tpad clone). En boucle, la pilule disparaîtrait et se redessinerait toutes les
+        #    3,15 s en plein milieu de la vidéo — effet parasite.
+        r = _sp.run(
+            [ff, "-y", "-loglevel", "error", "-i", video_path, "-i", gif,
+             "-filter_complex",
+             f"[1:v]scale={pw}:{ph}:flags=lanczos,tpad=stop_mode=clone:stop_duration=120[p];"
+             f"[0:v][p]overlay={x}:{y}:shortest=1{enable}",
+             "-map", "0:a?", "-c:a", "copy",
+             "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+             "-pix_fmt", "yuv420p", "-movflags", "+faststart", out],
+            capture_output=True, timeout=300)
+        if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 10_000:
+            print(f"  ✨ Pilule animée : {os.path.basename(gif)}")
+            return out
+        print(f"  ⚠️ Pilule animée ignorée (ffmpeg {r.returncode}) → pilule fixe conservée")
+    except Exception as e:
+        print(f"  ⚠️ Pilule animée ignorée : {e}")
+    return video_path
+
+_LOGO_GIF_NAME = "pulse-logo-animated.gif"
+
+def _logo_gif_path():
+    """Chemin du logo PULSE animé, ou None. Jamais d'erreur."""
+    try:
+        for d in _PILL_GIF_DIRS:
+            fp = os.path.join(d, _LOGO_GIF_NAME)
+            if os.path.exists(fp):
+                return fp
+    except Exception:
+        pass
+    return None
+
+def _overlay_animated_logo(video_path, W, H, tmpdir, x, y, target_h, until=None):
+    """Superpose le LOGO PULSE animé au même emplacement que le logo fixe.
+    Le GIF est joué UNE FOIS puis figé (pas de rebouclage en plein milieu).
+    🛡️ Tolérant : au moindre problème, renvoie la vidéo d'origine."""
+    gif = _logo_gif_path()
+    if not gif or not video_path or not os.path.exists(video_path):
+        return video_path
+    try:
+        with Image.open(gif) as g:
+            gw, gh = g.size
+        lh = max(2, int(target_h))
+        lw = max(2, int(round(lh * gw / gh)))
+        lw += lw % 2; lh += lh % 2
+        out = os.path.join(tmpdir, "logo_" + os.path.basename(video_path))
+        enable = f":enable='lte(t,{float(until):.2f})'" if until else ""
+        import imageio_ffmpeg as _iff, subprocess as _sp
+        ff = _iff.get_ffmpeg_exe()
+        r = _sp.run(
+            [ff, "-y", "-loglevel", "error", "-i", video_path, "-i", gif,
+             "-filter_complex",
+             f"[1:v]scale={lw}:{lh}:flags=lanczos,tpad=stop_mode=clone:stop_duration=120[l];"
+             f"[0:v][l]overlay={int(x)}:{int(y)}:shortest=1{enable}",
+             "-map", "0:a?", "-c:a", "copy",
+             "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+             "-pix_fmt", "yuv420p", "-movflags", "+faststart", out],
+            capture_output=True, timeout=300)
+        if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 10_000:
+            print("  ✨ Logo Pulse animé")
+            return out
+        print(f"  ⚠️ Logo animé ignoré (ffmpeg {r.returncode}) → logo fixe conservé")
+    except Exception as e:
+        print(f"  ⚠️ Logo animé ignoré : {e}")
+    return video_path
+
 _PILL_SHEET = None
 _PILL_SHEET_TRIED = False
+_PILL_PNG_CACHE = {}
 def _category_pill(category, target_h):
-    """Pilule pré-dessinée (RGBA) pour la catégorie, mise à la hauteur target_h — ou None si aucune
-    pilule fournie pour cette catégorie (le bot dessinera alors la sienne). Tolérant : jamais d'erreur."""
+    """Pilule pré-dessinée (RGBA) pour la catégorie, à la hauteur target_h — ou None.
+    ① PNG individuel haute définition (pills/<cat>.png, 1320×222) — la meilleure qualité ;
+    ② repli sur la planche historique pulse_pills.png ;
+    ③ sinon None → le bot dessine sa propre pastille. Tolérant : jamais d'erreur."""
     global _PILL_SHEET, _PILL_SHEET_TRIED
+    # ① PNG individuel (même nommage que les GIF animés : une seule table de vérité)
+    try:
+        name = _PILL_GIF_MAP.get((category or "").lower())
+        if name:
+            png = name[:-4] + ".png"
+            key = png
+            # ⚠️ On ne met en cache QUE les succès : mémoriser un échec désactiverait la
+            #    pastille pour tout le run si le dossier était momentanément illisible.
+            src = _PILL_PNG_CACHE.get(key)
+            if src is None:
+                for d in _PILL_GIF_DIRS:
+                    fp = os.path.join(d, png)
+                    if os.path.exists(fp):
+                        src = Image.open(fp).convert("RGBA")
+                        _PILL_PNG_CACHE[key] = src
+                        break
+            if src is not None:
+                w, h = src.size
+                return src.resize((max(1, int(target_h * w / h)), int(target_h)), Image.LANCZOS)
+    except Exception:
+        pass
     box = _PILL_COORDS.get((category or "").lower())
     if not box:
         return None
@@ -2000,7 +2141,7 @@ def _paste_rounded_shadow(bg, fg, x, y, radius=None, shadow_blur=None, shadow_al
 
 _IMG_SS = 2   # super-résolution des cartes : 2× = texte/graphismes nets ("4K-like"), résiste à la compression X
 
-def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False, reveal=1.0, ss=None, as_image=False):
+def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False, reveal=1.0, ss=None, as_image=False, no_pill=False, no_logo=False):
     """
     PNG DA Pulse, taille paramétrable (W×H).
     - Paysage 1200×675 pour X/Facebook (défaut)
@@ -2150,12 +2291,17 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         f_sm    = font(small_sz, bold=False)
 
         # ─── LOGO PULSE ───
-        if category == "hommage" or paste_pulse_logo(img, margin, int(H * 0.044), int(H * 0.062)) == 0:
+        if no_logo:
+            pass    # un logo ANIMÉ sera superposé par ffmpeg au même emplacement
+        elif category == "hommage" or paste_pulse_logo(img, margin, int(H * 0.044), int(H * 0.062)) == 0:
             draw.text((margin, int(H * 0.044)), "Pulse", font=f_logo, fill=(255, 255, 255))
 
         # ─── BADGE CATÉGORIE : pilule pré-dessinée si fournie, sinon dessin maison ───
-        _pill = _category_pill(category, int(H * 0.052))
-        if _pill is not None:
+        # no_pill : une pilule ANIMÉE sera superposée par ffmpeg → on ne dessine pas la fixe
+        _pill = None if no_pill else _category_pill(category, int(H * 0.052))
+        if no_pill:
+            pass
+        elif _pill is not None:
             px = W - _pill.width - margin
             py = int(H * 0.048)
             img = img.convert("RGBA")
@@ -3682,7 +3828,7 @@ def _decrypt_soundtrack(path_wav, duration, sujet=""):
     """Compat : la nappe du décryptage passe désormais par le moteur unique."""
     return build_soundtrack(path_wav, duration, category="sobre-decrypt", sujet=sujet)
 
-def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=(255, 90, 200)):
+def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=(255, 90, 200), decrypt_cat="monde"):
     """🎬 Vidéo DÉCRYPTAGE (X/Facebook) — portrait 1080×1350.
     Les slides SONT la vidéo (plein cadre, pas de fond ajouté). Le texte S'ÉCRIT mot par mot,
     et la durée de chaque slide est calculée sur sa QUANTITÉ DE TEXTE (temps de lecture garanti,
@@ -3783,6 +3929,12 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
         proc.stdin.close(); proc.wait()
         if proc.returncode != 0 or not os.path.exists(raw_mp4):
             shutil.rmtree(tmpdir, ignore_errors=True); return None
+
+        # ✨ pilule ANIMÉE sur la COUVERTURE uniquement (2,8 s) : les slides ont déjà leur
+        #    compteur "n/N" en haut à droite, on ne le recouvre pas.
+        raw_mp4 = _overlay_animated_pill(raw_mp4, decrypt_cat, W, H, tmpdir, until=2.8)
+        raw_mp4 = _overlay_animated_logo(raw_mp4, W, H, tmpdir,
+                                         int(W * 0.037), int(H * 0.044), int(H * 0.062), until=2.8)
 
         out_mp4 = os.path.join(tmpdir, "video.mp4")
         try:
@@ -5324,7 +5476,9 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         ecg_col = (205, 208, 224) if sober else NEON
         # pastille catégorie NÉON : halo flouté couleur catégorie + anneau net + texte CENTRÉ
         pill_layer = None
-        if kind != "hommage" and not urgent:
+        _anim_pill = _pill_gif_path(category) is not None   # GIF dispo → pilule dessinée omise
+        _anim_logo = (_logo_gif_path() is not None) and not sober
+        if kind != "hommage" and not urgent and not _anim_pill:
             _tp = ImageDraw.Draw(Image.new("RGB", (8, 8)))
             lbl_p = LABELS.get(category, category.upper())[:18]
             pf_p = _vf(W * 0.019)
@@ -5452,8 +5606,8 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             # 🔷 EN-TÊTE : le VRAI logo PULSE détouré, en fondu doux (il embarque déjà son battement).
             # Hommage : texte sobre conservé. Repli : si le logo échoue, on retombe sur texte + ECG animé.
             la = _appear(t, 0.15, 0.9)
-            _logo_drawn = False
-            if la > 0 and not sober:
+            _logo_drawn = True if _anim_logo else False   # animé → aucun logo fixe dessiné
+            if la > 0 and not sober and not _anim_logo:
                 if paste_pulse_logo(img, int(W * 0.04), int(H * 0.030), int(H * 0.042), opacity=la) > 0:
                     _logo_drawn = True
                     d = ImageDraw.Draw(img)
@@ -5681,6 +5835,11 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         for n in range(N):   # libère le disque : on ne garde que le MP4
             try: os.remove(f"{out_dir}/f_{n:03d}.png")
             except OSError: pass
+        # ✨ pilule + logo ANIMÉS (remplacent leurs versions dessinées, omises plus haut)
+        out_mp4 = _overlay_animated_pill(out_mp4, category, W, H, out_dir)
+        if _anim_logo:
+            out_mp4 = _overlay_animated_logo(out_mp4, W, H, out_dir,
+                                             int(W * 0.04), int(H * 0.030), int(H * 0.042))
         # 🎵 Nappe d'ambiance selon la catégorie (hommage = solennelle très discrète).
         # En cas de pépin audio : vidéo muette plutôt que pas de vidéo.
         try:
@@ -5720,11 +5879,14 @@ def build_card_video(headline, source, category, raw_photo, photo_url=None, imag
         words = max(1, len(str(headline or "").split()))
         n     = max(3, min(2 * words + 1, 26))
         tmpdir = tempfile.mkdtemp(prefix="pulse_card_")
+        _anim_pill = _pill_gif_path(category) is not None   # GIF dispo → pilule fixe omise
+        _anim_logo = (_logo_gif_path() is not None) and category != "hommage"
         for i in range(n):
             c = build_png(headline, source, category, photo_url, image_query,
                           article_url=article_url, person=person, W=W, H=H,
                           prefetched=(raw_photo, True), headline_bottom=True,
-                          reveal=i / (n - 1), ss=CARD_VIDEO_SS, as_image=True)
+                          reveal=i / (n - 1), ss=CARD_VIDEO_SS, as_image=True,
+                          no_pill=_anim_pill, no_logo=_anim_logo)
             if c is None:
                 return None
             if c.size != (W, H):
@@ -5749,6 +5911,12 @@ def build_card_video(headline, source, category, raw_photo, photo_url=None, imag
         for i in range(n):
             try: os.remove(f"{tmpdir}/s_{i:03d}.png")
             except OSError: pass
+
+        # ✨ pilule ANIMÉE puis LOGO animé (remplacent leurs versions fixes, omises plus haut)
+        out = _overlay_animated_pill(out, category, W, H, tmpdir)
+        if _anim_logo:
+            _m = int(W * 0.037)
+            out = _overlay_animated_logo(out, W, H, tmpdir, _m, int(H * 0.044), int(H * 0.062))
 
         # nappe sonore discrète (si elle échoue : vidéo muette, jamais d'échec de publication)
         try:
@@ -7222,9 +7390,12 @@ def check_feeds(conn):
             #    couverture 4:5 d'Instagram déformait toute la première scène (visages écrasés).
             cover_vid, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
                                      carousel["image_query"], W=VIDEO_W, H=VIDEO_H,
-                                     prefetched=(raw_src, has_real), headline_bottom=True, ss=1)
+                                     prefetched=(raw_src, has_real), headline_bottom=True, ss=1,
+                                     no_pill=_pill_gif_path("monde") is not None,
+                                     no_logo=_logo_gif_path() is not None)
             vid_thread = build_decrypt_video(cover_vid or cover_paysage, carousel["slides"],
-                                             carousel.get("sujet", ""), bg_photo=raw_src)
+                                             carousel.get("sujet", ""), bg_photo=raw_src,
+                                             decrypt_cat="monde")
             url = None
             try:
                 url = post_to_twitter(xfb, cover_paysage, vid_thread)
