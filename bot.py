@@ -3749,13 +3749,20 @@ def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 
             x += draw.textlength(word + " ", font=font)
 
     # titre (auto-dimensionné pour tenir)
+    # ⚠️ Les tailles se calculent sur la HAUTEUR, pas la largeur : sinon un cadre large (16:9)
+    #    produit un texte énorme sur un cadre court. Ces fractions reproduisent EXACTEMENT
+    #    les tailles historiques du portrait 1080×1350. La colonne de texte est resserrée
+    #    en format large pour éviter des lignes interminables.
+    _large = (W / max(1, H)) > 1.2
+    col_t = int(W * (0.70 if _large else 0.86))
+    col_p = int(W * (0.66 if _large else 0.80))
     y = int(H * 0.15)
-    tsize = int(W * 0.072)
-    for trysize in (int(W * 0.072), int(W * 0.063), int(W * 0.055)):
-        if len(_wrap(draw, title, _cfont(trysize), int(W * 0.86))) <= 3:
+    tsize = int(H * 0.0576)
+    for trysize in (int(H * 0.0576), int(H * 0.0504), int(H * 0.0440)):
+        if len(_wrap(draw, title, _cfont(trysize), col_t)) <= 3:
             tsize = trysize; break
     f_title = _cfont(tsize)
-    for ln in _wrap(draw, title, f_title, int(W * 0.86)):
+    for ln in _wrap(draw, title, f_title, col_t):
         _draw_words(margin, y, ln, f_title, (255, 255, 255)); y += int(tsize * 1.15)
 
     # trait d'accent : apparaît quand le TITRE est entièrement écrit
@@ -3765,12 +3772,17 @@ def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 
     y += int(H * 0.045)
 
     # points à puces (auto-dimensionnés selon le nombre) — la puce apparaît avec son 1er mot
-    psize = int(W * 0.044) if len(points) <= 3 else int(W * 0.039)
+    psize = int(H * 0.0352) if len(points) <= 3 else int(H * 0.0312)
     f_pt = _cfont(psize, bold=False)
+    _bas = H - int(H * (VIDEO_SAFE_BOTTOM if H > W else 0.10))   # plancher : on n'écrit pas dessous
     for pt in points:
+        if y + psize * 1.4 > _bas:      # 🛡️ plus de place : on s'arrête proprement
+            break
         if widx < visible:
             draw.ellipse([margin, y + 13, margin + 18, y + 31], fill=accent)
-        for ln in _wrap(draw, pt, f_pt, int(W * 0.80)):
+        for ln in _wrap(draw, pt, f_pt, col_p):
+            if y + psize * 1.4 > _bas:
+                break
             _draw_words(margin + 40, y, ln, f_pt, (238, 232, 250)); y += int(psize * 1.32)
         y += int(H * 0.018)
 
