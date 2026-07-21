@@ -91,7 +91,7 @@ BREAKING_SCORE = 9        # score minimum (analyse Claude) pour qu'une actu soit
 BUZZ_SCORE = 7            # score minimum pour un fast-track "buzz" (multi-sources) — label normal, pas URGENT
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
 BREAKING_GAP_MIN = 25     # délai mini (minutes) entre deux publications breaking (anti-spam)
-STALE_BREAKING_HOURS = 12 # au-delà, un article n'est plus assez frais pour un "breaking" (anti-réchauffé)
+STALE_BREAKING_HOURS = 6  # au-delà, un article n'est plus assez frais pour un "breaking" (anti-réchauffé)
 STALE_NEWS_HOURS = 24     # au-delà, ce n'est plus une actualité : écarté du fil normal (sauf suivi)
 SPORT_COOLDOWN_MIN = 120  # délai mini (minutes) entre deux posts SPORT (anti-spam sport en direct)
 
@@ -292,7 +292,11 @@ def init_db():
     _ensure_column("topic_echo_alert", "alerted_at", "alerted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     _ensure_column("post_log", "category", "category TEXT")
     _ensure_column("post_log", "posted_at", "posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    conn.execute("""CREATE TABLE IF NOT EXISTS daily_cache (
+        key TEXT PRIMARY KEY, payload TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
     conn.commit()
+    conn.execute("DELETE FROM daily_cache WHERE created_at < datetime('now', '-2 days')")
     # 💰 Cache d'analyse : gardé 45 JOURS (aligné sur `seen`). Le score/la catégorie d'un article
     #    ne changent jamais → aucune raison de le ré-analyser. Avant, la purge à 24h forçait une
     #    ré-analyse quotidienne de tous les articles encore présents dans les flux (coût API inutile).
@@ -927,7 +931,7 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 Réponds avec ce JSON UNIQUEMENT :
 {{"headline_court":"...","image_query":"...","person":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""", max_tokens=900)
 
-    body = result.get("body", "").strip()
+    body = (result.get("body") or "").strip()
     for label_test in LABELS.values():
         body = re.sub(rf"^{label_test}\s*\|\s*", "", body, flags=re.IGNORECASE)
         body = re.sub(rf"^{label_test}\s*[—-]\s*", "", body, flags=re.IGNORECASE)
@@ -940,8 +944,8 @@ Réponds avec ce JSON UNIQUEMENT :
     headline_court = _smart_truncate(result.get("headline_court", title), 80)
     image_query    = result.get("image_query", category).strip()
     keywords       = result.get("keywords_majeurs", [])
-    person         = result.get("person", "").strip()
-    pays           = result.get("pays", "").strip()
+    person         = (result.get("person") or "").strip()
+    pays           = (result.get("pays") or "").strip()
 
     # 🏷️ GARDE-FOU HASHTAG : un tweet ne doit jamais partir SANS hashtag (sauf hommage, qui reste sobre).
     if category != "hommage":
@@ -2193,22 +2197,36 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
 
             # ✍️ Animation : la mise en page est calculée sur le titre COMPLET (rien ne bouge),
             #    on n'affiche que les `reveal` premiers mots. reveal = 1.0 → carte normale.
+            #    🌊 FLUIDITÉ : le mot en cours d'apparition entre en FONDU (alpha fractionnaire)
+            #    au lieu de surgir d'un coup — la fraction décimale de (reveal × mots) = son alpha.
             _lines = chosen_lines
+            _fade_word, _fade_alpha, _fade_line_idx = None, 0.0, -1
             if reveal < 1.0:
                 _wtot = sum(len(l.split()) for l in chosen_lines)
-                _show = int(_wtot * max(0.0, reveal))
+                _prog = _wtot * max(0.0, reveal)
+                _show = int(_prog)
+                _fade_alpha = _prog - _show          # 0 → mot pas commencé ; 0.5 → à moitié fondu
                 _lines, _n = [], 0
-                for l in chosen_lines:
+                for li, l in enumerate(chosen_lines):
                     _w = l.split()
-                    _lines.append(" ".join(_w[:max(0, min(len(_w), _show - _n))]))
+                    _take = max(0, min(len(_w), _show - _n))
+                    _lines.append(" ".join(_w[:_take]))
+                    # le mot suivant (celui qui fond) est sur cette ligne ?
+                    if _fade_word is None and _fade_alpha > 0.02 and _take < len(_w) and _n + _take == _show:
+                        _fade_word, _fade_line_idx = _w[_take], li
                     _n += len(_w)
 
             # OMBRE PORTÉE DOUCE (floutée) au lieu d'un contour noir net
             shadow = Image.new('RGBA', (W, H), (0, 0, 0, 0))
             sdraw  = ImageDraw.Draw(shadow)
             ty = ty0
-            for ln in _lines:
+            for li, ln in enumerate(_lines):
                 sdraw.text((margin + 4, ty + 6), ln, font=ft, fill=(0, 0, 0, 235))
+                if li == _fade_line_idx and _fade_word:
+                    _pre = ln + (" " if ln else "")
+                    _fx = margin + 4 + int(sdraw.textlength(_pre, font=ft))
+                    sdraw.text((_fx, ty + 6), _fade_word, font=ft,
+                               fill=(0, 0, 0, int(235 * _fade_alpha)))
                 ty += line_h
             shadow = shadow.filter(ImageFilter.GaussianBlur(12))
             # on densifie l'ombre en la compositant 2 fois (plus lisible)
@@ -2216,13 +2234,22 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             img = Image.alpha_composite(img, shadow).convert('RGB')
             draw = ImageDraw.Draw(img)
 
-            # Texte blanc net par-dessus (sans contour)
+            # Texte blanc net par-dessus (sans contour) — le mot en cours en alpha fractionnaire
+            _txt_layer = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+            _tdraw = ImageDraw.Draw(_txt_layer)
             ty = ty0
             last_y = ty0
-            for ln in _lines:
-                draw.text((margin, ty), ln, font=ft, fill=(255, 255, 255))
+            for li, ln in enumerate(_lines):
+                _tdraw.text((margin, ty), ln, font=ft, fill=(255, 255, 255, 255))
+                if li == _fade_line_idx and _fade_word:
+                    _pre = ln + (" " if ln else "")
+                    _fx = margin + int(_tdraw.textlength(_pre, font=ft))
+                    _tdraw.text((_fx, ty), _fade_word, font=ft,
+                                fill=(255, 255, 255, int(255 * _fade_alpha)))
                 last_y = ty
                 ty += line_h
+            img = Image.alpha_composite(img.convert('RGBA'), _txt_layer).convert('RGB')
+            draw = ImageDraw.Draw(img)
             # 🎨 Emoji COULEUR intégré à la FIN du titre (dernière ligne). Jamais sur un hommage.
             if category != "hommage" and reveal >= 1.0:
                 _em = _emoji_image(EMOJIS.get(category, ""), int(chosen_size * 0.98))
@@ -3114,7 +3141,7 @@ OU
             print("  📜 Aucun événement assez connu — skip.")
             return None
 
-        body = result.get("body", "").strip()
+        body = (result.get("body") or "").strip()
         for lbl in LABELS.values():
             body = re.sub(rf"^{lbl}\s*\|\s*", "", body, flags=re.IGNORECASE)
         body = re.sub(r"^[\U0001F300-\U0001F9FF\u2600-\u27BF\s]+", "", body).strip()
@@ -3198,7 +3225,7 @@ def gen_poll(conn):
     """Génère un sondage basé sur un vrai sujet d'actualité du jour."""
     if special_done_today(conn, "poll"):
         return None
-    if datetime.now().hour < 12:   # sondage l'après-midi
+    if _paris_hour() < 12:   # sondage l'après-midi (heure de PARIS, pas du serveur)
         return None
 
     headlines = gather_all_headlines()
@@ -3250,7 +3277,7 @@ CONTRAINTES TECHNIQUES :
 Réponds avec ce JSON UNIQUEMENT :
 {{"keywords":["mot1","mot2"],"question":"...","options":["Option 1","Option 2"]}}""", max_tokens=400)
 
-        question = result.get("question", "").strip()
+        question = (result.get("question") or "").strip()
 
         def clean_option(o, limit=25):
             """Coupe proprement au mot (jamais en plein milieu) si > limite."""
@@ -3608,11 +3635,14 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
             titre, points = sd.get("titre", ""), sd.get("points") or []
             dur, words = slide_duration(titre, points)
             bg = build_carousel_bg(i, total_n, accent=accent, bg_photo=bg_photo, W=W, H=H)
+            # 🌊 DEUX sous-états par mot (demi-fondu puis complet) : l'écriture est fluide,
+            #    chaque mot entre en fondu au lieu de surgir. Plafonné pour garder le rendu léger.
+            _n_states = min(2 * words, 40)
             states = [build_carousel_slide(titre, points, i, total_n,
                                            is_last=(i == total_n), accent=accent,
-                                           reveal=(k / max(1, words)), as_image=True, bg_cache=bg,
+                                           reveal=(k / max(1, _n_states)), as_image=True, bg_cache=bg,
                                            W=W, H=H)
-                      for k in range(0, words + 1)]
+                      for k in range(0, _n_states + 1)]
             frames_total = int(FPS * dur)
             frames_write = int(FPS * (words / 8.0))
             seq.append((states, frames_total, frames_write))
@@ -3733,18 +3763,29 @@ def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 
     # ── TEXTE : compteur global de mots (titre puis puces) ; on ne dessine que les `visible` premiers ──
     title_wc = len(title.split())
     total_wc = title_wc + sum(len(p.split()) for p in points)
-    visible = total_wc if reveal >= 1.0 else int(round(max(0.0, min(1.0, reveal)) * total_wc))
+    # 🌊 FLUIDITÉ : le mot suivant entre en FONDU (alpha = fraction décimale de la progression).
+    _prog   = total_wc if reveal >= 1.0 else max(0.0, min(1.0, reveal)) * total_wc
+    visible = int(_prog)
+    _fade_a = (_prog - visible) if reveal < 1.0 else 0.0
     widx = 0   # index global du prochain mot
 
     def _draw_words(x0, y, line, font, fill):
-        """Dessine les mots d'une ligne un par un (respecte le compteur global `widx`)."""
-        nonlocal widx
+        """Dessine les mots d'une ligne un par un ; le mot en cours entre en FONDU.
+        ⚠️ Pillow ignore l'alpha d'un fill sur un canvas RGB : le mot fondu passe donc
+        par un CALQUE RGBA composité — seul moyen d'obtenir une vraie transparence."""
+        nonlocal widx, img, draw
         x = x0
         for word in line.split(" "):
             if not word:
                 continue
             if widx < visible:
                 draw.text((x, y), word, font=font, fill=fill)
+            elif widx == visible and _fade_a > 0.04:
+                _wl = Image.new("RGBA", img.size, (0, 0, 0, 0))
+                ImageDraw.Draw(_wl).text((x, y), word, font=font,
+                                         fill=(fill[0], fill[1], fill[2], int(255 * _fade_a)))
+                img = Image.alpha_composite(img.convert("RGBA"), _wl).convert("RGB")
+                draw = ImageDraw.Draw(img)
             widx += 1
             x += draw.textlength(word + " ", font=font)
 
@@ -3891,7 +3932,17 @@ def gen_carousel(conn):
     """
     Décryptage chiffré : (1) Claude choisit LE sujet de fond du jour,
     (2) on LIT l'article complet, (3) Claude génère des slides avec de vrais chiffres.
+    💰 Le résultat est mis en CACHE pour la journée : si la publication échoue ensuite
+    (ex : aucune image exploitable), les runs suivants ne re-paient PAS Claude.
     """
+    _ck = "__carousel__" + datetime.now().strftime("%Y-%m-%d")
+    try:
+        row = conn.execute("SELECT payload FROM daily_cache WHERE key=?", (_ck,)).fetchone()
+        if row:
+            print("  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)")
+            return json.loads(row[0])
+    except Exception:
+        pass
     arts = gather_articles_with_urls()
     if len(arts) < 10:
         return None
@@ -3981,7 +4032,7 @@ Réponds avec ce JSON UNIQUEMENT :
         slides = [s for s in slides if s.get("titre") and s.get("points")][:4]
         if len(slides) < 3:
             return None
-        return {
+        _out = {
             "sujet":       pick.get("sujet", "Décryptage")[:40],
             "cover_title": (result.get("cover_title") or pick.get("cover_title") or art["title"])[:80],
             "image_query": pick.get("image_query", "news france"),
@@ -3995,6 +4046,13 @@ Réponds avec ce JSON UNIQUEMENT :
             "summary":     art["summary"],
             "og_bytes":    og_bytes,   # og:image si trouvée, sinon None → repli image_query à la publication
         }
+        try:
+            conn.execute("INSERT OR REPLACE INTO daily_cache (key, payload) VALUES (?,?)",
+                         (_ck, json.dumps(_out, ensure_ascii=False)))
+            conn.commit()
+        except Exception:
+            pass
+        return _out
     except Exception as e:
         print(f"  ⚠️ gen_carousel: {e}")
         return None
@@ -5563,9 +5621,11 @@ def build_card_video(headline, source, category, raw_photo, photo_url=None, imag
         import subprocess, tempfile, imageio_ffmpeg
         W, H = CARD_VIDEO_W, CARD_VIDEO_H
 
-        # un état par mot (max 14) : peu d'images rendues, durées étirées → rendu rapide
+        # 🌊 DEUX sous-états par mot (demi-fondu puis mot complet, max 26 images) : chaque mot
+        #    ENTRE EN FONDU au lieu de surgir — l'écriture devient fluide. Le nombre d'images
+        #    reste borné pour que le rendu tienne en moins d'une minute.
         words = max(1, len(str(headline or "").split()))
-        n     = max(2, min(words + 1, 14))
+        n     = max(3, min(2 * words + 1, 26))
         tmpdir = tempfile.mkdtemp(prefix="pulse_card_")
         for i in range(n):
             c = build_png(headline, source, category, photo_url, image_query,
@@ -5815,6 +5875,17 @@ def publish_recap(conn):
     if len(titles) < 3:
         return False
     titles = list(reversed(titles))   # du MATIN au SOIR : la dernière mention d'un sujet = son état final
+    # 💰 Cache du jour : si la publication du récap échoue (réseau…), les runs suivants
+    #    réutilisent le contenu déjà généré au lieu de re-payer Claude.
+    _rk = "__recap__" + datetime.now().strftime("%Y-%m-%d")
+    _cached_items = None
+    try:
+        row = conn.execute("SELECT payload FROM daily_cache WHERE key=?", (_rk,)).fetchone()
+        if row:
+            _cached_items = [(e, t) for e, t in json.loads(row[0])]
+            print("  💾 Récap réutilisé (déjà généré aujourd'hui, 0 coût)")
+    except Exception:
+        pass
     # Date + heure de Paris : indispensable pour corriger les formulations devenues obsolètes.
     try:
         from zoneinfo import ZoneInfo
@@ -5823,7 +5894,10 @@ def publish_recap(conn):
         now_p = datetime.now()
     now_str = f"{JOURS_FR[now_p.weekday()]} {now_p.day} {MOIS_FR[now_p.month - 1]} {now_p.year}, {now_p.hour}h{now_p.minute:02d}"
     arts = "\n".join(f"- {t}" for t in titles)
-    r = claude(f"""Tu es le rédacteur en chef de Pulse, compte d'actualité français. Tu écris LE RÉCAP DU SOIR.
+    if _cached_items is not None:
+        items = _cached_items
+    else:
+        r = claude(f"""Tu es le rédacteur en chef de Pulse, compte d'actualité français. Tu écris LE RÉCAP DU SOIR.
 Nous sommes {now_str}. Tu as suivi TOUTE la journée.
 
 Actus publiées aujourd'hui, du MATIN au SOIR (l'ordre compte) :
@@ -5846,38 +5920,49 @@ RÈGLES :
 
 Réponds avec ce JSON UNIQUEMENT :
 {{"items":[{{"e":"⚖️","t":"Sujet : info essentielle"}},{{"e":"🚨","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}}]}}""",
-        max_tokens=500)
-    # Filet anti-doublon : même si Claude sort 2 lignes sur le même sujet, on ne garde que la 1ʳᵉ
-    # (≥2 mots saillants communs = même histoire) → « un sujet = une ligne » garanti mécaniquement.
-    raw = [(str(it.get("e", "•"))[:2], _recap_line(str(it.get("t", ""))))
-           for it in (r.get("items") or []) if it.get("t")]
-    items, seen_sigs = [], []
-    for e, t in raw:
-        sw = _sig_words(t)
-        if len(sw) >= 2 and any(len(sw & ps) >= 2 for ps in seen_sigs):
-            continue
-        items.append((e, t)); seen_sigs.append(sw)
-        if len(items) >= 5:
-            break
-    if len(items) < 3:
-        return False
+            max_tokens=500)
+        # Filet anti-doublon : même si Claude sort 2 lignes sur le même sujet, on ne garde que la 1ʳᵉ
+        # (≥2 mots saillants communs = même histoire) → « un sujet = une ligne » garanti mécaniquement.
+        raw = [(str(it.get("e", "•"))[:2], _recap_line(str(it.get("t", ""))))
+               for it in (r.get("items") or []) if it.get("t")]
+        items, seen_sigs = [], []
+        for e, t in raw:
+            sw = _sig_words(t)
+            if len(sw) >= 2 and any(len(sw & ps) >= 2 for ps in seen_sigs):
+                continue
+            items.append((e, t)); seen_sigs.append(sw)
+            if len(items) >= 5:
+                break
+        if len(items) < 3:
+            return False
+        try:
+            conn.execute("INSERT OR REPLACE INTO daily_cache (key, payload) VALUES (?,?)",
+                         (_rk, json.dumps(items, ensure_ascii=False)))
+            conn.commit()
+        except Exception:
+            pass
     body = f"🌙 LE RÉCAP | Ce qu'il faut retenir de ce {_date_fr()} :\n\n"
     body += "\n".join(f"{e} {t}" for e, t in items)
     body += "\n\n(Pulse)"
     # 📱 Carte du récap en format VERTICAL (1080×1350) : elle occupe plus de place à l'écran sur
     #    mobile → lignes plus grandes et bien plus lisibles. Même carte pour X, Facebook et Instagram.
     png = build_list_card("CE QU'IL FAUT RETENIR", [(e, t) for e, t in items], 1080, 1350)
+    _x = _fb = _ig = None
     try:
-        post_to_twitter(body, png)
+        _x = post_to_twitter(body, png)
     except Exception as e:
         print(f"  ❌ X isolé : {e}")
     try:
-        post_to_facebook(body, png)
+        _fb = post_to_facebook(body, png)
     except Exception as e:
         print(f"  ❌ Facebook isolé : {e}")
     if ig_allowed(conn):
-        post_to_instagram(build_ig_caption(body, []), png)
-        log_special(conn, "ig_post", [])
+        _ig = post_to_instagram(build_ig_caption(body, []), png)
+        if _ig:
+            log_special(conn, "ig_post", [])
+    if not (_x or _fb or _ig):
+        print("  🛑 Aucune plateforme n'a publié → le récap retentera au prochain run (contenu en cache)")
+        return False
     log_special(conn, "recap", [t for _, t in items][:2])
     print("  🌙 Récap du soir publié")
     return True
@@ -6085,7 +6170,9 @@ def publish_france_live(conn, candidates):
                                     prefetched=(raw, raw is not None))
                 txt = f"⏸️ 🇫🇷 MI-TEMPS | {ta} {sa}-{sb} {tb}\n\n#CoupeDuMonde2026 #France"
                 label = "MI-TEMPS"
-            _post_all_platforms(conn, txt, card, video, "sport")
+            if not _post_all_platforms(conn, txt, card, video, "sport"):
+                print("  🛑 Aucune plateforme n'a publié → le match repassera au prochain run")
+                return False
             conn.execute("INSERT INTO special_log (kind, keywords) VALUES (?, ?)", (kind, match_key))
             conn.commit()
             print(f"  ⚽🇫🇷 {label} publié (API) : {ta} {sa}-{sb} {tb}")
@@ -6138,7 +6225,9 @@ def _publish_france_live_rss(conn, candidates):
                     sa, sb = result.get("score_a"), result.get("score_b")
                     ta, tb = result.get("team_a"), result.get("team_b")
                     txt = f"⚽ 🇫🇷 SCORE FINAL | {ta} {sa}-{sb} {tb}\n\n#CoupeDuMonde2026 #France"
-                    _post_all_platforms(conn, txt, card, video, "sport")
+                    if not _post_all_platforms(conn, txt, card, video, "sport"):
+                        print("  🛑 Aucune plateforme n'a publié → le score repassera au prochain run")
+                        return False
                     conn.execute("INSERT INTO special_log (kind, keywords) VALUES ('fr_final', ?)", (match_key,))
                     conn.commit()
                     # PAS de mark_cat ici : le suivi France est un canal BONUS qui ne doit pas
@@ -6164,7 +6253,9 @@ def _publish_france_live_rss(conn, candidates):
                                         art.get("source", ""), "sport",
                                         article_url=art.get("url"), prefetched=(raw, raw is not None))
                     txt = f"⏸️ 🇫🇷 MI-TEMPS | France {score_str} {adversaire}\n\n#CoupeDuMonde2026 #France"
-                    _post_all_platforms(conn, txt, card, video, "sport")
+                    if not _post_all_platforms(conn, txt, card, video, "sport"):
+                        print("  🛑 Aucune plateforme n'a publié → la mi-temps repassera au prochain run")
+                        return False
                     conn.execute("INSERT INTO special_log (kind, keywords) VALUES ('fr_half', ?)", (match_key,))
                     conn.commit()
                     # PAS de mark_cat ici : le suivi France est un canal BONUS qui ne doit pas
@@ -6180,20 +6271,24 @@ def _publish_france_live_rss(conn, candidates):
     return False
 
 def _post_all_platforms(conn, text, image_bytes, video_path, category):
-    """Publie un même contenu sur X (vidéo) + Facebook + Instagram, chaque plateforme isolée."""
+    """Publie sur X + Facebook + Instagram, chaque plateforme isolée.
+    Renvoie True si AU MOINS UNE plateforme a réellement publié — pour que l'appelant
+    ne consomme jamais un sujet resté totalement inédit (règle absolue)."""
+    _x = _fb = _ig = None
     try:
-        post_to_twitter(text, png_bytes=image_bytes, video_path=video_path)
+        _x = post_to_twitter(text, png_bytes=image_bytes, video_path=video_path)
     except Exception as e:
         print(f"  ❌ X isolé : {e}")
     try:
-        post_to_facebook(text, png_bytes=image_bytes, video_path=video_path)
+        _fb = post_to_facebook(text, png_bytes=image_bytes, video_path=video_path)
     except Exception as e:
         print(f"  ❌ Facebook isolé : {e}")
     try:
         if ig_allowed(conn) and image_bytes:
-            post_to_instagram(text, png_bytes=image_bytes)
+            _ig = post_to_instagram(text, png_bytes=image_bytes)
     except Exception as e:
         print(f"  ❌ Instagram isolé : {e}")
+    return (_x is not None) or (_fb is not None) or (_ig is not None)
 
 def load_cdm(path="cdm2026.txt"):
     """Lit le calendrier : lignes 'AAAA-MM-JJ|HH:MM|Équipe A|Équipe B|Phase'. # = commentaire."""
@@ -6228,17 +6323,22 @@ def publish_cdm_day(conn):
     body += "\n\n(Pulse)"
     png    = build_list_card("LES MATCHS DU JOUR", items, 1200, 675)
     png_ig = build_list_card("LES MATCHS DU JOUR", items, 1080, 1350)
+    _x = _fb = _ig = None
     try:
-        post_to_twitter(body, png)
+        _x = post_to_twitter(body, png)
     except Exception as e:
         print(f"  ❌ X isolé : {e}")
     try:
-        post_to_facebook(body, png)
+        _fb = post_to_facebook(body, png)
     except Exception as e:
         print(f"  ❌ Facebook isolé : {e}")
     if ig_allowed(conn):
-        post_to_instagram(build_ig_caption(body, ["coupedumonde2026"]), png_ig)
-        log_special(conn, "ig_post", [])
+        _ig = post_to_instagram(build_ig_caption(body, ["coupedumonde2026"]), png_ig)
+        if _ig:
+            log_special(conn, "ig_post", [])
+    if not (_x or _fb or _ig):
+        print("  🛑 Aucune plateforme n'a publié → les matchs du jour retenteront au prochain run")
+        return False
     log_special(conn, "cdm_jour", [today])
     print(f"  🏆 Matchs du jour publiés ({len(matchs)})")
     return True
@@ -6261,11 +6361,14 @@ def publish_cdm_prono(conn):
         adv = m["b"] if m["a"].lower() == "france" else m["a"]
         question = f"🔮 #CoupeDuMonde2026 | Votre prono pour {m['a']} – {m['b']} demain ?"
         options = ["Victoire France 🇫🇷", "Match nul", f"Victoire {adv}"[:25]]
-        post_poll(question, options)
+        _purl = post_poll(question, options)
         try:
             post_to_facebook(question + "\n\nDites-nous votre pronostic en commentaire 👇")
         except Exception as e:
             print(f"  ❌ Facebook isolé : {e}")
+        if not _purl:
+            print("  🛑 Le sondage n'est pas parti → le prono retentera au prochain run")
+            return False
         conn.execute("INSERT INTO special_log (kind, keywords) VALUES ('prono', ?)", (key,))
         conn.commit()
         print(f"  🔮 Prono publié : {m['a']} – {m['b']}")
@@ -6798,20 +6901,29 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
         _ah = (time.time() - _pts) / 3600
         _q = "frais ✅" if _ah <= 6 else ("récent" if _ah <= 24 else "ANCIEN ⚠️")
         print(f"  🕒 Âge de l'article : {_ah:.1f}h ({_q})")
-    add_recent(conn, item["title"])
+    # (add_recent est appelé plus bas, UNIQUEMENT si une plateforme a réellement publié)
     if _is_obituary(item.get("title", ""), item.get("summary", "")):
         cat = "hommage"   # décès → ton sobre, même en breaking (le label URGENT reste si urgent=True)
-    label_cat = "breaking" if urgent else cat
     _bn, _bl, _prev_heads = topic_history(conn, item.get("title", ""))
+    # 🚨→📰 ANTI-RÉCHAUFFÉ DU LABEL : "URGENT" est réservé à ce qui VIENT d'arriver.
+    #    Un résultat sportif dont l'événement date (article > 3h) ou dont le sujet a DÉJÀ été
+    #    couvert (suivi, défilé du lendemain…) redescend en label normal : l'info reste
+    #    publiable, mais on n'écrit plus "URGENT" sur ce que la planète sait depuis hier.
+    if urgent:
+        _age_ok = (item.get("pub_ts") is None) or ((time.time() - item["pub_ts"]) / 3600 <= 3)
+        if _is_sport_result(item.get("title", "")) and (_bn > 0 or not _age_ok):
+            print("  ⬇️ Label URGENT retiré (résultat déjà connu / sujet déjà couvert) → label normal")
+            urgent = False
+    label_cat = "breaking" if urgent else cat
     body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
         item["title"], item["summary"], item["source"], cat, url=item.get("url"),
         prev_angles=_prev_heads, pub_ts=item.get("pub_ts")
     )
     if not body:
-        print(f"  ⛔ Breaking abandonné (annonce périmée) : {item['title'][:50]}")
+        print(f"  ⛔ Breaking abandonné (génération vide ou annonce périmée) : {item['title'][:50]}")
         return None
     tweet_final = build_full_tweet(body, label_cat, country=pays)
-    photo = extract_photo(item["entry"]) if "entry" in item else None
+    photo = extract_photo(item["entry"]) if item.get("entry") else None
     raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, label_cat)
     if has_real:
         png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
@@ -6844,11 +6956,12 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
         post_stat_followup(conn, item, _xurl)   # 📊 2ᵉ tweet graphique si thème éco (isolé)
     except Exception as e:
         print(f"  ⚠️ Data card isolée : {e}")
+    _fb_id = None
     try:
-        post_to_facebook(tweet_final, png_bytes, vid)
+        _fb_id = post_to_facebook(tweet_final, png_bytes, vid)
     except Exception as e:
         print(f"  ❌ Facebook isolé : {e}")
-    png_ig = None
+    png_ig, _ig_id = None, None
     if has_real:
         png_ig, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                               article_url=item.get("url"), person=person, W=1080, H=1350,
@@ -6856,13 +6969,21 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
     if png_ig is None:
         print("  ⏸️ Instagram sauté (pas d'image, texte seul)")
     elif ig_allowed(conn):
-        post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
-        log_special(conn, "ig_post", [])
+        _ig_id = post_to_instagram(build_ig_caption(tweet_final, keywords), png_ig)
+        if _ig_id:
+            log_special(conn, "ig_post", [])
     else:
         print("  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)")
     if vid and os.path.exists(vid):
         import shutil as _sh
         _sh.rmtree(os.path.dirname(vid), ignore_errors=True)
+    # 🛡️ RÈGLE ABSOLUE : si AUCUNE plateforme n'a publié (X + FB + IG tous en échec), le sujet
+    #    n'est PAS consommé — ni marqué vu, ni mémorisé, ni compté. Il repassera au run suivant.
+    posted_ok = (_xurl is not None) or (_fb_id is not None) or (_ig_id is not None)
+    if not posted_ok:
+        print("  🛑 Aucune plateforme n'a publié → sujet NON consommé (repassera au prochain run)")
+        return None
+    add_recent(conn, item["title"])
     # Cadence : un VRAI breaking (urgent) NE réinitialise PAS le minuteur des news normales
     # (il est un bonus qui ne doit pas voler le créneau). Un suivi/buzz, lui, repousse la cadence.
     if bump_cadence:
@@ -6915,7 +7036,7 @@ def check_feeds(conn):
         print(f"  ⚠️ Récap du soir : {e}")
 
     # ── DÉCRYPTAGE QUOTIDIEN : carrousel Instagram + texte X/Facebook (1×/jour) ──
-    if not special_done_today(conn, "thread") and datetime.now().hour >= 9:
+    if not special_done_today(conn, "thread") and _paris_hour() >= 9:
         carousel = gen_carousel(conn)
         if carousel:
             # Texte X + Facebook (assemblé depuis le carrousel, sans 2e appel Claude).
@@ -6953,8 +7074,13 @@ def check_feeds(conn):
 
             # 🎬 Vidéo décryptage pour X/FB : les slides SONT la vidéo, texte qui s'écrit,
             # durée adaptée à la quantité de texte, slide d'abonnement en fin.
-            vid_thread = build_decrypt_video(cover_ig, carousel["slides"], carousel.get("sujet", ""),
-                                             bg_photo=raw_src)
+            # ⚠️ La vidéo est en 16:9 : on lui donne une couverture 16:9 NATIVE. Étirer la
+            #    couverture 4:5 d'Instagram déformait toute la première scène (visages écrasés).
+            cover_vid, _ = build_png(carousel["cover_title"][:75], "Pulse", "monde", None,
+                                     carousel["image_query"], W=VIDEO_W, H=VIDEO_H,
+                                     prefetched=(raw_src, has_real), headline_bottom=True, ss=1)
+            vid_thread = build_decrypt_video(cover_vid or cover_paysage, carousel["slides"],
+                                             carousel.get("sujet", ""), bg_photo=raw_src)
             url = None
             try:
                 url = post_to_twitter(xfb, cover_paysage, vid_thread)
@@ -6968,16 +7094,22 @@ def check_feeds(conn):
                 import shutil as _sh
                 _sh.rmtree(os.path.dirname(vid_thread), ignore_errors=True)
 
-            post_carousel_to_instagram(slides_png, build_ig_caption(body, carousel.get("keywords")))
-            log_special(conn, "ig_post", [])   # le carrousel compte dans l'espacement anti-blocage Instagram
-
             if url:
+                # Instagram UNIQUEMENT après un X réussi : sinon, un échec X ferait re-poster
+                # le carrousel Instagram à chaque nouvelle tentative (doublons visibles).
+                try:
+                    post_carousel_to_instagram(slides_png, build_ig_caption(body, carousel.get("keywords")))
+                    log_special(conn, "ig_post", [])   # espacement anti-blocage Instagram
+                except Exception as e:
+                    print(f"  ❌ Instagram isolé : {e}")
                 log_special(conn, "thread", carousel["keywords"])
                 print(f"  🎠 Décryptage du jour publié (carrousel Instagram) [{carousel['sujet']}]")
                 return
+            else:
+                print("  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)")
 
     # ── SONDAGE QUOTIDIEN (après-midi, 1×/jour) ──
-    if not special_done_today(conn, "poll") and datetime.now().hour >= 12:
+    if not special_done_today(conn, "poll") and _paris_hour() >= 12:
         poll = gen_poll(conn)
         if poll:
             url = post_poll(poll["question"], poll["options"])
@@ -7111,9 +7243,10 @@ def check_feeds(conn):
                     # Anti-spam assuré en amont : un suivi n'existe QUE si un NOUVEAU média a couvert
                     # le développement (jamais deux fois la même info).
                     try:
-                        publish_breaking(conn, hot, a.get("category", "breaking"), urgent=True, bump_cadence=False)
-                        print(f"  🚨➕ Suivi de BREAKING publié immédiatement : {hot['title'][:50]}")
-                        return
+                        if publish_breaking(conn, hot, a.get("category", "breaking"), urgent=True, bump_cadence=False) is not None:
+                            print(f"  🚨➕ Suivi de BREAKING publié immédiatement : {hot['title'][:50]}")
+                            return
+                        continue          # abandonné (annonce périmée) → sujet suivant
                     except Exception as e:
                         print(f"  ❌ Suivi breaking échoué : {e}")
                 elif score >= BUZZ_SCORE:
@@ -7122,9 +7255,10 @@ def check_feeds(conn):
                         print("  ⏸️  Info complémentaire mais cadence pas prête → pas maintenant")
                         continue
                     try:
-                        publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True)
-                        print(f"  ➕ Suivi publié (info complémentaire) : {hot['title'][:50]}")
-                        return
+                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True) is not None:
+                            print(f"  ➕ Suivi publié (info complémentaire) : {hot['title'][:50]}")
+                            return
+                        continue          # abandonné → sujet suivant
                     except Exception as e:
                         print(f"  ❌ Suivi échoué : {e}")
                 else:
@@ -7145,11 +7279,12 @@ def check_feeds(conn):
                     # VRAI breaking (attentat, catastrophe, décès marquant) → contourne la cadence,
                     # ne la réinitialise pas. Un décès garde le label sobre (géré dans publish_breaking).
                     try:
-                        publish_breaking(conn, hot, a.get("category", "breaking"),
-                                         urgent=not is_obit, bump_cadence=False)
-                        tag = "🕊️ Hommage" if is_obit else ("🚨🌊 ALERTE URGENTE" if urgent_alert else "🚨 BREAKING")
-                        print(f"  {tag} publié immédiatement (contourne la cadence) : {hot['title'][:55]}")
-                        return
+                        if publish_breaking(conn, hot, a.get("category", "breaking"),
+                                            urgent=not is_obit, bump_cadence=False) is not None:
+                            tag = "🕊️ Hommage" if is_obit else ("🚨🌊 ALERTE URGENTE" if urgent_alert else "🚨 BREAKING")
+                            print(f"  {tag} publié immédiatement (contourne la cadence) : {hot['title'][:55]}")
+                            return
+                        continue          # abandonné → sujet suivant
                     except Exception as e:
                         print(f"  ❌ Breaking échoué : {e}")
                 elif score >= BUZZ_SCORE and nb_today < DAILY_POST_SOFT:
@@ -7159,9 +7294,10 @@ def check_feeds(conn):
                         print(f"  ⏳ Sujet chaud (score {score}) mais cadence pas prête → on attend le bon moment")
                         continue
                     try:
-                        publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True)
-                        print(f"  ⚡ Sujet chaud publié (dans le rythme) : {hot['title'][:55]}")
-                        return
+                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True) is not None:
+                            print(f"  ⚡ Sujet chaud publié (dans le rythme) : {hot['title'][:55]}")
+                            return
+                        continue          # abandonné → sujet suivant
                     except Exception as e:
                         print(f"  ❌ Publication sujet chaud échouée : {e}")
                 else:
@@ -7310,6 +7446,7 @@ def check_feeds(conn):
         if not ts:
             return 0.0                      # date inconnue → ni bonus ni malus
         h = (_now_ts - ts) / 3600
+        if h <= 0.5: return 2.6              # moins de 30 min : l'actu vient de tomber
         if h <= 1:  return 2.0
         if h <= 3:  return 1.2
         if h <= 6:  return 0.5
@@ -7404,7 +7541,6 @@ def check_feeds(conn):
                 keywords       = item.get("keywords", [])
                 person         = item.get("person", "")
             else:
-                add_recent(conn, item["title"])
                 video = None
                 _hn, _hl, _prev_heads = topic_history(conn, item["title"])
                 body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
@@ -7412,7 +7548,7 @@ def check_feeds(conn):
                     prev_angles=_prev_heads, pub_ts=item.get("pub_ts")
                 )
                 if not body:
-                    print(f"  ⛔ Sujet abandonné (annonce périmée) : {item['title'][:50]}")
+                    print(f"  ⛔ Sujet abandonné (génération vide ou annonce périmée) : {item['title'][:50]}")
                     continue
                 tweet_final = build_full_tweet(body, cat, country=pays)
                 photo       = extract_photo(item["entry"])
@@ -7545,6 +7681,7 @@ def check_feeds(conn):
                 print(f"  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : {item['title'][:55]}")
                 time.sleep(2)
                 return
+            add_recent(conn, item["title"])   # mémoire anti-doublon : UNIQUEMENT après publication réelle
 
             # 🎮 GTA 6 = canal bonus : on logue pour le compteur (max 2/jour) mais on NE touche PAS
             # à mark_cat → il ne retarde pas le rythme des autres actus (comme le suivi France live).
