@@ -1716,6 +1716,35 @@ def extract_video_from_page(html, base_url=""):
         if src and _ok_mp4(src.group(1)):
             return _abs(src.group(1)), ""
 
+    # ── 4) Attributs LAZY-LOAD (data-src, data-video-src…) — les CMS chargent souvent la
+    #      vidéo en différé : l'URL MP4 est dans un attribut data-*, pas dans src. ──
+    for m in re.finditer(r'data-(?:video-)?(?:src|url|mp4|file)=["\']([^"\']+\.mp4[^"\']*)["\']', html, re.I):
+        if _ok_mp4(m.group(1)):
+            return _abs(m.group(1)), ""
+
+    # ── 5) SCRIPTS DE PLAYERS (Digiteka/Ultimedia, Brightcove, players maison) — la config
+    #      JS du lecteur contient les URLs MP4 par qualité. On prend la meilleure (720/1080),
+    #      toujours filtrée anti-régie. Gisement majeur de la presse française. ──
+    _candidates = []
+    for sc in re.findall(r'<script\b[^>]*>(.*?)</script>', html, re.I | re.S):
+        if ".mp4" not in sc:
+            continue
+        low_sc = sc[:400].lower()
+        if any(bad in low_sc for bad in ("doubleclick", "adsystem", "teads", "prebid")):
+            continue
+        for u in re.findall(r'["\'](https?://[^"\']+?\.mp4[^"\']*)["\']', sc.replace("\\/", "/")):
+            if _ok_mp4(u):
+                _candidates.append(u)
+    if _candidates:
+        def _quality(u):
+            lu = u.lower()
+            for q, w in (("2160", 5), ("1080", 4), ("720", 3), ("_hd", 3), ("480", 2), ("360", 1)):
+                if q in lu:
+                    return w
+            return 0
+        _candidates.sort(key=lambda u: (_quality(u), len(u)), reverse=True)
+        return _abs(_candidates[0]), ""
+
     return None, ""
 
 def fetch_article_video(article_url, max_mb=50):
@@ -1734,6 +1763,30 @@ def fetch_article_video(article_url, max_mb=50):
         print(f"  ⚠️ Page article illisible pour vidéo ({e})")
         return None, ""
     vurl, meta = extract_video_from_page(html, base_url=article_url)
+    # 🔁 Repli AMP : la version AMP d'un article expose souvent le MP4 en clair
+    #    (<amp-video src=…>) là où la page normale ne charge le player qu'en JS.
+    #    Une seule requête de plus, uniquement si la page normale n'a rien donné.
+    if not vurl:
+        amp = re.search(r'<link[^>]+rel=["\']amphtml["\'][^>]+href=["\']([^"\']+)["\']', html, re.I)
+        if not amp:
+            amp = re.search(r'<link[^>]+href=["\']([^"\']+)["\'][^>]+rel=["\']amphtml["\']', html, re.I)
+        if amp:
+            try:
+                req2 = urllib.request.Request(amp.group(1), headers=_BROWSER_HEADERS)
+                with urllib.request.urlopen(req2, timeout=12) as r2:
+                    raw2 = _read_capped(r2, cap=1_500_000)
+                    enc2 = (r2.headers.get("Content-Encoding") or "").lower()
+                html_amp = _decode_html_body(raw2, enc2)
+                # <amp-video src=…> puis les mêmes gisements que la page normale
+                m = re.search(r'<amp-video[^>]+src=["\']([^"\']+\.mp4[^"\']*)["\']', html_amp, re.I)
+                if m:
+                    vurl, meta = m.group(1), ""
+                else:
+                    vurl, meta = extract_video_from_page(html_amp, base_url=article_url)
+                if vurl:
+                    print("  🔁 Vidéo trouvée via la version AMP de l'article")
+            except Exception:
+                pass
     if not vurl:
         return None, ""
     path = fetch_video_file(vurl, max_mb=max_mb)   # vérifie signature MP4 + plafond taille
@@ -2848,7 +2901,16 @@ def fetch_wikipedia_onthisday():
             year, text = e.get("year"), e.get("text", "")
             pages = e.get("pages", [])
             if year and text and pages:
-                clean.append({"year": year, "text": text})
+                # 🖼️ Image de la page Wikipédia de l'événement (libre de droits) : la vraie
+                #    illustration d'époque, jamais une image de stock hors-sujet.
+                img = None
+                for pg in pages:
+                    src = (pg.get("originalimage") or {}).get("source") or \
+                          (pg.get("thumbnail") or {}).get("source")
+                    if src:
+                        img = src
+                        break
+                clean.append({"year": year, "text": text, "img": img})
         return clean
     except Exception as e:
         print(f"  ⚠️ Wikipedia: {e}")
@@ -3091,6 +3153,18 @@ Réponds en JSON UNIQUEMENT :
         "_gta6_level": level,
     }
 
+def _histoire_img(events, idx):
+    """Image Wikipédia de l'événement n° idx choisi par Claude.
+    ⚠️ AUCUN repli sur l'image d'un AUTRE événement : mieux vaut pas d'image
+    qu'une image hors-sujet (règle éditoriale absolue)."""
+    try:
+        i = int(idx)
+        if 0 <= i < len(events) and events[i].get("img"):
+            return events[i]["img"]
+    except (TypeError, ValueError):
+        pass
+    return None
+
 def gen_histoire_du_jour(conn):
     if "histoire" in cats_today(conn):
         return None
@@ -3101,10 +3175,13 @@ def gen_histoire_du_jour(conn):
     today      = now.strftime("%d %B")
     current_yr = now.year
 
-    # On pré-calcule "X ans" en Python pour éviter que Claude se trompe
+    # On pré-calcule "X ans" en Python pour éviter que Claude se trompe.
+    # Liste NUMÉROTÉE : Claude renvoie l'index de l'événement choisi → on récupère
+    # l'image Wikipédia de CET événement précis (raccord garanti).
+    events = events[:15]
     events_str = "\n".join(
-        f"- En {e['year']} (il y a {current_yr - e['year']} ans) : {e['text']}"
-        for e in events[:15]
+        f"{i}. En {e['year']} (il y a {current_yr - e['year']} ans) : {e['text']}"
+        for i, e in enumerate(events)
     )
 
     try:
@@ -3128,12 +3205,13 @@ REJETTE l'obscur, l'administratif, le « déjà vu mille fois sans angle neuf »
 - ⛔ RIGUEUR : n'invente aucun fait/date/chiffre. Utilise EXACTEMENT le nombre d'années donné (« il y a 57 ans » → écris 57, pas 56 ni 58).
 
 Format :
+- index : le NUMÉRO de l'événement choisi dans la liste ci-dessus (entier)
 - headline_court (max 75 chars)
 - image_query (5 mots en anglais)
 - body : le fait fort d'emblée, puis le contexte court. 1-2 hashtags pertinents max. Fini par « (Source : Wikipédia) »
 
 JSON :
-{{"headline_court":"...","image_query":"...","body":"..."}}
+{{"index":0,"headline_court":"...","image_query":"...","body":"..."}}
 OU
 {{"skip": true}}""", max_tokens=450)
 
@@ -3155,7 +3233,8 @@ OU
             "tweet":          build_full_tweet(body, "histoire"),
             "headline_court": _smart_truncate(result.get("headline_court", f"Éphéméride {today}"), 75),
             "image_query":    result.get("image_query", "history old"),
-            "photo_url":      None,
+            # 🖼️ Photo = l'image Wikipédia de l'événement CHOISI (index renvoyé par Claude).
+            "photo_url":      _histoire_img(events, result.get("index")),
             "keywords":       [],
         }
     except Exception as e:
@@ -4792,7 +4871,7 @@ VIDEO_MAX_DUR = 58.0          # < 60 s : la vidéo boucle automatiquement dans l
 # Les images sont calculées en 2× (3840×2160) puis réduites en 1920×1080 → texte très net.
 CARD_VIDEO_W, CARD_VIDEO_H = 1920, 1080
 CARD_VIDEO_SS = 2
-VIDEO_MIX_RATIO = 0.5         # part des actus publiées en vidéo animée (le reste en carte fixe)
+VIDEO_MIX_RATIO = 0.5         # alternance vidéo animée / carte fixe : le fil reste varié et naturel
 NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR = VIDEO_W, VIDEO_H, 7.5
 
 def _vf(px, bold=True, italic=False, serif=False):
