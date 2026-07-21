@@ -493,20 +493,31 @@ def _cadence_minutes(h):
         return 180, 300, "nuit (quasi-pause, le breaking passe toujours)"
     return 90, 150, "journée (base 1h30)"
 
+_CADENCE_DECISION = None   # décision de cadence du run courant (un seul tirage par run)
+
 def should_publish_now(conn, min_minutes=None, max_minutes=None):
+    # 🎲→1 UNE SEULE décision par run : sans mémoire, chaque appel retirait les dés —
+    #    un suivi refusé à 39 % puis une news acceptée 10 s plus tard sur le même tirage
+    #    rendait la cadence incohérente à l'intérieur d'un même run.
+    global _CADENCE_DECISION
+    if _CADENCE_DECISION is not None:
+        return _CADENCE_DECISION
     if min_minutes is None or max_minutes is None:
         h = _paris_hour()
         min_minutes, max_minutes, mode = _cadence_minutes(h)
         print(f"  🕐 {h}h (Paris) — rythme {mode} : {min_minutes}-{max_minutes} min")
     last = last_publish_time(conn)
     if not last:
+        _CADENCE_DECISION = True
         return True
     elapsed = (datetime.now() - last).total_seconds() / 60
     if elapsed < min_minutes:
         print(f"  ⏸️  Dernière publi il y a {int(elapsed)} min — attente.")
+        _CADENCE_DECISION = False
         return False
     if elapsed > max_minutes:
         print(f"  ✅ Dernière publi il y a {int(elapsed)} min — on publie.")
+        _CADENCE_DECISION = True
         return True
     proba = (elapsed - min_minutes) / (max_minutes - min_minutes)
     publish = random.random() < proba
@@ -514,6 +525,7 @@ def should_publish_now(conn, min_minutes=None, max_minutes=None):
         print(f"  🎲 {int(elapsed)} min (proba {int(proba*100)}%) → on publie.")
     else:
         print(f"  🎲 {int(elapsed)} min (proba {int(proba*100)}%) → on attend.")
+    _CADENCE_DECISION = publish
     return publish
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -3166,7 +3178,7 @@ def _histoire_img(events, idx):
     return None
 
 def gen_histoire_du_jour(conn):
-    if "histoire" in cats_today(conn):
+    if special_done_today(conn, "histoire") or "histoire" in cats_today(conn):
         return None
     events = fetch_wikipedia_onthisday()
     if not events: return None
@@ -6968,7 +6980,7 @@ def detect_breaking(conn, candidates, return_all=False):
         return None
     return ordered[0] if ordered else None
 
-def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
+def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates=None):
     """Publie vite une actu (X + Facebook + Instagram).
     urgent=True → label rouge 'Breaking'. urgent=False → label normal de la catégorie (buzz/insolite).
     bump_cadence : repousse-t-il le minuteur de cadence des news normales ? Par défaut, un vrai
@@ -7004,6 +7016,9 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None):
     tweet_final = build_full_tweet(body, label_cat, country=pays)
     photo = extract_photo(item["entry"]) if item.get("entry") else None
     raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, label_cat)
+    if not has_real:
+        # 🤝 sujet multi-médias par définition : l'image d'un article jumeau est presque toujours là
+        raw_src, has_real = _photo_secours_jumeau(item, candidates)
     if has_real:
         png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                                  article_url=item.get("url"), person=person, W=1080, H=1350,
@@ -7088,10 +7103,35 @@ def _strip_html(text):
     text = re.sub(r'\s+', ' ', text).strip()
     return text[:400]
 
+def _photo_secours_jumeau(item, candidates):
+    """🖼️🤝 L'article sélectionné n'a pas d'image exploitable (403, paywall, flux nu) ?
+    On tente celle d'un article JUMEAU : même sujet (≥2 mots saillants communs) chez un
+    AUTRE média. C'est la même actu, la photo reste donc parfaitement raccord.
+    Renvoie (raw_bytes, True) ou (None, False). Coût : 0 appel Claude."""
+    try:
+        sig = _sig_words(item.get("title", ""))
+        if len(sig) < 2:
+            return None, False
+        for c in candidates or []:
+            if c.get("url") == item.get("url"):
+                continue
+            if len(sig & _sig_words(c.get("title", ""))) < 2:
+                continue
+            # 1) miniature du flux RSS du jumeau (gratuit, jamais bloqué)
+            ph = extract_photo(c["entry"]) if c.get("entry") else None
+            raw, ok = get_best_image(c.get("url"), ph, None, None, "france")
+            if ok and raw:
+                print(f"  🖼️🤝 Image récupérée chez un média jumeau ({c.get('source','?')}) — même sujet")
+                return raw, True
+        return None, False
+    except Exception:
+        return None, False
+
 def check_feeds(conn):
-    global _META_CONN, _CLAUDE_CALLS
+    global _META_CONN, _CLAUDE_CALLS, _CADENCE_DECISION
     _META_CONN = conn
     _CLAUDE_CALLS = 0
+    _CADENCE_DECISION = None
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
 
     # ── MODE COUPE DU MONDE : matchs du jour (matin) + prono la veille des matchs de la France ──
@@ -7322,19 +7362,18 @@ def check_feeds(conn):
                     # Anti-spam assuré en amont : un suivi n'existe QUE si un NOUVEAU média a couvert
                     # le développement (jamais deux fois la même info).
                     try:
-                        if publish_breaking(conn, hot, a.get("category", "breaking"), urgent=True, bump_cadence=False) is not None:
+                        if publish_breaking(conn, hot, a.get("category", "breaking"), urgent=True, bump_cadence=False, candidates=candidates) is not None:
                             print(f"  🚨➕ Suivi de BREAKING publié immédiatement : {hot['title'][:50]}")
                             return
                         continue          # abandonné (annonce périmée) → sujet suivant
                     except Exception as e:
                         print(f"  ❌ Suivi breaking échoué : {e}")
                 elif score >= BUZZ_SCORE:
-                    # Suivi d'un sujet chaud NON-breaking : soumis à la cadence (anti-spam) + la repousse.
-                    if not should_publish_now(conn):
-                        print("  ⏸️  Info complémentaire mais cadence pas prête → pas maintenant")
-                        continue
+                    # Suivi d'un sujet chaud : CANAL BONUS — contourne la cadence et ne la
+                    # réinitialise pas (les news normales ne sont jamais retardées par lui).
+                    # Anti-rafale garanti par breaking_recent (1 fast-track / 25 min).
                     try:
-                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True) is not None:
+                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=False, candidates=candidates) is not None:
                             print(f"  ➕ Suivi publié (info complémentaire) : {hot['title'][:50]}")
                             return
                         continue          # abandonné → sujet suivant
@@ -7359,7 +7398,7 @@ def check_feeds(conn):
                     # ne la réinitialise pas. Un décès garde le label sobre (géré dans publish_breaking).
                     try:
                         if publish_breaking(conn, hot, a.get("category", "breaking"),
-                                            urgent=not is_obit, bump_cadence=False) is not None:
+                                            urgent=not is_obit, bump_cadence=False, candidates=candidates) is not None:
                             tag = "🕊️ Hommage" if is_obit else ("🚨🌊 ALERTE URGENTE" if urgent_alert else "🚨 BREAKING")
                             print(f"  {tag} publié immédiatement (contourne la cadence) : {hot['title'][:55]}")
                             return
@@ -7367,13 +7406,10 @@ def check_feeds(conn):
                     except Exception as e:
                         print(f"  ❌ Breaking échoué : {e}")
                 elif score >= BUZZ_SCORE and nb_today < DAILY_POST_SOFT:
-                    # BUZZ (sujet chaud mais PAS urgent) → soumis à la CADENCE comme une news normale,
-                    # pour ne pas inonder le fil. S'il n'est pas l'heure, on le laisse pour plus tard.
-                    if not should_publish_now(conn):
-                        print(f"  ⏳ Sujet chaud (score {score}) mais cadence pas prête → on attend le bon moment")
-                        continue
+                    # BUZZ : CANAL BONUS — contourne la cadence, ne la réinitialise pas.
+                    # Anti-rafale garanti par breaking_recent (1 fast-track / 25 min).
                     try:
-                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True) is not None:
+                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=False, candidates=candidates) is not None:
                             print(f"  ⚡ Sujet chaud publié (dans le rythme) : {hot['title'][:55]}")
                             return
                         continue          # abandonné → sujet suivant
@@ -7403,8 +7439,11 @@ def check_feeds(conn):
     # 2 posts/match). Tout le reste — y compris les résultats sportifs d'autres équipes —
     # respecte la cadence normale comme n'importe quelle actu, pour ne pas monopoliser le rythme
     # de publication pendant les périodes riches en sport (ex: Coupe du Monde).
-    if not should_publish_now(conn):
-        return
+    # 🎯 La cadence ne gate que les NEWS NORMALES. Les canaux bonus (histoire, GTA 6)
+    #    sont tentés à chaque run — ils ne prennent pas le créneau des news et ne le décalent pas.
+    cadence_ok = should_publish_now(conn)
+    if not cadence_ok:
+        print("  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés")
 
     if not candidates:
         print("  → Aucun article nouveau.")
@@ -7446,7 +7485,7 @@ def check_feeds(conn):
 
     scored      = []
     to_analyse  = []
-    for c in candidates:
+    for c in (candidates if cadence_ok else []):
         cached = get_cached_analysis(conn, c["url"])
         if cached:
             a, score = cached, int(cached.get("score", 0))
@@ -7638,6 +7677,9 @@ def check_feeds(conn):
 
             # Image paysage (X + Facebook) — on récupère aussi l'image source pour réutilisation
             raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, cat)
+            if not has_real:
+                # 🤝 le site bloque (403/paywall) ou le flux est nu → même sujet chez un autre média
+                raw_src, has_real = _photo_secours_jumeau(item, candidates)
 
             # 🏆 Si c'est un RÉSULTAT sportif : carte de victoire (photo floutée + score)
             victory = None
@@ -7773,6 +7815,23 @@ def check_feeds(conn):
                 time.sleep(4)
                 continue
 
+            # 🕊️📜 CANAUX BONUS (histoire, hommage) : ils NE réinitialisent PAS la cadence
+            #    (pas de mark_cat) → ils ne volent jamais le créneau des news normales.
+            if cat == "histoire":
+                log_special(conn, "histoire", [])
+                if item.get("url"):
+                    mark_seen(conn, item["url"], item["title"])
+                print(f"  📜 Histoire du jour publiée (canal bonus, cadence intacte)")
+                time.sleep(4)
+                continue
+            if cat == "hommage":
+                log_keywords(conn, keywords)
+                log_topic(conn, item.get("title", ""), keywords)
+                if item.get("url"):
+                    mark_seen(conn, item["url"], item["title"])
+                print(f"  🕊️ Hommage publié (canal bonus, cadence intacte) : {item['title'][:50]}")
+                time.sleep(4)
+                continue
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
             log_topic(conn, item.get("title", ""), keywords)   # mémoire par sujet (suivi éditorial)
