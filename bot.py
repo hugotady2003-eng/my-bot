@@ -89,6 +89,8 @@ SCORE_MINIMUM = 6
 MAX_PAR_PASSE = 1
 BREAKING_SCORE = 9        # score minimum (analyse Claude) pour qu'une actu soit publiée en "breaking"
 BUZZ_SCORE = 7            # score minimum pour un fast-track "buzz" (multi-sources) — label normal, pas URGENT
+BUZZ_GAP_MIN = 75         # espacement MINIMUM entre deux buzz non-urgents, le JOUR
+BUZZ_GAP_NIGHT_MIN = 150  # la nuit, on espace deux fois plus (cohérent avec la cadence nocturne)
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
 BREAKING_GAP_MIN = 25     # délai mini (minutes) entre deux publications breaking (anti-spam)
 STALE_BREAKING_HOURS = 6  # au-delà, un article n'est plus assez frais pour un "breaking" (anti-réchauffé)
@@ -6693,6 +6695,17 @@ def breaking_recent(conn, minutes=BREAKING_GAP_MIN):
         (f"-{minutes} minutes",)
     ).fetchone() is not None
 
+def buzz_recent(conn):
+    """🚰 Frein du canal BUZZ (score 7-8, non urgent) : hors cadence des news, mais jamais
+    plus d'un buzz par fenêtre (75 min le jour, 150 la nuit), ni juste après un breaking.
+    Les HOMMAGES ne comptent pas ici : un décès n'arme jamais ce frein."""
+    _h = _paris_hour()
+    _gap = BUZZ_GAP_MIN if 7 <= _h < 23 else BUZZ_GAP_NIGHT_MIN
+    if conn.execute("SELECT 1 FROM special_log WHERE kind='buzz' AND sent_at > datetime('now', ?)",
+                    (f"-{_gap} minutes",)).fetchone() is not None:
+        return True
+    return breaking_recent(conn)
+
 # ── PRÉ-CLASSEMENT GRATUIT (Python) : choisit les candidats qui méritent l'analyse Claude ──
 PRERANK_HOT = [
     (5, r"coupe du monde|mondial 2026|équipe de france|les bleus|mbapp|\bpsg\b|\bom\b|wembanyama|roland.garros|tour de france|ligue des champions|huitième de finale|quart de finale|demi-finale|match d'ouverture"),
@@ -7088,7 +7101,19 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
         topic_echo_mark_alerted(conn, item["_topic_canon"], item.get("_echo_n", BREAKING_SOURCES))
     log_keywords(conn, keywords)
     log_topic(conn, item.get("title", ""), keywords)   # mémoire par sujet (suivi éditorial)
-    log_special(conn, "breaking", keywords)   # partage l'anti-spam (1 fast-track / 25 min)
+    # 🏷️ Un canal = un registre : l'hommage n'arme jamais le frein des buzz,
+    #    et chaque canal garde son propre anti-rafale.
+    _kind = "hommage" if label_cat == "hommage" else ("breaking" if urgent else "buzz")
+    log_special(conn, _kind, keywords)
+    if not bump_cadence:
+        # 🧮 Toute publication de ce chemin (urgent, buzz, hommage) COMPTE dans le plafond
+        #    quotidien (post_log), mais ne touche NI le minuteur de cadence (category_log)
+        #    NI last_publish.txt. (Si bump_cadence est vrai, mark_cat l'a déjà comptée.)
+        try:
+            conn.execute("INSERT INTO post_log (category) VALUES (?)", (label_cat,))
+            conn.commit()
+        except Exception:
+            pass
     if item.get("url"):
         mark_seen(conn, item["url"], item["title"])
     return keywords
@@ -7311,9 +7336,9 @@ def check_feeds(conn):
     hot_topics = detect_breaking(conn, candidates, return_all=True)
     if hot_topics and not breaking_recent(conn):
         for hot in hot_topics:
-            if nb_today >= DAILY_POST_CAP:
-                print(f"  🛑 Plafond quotidien atteint ({nb_today}) — sujets chauds ignorés.")
-                break
+            if nb_today >= DAILY_POST_CAP and not _is_urgent_alert(hot.get("title", ""), hot.get("summary", "")):
+                print(f"  🛑 Plafond quotidien atteint ({nb_today}) — sujet chaud ignoré (une ALERTE VITALE passerait).")
+                continue
             # 🕒 GARDE-FOU FRAÎCHEUR : un article dont la publication remonte à plus de
             # STALE_BREAKING_HOURS n'est plus assez frais pour un "breaking" (pas de réchauffé).
             # Il reste éligible à une publication normale plus bas. pub_ts absent → on ne bloque pas.
@@ -7370,8 +7395,10 @@ def check_feeds(conn):
                         print(f"  ❌ Suivi breaking échoué : {e}")
                 elif score >= BUZZ_SCORE:
                     # Suivi d'un sujet chaud : CANAL BONUS — contourne la cadence et ne la
-                    # réinitialise pas (les news normales ne sont jamais retardées par lui).
-                    # Anti-rafale garanti par breaking_recent (1 fast-track / 25 min).
+                    # réinitialise pas. Frein propre : 1 buzz max / BUZZ_GAP_MIN.
+                    if buzz_recent(conn):
+                        print(f"  🚰 Buzz déjà publié il y a moins de {BUZZ_GAP_MIN} min → on espace")
+                        continue
                     try:
                         if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=False, candidates=candidates) is not None:
                             print(f"  ➕ Suivi publié (info complémentaire) : {hot['title'][:50]}")
@@ -7407,7 +7434,10 @@ def check_feeds(conn):
                         print(f"  ❌ Breaking échoué : {e}")
                 elif score >= BUZZ_SCORE and nb_today < DAILY_POST_SOFT:
                     # BUZZ : CANAL BONUS — contourne la cadence, ne la réinitialise pas.
-                    # Anti-rafale garanti par breaking_recent (1 fast-track / 25 min).
+                    # Frein propre : 1 buzz max / BUZZ_GAP_MIN.
+                    if buzz_recent(conn):
+                        print(f"  🚰 Buzz déjà publié il y a moins de {BUZZ_GAP_MIN} min → on espace")
+                        continue
                     try:
                         if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=False, candidates=candidates) is not None:
                             print(f"  ⚡ Sujet chaud publié (dans le rythme) : {hot['title'][:55]}")
