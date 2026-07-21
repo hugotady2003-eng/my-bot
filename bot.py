@@ -622,6 +622,7 @@ score = max(A, B). Une info sans émotion mais très utile monte haut par B. Une
 - ⚠️ EXCEPTION : une DÉCISION POLITIQUE/RÉGLEMENTAIRE soudaine et radicale sur une techno grand public (interdiction, suspension, blocage, censure d'un service ou d'une IA connue type ChatGPT/Claude/TikTok) n'est PAS du B2B banal → score 7-8. C'est un coup de tonnerre qui fait réagir (ex : "les États-Unis interdisent tel modèle d'IA hors de leur territoire" = 7).
 - FUTUR potentiel ou PROCESSUS technique ("pourrait", "envisage", "d'ici 20XX", négociations, quotas, consultations, projets de loi sans vote) → MAX 5. ⚠️ EXCEPTION : si le changement est ACTÉ (voté, publié, décrété) et touche DIRECTEMENT la vie, l'argent, la santé ou les droits du lecteur, note-le sur son IMPACT (6-8), même s'il s'applique plus tard.
 - Angle ÉDITORIAL (revue de presse, "vu de l'étranger", tribune, portrait, décryptage d'un autre média) → MAX 5 : on veut le FAIT, pas le commentaire du fait.
+- CONSEIL PRATIQUE ou MODE D'EMPLOI → MAX 3, ce n'est PAS de l'actualité : comment arroser son potager, entretenir sa voiture, économiser sur ses courses, bien dormir, les astuces de rangement, les gestes à adopter, les erreurs à éviter, les recettes, le bien-être, le jardinage, la déco. Aucun fait nouveau n'est annoncé : rien ne s'est produit. (Ex : "bien arroser son potager face aux étés plus chauds" = 2.)
 - 🚫 CONDITION COMMUNE À TOUTES CES EXCEPTIONS : l'article doit LIVRER l'information (chiffres, montants, dates, conditions, décision précise). Un titre-appât qui promet sans donner ("ce qui va changer", "on vous dit tout", "voici pourquoi", "la raison est surprenante") reste MAX 4 : sans les faits, on ne peut pas en écrire un tweet honnête.
 
 🌍 INTERNATIONAL — filtre SÉVÈRE : une actu étrangère ne parle aux Français que si elle est ÉNORME.
@@ -998,8 +999,15 @@ def _fact_hardfix(body, source_text):
     return body
 
 TEASER_RX = re.compile(
-    r"découvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)|"
-    r"on vous (dit|explique) tout|vous n'allez pas (le )?croire|"
+    r"\bdécouvrez\b|"                       # à l'impératif, c'est TOUJOURS un appât à clic
+    r"découvrir\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)|"
+    r"on vous (dit|explique|donne|livre)\s+(tout|comment|pourquoi|les)|"
+    r"vous n'allez pas (le )?croire|"
+    r"(voici|les)\s+(les\s+)?(règles d'or|conseils|astuces|secrets|clés|bons gestes|bonnes pratiques)|"
+    r"\b(nos|mes|leurs)\s+(conseils|astuces|recettes|solutions)\b|"
+    r"voici comment\b|comment (bien|faire|s'y prendre|éviter|choisir|entretenir)\b|"
+    r"\b(le|notre)\s+guide\b|mode d'emploi\b|"
+    r"tout ce qu'il faut savoir|ce qu'il faut retenir avant|"
     r"la (réponse|raison|vérité|suite)\s+(va|risque de|pourrait)\s+vous|"
     r"cliquez\s+(ici|pour)|"
     r"(voici\s+)?pourquoi\s*\.\.\.|"
@@ -3572,7 +3580,7 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
             return None
     try:
         print(f"  🎬 Génération vidéo décryptage ({len(slides_data)} slides)...")
-        W, H, FPS = PORTRAIT_W, PORTRAIT_H, 18
+        W, H, FPS = VIDEO_W, VIDEO_H, 18
         XFADE = 0.45
         frames_fade = int(FPS * XFADE)
         total_n = len(slides_data) + 1   # pastilles : cover = 1/N, slides = 2..N
@@ -4700,11 +4708,12 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1080, H=1350):
 # VIDÉOS ANIMÉES (motion design Pulse) — 0 appel Claude, rendu local + ffmpeg
 # ═══════════════════════════════════════════════════════════════════════════
 VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR = 1280, 720, 20, 6.5
-# 📱 TOUTES les vidéos Pulse sont en PORTRAIT 9:16 (1080×1920).
-# X n'accepte QUE trois ratios vidéo (16:9, 1:1, 9:16) et ajoute des bandes noires aux autres :
-# le 4:5 était donc letterboxé. Le 9:16 est aussi le seul format lu en PLEIN ÉCRAN dans le
-# lecteur immersif de X (onglet Vidéo), ce qui maximise les impressions du fil principal.
-PORTRAIT_W, PORTRAIT_H = 1080, 1920
+# 🎬 TOUTES les vidéos Pulse partagent le MÊME format : 16:9 (1920×1080), comme la carte d'actu.
+# X n'accepte que trois ratios (16:9, 1:1, 9:16) et ajoute des bandes noires aux autres.
+# Le 16:9 est le format du fil, lisible sans plein écran — cohérence sur hommage,
+# décryptage, victoire sportive et actualité.
+VIDEO_W, VIDEO_H = 1920, 1080
+PORTRAIT_W, PORTRAIT_H = VIDEO_W, VIDEO_H     # alias historique
 # ⚠️ Zone basse réservée à l'interface de X en lecture immersive (texte du post + boutons) :
 # ~400 px sur 1920 → aucun contenu critique (titre, source) ne doit y descendre.
 VIDEO_SAFE_BOTTOM = 0.21
@@ -4714,7 +4723,7 @@ VIDEO_MAX_DUR = 58.0          # < 60 s : la vidéo boucle automatiquement dans l
 CARD_VIDEO_W, CARD_VIDEO_H = 1920, 1080
 CARD_VIDEO_SS = 2
 VIDEO_MIX_RATIO = 0.5         # part des actus publiées en vidéo animée (le reste en carte fixe)
-NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR = PORTRAIT_W, PORTRAIT_H, 7.5
+NEWS_VIDEO_W, NEWS_VIDEO_H, NEWS_VIDEO_DUR = VIDEO_W, VIDEO_H, 7.5
 
 def _vf(px, bold=True, italic=False, serif=False):
     if serif:
@@ -5074,7 +5083,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             return None
     try:
         print(f"  🎬 Génération vidéo ({kind})...")
-        W, H, FPS, DUR = PORTRAIT_W, PORTRAIT_H, VIDEO_FPS, VIDEO_DUR   # portrait 4:5 pour le fil X
+        W, H, FPS, DUR = VIDEO_W, VIDEO_H, VIDEO_FPS, VIDEO_DUR   # 16:9, comme la carte d'actu
         if kind == "news":
             DUR = NEWS_VIDEO_DUR      # un peu plus long : le titre s'écrit mot par mot
         N = int(FPS * DUR)
@@ -5205,7 +5214,8 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
             pass  # construit plus bas une fois HLINES/LH connus
 
         # ── zones texte (anti-collision : tout est ancré AU-DESSUS du pied de page) ──
-        FOOTER_Y = H - int(H * VIDEO_SAFE_BOTTOM)   # source/date, au-dessus de l'interface X
+        _safe = VIDEO_SAFE_BOTTOM if H > W else 0.085   # zone d'interface : verticale uniquement
+        FOOTER_Y = H - int(H * _safe)             # source/date
         tmpd = ImageDraw.Draw(Image.new("RGB", (8, 8)))
         HFONT, HLINES, LH, HY0 = None, [], 0, 0
         if kind == "news":
@@ -6390,11 +6400,13 @@ def topic_history(conn, title, min_overlap=2):
     sig = _topic_sig_words(title)
     if not sig:
         return 0, None, []
-    today = datetime.now().strftime("%Y-%m-%d")
+    # ⏱️ Fenêtre GLISSANTE de 24 h, et non le jour calendaire : sinon, à minuit, le bot oublie
+    #    d'un coup ce qu'il vient de publier et le plafond anti-répétition se réinitialise.
+    depuis = (datetime.now() - timedelta(hours=24)).strftime("%Y-%m-%d %H:%M:%S")
     try:
         rows = conn.execute(
-            "SELECT topic_sig, headline, sent_at FROM topic_memory WHERE sent_at LIKE ?",
-            (f"{today}%",)
+            "SELECT topic_sig, headline, sent_at FROM topic_memory WHERE sent_at >= ?",
+            (depuis,)
         ).fetchall()
     except Exception:
         return 0, None, []
