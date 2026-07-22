@@ -297,6 +297,13 @@ def init_db():
     conn.execute("""CREATE TABLE IF NOT EXISTS daily_cache (
         key TEXT PRIMARY KEY, payload TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+    # 🖼️ Articles publiés aujourd'hui (titre + url + catégorie) : sert à illustrer le récap
+    #    du soir avec une vraie image liée à chaque actu. Purgé après 2 jours.
+    conn.execute("""CREATE TABLE IF NOT EXISTS recap_srcs (
+        title TEXT, url TEXT, category TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+    conn.commit()
+    conn.execute("DELETE FROM recap_srcs WHERE created_at < datetime('now', '-2 days')")
     conn.commit()
     conn.execute("DELETE FROM daily_cache WHERE created_at < datetime('now', '-2 days')")
     # 💰 Cache d'analyse : gardé 45 JOURS (aligné sur `seen`). Le score/la catégorie d'un article
@@ -316,6 +323,17 @@ def init_db():
 def is_seen(conn, url):
     h = hashlib.md5(url.encode()).hexdigest()
     return conn.execute("SELECT 1 FROM seen WHERE hash=?", (h,)).fetchone() is not None
+
+def remember_recap_src(conn, title, url, category):
+    """Mémorise un article publié aujourd'hui pour pouvoir illustrer le récap du soir."""
+    if not url:
+        return
+    try:
+        conn.execute("INSERT INTO recap_srcs (title, url, category) VALUES (?,?,?)",
+                     (title or "", url, (category or "france")))
+        conn.commit()
+    except Exception:
+        pass
 
 def mark_seen(conn, url, title):
     h = hashlib.md5(url.encode()).hexdigest()
@@ -2419,8 +2437,14 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             ft      = font(chosen_size)
             line_h  = int(chosen_size * 1.14)
             total_h = len(chosen_lines) * line_h
-            center_y = int(H * 0.66)
-            ty0 = center_y - total_h // 2
+            # 📐 Le bloc de titre est ANCRÉ PAR LE BAS, juste au-dessus de la source/date
+            #    (le pied est à H*0.923). Ainsi la dernière ligne ne chevauche jamais le pied,
+            #    quel que soit le nombre de lignes, et le titre reste toujours en bas de l'image.
+            _foot_y = int(H - H * 0.077)             # même repère que la source/date
+            _title_bottom = _foot_y - int(H * 0.035)  # marge de sécurité au-dessus du pied
+            ty0 = _title_bottom - total_h
+            # garde-fou haut : ne pas remonter au point de manger la moitié de l'image
+            ty0 = max(ty0, int(H * 0.30))
 
             # ✍️ Animation : la mise en page est calculée sur le titre COMPLET (rien ne bouge),
             #    on n'affiche que les `reveal` premiers mots. reveal = 1.0 → carte normale.
@@ -3069,13 +3093,17 @@ def fetch_wikipedia_onthisday():
                 # 🖼️ Image de la page Wikipédia de l'événement (libre de droits) : la vraie
                 #    illustration d'époque, jamais une image de stock hors-sujet.
                 img = None
+                titre_page = None
                 for pg in pages:
                     src = (pg.get("originalimage") or {}).get("source") or \
                           (pg.get("thumbnail") or {}).get("source")
-                    if src:
+                    if src and img is None:
                         img = src
+                    if titre_page is None:
+                        titre_page = pg.get("normalizedtitle") or pg.get("title")
+                    if img:
                         break
-                clean.append({"year": year, "text": text, "img": img})
+                clean.append({"year": year, "text": text, "img": img, "page": titre_page})
         return clean
     except Exception as e:
         print(f"  ⚠️ Wikipedia: {e}")
@@ -3318,14 +3346,39 @@ Réponds en JSON UNIQUEMENT :
         "_gta6_level": level,
     }
 
+def _wiki_page_image(page_title):
+    """Vignette de la page Wikipédia `page_title` via l'API REST summary.
+    Beaucoup d'événements 'onthisday' n'embarquent pas d'image, alors que leur page
+    en a une. Renvoie une URL ou None. Jamais d'erreur."""
+    if not page_title:
+        return None
+    try:
+        import urllib.parse
+        t = urllib.parse.quote(page_title.replace(" ", "_"))
+        url = f"https://fr.wikipedia.org/api/rest_v1/page/summary/{t}"
+        req = urllib.request.Request(url, headers={"User-Agent": "PulseBot/1.0"})
+        with urllib.request.urlopen(req, timeout=8) as r:
+            data = json.loads(r.read())
+        return (data.get("originalimage") or {}).get("source") \
+            or (data.get("thumbnail") or {}).get("source")
+    except Exception:
+        return None
+
+
 def _histoire_img(events, idx):
-    """Image Wikipédia de l'événement n° idx choisi par Claude.
-    ⚠️ AUCUN repli sur l'image d'un AUTRE événement : mieux vaut pas d'image
-    qu'une image hors-sujet (règle éditoriale absolue)."""
+    """Image de l'événement n° idx choisi par Claude.
+    ① image fournie par le flux onthisday, sinon ② image de la PAGE Wikipédia liée.
+    ⚠️ JAMAIS l'image d'un AUTRE événement : mieux vaut pas d'image qu'un hors-sujet."""
     try:
         i = int(idx)
-        if 0 <= i < len(events) and events[i].get("img"):
-            return events[i]["img"]
+        if 0 <= i < len(events):
+            ev = events[i]
+            if ev.get("img"):
+                return ev["img"]
+            # repli RACCORD : la vignette de la page Wikipédia de CET événement précis
+            img = _wiki_page_image(ev.get("page"))
+            if img:
+                return img
     except (TypeError, ValueError):
         pass
     return None
@@ -3345,7 +3398,7 @@ def gen_histoire_du_jour(conn):
     # l'image Wikipédia de CET événement précis (raccord garanti).
     events = events[:15]
     events_str = "\n".join(
-        f"{i}. En {e['year']} (il y a {current_yr - e['year']} ans) : {e['text']}"
+        f"{i}. En {e['year']} (il y a {current_yr - e['year']} ans){' 🖼️' if e.get('img') or e.get('page') else ''} : {e['text']}"
         for i, e in enumerate(events)
     )
 
@@ -3361,6 +3414,7 @@ Aujourd'hui nous sommes le {today} {current_yr}. Voici les événements historiq
 2. OU un événement MONDIALEMENT connu ET marquant (11-Septembre, Apollo 11, chute du Mur, D-Day…), s'il a un angle fort.
 3. OU une anecdote / un détail fou que peu de gens connaissent.
 REJETTE l'obscur, l'administratif, le « déjà vu mille fois sans angle neuf ».
+À FORCE ÉGALE, préfère un événement marqué 🖼️ (il a une illustration d'époque) — mais ne sacrifie JAMAIS la force du sujet juste pour l'image.
 ⚠️ SOIS TRÈS EXIGEANT : si le jour n'offre RIEN de vraiment marquant ou surprenant, réponds {{"skip": true}}. Mieux vaut NE RIEN publier qu'un éphéméride banal — c'est un choix assumé, pas un échec.
 
 ÉTAPE 2 — ÉCRIS UN TWEET COURT, FACTUEL, PERCUTANT (registre sobre, PAS une dissertation) :
@@ -6018,6 +6072,206 @@ def _gradient_text_layer(text, font, colors, pad=8):
     except Exception:
         return None
 
+def _hex_rgb(h):
+    """'#rrggbb' → (r, g, b). Tolérant : gris clair par défaut."""
+    try:
+        h = h.lstrip("#")
+        return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16))
+    except Exception:
+        return (200, 200, 210)
+
+
+def _recap_thumb(raw_bytes, tw, th, radius_left=0):
+    """Vignette recadrée (cover, centrée sur le visage si présent) pour une carte récap.
+    radius_left = rayon des coins GAUCHE (la vignette est collée au bord gauche de la carte,
+    coins droits carrés). Renvoie une image RGBA, ou None."""
+    try:
+        import io as _io
+        photo = Image.open(_io.BytesIO(raw_bytes)).convert("RGB")
+        sw, sh = photo.size
+        scale = max(tw / sw, th / sh)
+        nw, nh = int(sw * scale + 0.5), int(sh * scale + 0.5)
+        ph = photo.resize((nw, nh), Image.LANCZOS)
+        face = None
+        try:
+            face = detect_face_center(ph)
+        except Exception:
+            face = None
+        if face:
+            fx, fy = face
+            left = int(fx - tw / 2); top = int(fy - th / 2)
+        else:
+            left = (nw - tw) // 2; top = int((nh - th) * 0.32)
+        left = max(0, min(left, nw - tw)); top = max(0, min(top, nh - th))
+        crop = ph.crop((left, top, left + tw, top + th)).convert("RGBA")
+        if radius_left > 0:
+            m = Image.new("L", (tw, th), 0)
+            md = ImageDraw.Draw(m)
+            md.rounded_rectangle([0, 0, tw - 1, th - 1], radius=radius_left, fill=255)
+            md.rectangle([tw // 2, 0, tw - 1, th - 1], fill=255)   # côté droit carré
+            crop.putalpha(m)
+        return crop
+    except Exception:
+        return None
+
+
+def build_recap_card(items, W=1080, H=1350):
+    """🌙 Récap du jour, format maquette : cartes en VERRE DÉPOLI, chacune avec une VIGNETTE
+    IMAGE liée à l'actu, un numéro, une barre + un badge de catégorie, et le titre.
+    items = [(emoji, texte, categorie, raw_image_bytes_ou_None), ...] (3 à 6).
+    Repli intégral : si le rendu échoue, on retombe sur build_list_card (jamais d'échec)."""
+    try:
+        import io as _io
+        _ss = _IMG_SS
+        Wf, Hf = int(W * _ss), int(H * _ss)
+        M = 48 * _ss                                   # marge de sécurité constante
+        WHITE, DIM, ROSE = (255, 255, 255), (214, 210, 232), (247, 71, 212)
+        def f(px, bold=True):
+            p = f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"
+            return ImageFont.truetype(p, max(8, int(px)))
+
+        img = _liquid_glass_bg(Wf, Hf) or Image.new("RGBA", (Wf, Hf), (26, 16, 48, 255))
+        d = ImageDraw.Draw(img)
+
+        # ── EN-TÊTE : logo Pulse + date ──
+        _pulse_brand(img, d, Wf, Hf); d = ImageDraw.Draw(img)
+        d.text((Wf - M, int(Hf * 0.052)), _date_fr().upper(), font=f(Wf * 0.020), fill=DIM, anchor="rm")
+
+        # ── TITRE : surtitre + « Ce qu'il faut retenir » + barre dégradée ──
+        d.text((M, int(Hf * 0.130)), "L'ESSENTIEL DU JOUR", font=f(Wf * 0.021), fill=(236, 150, 236))
+        tf = f(Wf * 0.058)
+        ty = int(Hf * 0.158)
+        _tl = _gradient_text_layer("Ce qu'il faut retenir", tf, [(255, 255, 255), (236, 180, 255)])
+        if _tl is not None:
+            img.alpha_composite(_tl, (M, ty)); tw_, th_ = _tl.width, _tl.height
+        else:
+            d.text((M, ty), "Ce qu'il faut retenir", font=tf, fill=WHITE)
+            bb = d.textbbox((0, 0), "Ce qu'il faut retenir", font=tf); tw_, th_ = bb[2], bb[3]
+        d = ImageDraw.Draw(img)
+        try:
+            import numpy as np
+            bw, bh = int(Wf * 0.30), max(5, int(Hf * 0.006))
+            ba = np.zeros((bh, bw, 4), "uint8")
+            for x in range(bw):
+                u = x / (bw - 1)
+                ba[:, x] = [int(236 + (122 - 236) * u), int(72 + (108 - 72) * u), int(212 + (255 - 212) * u), 255]
+            bar = Image.fromarray(ba, "RGBA")
+            bm = Image.new("L", (bw, bh), 0)
+            ImageDraw.Draw(bm).rounded_rectangle([0, 0, bw - 1, bh - 1], radius=bh // 2, fill=255)
+            bar.putalpha(bm)
+            img.alpha_composite(bar, (M, ty + th_ + int(Hf * 0.018)))
+        except Exception:
+            pass
+
+        # ── CARTES ──
+        items = items[:6]
+        n = len(items)
+        top = int(Hf * 0.275)
+        bottom = Hf - int(Hf * 0.068)
+        gap = int(Hf * 0.020)
+        card_h = (bottom - top - gap * (n - 1)) // n
+        card_w = Wf - 2 * M
+        thumb_w = int(card_w * 0.235)
+        rad = int(18 * _ss)
+
+        for i, it in enumerate(items):
+            emoji_ch, txt, cat, raw = (list(it) + [None, None, None, None])[:4]
+            cy = top + i * (card_h + gap)
+            cat = (cat or "france").lower()
+            st = STYLES.get(cat, STYLES.get("france", {}))
+            ccol = _hex_rgb(st.get("color", "#82b1ff"))
+            clabel = st.get("label", cat.upper()).upper()
+
+            # fond carte : VERRE DÉPOLI (blanc à 7 %) — coins arrondis, bordure claire fine.
+            # ⚠️ putalpha() ÉCRASERAIT l'alpha 7 % par le masque plein → panneau blanc opaque
+            #    (bug vécu). On COMPOSE les deux alphas : opacité 7 % × forme arrondie.
+            panel = Image.new("RGBA", (card_w, card_h), (255, 255, 255, 0))
+            pd = ImageDraw.Draw(panel)
+            pd.rounded_rectangle([0, 0, card_w - 1, card_h - 1], radius=rad, fill=(255, 255, 255, 18))
+            pd.rounded_rectangle([0, 0, card_w - 1, card_h - 1], radius=rad,
+                                 outline=(255, 255, 255, 33), width=max(1, _ss))   # bordure ~13 %
+            img.alpha_composite(panel, (M, cy))
+            d = ImageDraw.Draw(img)
+            # barre catégorie 6 px à l'extrême gauche
+            d.rounded_rectangle([M, cy, M + 6 * _ss, cy + card_h - 1], radius=3 * _ss, fill=ccol)
+
+            # ── VIGNETTE : vraie photo, PLEINE HAUTEUR, largeur ~180 px, sans marge intérieure ──
+            tw = int(180 * _ss)
+            th = card_h
+            tx, tyv = M, cy
+            thumb = _recap_thumb(raw, tw, th, radius_left=rad) if raw else None
+            if thumb is None:
+                # repli : PHOTO REPRÉSENTATIVE DE LA CATÉGORIE (pastille sur fond sombre),
+                # jamais un aplat uni ni un emoji.
+                base = Image.new("RGBA", (tw, th), (255, 255, 255, 20))
+                bm = Image.new("L", (tw, th), 0)
+                ImageDraw.Draw(bm).rounded_rectangle([0, 0, tw - 1, th - 1], radius=rad, fill=255)
+                # coins droits carrés (la vignette est collée au bord gauche de la carte)
+                ImageDraw.Draw(bm).rectangle([tw // 2, 0, tw - 1, th - 1], fill=255)
+                base.putalpha(bm)
+                pill = _category_pill(cat, int(th * 0.34))
+                if pill is not None and pill.width > tw - 16 * _ss:
+                    r2 = (tw - 16 * _ss) / pill.width
+                    pill = pill.resize((tw - 16 * _ss, int(pill.height * r2)), Image.LANCZOS)
+                if pill is not None:
+                    base.alpha_composite(pill, ((tw - pill.width) // 2, (th - pill.height) // 2))
+                thumb = base
+            img.alpha_composite(thumb, (tx, tyv))
+            d = ImageDraw.Draw(img)
+            # léger voile sombre en haut-gauche pour que le NUMÉRO blanc ressorte sur toute photo
+            _numbg = Image.new("RGBA", (int(tw * 0.6), int(th * 0.4)), (0, 0, 0, 0))
+            ImageDraw.Draw(_numbg).rectangle([0, 0, int(tw * 0.6), int(th * 0.4)], fill=(0, 0, 0, 90))
+            _numbg = _numbg.filter(ImageFilter.GaussianBlur(6 * _ss))
+            img.alpha_composite(_numbg, (tx, tyv))
+            d = ImageDraw.Draw(img)
+            # numéro d'ordre EN SURIMPRESSION sur la photo, coin haut-gauche
+            _num = f"{i + 1:02d}"
+            nf = f(card_h * 0.17)
+            d.text((tx + int(tw * 0.10), tyv + int(th * 0.07)), _num, font=nf, fill=WHITE,
+                   stroke_width=max(1, 2 * _ss), stroke_fill=(0, 0, 0, 200))
+
+            # ── zone texte à DROITE de la vignette : badge + TITRE (2-3 lignes, blanc gras) ──
+            tex = tx + tw + int(card_w * 0.030)
+            tew = M + card_w - tex - int(card_w * 0.030)
+            bf = f(card_h * 0.125)
+            bb = d.textbbox((0, 0), clabel, font=bf)
+            bw2, bh2 = bb[2] - bb[0] + int(card_h * 0.16), bb[3] - bb[1] + int(card_h * 0.12)
+            by = cy + int(card_h * 0.13)
+            d.rounded_rectangle([tex, by, tex + bw2, by + bh2], radius=bh2 // 2, fill=ccol)
+            _lum = 0.299 * ccol[0] + 0.587 * ccol[1] + 0.114 * ccol[2]
+            _btxt = (20, 16, 30) if _lum > 150 else WHITE
+            d.text((tex + bw2 // 2, by + bh2 // 2), clabel, font=bf, fill=_btxt, anchor="mm")
+            # TITRE de l'actu : blanc gras, 2-3 lignes, centré verticalement dans l'espace restant
+            body_f = f(card_h * 0.150)
+            lh = int(body_f.size * 1.16)
+            words = str(txt or "").split(); lines = []; cur = ""
+            for w in words:
+                tt = (cur + " " + w).strip()
+                if d.textbbox((0, 0), tt, font=body_f)[2] <= tew:
+                    cur = tt
+                else:
+                    if cur: lines.append(cur)
+                    cur = w
+                    if len(lines) >= 3: cur = ""; break
+            if cur and len(lines) < 3: lines.append(cur)
+            lines = lines[:3]
+            block_h = len(lines) * lh
+            tblock = by + bh2 + int((card_h - (by - cy) - bh2 - block_h) * 0.5)
+            for ln in lines:
+                d.text((tex, tblock), ln, font=body_f, fill=WHITE); tblock += lh
+
+        # pied
+        d.text((Wf // 2, Hf - int(Hf * 0.038)), "@PULSEactus", font=f(Wf * 0.020),
+               fill=(236, 150, 236), anchor="mm")
+        buf = _io.BytesIO()
+        img.convert("RGB").save(buf, format="JPEG", quality=95, optimize=True, progressive=True)
+        return buf.getvalue()
+    except Exception as e:
+        print(f"  ⚠️ Récap illustré indisponible ({e}) → carte simple")
+        return build_list_card("CE QU'IL FAUT RETENIR",
+                               [(e2, t2) for (e2, t2, *_r) in items], W, H)
+
+
 def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
     """Carte-liste DA Pulse : dégradé marque + titre + lignes numérotées. items = [str, ...]"""
     import io
@@ -6207,12 +6461,40 @@ Réponds avec ce JSON UNIQUEMENT :
             conn.commit()
         except Exception:
             pass
+    # 🖼️ Pour chaque ligne, on relie une CATÉGORIE et une IMAGE d'un article du jour traitant
+    #    le même sujet (≥2 mots saillants communs). Aucune image de stock, aucun emoji générique :
+    #    si rien de fiable, la carte affichera la pastille de catégorie. Coût : 0 appel Claude.
+    def _enrich(items):
+        try:
+            rows2 = conn.execute(
+                "SELECT title, url, category FROM recap_srcs WHERE date(created_at) = date('now') ORDER BY created_at DESC"
+            ).fetchall()
+        except Exception:
+            rows2 = []
+        out = []
+        for e, t in items:
+            sig = _sig_words(t)
+            best = None
+            for (atitle, aurl, acat) in rows2:
+                if len(sig & _sig_words(atitle or "")) >= 2:
+                    best = (aurl, acat); break
+            cat = (best[1] if best and best[1] else "france")
+            raw = None
+            if best and best[0]:
+                try:
+                    raw, ok = get_best_image(best[0], None, None, None, cat)
+                    if not ok:
+                        raw = None
+                except Exception:
+                    raw = None
+            out.append((e, t, cat, raw))
+        return out
+
     body = f"🌙 LE RÉCAP | Ce qu'il faut retenir de ce {_date_fr()} :\n\n"
     body += "\n".join(f"{e} {t}" for e, t in items)
     body += "\n\n(Pulse)"
-    # 📱 Carte du récap en format VERTICAL (1080×1350) : elle occupe plus de place à l'écran sur
-    #    mobile → lignes plus grandes et bien plus lisibles. Même carte pour X, Facebook et Instagram.
-    png = build_list_card("CE QU'IL FAUT RETENIR", [(e, t) for e, t in items], 1080, 1350)
+    # 📱 Récap VERTICAL illustré (1080×1350) : une vignette liée à chaque actu.
+    png = build_recap_card(_enrich(items), 1080, 1350)
     _x = _fb = _ig = None
     try:
         _x = post_to_twitter(body, png)
@@ -6809,7 +7091,7 @@ def topic_history(conn, title, min_overlap=2):
 def topic_gate(conn, title):
     """Décide si un sujet DÉJÀ traité aujourd'hui a le droit de ressortir MAINTENANT.
     Renvoie (autorisé: bool, code: str, titres_déjà_publiés: list).
-    code ∈ {'new','followup','cap','too_soon'}. Ne juge PAS la valeur (Claude s'en charge)."""
+    code ∈ {'new','followup','cap','too_soon','stale'}. Ne juge PAS la valeur (Claude s'en charge)."""
     n, last, heads = topic_history(conn, title)
     if n == 0:
         return True, "new", heads
@@ -6819,7 +7101,31 @@ def topic_gate(conn, title):
         gap_min = (datetime.now() - last).total_seconds() / 60.0
         if gap_min < TOPIC_MIN_GAP_MIN:
             return False, "too_soon", heads
+    # 🆕 EXIGENCE DE NOUVEAUTÉ : une "suite" doit apporter des mots SIGNIFICATIFS absents des
+    #    titres déjà publiés sur ce sujet. Sinon c'est le même fait reformulé par un autre média
+    #    (vécu : incendie du Var tweeté en URGENT puis re-tweeté en FAITS DIVERS 1h après).
+    new_words = _sig_words(title)
+    for h in heads:
+        new_words -= _sig_words(h)
+    # on ignore les mots "génériques de gravité" qui ne portent aucune info neuve
+    new_words -= _FOLLOWUP_GENERIC
+    if not new_words:
+        return False, "stale", heads
     return True, "followup", heads
+
+# Mots trop génériques pour à eux seuls justifier une "suite" : présents dans presque
+# toutes les reformulations d'un même drame, ils n'apportent aucune information nouvelle.
+_FOLLOWUP_GENERIC = {
+    "incendie", "feu", "flammes", "fumée", "fumee", "brasier", "hectares", "pompiers", "sapeurs",
+    "mobilisés", "mobilises", "mobilisation", "ravage", "ravages", "ravagés", "ravagees",
+    "partis", "partie", "détruits", "detruits", "brûlés", "brules", "brûlée", "brulee",
+    "toujours", "actif", "active", "encore", "matinée", "matinee", "soirée", "soiree", "cours",
+    "morts", "mort", "décès", "deces", "blessés", "blesses", "victimes", "bilan", "lourd",
+    "selon", "après", "apres", "contre", "dans", "pour", "avec", "plus", "cette", "leur",
+    "être", "sont", "reste", "restait", "restent", "situation", "important", "importante",
+    "police", "gendarmes", "enquête", "enquete", "ouverte", "france", "région", "region",
+    "département", "departement", "secteur", "zone", "zones", "sinistrées", "sinistrees",
+}
 
 _META_CONN = None   # connexion DB partagée pour la détection de blocage Meta
 
@@ -7148,6 +7454,11 @@ def detect_breaking(conn, candidates, return_all=False):
             # suivi possible UNIQUEMENT si un NOUVEAU média a rejoint le sujet depuis l'alerte
             if n_sources <= at_alert:
                 continue
+            # 🆕 …ET si le titre apporte des mots SIGNIFICATIFS neufs (pas une reformulation).
+            #    Sans ça, un 2e média qui redit la même chose relançait le sujet (incendie du Var).
+            _allowed, _code, _heads = topic_gate(conn, c["title"])
+            if not _allowed and _code in ("stale", "too_soon", "cap"):
+                continue
             kind = "followup"
         else:
             # nouveau sujet chaud : pas déjà couvert récemment par Pulse
@@ -7264,6 +7575,7 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
         print("  🛑 Aucune plateforme n'a publié → sujet NON consommé (repassera au prochain run)")
         return None
     add_recent(conn, item["title"])
+    remember_recap_src(conn, item.get("title", ""), item.get("url"), label_cat)
     # Cadence : un VRAI breaking (urgent) NE réinitialise PAS le minuteur des news normales
     # (il est un bonus qui ne doit pas voler le créneau). Un suivi/buzz, lui, repousse la cadence.
     if bump_cadence:
@@ -8017,6 +8329,7 @@ def check_feeds(conn):
                 time.sleep(2)
                 return
             add_recent(conn, item["title"])   # mémoire anti-doublon : UNIQUEMENT après publication réelle
+            remember_recap_src(conn, item.get("title", ""), item.get("url"), cat)
 
             # 🎮 GTA 6 = canal bonus : on logue pour le compteur (max 2/jour) mais on NE touche PAS
             # à mark_cat → il ne retarde pas le rythme des autres actus (comme le suivi France live).
