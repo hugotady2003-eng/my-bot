@@ -6115,6 +6115,46 @@ def _recap_thumb(raw_bytes, tw, th, radius_left=0):
         return None
 
 
+_RECAP_CAT_HINTS = [
+    ("faitsdivers", ("incendie", "feu", "mort", "tué", "tue", "meurtre", "agress", "accident",
+                     "victime", "police", "gendarm", "pompier", "disparu", "corps", "enquête",
+                     "enquete", "interpel", "braquage", "vol ", "crime", "noyé", "noye", "blessé")),
+    ("politique", ("loi", "assemblée", "assemblee", "sénat", "senat", "parlement", "ministre",
+                   "gouvernement", "président", "president", "élection", "election", "député",
+                   "depute", "réforme", "reforme", "vote", "motion", "décret", "decret", "élysée")),
+    ("economie", ("euros", "milliard", "million", "inflation", "bourse", "entreprise", "emploi",
+                  "chômage", "chomage", "budget", "impôt", "impot", "banque", "prix", "croissance",
+                  "salaire", "grève", "greve", "marché", "marche")),
+    ("tech", ("chatgpt", " ia ", "intelligence artificielle", "openai", "google", "apple", "iphone",
+              "logiciel", "application", "pirat", "cyber", "données", "donnees", "internet",
+              "robot", "smartphone", "réseau social", "reseau social")),
+    ("sante", ("santé", "sante", "hôpital", "hopital", "maladie", "virus", "vaccin", "médecin",
+               "medecin", "cancer", "épidémie", "epidemie", "patient", "soins")),
+    ("environnement", ("climat", "canicule", "réchauffement", "rechauffement", "pollution",
+                       "écologie", "ecologie", "biodiversité", "sécheresse", "secheresse",
+                       "inondation", "tempête", "tempete", "carbone", "énergie", "energie")),
+    ("culture", ("film", "cinéma", "cinema", "musique", "album", "concert", "festival", "livre",
+                 "artiste", "acteur", "actrice", "chanteur", "exposition", "musée", "musee",
+                 "série", "serie", "théâtre", "theatre")),
+    ("sport", ("match", "but ", "victoire", "défaite", "defaite", "équipe", "equipe", "joueur",
+               "champion", "finale", "coupe", "ligue", "tournoi", "jeux olympiques", "médaille",
+               "medaille", "psg", "bleus")),
+    ("monde", ("états-unis", "etats-unis", "chine", "russie", "ukraine", "gaza", "israël", "israel",
+               "guerre", "international", "washington", "moscou", "pékin", "pekin", "onu", "trump")),
+    ("societe", ("réseaux sociaux", "reseaux sociaux", "école", "ecole", "famille", "jeunes",
+                 "manifestation", "société", "societe", "discrimination", "logement")),
+]
+
+def _recap_guess_cat(text):
+    """Déduit la catégorie d'une actu depuis son texte (repli quand aucun article source
+    du jour ne correspond). Renvoie 'france' si rien ne matche."""
+    low = " " + (text or "").lower() + " "
+    for cat, hints in _RECAP_CAT_HINTS:
+        if any(h in low for h in hints):
+            return cat
+    return "france"
+
+
 def build_recap_card(items, W=1080, H=1350):
     """🌙 Récap du jour, format maquette : cartes en VERRE DÉPOLI, chacune avec une VIGNETTE
     IMAGE liée à l'actu, un numéro, une barre + un badge de catégorie, et le titre.
@@ -6192,8 +6232,6 @@ def build_recap_card(items, W=1080, H=1350):
                                  outline=(255, 255, 255, 33), width=max(1, _ss))   # bordure ~13 %
             img.alpha_composite(panel, (M, cy))
             d = ImageDraw.Draw(img)
-            # barre catégorie 6 px à l'extrême gauche
-            d.rounded_rectangle([M, cy, M + 6 * _ss, cy + card_h - 1], radius=3 * _ss, fill=ccol)
 
             # ── VIGNETTE : vraie photo, PLEINE HAUTEUR, largeur ~180 px, sans marge intérieure ──
             tw = int(180 * _ss)
@@ -6201,14 +6239,14 @@ def build_recap_card(items, W=1080, H=1350):
             tx, tyv = M, cy
             thumb = _recap_thumb(raw, tw, th, radius_left=rad) if raw else None
             if thumb is None:
-                # repli : PHOTO REPRÉSENTATIVE DE LA CATÉGORIE (pastille sur fond sombre),
-                # jamais un aplat uni ni un emoji.
-                base = Image.new("RGBA", (tw, th), (255, 255, 255, 20))
-                bm = Image.new("L", (tw, th), 0)
-                ImageDraw.Draw(bm).rounded_rectangle([0, 0, tw - 1, th - 1], radius=rad, fill=255)
-                # coins droits carrés (la vignette est collée au bord gauche de la carte)
-                ImageDraw.Draw(bm).rectangle([tw // 2, 0, tw - 1, th - 1], fill=255)
-                base.putalpha(bm)
+                # repli : pastille de catégorie sur un fond SOMBRE translucide (jamais un
+                # rectangle blanc ni un emoji). ⚠️ putalpha() écraserait l'alpha → fond blanc
+                # opaque (bug vécu). On dessine directement sur un calque transparent avec la
+                # forme voulue (coins arrondis à gauche, droits à droite).
+                base = Image.new("RGBA", (tw, th), (0, 0, 0, 0))
+                bd = ImageDraw.Draw(base)
+                bd.rounded_rectangle([0, 0, tw - 1, th - 1], radius=rad, fill=(255, 255, 255, 20))
+                bd.rectangle([tw // 2, 0, tw - 1, th - 1], fill=(255, 255, 255, 20))
                 pill = _category_pill(cat, int(th * 0.34))
                 if pill is not None and pill.width > tw - 16 * _ss:
                     r2 = (tw - 16 * _ss) / pill.width
@@ -6218,17 +6256,22 @@ def build_recap_card(items, W=1080, H=1350):
                 thumb = base
             img.alpha_composite(thumb, (tx, tyv))
             d = ImageDraw.Draw(img)
-            # léger voile sombre en haut-gauche pour que le NUMÉRO blanc ressorte sur toute photo
-            _numbg = Image.new("RGBA", (int(tw * 0.6), int(th * 0.4)), (0, 0, 0, 0))
-            ImageDraw.Draw(_numbg).rectangle([0, 0, int(tw * 0.6), int(th * 0.4)], fill=(0, 0, 0, 90))
-            _numbg = _numbg.filter(ImageFilter.GaussianBlur(6 * _ss))
-            img.alpha_composite(_numbg, (tx, tyv))
-            d = ImageDraw.Draw(img)
-            # numéro d'ordre EN SURIMPRESSION sur la photo, coin haut-gauche
+            # barre catégorie 6 px à l'extrême gauche — dessinée APRÈS la vignette pour être
+            # TOUJOURS visible (une photo opaque la cachait, un repli translucide la laissait voir :
+            # d'où l'incohérence entre cartes). Désormais elle passe devant dans tous les cas.
+            d.rounded_rectangle([M, cy, M + 6 * _ss, cy + card_h - 1], radius=3 * _ss, fill=ccol)
+            # numéro d'ordre EN SURIMPRESSION sur la photo, coin haut-gauche.
+            # Une simple OMBRE PORTÉE floutée derrière le chiffre suffit à le rendre lisible
+            # sur n'importe quel fond — pas de rectangle.
             _num = f"{i + 1:02d}"
             nf = f(card_h * 0.17)
-            d.text((tx + int(tw * 0.10), tyv + int(th * 0.07)), _num, font=nf, fill=WHITE,
-                   stroke_width=max(1, 2 * _ss), stroke_fill=(0, 0, 0, 200))
+            _nx, _ny = tx + int(tw * 0.10), tyv + int(th * 0.07)
+            _nsh = Image.new("RGBA", (img.width, img.height), (0, 0, 0, 0))
+            ImageDraw.Draw(_nsh).text((_nx + 2 * _ss, _ny + 2 * _ss), _num, font=nf, fill=(0, 0, 0, 200))
+            _nsh = _nsh.filter(ImageFilter.GaussianBlur(3 * _ss))
+            img = Image.alpha_composite(img, _nsh)
+            d = ImageDraw.Draw(img)
+            d.text((_nx, _ny), _num, font=nf, fill=WHITE)
 
             # ── zone texte à DROITE de la vignette : badge + TITRE (2-3 lignes, blanc gras) ──
             tex = tx + tw + int(card_w * 0.030)
@@ -6464,6 +6507,8 @@ Réponds avec ce JSON UNIQUEMENT :
     # 🖼️ Pour chaque ligne, on relie une CATÉGORIE et une IMAGE d'un article du jour traitant
     #    le même sujet (≥2 mots saillants communs). Aucune image de stock, aucun emoji générique :
     #    si rien de fiable, la carte affichera la pastille de catégorie. Coût : 0 appel Claude.
+    # Le repli de catégorie (quand aucun article source du jour ne correspond) est déduit
+    # du texte par _recap_guess_cat (défini au niveau module, testé).
     def _enrich(items):
         try:
             rows2 = conn.execute(
@@ -6478,7 +6523,8 @@ Réponds avec ce JSON UNIQUEMENT :
             for (atitle, aurl, acat) in rows2:
                 if len(sig & _sig_words(atitle or "")) >= 2:
                     best = (aurl, acat); break
-            cat = (best[1] if best and best[1] else "france")
+            # catégorie : celle de l'article source si trouvé, sinon déduite du texte de l'actu
+            cat = (best[1] if best and best[1] else None) or _recap_guess_cat(t)
             raw = None
             if best and best[0]:
                 try:
