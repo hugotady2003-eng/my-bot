@@ -487,11 +487,19 @@ def _paris_hour():
         from datetime import timezone, timedelta
         return datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=2))).hour
 
+def _is_night(h=None):
+    """Heures de NUIT (23h-7h, Paris) : le fil se met en quasi-pause. Seules les VRAIES
+    alertes vitales (breaking urgent, résultat de match France) passent la nuit.
+    Les canaux bonus (buzz, hommage non-urgent, histoire) sont mis en pause."""
+    if h is None:
+        h = _paris_hour()
+    return h >= 23 or h < 7
+
 def _cadence_minutes(h):
     """Rythme de publication. Base ~1h30 partout (probabilité croissante jusqu'à 2h30),
     nuit fortement ralentie. PLUS d'accélération prime-time (trop coûteux). Les alertes
     (breaking, résultats sport) restent prioritaires et ne passent pas par ce rythme."""
-    if 0 <= h < 7:
+    if h >= 23 or h < 7:
         return 180, 300, "nuit (quasi-pause, le breaking passe toujours)"
     return 90, 150, "journée (base 1h30)"
 
@@ -2139,6 +2147,7 @@ def _paste_rounded_shadow(bg, fg, x, y, radius=None, shadow_blur=None, shadow_al
         bg.paste(fg, (x, y))
         return bg.convert("RGB") if bg.mode != "RGB" else bg
 
+CARD_MARGIN = 48   # 🔒 marge de sécurité CONSTANTE (px à l'échelle finale) sur tous les bords
 _IMG_SS = 2   # super-résolution des cartes : 2× = texte/graphismes nets ("4K-like"), résiste à la compression X
 
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False, reveal=1.0, ss=None, as_image=False, no_pill=False, no_logo=False):
@@ -2155,7 +2164,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         _ss = _IMG_SS if ss is None else max(1, int(ss))
         W, H = int(W * _ss), int(H * _ss)   # super-résolution (1× pour les images de vidéo)
         s = STYLES[category]
-        margin = int(W * 0.037)   # marge proportionnelle (~44px en 1200, ~40px en 1080)
+        margin = CARD_MARGIN * _ss   # marge de sécurité CONSTANTE : 48 px sur tous les bords
 
         if len(headline_court) > 120:
             headline_court = headline_court[:118].rsplit(" ", 1)[0]
@@ -2206,8 +2215,11 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                     if face:
                         fcx, fcy = face
                         left = int(fcx - W / 2)
-                        top = int(fcy - H * 0.28) if (headline_bottom and dst_ratio < 1) \
-                              else int(fcy - H * (0.40 if dst_ratio >= 1 else 0.34))
+                        # 🙂 Le visage doit rester dans les 2/3 SUPÉRIEURS : le titre est en bas
+                        #    et ne doit JAMAIS le recouvrir. On vise le visage vers 30 % de la
+                        #    hauteur et on l'empêche de descendre dans la zone du titre.
+                        top = int(fcy - H * 0.30)
+                        top = max(top, int(fcy - H * 0.60))
                     else:
                         left = (new_w - W) // 2
                         if dst_ratio < 1 and src_ratio > 1.2:
@@ -2328,15 +2340,17 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         # ─── TITRE EN BAS (style Instagram : toujours visible, même avec photo) ───
         if headline_bottom:
 
-            # Dégradé sombre qui MONTE plus haut (lisibilité du texte placé plus haut)
+            # 🌑 Dégradé NOIR du bas vers le haut : 0 % en haut de la bande → 75 % en bas.
+            #    Garantit la lisibilité du titre sur n'importe quelle photo, sans écraser
+            #    l'image (75 % laisse la photo respirer, contrairement à un aplat opaque).
             grad = Image.new('RGBA', (W, H), (0, 0, 0, 0))
             gd = ImageDraw.Draw(grad)
             band = int(H * 0.68)               # couvre les ~2/3 inférieurs
             for i in range(band):
                 y = H - band + i
                 t = i / band
-                a = int(255 * (t ** 0.95))     # assombrit tôt et fort
-                gd.line([(0, y), (W, y)], fill=(5, 4, 14, a))
+                a = int(0.75 * 255 * (t ** 0.95))
+                gd.line([(0, y), (W, y)], fill=(0, 0, 0, a))
             img = Image.alpha_composite(img.convert('RGBA'), grad).convert('RGB')
             draw = ImageDraw.Draw(img)
 
@@ -2374,7 +2388,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 lines = _wrap_words(ft)
                 # 🛡️ le bloc de titre ne doit JAMAIS occuper plus d'un tiers de la hauteur,
                 #    quel que soit le format de la carte (portrait, carré ou 16:9).
-                if len(lines) <= 4 and _all_words_fit(ft) and len(lines) * fsize * 1.14 <= H * 0.34:
+                if len(lines) <= 3 and _all_words_fit(ft) and len(lines) * fsize * 1.14 <= H * 0.34:
                     chosen_lines, chosen_size = lines, fsize
                     break
             if chosen_lines is None:
@@ -2463,16 +2477,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                 ty += line_h
             img = Image.alpha_composite(img.convert('RGBA'), _txt_layer).convert('RGB')
             draw = ImageDraw.Draw(img)
-            # 🎨 Emoji COULEUR intégré à la FIN du titre (dernière ligne). Jamais sur un hommage.
-            if category != "hommage" and reveal >= 1.0:
-                _em = _emoji_image(EMOJIS.get(category, ""), int(chosen_size * 0.98))
-                if _em is not None:
-                    lw = int(draw.textlength(chosen_lines[-1], font=ft)) if chosen_lines else 0
-                    ex = margin + lw + int(chosen_size * 0.24)
-                    ey = last_y + (line_h - _em.height) // 2
-                    if ex + _em.width <= W - int(W * 0.03):
-                        img = img.convert("RGBA"); img.alpha_composite(_em, (ex, ey)); img = img.convert("RGB")
-                        draw = ImageDraw.Draw(img)
+            # (Plus d'emoji en fin de titre : la pastille de catégorie porte déjà son icône.)
             show_text = False  # on n'affiche pas le titre centré en plus
 
         # ─── TITRE CENTRÉ (seulement si pas de vraie photo et pas en mode bas) ───
@@ -2492,7 +2497,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                         if line: lines.append(line)
                         line = w
                 if line: lines.append(line)
-                if len(lines) <= 4:
+                if len(lines) <= 3:
                     chosen_lines, chosen_size = lines, fsize
                     break
             if chosen_lines is None:
@@ -7589,8 +7594,15 @@ def check_feeds(conn):
                 # de filtrer les décès mineurs (personnalité peu connue → score bas → rythme normal).
                 # Une ALERTE DE DANGER IMMINENT (tsunami, évacuation, séisme fort, attentat…) contourne
                 # AUSSI la cadence dès score ≥ BUZZ_SCORE : ces infos ne doivent JAMAIS attendre.
-                breaking_immediat = (score >= BREAKING_SCORE) or (is_obit and score >= BUZZ_SCORE) \
-                                    or (urgent_alert and score >= BUZZ_SCORE)
+                # 🌙 La NUIT (23h-7h), le fil se met en quasi-pause : seuls passent ce qui ne
+                #    peut VRAIMENT pas attendre — alerte de danger imminent (tsunami, attentat…)
+                #    et décès marquant. Un "breaking" ordinaire (gros score sans danger) attend
+                #    le matin plutôt que de réveiller le fil à 3h pour une actu non vitale.
+                _night = _is_night()
+                _vital = urgent_alert or is_obit
+                breaking_immediat = (urgent_alert and score >= BUZZ_SCORE) \
+                                    or (is_obit and score >= BUZZ_SCORE) \
+                                    or (score >= BREAKING_SCORE and not (_night and not _vital))
                 if breaking_immediat:
                     # VRAI breaking (attentat, catastrophe, décès marquant) → contourne la cadence,
                     # ne la réinitialise pas. Un décès garde le label sobre (géré dans publish_breaking).
@@ -7603,9 +7615,10 @@ def check_feeds(conn):
                         continue          # abandonné → sujet suivant
                     except Exception as e:
                         print(f"  ❌ Breaking échoué : {e}")
-                elif score >= BUZZ_SCORE and nb_today < DAILY_POST_SOFT:
+                elif score >= BUZZ_SCORE and nb_today < DAILY_POST_SOFT and not _night:
                     # BUZZ : CANAL BONUS — contourne la cadence, ne la réinitialise pas.
-                    # Frein propre : 1 buzz max / BUZZ_GAP_MIN.
+                    # 🌙 Fermé la NUIT : un buzz viral non vital attend le matin.
+                    # Frein propre le jour : 1 buzz max / BUZZ_GAP_MIN.
                     if buzz_recent(conn):
                         print(f"  🚰 Buzz déjà publié il y a moins de {BUZZ_GAP_MIN} min → on espace")
                         continue
@@ -7797,8 +7810,8 @@ def check_feeds(conn):
             top.append(item); used.add(cat)
         if len(top) >= MAX_PAR_PASSE: break
 
-    # Histoire du jour (1×/jour, vérifié Wikipedia)
-    histoire = gen_histoire_du_jour(conn)
+    # Histoire du jour (1×/jour, vérifié Wikipedia) — 🌙 jamais la nuit (canal bonus)
+    histoire = None if _is_night() else gen_histoire_du_jour(conn)
     if histoire and "histoire" not in used and len(top) < MAX_PAR_PASSE + 1:
         top.append(histoire); used.add("histoire")
 
