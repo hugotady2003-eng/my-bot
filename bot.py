@@ -77,7 +77,10 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.26.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.28.0"
+# ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
+#    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
+HASHTAGS_ACTIFS = os.environ.get("HASHTAGS", "1").strip() not in ("0", "false", "non")   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
 GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.1-flash-lite")
@@ -334,8 +337,8 @@ def init_db():
     #    ré-analyse quotidienne de tous les articles encore présents dans les flux (coût API inutile).
     conn.execute("DELETE FROM analyzed_cache WHERE analyzed_at < datetime('now', '-45 days')")
     # 🔥 Écho médiatique : on ne garde que 12h (au-delà, un sujet n'est plus "chaud")
-    conn.execute("DELETE FROM topic_echo WHERE first_seen < datetime('now', '-12 hours')")
-    conn.execute("DELETE FROM topic_echo_alert WHERE alerted_at < datetime('now', '-12 hours')")
+    conn.execute("DELETE FROM topic_echo WHERE first_seen < datetime('now', '-8 hours')")
+    conn.execute("DELETE FROM topic_echo_alert WHERE alerted_at < datetime('now', '-8 hours')")
     conn.execute("DELETE FROM keyword_log    WHERE last_sent   < datetime('now', '-2 hours')")
     conn.execute("DELETE FROM special_log    WHERE sent_at     < datetime('now', '-8 days')")
     conn.execute("DELETE FROM seen           WHERE seen_at     < datetime('now', '-45 days')")   # la base reste légère
@@ -478,8 +481,8 @@ def _touch_publish_time():
         pass
 
 # ── Plafond quotidien GLOBAL de publications (toutes sources confondues) ──
-DAILY_POST_CAP = 15          # plafond FERME (une alerte vitale peut seule passer au-delà)
-DAILY_POST_SOFT = 11         # au-delà, on ne garde QUE le très chaud (breaking/résultats forts)
+DAILY_POST_CAP = 28          # plafond FERME (une alerte vitale peut seule passer au-delà)
+DAILY_POST_SOFT = 20         # au-delà, on ne garde QUE le très chaud (breaking/résultats forts)
 
 # ── Mémoire par sujet : un gros sujet qui ÉVOLUE peut ressortir dans la journée ──
 # (ne fait PAS grimper le total quotidien : il PREND la place d'une opportunité plus faible)
@@ -541,8 +544,8 @@ def _cadence_minutes(h):
     nuit fortement ralentie. PLUS d'accélération prime-time (trop coûteux). Les alertes
     (breaking, résultats sport) restent prioritaires et ne passent pas par ce rythme."""
     if h >= 23 or h < 7:
-        return 180, 300, "nuit (quasi-pause, le breaking passe toujours)"
-    return 110, 180, "journée (base ~2h)"
+        return 180, 300, "nuit (quasi-pause, seule une alerte vitale passe)"
+    return 30, 90, "journée (30 min à 1h30 entre deux actus normales)"
 
 _CADENCE_DECISION = None   # décision de cadence du run courant (un seul tirage par run)
 
@@ -975,7 +978,10 @@ def _hashtag_candidates(person, keywords):
     return out
 
 def _attach_hashtag(body, person, keywords):
-    """Garantit UN hashtag, intégré dans la phrase si possible. Ne touche à rien s'il y en a déjà."""
+    """Garantit UN hashtag, intégré dans la phrase si possible. Ne touche à rien s'il y en a déjà.
+    Désactivable par HASHTAGS=0 : les tweets de référence de Pulse n'en portent aucun."""
+    if not HASHTAGS_ACTIFS:
+        return body
     if not body or "#" in body:
         return body
     cands = _hashtag_candidates(person, keywords)
@@ -1051,6 +1057,41 @@ Génère QUATRE choses :
    Les sigles ULTRA-connus n'ont PAS besoin d'explication (ONU, OTAN, UE, SNCF, PSG, SMIC, RSA, RATP, OMS). Dans le doute, EXPLIQUE : mieux vaut un lecteur qui comprend qu'un lecteur qui décroche.
 
 
+📐 FORMAT DE RÉFÉRENCE — imite ce style, c'est la ligne éditoriale de Pulse :
+
+« Une vingtaine de climatiseurs commandés par l'État pour l'hôpital d'Avesnes-sur-Helpe sont inutilisables : équipés de fiches italiennes, ils ne peuvent pas être branchés sur les prises françaises. (La Voix du Nord) »
+
+« Les prix des légumes ont bondi de 10% en 1 an et ont plus que doublé en 10 ans. (Familles Rurales) »
+
+« 35% des Français ne laissent pas de pourboire au restaurant, faute de monnaie. (TF1 Info) »
+
+« L'Assemblée nationale APPROUVE l'instauration de la PERPÉTUITÉ pour les auteurs de viols en série commis sur des mineurs de moins de 15 ans. »
+
+« MrBeast s'est marié aujourd'hui. (TMZ) »
+
+« L'actrice américaine Kaylee Hottle, révélée par la franchise Godzilla, est décédée dans un accident de voiture à l'âge de 19 ans. (TMZ) »
+
+Sur un sujet À PLUSIEURS ÉLÉMENTS, une phrase d'ouverture puis une liste aérée :
+
+« L'interdiction des réseaux sociaux aux moins de 15 ans est une PREMIÈRE EN EUROPE.
+
+La vérification de l'âge pourra se faire :
+- En insérant sa pièce d'identité
+- En se connectant via FranceConnect
+- Ou bien grâce à une reconnaissance faciale à partir d'un selfie.
+
+Elle DÉBUTERA :
+➡️ le 1er septembre 2026 pour les nouveaux comptes ;
+➡️ le 1er janvier 2027 pour les comptes existants. »
+
+CE QUE CES EXEMPLES T'IMPOSENT :
+- 🎯 UNE SEULE PHRASE quand le fait y tient. Ne découpe PAS artificiellement en « accroche » puis « détail » : si tout tient en une phrase claire, écris UNE phrase et arrête-toi. La concision EST le style.
+- 🔠 1 à 2 mots en MAJUSCULES sur le mot DÉCISIF (APPROUVE, PERPÉTUITÉ, PREMIÈRE EN EUROPE). Jamais plus.
+- 🔢 Les CHIFFRES sont mis en avant tels quels (10%, 35%, 4,5M$, 19 ans) — ils portent l'info.
+- 📋 Liste UNIQUEMENT si le sujet a vraiment plusieurs éléments distincts : tirets « - » pour une énumération, « ➡️ » pour des échéances ou étapes. Sinon, pas de liste.
+- 🚫 AUCUN commentaire, aucune interprétation, aucune question au lecteur, aucun appel à réagir. Le fait, rien que le fait.
+- 📰 La source entre parenthèses à la toute fin : (TMZ), (TF1 Info), (La Voix du Nord).
+
 ✍️ MISE EN FORME PERCUTANTE (style CerfiaFR) :
 - 🔠 MAJUSCULES DE PUNCH : mets 1 à 2 mots-clés FORTS en MAJUSCULES pour créer du relief (ex: "largement REJETÉE", "VIOLENT cambriolage", "RECORD battu"). Maximum 1-2 par tweet, sur le mot qui compte — jamais des phrases entières en majuscules, ça crie.
 - 🔸 PUCES pour les actus DENSES : si l'article contient BEAUCOUP de données chiffrées (étude, bilan, rapport avec plusieurs statistiques), structure le corps avec des puces "🔸" (une donnée par puce) pour aérer et rendre lisible. Sinon (actu simple), garde le format phrases + sauts de ligne classique. N'utilise les puces QUE quand il y a vraiment plusieurs chiffres/faits à lister.
@@ -1096,8 +1137,9 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - 🎯 CHOIX DU HASHTAG — vise le SUJET, jamais le décor. Le hashtag principal = LE nom propre central de l'actu (entreprise, personne, club, événement, jeu vidéo). Test : "cette actu parle de quoi en UN mot ?" → c'est CE mot qui prend le #. Ex : actu sur l'entrée en Bourse de SpaceX → #SpaceX (PAS #Bourse ni #TimesSquare) ; actu sur Mbappé → #Mbappé (pas #football) ; match des Bleus → #CoupeDuMonde2026 ; sortie de GTA 6 → #GTA6.
 - ⛔ Pas de hashtag décoratif ou périphérique : lieux secondaires, mots génériques (#Bourse, #France, #Justice, #Tech) sont INTERDITS sauf s'ils sont précisément LE sujet de l'actu.
 - ⛔ INTÉGRATION PROPRE — ne casse JAMAIS le texte : ne DUPLIQUE pas un mot ("à Mexico #Mexico" = INTERDIT), ne mets pas de "#" au milieu d'un mot, n'ajoute pas de mot juste pour caser un hashtag, et NE mets PAS de bloc de hashtags à la fin. Le hashtag doit se lire naturellement dans la phrase.
-- RETOUR À LA LIGNE VITE : l'accroche (1ʳᵉ phrase COURTE) puis LIGNE VIDE, puis la 2ᵉ phrase (détail/contexte), puis LIGNE VIDE, puis la source. Structure : Phrase1 courte.\\n\\nPhrase2.\\n\\n(Source). ⛔ JAMAIS deux longues phrases avant le 1er saut de ligne — l'accroche tient sur UNE ligne à l'écran, sinon c'est un pavé qui ne donne pas envie de lire.
-- Exemple EXACT du rendu attendu (court, aéré, hashtags intégrés) :
+- LONGUEUR — LA CONCISION D'ABORD : si le fait tient en UNE phrase claire, écris UNE phrase puis la source, et arrête-toi. C'est le format le plus fréquent (voir FORMAT DE RÉFÉRENCE). N'ajoute JAMAIS une deuxième phrase pour meubler.
+- Si — et seulement si — le sujet l'exige vraiment (contexte indispensable, plusieurs éléments distincts), développe : accroche COURTE puis LIGNE VIDE, puis le détail, puis LIGNE VIDE, puis la source. Structure : Phrase1 courte.\\n\\nPhrase2.\\n\\n(Source). ⛔ Dans ce cas, JAMAIS deux longues phrases avant le 1er saut de ligne — l'accroche tient sur UNE ligne à l'écran.
+- Exemple d'un rendu DÉVELOPPÉ (à réserver aux sujets qui le justifient) :
   "🚨 Des MILLIERS de manifestants bloquent le stade à #Mexico.\\n\\nÀ deux jours de l'ouverture de la #CoupeDuMonde2026, ils réclament une hausse des salaires et l'abrogation de la réforme des retraites.\\n\\n(Le Figaro)"
 - Dans le JSON, les sauts de ligne s'écrivent \\n
 
@@ -1108,7 +1150,7 @@ Réponds avec ce JSON UNIQUEMENT :
     return _TWEET_SYS[key]
 
 
-def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, prev_angles=None, correction=None):
+def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, prev_angles=None, correction=None, angle_neuf=None):
     """Génère tweet + titre image + image_query + mots-clés majeurs.
     prev_angles = titres déjà publiés par Pulse sur CE sujet (suite = nouvel angle obligatoire)."""
     today = datetime.now().strftime("%d %B %Y")
@@ -1130,6 +1172,11 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
                 "- Rappelle le contexte en QUELQUES MOTS seulement (quelqu'un qui découvre le sujet ici doit comprendre).\n"
                 "- Écris une accroche DIFFÉRENTE : ne réutilise ni la même formulation ni le même angle que ci-dessus."
             )
+            if angle_neuf:
+                # 🆕 L'élément nouveau a DÉJÀ été identifié en amont : on le donne au rédacteur
+                #    pour qu'il construise le tweet autour, au lieu de le chercher lui-même.
+                prev_str += (f"\n\n🆕 CE QUI EST NOUVEAU (identifié à l'analyse) : {angle_neuf}\n"
+                             "C'est le CŒUR de ce tweet : commence par ça. Le reste n'est que contexte.")
 
     # Style adaptatif selon catégorie — TOUJOURS court et télégraphique (fil d'actu)
     if category == "hommage":
@@ -1334,7 +1381,7 @@ def _annonce_perimee(text, now=None, pub_ts=None, stale_h=18):
             return True
     return False
 
-def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=None, pub_ts=None):
+def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=None, pub_ts=None, angle_neuf=None):
     """gen_tweet_complet + lecture de l'article UNIQUEMENT sur sujets sensibles
     (mort, procès, accusations… où la précision juridique est vitale) + vérification factuelle.
     Sur les sujets non sensibles, le titre + résumé RSS suffisent → coût minimal."""
@@ -1351,7 +1398,8 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
         except Exception:
             article_text = None
     body, headline, image_query, keywords, person, pays = gen_tweet_complet(
-        title, summary, source, category, article_text=article_text, prev_angles=prev_angles)
+        title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
+        angle_neuf=angle_neuf)
     # 💰 UNE SEULE régénération payante par tweet. Les trois garde-fous (fait, teaser,
     #    annonce périmée) pouvaient s'enchaîner : jusqu'à 4 appels facturés pour UN tweet.
     #    Au-delà du quota, on applique la correction LOCALE (gratuite) déjà prévue.
@@ -1366,7 +1414,8 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
     if issues and _can_regen():
         print(f"  ⚖️ Erreur factuelle détectée ({'; '.join(issues)}) → régénération")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text, prev_angles=prev_angles, correction="; ".join(issues))
+            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
+            angle_neuf=angle_neuf, correction="; ".join(issues))
         if _fact_guard(body + " " + headline, src_text):
             body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
             print("  ⚖️ Correction forcée appliquée")
@@ -1385,7 +1434,8 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
                 "DONNE le FAIT d'actualité en clair, directement, dans le tweet — sans aucune promo de podcast/"
                 "émission/dossier, sans question creuse. Le lecteur doit connaître le fait en te lisant, sans cliquer ailleurs.")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text, prev_angles=prev_angles, correction=anti)
+            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
+            angle_neuf=angle_neuf, correction=anti)
     # Nettoyage LOCAL (gratuit) : s'applique aussi quand le quota de régénération est épuisé.
     if _is_teaser(body):
         body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
@@ -1432,7 +1482,8 @@ def build_full_tweet(body, category, country=""):
     label = LABELS[category]
     flag = _flag_emoji(country)
     # En-tête : "emoji [drapeau] LABEL | ..." — le drapeau situe le pays, le LABEL (catégorie) est conservé.
-    head = f"{emoji} {flag} {label} |".replace("  ", " ") if flag else f"{emoji} {label} |"
+    # Emojis COLLÉS puis espace avant le libellé : « 🍅🇫🇷 FLASH | … » (format de référence)
+    head = f"{emoji}{flag} {label} |" if flag else f"{emoji} {label} |"
     return f"{head} {body}"
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -7659,6 +7710,8 @@ def topic_history(conn, title, min_overlap=2):
                 pass
     return n, last, heads
 
+_DERNIER_ANGLE = {"v": ""}   # élément neuf du dernier sujet jugé (passé au rédacteur)
+
 def _suite_apporte_du_neuf(titre, resume, deja_publies):
     """Une SUITE de sujet mérite-t-elle une publication ?
     Le juge par mots-clés ne voit pas la différence entre « le feu est fixé » (vrai
@@ -7715,6 +7768,7 @@ def topic_gate(conn, title, resume=None, juge_modele=False):
     #    (vécu : incendie du Var tweeté en URGENT puis re-tweeté en FAITS DIVERS 1h après).
     if juge_modele:
         neuf, angle = _suite_apporte_du_neuf(title, resume, heads)
+        _DERNIER_ANGLE["v"] = angle if neuf else ""
         if neuf is True:
             if angle:
                 print(f"  🆕 Développement réel : {angle}")
@@ -8024,7 +8078,7 @@ def topic_echo_add(conn, title, source):
     if len(sig) < 2:
         return None
     rows = conn.execute(
-        "SELECT topic_key, source FROM topic_echo WHERE first_seen > datetime('now','-12 hours')"
+        "SELECT topic_key, source FROM topic_echo WHERE first_seen > datetime('now','-6 hours')"
     ).fetchall()
     seen_keys = {}
     for k, src in rows:
@@ -8047,7 +8101,7 @@ def topic_echo_status(conn, title):
     if len(sig) < 2:
         return 0, False, 0, None
     rows = conn.execute(
-        "SELECT topic_key, source FROM topic_echo WHERE first_seen > datetime('now','-12 hours')"
+        "SELECT topic_key, source FROM topic_echo WHERE first_seen > datetime('now','-6 hours')"
     ).fetchall()
     seen_keys = {}
     for k, src in rows:
@@ -8116,6 +8170,8 @@ def detect_breaking(conn, candidates, return_all=False):
                                                  resume=c.get("summary"), juge_modele=True)
             if not _allowed and _code in ("stale", "too_soon", "cap"):
                 continue
+            # 🆕 l'élément nouveau identifié voyage avec le candidat jusqu'à la rédaction
+            c["_angle_neuf"] = _DERNIER_ANGLE.get("v", "")
             kind = "followup"
         else:
             # nouveau sujet chaud : pas déjà couvert récemment par Pulse
@@ -8135,6 +8191,7 @@ def detect_breaking(conn, candidates, return_all=False):
     return ordered[0] if ordered else None
 
 def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates=None):
+    _angle = item.get("_angle_neuf") or ""
     """Publie vite une actu (X + Facebook + Instagram).
     urgent=True → label rouge 'Breaking'. urgent=False → label normal de la catégorie (buzz/insolite).
     bump_cadence : repousse-t-il le minuteur de cadence des news normales ? Par défaut, un vrai
@@ -8162,7 +8219,7 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     label_cat = "breaking" if urgent else cat
     body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
         item["title"], item["summary"], item["source"], cat, url=item.get("url"),
-        prev_angles=_prev_heads, pub_ts=item.get("pub_ts")
+        prev_angles=_prev_heads, pub_ts=item.get("pub_ts"), angle_neuf=_angle
     )
     if not body:
         print(f"  ⛔ Breaking abandonné (génération vide ou annonce périmée) : {item['title'][:50]}")
