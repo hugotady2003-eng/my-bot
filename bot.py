@@ -307,6 +307,12 @@ def init_db():
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
     # 🖼️ Articles publiés aujourd'hui (titre + url + catégorie) : sert à illustrer le récap
     #    du soir avec une vraie image liée à chaque actu. Purgé après 2 jours.
+    # 🧠 vecteur de sens du sujet (embedding) : permet de reconnaître un même sujet
+    #    reformulé. Colonne ajoutée après coup → tolérante si elle existe déjà.
+    try:
+        conn.execute("ALTER TABLE topic_memory ADD COLUMN vec TEXT")
+    except Exception:
+        pass
     conn.execute("""CREATE TABLE IF NOT EXISTS recap_srcs (
         title TEXT, url TEXT, category TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
@@ -594,7 +600,13 @@ def _print_claude_meter():
     except Exception:
         pass
 
-_PROMPT_CACHE_OK = True   # passe à False si l'API/SDK refuse le cache → repli transparent
+# 💰 MISE EN CACHE DES CONSIGNES — DÉSACTIVÉE PAR DÉFAUT, sur données réelles.
+#    Mesuré en production : une écriture de cache coûte 1,25× l'envoi normal, et Pulse ne
+#    fait qu'UN appel de rédaction par cycle — le bloc était donc écrit puis jamais relu,
+#    soit +20 % sur la facture (0,679 ¢ → 0,814 ¢ par tweet).
+#    Le cache ne redevient rentable que si plusieurs appels partagent le même bloc à
+#    quelques minutes d'intervalle. Mettre PROMPT_CACHE=1 pour le réactiver.
+_PROMPT_CACHE_OK = os.environ.get("PROMPT_CACHE", "0").strip() in ("1", "true", "oui")
 # 🧮 Consommation RÉELLE du run (remplie depuis la réponse de l'API) : permet de mesurer la
 #    facture au lieu de l'estimer, et de vérifier si la mise en cache rapporte vraiment.
 _USAGE = {"in": 0, "cache_w": 0, "cache_r": 0, "out": 0}
@@ -3556,6 +3568,44 @@ def _wiki_page_image(page_title):
         return None
 
 
+IMAGE_MODEL = os.environ.get("IMAGE_MODEL", "gemini-2.5-flash-image")
+
+def _gemini_image(description):
+    """Génère une image d'illustration. ⚠️ USAGE STRICTEMENT LIMITÉ aux ÉVOCATIONS
+    HISTORIQUES, et le tweet DOIT porter la mention « image représentative ».
+    Une actualité n'est JAMAIS illustrée par une image générée : fabriquer l'image d'un
+    fait réel détruirait la crédibilité du compte.
+    Renvoie les octets de l'image, ou None."""
+    if not description or not GEMINI_API_KEY:
+        return None
+    try:
+        import base64 as _b64
+        url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+               f"{IMAGE_MODEL}:generateContent")
+        consigne = (
+            "Illustration d'évocation historique, style peinture documentaire sobre, "
+            "atmosphère d'époque, sans texte ni logo, sans visage reconnaissable de "
+            "personnalité réelle, cadrage large. Sujet : " + description[:400])
+        r = requests.post(url,
+                          headers={"x-goog-api-key": GEMINI_API_KEY,
+                                   "Content-Type": "application/json"},
+                          json={"contents": [{"parts": [{"text": consigne}]}]},
+                          timeout=90)
+        r.raise_for_status()
+        parts = (((r.json().get("candidates") or [{}])[0].get("content") or {}).get("parts") or [])
+        for p in parts:
+            inl = p.get("inlineData") or p.get("inline_data") or {}
+            mime = (inl.get("mimeType") or inl.get("mime_type") or "")
+            if inl.get("data") and mime.startswith("image/"):
+                brut = _b64.b64decode(inl["data"])
+                if len(brut) > 2000:
+                    print("  🎨 Illustration historique générée (mention obligatoire ajoutée)")
+                    return brut
+    except Exception as e:
+        print(f"  ⚠️ Illustration indisponible ({str(e)[:70]}) → carte sans image")
+    return None
+
+
 def _histoire_img(events, idx):
     """Image de l'événement n° idx choisi par Claude.
     ① image fournie par le flux onthisday, sinon ② image de la PAGE Wikipédia liée.
@@ -3635,16 +3685,30 @@ OU
         body = re.sub(r"^[\U0001F300-\U0001F9FF\u2600-\u27BF\s]+", "", body).strip()
         if not body: return None
 
+        # 🖼️ Image : d'abord la vraie photo Wikipédia de l'événement choisi. Si elle
+        #    n'existe pas, une ILLUSTRATION générée — et dans ce cas SEULEMENT, le tweet
+        #    porte la mention « image représentative », pour ne jamais laisser croire
+        #    qu'il s'agit d'un document d'époque authentique.
+        _photo = _histoire_img(events, result.get("index"))
+        _brut, _generee = None, False
+        if not _photo:
+            _brut = _gemini_image(result.get("headline_court") or body[:200])
+            _generee = _brut is not None
+        _corps = build_full_tweet(body, "histoire")
+        if _generee and "représentative" not in _corps.lower():
+            _corps = _corps.rstrip() + "\n\n(Illustration représentative, image générée)"
+
         return {
             "title":          f"Éphéméride — {today}",
             "source":         "Wikipédia",
             "url":            "",
             "analysis":       {"category": "histoire", "needs_video": False},
-            "tweet":          build_full_tweet(body, "histoire"),
+            "tweet":          _corps,
             "headline_court": _smart_truncate(result.get("headline_court", f"Éphéméride {today}"), 75),
             "image_query":    result.get("image_query", "history old"),
-            # 🖼️ Photo = l'image Wikipédia de l'événement CHOISI (index renvoyé par Claude).
-            "photo_url":      _histoire_img(events, result.get("index")),
+            "photo_url":      _photo,
+            "raw_image":      _brut,          # illustration générée, si aucune photo réelle
+            "image_generee":  _generee,
             "keywords":       [],
         }
     except Exception as e:
@@ -3654,8 +3718,11 @@ OU
 # ═══════════════════════════════════════════════════════════════════════════
 # THREADS QUOTIDIENS (basés sur les vrais articles RSS)
 # ═══════════════════════════════════════════════════════════════════════════
-def gather_all_headlines():
-    """Récupère un large échantillon de titres+résumés RSS pour repérer les grands sujets."""
+def gather_all_headlines(resume_max=80):
+    """Récupère un large échantillon de titres RSS pour repérer les grands sujets.
+    💰 `resume_max` borne le résumé joint à chaque titre : pour CHOISIR un sujet, le titre
+    porte l'essentiel. Un résumé de 200 caractères par article faisait gonfler le prompt
+    du sondage à ~4 800 tokens pour un seul tweet."""
     headlines = []
     for fi in RSS_FEEDS:
         try:
@@ -3665,7 +3732,10 @@ def gather_all_headlines():
                 summ  = _strip_html(entry.get("summary", entry.get("description", "")))
                 if title:
                     summ = re.sub(r"<[^>]+>", "", summ)  # nettoie le HTML
-                    headlines.append(f"[{fi['source']}] {title} — {summ[:200]}")
+                    if resume_max > 0:
+                        headlines.append(f"[{fi['source']}] {title} — {summ[:resume_max]}")
+                    else:
+                        headlines.append(f"[{fi['source']}] {title}")
         except: pass
     return headlines
 
@@ -3717,13 +3787,14 @@ def gen_poll(conn):
     if _paris_hour() < 12:   # sondage l'après-midi (heure de PARIS, pas du serveur)
         return None
 
-    headlines = gather_all_headlines()
+    # 💰 titres seuls (sans résumé) : choisir un SUJET de sondage ne demande pas le détail
+    headlines = gather_all_headlines(resume_max=0)
     if len(headlines) < 10:
         return None
 
     avoid = recent_special_topics(conn, "poll", days=7)
     avoid_str = " ; ".join(avoid) if avoid else "Aucun"
-    headlines_str = "\n".join(headlines[:40])
+    headlines_str = "\n".join(headlines[:30])
     today = datetime.now().strftime("%d %B %Y")
 
     try:
@@ -4078,7 +4149,7 @@ def _decrypt_soundtrack(path_wav, duration, sujet=""):
     """Compat : la nappe du décryptage passe désormais par le moteur unique."""
     return build_soundtrack(path_wav, duration, category="sobre-decrypt", sujet=sujet)
 
-def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=(255, 90, 200), decrypt_cat="monde"):
+def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=(255, 90, 200), decrypt_cat="monde", voice_text=None):
     """🎬 Vidéo DÉCRYPTAGE (X/Facebook) — portrait 1080×1350.
     Les slides SONT la vidéo (plein cadre, pas de fond ajouté). Le texte S'ÉCRIT mot par mot,
     et la durée de chaque slide est calculée sur sa QUANTITÉ DE TEXTE (temps de lecture garanti,
@@ -4189,7 +4260,17 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
         out_mp4 = os.path.join(tmpdir, "video.mp4")
         try:
             wav = os.path.join(tmpdir, "pad.wav")
-            _decrypt_soundtrack(wav, total_dur, sujet)
+            # 🔊 Bande son : VOIX de synthèse lisant le décryptage + MUSIQUE en fond.
+            #    La voix prime largement (musique à -16 dB + atténuation quand ça parle).
+            #    Si la voix échoue → musique seule ; si tout échoue → nappe d'origine.
+            voix = _gemini_tts(voice_text, os.path.join(tmpdir, "voix.wav")) if voice_text else None
+            piste = _piste_musicale()
+            mixe = _melange_voix_musique(voix, piste, os.path.join(tmpdir, "mix.m4a"),
+                                         total_dur) if (voix or piste) else None
+            if mixe:
+                wav = mixe
+            else:
+                _decrypt_soundtrack(wav, total_dur, sujet)
             r = subprocess.run([ffmpeg_bin, "-y", "-loglevel", "error", "-i", raw_mp4, "-i", wav,
                                 "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", out_mp4],
                                capture_output=True)
@@ -4202,6 +4283,116 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
     except Exception as e:
         print(f"  ⚠️ Vidéo décryptage échouée : {e}")
         return None
+
+TTS_MODEL = os.environ.get("TTS_MODEL", "gemini-2.5-flash-preview-tts")
+TTS_VOICE = os.environ.get("TTS_VOICE", "Kore")
+_MUSIC_DIRS = ("music", "assets/music", ".")
+
+def _gemini_tts(texte, wav_out):
+    """Voix de synthèse via l'API Gemini. Le service renvoie du PCM brut 16 bits / 24 kHz
+    encodé en base64 : on le convertit en WAV avec ffmpeg.
+    Renvoie le chemin du WAV, ou None. 🛡️ Jamais d'erreur remontée : sans voix, la vidéo
+    sort quand même avec sa seule musique."""
+    if not texte or not GEMINI_API_KEY:
+        return None
+    try:
+        import base64 as _b64, imageio_ffmpeg as _iff, subprocess as _sp
+        url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+               f"{TTS_MODEL}:generateContent")
+        # le modèle ne parle que si on le lui demande explicitement ("Lis…")
+        r = requests.post(url,
+                          headers={"x-goog-api-key": GEMINI_API_KEY,
+                                   "Content-Type": "application/json"},
+                          json={"contents": [{"parts": [{"text":
+                                    "Lis ce texte d'un ton posé, clair et journalistique, "
+                                    "sans emphase excessive : " + texte[:1200]}]}],
+                                "generationConfig": {
+                                    "responseModalities": ["AUDIO"],
+                                    "speechConfig": {"voiceConfig": {
+                                        "prebuiltVoiceConfig": {"voiceName": TTS_VOICE}}}}},
+                          timeout=90)
+        r.raise_for_status()
+        parts = (((r.json().get("candidates") or [{}])[0].get("content") or {}).get("parts") or [])
+        b64 = None
+        for p in parts:
+            inl = p.get("inlineData") or p.get("inline_data") or {}
+            if inl.get("data"):
+                b64 = inl["data"]; break
+        if not b64:
+            return None
+        pcm = os.path.splitext(wav_out)[0] + ".pcm"
+        with open(pcm, "wb") as f:
+            f.write(_b64.b64decode(b64))
+        ff = _iff.get_ffmpeg_exe()
+        rr = _sp.run([ff, "-y", "-loglevel", "error", "-f", "s16le", "-ar", "24000",
+                      "-ac", "1", "-i", pcm, wav_out], capture_output=True, timeout=120)
+        if rr.returncode == 0 and os.path.exists(wav_out) and os.path.getsize(wav_out) > 2000:
+            print(f"  🔊 Voix de synthèse générée ({TTS_VOICE})")
+            return wav_out
+    except Exception as e:
+        print(f"  ⚠️ Voix de synthèse indisponible ({str(e)[:70]}) → vidéo sans voix")
+    return None
+
+
+def _piste_musicale():
+    """Piste musicale au hasard dans le dossier `music/` (déposé dans le dépôt, comme
+    `pills/`). Des morceaux ORIGINAUX générés une fois : aucun ayant droit, aucun risque
+    de signalement, et zéro coût à chaque vidéo. None si le dossier est absent."""
+    try:
+        exts = (".mp3", ".m4a", ".wav", ".ogg")
+        for d in _MUSIC_DIRS:
+            if not os.path.isdir(d):
+                continue
+            pistes = [os.path.join(d, f) for f in sorted(os.listdir(d))
+                      if f.lower().endswith(exts)]
+            if pistes:
+                return random.choice(pistes)
+    except Exception:
+        pass
+    return None
+
+
+def _melange_voix_musique(voix_wav, musique, sortie, duree, voix_db=3.0, musique_db=-18.0):
+    """Mixe la VOIX et la MUSIQUE en gardant la voix NETTEMENT au-dessus.
+    `musique_db=-16` place la musique environ six fois moins forte que la voix, et un
+    `sidechaincompress` la fait automatiquement baisser quand la voix parle.
+    Renvoie le chemin du mixage, ou la voix seule, ou la musique seule — dans cet ordre
+    de préférence : la parole prime toujours sur l'ambiance."""
+    try:
+        import imageio_ffmpeg as _iff, subprocess as _sp
+        ff = _iff.get_ffmpeg_exe()
+        if voix_wav and musique:
+            # ⚠️ Un label ffmpeg ne se consomme qu'UNE fois : la voix est dupliquée (asplit)
+            #    car elle sert deux fois — comme déclencheur d'atténuation et dans le mixage.
+            #    La musique est bouclée par l'entrée (-stream_loop), pas par un filtre.
+            filtre = (
+                f"[0:a]volume={voix_db}dB,apad,asplit=2[v1][v2];"
+                f"[1:a]volume={musique_db}dB[m];"
+                f"[m][v1]sidechaincompress=threshold=0.02:ratio=12:attack=8:release=320[duck];"
+                f"[duck][v2]amix=inputs=2:duration=first:dropout_transition=0:normalize=0,"
+                f"aresample=44100[a]"
+            )
+            r = _sp.run([ff, "-y", "-loglevel", "error",
+                         "-i", voix_wav, "-stream_loop", "-1", "-i", musique,
+                         "-filter_complex", filtre, "-map", "[a]",
+                         "-t", f"{duree:.2f}", sortie],
+                        capture_output=True, timeout=180)
+            if r.returncode == 0 and os.path.exists(sortie) and os.path.getsize(sortie) > 2000:
+                print("  🎚️ Voix et musique mixées (voix dominante)")
+                return sortie
+            print(f"  ⚠️ Mixage impossible (ffmpeg {r.returncode}) → voix seule")
+        if voix_wav:
+            return voix_wav
+        if musique:
+            r = _sp.run([ff, "-y", "-loglevel", "error", "-i", musique,
+                         "-filter:a", f"volume={musique_db}dB,atrim=0:{duree:.2f}",
+                         "-ar", "44100", sortie], capture_output=True, timeout=120)
+            if r.returncode == 0 and os.path.exists(sortie):
+                return sortie
+    except Exception as e:
+        print(f"  ⚠️ Mixage audio ignoré ({str(e)[:70]})")
+    return voix_wav or None
+
 
 def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 90, 200), bg_photo=None,
                          reveal=1.0, as_image=False, bg_cache=None, W=1080, H=1350):
@@ -7285,13 +7476,70 @@ def log_topic(conn, title, keywords):
     try:
         sig = " ".join(sorted(_topic_sig_words(title)))
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        v = _embed(title)      # vecteur de sens, None si indisponible
         conn.execute(
-            "INSERT INTO topic_memory (topic_sig, headline, keywords, sent_at) VALUES (?,?,?,?)",
-            (sig, title or "", ", ".join(keywords or []), now)
+            "INSERT INTO topic_memory (topic_sig, headline, keywords, sent_at, vec) VALUES (?,?,?,?,?)",
+            (sig, title or "", ", ".join(keywords or []), now, json.dumps(v) if v else None)
         )
         conn.commit()
     except Exception as e:
         print(f"  ⚠️ log_topic: {e}")
+
+EMBED_MODEL = os.environ.get("EMBED_MODEL", "gemini-embedding-001")
+EMBED_SEUIL = 0.82        # au-delà, deux titres parlent du MÊME sujet (calibré prudemment)
+_EMBED_CACHE = {}         # titre → vecteur, pour ne jamais payer deux fois dans un run
+
+def _embed(texte):
+    """Vecteur de SENS d'un titre, via l'API d'embeddings (gratuite dans nos volumes).
+    Renvoie une liste de nombres, ou None si indisponible. Jamais d'erreur remontée :
+    sans vecteur, la comparaison par mots-clés reprend la main."""
+    if not texte or not GEMINI_API_KEY:
+        return None
+    cle = texte.strip().lower()[:300]
+    if cle in _EMBED_CACHE:
+        return _EMBED_CACHE[cle]
+    try:
+        url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+               f"{EMBED_MODEL}:embedContent")
+        r = requests.post(url,
+                          headers={"x-goog-api-key": GEMINI_API_KEY,
+                                   "Content-Type": "application/json"},
+                          json={"model": f"models/{EMBED_MODEL}",
+                                "content": {"parts": [{"text": texte[:2000]}]},
+                                "outputDimensionality": 768},
+                          timeout=20)
+        r.raise_for_status()
+        v = (r.json().get("embedding") or {}).get("values")
+        if v:
+            _EMBED_CACHE[cle] = v
+            return v
+    except Exception as e:
+        print(f"  ⚠️ Embedding indisponible ({str(e)[:70]}) → comparaison par mots-clés")
+    _EMBED_CACHE[cle] = None
+    return None
+
+
+def _cos(a, b):
+    """Similarité cosinus entre deux vecteurs : 1 = sens identique, 0 = sans rapport."""
+    try:
+        import math
+        num = sum(x * y for x, y in zip(a, b))
+        na = math.sqrt(sum(x * x for x in a))
+        nb = math.sqrt(sum(y * y for y in b))
+        return num / (na * nb) if na and nb else 0.0
+    except Exception:
+        return 0.0
+
+
+def _meme_sujet(titre_a, titre_b, vec_a=None, vec_b=None, min_overlap=2):
+    """Deux titres parlent-ils du MÊME sujet ?
+    ① Comparaison par le SENS si les vecteurs sont disponibles (attrape « le feu ravage
+       2500 ha » vs « 2500 hectares partis en fumée », que les mots communs rataient).
+    ② Sinon, repli sur les mots saillants communs — le comportement historique."""
+    if vec_a is not None and vec_b is not None:
+        return _cos(vec_a, vec_b) >= EMBED_SEUIL
+    return len(_sig_words(titre_a) & _sig_words(titre_b)) >= min_overlap
+
 
 def topic_history(conn, title, min_overlap=2):
     """Publications d'AUJOURD'HUI portant sur le même sujet que `title`.
@@ -7305,15 +7553,25 @@ def topic_history(conn, title, min_overlap=2):
     depuis = (datetime.now() - timedelta(hours=24)).strftime("%Y-%m-%d %H:%M:%S")
     try:
         rows = conn.execute(
-            "SELECT topic_sig, headline, sent_at FROM topic_memory WHERE sent_at >= ?",
+            "SELECT topic_sig, headline, sent_at, vec FROM topic_memory WHERE sent_at >= ?",
             (depuis,)
         ).fetchall()
     except Exception:
         return 0, None, []
+    vec_courant = _embed(title)          # None si l'API n'est pas branchée → repli mots-clés
     n, last, heads = 0, None, []
-    for topic_sig, head, sent_at in rows:
-        other = set((topic_sig or "").split())
-        if len(sig & other) >= min_overlap:
+    for topic_sig, head, sent_at, vec_txt in rows:
+        autre_vec = None
+        if vec_courant is not None and vec_txt:
+            try:
+                autre_vec = json.loads(vec_txt)
+            except Exception:
+                autre_vec = None
+        if autre_vec is not None:
+            meme = _cos(vec_courant, autre_vec) >= EMBED_SEUIL
+        else:
+            meme = len(sig & set((topic_sig or "").split())) >= min_overlap
+        if meme:
             n += 1
             if head:
                 heads.append(head)
@@ -7888,6 +8146,23 @@ def check_feeds(conn):
     _CLAUDE_CALLS = 0
     _CADENCE_DECISION = None
     print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
+    # 🔧 Diagnostic de configuration : dit NOIR SUR BLANC quel moteur est réellement actif.
+    #    (Piège vécu : une clé rangée dans les secrets GitHub mais non transmise par le
+    #    workflow reste invisible pour le bot — sans ce message, ça passe inaperçu.)
+    try:
+        _souhaits = {"analyse": LLM_ANALYSE, "rédaction": LLM_REDACTION}
+        if any(v == "gemini" for v in _souhaits.values()):
+            if GEMINI_API_KEY:
+                _actifs = " · ".join(f"{k}={v}" for k, v in _souhaits.items())
+                print(f"  🔧 Moteur : {_actifs} (clé Gemini détectée ✅)")
+            else:
+                print("  ⚠️ GEMINI demandé mais AUCUNE clé reçue → tout reste sur Claude.")
+                print("     La clé est-elle bien transmise par le workflow (bloc env:) ?")
+        elif GEMINI_API_KEY:
+            print("  🔧 Clé Gemini présente mais non utilisée "
+                  "(mettre LLM_ANALYSE=gemini pour l'activer)")
+    except Exception:
+        pass
 
     # ── MODE COUPE DU MONDE : matchs du jour (matin) + prono la veille des matchs de la France ──
     # Chaque rendez-vous fixe qui publie fait 'return' → UN SEUL post par run (pas de rafale).
@@ -7955,9 +8230,17 @@ def check_feeds(conn):
                                      prefetched=(raw_src, has_real), headline_bottom=True, ss=1,
                                      no_pill=_pill_gif_path("monde") is not None,
                                      no_logo=_logo_gif_path() is not None)
+            # 🔊 Texte lu par la voix de synthèse : le titre puis chaque point, dans l'ordre.
+            #    Rien d'inventé — uniquement ce qui est déjà écrit à l'écran.
+            _lu = [carousel.get("cover_title", "")]
+            for _sl in carousel["slides"]:
+                _lu.append(_sl.get("titre", ""))
+                for _pt in (_sl.get("points") or [])[:2]:
+                    _lu.append(_pt)
+            _lu = ". ".join(x.strip() for x in _lu if x and x.strip())
             vid_thread = build_decrypt_video(cover_vid or cover_paysage, carousel["slides"],
                                              carousel.get("sujet", ""), bg_photo=raw_src,
-                                             decrypt_cat="monde")
+                                             decrypt_cat="monde", voice_text=_lu)
             url = None
             try:
                 url = post_to_twitter(xfb, cover_paysage, vid_thread)
@@ -8482,6 +8765,9 @@ def check_feeds(conn):
             if not has_real:
                 # 🤝 le site bloque (403/paywall) ou le flux est nu → même sujet chez un autre média
                 raw_src, has_real = _photo_secours_jumeau(item, candidates)
+            if not has_real and item.get("raw_image"):
+                # 🎨 uniquement l'histoire du jour : illustration générée, tweet déjà annoté
+                raw_src, has_real = item["raw_image"], True
 
             # 🏆 Si c'est un RÉSULTAT sportif : carte de victoire (photo floutée + score)
             victory = None
