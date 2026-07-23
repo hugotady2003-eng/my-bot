@@ -3,6 +3,7 @@ Pulse NewsBot — bot d'actualité française.
 Génère des tweets engageants avec image PNG, envoyés par email + posté sur X.
 """
 import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib, random
+import requests   # déjà présent dans requirements.txt (inchangé) — sert aux API REST
 import socket
 socket.setdefaulttimeout(12)   # aucun flux RSS/site mort ne peut geler un run
 import urllib.request, urllib.parse, urllib.error, re
@@ -71,6 +72,13 @@ GMAIL_ADDRESS     = os.environ.get("GMAIL_ADDRESS",     "")
 GMAIL_APP_PASS    = os.environ.get("GMAIL_APP_PASS",    "")
 EMAIL_TO          = os.environ.get("EMAIL_TO",          "")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+# ── Fournisseur de modèle, choisi PAR TÂCHE (migration progressive vers le gratuit) ──
+# Valeurs : "claude" (par défaut) ou "gemini". Claude reste le REPLI automatique en cas
+# d'échec, de quota dépassé ou de réponse illisible : un tweet n'est jamais perdu.
+GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
+GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.1-flash-lite")
+LLM_ANALYSE       = os.environ.get("LLM_ANALYSE",       "claude").strip().lower()
+LLM_REDACTION     = os.environ.get("LLM_REDACTION",     "claude").strip().lower()
 YOUTUBE_API_KEY   = os.environ.get("YOUTUBE_API_KEY",   "")
 UNSPLASH_KEY      = os.environ.get("UNSPLASH_KEY",      "")
 
@@ -567,15 +575,22 @@ def _print_claude_meter():
     # S'affiche à la toute fin du processus (donc en fin de run GitHub Actions), quel que soit
     # le chemin de sortie. On n'affiche rien si aucun appel n'a été fait (run en attente de cadence).
     try:
-        if not _CLAUDE_CALLS:
+        if not _CLAUDE_CALLS and not any(_USAGE_GEMINI.values()):
             return
-        print(f"  🧮 Coût du run : {_CLAUDE_CALLS} appel(s) Claude payé(s) ce cycle")
-        if any(_USAGE.values()):
-            print(f"     tokens — entrée {_USAGE['in']:,} · cache écrit {_USAGE['cache_w']:,} · "
-                  f"cache relu {_USAGE['cache_r']:,} · sortie {_USAGE['out']:,}")
-            print(f"     facture réelle de ce run : {cout_du_run():.3f} ¢")
-            if _USAGE["cache_w"] and not _USAGE["cache_r"]:
-                print("     ℹ️ cache écrit mais jamais relu sur ce run — sans effet ici")
+        if any(_USAGE_GEMINI.values()):
+            print(f"  🆓 Gemini — entrée {_USAGE_GEMINI['in']:,} · sortie {_USAGE_GEMINI['out']:,} tokens"
+                  f"  (palier gratuit : 0 ¢)")
+        if _CLAUDE_CALLS:
+            print(f"  🧮 Claude : {_CLAUDE_CALLS} appel(s) payé(s) ce cycle")
+            if any(_USAGE[k] for k in _USAGE):
+                print(f"     tokens — entrée {_USAGE['in']:,} · cache écrit {_USAGE['cache_w']:,} · "
+                      f"cache relu {_USAGE['cache_r']:,} · sortie {_USAGE['out']:,}")
+                print(f"     facture réelle de ce run : {cout_du_run():.3f} ¢")
+                if _USAGE["cache_w"] and not _USAGE["cache_r"]:
+                    print("     ℹ️ cache écrit mais jamais relu sur ce run — sans effet ici")
+        if _LLM_FALLBACKS:
+            print(f"  ↩️ {_LLM_FALLBACKS} repli(s) du gratuit vers Claude "
+                  f"(à surveiller : si ça se répète, le gratuit n'est pas fiable)")
     except Exception:
         pass
 
@@ -583,6 +598,8 @@ _PROMPT_CACHE_OK = True   # passe à False si l'API/SDK refuse le cache → repl
 # 🧮 Consommation RÉELLE du run (remplie depuis la réponse de l'API) : permet de mesurer la
 #    facture au lieu de l'estimer, et de vérifier si la mise en cache rapporte vraiment.
 _USAGE = {"in": 0, "cache_w": 0, "cache_r": 0, "out": 0}
+_USAGE_GEMINI = {"in": 0, "out": 0}   # consommation du fournisseur gratuit
+_LLM_FALLBACKS = 0                    # nb de replis sur Claude (fiabilité du gratuit)
 # Tarifs Haiku 4.5, en dollars par million de tokens
 _PRIX = {"in": 1.00, "cache_w": 1.25, "cache_r": 0.10, "out": 5.00}
 
@@ -625,6 +642,59 @@ def _msg_kwargs(system, model, max_tokens, prompt):
     return kw
 
 
+def _parse_json_reponse(raw):
+    """Parse la réponse d'un modèle en JSON, avec repli si du texte l'entoure.
+    Partagé par TOUS les fournisseurs : une seule source de vérité."""
+    raw = (raw or "").strip().replace("```json", "").replace("```", "").strip()
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        m = re.search(r'\{.*\}', raw, re.DOTALL)
+        if m:
+            return json.loads(m.group(0))
+        raise
+
+
+def _gemini_call(prompt, system, max_tokens, want_json=True):
+    """Appel du modèle Gemini en REST — aucune dépendance nouvelle, `requests` suffit,
+    donc requirements.txt reste intact. Lève une exception en cas d'échec (le repli
+    Claude est géré par _llm_json)."""
+    global _USAGE_GEMINI
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
+    gen = {"maxOutputTokens": int(max_tokens), "temperature": 0.7,
+           # pas de « réflexion » : elle est facturée comme de la sortie et ralentit le run
+           "thinkingConfig": {"thinkingBudget": 0}}
+    if want_json:
+        gen["responseMimeType"] = "application/json"
+    body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": gen}
+    if system:
+        body["systemInstruction"] = {"parts": [{"text": system}]}
+    r = requests.post(url, headers={"x-goog-api-key": GEMINI_API_KEY,
+                                    "Content-Type": "application/json"},
+                      json=body, timeout=60)
+    r.raise_for_status()
+    data = r.json()
+    u = data.get("usageMetadata") or {}
+    _USAGE_GEMINI["in"]  += u.get("promptTokenCount", 0) or 0
+    _USAGE_GEMINI["out"] += u.get("candidatesTokenCount", 0) or 0
+    return data["candidates"][0]["content"]["parts"][0]["text"]
+
+
+def _llm_json(prompt, max_tokens, system, task):
+    """Appelle le modèle choisi POUR CETTE TÂCHE et renvoie du JSON.
+    🛡️ Claude reste le filet : si le fournisseur gratuit échoue (quota, réseau, réponse
+    illisible), on repasse par Claude immédiatement — la publication n'est jamais perdue."""
+    global _LLM_FALLBACKS
+    fournisseur = {"analyse": LLM_ANALYSE, "redaction": LLM_REDACTION}.get(task, "claude")
+    if fournisseur == "gemini" and GEMINI_API_KEY:
+        try:
+            return _parse_json_reponse(_gemini_call(prompt, system, max_tokens, want_json=True))
+        except Exception as e:
+            _LLM_FALLBACKS += 1
+            print(f"  ⚠️ Gemini indisponible pour « {task} » ({str(e)[:90]}) → repli Claude")
+    return claude(prompt, max_tokens=max_tokens, system=system)
+
+
 def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001", system=None):
     """Appel Claude avec parsing JSON blindé + 1 nouvelle tentative en cas d'erreur réseau/API."""
     global _CLAUDE_CALLS, _PROMPT_CACHE_OK
@@ -640,15 +710,7 @@ def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001", system=Non
                 _PROMPT_CACHE_OK = False
                 msg = client.messages.create(**_msg_kwargs(system, model, max_tokens, prompt))
             _note_usage(msg)
-            raw = msg.content[0].text.strip().replace("```json", "").replace("```", "").strip()
-            try:
-                return json.loads(raw)
-            except json.JSONDecodeError:
-                # Repli : extrait le premier objet JSON même si Claude a ajouté du texte autour
-                m = re.search(r'\{.*\}', raw, re.DOTALL)
-                if m:
-                    return json.loads(m.group(0))
-                raise
+            return _parse_json_reponse(msg.content[0].text)
         except (anthropic.APIConnectionError, anthropic.APIStatusError, anthropic.RateLimitError) as e:
             last_err = e
             if _PROMPT_CACHE_OK and system and "cache" in str(e).lower():
@@ -794,8 +856,8 @@ Articles :
 
 IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
 
-    result   = claude(prompt, max_tokens=max(500, len(articles) * 60),
-                      system=_analyse_system())
+    result   = _llm_json(prompt, max_tokens=max(500, len(articles) * 60),
+                         system=_analyse_system(), task="analyse")
     analyses = [_normalise_analyse(a) for a in result.get("analyses", [])]
     while len(analyses) < len(articles):
         analyses.append({"score": 0, "category": "france", "is_duplicate": False, "needs_video": False})
@@ -1071,7 +1133,7 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
 - Concis, pas de contexte superflu"""
 
 
-    result = claude(f"""Aujourd'hui : {today}.
+    result = _llm_json(f"""Aujourd'hui : {today}.
 
 Catégorie de ce tweet (libellé à NE PAS reprendre en tête du body) : {label}
 
@@ -1080,7 +1142,7 @@ Article à traiter :
 - Titre  : {title}
 - Résumé : {summary}{video_str}{art_str}{corr_str}{prev_str}
 
-{style_instr}""", max_tokens=900, system=_tweet_system(category == "hommage"))
+{style_instr}""", max_tokens=900, system=_tweet_system(category == "hommage"), task="redaction")
 
     body = (result.get("body") or "").strip()
     for label_test in LABELS.values():
