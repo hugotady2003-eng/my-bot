@@ -77,7 +77,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.25.3"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.26.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
 GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.1-flash-lite")
@@ -318,6 +318,10 @@ def init_db():
         conn.execute("ALTER TABLE topic_memory ADD COLUMN vec TEXT")
     except Exception:
         pass
+    # 🧮 journal des embeddings du jour : sert à respecter le budget du palier gratuit
+    conn.execute("""CREATE TABLE IF NOT EXISTS embed_log (
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+    conn.execute("DELETE FROM embed_log WHERE created_at < datetime('now', '-2 days')")
     conn.execute("""CREATE TABLE IF NOT EXISTS recap_srcs (
         title TEXT, url TEXT, category TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
@@ -7509,7 +7513,7 @@ def log_topic(conn, title, keywords):
     try:
         sig = " ".join(sorted(_topic_sig_words(title)))
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        v = _embed(title)      # vecteur de sens, None si indisponible
+        v = _embed(title, conn, essentiel=True)   # mémoriser un sujet publié : prioritaire
         conn.execute(
             "INSERT INTO topic_memory (topic_sig, headline, keywords, sent_at, vec) VALUES (?,?,?,?,?)",
             (sig, title or "", ", ".join(keywords or []), now, json.dumps(v) if v else None)
@@ -7520,17 +7524,44 @@ def log_topic(conn, title, keywords):
 
 EMBED_MODEL = os.environ.get("EMBED_MODEL", "gemini-embedding-001")
 EMBED_SEUIL = 0.82        # au-delà, deux titres parlent du MÊME sujet (calibré prudemment)
+# 🛡️ Le palier gratuit plafonne à ~1 000 requêtes/jour, TOUTES tâches confondues. Le bot
+#    tourne 288 fois par jour : sans borne, les embeddings épuiseraient le quota à eux seuls
+#    et feraient basculer analyse et rédaction sur Claude (payant). D'où ce budget, avec une
+#    RÉSERVE pour les usages essentiels (mémoriser un sujet publié).
+EMBED_BUDGET_JOUR = int(os.environ.get("EMBED_BUDGET_JOUR", "300"))
+EMBED_RESERVE     = 60    # au-delà du budget courant, seuls les appels essentiels passent
 _EMBED_CACHE = {}         # titre → vecteur, pour ne jamais payer deux fois dans un run
+_EMBED_CONN  = None       # base ouverte, pour compter la consommation du jour
 
-def _embed(texte):
+
+def _embed_budget_restant(conn):
+    """Nombre d'embeddings encore autorisés aujourd'hui. Tolérant : en cas de souci,
+    on renvoie 0 (repli mots-clés) plutôt que de risquer d'épuiser le quota."""
+    try:
+        n = conn.execute(
+            "SELECT COUNT(*) FROM embed_log WHERE date(created_at) = date('now')"
+        ).fetchone()[0]
+        return max(0, EMBED_BUDGET_JOUR - n)
+    except Exception:
+        return 0
+
+
+def _embed(texte, conn=None, essentiel=False):
     """Vecteur de SENS d'un titre, via l'API d'embeddings (gratuite dans nos volumes).
-    Renvoie une liste de nombres, ou None si indisponible. Jamais d'erreur remontée :
-    sans vecteur, la comparaison par mots-clés reprend la main."""
+    `essentiel=True` pour les usages qu'on ne veut jamais perdre (mémoriser un sujet publié) :
+    ceux-là puisent dans la réserve. Renvoie None si indisponible ou hors budget — la
+    comparaison par mots-clés reprend alors la main, sans rien casser."""
     if not texte or not GEMINI_API_KEY:
         return None
     cle = texte.strip().lower()[:300]
     if cle in _EMBED_CACHE:
         return _EMBED_CACHE[cle]
+    c = conn or _EMBED_CONN
+    if c is not None:
+        restant = _embed_budget_restant(c)
+        if restant <= 0 or (restant <= EMBED_RESERVE and not essentiel):
+            _EMBED_CACHE[cle] = None
+            return None
     try:
         url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
                f"{EMBED_MODEL}:embedContent")
@@ -7543,12 +7574,17 @@ def _embed(texte):
                           timeout=20)
         r.raise_for_status()
         _d = r.json()
-        # comptabiliser aussi les embeddings dans la consommation du fournisseur gratuit
         try:
             _USAGE_GEMINI["in"] += ((_d.get("usageMetadata") or {}).get("promptTokenCount")
                                     or max(1, len(texte) // 4))
         except Exception:
             pass
+        if c is not None:
+            try:
+                c.execute("INSERT INTO embed_log (created_at) VALUES (CURRENT_TIMESTAMP)")
+                c.commit()
+            except Exception:
+                pass
         v = (_d.get("embedding") or {}).get("values")
         if v:
             _EMBED_CACHE[cle] = v
@@ -7598,7 +7634,7 @@ def topic_history(conn, title, min_overlap=2):
         ).fetchall()
     except Exception:
         return 0, None, []
-    vec_courant = _embed(title)          # None si l'API n'est pas branchée → repli mots-clés
+    vec_courant = _embed(title, conn)    # None si hors budget ou API absente → repli mots-clés
     n, last, heads = 0, None, []
     for topic_sig, head, sent_at, vec_txt in rows:
         autre_vec = None
@@ -7623,10 +7659,48 @@ def topic_history(conn, title, min_overlap=2):
                 pass
     return n, last, heads
 
-def topic_gate(conn, title):
+def _suite_apporte_du_neuf(titre, resume, deja_publies):
+    """Une SUITE de sujet mérite-t-elle une publication ?
+    Le juge par mots-clés ne voit pas la différence entre « le feu est fixé » (vrai
+    développement) et « les flammes progressent toujours » (même fait reformulé).
+    L'analyse étant gratuite, on demande au modèle de trancher — et on lui fait dire
+    LEQUEL est le développement, ce qui donne l'angle du tweet.
+    Renvoie (bool, angle). 🛡️ En cas d'échec : (None, "") → le juge par mots-clés décide."""
+    if not deja_publies:
+        return True, ""
+    try:
+        deja = "\n".join(f"- {h}" for h in deja_publies[:4])
+        r = _llm_json(f"""Un compte d'actualité a DÉJÀ publié sur ce sujet :
+{deja}
+
+Nouvel article :
+Titre : {titre}
+Résumé : {(resume or "")[:400]}
+
+Ce nouvel article apporte-t-il un DÉVELOPPEMENT RÉEL par rapport à ce qui est déjà publié ?
+- OUI si un fait NOUVEAU est intervenu : bilan qui change, interpellation, décision de
+  justice, réaction officielle, fin ou aggravation de l'événement, nouvelle victime, recours.
+- NON si c'est le MÊME fait raconté autrement, un simple rappel, un angle décoratif,
+  ou un chiffre déjà connu reformulé.
+
+Sois SÉVÈRE : dans le doute, réponds non. Republier deux fois la même chose décrédibilise.
+
+Réponds UNIQUEMENT :
+{{"neuf": true|false, "angle": "<en 6 mots max, ce qui est nouveau ; vide si rien>"}}""",
+                       max_tokens=120, task="analyse")
+        if isinstance(r, dict) and "neuf" in r:
+            return bool(r.get("neuf")), str(r.get("angle") or "")[:80]
+    except Exception as e:
+        print(f"  ⚠️ Évaluation de suite indisponible ({str(e)[:60]}) → règle par mots-clés")
+    return None, ""
+
+
+def topic_gate(conn, title, resume=None, juge_modele=False):
     """Décide si un sujet DÉJÀ traité aujourd'hui a le droit de ressortir MAINTENANT.
     Renvoie (autorisé: bool, code: str, titres_déjà_publiés: list).
-    code ∈ {'new','followup','cap','too_soon','stale'}. Ne juge PAS la valeur (Claude s'en charge)."""
+    code ∈ {'new','followup','cap','too_soon','stale'}.
+    juge_modele=True : la NOUVEAUTÉ est évaluée par le modèle (plus fin que les mots-clés),
+    avec repli automatique sur la règle par mots-clés si l'évaluation échoue."""
     n, last, heads = topic_history(conn, title)
     if n == 0:
         return True, "new", heads
@@ -7639,6 +7713,16 @@ def topic_gate(conn, title):
     # 🆕 EXIGENCE DE NOUVEAUTÉ : une "suite" doit apporter des mots SIGNIFICATIFS absents des
     #    titres déjà publiés sur ce sujet. Sinon c'est le même fait reformulé par un autre média
     #    (vécu : incendie du Var tweeté en URGENT puis re-tweeté en FAITS DIVERS 1h après).
+    if juge_modele:
+        neuf, angle = _suite_apporte_du_neuf(title, resume, heads)
+        if neuf is True:
+            if angle:
+                print(f"  🆕 Développement réel : {angle}")
+            return True, "followup", heads
+        if neuf is False:
+            print("  ⏭️  Même fait reformulé (jugé par le modèle) → pas de republication")
+            return False, "stale", heads
+        # neuf is None → l'évaluation a échoué, on retombe sur la règle par mots-clés
     new_words = _sig_words(title)
     for h in heads:
         new_words -= _sig_words(h)
@@ -8008,7 +8092,19 @@ def detect_breaking(conn, candidates, return_all=False):
         if _is_soft_news(c["title"]):
             continue
         n_sources, already_alerted, at_alert, canon = topic_echo_status(conn, c["title"])
-        if not canon or n_sources < (2 if ULTRA_HOT_RX.search(c["title"]) else BREAKING_SOURCES):
+        # ⚡ Seuil d'écho requis, du plus exigeant au plus rapide :
+        #    • sujet ordinaire      → BREAKING_SOURCES médias distincts
+        #    • sujet ultra-chaud    → 2 médias
+        #    • ALERTE VITALE        → 1 seul média suffit. Sur un attentat, un tsunami ou une
+        #      évacuation, attendre confirmation coûte de longues minutes ; le vocabulaire de
+        #      danger physique est assez étroit pour que le risque de fausse alerte reste faible.
+        if _is_urgent_alert(c["title"], c.get("summary", "")):
+            _seuil = 1
+        elif ULTRA_HOT_RX.search(c["title"]):
+            _seuil = 2
+        else:
+            _seuil = BREAKING_SOURCES
+        if not canon or n_sources < _seuil:
             continue
         if already_alerted:
             # suivi possible UNIQUEMENT si un NOUVEAU média a rejoint le sujet depuis l'alerte
@@ -8016,7 +8112,8 @@ def detect_breaking(conn, candidates, return_all=False):
                 continue
             # 🆕 …ET si le titre apporte des mots SIGNIFICATIFS neufs (pas une reformulation).
             #    Sans ça, un 2e média qui redit la même chose relançait le sujet (incendie du Var).
-            _allowed, _code, _heads = topic_gate(conn, c["title"])
+            _allowed, _code, _heads = topic_gate(conn, c["title"],
+                                                 resume=c.get("summary"), juge_modele=True)
             if not _allowed and _code in ("stale", "too_soon", "cap"):
                 continue
             kind = "followup"
@@ -8223,7 +8320,8 @@ def _titre_propre(titre):
 
 
 def check_feeds(conn):
-    global _META_CONN, _CLAUDE_CALLS, _CADENCE_DECISION
+    global _META_CONN, _CLAUDE_CALLS, _CADENCE_DECISION, _EMBED_CONN
+    _EMBED_CONN = conn
     _META_CONN = conn
     _CLAUDE_CALLS = 0
     _CADENCE_DECISION = None
@@ -8665,9 +8763,10 @@ def check_feeds(conn):
 
     # 💰 Limite le nombre d'articles ENVOYÉS à Claude par passage (les articles en
     # cache restent gratuits). On garde un échantillon varié pour borner le coût API.
-    # 💰 Un seul article est publié par cycle : analyser 18 candidats était du gaspillage.
-    #    Le pré-classement (gratuit) garde déjà les plus prometteurs.
-    MAX_ANALYSE = 8
+    # 📈 L'analyse est passée sur le fournisseur GRATUIT : on peut donc en examiner
+    #    beaucoup plus sans surcoût. Plus de candidats analysés = moins de sujets ratés,
+    #    et un meilleur choix final. (Le pré-classement gratuit filtre toujours en amont.)
+    MAX_ANALYSE = 20 if (LLM_ANALYSE == "gemini" and GEMINI_API_KEY) else 8
     if len(to_analyse) > MAX_ANALYSE:
         skipped = len(to_analyse) - MAX_ANALYSE
         to_analyse = prerank_candidates(to_analyse, MAX_ANALYSE)
