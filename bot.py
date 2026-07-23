@@ -77,6 +77,8 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
+PULSE_VERSION = "1.25.2"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+                           # que le bot.py en ligne est bien le dernier livré.
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
 GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.1-flash-lite")
 LLM_ANALYSE       = os.environ.get("LLM_ANALYSE",       "gemini").strip().lower()
@@ -8198,23 +8200,26 @@ def check_feeds(conn):
     _META_CONN = conn
     _CLAUDE_CALLS = 0
     _CADENCE_DECISION = None
-    print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse...")
+    print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse — version {PULSE_VERSION}")
     # 🔧 Diagnostic de configuration : dit NOIR SUR BLANC quel moteur est réellement actif.
     #    (Piège vécu : une clé rangée dans les secrets GitHub mais non transmise par le
     #    workflow reste invisible pour le bot — sans ce message, ça passe inaperçu.)
     try:
         _souhaits = {"analyse": LLM_ANALYSE, "rédaction": LLM_REDACTION,
                      "spéciaux": LLM_SPECIAUX}
-        if any(v == "gemini" for v in _souhaits.values()):
-            if GEMINI_API_KEY:
-                _actifs = " · ".join(f"{k}={v}" for k, v in _souhaits.items())
-                print(f"  🔧 Moteur : {_actifs} (clé Gemini détectée ✅)")
-            else:
-                print("  ⚠️ GEMINI demandé mais AUCUNE clé reçue → tout reste sur Claude.")
-                print("     La clé est-elle bien transmise par le workflow (bloc env:) ?")
+        _actifs = " · ".join(f"{k}={v}" for k, v in _souhaits.items())
+        if not any(v == "gemini" for v in _souhaits.values()):
+            print(f"  🔧 Moteur : {_actifs}")
         elif GEMINI_API_KEY:
-            print("  🔧 Clé Gemini présente mais non utilisée "
-                  "(mettre LLM_ANALYSE=gemini pour l'activer)")
+            print(f"  🔧 Moteur : {_actifs} (clé Gemini détectée ✅)")
+        elif any(os.environ.get(v, "").strip().lower() == "gemini"
+                 for v in ("LLM_ANALYSE", "LLM_REDACTION", "LLM_SPECIAUX")):
+            # réglage EXPLICITE sur gemini mais aucune clé : c'est une erreur de configuration
+            print("  ⚠️ GEMINI demandé mais AUCUNE clé reçue → tout reste sur Claude.")
+            print("     La clé est-elle bien transmise par le workflow (bloc env:) ?")
+        else:
+            # cas normal sans clé : le repli Claude fait le travail, pas d'alarme inutile
+            print("  🔧 Moteur : Claude (aucune clé Gemini fournie)")
     except Exception:
         pass
 
