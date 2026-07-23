@@ -77,7 +77,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.25.2"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.25.3"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
 GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.1-flash-lite")
@@ -4155,6 +4155,31 @@ def _decrypt_soundtrack(path_wav, duration, sujet=""):
     """Compat : la nappe du décryptage passe désormais par le moteur unique."""
     return build_soundtrack(path_wav, duration, category="sobre-decrypt", sujet=sujet)
 
+def _texte_pour_voix(cover_title, slides, duree_video, mots_par_sec=2.3):
+    """Construit le texte lu à voix haute en le BORNANT à la durée réelle de la vidéo.
+    ⚠️ Sans cette borne, la narration dépasse systématiquement de 20 à 40 s et se retrouve
+    coupée en plein milieu d'une phrase. On s'arrête donc à une frontière de phrase, dans
+    l'ordre d'apparition à l'écran : titre de couverture, puis chaque intertitre et ses points.
+    Rien n'est inventé : uniquement ce qui est déjà affiché."""
+    budget = max(8, int(duree_video * mots_par_sec) - 5)   # marge de sécurité
+    morceaux = [cover_title or ""]
+    for s in (slides or []):
+        morceaux.append(s.get("titre", ""))
+        for p in (s.get("points") or [])[:2]:
+            morceaux.append(p)
+    retenu, total = [], 0
+    for m in morceaux:
+        m = re.sub(r"\s+", " ", (m or "")).strip().rstrip(".")
+        if not m:
+            continue
+        n = len(m.split())
+        if total + n > budget:
+            break            # on s'arrête AVANT de dépasser : jamais de phrase tronquée
+        retenu.append(m)
+        total += n
+    return ". ".join(retenu) + ("." if retenu else "")
+
+
 def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=(255, 90, 200), decrypt_cat="monde", voice_text=None):
     """🎬 Vidéo DÉCRYPTAGE (X/Facebook) — portrait 1080×1350.
     Les slides SONT la vidéo (plein cadre, pas de fond ajouté). Le texte S'ÉCRIT mot par mot,
@@ -4269,7 +4294,9 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
             # 🔊 Bande son : VOIX de synthèse lisant le décryptage + MUSIQUE en fond.
             #    La voix prime largement (musique à -16 dB + atténuation quand ça parle).
             #    Si la voix échoue → musique seule ; si tout échoue → nappe d'origine.
-            voix = _gemini_tts(voice_text, os.path.join(tmpdir, "voix.wav")) if voice_text else None
+            # texte borné à la durée réelle de la vidéo (jamais de phrase coupée)
+            _lu = _texte_pour_voix(voice_text, slides_data, total_dur) if voice_text else ""
+            voix = _gemini_tts(_lu, os.path.join(tmpdir, "voix.wav")) if _lu else None
             piste = _piste_musicale()
             mixe = _melange_voix_musique(voix, piste, os.path.join(tmpdir, "mix.m4a"),
                                          total_dur) if (voix or piste) else None
@@ -8289,17 +8316,13 @@ def check_feeds(conn):
                                      prefetched=(raw_src, has_real), headline_bottom=True, ss=1,
                                      no_pill=_pill_gif_path("monde") is not None,
                                      no_logo=_logo_gif_path() is not None)
-            # 🔊 Texte lu par la voix de synthèse : le titre puis chaque point, dans l'ordre.
-            #    Rien d'inventé — uniquement ce qui est déjà écrit à l'écran.
-            _lu = [carousel.get("cover_title", "")]
-            for _sl in carousel["slides"]:
-                _lu.append(_sl.get("titre", ""))
-                for _pt in (_sl.get("points") or [])[:2]:
-                    _lu.append(_pt)
-            _lu = ". ".join(x.strip() for x in _lu if x and x.strip())
+            # 🔊 La narration est construite DANS build_decrypt_video, une fois la durée
+            #    de la vidéo connue, pour être bornée et jamais tronquée. On passe ici le
+            #    titre de couverture ; les intertitres et points viennent de `slides`.
             vid_thread = build_decrypt_video(cover_vid or cover_paysage, carousel["slides"],
                                              carousel.get("sujet", ""), bg_photo=raw_src,
-                                             decrypt_cat="monde", voice_text=_lu)
+                                             decrypt_cat="monde",
+                                             voice_text=carousel.get("cover_title", ""))
             url = None
             try:
                 url = post_to_twitter(xfb, cover_paysage, vid_thread)
