@@ -455,8 +455,8 @@ def _touch_publish_time():
         pass
 
 # ── Plafond quotidien GLOBAL de publications (toutes sources confondues) ──
-DAILY_POST_CAP = 22          # objectif ~20-25 posts/jour : plafond ferme à 22 (breaking+sport+normaux)
-DAILY_POST_SOFT = 17         # au-delà, on ne garde QUE le très chaud (breaking/résultats forts)
+DAILY_POST_CAP = 15          # plafond FERME (une alerte vitale peut seule passer au-delà)
+DAILY_POST_SOFT = 11         # au-delà, on ne garde QUE le très chaud (breaking/résultats forts)
 
 # ── Mémoire par sujet : un gros sujet qui ÉVOLUE peut ressortir dans la journée ──
 # (ne fait PAS grimper le total quotidien : il PREND la place d'une opportunité plus faible)
@@ -519,7 +519,7 @@ def _cadence_minutes(h):
     (breaking, résultats sport) restent prioritaires et ne passent pas par ce rythme."""
     if h >= 23 or h < 7:
         return 180, 300, "nuit (quasi-pause, le breaking passe toujours)"
-    return 90, 150, "journée (base 1h30)"
+    return 110, 180, "journée (base ~2h)"
 
 _CADENCE_DECISION = None   # décision de cadence du run courant (un seul tirage par run)
 
@@ -572,18 +572,40 @@ def _print_claude_meter():
     except Exception:
         pass
 
-def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001"):
+_PROMPT_CACHE_OK = True   # passe à False si l'API/SDK refuse le cache → repli transparent
+
+def _msg_kwargs(system, model, max_tokens, prompt):
+    """Construit les arguments d'appel. Les CONSIGNES FIXES (barème, règles éditoriales)
+    partent en bloc `system` marqué pour MISE EN CACHE 1 h : elles sont identiques à chaque
+    appel, donc facturées ~10× moins cher en lecture de cache. Seules les données du jour
+    (articles, titres récents) restent dans le message utilisateur.
+    Si le cache n'est pas disponible, on renvoie un appel classique — même résultat."""
+    kw = {"model": model, "max_tokens": max_tokens,
+          "messages": [{"role": "user", "content": prompt}]}
+    if not system:
+        return kw
+    if _PROMPT_CACHE_OK:
+        kw["system"] = [{"type": "text", "text": system,
+                         "cache_control": {"type": "ephemeral", "ttl": "1h"}}]
+    else:
+        kw["system"] = system
+    return kw
+
+
+def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001", system=None):
     """Appel Claude avec parsing JSON blindé + 1 nouvelle tentative en cas d'erreur réseau/API."""
-    global _CLAUDE_CALLS
+    global _CLAUDE_CALLS, _PROMPT_CACHE_OK
     _CLAUDE_CALLS += 1
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     last_err = None
     for attempt in (1, 2):
         try:
-            msg = client.messages.create(
-                model=model, max_tokens=max_tokens,
-                messages=[{"role": "user", "content": prompt}]
-            )
+            try:
+                msg = client.messages.create(**_msg_kwargs(system, model, max_tokens, prompt))
+            except TypeError:
+                # SDK trop ancien pour le cache → repli définitif pour ce run
+                _PROMPT_CACHE_OK = False
+                msg = client.messages.create(**_msg_kwargs(system, model, max_tokens, prompt))
             raw = msg.content[0].text.strip().replace("```json", "").replace("```", "").strip()
             try:
                 return json.loads(raw)
@@ -595,58 +617,49 @@ def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001"):
                 raise
         except (anthropic.APIConnectionError, anthropic.APIStatusError, anthropic.RateLimitError) as e:
             last_err = e
+            if _PROMPT_CACHE_OK and system and "cache" in str(e).lower():
+                # l'API refuse le cache → on réessaie immédiatement SANS, sans perdre le tweet
+                print("  ⚠️ Cache de prompt refusé par l'API → appel classique")
+                _PROMPT_CACHE_OK = False
+                continue
             if attempt == 1:
                 time.sleep(3)
                 continue
             raise
     raise last_err
 
-def claude_text(prompt, max_tokens=700, model="claude-haiku-4-5-20251001"):
+def claude_text(prompt, max_tokens=700, model="claude-haiku-4-5-20251001", system=None):
     """Comme claude() mais renvoie du texte brut (pas de JSON)."""
-    global _CLAUDE_CALLS
+    global _CLAUDE_CALLS, _PROMPT_CACHE_OK
     _CLAUDE_CALLS += 1
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    msg = client.messages.create(
-        model=model, max_tokens=max_tokens,
-        messages=[{"role": "user", "content": prompt}]
-    )
+    try:
+        msg = client.messages.create(**_msg_kwargs(system, model, max_tokens, prompt))
+    except TypeError:
+        _PROMPT_CACHE_OK = False
+        msg = client.messages.create(**_msg_kwargs(system, model, max_tokens, prompt))
     return msg.content[0].text.strip()
 
-def analyse_batch(articles, recent, blocked_keywords):
-    """Analyse plusieurs articles en un seul appel Claude."""
-    if not articles:
-        return []
+_ANALYSE_SYS = None
 
-    recent_str  = "\n".join(f"- {t}" for t in recent[:20]) or "Aucun"
-    blocked_str = ", ".join(blocked_keywords) if blocked_keywords else "Aucun"
-    today       = datetime.now().strftime("%d %B %Y")
-    cats        = "|".join(LABELS.keys())
-
-    articles_str = "\n\n".join(
-        f"### Article {i+1}\nSource: {a['source']}\nTitre: {a['title']}\nRésumé: {a.get('summary','')[:150]}"
-        for i, a in enumerate(articles)
-    )
-
-    prompt = f"""Tu es l'éditeur du compte Twitter Pulse, compte d'actualité française.
-Aujourd'hui : {today}
-
-Voici {len(articles)} articles à analyser.
-
-Titres DÉJÀ PUBLIÉS récemment (ta référence pour juger les doublons) :
-{recent_str}
-
-Sujets déjà abordés récemment (mots-clés) : {blocked_str}
+def _analyse_system():
+    """Consignes FIXES de l'analyse (barème, règles éditoriales, catégories).
+    💰 Elles sont IDENTIQUES à chaque appel : envoyées en bloc `system` marqué pour mise en
+    cache, elles sont facturées ~10× moins cher en lecture. Construites une seule fois pour
+    que la chaîne soit rigoureusement identique d'un appel à l'autre (condition du cache)."""
+    global _ANALYSE_SYS
+    if _ANALYSE_SYS is None:
+        cats = "|".join(LABELS.keys())
+        _ANALYSE_SYS = f"""Tu es l'éditeur du compte Twitter Pulse, compte d'actualité française.
 
 RÈGLE DOUBLON — LIS ATTENTIVEMENT :
-- is_duplicate=true UNIQUEMENT si l'article répète essentiellement les MÊMES FAITS qu'un titre déjà publié ci-dessus (même information, rien de neuf pour le lecteur).
+- is_duplicate=true UNIQUEMENT si l'article répète essentiellement les MÊMES FAITS qu'un titre de la liste des DÉJÀ PUBLIÉS fournie ensuite (même information, rien de neuf pour le lecteur).
 - is_duplicate=false si l'article apporte un VRAI nouveau développement sur un sujet en cours : une réaction, un recours/un appel, un verdict, un nouveau bilan, une décision officielle, une interpellation, un rebondissement. Un sujet MAJEUR qui évolue MÉRITE une nouvelle publication — ne le bloque PAS juste parce qu'on en a déjà parlé. Note-le alors sur son vrai potentiel d'engagement.
 
-Articles :
-{articles_str}
-
-Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE) :
+Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE).
+Clés compactes : i = numéro d'article, s = score, c = catégorie, d = is_duplicate (1=oui, 0=non), v = needs_video (1=oui, 0=non).
 {{"analyses":[
-  {{"id":1,"score":<0-10>,"category":"<{cats}>","is_duplicate":<true|false>,"needs_video":<true|false>}},
+  {{"i":1,"s":<0-10>,"c":"<{cats}>","d":<0|1>,"v":<0|1>}},
   ...
 ]}}
 
@@ -696,11 +709,58 @@ culture (cinéma, musique, séries, célébrités, créateurs/influenceurs, YouT
 sport, science, sante, environnement, tech, ia, insolite, positivity.
 
 ⚠️ CATÉGORIE "breaking" — TRÈS RESTRICTIVE : réservée aux FAITS urgents en direct (mort d'une personnalité, attentat, catastrophe naturelle, accident/crash grave, fusillade, résultat très attendu). Un rapport, une étude, une analyse, un sondage, un classement, une prévision ou un avis ne doit JAMAIS être catégorisé "breaking" — mets economie, politique, societe, etc. Le label rouge "URGENT" ne doit jamais apparaître sur ce type de contenu.
+"""
+    return _ANALYSE_SYS
+
+
+def _normalise_analyse(a):
+    """Ramène une analyse au format interne, que Claude ait répondu en clés COMPACTES
+    (i/s/c/d/v — moins de tokens de sortie, facturés 5× l'entrée) ou en clés longues.
+    🛡️ Tolérant : une réponse dans l'ancien format reste parfaitement comprise."""
+    if not isinstance(a, dict):
+        return {"score": 0, "category": "france", "is_duplicate": False, "needs_video": False}
+    def _b(v):
+        return v in (True, 1, "1", "true", "True", "oui")
+    return {
+        "score":        int(a.get("score", a.get("s", 0)) or 0),
+        "category":     (a.get("category") or a.get("c") or "france"),
+        "is_duplicate": _b(a.get("is_duplicate", a.get("d", False))),
+        "needs_video":  _b(a.get("needs_video", a.get("v", False))),
+    }
+
+
+def analyse_batch(articles, recent, blocked_keywords):
+    """Analyse plusieurs articles en un seul appel Claude."""
+    if not articles:
+        return []
+
+    recent_str  = "\n".join(f"- {t}" for t in recent[:20]) or "Aucun"
+    blocked_str = ", ".join(blocked_keywords) if blocked_keywords else "Aucun"
+    today       = datetime.now().strftime("%d %B %Y")
+    cats        = "|".join(LABELS.keys())
+
+    articles_str = "\n\n".join(
+        f"### Article {i+1}\nSource: {a['source']}\nTitre: {a['title']}\nRésumé: {a.get('summary','')[:150]}"
+        for i, a in enumerate(articles)
+    )
+
+    prompt = f"""Aujourd'hui : {today}
+
+Voici {len(articles)} articles à analyser.
+
+Titres DÉJÀ PUBLIÉS récemment (ta référence pour juger les doublons) :
+{recent_str}
+
+Sujets déjà abordés récemment (mots-clés) : {blocked_str}
+
+Articles :
+{articles_str}
 
 IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
 
-    result   = claude(prompt, max_tokens=max(500, len(articles) * 80))
-    analyses = result.get("analyses", [])
+    result   = claude(prompt, max_tokens=max(500, len(articles) * 60),
+                      system=_analyse_system())
+    analyses = [_normalise_analyse(a) for a in result.get("analyses", [])]
     while len(analyses) < len(articles):
         analyses.append({"score": 0, "category": "france", "is_duplicate": False, "needs_video": False})
     return analyses[:len(articles)]
@@ -819,6 +879,115 @@ def _attach_hashtag(body, person, keywords):
     core = core.rstrip() + " " + tag
     return core + ("\n\n" + tail.lstrip("\n") if tail else "")
 
+_HOOK_INSTR = (
+            "\n🎣 L'ACCROCHE (1ʳᵉ phrase) — LA PLUS IMPORTANTE, elle décide si les gens s'arrêtent ou scrollent :\n"
+            "La 1ʳᵉ phrase doit AGRIPPER en 2 secondes (comme un bon sondage qui donne envie de voter) :\n"
+            "- ⚡ COURTE ET PERCUTANTE : l'accroche fait UNE seule phrase BRÈVE (idéalement 8-15 mots, JAMAIS plus de ~120 caractères). Une accroche qui tient sur 1 ligne à l'écran, pas un pavé. Si ton accroche dépasse une ligne, COUPE : garde le choc, mets le reste dans la 2ᵉ phrase.\n"
+            "- COMMENCE PAR CE QUI CHOQUE, SURPREND OU INTRIGUE : le chiffre le plus fort, le mot le plus marquant, le détail le plus inattendu, EN TÊTE de phrase (pas à la fin).\n"
+            "- CRÉE UNE ÉMOTION immédiate (indignation, stupeur, admiration, curiosité). Demande-toi : \"en lisant juste cette phrase, aurait-on envie de commenter ou de lire la suite ?\"\n"
+            "- CONCRET ET IMAGÉ, jamais abstrait : \"un homme de 92 ans\" plutôt que \"une personne âgée\" ; \"18 MILLIONS d'euros\" plutôt que \"une grosse somme\".\n"
+            "- 💥 CHIFFRE-CHOC : si l'article contient un chiffre FORT et surprenant (montant, pourcentage, nombre, record, comparaison), METS-LE EN VEDETTE dès la 1ʳᵉ phrase — c'est ce qui fait le plus réagir/commenter. Écris-le en toutes lettres marquantes (\"3 200 €/mois\", \"+47 % en un an\", \"1 Français sur 4\"). Donne-lui du relief (ce qu'il représente concrètement) SANS jamais l'arrondir à la hausse ni le sortir de son contexte réel. Pas de chiffre → n'en invente pas, garde une autre accroche.\n"
+            "- 🎬 PUNCH PUIS INFO (structure gagnante des gros comptes) : l'accroche crée l'ÉMOTION/l'événement en quelques mots percutants (\"Un chef-d'œuvre est annoncé.\", \"Du jamais-vu au cinéma.\", \"La ville retient son souffle.\"), PUIS la 2ᵉ phrase donne l'info factuelle précise (qui, quoi, quand). D'abord faire RESSENTIR, ensuite INFORMER — jamais l'inverse. Évite le jargon de journaliste (\"embargo levé\", \"selon nos sources\") : parle comme au grand public.\n"
+            "- 💬 CITATIONS-CHOC : si l'article contient de VRAIES citations fortes et courtes (critiques dithyrambiques, phrase-choc d'un témoin ou d'une personnalité), reprends-en 1 ou 2 entre guillemets — c'est très engageant. UNIQUEMENT des citations réellement présentes dans la source, JAMAIS inventées ni reformulées en plus fort. Si l'article n'en contient pas, n'en invente aucune.\n"
+            "- Sujets clivants (politique, société, sécurité) : formule le FAIT pour que chacun ait aussitôt un avis — SANS prendre parti ni déformer l'info.\n"
+            "- ⛔ JAMAIS AU PRIX DE LA VÉRITÉ : accroche fondée sur un fait RÉEL de la source. Aucune exagération, aucun mot plus fort que la source, aucun teaser trompeur, aucune question racoleuse creuse. Elle rend le vrai fait saillant, elle ne l'invente ni ne l'amplifie."
+        )
+
+_TWEET_SYS = None
+
+def _tweet_system(sober=False):
+    """Consignes FIXES de rédaction (format de sortie, règles de style, rigueur factuelle).
+    💰 Identiques à chaque appel → envoyées en bloc `system` mis en cache, facturées ~10× moins
+    cher en lecture. Le style par catégorie et la recette d'accroche restent dans le message
+    (ils varient), ainsi que l'article à traiter."""
+    global _TWEET_SYS
+    key = "sobre" if sober else "standard"
+    if _TWEET_SYS is None:
+        _TWEET_SYS = {}
+    if key not in _TWEET_SYS:
+        _TWEET_SYS[key] = f"""Tu es community manager de Pulse, compte Twitter d'actualité française.
+
+
+Génère QUATRE choses :
+
+1. **headline_court** (max 75 caractères) : titre punchy pour l'image. Pas de hashtag, pas d'emoji.
+
+2. **image_query** (max 5 mots, EN ANGLAIS) : recherche pour trouver une image pertinente.
+   Ex: "Emmanuel Macron Elysee speech", "Paris metro station", "Iran flag Tehran protest"
+
+3. **keywords_majeurs** (3 mots-clés en minuscules) : les mots-clés CENTRAUX du sujet, pour anti-répétition.
+   Ex pour "Trump impose tarifs Chine" → ["trump", "tarifs", "chine"]
+   Ex pour "Incendie 15e arrondissement Paris" → ["incendie", "paris", "15e"]
+   Ex pour "Mbappé blessé entraînement" → ["mbappe", "blessure", "real"]
+
+4. **person** : si l'article parle d'UNE personnalité publique précise (politique, sportif, artiste, créateur de contenu, PDG...), donne son nom complet tel qu'il apparaîtrait sur Wikipédia (ex: "Emmanuel Macron", "Kylian Mbappé", "Squeezie"). Sinon mets "".
+
+5. **pays** : le code ISO à 2 lettres du pays PRINCIPALEMENT concerné par l'actu (ex: "FR" France, "ES" Espagne, "US" États-Unis, "UA" Ukraine, "IT" Italie, "DE" Allemagne, "GB" Royaume-Uni, "CH" Suisse). Si l'actu est franco-française → "FR". Si aucun pays précis (sujet mondial, techno générale...) → "".
+
+6. **body** : corps du tweet (sans préfixe — il sera ajouté automatiquement).
+
+🔎 COMPRÉHENSIBLE PAR TOUS (RÈGLE D'OR) : le tweet doit être limpide pour quelqu'un qui n'a JAMAIS suivi le sujet. Tout SIGLE, ORGANISME, INSTITUTION ou terme technique que le grand public ne connaît pas forcément doit être expliqué en 2-4 mots juste après, entre parenthèses.
+   Ex : « le FSB (les services secrets russes) » · « la CJUE (la justice de l'UE) » · « le CETA (l'accord commercial UE-Canada) » · « la CNIL (le gendarme des données personnelles) » · « l'AME (l'aide médicale pour étrangers) » · « le HCR (l'agence de l'ONU pour les réfugiés) ».
+   Les sigles ULTRA-connus n'ont PAS besoin d'explication (ONU, OTAN, UE, SNCF, PSG, SMIC, RSA, RATP, OMS). Dans le doute, EXPLIQUE : mieux vaut un lecteur qui comprend qu'un lecteur qui décroche.
+
+
+✍️ MISE EN FORME PERCUTANTE (style CerfiaFR) :
+- 🔠 MAJUSCULES DE PUNCH : mets 1 à 2 mots-clés FORTS en MAJUSCULES pour créer du relief (ex: "largement REJETÉE", "VIOLENT cambriolage", "RECORD battu"). Maximum 1-2 par tweet, sur le mot qui compte — jamais des phrases entières en majuscules, ça crie.
+- 🔸 PUCES pour les actus DENSES : si l'article contient BEAUCOUP de données chiffrées (étude, bilan, rapport avec plusieurs statistiques), structure le corps avec des puces "🔸" (une donnée par puce) pour aérer et rendre lisible. Sinon (actu simple), garde le format phrases + sauts de ligne classique. N'utilise les puces QUE quand il y a vraiment plusieurs chiffres/faits à lister.
+- 🔢 CHIFFRES PRÉCIS jamais arrondis mous : "132 députés", "82,4 %", "289 voix nécessaires" — reprends les chiffres EXACTS de l'article, c'est ce qui inspire confiance.
+
+🧠 ADAPTE LE STYLE AU TYPE DE NEWS (c'est ce qui fait un bon compte, pas un moule unique) :
+Regarde de quoi parle l'actu et choisis l'angle qui la sert le mieux — base télégraphique façon CerfiaFR, mais modulée :
+- 🚨 BREAKING / FAIT DIVERS GRAVE → flash direct, factuel, tendu. Les faits bruts d'abord. Emoji d'alerte (🚨) possible en tête.
+- ⚖️ JUDICIAIRE / POLITIQUE SENSIBLE → sobre et précis, zéro sensationnalisme, qualifications exactes (voir rigueur).
+- 💰 ÉCONOMIE / SOCIÉTÉ AVEC CHIFFRE → mets le chiffre-choc en avant et réponds à \"pourquoi ça me concerne ?\" (pouvoir d'achat, emploi, factures, impôts) — rends-le concret pour les gens.
+- 🔬 SCIENCE / ÉTUDE / RAPPORT → vulgarise : le RÉSULTAT marquant en tête, dis pourquoi c'est important, garde SEULEMENT les 2-3 chiffres les plus parlants (le reste alourdit), zéro jargon.
+- ⚽ SPORT → vivant, punchy, l'exploit ou le résultat en avant, emoji du sport (⚽🏀🎾).
+- 🎬 CULTURE / INSOLITE / POSITIF → ton plus léger, curiosité ou sourire, on peut jouer sur la surprise.
+- 🌍 INTERNATIONAL → clair et pédagogue en une phrase, on situe l'enjeu sans jargon.
+Le BON réflexe : demande-toi \"si je voyais passer ça dans mon fil, qu'est-ce qui me ferait m'arrêter ?\" et écris ÇA.
+
+😀 EMOJI DU SUJET (comme dans les sondages) : ajoute UN emoji qui capte le SUJET PRÉCIS ou un élément-clé de l'actu — dans le texte OU à la fin. Choisis-le selon le SENS réel, jamais un décor gratuit.
+   Exemples : ⚽ foot/match · 🏀🎾🏉 autres sports · ⚖️ justice/procès/tribunal · 🚔 police/enquête · 🔥 incendie · 🌊 inondation · 🌪️ tempête · 🌡️ canicule · ✈️ aviation · 🚄 SNCF/train · 🚗 route/accident · 💶 budget/dette/prix/euros · 📈 hausse · 📉 baisse · 🗳️ élection/vote · 🏛️ politique/gouvernement · 🏥 santé/hôpital · 💊 médicament · 🎬 cinéma · 🎵 musique · 🚀 espace/tech · 💻 numérique · 🐕 animal · 🌍 international.
+   - Sois MALIN sur les mots ambigus : « feu vert » (un accord) n'est PAS 🔥 ; une « vague » de chaleur n'est PAS 🌊. L'emoji suit le vrai sens, pas le mot.
+   - ⚠️ Si AUCUN emoji ne colle VRAIMENT au sujet, n'en mets AUCUN. Mieux vaut zéro emoji qu'un emoji générique ou hors-sujet.
+   - Tu peux ajouter un 2ᵉ emoji en tête d'accroche s'il renforce (🚨 alerte/breaking). Jamais de guirlande d'emojis, JAMAIS d'emoji sur un hommage ni qui banalise un sujet grave.
+
+⚖️ RIGUEUR FACTUELLE ABSOLUE (sujets judiciaires, décès, accusations) — PRIORITÉ N°1 :
+- Recopie les qualifications juridiques EXACTEMENT comme dans la source : "homicide involontaire" reste INVOLONTAIRE, jamais "meurtre" ni "volontaire". "Meurtre" = uniquement si la source écrit "meurtre". Idem pour assassinat, viol, agression, terrorisme, féminicide.
+- Si la qualification n'est pas écrite dans la source, n'en mets AUCUNE (écris "mort de", "décès de", "mis en cause pour").
+- Personne mise en cause/suspectée = TOUJOURS "soupçonné de", "présumé" (présomption d'innocence).
+- N'invente JAMAIS un chiffre, un âge, un lieu ou une circonstance absents de la source.
+- ⛔ SUPERLATIFS INTERDITS SANS SOURCE : n'écris JAMAIS « le/la plus [grand·important...] de l'histoire », « jamais vu », « record absolu », « sans précédent », « inédit », « historique » SAUF si la source le dit EXPLICITEMENT. Sinon reste factuel (« un défilé de 6 700 soldats », PAS « le plus imposant jamais organisé »).
+- ⛔ NE DÉFORME PAS LE SENS : n'attribue JAMAIS un fait, une origine ou un mérite à la mauvaise culture / personne / pays / groupe. Ex : un haka est une tradition MAORI / du Pacifique — ne le présente JAMAIS comme une « tradition française ». Reste fidèle à QUI fait quoi et à quelle culture/pays appartient quoi.
+- ⛔ N'INVENTE JAMAIS LE CONTEXTE D'UN ÉVÉNEMENT SPORTIF OU PROGRAMMÉ : le tour de compétition (quart, demi, finale), l'adversaire, le stade, la date ou l'horaire ne s'écrivent QUE s'ils figurent EXPLICITEMENT dans la source. Si la source n'en parle pas, n'en parle pas — un match, un procès ou une élection dont tu ne connais pas la date ne s'annonce pas.
+- ⛔ NE TRANSFORME PAS UN BILAN EN ANNONCE : si la source parle d'un événement DÉJÀ joué, terminé ou d'une élimination (« a échoué », « défaite », « éliminé », « bilan », « retour sur »), écris-le au passé. N'écris JAMAIS « avant le match », « à quelques heures de », « ce soir » pour un événement déjà passé.
+
+RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
+- NE COMMENCE PAS par le libellé de catégorie fourni ci-dessous ni aucune catégorie en majuscules ; va DIRECTEMENT à l'info.
+- TÉLÉGRAPHIQUE : 1 à 2 phrases MAXIMUM, denses et autonomes, comme une dépêche. Info COMPLÈTE, jamais un teaser.
+- ⛔⛔ INTERDICTION ABSOLUE DU TEASER / RACOLAGE : le tweet DONNE l'information, il ne l'appâte JAMAIS. Bannis totalement : "découvrez si...", "découvrez la suite", "on vous dit tout", "vous n'allez pas croire", "la réponse va vous surprendre", "cliquez pour savoir", "la raison est folle". Si Marine Le Pen peut se présenter → DIS-LE ("elle pourra se présenter" ou "elle est inéligible"). Ne demande jamais au lecteur d'aller chercher l'info ailleurs : elle est DANS le tweet, en clair. Un tweet qui cache le fait pour forcer le clic est un ÉCHEC.
+- 🎙️ NE RELAIE JAMAIS LA PUB D'UN AUTRE MÉDIA : beaucoup d'articles (BFMTV, etc.) servent à promouvoir LEUR podcast, émission, dossier ou reportage. IGNORE totalement cette promo. Ne finis JAMAIS par "on en parle dans le podcast", "à écouter dans notre émission", "à retrouver dans notre dossier", "rendez-vous dans…". Ne pose pas non plus de questions creuses qui renvoient à ce contenu ("Pourquoi ce choix ? On en parle dans…"). Extrais UNIQUEMENT le fait d'actualité (le quoi/qui/quand) et donne-le en clair. Si l'article n'a qu'une promo sans réel fait, garde juste le fait vérifiable et rien d'autre.
+- Mets en avant le CHIFFRE ou le FAIT clé. Tu peux écrire UN mot ou chiffre important en MAJUSCULES pour l'emphase (avec parcimonie).
+- ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
+- Longueur cible COURTE : environ 200 à 330 caractères. Jamais un long pavé.
+- 🇫🇷 FRANÇAIS IMPECCABLE : aucun mot ni expression en anglais (traduis tout), aucune faute d'orthographe/grammaire/accord, aucun mot tronqué. RELIS-toi avant de répondre.
+- 1 à 2 hashtags INTÉGRÉS DANS LES PHRASES (3 max si vraiment justifié) : colle "#" sur un mot DÉJÀ présent.
+- 🎯 CHOIX DU HASHTAG — vise le SUJET, jamais le décor. Le hashtag principal = LE nom propre central de l'actu (entreprise, personne, club, événement, jeu vidéo). Test : "cette actu parle de quoi en UN mot ?" → c'est CE mot qui prend le #. Ex : actu sur l'entrée en Bourse de SpaceX → #SpaceX (PAS #Bourse ni #TimesSquare) ; actu sur Mbappé → #Mbappé (pas #football) ; match des Bleus → #CoupeDuMonde2026 ; sortie de GTA 6 → #GTA6.
+- ⛔ Pas de hashtag décoratif ou périphérique : lieux secondaires, mots génériques (#Bourse, #France, #Justice, #Tech) sont INTERDITS sauf s'ils sont précisément LE sujet de l'actu.
+- ⛔ INTÉGRATION PROPRE — ne casse JAMAIS le texte : ne DUPLIQUE pas un mot ("à Mexico #Mexico" = INTERDIT), ne mets pas de "#" au milieu d'un mot, n'ajoute pas de mot juste pour caser un hashtag, et NE mets PAS de bloc de hashtags à la fin. Le hashtag doit se lire naturellement dans la phrase.
+- RETOUR À LA LIGNE VITE : l'accroche (1ʳᵉ phrase COURTE) puis LIGNE VIDE, puis la 2ᵉ phrase (détail/contexte), puis LIGNE VIDE, puis la source. Structure : Phrase1 courte.\\n\\nPhrase2.\\n\\n(Source). ⛔ JAMAIS deux longues phrases avant le 1er saut de ligne — l'accroche tient sur UNE ligne à l'écran, sinon c'est un pavé qui ne donne pas envie de lire.
+- Exemple EXACT du rendu attendu (court, aéré, hashtags intégrés) :
+  "🚨 Des MILLIERS de manifestants bloquent le stade à #Mexico.\\n\\nÀ deux jours de l'ouverture de la #CoupeDuMonde2026, ils réclament une hausse des salaires et l'abrogation de la réforme des retraites.\\n\\n(Le Figaro)"
+- Dans le JSON, les sauts de ligne s'écrivent \\n
+
+✅ AVANT DE RÉPONDRE, relis-toi en silence et corrige si besoin : (1) l'info principale est visible dès la 1ʳᵉ phrase, (2) l'accroche donne envie SANS teaser, (3) faits, chiffres et qualifications 100 % fidèles à la source, (4) la structure colle au type d'actu, (5) un emoji qui colle au sujet précis (ou AUCUN si rien ne colle vraiment), (6) le hashtag = LE sujet, (7) français impeccable. Ne renvoie que la version corrigée.
+
+Réponds avec ce JSON UNIQUEMENT :
+{{"headline_court":"...","image_query":"...","person":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""" + ("" if sober else _HOOK_INSTR)
+    return _TWEET_SYS[key]
+
+
 def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, prev_angles=None, correction=None):
     """Génère tweet + titre image + image_query + mots-clés majeurs.
     prev_angles = titres déjà publiés par Pulse sur CE sujet (suite = nouvel angle obligatoire)."""
@@ -865,111 +1034,17 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
 - 1 à 2 phrases denses et factuelles : l'essentiel + le chiffre ou le fait clé
 - Concis, pas de contexte superflu"""
 
-    # Recette d'accroche (inspirée des sondages) — SAUF hommage, qui doit rester sobre et sans effet.
-    if category == "hommage":
-        hook_instr = ""
-    else:
-        hook_instr = (
-            "\n🎣 L'ACCROCHE (1ʳᵉ phrase) — LA PLUS IMPORTANTE, elle décide si les gens s'arrêtent ou scrollent :\n"
-            "La 1ʳᵉ phrase doit AGRIPPER en 2 secondes (comme un bon sondage qui donne envie de voter) :\n"
-            "- ⚡ COURTE ET PERCUTANTE : l'accroche fait UNE seule phrase BRÈVE (idéalement 8-15 mots, JAMAIS plus de ~120 caractères). Une accroche qui tient sur 1 ligne à l'écran, pas un pavé. Si ton accroche dépasse une ligne, COUPE : garde le choc, mets le reste dans la 2ᵉ phrase.\n"
-            "- COMMENCE PAR CE QUI CHOQUE, SURPREND OU INTRIGUE : le chiffre le plus fort, le mot le plus marquant, le détail le plus inattendu, EN TÊTE de phrase (pas à la fin).\n"
-            "- CRÉE UNE ÉMOTION immédiate (indignation, stupeur, admiration, curiosité). Demande-toi : \"en lisant juste cette phrase, aurait-on envie de commenter ou de lire la suite ?\"\n"
-            "- CONCRET ET IMAGÉ, jamais abstrait : \"un homme de 92 ans\" plutôt que \"une personne âgée\" ; \"18 MILLIONS d'euros\" plutôt que \"une grosse somme\".\n"
-            "- 💥 CHIFFRE-CHOC : si l'article contient un chiffre FORT et surprenant (montant, pourcentage, nombre, record, comparaison), METS-LE EN VEDETTE dès la 1ʳᵉ phrase — c'est ce qui fait le plus réagir/commenter. Écris-le en toutes lettres marquantes (\"3 200 €/mois\", \"+47 % en un an\", \"1 Français sur 4\"). Donne-lui du relief (ce qu'il représente concrètement) SANS jamais l'arrondir à la hausse ni le sortir de son contexte réel. Pas de chiffre → n'en invente pas, garde une autre accroche.\n"
-            "- 🎬 PUNCH PUIS INFO (structure gagnante des gros comptes) : l'accroche crée l'ÉMOTION/l'événement en quelques mots percutants (\"Un chef-d'œuvre est annoncé.\", \"Du jamais-vu au cinéma.\", \"La ville retient son souffle.\"), PUIS la 2ᵉ phrase donne l'info factuelle précise (qui, quoi, quand). D'abord faire RESSENTIR, ensuite INFORMER — jamais l'inverse. Évite le jargon de journaliste (\"embargo levé\", \"selon nos sources\") : parle comme au grand public.\n"
-            "- 💬 CITATIONS-CHOC : si l'article contient de VRAIES citations fortes et courtes (critiques dithyrambiques, phrase-choc d'un témoin ou d'une personnalité), reprends-en 1 ou 2 entre guillemets — c'est très engageant. UNIQUEMENT des citations réellement présentes dans la source, JAMAIS inventées ni reformulées en plus fort. Si l'article n'en contient pas, n'en invente aucune.\n"
-            "- Sujets clivants (politique, société, sécurité) : formule le FAIT pour que chacun ait aussitôt un avis — SANS prendre parti ni déformer l'info.\n"
-            "- ⛔ JAMAIS AU PRIX DE LA VÉRITÉ : accroche fondée sur un fait RÉEL de la source. Aucune exagération, aucun mot plus fort que la source, aucun teaser trompeur, aucune question racoleuse creuse. Elle rend le vrai fait saillant, elle ne l'invente ni ne l'amplifie."
-        )
 
-    result = claude(f"""Tu es community manager de Pulse, compte Twitter d'actualité française.
-Aujourd'hui : {today}.
+    result = claude(f"""Aujourd'hui : {today}.
+
+Catégorie de ce tweet (libellé à NE PAS reprendre en tête du body) : {label}
 
 Article à traiter :
 - Source : {source}
 - Titre  : {title}
 - Résumé : {summary}{video_str}{art_str}{corr_str}{prev_str}
 
-Génère QUATRE choses :
-
-1. **headline_court** (max 75 caractères) : titre punchy pour l'image. Pas de hashtag, pas d'emoji.
-
-2. **image_query** (max 5 mots, EN ANGLAIS) : recherche pour trouver une image pertinente.
-   Ex: "Emmanuel Macron Elysee speech", "Paris metro station", "Iran flag Tehran protest"
-
-3. **keywords_majeurs** (3 mots-clés en minuscules) : les mots-clés CENTRAUX du sujet, pour anti-répétition.
-   Ex pour "Trump impose tarifs Chine" → ["trump", "tarifs", "chine"]
-   Ex pour "Incendie 15e arrondissement Paris" → ["incendie", "paris", "15e"]
-   Ex pour "Mbappé blessé entraînement" → ["mbappe", "blessure", "real"]
-
-4. **person** : si l'article parle d'UNE personnalité publique précise (politique, sportif, artiste, créateur de contenu, PDG...), donne son nom complet tel qu'il apparaîtrait sur Wikipédia (ex: "Emmanuel Macron", "Kylian Mbappé", "Squeezie"). Sinon mets "".
-
-5. **pays** : le code ISO à 2 lettres du pays PRINCIPALEMENT concerné par l'actu (ex: "FR" France, "ES" Espagne, "US" États-Unis, "UA" Ukraine, "IT" Italie, "DE" Allemagne, "GB" Royaume-Uni, "CH" Suisse). Si l'actu est franco-française → "FR". Si aucun pays précis (sujet mondial, techno générale...) → "".
-
-6. **body** : corps du tweet (sans préfixe — il sera ajouté automatiquement).
-
-🔎 COMPRÉHENSIBLE PAR TOUS (RÈGLE D'OR) : le tweet doit être limpide pour quelqu'un qui n'a JAMAIS suivi le sujet. Tout SIGLE, ORGANISME, INSTITUTION ou terme technique que le grand public ne connaît pas forcément doit être expliqué en 2-4 mots juste après, entre parenthèses.
-   Ex : « le FSB (les services secrets russes) » · « la CJUE (la justice de l'UE) » · « le CETA (l'accord commercial UE-Canada) » · « la CNIL (le gendarme des données personnelles) » · « l'AME (l'aide médicale pour étrangers) » · « le HCR (l'agence de l'ONU pour les réfugiés) ».
-   Les sigles ULTRA-connus n'ont PAS besoin d'explication (ONU, OTAN, UE, SNCF, PSG, SMIC, RSA, RATP, OMS). Dans le doute, EXPLIQUE : mieux vaut un lecteur qui comprend qu'un lecteur qui décroche.
-
-{style_instr}
-
-✍️ MISE EN FORME PERCUTANTE (style CerfiaFR) :
-- 🔠 MAJUSCULES DE PUNCH : mets 1 à 2 mots-clés FORTS en MAJUSCULES pour créer du relief (ex: "largement REJETÉE", "VIOLENT cambriolage", "RECORD battu"). Maximum 1-2 par tweet, sur le mot qui compte — jamais des phrases entières en majuscules, ça crie.
-- 🔸 PUCES pour les actus DENSES : si l'article contient BEAUCOUP de données chiffrées (étude, bilan, rapport avec plusieurs statistiques), structure le corps avec des puces "🔸" (une donnée par puce) pour aérer et rendre lisible. Sinon (actu simple), garde le format phrases + sauts de ligne classique. N'utilise les puces QUE quand il y a vraiment plusieurs chiffres/faits à lister.
-- 🔢 CHIFFRES PRÉCIS jamais arrondis mous : "132 députés", "82,4 %", "289 voix nécessaires" — reprends les chiffres EXACTS de l'article, c'est ce qui inspire confiance.
-
-🧠 ADAPTE LE STYLE AU TYPE DE NEWS (c'est ce qui fait un bon compte, pas un moule unique) :
-Regarde de quoi parle l'actu et choisis l'angle qui la sert le mieux — base télégraphique façon CerfiaFR, mais modulée :
-- 🚨 BREAKING / FAIT DIVERS GRAVE → flash direct, factuel, tendu. Les faits bruts d'abord. Emoji d'alerte (🚨) possible en tête.
-- ⚖️ JUDICIAIRE / POLITIQUE SENSIBLE → sobre et précis, zéro sensationnalisme, qualifications exactes (voir rigueur).
-- 💰 ÉCONOMIE / SOCIÉTÉ AVEC CHIFFRE → mets le chiffre-choc en avant et réponds à \"pourquoi ça me concerne ?\" (pouvoir d'achat, emploi, factures, impôts) — rends-le concret pour les gens.
-- 🔬 SCIENCE / ÉTUDE / RAPPORT → vulgarise : le RÉSULTAT marquant en tête, dis pourquoi c'est important, garde SEULEMENT les 2-3 chiffres les plus parlants (le reste alourdit), zéro jargon.
-- ⚽ SPORT → vivant, punchy, l'exploit ou le résultat en avant, emoji du sport (⚽🏀🎾).
-- 🎬 CULTURE / INSOLITE / POSITIF → ton plus léger, curiosité ou sourire, on peut jouer sur la surprise.
-- 🌍 INTERNATIONAL → clair et pédagogue en une phrase, on situe l'enjeu sans jargon.
-Le BON réflexe : demande-toi \"si je voyais passer ça dans mon fil, qu'est-ce qui me ferait m'arrêter ?\" et écris ÇA.
-
-😀 EMOJI DU SUJET (comme dans les sondages) : ajoute UN emoji qui capte le SUJET PRÉCIS ou un élément-clé de l'actu — dans le texte OU à la fin. Choisis-le selon le SENS réel, jamais un décor gratuit.
-   Exemples : ⚽ foot/match · 🏀🎾🏉 autres sports · ⚖️ justice/procès/tribunal · 🚔 police/enquête · 🔥 incendie · 🌊 inondation · 🌪️ tempête · 🌡️ canicule · ✈️ aviation · 🚄 SNCF/train · 🚗 route/accident · 💶 budget/dette/prix/euros · 📈 hausse · 📉 baisse · 🗳️ élection/vote · 🏛️ politique/gouvernement · 🏥 santé/hôpital · 💊 médicament · 🎬 cinéma · 🎵 musique · 🚀 espace/tech · 💻 numérique · 🐕 animal · 🌍 international.
-   - Sois MALIN sur les mots ambigus : « feu vert » (un accord) n'est PAS 🔥 ; une « vague » de chaleur n'est PAS 🌊. L'emoji suit le vrai sens, pas le mot.
-   - ⚠️ Si AUCUN emoji ne colle VRAIMENT au sujet, n'en mets AUCUN. Mieux vaut zéro emoji qu'un emoji générique ou hors-sujet.
-   - Tu peux ajouter un 2ᵉ emoji en tête d'accroche s'il renforce (🚨 alerte/breaking). Jamais de guirlande d'emojis, JAMAIS d'emoji sur un hommage ni qui banalise un sujet grave.
-
-⚖️ RIGUEUR FACTUELLE ABSOLUE (sujets judiciaires, décès, accusations) — PRIORITÉ N°1 :
-- Recopie les qualifications juridiques EXACTEMENT comme dans la source : "homicide involontaire" reste INVOLONTAIRE, jamais "meurtre" ni "volontaire". "Meurtre" = uniquement si la source écrit "meurtre". Idem pour assassinat, viol, agression, terrorisme, féminicide.
-- Si la qualification n'est pas écrite dans la source, n'en mets AUCUNE (écris "mort de", "décès de", "mis en cause pour").
-- Personne mise en cause/suspectée = TOUJOURS "soupçonné de", "présumé" (présomption d'innocence).
-- N'invente JAMAIS un chiffre, un âge, un lieu ou une circonstance absents de la source.
-- ⛔ SUPERLATIFS INTERDITS SANS SOURCE : n'écris JAMAIS « le/la plus [grand·important...] de l'histoire », « jamais vu », « record absolu », « sans précédent », « inédit », « historique » SAUF si la source le dit EXPLICITEMENT. Sinon reste factuel (« un défilé de 6 700 soldats », PAS « le plus imposant jamais organisé »).
-- ⛔ NE DÉFORME PAS LE SENS : n'attribue JAMAIS un fait, une origine ou un mérite à la mauvaise culture / personne / pays / groupe. Ex : un haka est une tradition MAORI / du Pacifique — ne le présente JAMAIS comme une « tradition française ». Reste fidèle à QUI fait quoi et à quelle culture/pays appartient quoi.
-- ⛔ N'INVENTE JAMAIS LE CONTEXTE D'UN ÉVÉNEMENT SPORTIF OU PROGRAMMÉ : le tour de compétition (quart, demi, finale), l'adversaire, le stade, la date ou l'horaire ne s'écrivent QUE s'ils figurent EXPLICITEMENT dans la source. Si la source n'en parle pas, n'en parle pas — un match, un procès ou une élection dont tu ne connais pas la date ne s'annonce pas.
-- ⛔ NE TRANSFORME PAS UN BILAN EN ANNONCE : si la source parle d'un événement DÉJÀ joué, terminé ou d'une élimination (« a échoué », « défaite », « éliminé », « bilan », « retour sur »), écris-le au passé. N'écris JAMAIS « avant le match », « à quelques heures de », « ce soir » pour un événement déjà passé.
-
-RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
-- NE COMMENCE PAS par "{label}" ni aucune catégorie en majuscules ; va DIRECTEMENT à l'info.
-{hook_instr}
-- TÉLÉGRAPHIQUE : 1 à 2 phrases MAXIMUM, denses et autonomes, comme une dépêche. Info COMPLÈTE, jamais un teaser.
-- ⛔⛔ INTERDICTION ABSOLUE DU TEASER / RACOLAGE : le tweet DONNE l'information, il ne l'appâte JAMAIS. Bannis totalement : "découvrez si...", "découvrez la suite", "on vous dit tout", "vous n'allez pas croire", "la réponse va vous surprendre", "cliquez pour savoir", "la raison est folle". Si Marine Le Pen peut se présenter → DIS-LE ("elle pourra se présenter" ou "elle est inéligible"). Ne demande jamais au lecteur d'aller chercher l'info ailleurs : elle est DANS le tweet, en clair. Un tweet qui cache le fait pour forcer le clic est un ÉCHEC.
-- 🎙️ NE RELAIE JAMAIS LA PUB D'UN AUTRE MÉDIA : beaucoup d'articles (BFMTV, etc.) servent à promouvoir LEUR podcast, émission, dossier ou reportage. IGNORE totalement cette promo. Ne finis JAMAIS par "on en parle dans le podcast", "à écouter dans notre émission", "à retrouver dans notre dossier", "rendez-vous dans…". Ne pose pas non plus de questions creuses qui renvoient à ce contenu ("Pourquoi ce choix ? On en parle dans…"). Extrais UNIQUEMENT le fait d'actualité (le quoi/qui/quand) et donne-le en clair. Si l'article n'a qu'une promo sans réel fait, garde juste le fait vérifiable et rien d'autre.
-- Mets en avant le CHIFFRE ou le FAIT clé. Tu peux écrire UN mot ou chiffre important en MAJUSCULES pour l'emphase (avec parcimonie).
-- ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
-- Longueur cible COURTE : environ 200 à 330 caractères. Jamais un long pavé.
-- 🇫🇷 FRANÇAIS IMPECCABLE : aucun mot ni expression en anglais (traduis tout), aucune faute d'orthographe/grammaire/accord, aucun mot tronqué. RELIS-toi avant de répondre.
-- 1 à 2 hashtags INTÉGRÉS DANS LES PHRASES (3 max si vraiment justifié) : colle "#" sur un mot DÉJÀ présent.
-- 🎯 CHOIX DU HASHTAG — vise le SUJET, jamais le décor. Le hashtag principal = LE nom propre central de l'actu (entreprise, personne, club, événement, jeu vidéo). Test : "cette actu parle de quoi en UN mot ?" → c'est CE mot qui prend le #. Ex : actu sur l'entrée en Bourse de SpaceX → #SpaceX (PAS #Bourse ni #TimesSquare) ; actu sur Mbappé → #Mbappé (pas #football) ; match des Bleus → #CoupeDuMonde2026 ; sortie de GTA 6 → #GTA6.
-- ⛔ Pas de hashtag décoratif ou périphérique : lieux secondaires, mots génériques (#Bourse, #France, #Justice, #Tech) sont INTERDITS sauf s'ils sont précisément LE sujet de l'actu.
-- ⛔ INTÉGRATION PROPRE — ne casse JAMAIS le texte : ne DUPLIQUE pas un mot ("à Mexico #Mexico" = INTERDIT), ne mets pas de "#" au milieu d'un mot, n'ajoute pas de mot juste pour caser un hashtag, et NE mets PAS de bloc de hashtags à la fin. Le hashtag doit se lire naturellement dans la phrase.
-- RETOUR À LA LIGNE VITE : l'accroche (1ʳᵉ phrase COURTE) puis LIGNE VIDE, puis la 2ᵉ phrase (détail/contexte), puis LIGNE VIDE, puis la source. Structure : Phrase1 courte.\\n\\nPhrase2.\\n\\n(Source). ⛔ JAMAIS deux longues phrases avant le 1er saut de ligne — l'accroche tient sur UNE ligne à l'écran, sinon c'est un pavé qui ne donne pas envie de lire.
-- Exemple EXACT du rendu attendu (court, aéré, hashtags intégrés) :
-  "🚨 Des MILLIERS de manifestants bloquent le stade à #Mexico.\\n\\nÀ deux jours de l'ouverture de la #CoupeDuMonde2026, ils réclament une hausse des salaires et l'abrogation de la réforme des retraites.\\n\\n(Le Figaro)"
-- Dans le JSON, les sauts de ligne s'écrivent \\n
-
-✅ AVANT DE RÉPONDRE, relis-toi en silence et corrige si besoin : (1) l'info principale est visible dès la 1ʳᵉ phrase, (2) l'accroche donne envie SANS teaser, (3) faits, chiffres et qualifications 100 % fidèles à la source, (4) la structure colle au type d'actu, (5) un emoji qui colle au sujet précis (ou AUCUN si rien ne colle vraiment), (6) le hashtag = LE sujet, (7) français impeccable. Ne renvoie que la version corrigée.
-
-Réponds avec ce JSON UNIQUEMENT :
-{{"headline_court":"...","image_query":"...","person":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""", max_tokens=900)
+{style_instr}""", max_tokens=900, system=_tweet_system(category == "hommage"))
 
     body = (result.get("body") or "").strip()
     for label_test in LABELS.values():
@@ -1157,18 +1232,32 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
             article_text = None
     body, headline, image_query, keywords, person, pays = gen_tweet_complet(
         title, summary, source, category, article_text=article_text, prev_angles=prev_angles)
+    # 💰 UNE SEULE régénération payante par tweet. Les trois garde-fous (fait, teaser,
+    #    annonce périmée) pouvaient s'enchaîner : jusqu'à 4 appels facturés pour UN tweet.
+    #    Au-delà du quota, on applique la correction LOCALE (gratuite) déjà prévue.
+    _regen = [1]
+    def _can_regen():
+        if _regen[0] <= 0:
+            print("  💰 Quota de régénération atteint → correction locale (0 coût)")
+            return False
+        _regen[0] -= 1
+        return True
     issues = _fact_guard(body + " " + headline, src_text)
-    if issues:
+    if issues and _can_regen():
         print(f"  ⚖️ Erreur factuelle détectée ({'; '.join(issues)}) → régénération")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
             title, summary, source, category, article_text=article_text, prev_angles=prev_angles, correction="; ".join(issues))
         if _fact_guard(body + " " + headline, src_text):
             body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
             print("  ⚖️ Correction forcée appliquée")
+    elif issues:
+        # quota épuisé : correction locale gratuite, l'exigence factuelle reste tenue
+        body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
+        print("  ⚖️ Correction forcée appliquée (sans régénération)")
 
     # 🚫 GARDE-FOU ANTI-TEASER : un tweet qui CACHE l'info ("découvrez si...", "on vous dit tout")
     # est un échec éditorial. On régénère UNE fois avec une consigne explicite de donner le fait.
-    if _is_teaser(body):
+    if _is_teaser(body) and _can_regen():
         print(f"  🚫 Teaser/clickbait détecté → régénération (l'info doit être DONNÉE, pas appâtée)")
         anti = ("Ton tweet précédent CACHAIT l'information (formulation racoleuse type 'découvrez si...', "
                 "'on vous dit tout') OU relayait la promo d'un autre média ('on en parle dans le podcast', "
@@ -1177,14 +1266,18 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
                 "émission/dossier, sans question creuse. Le lecteur doit connaître le fait en te lisant, sans cliquer ailleurs.")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
             title, summary, source, category, article_text=article_text, prev_angles=prev_angles, correction=anti)
-        # Si ça tease encore, on retire au moins la tournure racoleuse la plus courante
-        if _is_teaser(body):
-            body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
-                          "", body, flags=re.IGNORECASE).strip()
-            print("  🚫 Tournure teaser retirée de force")
+    # Nettoyage LOCAL (gratuit) : s'applique aussi quand le quota de régénération est épuisé.
+    if _is_teaser(body):
+        body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
+                      "", body, flags=re.IGNORECASE).strip()
+        print("  🚫 Tournure teaser retirée de force")
 
     # ⏰ Annonce périmée : le tweet présente comme À VENIR un horaire déjà passé aujourd'hui.
     if _annonce_perimee(body, pub_ts=pub_ts):
+        if not _can_regen():
+            # quota épuisé : on n'invente pas, on abandonne (0 coût) — jamais d'annonce périmée
+            print("  ⛔ Annonce périmée et quota épuisé → sujet abandonné (0 coût)")
+            return None, None, None, None, None, None
         print("  ⏰ Annonce périmée détectée (horaire déjà passé) → régénération")
         corr = (f"Il est actuellement {datetime.now().strftime('%Hh%M')}. Ton tweet précédent annonçait "
                 "comme À VENIR un événement dont l'heure est DÉJÀ PASSÉE. INTERDIT. "
@@ -7321,6 +7414,14 @@ def echo_bonus(n_sources):
     if n_sources == 2: return 1      # confirmé par un second média
     return 0                         # source unique → ni bonus, ni pénalité
 
+def _hot_prescore(title):
+    """Pré-score GRATUIT d'un sujet chaud (aucun appel Claude).
+    Source de vérité unique : utilisé pour décider si un sujet mérite d'être analysé."""
+    low = (title or "").lower()
+    return sum(w for w, rx in PRERANK_HOT if re.search(rx, low)) + \
+           sum(w for w, rx in PRERANK_COLD if re.search(rx, low))
+
+
 def prerank_candidates(cands, keep, wildcard=PRERANK_WILDCARD):
     """Classement heuristique gratuit : mots chauds/froids + écho multi-sources.
     ⚠️ Une liste de mots-clés ne sera JAMAIS exhaustive : un sujet majeur peut arriver avec un
@@ -7869,6 +7970,29 @@ def check_feeds(conn):
     nb_today = posts_today(conn)
     hot_topics = detect_breaking(conn, candidates, return_all=True)
     if hot_topics and not breaking_recent(conn):
+        # 💰 UN SEUL appel d'analyse pour TOUS les sujets chauds du run. Le prompt d'analyse
+        #    pèse ~2 400 tokens : l'envoyer une fois par sujet était le principal gaspillage
+        #    (3 sujets chauds = 3 × 2 400 tokens de consigne identique). On pré-analyse ici
+        #    en un seul lot ; la boucle ci-dessous lira le résultat dans le cache (0 coût).
+        _hot_batch = []
+        for _h in hot_topics:
+            if get_cached_analysis(conn, _h.get("url")):
+                continue                                   # déjà analysé à un run passé
+            _ts = _h.get("pub_ts")
+            if _ts and (time.time() - _ts) > STALE_BREAKING_HOURS * 3600:
+                continue                                   # trop vieux pour un breaking
+            if _hot_prescore(_h.get("title", "")) < 3:
+                continue                                   # banal → jamais payé
+            if topic_gate(conn, _h.get("title", ""))[1] in ("cap", "too_soon", "stale"):
+                continue                                   # déjà traité aujourd'hui
+            _hot_batch.append(_h)
+        if len(_hot_batch) > 1:
+            try:
+                for _h, _a in zip(_hot_batch, analyse_batch(_hot_batch, recent, blocked_kws)):
+                    cache_analysis(conn, _h["url"], _a)
+                print(f"  💰 {len(_hot_batch)} sujets chauds analysés en UN seul appel (au lieu de {len(_hot_batch)})")
+            except Exception:
+                pass                                       # la boucle analysera au cas par cas
         for hot in hot_topics:
             if nb_today >= DAILY_POST_CAP and not _is_urgent_alert(hot.get("title", ""), hot.get("summary", "")):
                 print(f"  🛑 Plafond quotidien atteint ({nb_today}) — sujet chaud ignoré (une ALERTE VITALE passerait).")
@@ -7882,8 +8006,7 @@ def check_feeds(conn):
                 print(f"  🕒 Sujet chaud mais article ancien ({age_h}h) → pas de breaking sur du réchauffé → suivant")
                 continue
             # garde-fou gratuit : un sujet "chaud" mais éditorialement banal ne paie pas Claude
-            pre_score = sum(w for w, rx in PRERANK_HOT if re.search(rx, hot["title"].lower())) + \
-                        sum(w for w, rx in PRERANK_COLD if re.search(rx, hot["title"].lower()))
+            pre_score = _hot_prescore(hot["title"])
             if pre_score < 3:
                 print(f"  ⚪ Sujet chaud mais banal (pré-classement {pre_score}) → suivant")
                 continue
@@ -8013,8 +8136,15 @@ def check_feeds(conn):
     # de publication pendant les périodes riches en sport (ex: Coupe du Monde).
     # 🎯 La cadence ne gate que les NEWS NORMALES. Les canaux bonus (histoire, GTA 6)
     #    sont tentés à chaque run — ils ne prennent pas le créneau des news et ne le décalent pas.
-    cadence_ok = should_publish_now(conn)
-    if not cadence_ok:
+    # 🌙 La NUIT (23h-7h), les actualités NORMALES sont suspendues : seules les alertes
+    #    vitales et les décès marquants passent, par le chemin « sujet chaud » ci-dessus.
+    #    Conséquence : aucune analyse payée la nuit — on ne paie pas pour trier des articles
+    #    qu'on ne publiera pas.
+    _night_now = _is_night()
+    cadence_ok = (not _night_now) and should_publish_now(conn)
+    if _night_now:
+        print("  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)")
+    elif not cadence_ok:
         print("  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés")
 
     if not candidates:
@@ -8072,7 +8202,9 @@ def check_feeds(conn):
 
     # 💰 Limite le nombre d'articles ENVOYÉS à Claude par passage (les articles en
     # cache restent gratuits). On garde un échantillon varié pour borner le coût API.
-    MAX_ANALYSE = 18
+    # 💰 Un seul article est publié par cycle : analyser 18 candidats était du gaspillage.
+    #    Le pré-classement (gratuit) garde déjà les plus prometteurs.
+    MAX_ANALYSE = 8
     if len(to_analyse) > MAX_ANALYSE:
         skipped = len(to_analyse) - MAX_ANALYSE
         to_analyse = prerank_candidates(to_analyse, MAX_ANALYSE)
