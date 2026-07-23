@@ -72,13 +72,16 @@ GMAIL_ADDRESS     = os.environ.get("GMAIL_ADDRESS",     "")
 GMAIL_APP_PASS    = os.environ.get("GMAIL_APP_PASS",    "")
 EMAIL_TO          = os.environ.get("EMAIL_TO",          "")
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
-# ── Fournisseur de modèle, choisi PAR TÂCHE (migration progressive vers le gratuit) ──
-# Valeurs : "claude" (par défaut) ou "gemini". Claude reste le REPLI automatique en cas
-# d'échec, de quota dépassé ou de réponse illisible : un tweet n'est jamais perdu.
+# ── Fournisseur de modèle, choisi PAR TÂCHE ──
+# Par défaut TOUT passe par le fournisseur gratuit ; Claude reste le SECOURS automatique
+# (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
+# Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
+# Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
 GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.1-flash-lite")
-LLM_ANALYSE       = os.environ.get("LLM_ANALYSE",       "claude").strip().lower()
-LLM_REDACTION     = os.environ.get("LLM_REDACTION",     "claude").strip().lower()
+LLM_ANALYSE       = os.environ.get("LLM_ANALYSE",       "gemini").strip().lower()
+LLM_REDACTION     = os.environ.get("LLM_REDACTION",     "gemini").strip().lower()
+LLM_SPECIAUX      = os.environ.get("LLM_SPECIAUX",      "gemini").strip().lower()
 YOUTUBE_API_KEY   = os.environ.get("YOUTUBE_API_KEY",   "")
 UNSPLASH_KEY      = os.environ.get("UNSPLASH_KEY",      "")
 
@@ -692,12 +695,13 @@ def _gemini_call(prompt, system, max_tokens, want_json=True):
     return data["candidates"][0]["content"]["parts"][0]["text"]
 
 
-def _llm_json(prompt, max_tokens, system, task):
+def _llm_json(prompt, max_tokens=600, system=None, task="analyse"):
     """Appelle le modèle choisi POUR CETTE TÂCHE et renvoie du JSON.
     🛡️ Claude reste le filet : si le fournisseur gratuit échoue (quota, réseau, réponse
     illisible), on repasse par Claude immédiatement — la publication n'est jamais perdue."""
     global _LLM_FALLBACKS
-    fournisseur = {"analyse": LLM_ANALYSE, "redaction": LLM_REDACTION}.get(task, "claude")
+    fournisseur = {"analyse": LLM_ANALYSE, "redaction": LLM_REDACTION,
+                   "special": LLM_SPECIAUX}.get(task, "claude")
     if fournisseur == "gemini" and GEMINI_API_KEY:
         try:
             return _parse_json_reponse(_gemini_call(prompt, system, max_tokens, want_json=True))
@@ -3489,7 +3493,7 @@ def gen_gta6_hype(conn, candidates=None):
         longueur = "Longueur : 350 à 550 caractères (explique la rumeur : d'où elle vient, ce qu'elle avance, pourquoi les fans y croient)."
 
     try:
-        result = claude(f"""Tu es le journaliste de Pulse spécialisé GTA VI (sortie le 19 NOVEMBRE 2026, PS5 / Xbox Series X|S).
+        result = _llm_json(f"""Tu es le journaliste de Pulse spécialisé GTA VI (sortie le 19 NOVEMBRE 2026, PS5 / Xbox Series X|S).
 Tu écris en français, pour une communauté de fans passionnés.
 
 ⏰ CONTEXTE TEMPOREL : {temporalite}
@@ -3514,7 +3518,7 @@ STYLE :
 - Faits, chiffres et citations STRICTEMENT fidèles à l'article. Aucune fausse source.
 
 Réponds en JSON UNIQUEMENT :
-{{"headline_court":"... (max 70 char, pour l'image)","image_query":"GTA 6 ... (anglais, décrit une image du sujet)","body":"🎮 ...","keywords":["GTA6","..",".."]}}""", max_tokens=700)
+{{"headline_court":"... (max 70 char, pour l'image)","image_query":"GTA 6 ... (anglais, décrit une image du sujet)","body":"🎮 ...","keywords":["GTA6","..",".."]}}""", max_tokens=700, task="special")
     except Exception as e:
         print(f"  ⚠️ GTA6: {e}")
         return None
@@ -3644,7 +3648,7 @@ def gen_histoire_du_jour(conn):
     )
 
     try:
-        result = claude(f"""Tu écris pour Pulse, compte Twitter français.
+        result = _llm_json(f"""Tu écris pour Pulse, compte Twitter français.
 
 Aujourd'hui nous sommes le {today} {current_yr}. Voici les événements historiques VÉRIFIÉS de Wikipédia (le nombre d'années est DÉJÀ calculé, NE PAS le recalculer) :
 
@@ -3673,7 +3677,7 @@ Format :
 JSON :
 {{"index":0,"headline_court":"...","image_query":"...","body":"..."}}
 OU
-{{"skip": true}}""", max_tokens=450)
+{{"skip": true}}""", max_tokens=450, task="special")
 
         if result.get("skip"):
             print("  📜 Aucun événement assez connu — skip.")
@@ -3728,7 +3732,7 @@ def gather_all_headlines(resume_max=80):
         try:
             feed = feedparser.parse(fi["url"])
             for entry in feed.entries[:5]:
-                title = entry.get("title", "")
+                title = _titre_propre(entry.get("title", ""))
                 summ  = _strip_html(entry.get("summary", entry.get("description", "")))
                 if title:
                     summ = re.sub(r"<[^>]+>", "", summ)  # nettoie le HTML
@@ -3798,7 +3802,7 @@ def gen_poll(conn):
     today = datetime.now().strftime("%d %B %Y")
 
     try:
-        result = claude(f"""Tu animes Pulse, compte Twitter d'actualité française. Aujourd'hui : {today}.
+        result = _llm_json(f"""Tu animes Pulse, compte Twitter d'actualité française. Aujourd'hui : {today}.
 
 Articles du jour :
 {headlines_str}
@@ -3835,7 +3839,7 @@ CONTRAINTES TECHNIQUES :
 - FRANÇAIS sans faute
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"keywords":["mot1","mot2"],"question":"...","options":["Option 1","Option 2"]}}""", max_tokens=400)
+{{"keywords":["mot1","mot2"],"question":"...","options":["Option 1","Option 2"]}}""", max_tokens=400, task="special")
 
         question = (result.get("question") or "").strip()
 
@@ -4560,7 +4564,7 @@ def gather_articles_with_urls(limit_per_feed=4):
         try:
             feed = feedparser.parse(fi["url"])
             for entry in feed.entries[:limit_per_feed]:
-                title = entry.get("title", "")
+                title = _titre_propre(entry.get("title", ""))
                 if not title:
                     continue
                 summ = re.sub(r"<[^>]+>", "", entry.get("summary", entry.get("description", "")))
@@ -4641,7 +4645,7 @@ def gen_carousel(conn):
         # ÉTAPE 1 : choisir LE sujet de fond du jour
         deja = recent_thread_topics(conn)
         deja_str = ("\n⛔ THÈMES DÉJÀ TRAITÉS cette semaine — choisis un sujet DIFFÉRENT : " + " | ".join(deja)) if deja else ""
-        pick = claude(f"""Tu es Pulse, média d'actualité française. Aujourd'hui : {today}.
+        pick = _llm_json(f"""Tu es Pulse, média d'actualité française. Aujourd'hui : {today}.
 
 Articles du jour (numérotés) :
 {listing}
@@ -4655,7 +4659,7 @@ Choisis les sujets qui font PARLER et donnent envie de cliquer : affaire/scandal
 Donne ton TOP 3 par ordre de préférence (le meilleur en premier).
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"indices": [<n°1>, <n°2>, <n°3>], "sujet":"<2-4 mots sur le n°1>", "cover_title":"<accroche ≤60 caractères pour le n°1>", "image_query":"<5 mots-clés ANGLAIS décrivant une PHOTO du sujet n°1, ex 'paris police protest night'>", "keywords":["<1 à 2 NOMS PROPRES du sujet n°1 pour hashtag : entreprise/personne/lieu/événement central, ex 'SpaceX' ou 'Nahel'>"]}}""", max_tokens=300)
+{{"indices": [<n°1>, <n°2>, <n°3>], "sujet":"<2-4 mots sur le n°1>", "cover_title":"<accroche ≤60 caractères pour le n°1>", "image_query":"<5 mots-clés ANGLAIS décrivant une PHOTO du sujet n°1, ex 'paris police protest night'>", "keywords":["<1 à 2 NOMS PROPRES du sujet n°1 pour hashtag : entreprise/personne/lieu/événement central, ex 'SpaceX' ou 'Nahel'>"]}}""", max_tokens=300, task="special")
 
         # On privilégie le 1er sujet du top 3 qui a une VRAIE photo (og:image).
         # Sinon on garde quand même le meilleur sujet : la couverture utilisera image_query (jamais SANS image).
@@ -4684,7 +4688,7 @@ Réponds avec ce JSON UNIQUEMENT :
             article_text = f"{art['title']}. {art['summary']}"  # repli si lecture impossible
 
         # ÉTAPE 3 : générer les slides chiffrées à partir de l'article
-        result = claude(f"""Tu es Pulse, média d'actualité française. Voici un article à décrypter en carrousel pédagogique.
+        result = _llm_json(f"""Tu es Pulse, média d'actualité française. Voici un article à décrypter en carrousel pédagogique.
 
 SUJET : {art['title']}
 ARTICLE :
@@ -4712,7 +4716,7 @@ Donne aussi "keywords" : 1 à 2 NOMS PROPRES centraux de CET article (entreprise
 pour le hashtag du tweet.
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"cover_title":"<accroche de couverture ≤60 caractères, percutante>","tweet_points":["...","...","..."],"keywords":["..."],"slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1300)
+{{"cover_title":"<accroche de couverture ≤60 caractères, percutante>","tweet_points":["...","...","..."],"keywords":["..."],"slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1300, task="special")
 
         slides = result.get("slides", [])
         slides = [s for s in slides if s.get("titre") and s.get("points")][:4]
@@ -4877,7 +4881,7 @@ def _flag_circle(country, diameter=160):
 def extract_sport_result(title, summary):
     """Extrait un résultat sportif TERMINÉ : match (sports co), tennis (sets) ou course (vainqueur seul)."""
     try:
-        r = claude(f"""Analyse ce titre/résumé d'actualité sportive.
+        r = _llm_json(f"""Analyse ce titre/résumé d'actualité sportive.
 S'il s'agit d'un RÉSULTAT DÉFINITIF clairement identifiable, extrais les infos. Sinon réponds {{"ok":false}}.
 
 Titre : {title}
@@ -4894,7 +4898,7 @@ Champs communs : competition (nom court : "Ligue 1", "Roland-Garros", "Tour de F
 Réponds avec ce JSON UNIQUEMENT (un de ces formats) :
 {{"ok":true,"type":"match","sport":"FOOTBALL","competition":"Ligue 1","team_a":"PSG","score_a":2,"team_b":"OM","score_b":1}}
 {{"ok":true,"type":"tennis","sport":"TENNIS","competition":"Roland-Garros","player_a":"Alcaraz","player_b":"Sinner","sets":"6-4, 3-6, 7-6","winner":"A"}}
-{{"ok":true,"type":"race","sport":"CYCLISME","competition":"Tour de France","winner_name":"Pogacar","detail":"Étape 12"}}""", max_tokens=260)
+{{"ok":true,"type":"race","sport":"CYCLISME","competition":"Tour de France","winner_name":"Pogacar","detail":"Étape 12"}}""", max_tokens=260, task="analyse")
         if not r or not r.get("ok"):
             return None
         t     = r.get("type")
@@ -5346,7 +5350,7 @@ def extract_obituary(title, summary, url=None):
             art = fetch_article_text(url, max_chars=1800)
             if len(art) > 200:
                 text = art
-        r = claude(f"""On t'a transmis un article annonçant le décès d'une personnalité.
+        r = _llm_json(f"""On t'a transmis un article annonçant le décès d'une personnalité.
 
 Titre : {title}
 Texte de l'article :
@@ -5362,7 +5366,7 @@ Extrais UNIQUEMENT les informations EXPLICITEMENT écrites dans le texte ci-dess
 
 Réponds avec ce JSON UNIQUEMENT :
 {{"ok":true,"name":"<nom complet exact>","birth_year":<entier ou null>,"age":<entier ou null>,"desc":"<métier ou vide>"}}
-Si ce n'est pas le décès d'une personne nommée, réponds {{"ok":false}}.""", max_tokens=220)
+Si ce n'est pas le décès d'une personne nommée, réponds {{"ok":false}}.""", max_tokens=220, task="analyse")
         if not r or not r.get("ok"):
             return None
         name = _smart_truncate(str(r.get("name", "")), 40)
@@ -6842,7 +6846,7 @@ def publish_recap(conn):
     if _cached_items is not None:
         items = _cached_items
     else:
-        r = claude(f"""Tu es le rédacteur en chef de Pulse, compte d'actualité français. Tu écris LE RÉCAP DU SOIR.
+        r = _llm_json(f"""Tu es le rédacteur en chef de Pulse, compte d'actualité français. Tu écris LE RÉCAP DU SOIR.
 Nous sommes {now_str}. Tu as suivi TOUTE la journée.
 
 Actus publiées aujourd'hui, du MATIN au SOIR (l'ordre compte) :
@@ -6865,7 +6869,7 @@ RÈGLES :
 
 Réponds avec ce JSON UNIQUEMENT :
 {{"items":[{{"e":"⚖️","t":"Sujet : info essentielle"}},{{"e":"🚨","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}}]}}""",
-            max_tokens=500)
+            max_tokens=500, task="special")
         # Filet anti-doublon : même si Claude sort 2 lignes sur le même sujet, on ne garde que la 1ʳᵉ
         # (≥2 mots saillants communs = même histoire) → « un sujet = une ligne » garanti mécaniquement.
         raw = [(str(it.get("e", "•"))[:2], _recap_line(str(it.get("t", ""))))
@@ -7509,7 +7513,14 @@ def _embed(texte):
                                 "outputDimensionality": 768},
                           timeout=20)
         r.raise_for_status()
-        v = (r.json().get("embedding") or {}).get("values")
+        _d = r.json()
+        # comptabiliser aussi les embeddings dans la consommation du fournisseur gratuit
+        try:
+            _USAGE_GEMINI["in"] += ((_d.get("usageMetadata") or {}).get("promptTokenCount")
+                                    or max(1, len(texte) // 4))
+        except Exception:
+            pass
+        v = (_d.get("embedding") or {}).get("values")
         if v:
             _EMBED_CACHE[cle] = v
             return v
@@ -7740,6 +7751,23 @@ PRERANK_COLD = [
     (-2, r"comment |pourquoi |voici |conseils|astuces|guide"),
     (-4, r"horoscope|programme tv|replay|podcast|diaporama|quiz|recette|bons plans|promo|soldes|comparatif|notre sélection|que regarder|que faire ce"),
     (-3, r"triathlon|marathon de|championnats? du monde de|coupe du monde de (handball|rugby|natation|judo)|open de|tournoi de"),
+    # 🛒 CONTENU PRODUIT / BANC D'ESSAI — jamais une actualité, souvent de l'affiliation.
+    #    (vécu : « EcoFlow RIVER 2, l'une des plus légères stations portables » partait en
+    #     analyse payante ; « Galaxy Watch : Samsung teste déjà One UI 9 » aussi.)
+    (-5, r"on a test|nous avons test|notre test|à l'essai|prise en main|unboxing|"
+         r"rapport qualité.?prix|meilleur prix|prix cassé|au meilleur prix|"
+         r"stations? portables?|batteries? externes?|écouteurs|casques? audio|aspirateurs?|"
+         r"trottinettes?|montres? connectées?|objets? connectés?|"
+         r"chargeurs? (?:sans fil|rapides?|à induction|usb)|box internet|forfaits? mobiles?|"
+         r"\bone ui\b|\bandroid \d|\bios \d\d"),
+    (-4, r"\b(pourquoi|comment) (choisir|acheter)\b|à moins de \d+ ?(€|euros)|"
+         r"-\d{2} ?% sur|code promo|black friday|french days|vente flash"),
+    # 🎣 TOURNURES D'APPÂT — le titre cache l'info au lieu de la donner.
+    (-4, r"oubliez |vous ne devinerez|la vraie révolution|ce détail qui change|"
+         r"personne n'avait remarqué|voici pourquoi|la raison est|et ce n'est pas"),
+    # 💋 INTIMITÉ / POTINS — hors ligne éditoriale d'un compte d'actualité.
+    (-5, r"au plumard|sous la couette|sa vie sexuelle|ses ébats|confidences intimes|"
+         r"nuit torride|en couple avec|son ex |sa nouvelle compagne|son nouveau compagnon"),
 ]
 PRERANK_WILDCARD = 4     # places réservées : un sujet majeur au vocabulaire imprévu doit atteindre Claude
 
@@ -8140,6 +8168,31 @@ def _photo_secours_jumeau(item, candidates):
     except Exception:
         return None, False
 
+_PREFIXES = (r"vid[ée]os?|photos?|images?|en\s+images?|infographies?|cartes?|"
+             r"direct|en\s+direct|live|podcasts?|reportages?|d[ée]cryptages?|analyses?|"
+             r"t[ée]moignages?|enqu[êe]tes?|portraits?|interviews?|entretiens?|r[ée]cits?|"
+             r"tribunes?|[ée]ditos?|exclusif|exclusivit[ée]|à\s+la\s+une|le\s+fil")
+_PREFIXE_RX = re.compile(
+    # ① entre crochets/parenthèses/guillemets : le séparateur qui suit est facultatif
+    rf"^\s*[\[\(«]\s*(?:{_PREFIXES})\s*[\]\)»]\s*[.:•\-–—]?\s*"
+    # ② à nu : un séparateur est OBLIGATOIRE, pour ne pas amputer « Vidéosurveillance : … »
+    rf"|^\s*(?:{_PREFIXES})\s*[.:•\-–—]\s*",
+    re.IGNORECASE)
+
+def _titre_propre(titre):
+    """Retire les préfixes de rédaction d'un titre RSS (« Vidéo. », « EN IMAGES : »,
+    « DIRECT — »…). Ce ne sont pas de l'information : ils polluent le tweet, brouillent
+    la reconnaissance des doublons et alourdissent les prompts.
+    Retire jusqu'à deux préfixes empilés (« Vidéo. Reportage. Titre »)."""
+    t = (titre or "").strip()
+    for _ in range(2):
+        nouveau = _PREFIXE_RX.sub("", t, count=1).strip()
+        if nouveau == t or not nouveau:
+            break
+        t = nouveau
+    return t or (titre or "").strip()
+
+
 def check_feeds(conn):
     global _META_CONN, _CLAUDE_CALLS, _CADENCE_DECISION
     _META_CONN = conn
@@ -8150,7 +8203,8 @@ def check_feeds(conn):
     #    (Piège vécu : une clé rangée dans les secrets GitHub mais non transmise par le
     #    workflow reste invisible pour le bot — sans ce message, ça passe inaperçu.)
     try:
-        _souhaits = {"analyse": LLM_ANALYSE, "rédaction": LLM_REDACTION}
+        _souhaits = {"analyse": LLM_ANALYSE, "rédaction": LLM_REDACTION,
+                     "spéciaux": LLM_SPECIAUX}
         if any(v == "gemini" for v in _souhaits.values()):
             if GEMINI_API_KEY:
                 _actifs = " · ".join(f"{k}={v}" for k, v in _souhaits.items())
@@ -8292,7 +8346,7 @@ def check_feeds(conn):
             feed = feedparser.parse(fi["url"])
             for entry in feed.entries[:3]:
                 url   = entry.get("link", "")
-                title = entry.get("title", "")
+                title = _titre_propre(entry.get("title", ""))
                 summ  = _strip_html(entry.get("summary", entry.get("description", "")))
                 # Date de publication (epoch) — nécessaire pour le suivi live des matchs France
                 # (sans ça, _detect_france_match rejette TOUT par prudence : aucune date = pas de live)
