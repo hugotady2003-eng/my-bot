@@ -50,6 +50,8 @@ jobs:
           INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
           IMGBB_KEY:            ${{ secrets.IMGBB_KEY }}
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LLM_ANALYSE: gemini
         run: python bot_single_run.py
 
       - name: Garder le repo actif (évite la désactivation du cron)
