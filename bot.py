@@ -567,18 +567,51 @@ def _print_claude_meter():
     # S'affiche à la toute fin du processus (donc en fin de run GitHub Actions), quel que soit
     # le chemin de sortie. On n'affiche rien si aucun appel n'a été fait (run en attente de cadence).
     try:
-        if _CLAUDE_CALLS:
-            print(f"  🧮 Coût du run : {_CLAUDE_CALLS} appel(s) Claude payé(s) ce cycle")
+        if not _CLAUDE_CALLS:
+            return
+        print(f"  🧮 Coût du run : {_CLAUDE_CALLS} appel(s) Claude payé(s) ce cycle")
+        if any(_USAGE.values()):
+            print(f"     tokens — entrée {_USAGE['in']:,} · cache écrit {_USAGE['cache_w']:,} · "
+                  f"cache relu {_USAGE['cache_r']:,} · sortie {_USAGE['out']:,}")
+            print(f"     facture réelle de ce run : {cout_du_run():.3f} ¢")
+            if _USAGE["cache_w"] and not _USAGE["cache_r"]:
+                print("     ℹ️ cache écrit mais jamais relu sur ce run — sans effet ici")
     except Exception:
         pass
 
 _PROMPT_CACHE_OK = True   # passe à False si l'API/SDK refuse le cache → repli transparent
+# 🧮 Consommation RÉELLE du run (remplie depuis la réponse de l'API) : permet de mesurer la
+#    facture au lieu de l'estimer, et de vérifier si la mise en cache rapporte vraiment.
+_USAGE = {"in": 0, "cache_w": 0, "cache_r": 0, "out": 0}
+# Tarifs Haiku 4.5, en dollars par million de tokens
+_PRIX = {"in": 1.00, "cache_w": 1.25, "cache_r": 0.10, "out": 5.00}
+
+def _note_usage(msg):
+    """Enregistre la consommation réelle d'un appel. Silencieux si l'info est absente."""
+    try:
+        u = getattr(msg, "usage", None)
+        if not u:
+            return
+        _USAGE["in"]      += getattr(u, "input_tokens", 0) or 0
+        _USAGE["cache_w"] += getattr(u, "cache_creation_input_tokens", 0) or 0
+        _USAGE["cache_r"] += getattr(u, "cache_read_input_tokens", 0) or 0
+        _USAGE["out"]     += getattr(u, "output_tokens", 0) or 0
+    except Exception:
+        pass
+
+def cout_du_run():
+    """Coût réel du run, en centimes, à partir des tokens réellement facturés."""
+    d = sum(_USAGE[k] * _PRIX[k] for k in _PRIX) / 1_000_000
+    return d * 100
 
 def _msg_kwargs(system, model, max_tokens, prompt):
     """Construit les arguments d'appel. Les CONSIGNES FIXES (barème, règles éditoriales)
-    partent en bloc `system` marqué pour MISE EN CACHE 1 h : elles sont identiques à chaque
-    appel, donc facturées ~10× moins cher en lecture de cache. Seules les données du jour
-    (articles, titres récents) restent dans le message utilisateur.
+    partent en bloc `system` marqué pour MISE EN CACHE : relues à 10 % du prix si le même
+    bloc resert peu après (ex. analyse groupée + analyse du lot, ou tweet + régénération).
+    ⚠️ Durée VOLONTAIREMENT COURTE (5 min, le défaut) : Pulse publie toutes les 110-180 min,
+    donc deux runs ne se suivent jamais d'assez près. Un cache d'1 h coûterait le DOUBLE en
+    écriture pour n'être jamais relu ; en 5 min l'écriture ne coûte que 1,25× et seuls les
+    appels rapprochés d'un même run en profitent.
     Si le cache n'est pas disponible, on renvoie un appel classique — même résultat."""
     kw = {"model": model, "max_tokens": max_tokens,
           "messages": [{"role": "user", "content": prompt}]}
@@ -586,7 +619,7 @@ def _msg_kwargs(system, model, max_tokens, prompt):
         return kw
     if _PROMPT_CACHE_OK:
         kw["system"] = [{"type": "text", "text": system,
-                         "cache_control": {"type": "ephemeral", "ttl": "1h"}}]
+                         "cache_control": {"type": "ephemeral"}}]
     else:
         kw["system"] = system
     return kw
@@ -606,6 +639,7 @@ def claude(prompt, max_tokens=600, model="claude-haiku-4-5-20251001", system=Non
                 # SDK trop ancien pour le cache → repli définitif pour ce run
                 _PROMPT_CACHE_OK = False
                 msg = client.messages.create(**_msg_kwargs(system, model, max_tokens, prompt))
+            _note_usage(msg)
             raw = msg.content[0].text.strip().replace("```json", "").replace("```", "").strip()
             try:
                 return json.loads(raw)
@@ -638,6 +672,7 @@ def claude_text(prompt, max_tokens=700, model="claude-haiku-4-5-20251001", syste
     except TypeError:
         _PROMPT_CACHE_OK = False
         msg = client.messages.create(**_msg_kwargs(system, model, max_tokens, prompt))
+    _note_usage(msg)
     return msg.content[0].text.strip()
 
 _ANALYSE_SYS = None
@@ -734,13 +769,14 @@ def analyse_batch(articles, recent, blocked_keywords):
     if not articles:
         return []
 
-    recent_str  = "\n".join(f"- {t}" for t in recent[:20]) or "Aucun"
+    # 12 titres suffisent pour juger un doublon (les plus récents) — 20 gonflaient le prompt
+    recent_str  = "\n".join(f"- {t}" for t in recent[:12]) or "Aucun"
     blocked_str = ", ".join(blocked_keywords) if blocked_keywords else "Aucun"
     today       = datetime.now().strftime("%d %B %Y")
     cats        = "|".join(LABELS.keys())
 
     articles_str = "\n\n".join(
-        f"### Article {i+1}\nSource: {a['source']}\nTitre: {a['title']}\nRésumé: {a.get('summary','')[:150]}"
+        f"### Article {i+1}\nSource: {a['source']}\nTitre: {a['title']}\nRésumé: {a.get('summary','')[:110]}"
         for i, a in enumerate(articles)
     )
 
