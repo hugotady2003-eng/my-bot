@@ -77,11 +77,11 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.28.0"
+PULSE_VERSION = "1.34.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+                           # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
-HASHTAGS_ACTIFS = os.environ.get("HASHTAGS", "1").strip() not in ("0", "false", "non")   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
-                           # que le bot.py en ligne est bien le dernier livré.
+HASHTAGS_ACTIFS = os.environ.get("HASHTAGS", "1").strip() not in ("0", "false", "non")
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
 GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.1-flash-lite")
 LLM_ANALYSE       = os.environ.get("LLM_ANALYSE",       "gemini").strip().lower()
@@ -481,8 +481,8 @@ def _touch_publish_time():
         pass
 
 # ── Plafond quotidien GLOBAL de publications (toutes sources confondues) ──
-DAILY_POST_CAP = 28          # plafond FERME (une alerte vitale peut seule passer au-delà)
-DAILY_POST_SOFT = 20         # au-delà, on ne garde QUE le très chaud (breaking/résultats forts)
+DAILY_POST_CAP = 30          # plafond FERME (une alerte vitale peut seule passer au-delà)
+DAILY_POST_SOFT = 24         # au-delà, on ne garde QUE le très chaud (breaking/résultats forts)
 
 # ── Mémoire par sujet : un gros sujet qui ÉVOLUE peut ressortir dans la journée ──
 # (ne fait PAS grimper le total quotidien : il PREND la place d'une opportunité plus faible)
@@ -532,18 +532,19 @@ def _paris_hour():
         return datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=2))).hour
 
 def _is_night(h=None):
-    """Heures de NUIT (23h-7h, Paris) : le fil se met en quasi-pause. Seules les VRAIES
+    """Heures de NUIT (minuit-7h, Paris) : le fil se met en quasi-pause. Seules les VRAIES
     alertes vitales (breaking urgent, résultat de match France) passent la nuit.
-    Les canaux bonus (buzz, hommage non-urgent, histoire) sont mis en pause."""
+    Les canaux bonus (buzz, hommage non-urgent, histoire) sont mis en pause.
+    La soirée jusqu'à minuit reste ACTIVE : c'est une plage de forte audience."""
     if h is None:
         h = _paris_hour()
-    return h >= 23 or h < 7
+    return h < 7
 
 def _cadence_minutes(h):
     """Rythme de publication. Base ~1h30 partout (probabilité croissante jusqu'à 2h30),
     nuit fortement ralentie. PLUS d'accélération prime-time (trop coûteux). Les alertes
     (breaking, résultats sport) restent prioritaires et ne passent pas par ce rythme."""
-    if h >= 23 or h < 7:
+    if h < 7:
         return 180, 300, "nuit (quasi-pause, seule une alerte vitale passe)"
     return 30, 90, "journée (30 min à 1h30 entre deux actus normales)"
 
@@ -1013,7 +1014,7 @@ _HOOK_INSTR = (
             "- CRÉE UNE ÉMOTION immédiate (indignation, stupeur, admiration, curiosité). Demande-toi : \"en lisant juste cette phrase, aurait-on envie de commenter ou de lire la suite ?\"\n"
             "- CONCRET ET IMAGÉ, jamais abstrait : \"un homme de 92 ans\" plutôt que \"une personne âgée\" ; \"18 MILLIONS d'euros\" plutôt que \"une grosse somme\".\n"
             "- 💥 CHIFFRE-CHOC : si l'article contient un chiffre FORT et surprenant (montant, pourcentage, nombre, record, comparaison), METS-LE EN VEDETTE dès la 1ʳᵉ phrase — c'est ce qui fait le plus réagir/commenter. Écris-le en toutes lettres marquantes (\"3 200 €/mois\", \"+47 % en un an\", \"1 Français sur 4\"). Donne-lui du relief (ce qu'il représente concrètement) SANS jamais l'arrondir à la hausse ni le sortir de son contexte réel. Pas de chiffre → n'en invente pas, garde une autre accroche.\n"
-            "- 🎬 PUNCH PUIS INFO (structure gagnante des gros comptes) : l'accroche crée l'ÉMOTION/l'événement en quelques mots percutants (\"Un chef-d'œuvre est annoncé.\", \"Du jamais-vu au cinéma.\", \"La ville retient son souffle.\"), PUIS la 2ᵉ phrase donne l'info factuelle précise (qui, quoi, quand). D'abord faire RESSENTIR, ensuite INFORMER — jamais l'inverse. Évite le jargon de journaliste (\"embargo levé\", \"selon nos sources\") : parle comme au grand public.\n"
+            "- 🎬 LE FAIT EST L'ACCROCHE : n'ajoute PAS une phrase d'ambiance avant l'info (\"La ville retient son souffle.\") — c'est du remplissage. Un fait précis et net accroche mieux qu'une mise en scène. Évite le jargon de journaliste (\"embargo levé\", \"selon nos sources\") : parle comme au grand public.\n"
             "- 💬 CITATIONS-CHOC : si l'article contient de VRAIES citations fortes et courtes (critiques dithyrambiques, phrase-choc d'un témoin ou d'une personnalité), reprends-en 1 ou 2 entre guillemets — c'est très engageant. UNIQUEMENT des citations réellement présentes dans la source, JAMAIS inventées ni reformulées en plus fort. Si l'article n'en contient pas, n'en invente aucune.\n"
             "- Sujets clivants (politique, société, sécurité) : formule le FAIT pour que chacun ait aussitôt un avis — SANS prendre parti ni déformer l'info.\n"
             "- ⛔ JAMAIS AU PRIX DE LA VÉRITÉ : accroche fondée sur un fait RÉEL de la source. Aucune exagération, aucun mot plus fort que la source, aucun teaser trompeur, aucune question racoleuse creuse. Elle rend le vrai fait saillant, elle ne l'invente ni ne l'amplifie."
@@ -1131,7 +1132,7 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - 🎙️ NE RELAIE JAMAIS LA PUB D'UN AUTRE MÉDIA : beaucoup d'articles (BFMTV, etc.) servent à promouvoir LEUR podcast, émission, dossier ou reportage. IGNORE totalement cette promo. Ne finis JAMAIS par "on en parle dans le podcast", "à écouter dans notre émission", "à retrouver dans notre dossier", "rendez-vous dans…". Ne pose pas non plus de questions creuses qui renvoient à ce contenu ("Pourquoi ce choix ? On en parle dans…"). Extrais UNIQUEMENT le fait d'actualité (le quoi/qui/quand) et donne-le en clair. Si l'article n'a qu'une promo sans réel fait, garde juste le fait vérifiable et rien d'autre.
 - Mets en avant le CHIFFRE ou le FAIT clé. Tu peux écrire UN mot ou chiffre important en MAJUSCULES pour l'emphase (avec parcimonie).
 - ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
-- Longueur cible COURTE : environ 200 à 330 caractères. Jamais un long pavé.
+- Longueur cible : 80 à 200 caractères (source comprise). Les meilleurs tweets de Pulse font ~135 caractères. 250 est un MAXIMUM absolu, réservé aux sujets à plusieurs éléments. Un tweet court et net vaut TOUJOURS mieux qu'un tweet complet et long.
 - 🇫🇷 FRANÇAIS IMPECCABLE : aucun mot ni expression en anglais (traduis tout), aucune faute d'orthographe/grammaire/accord, aucun mot tronqué. RELIS-toi avant de répondre.
 - 1 à 2 hashtags INTÉGRÉS DANS LES PHRASES (3 max si vraiment justifié) : colle "#" sur un mot DÉJÀ présent.
 - 🎯 CHOIX DU HASHTAG — vise le SUJET, jamais le décor. Le hashtag principal = LE nom propre central de l'actu (entreprise, personne, club, événement, jeu vidéo). Test : "cette actu parle de quoi en UN mot ?" → c'est CE mot qui prend le #. Ex : actu sur l'entrée en Bourse de SpaceX → #SpaceX (PAS #Bourse ni #TimesSquare) ; actu sur Mbappé → #Mbappé (pas #football) ; match des Bleus → #CoupeDuMonde2026 ; sortie de GTA 6 → #GTA6.
@@ -1148,6 +1149,159 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 Réponds avec ce JSON UNIQUEMENT :
 {{"headline_court":"...","image_query":"...","person":"...","keywords_majeurs":["..","..",".."], "body":"..."}}""" + ("" if sober else _HOOK_INSTR)
     return _TWEET_SYS[key]
+
+
+_SUITE_MARQUEURS = re.compile(
+    r"\b(?:toujours|encore|désormais|dorénavant|depuis|après (?:plus de )?\d|"
+    r"nouveau|nouvelle|nouvel|finalement|dernier bilan|bilan (?:s'alourdit|grimpe|monte|passe)|"
+    r"s'alourdit|grimpe à|monte à|passe à|se poursuit|se poursuivent|poursuit|"
+    r"rebondissement|revirement|en cours|ce (?:matin|midi|soir|mardi|mercredi|jeudi|"
+    r"vendredi|samedi|dimanche|lundi)|cette nuit|à ce stade|pour l'instant|"
+    r"vient d'être|viennent d'être|a finalement|ont finalement)\b",
+    re.IGNORECASE)
+
+def _manque_marqueur_suite(texte):
+    """Vrai si un tweet de SUITE est écrit comme une découverte, sans aucun signe que
+    l'histoire est déjà connue de nos abonnés.
+    Republier « Un incendie ravage le Var » alors qu'on l'a déjà annoncé donne
+    l'impression d'un compte qui se répète — c'est précisément ce qu'on veut éviter."""
+    return not _SUITE_MARQUEURS.search(str(texte or ""))
+
+
+# 📏 Le plafond dépend du FORMAT : un fait direct doit tenir en deux lignes, un sujet à
+#    plusieurs éléments a besoin de sa liste. Repères tirés des tweets de référence :
+#    formats direct/chiffre → 38 à 214 caractères (médiane 135) ;
+#    formats liste/échéances → 385 à 417 caractères, mais en LIGNES COURTES.
+TWEET_LONG_MAX = 230      # plafond des formats DIRECT et CHIFFRE
+TWEET_LONG_CIBLE = 170    # cible du resserrage local
+TWEET_STRUCT_MAX = 460    # plafond des formats LISTE et ÉCHÉANCES
+TWEET_LIGNE_MAX = 110     # aucune LIGNE ne doit être à rallonge, quel que soit le format
+
+def _trop_long(body, structure=False):
+    """Vrai si le tweet dépasse la longueur admise pour SON format, source exclue.
+    `structure=True` pour les formats liste/échéances, qui ont droit à plus de place —
+    mais jamais à des phrases à rallonge (voir _ligne_a_rallonge)."""
+    t = re.sub(r"\s*\([^)]{2,40}\)\s*$", "", str(body or "").strip())
+    return len(t) > (TWEET_STRUCT_MAX if structure else TWEET_LONG_MAX)
+
+
+def _ligne_a_rallonge(body):
+    """Vrai si une LIGNE du tweet est trop longue. C'est le vrai défaut à traquer dans un
+    tweet structuré : une puce doit tenir sur une ligne à l'écran, pas contenir une phrase
+    entière. Un tweet peut être long s'il est fait de lignes courtes."""
+    for l in str(body or "").splitlines():
+        l = l.strip()
+        if l.startswith("(") and l.endswith(")"):
+            continue                                   # ligne de source
+        if len(l) > TWEET_LIGNE_MAX:
+            return True
+    return False
+
+
+def _resserre(body, structure=False):
+    """Raccourcit un tweet trop long SANS appel payant : on retire les phrases de la fin
+    en gardant la source. La première phrase porte le fait, c'est elle qu'on protège.
+    ⚠️ Ne touche à RIEN si le tweet est déjà dans la cible — sinon on reformaterait
+    inutilement des tweets corrects (et on écraserait leur mise en page)."""
+    txt = str(body or "").strip()
+    if not _trop_long(txt, structure):
+        return txt
+    m = re.search(r"(\s*\([^)]{2,40}\)\s*)$", txt)
+    source = m.group(1).strip() if m else ""
+    corps = txt[:m.start()].strip() if m else txt
+    _cible = (TWEET_STRUCT_MAX - 40) if structure else TWEET_LONG_CIBLE
+    blocs = [b.strip() for b in corps.split("\n") if b.strip()]
+    while blocs and len(" ".join(blocs)) > _cible and len(blocs) > 1:
+        blocs.pop()                                  # on sacrifie le dernier bloc
+    corps = "\n\n".join(blocs)
+    if len(corps) > (TWEET_STRUCT_MAX if structure else TWEET_LONG_MAX):
+        # une seule phrase, mais trop longue : on coupe à la dernière ponctuation utile,
+        # et à défaut au dernier espace — jamais au milieu d'un mot.
+        coupe = max(corps.rfind(". ", 0, _cible), corps.rfind(" ; ", 0, _cible))
+        if coupe > 60:
+            corps = corps[:coupe + 1].strip()
+        else:
+            coupe = corps.rfind(" ", 0, _cible)
+            if coupe > 60:
+                corps = corps[:coupe].rstrip(" ,;:-–—") + "."
+    return (corps + ("\n\n" + source if source else "")).strip()
+
+
+# Données chiffrées : avec unité (10%, 890 M€) OU nombre nu suivi d'un nom
+# (4 minutes, 12 rencontres). Les années sont exclues : elles comptent comme des DATES.
+_FMT_CHIFFRE_RX = re.compile(
+    r"\d[\d  ]*(?:,\d+)?\s?(?:%|€|\$|Md|M€|M\$|milliards?|millions?|milliers?|"
+    r"euros?|dollars?)"
+    r"|(?<!\d)\d[\d  ]*(?:,\d+)?\s+[a-zà-ÿ]{3,}", re.IGNORECASE)
+_FMT_DATE_RX = re.compile(
+    r"\b(?:1er|\d{1,2})\s(?:janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|"
+    r"septembre|octobre|novembre|décembre|decembre)(?:\s\d{4})?\b|\b(?:20|19)\d{2}\b",
+    re.IGNORECASE)
+_FMT_ENUM_RX = re.compile(
+    r"\b(?:d'une part|d'autre part|premièrement|deuxièmement|troisièmement|"
+    r"par ailleurs|en outre|également prévu|trois|quatre|cinq|plusieurs mesures|"
+    r"les mesures|au programme|notamment|suivants?|comprend|prévoit|examinés?|"
+    r"porte sur|il s'agit de)\b",
+    re.IGNORECASE)
+
+# Consigne de composition par format. Elle s'ajoute au style commun et dit au rédacteur
+# COMMENT bâtir CE tweet-là — au lieu de le laisser appliquer le même moule partout.
+_FORMATS = {
+    "direct": (
+        "🧭 FORMAT IMPOSÉ POUR CE TWEET : **DIRECT**.\n"
+        "Le sujet tient en un fait. Écris UNE SEULE phrase qui le donne entièrement, puis la source. "
+        "Rien d'autre : pas de contexte, pas de conséquence, pas de deuxième phrase. "
+        "Modèle : « MrBeast s'est marié aujourd'hui. (TMZ) »"),
+    "chiffre": (
+        "🧭 FORMAT IMPOSÉ POUR CE TWEET : **CHIFFRE EN TÊTE**.\n"
+        "L'article porte une donnée forte. Construis le tweet AUTOUR d'elle : le chiffre apparaît "
+        "dans les premiers mots, écrit tel quel (10%, 890 M€, 2 500 hectares). "
+        "Une à deux phrases courtes maximum, puis la source. Si un second chiffre permet une "
+        "comparaison parlante (évolution, avant/après), ajoute-le — sinon arrête-toi.\n"
+        "Modèle : « Les prix des légumes ont bondi de 10% en 1 an et ont plus que doublé en 10 ans. (Familles Rurales) »"),
+    "liste": (
+        "🧭 FORMAT IMPOSÉ POUR CE TWEET : **LISTE**.\n"
+        "Le sujet comporte PLUSIEURS éléments distincts. Structure ainsi :\n"
+        "1) une phrase d'ouverture COURTE qui pose le fait principal ;\n"
+        "2) une ligne vide ;\n"
+        "3) 2 à 4 puces « – », UNE IDÉE PAR PUCE, chacune sur une ligne, TRÈS COURTES "
+        "(pas de phrase à rallonge : un élément, un chiffre, un fait) ;\n"
+        "4) la source à la fin.\n"
+        "⛔ N'invente aucun élément pour remplir la liste : s'il n'y a que deux éléments réels, "
+        "fais deux puces."),
+    "echeances": (
+        "🧭 FORMAT IMPOSÉ POUR CE TWEET : **ÉCHÉANCES**.\n"
+        "Le sujet comporte des dates ou des étapes. Structure ainsi :\n"
+        "1) une phrase d'ouverture COURTE qui pose la décision ;\n"
+        "2) une ligne vide ;\n"
+        "3) les échéances avec « ➡️ », une par ligne, format « ➡️ le [date] : [ce qui change] », "
+        "TRÈS COURTES ;\n"
+        "4) la source à la fin.\n"
+        "⛔ Aucune date inventée : uniquement celles de l'article."),
+}
+
+
+def choisir_format_tweet(title, summary, article_text=""):
+    """Choisit le FORMAT de composition d'un tweet à partir de la matière de l'article.
+    Mécanique et gratuit : on compte ce que l'article contient réellement.
+    Renvoie (nom_du_format, consigne). L'idée : un compte d'actualité n'écrit pas
+    « MrBeast s'est marié » comme il écrit une réforme à trois échéances."""
+    src = " ".join(str(x or "") for x in (title, summary, article_text))[:2500]
+    chiffres = len({m.group(0).lower().replace(" ", "") for m in _FMT_CHIFFRE_RX.finditer(src)})
+    dates    = len({m.group(0).lower() for m in _FMT_DATE_RX.finditer(src)})
+    enum     = bool(_FMT_ENUM_RX.search(src))
+    # ordre du plus structurant au plus simple
+    if dates >= 2 and (chiffres >= 1 or enum):
+        nom = "echeances"
+    elif enum and chiffres >= 2:
+        nom = "liste"
+    elif chiffres >= 3:
+        nom = "liste"
+    elif chiffres >= 1:
+        nom = "chiffre"
+    else:
+        nom = "direct"
+    return nom, _FORMATS[nom]
 
 
 def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, prev_angles=None, correction=None, angle_neuf=None):
@@ -1167,7 +1321,13 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
         if prev_list:
             prev_str = (
                 "\n\n🔁 SUJET DÉJÀ COUVERT PAR PULSE AUJOURD'HUI — angle(s) déjà publié(s) :\n" + prev_list +
-                "\nCe tweet est une SUITE : il DOIT apporter du neuf au lecteur.\n"
+                "\nCe tweet est une SUITE : nos abonnés CONNAISSENT déjà cette histoire.\n"
+                "- ⛔ NE PRÉSENTE PAS le sujet comme une découverte. Écrire « Un incendie ravage le Var » "
+                "alors qu'on l'a déjà annoncé fait passer Pulse pour un compte qui se répète.\n"
+                "- ✅ ÉCRIS EN CONTINUITÉ, avec un marqueur de suivi dès les premiers mots : "
+                "« toujours en cours », « désormais », « après X heures », « le bilan grimpe à », "
+                "« nouveau rebondissement », « finalement », « ce mardi soir ». Le lecteur doit "
+                "comprendre en une seconde que l'histoire AVANCE.\n"
                 "- Mets en avant l'ÉLÉMENT NOUVEAU (réaction, recours/appel, verdict, nouveau bilan, décision officielle, rebondissement).\n"
                 "- Rappelle le contexte en QUELQUES MOTS seulement (quelqu'un qui découvre le sujet ici doit comprendre).\n"
                 "- Écris une accroche DIFFÉRENTE : ne réutilise ni la même formulation ni le même angle que ci-dessus."
@@ -1202,6 +1362,13 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
 - Concis, pas de contexte superflu"""
 
 
+    # 🧭 FORMAT DE COMPOSITION choisi d'après la matière de l'article : un fait simple
+    #    ne s'écrit pas comme une réforme à plusieurs échéances. Gratuit et déterministe.
+    #    Les hommages gardent leur ton sobre : jamais de liste ni de chiffre mis en scène.
+    if category == "hommage":
+        _fmt_nom, format_instr = "direct", _FORMATS["direct"]
+    else:
+        _fmt_nom, format_instr = choisir_format_tweet(title, summary, article_text)
     result = _llm_json(f"""Aujourd'hui : {today}.
 
 Catégorie de ce tweet (libellé à NE PAS reprendre en tête du body) : {label}
@@ -1211,7 +1378,8 @@ Article à traiter :
 - Titre  : {title}
 - Résumé : {summary}{video_str}{art_str}{corr_str}{prev_str}
 
-{style_instr}""", max_tokens=900, system=_tweet_system(category == "hommage"), task="redaction")
+{style_instr}
+{format_instr}""", max_tokens=900, system=_tweet_system(category == "hommage"), task="redaction")
 
     body = (result.get("body") or "").strip()
     for label_test in LABELS.values():
@@ -1436,6 +1604,41 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
             title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
             angle_neuf=angle_neuf, correction=anti)
+    # ✂️ TROP BAVARD — le plafond dépend du format retenu pour ce sujet.
+    _fmt = "direct" if category == "hommage" else choisir_format_tweet(title, summary, article_text)[0]
+    _struct = _fmt in ("liste", "echeances")
+    if (_trop_long(body, _struct) or _ligne_a_rallonge(body)) and _can_regen():
+        if _ligne_a_rallonge(body):
+            print("  ✂️ Ligne à rallonge détectée → régénération en lignes courtes")
+            anti = ("Une de tes lignes est BEAUCOUP trop longue. Chaque ligne doit tenir à l'écran "
+                    "sur mobile (100 caractères maximum). Découpe : une idée par ligne, "
+                    "des puces COURTES, pas de phrase à rallonge.")
+        else:
+            print(f"  ✂️ Tweet trop long ({len(body)} car.) → régénération plus concise")
+            anti = (f"Ton tweet fait {len(body)} caractères : trop long pour Pulse. "
+                    f"Réécris-le en gardant UNIQUEMENT l'essentiel, en lignes COURTES. "
+                    f"Supprime le contexte, les conséquences et tout commentaire.")
+        body, headline, image_query, keywords, person, pays = gen_tweet_complet(
+            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
+            angle_neuf=angle_neuf, correction=anti)
+    # resserrage LOCAL (gratuit) : s'applique aussi quand le quota est épuisé
+    if _trop_long(body, _struct):
+        avant = len(body)
+        body = _resserre(body, _struct)
+        print(f"  ✂️ Tweet resserré localement ({avant} → {len(body)} car.)")
+
+    # 🔁 SUITE écrite comme une découverte : nos abonnés connaissent déjà l'histoire.
+    if prev_angles and _manque_marqueur_suite(body) and _can_regen():
+        print("  🔁 Suite écrite comme une nouveauté → régénération en mode continuité")
+        anti = ("Ce sujet a DÉJÀ été publié par Pulse : ton tweet le présente pourtant comme "
+                "une découverte, ce qui donne l'impression d'un compte qui se répète. "
+                "Réécris-le en CONTINUITÉ, avec un marqueur de suivi dès les premiers mots "
+                "(« toujours en cours », « le bilan grimpe à », « désormais », « après X heures », "
+                "« nouveau rebondissement », « ce mardi soir »), et mets l'ÉLÉMENT NOUVEAU en avant.")
+        body, headline, image_query, keywords, person, pays = gen_tweet_complet(
+            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
+            angle_neuf=angle_neuf, correction=anti)
+
     # Nettoyage LOCAL (gratuit) : s'applique aussi quand le quota de régénération est épuisé.
     if _is_teaser(body):
         body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
@@ -2867,8 +3070,10 @@ def send_email(subject, tweet_text, title, source, url, video, png_bytes, png_na
 # ═══════════════════════════════════════════════════════════════════════════
 # POST TWITTER
 # ═══════════════════════════════════════════════════════════════════════════
-def post_to_twitter(tweet_text, png_bytes=None, video_path=None, reply_to_id=None):
-    """Poste sur X avec vidéo MP4 (prioritaire) ou image PNG. reply_to_id → poste en réponse (fil)."""
+def post_to_twitter(tweet_text, png_bytes=None, video_path=None, reply_to_id=None, png_list=None):
+    """Poste sur X avec vidéo MP4 (prioritaire), plusieurs images, ou une seule.
+    `png_list` : jusqu'à 4 images publiées ENSEMBLE (carrousel). X n'en accepte pas plus.
+    reply_to_id → poste en réponse (fil)."""
     if not all([TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET]):
         print("  ⚠️ Twitter API non configurée.")
         return None
@@ -2890,7 +3095,22 @@ def post_to_twitter(tweet_text, png_bytes=None, video_path=None, reply_to_id=Non
             except Exception as e:
                 print(f"  ⚠️ Upload vidéo échoué : {e} → fallback image")
                 video_path = None
-        if not video_path and png_bytes:
+        if not video_path and png_list:
+            # 🖼️ Carrousel : X accepte 4 médias maximum par publication.
+            try:
+                ids = []
+                for i, p in enumerate(png_list[:4]):
+                    if not p:
+                        continue
+                    m = api_v1.media_upload(filename=f"pulse_{i+1}.png", file=io.BytesIO(p))
+                    ids.append(m.media_id)
+                if ids:
+                    media_ids = ids
+                    print(f"  🖼️ Carrousel : {len(ids)} images publiées ensemble")
+            except Exception as e:
+                print(f"  ⚠️ Carrousel échoué ({str(e)[:70]}) → image seule")
+                media_ids = None
+        if not video_path and not media_ids and png_bytes:
             try:
                 media = api_v1.media_upload(filename="pulse.png", file=io.BytesIO(png_bytes))
                 media_ids = [media.media_id]
@@ -4480,6 +4700,689 @@ def _melange_voix_musique(voix_wav, musique, sortie, duree, voix_db=3.0, musique
     except Exception as e:
         print(f"  ⚠️ Mixage audio ignoré ({str(e)[:70]})")
     return voix_wav or None
+
+
+# ════════════════════════════════════════════════════════════════════════════════
+#  CARROUSEL — gabarit repris du modèle fourni (1080×1350), rendu en Pillow.
+#  Le gabarit d'origine passait par un navigateur (Playwright + Chromium, ~300 Mo
+#  à installer à chaque cycle) : impossible ici, et inutile — toutes les valeurs
+#  du modèle (tailles, couleurs, marges, dégradés) sont reproduites fidèlement.
+# ════════════════════════════════════════════════════════════════════════════════
+CARR_W, CARR_H = 1080, 1350
+CARR_ACCENT    = (185, 166, 230)      # #b9a6e6 — surlignage lavande
+CARR_HL_TEXTE  = (43, 34, 71)         # #2b2247 — texte sur surlignage
+CARR_STROKE    = (25, 20, 38)         # #191426 — contour des titres
+
+_CARR_FONT_DIRS = ("fonts", "assets/fonts", "/usr/share/fonts/truetype/google-fonts",
+                   "/usr/share/fonts/truetype/dejavu", ".")
+# Les cinq polices de titre du modèle, dans l'ordre de repli. Elles sont livrées dans
+# le dossier `fonts/` (comme `pills/`) : sans elles, Poppins Bold prend le relais —
+# lisible, mais nettement moins percutant que les graisses lourdes prévues.
+_CARR_TITRES = {
+    "Poppins Gras":  ("Poppins-ExtraBold.ttf", "Poppins-Black.ttf", "Poppins-Bold.ttf"),
+    "Archivo Black": ("ArchivoBlack-Regular.ttf", "Poppins-ExtraBold.ttf"),
+    "Anton":         ("Anton-Regular.ttf", "Poppins-ExtraBold.ttf"),
+    "Bebas Neue":    ("BebasNeue-Regular.ttf", "Poppins-ExtraBold.ttf"),
+    "Oswald":        ("Oswald.ttf", "Poppins-ExtraBold.ttf"),
+}
+CARR_TITLE_FONT = os.environ.get("CARR_TITLE_FONT", "Poppins Gras")
+
+def _carr_charge(noms, px):
+    for n in noms:
+        for d in _CARR_FONT_DIRS:
+            try:
+                return ImageFont.truetype(os.path.join(d, n), max(8, int(px)))
+            except Exception:
+                continue
+    return None
+
+def _carr_font(px, gras=True, titre=False):
+    """Police du gabarit. `titre=True` → police d'affichage lourde (réglable par
+    CARR_TITLE_FONT) ; sinon Poppins Medium pour le corps de texte."""
+    if titre:
+        f = _carr_charge(_CARR_TITRES.get(CARR_TITLE_FONT, _CARR_TITRES["Poppins Gras"]), px)
+        if f is not None:
+            return f
+    f = _carr_charge(("Poppins-Bold.ttf",) if gras else ("Poppins-Medium.ttf", "Poppins-Regular.ttf"), px)
+    if f is not None:
+        return f
+    return ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", max(8, int(px)))
+
+
+def _carr_accent(categorie=None):
+    """Couleur de surlignage. Sans catégorie → lavande du gabarit (décryptage).
+    Avec catégorie → couleur de la charte Pulse, pour que le récap parle le même
+    langage visuel que les pastilles et les badges."""
+    if not categorie:
+        return CARR_ACCENT
+    try:
+        st = STYLES.get(str(categorie).lower())
+        coul = st.get("color") if isinstance(st, dict) else getattr(st, "color", None)
+        if coul:
+            return _hex_rgb(coul)
+    except Exception:
+        pass
+    return CARR_ACCENT
+
+
+def _carr_texte_sur_accent(accent):
+    """Texte sombre sur un surlignage clair, blanc sur un surlignage foncé —
+    la charte compte des couleurs très claires (jaune, vert d'eau) et d'autres soutenues."""
+    lum = 0.299 * accent[0] + 0.587 * accent[1] + 0.114 * accent[2]
+    return CARR_HL_TEXTE if lum > 140 else (255, 255, 255)
+
+
+_HL_MOTIFS = [
+    # dates complètes et périodes
+    r"\b\d{1,2}(?:er)? (?:janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|"
+    r"septembre|octobre|novembre|décembre|decembre)(?: \d{4})?\b",
+    r"\b(?:janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|"
+    r"octobre|novembre|décembre|decembre) \d{4}\b",
+    r"\b(?:début|debut|fin|mi)-?(?:janvier|février|fevrier|mars|avril|mai|juin|juillet|"
+    r"août|aout|septembre|octobre|novembre|décembre|decembre)(?: \d{4})?\b",
+    # montants et pourcentages — les symboles ne sont PAS des caractères de mot,
+    # une limite de mot après eux ne fonctionnerait pas
+    r"\b\d[\d  ]*(?:,\d+)? ?(?:Md|[MmKk])?[%€$]",
+    r"\b\d[\d  ]*(?:,\d+)? ?(?:euros?|milliards?|millions?|milliers?)\b",
+    r"\b\d[\d  ]*(?:,\d+)? ?(?:hectares?|kilomètres?|km|mètres?|tonnes?|habitants?|"
+    r"morts?|blessés?|victimes?|ans?|mois|jours?|heures?)\b",
+    # années seules et grands nombres
+    r"\b(?:19|20)\d{2}\b",
+    r"\b\d{2,}(?: \d{3})+\b",
+]
+_HL_RX = re.compile("|".join(_HL_MOTIFS), re.IGNORECASE)
+# décisions et bascules : ce sont elles qui portent l'information d'un décryptage
+_HL_DECISION = re.compile(
+    r"\b(?:interdit|interdite|interdiction|autorisé|autorisée|adopté|adoptée|approuvé|"
+    r"approuvée|rejeté|rejetée|suspendu|suspendue|annulé|annulée|reporté|reportée|"
+    r"fermé|fermée|rouvre|rouvert|obligatoire|supprimé|supprimée|doublé|doublée|"
+    r"condamné|condamnée|relaxé|relaxée|démission|démissionne)\b", re.IGNORECASE)
+
+
+def _carr_surligne(texte, maxi=4):
+    """Découpe un texte en segments pour le gabarit, en surlignant les éléments qui
+    PORTENT l'information : dates, chiffres, montants, décisions.
+    Le modèle n'est pas sollicité — c'est déterministe, gratuit et reproductible.
+    Renvoie une liste de segments : "texte" ou {"hl": "…"}, au plus `maxi` surlignages."""
+    t = re.sub(r"\s+", " ", str(texte or "")).strip()
+    if not t:
+        return []
+    zones = []
+    for rx in (_HL_RX, _HL_DECISION):
+        for m in rx.finditer(t):
+            zones.append((m.start(), m.end()))
+    if not zones:
+        return [t]
+    # fusionner les chevauchements, garder l'ordre, limiter le nombre
+    zones.sort()
+    fusion = [zones[0]]
+    for a, b in zones[1:]:
+        if a <= fusion[-1][1] + 1:
+            fusion[-1] = (fusion[-1][0], max(fusion[-1][1], b))
+        else:
+            fusion.append((a, b))
+    fusion = fusion[:max(1, maxi)]
+    segs, pos = [], 0
+    for a, b in fusion:
+        if a > pos:
+            segs.append(t[pos:a])
+        segs.append({"hl": t[a:b].strip()})
+        pos = b
+    if pos < len(t):
+        segs.append(t[pos:])
+    return [s for s in segs if s != ""]
+
+
+def _carr_lignes_titre(texte, maxi=3):
+    """Coupe un titre en 1 à 3 lignes équilibrées, pour le gabarit."""
+    mots = re.sub(r"\s+", " ", str(texte or "")).strip().split()
+    if not mots:
+        return []
+    n = 1 if len(mots) <= 3 else (2 if len(mots) <= 7 else min(maxi, 3))
+    taille = max(1, (len(mots) + n - 1) // n)
+    return [" ".join(mots[i:i + taille]) for i in range(0, len(mots), taille)][:maxi]
+
+
+def _carr_numerote(slides):
+    """Pose la pastille « k/total » sur chaque slide."""
+    total = len(slides)
+    for i, s in enumerate(slides):
+        s["pageLabel"] = f"{i + 1}/{total}"
+    return slides
+
+
+def carrousel_recap(items, date_txt=""):
+    """Transforme le récap du soir en carrousel d'images.
+    `items` = [(emoji, texte, categorie, raw_image), …] — même entrée que la carte récap.
+    Renvoie (slides, accents, photos) — une couleur et une photo PAR slide, la couleur
+    étant celle de la catégorie de l'actu (le décryptage, lui, garde le lavande)."""
+    slides = [{"kind": "recapCover", "subjectTag": (date_txt or _date_fr()).upper(),
+               "titleLines": ["Ce qu'il faut", "retenir"]}]
+    accents = [CARR_ACCENT]
+    photos  = [None]
+    for i, it in enumerate(items or []):
+        emo, texte, cat, raw = (list(it) + [None, None, None, None])[:4]
+        cat = (cat or "france").lower()
+        slides.append({
+            "kind": "info",
+            "titleLines": [f"{i + 1} — {(STYLES.get(cat, {}) or {}).get('label', cat).upper()}"],
+            "paras": [_carr_surligne(texte)],
+        })
+        accents.append(_carr_accent(cat))
+        photos.append(raw)
+    # la couverture reprend la photo de la première actu, à défaut de la sienne
+    if len(photos) > 1 and photos[1]:
+        photos[0] = photos[1]
+    return _carr_numerote(slides), accents, photos
+
+
+def carrousel_decryptage(carousel, raw_photo=None, categorie="monde"):
+    """Transforme le décryptage du jour en carrousel : couverture → une info par
+    slide → appel à s'abonner. Le lavande d'origine est conservé (demande explicite)."""
+    slides = [{"kind": "cover",
+               "category": (STYLES.get(categorie, {}) or {}).get("label", categorie),
+               "titleLines": _carr_lignes_titre(carousel.get("cover_title", ""))}]
+    for s in (carousel.get("slides") or []):
+        paras = [_carr_surligne(p) for p in (s.get("points") or []) if str(p).strip()]
+        slides.append({"kind": "info",
+                       "titleLines": _carr_lignes_titre(s.get("titre", ""), maxi=2),
+                       "paras": paras})
+    slides.append({"kind": "cta",
+                   "ctaLines": _carr_lignes_titre("Pulse décrypte l'actualité chaque jour", maxi=2),
+                   "ctaSub": "L'info vérifiée, sans détour",
+                   "ctaBig": "Abonnez-vous"})
+    n = len(slides)
+    return _carr_numerote(slides), [CARR_ACCENT] * n, [raw_photo] * n
+
+
+def rendre_carrousel(slides, accents, photos, watermark="@PULSEactus", maxi=None):
+    """Rend un carrousel en liste de PNG. Une couleur et une photo par slide.
+    🛡️ Une slide qui échoue est simplement omise : le carrousel sort quand même."""
+    out = []
+    for i, s in enumerate(slides or []):
+        if maxi and len(out) >= maxi:
+            break
+        png = build_carousel_png(
+            s, watermark=watermark,
+            accent=(accents[i] if i < len(accents) else CARR_ACCENT),
+            raw_photo=(photos[i] if i < len(photos) else None))
+        if png:
+            out.append(png)
+    return out
+
+
+def _carr_duree_slide(slide):
+    """Temps d'affichage d'une slide, calé sur le temps de LECTURE de son contenu."""
+    mots = 0
+    for l in (slide.get("titleLines") or []):
+        mots += len(str(l).split())
+    for p in (slide.get("paras") or []):
+        for seg in p:
+            mots += len(str(seg.get("hl") if isinstance(seg, dict) else seg).split())
+    for c in ("kicker", "ctaSub", "ctaBig"):
+        mots += len(str(slide.get(c) or "").split())
+    for l in (slide.get("ctaLines") or []):
+        mots += len(str(l).split())
+    # ~2,6 mots/seconde en lecture confortable, plus un temps d'accroche
+    return max(3.0, min(11.0, 1.6 + mots / 2.6))
+
+
+def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=None):
+    """Assemble un carrousel d'images en VIDÉO verticale, avec la voix de synthèse
+    par-dessus une musique de fond (voix dominante).
+
+    🔑 SYNCHRONISATION : quand `voice_parts` est fourni (un texte par slide), la voix est
+    générée SLIDE PAR SLIDE et chaque image reste à l'écran exactement le temps de son
+    propre audio. Le son ne peut donc PAS dériver — il se recale à chaque slide.
+    (Avant, durée d'affichage et durée de parole étaient calculées par deux formules
+    différentes : le décalage s'accumulait et la voix finissait plusieurs secondes après
+    l'image.) Sans `voice_parts`, on retombe sur l'estimation par le texte.
+    🛡️ Tolérant : renvoie None en cas d'échec — l'appelant retombe alors sur les images."""
+    if not pngs:
+        return None
+    tmpdir = None
+    try:
+        import imageio_ffmpeg as _iff, subprocess as _sp, tempfile as _tf
+        ff = _iff.get_ffmpeg_exe()
+        tmpdir = _tf.mkdtemp(prefix="pulse_carr_")
+
+        # ── ① Voix slide par slide : c'est elle qui donne le tempo ──
+        voix_slides, durees = [], []
+        if voice_parts and GEMINI_API_KEY:
+            for i in range(len(pngs)):
+                txt = (voice_parts[i] if i < len(voice_parts) else "") or ""
+                w = None
+                if txt.strip():
+                    w = _gemini_tts(txt, os.path.join(tmpdir, f"v{i:02d}.wav"))
+                d = _duree_audio(w) if w else 0.0
+                voix_slides.append(w)
+                # la slide dure le temps de sa narration + une respiration, bornée
+                durees.append(max(2.5, min(14.0, d + 0.9)) if d > 0
+                              else _carr_duree_slide(slides[i] if i < len(slides) else {}))
+        if not durees:
+            durees = [_carr_duree_slide(slides[i] if i < len(slides) else {})
+                      for i in range(len(pngs))]
+        total = sum(durees)
+
+        # liste de montage : une image, sa durée. La dernière est répétée — sans quoi
+        # ffmpeg tronque le plan final (particularité du démultiplexeur concat).
+        chemins = []
+        for i, p in enumerate(pngs):
+            c = os.path.join(tmpdir, f"s{i:02d}.png")
+            with open(c, "wb") as f:
+                f.write(p)
+            chemins.append(c)
+        liste = os.path.join(tmpdir, "montage.txt")
+        with open(liste, "w", encoding="utf-8") as f:
+            for c, d in zip(chemins, durees):
+                f.write(f"file '{c}'\nduration {d:.2f}\n")
+            f.write(f"file '{chemins[-1]}'\n")
+
+        muet = os.path.join(tmpdir, "muet.mp4")
+        r = _sp.run([ff, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
+                     "-i", liste, "-vf", "fps=25,format=yuv420p",
+                     "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+                     "-movflags", "+faststart", muet],
+                    capture_output=True, timeout=600)
+        if r.returncode != 0 or not os.path.exists(muet):
+            print(f"  ⚠️ Montage vidéo impossible (ffmpeg {r.returncode})")
+            return None
+
+        # ── ② Bande voix : chaque narration placée AU DÉBUT de sa slide ──
+        voix = None
+        if any(voix_slides):
+            morceaux, depart = [], 0.0
+            for i, w in enumerate(voix_slides):
+                if w:
+                    morceaux.append((depart, w))
+                depart += durees[i]
+            if morceaux:
+                entrees, filtres, labels = [], [], []
+                for k, (t0, w) in enumerate(morceaux):
+                    entrees += ["-i", w]
+                    filtres.append(f"[{k}:a]adelay={int(t0*1000)}|{int(t0*1000)},"
+                                   f"aresample=44100[d{k}]")
+                    labels.append(f"[d{k}]")
+                voix = os.path.join(tmpdir, "voix.wav")
+                fc = ";".join(filtres) + ";" + "".join(labels) + \
+                     f"amix=inputs={len(morceaux)}:normalize=0[a]"
+                rv = _sp.run([ff, "-y", "-loglevel", "error"] + entrees +
+                             ["-filter_complex", fc, "-map", "[a]",
+                              "-t", f"{total:.2f}", voix],
+                             capture_output=True, timeout=300)
+                if rv.returncode != 0 or not os.path.exists(voix):
+                    print(f"  ⚠️ Assemblage de la voix impossible → voix omise")
+                    voix = None
+                else:
+                    print(f"  🔊 Voix calée slide par slide ({len(morceaux)} segments)")
+        elif voice_text:
+            lu = _texte_pour_voix(voice_text, [], total)
+            voix = _gemini_tts(lu, os.path.join(tmpdir, "voix.wav")) if lu else None
+
+        piste = _piste_musicale()
+        son = (_melange_voix_musique(voix, piste, os.path.join(tmpdir, "mix.m4a"), total)
+               if (voix or piste) else None)
+        if not son:
+            print(f"  🎬 Carrousel vidéo ({total:.0f}s, {len(pngs)} slides, sans son)")
+            return muet
+
+        final = os.path.join(tmpdir, "carrousel.mp4")
+        r2 = _sp.run([ff, "-y", "-loglevel", "error", "-i", muet, "-i", son,
+                      "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-shortest",
+                      "-movflags", "+faststart", final],
+                     capture_output=True, timeout=600)
+        if r2.returncode == 0 and os.path.exists(final):
+            print(f"  🎬 Carrousel vidéo ({total:.0f}s, {len(pngs)} slides, avec son)")
+            return final
+        return muet
+    except Exception as e:
+        print(f"  ⚠️ Carrousel vidéo indisponible ({str(e)[:80]})")
+        return None
+
+
+def _carr_narration_slides(carousel):
+    """Texte à lire POUR CHAQUE SLIDE du décryptage, dans l'ordre du carrousel.
+    ⚠️ Les INTERTITRES ne sont PAS lus : ce sont des repères visuels (« Ce qui va
+    changer », « Pourquoi ces travaux »), les entendre à voix haute casse le fil du
+    récit. Seuls le titre principal et les points d'information sont narrés.
+    Renvoie une liste alignée sur les slides : [couverture, info…, abonnement]."""
+    parts = [str(carousel.get("cover_title") or "").strip()]
+    for s in (carousel.get("slides") or []):
+        pts = [str(p).strip() for p in (s.get("points") or []) if str(p).strip()]
+        parts.append(" ".join(pts))          # les points seulement, jamais le titre
+    parts.append("")                          # slide d'abonnement : rien à lire
+    return parts
+
+
+def _duree_audio(chemin):
+    """Durée d'un fichier audio en secondes, mesurée par ffmpeg. 0 si illisible."""
+    try:
+        import imageio_ffmpeg as _iff, subprocess as _sp, re as _re
+        r = _sp.run([_iff.get_ffmpeg_exe(), "-hide_banner", "-i", chemin],
+                    capture_output=True, text=True, timeout=60)
+        m = _re.search(r"Duration: (\d+):(\d+):([\d.]+)", r.stderr)
+        if m:
+            return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3))
+    except Exception:
+        pass
+    return 0.0
+
+
+def _carr_texte_narration(carousel):
+    """Texte lu sur la vidéo de décryptage : titre puis chaque point, dans l'ordre
+    d'apparition. Rien d'inventé — uniquement ce qui est écrit à l'écran."""
+    lu = [carousel.get("cover_title", "")]
+    for s in (carousel.get("slides") or []):
+        lu.append(s.get("titre", ""))
+        for p in (s.get("points") or [])[:2]:
+            lu.append(p)
+    return ". ".join(x.strip() for x in lu if x and str(x).strip())
+
+
+def _carr_segments(paragraphe):
+    """Normalise un paragraphe du modèle en liste de (texte, surligné).
+    Format d'entrée : ["texte ", {"hl": "mot clé"}, " suite"]."""
+    out = []
+    for seg in (paragraphe or []):
+        if isinstance(seg, dict) and "hl" in seg:
+            out.append((str(seg["hl"]), True))
+        else:
+            out.append((str(seg), False))
+    return out
+
+
+def _carr_wrap(draw, segments, font, largeur_max):
+    """Découpe des segments en lignes, en conservant le surlignage AU MOT PRÈS.
+    Renvoie une liste de lignes, chaque ligne étant une liste de (mot, surligné)."""
+    mots = []
+    for texte, hl in segments:
+        # on garde les espaces : ils appartiennent au segment normal qui les porte
+        for i, m in enumerate(texte.split(" ")):
+            if m == "":
+                continue
+            mots.append((m, hl))
+    lignes, courante, largeur = [], [], 0
+    espace = draw.textlength(" ", font=font)
+    for mot, hl in mots:
+        w = draw.textlength(mot, font=font)
+        supp = w + (espace if courante else 0)
+        if courante and largeur + supp > largeur_max:
+            lignes.append(courante)
+            courante, largeur = [(mot, hl)], w
+        else:
+            courante.append((mot, hl))
+            largeur += supp
+    if courante:
+        lignes.append(courante)
+    return lignes
+
+
+_CARR_INK = {}
+def _carr_zone_encre(draw, font):
+    """Hauteur d'encre RÉELLE de la police (capitales → jambages), mesurée une fois.
+    ⚠️ Pillow ancre le texte sur le haut de l'ascendante, pas sur la ligne de base :
+    estimer la position du fond de surlignage le décalait de plus de 10 px vers le haut.
+    Renvoie (haut, bas) relatifs au point d'ancrage du texte."""
+    cle = (getattr(font, "path", ""), font.size)
+    if cle not in _CARR_INK:
+        bb = draw.textbbox((0, 0), "HxpgÉÀ", font=font)   # capitales, jambages, accents
+        _CARR_INK[cle] = (bb[1], bb[3])
+    return _CARR_INK[cle]
+
+
+def _carr_dessine_paragraphe(img, draw, segments, font, x, y, largeur_max, accent):
+    """Dessine un paragraphe avec ses surlignages (fond arrondi à la couleur d'accent).
+    Renvoie la hauteur consommée."""
+    espace = draw.textlength(" ", font=font)
+    pad_x, pad_y, rayon = 8, 3, 6              # padding du gabarit ; rayon 6px
+    haut, bas = _carr_zone_encre(draw, font)
+    # ↕️ L'interligne doit laisser respirer les surlignages : la chaîne de référence
+    #    inclut les capitales accentuées (É, À), qui montent haut — sans cette marge,
+    #    les fonds de deux lignes successives se touchent et forment un pavé continu.
+    ECART_MINI = 10
+    interligne = max(int(font.size * 1.5), (bas - haut) + 2 * pad_y + ECART_MINI)
+    coul_txt = _carr_texte_sur_accent(accent)
+    for ligne in _carr_wrap(draw, segments, font, largeur_max):
+        cx = x
+        for mot, hl in ligne:
+            w = draw.textlength(mot, font=font)
+            if hl:
+                # fond à la couleur d'accent, calé sur l'encre → identique pour tous les
+                # mots d'une même ligne, qu'ils aient ou non un jambage
+                cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
+                ImageDraw.Draw(cal).rounded_rectangle(
+                    [cx - pad_x, y + haut - pad_y, cx + w + pad_x, y + bas + pad_y],
+                    radius=rayon, fill=tuple(accent) + (255,))
+                img.alpha_composite(cal)
+                draw = ImageDraw.Draw(img)
+                draw.text((cx, y), mot, font=font, fill=coul_txt)
+            else:
+                # texte blanc avec ombre portée (text-shadow du gabarit)
+                draw.text((cx + 2, y + 2), mot, font=font, fill=(0, 0, 0, 170))
+                draw.text((cx, y), mot, font=font, fill=(255, 255, 255))
+            cx += w + espace
+        y += interligne
+    return y
+
+
+def _carr_font_ajustee(draw, lignes, px, largeur_max, mini=0.55):
+    """Choisit la plus grande taille de titre qui TIENNE dans la largeur, en repliant
+    les lignes trop longues si nécessaire.
+    Indispensable : les polices d'affichage n'ont pas la même largeur à taille égale
+    (Archivo Black déborde là où Bebas Neue laisse du vide), et un titre bavard — ou un
+    seul mot très long — déborderait quelle que soit la police.
+    Renvoie (police, lignes_ajustées) et garantit qu'AUCUNE ligne ne dépasse."""
+    src = [str(l).upper() for l in (lignes or []) if str(l).strip()]
+    if not src:
+        return _carr_font(px, titre=True), []
+
+    def _replie(f, lignes_src):
+        out = []
+        for l in lignes_src:
+            if draw.textlength(l, font=f) <= largeur_max:
+                out.append(l); continue
+            cur = ""
+            for mot in l.split():
+                essai = (cur + " " + mot).strip()
+                if cur and draw.textlength(essai, font=f) > largeur_max:
+                    out.append(cur); cur = mot
+                else:
+                    cur = essai
+            if cur:
+                out.append(cur)
+        return out
+
+    confort = max(16, int(px * mini))
+    # ① taille maximale où tout tient SANS replier (rendu le plus proche du modèle)
+    t = int(px)
+    while t >= confort:
+        f = _carr_font(t, titre=True)
+        if all(draw.textlength(l, font=f) <= largeur_max for l in src):
+            return f, src
+        t -= 2
+    # ② sinon on replie, en réduisant jusqu'à ce que même les mots isolés tiennent
+    t = confort
+    while t >= 18:
+        f = _carr_font(t, titre=True)
+        out = _replie(f, src)
+        if all(draw.textlength(l, font=f) <= largeur_max for l in out):
+            return f, out
+        t -= 2
+    f = _carr_font(18, titre=True)
+    return f, _replie(f, src)
+
+
+def _carr_titre(draw, lignes, font, x, y, centre=False, largeur=None, stroke=5):
+    """Titre en CAPITALES, blanc contouré de sombre, interligne serré (0.94)."""
+    interligne = int(font.size * 0.94)
+    for l in (lignes or []):
+        t = str(l).upper()
+        px = x
+        if centre and largeur:
+            px = x + (largeur - draw.textlength(t, font=font)) // 2
+        draw.text((px, y), t, font=font, fill=(255, 255, 255),
+                  stroke_width=stroke, stroke_fill=CARR_STROKE)
+        y += interligne
+    return y
+
+
+def _carr_fond(img, raw_photo):
+    """Fond : photo de l'article recadrée en couverture, sinon dégradé sobre.
+    ⚠️ Jamais d'image de stock : la charte Pulse l'interdit."""
+    try:
+        if raw_photo:
+            import io as _io
+            ph = Image.open(_io.BytesIO(raw_photo)).convert("RGB")
+            sw, sh = ph.size
+            k = max(CARR_W / sw, CARR_H / sh)
+            nw, nh = int(sw * k + 0.5), int(sh * k + 0.5)
+            ph = ph.resize((nw, nh), Image.LANCZOS)
+            fx, fy = (nw // 2, int(nh * 0.38))
+            try:
+                f = detect_face_center(ph)
+                if f:
+                    fx, fy = f
+            except Exception:
+                pass
+            left = max(0, min(int(fx - CARR_W / 2), nw - CARR_W))
+            top  = max(0, min(int(fy - CARR_H / 2), nh - CARR_H))
+            img.paste(ph.crop((left, top, left + CARR_W, top + CARR_H)).convert("RGBA"), (0, 0))
+            return True
+    except Exception:
+        pass
+    d = ImageDraw.Draw(img)
+    for y in range(CARR_H):
+        t = y / CARR_H
+        d.line([(0, y), (CARR_W, y)],
+               fill=(int(58 + 40 * t), int(44 + 26 * t), int(96 + 40 * t), 255))
+    return False
+
+
+def _carr_voiles(img, sombre):
+    """Dégradé violet du haut + voile général (classes .grad et .scrim du gabarit)."""
+    cal = Image.new("RGBA", (CARR_W, CARR_H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(cal)
+    # .grad : violet 72 % en haut → 18 % à 24 % → transparent à 48 %
+    for y in range(int(CARR_H * 0.48)):
+        t = y / (CARR_H * 0.48)
+        a = 0.72 - 0.54 * min(1.0, t / 0.5) if t < 0.5 else 0.18 * (1 - (t - 0.5) / 0.5)
+        d.line([(0, y), (CARR_W, y)], fill=(96, 66, 150, int(max(0, a) * 255)))
+    img.alpha_composite(cal)
+    if sombre:
+        # .scrim : 40 % en haut → 52 % en bas, pour que le texte reste lisible
+        cal2 = Image.new("RGBA", (CARR_W, CARR_H), (0, 0, 0, 0))
+        d2 = ImageDraw.Draw(cal2)
+        for y in range(CARR_H):
+            t = y / CARR_H
+            d2.line([(0, y), (CARR_W, y)],
+                    fill=(int(42 - 28 * t), int(28 - 17 * t), int(74 - 46 * t),
+                          int((0.40 + 0.12 * t) * 255)))
+        img.alpha_composite(cal2)
+
+
+def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_photo=None):
+    """Rend UNE slide de carrousel au format du gabarit fourni (1080×1350).
+    `slide` : {"kind": cover|recapCover|info|cta, ...} — voir le modèle.
+    Renvoie les octets PNG, ou None."""
+    try:
+        import io as _io
+        img = Image.new("RGBA", (CARR_W, CARR_H), (201, 199, 210, 255))
+        kind = slide.get("kind", "info")
+        _carr_fond(img, raw_photo)
+        _carr_voiles(img, kind in ("info", "recapCover"))
+        d = ImageDraw.Draw(img)
+
+        # pastille « k/total » en haut à droite
+        if slide.get("pageLabel"):
+            f = _carr_font(30)
+            t = str(slide["pageLabel"])
+            tw = d.textlength(t, font=f)
+            x1, y1 = CARR_W - 34, 34
+            x0, y0 = x1 - tw - 44, y1
+            cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
+            ImageDraw.Draw(cal).rounded_rectangle([x0, y0, x1, y0 + f.size + 16],
+                                                  radius=24, fill=(28, 23, 42, 153))
+            img.alpha_composite(cal); d = ImageDraw.Draw(img)
+            d.text((x0 + 22, y0 + 8), t, font=f, fill=(255, 255, 255))
+
+        M = 64
+        larg = CARR_W - 2 * M
+
+        if kind == "cover":
+            # badge de catégorie en haut, titre calé en bas
+            if slide.get("category"):
+                f = _carr_font(30)
+                t = str(slide["category"]).upper()
+                tw = d.textlength(t, font=f)
+                cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
+                ImageDraw.Draw(cal).rounded_rectangle([M, 64, M + tw + 40, 64 + f.size + 16],
+                                                      radius=8, fill=(242, 240, 245, 255))
+                img.alpha_composite(cal); d = ImageDraw.Draw(img)
+                d.text((M + 20, 72), t, font=f, fill=(32, 32, 42))
+            f, tl = _carr_font_ajustee(d, slide.get("titleLines"), 98, larg)
+            _carr_titre(d, tl, f, M, CARR_H - 120 - int(f.size * 0.94) * max(1, len(tl)))
+
+        elif kind == "recapCover":
+            if slide.get("subjectTag"):
+                f = _carr_font(28)
+                t = str(slide["subjectTag"]).upper()
+                tw = d.textlength(t, font=f)
+                x0 = (CARR_W - tw - 48) // 2
+                cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
+                ImageDraw.Draw(cal).rounded_rectangle(
+                    [x0, CARR_H // 2 - 220, x0 + tw + 48, CARR_H // 2 - 220 + f.size + 16],
+                    radius=24, fill=(28, 23, 42, 140))
+                img.alpha_composite(cal); d = ImageDraw.Draw(img)
+                d.text((x0 + 24, CARR_H // 2 - 212), t, font=f, fill=(255, 255, 255))
+            f, tl = _carr_font_ajustee(d, slide.get("titleLines"), 112, larg)
+            _carr_titre(d, tl, f, M,
+                        CARR_H // 2 - int(f.size * 0.94) * max(1, len(tl)) // 2 + 20,
+                        centre=True, largeur=larg)
+
+        elif kind == "cta":
+            y = 80
+            f, tl = _carr_font_ajustee(d, slide.get("ctaLines"), 72, larg)
+            y = _carr_titre(d, tl, f, M, y)
+            if slide.get("ctaSub"):
+                fs = _carr_font(36, titre=True)
+                d.text((M, y + 20), str(slide["ctaSub"]).upper(), font=fs,
+                       fill=(255, 255, 255), stroke_width=2, stroke_fill=CARR_STROKE)
+            if slide.get("ctaBig"):
+                fb, _tb = _carr_font_ajustee(d, [slide["ctaBig"]], 92, larg)
+                t = (_tb[0] if _tb else str(slide["ctaBig"]).upper())
+                tw = d.textlength(t, font=fb)
+                d.text(((CARR_W - tw) // 2, CARR_H - 300), t, font=fb,
+                       fill=(255, 255, 255), stroke_width=6, stroke_fill=CARR_STROKE)
+
+        else:  # info
+            y = 70
+            if slide.get("titleLines"):
+                f, tl = _carr_font_ajustee(d, slide["titleLines"], 76, larg)
+                y = _carr_titre(d, tl, f, M, y) + 44
+            fp = _carr_font(33, gras=False)
+            for p in (slide.get("paras") or []):
+                y = _carr_dessine_paragraphe(img, d, _carr_segments(p), fp, M, y, larg, accent)
+                d = ImageDraw.Draw(img)
+                y += 24                      # margin-bottom du gabarit
+            if slide.get("kicker"):
+                fk, tk = _carr_font_ajustee(d, [slide["kicker"]], 78, larg)
+                _carr_titre(d, tk, fk, M, CARR_H - 260 - int(fk.size * 0.94) * (len(tk) - 1),
+                            centre=True, largeur=larg)
+
+        # filigrane centré en bas
+        if watermark:
+            fw = _carr_font(22)
+            t = " ".join(str(watermark).upper())      # letter-spacing: 6px
+            tw = d.textlength(t, font=fw)
+            d.text(((CARR_W - tw) // 2, CARR_H - 44 - fw.size), t, font=fw,
+                   fill=(255, 255, 255, 209))
+
+        buf = _io.BytesIO()
+        img.convert("RGB").save(buf, format="PNG", optimize=True)
+        return buf.getvalue()
+    except Exception as e:
+        print(f"  ⚠️ Slide carrousel non rendue ({str(e)[:80]})")
+        return None
 
 
 def build_carousel_slide(title, points, idx, total, is_last=False, accent=(255, 90, 200), bg_photo=None,
@@ -7010,10 +7913,23 @@ Réponds avec ce JSON UNIQUEMENT :
     body += "\n".join(f"{e} {t}" for e, t in items)
     body += "\n\n(Pulse)"
     # 📱 Récap VERTICAL illustré (1080×1350) : une vignette liée à chaque actu.
-    png = build_recap_card(_enrich(items), 1080, 1350)
+    _items = _enrich(items)
+    # 🎠 RÉCAP EN CARROUSEL : couverture « Ce qu'il faut retenir » puis une actu par
+    #    image, surlignages à la couleur de sa catégorie. X accepte 4 médias : on garde
+    #    la couverture et les 3 actus en tête. La carte unique reste le repli.
+    png_list = []
+    try:
+        _sl, _ac, _ph = carrousel_recap(_items)
+        png_list = rendre_carrousel(_sl, _ac, _ph, maxi=4)
+        if len(png_list) > 1:
+            print(f"  🎠 Récap en carrousel : {len(png_list)} images")
+    except Exception as e:
+        print(f"  ⚠️ Carrousel récap indisponible ({str(e)[:70]}) → carte unique")
+        png_list = []
+    png = png_list[0] if png_list else build_recap_card(_items, 1080, 1350)
     _x = _fb = _ig = None
     try:
-        _x = post_to_twitter(body, png)
+        _x = post_to_twitter(body, png, png_list=(png_list if len(png_list) > 1 else None))
     except Exception as e:
         print(f"  ❌ X isolé : {e}")
     try:
@@ -8474,10 +9390,28 @@ def check_feeds(conn):
             # 🔊 La narration est construite DANS build_decrypt_video, une fois la durée
             #    de la vidéo connue, pour être bornée et jamais tronquée. On passe ici le
             #    titre de couverture ; les intertitres et points viennent de `slides`.
-            vid_thread = build_decrypt_video(cover_vid or cover_paysage, carousel["slides"],
-                                             carousel.get("sujet", ""), bg_photo=raw_src,
-                                             decrypt_cat="monde",
-                                             voice_text=carousel.get("cover_title", ""))
+            # 🎠🎬 DÉCRYPTAGE EN VIDÉO CARROUSEL : les slides du gabarit, assemblées en
+            #    vidéo verticale avec la voix de synthèse par-dessus la musique.
+            #    L'ancienne vidéo reste le repli si le montage échoue.
+            vid_thread = None
+            try:
+                _sl, _ac, _ph = carrousel_decryptage(carousel, raw_photo=raw_src, categorie="monde")
+                _pngs = rendre_carrousel(_sl, _ac, _ph)
+                if _pngs:
+                    _lu = _carr_texte_narration(carousel)
+                    vid_thread = build_video_carrousel(
+                        _pngs, _sl, voice_text=_lu, cat="monde",
+                        voice_parts=_carr_narration_slides(carousel))
+                    if _pngs:
+                        cover_paysage = _pngs[0]      # l'aperçu devient la couverture du carrousel
+            except Exception as e:
+                print(f"  ⚠️ Carrousel décryptage indisponible ({str(e)[:70]})")
+            if not vid_thread:
+                # repli : l'ancienne vidéo de décryptage, si le carrousel n'a pas abouti
+                vid_thread = build_decrypt_video(cover_vid or cover_paysage, carousel["slides"],
+                                                 carousel.get("sujet", ""), bg_photo=raw_src,
+                                                 decrypt_cat="monde",
+                                                 voice_text=carousel.get("cover_title", ""))
             url = None
             try:
                 url = post_to_twitter(xfb, cover_paysage, vid_thread)
@@ -8986,7 +9920,8 @@ def check_feeds(conn):
                 _hn, _hl, _prev_heads = topic_history(conn, item["title"])
                 body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
                     item["title"], item["summary"], item["source"], cat, url=item.get("url"),
-                    prev_angles=_prev_heads, pub_ts=item.get("pub_ts")
+                    prev_angles=_prev_heads, pub_ts=item.get("pub_ts"),
+                    angle_neuf=item.get("_angle_neuf") or ""
                 )
                 if not body:
                     print(f"  ⛔ Sujet abandonné (génération vide ou annonce périmée) : {item['title'][:50]}")
