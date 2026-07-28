@@ -78,13 +78,13 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.39.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.40.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
 HASHTAGS_ACTIFS = os.environ.get("HASHTAGS", "1").strip() not in ("0", "false", "non")
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
-GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.1-flash-lite")
+GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.5-flash-lite")
 LLM_ANALYSE       = os.environ.get("LLM_ANALYSE",       "gemini").strip().lower()
 LLM_REDACTION     = os.environ.get("LLM_REDACTION",     "gemini").strip().lower()
 LLM_SPECIAUX      = os.environ.get("LLM_SPECIAUX",      "gemini").strip().lower()
@@ -687,6 +687,68 @@ def _parse_json_reponse(raw):
         raise
 
 
+# ⏱️ RÉGULATEUR DE DÉBIT — le palier gratuit limite les requêtes PAR MINUTE, et la
+#    limite est propre à chaque famille de modèles (constaté : 3/min sur la synthèse
+#    vocale). Or le bot enchaîne des rafales : une narration par slide, c'est 5 appels
+#    en quelques secondes. Sans régulation, les derniers sont refusés (429) et la vidéo
+#    sort sans voix — ou la carte sans image.
+_RATE_LIMITS = {"tts": 3, "image": 5, "texte": 12, "vision": 12}
+_RATE_HIST = {}
+
+def _attendre_creneau(famille="texte"):
+    """Attend, si nécessaire, qu'un créneau se libère pour cette famille de modèles.
+    Simple et sans dépendance : on garde l'horodatage des appels de la dernière minute."""
+    import time as _t
+    limite = _RATE_LIMITS.get(famille, 12)
+    hist = _RATE_HIST.setdefault(famille, [])
+    maintenant = _t.time()
+    hist[:] = [h for h in hist if maintenant - h < 60]
+    if len(hist) >= limite:
+        pause = 61 - (maintenant - hist[0])
+        if pause > 0:
+            print(f"  ⏱️ Débit {famille} atteint ({limite}/min) → pause de {pause:.0f} s")
+            _t.sleep(min(pause, 65))
+            maintenant = _t.time()
+            hist[:] = [h for h in hist if maintenant - h < 60]
+    hist.append(maintenant)
+
+
+def _post_gemini(url, payload, famille="texte", timeout=60, essais=2):
+    """Appel POST vers Gemini, régulé et tolérant au 429.
+    Un refus pour dépassement de débit n'est pas une panne : on attend et on réessaie."""
+    import time as _t
+    derniere = None
+    for essai in range(essais):
+        _attendre_creneau(famille)
+        try:
+            r = requests.post(url, headers={"x-goog-api-key": GEMINI_API_KEY,
+                                            "Content-Type": "application/json"},
+                              json=payload, timeout=timeout)
+            if getattr(r, "status_code", 200) == 429 and essai + 1 < essais:
+                print(f"  ⏱️ Débit {famille} refusé par l'API → nouvelle tentative dans 20 s")
+                _t.sleep(20)
+                continue
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            derniere = e
+            if essai + 1 >= essais:
+                raise
+    if derniere:
+        raise derniere
+    return {}
+
+
+def _usage_gemini(d):
+    """Comptabilise la consommation renvoyée par l'API."""
+    try:
+        u = (d or {}).get("usageMetadata") or {}
+        _USAGE_GEMINI["in"] += u.get("promptTokenCount", 0) or 0
+        _USAGE_GEMINI["out"] += u.get("candidatesTokenCount", 0) or 0
+    except Exception:
+        pass
+
+
 def _gemini_call(prompt, system, max_tokens, want_json=True):
     """Appel du modèle Gemini en REST — aucune dépendance nouvelle, `requests` suffit,
     donc requirements.txt reste intact. Lève une exception en cas d'échec (le repli
@@ -701,14 +763,8 @@ def _gemini_call(prompt, system, max_tokens, want_json=True):
     body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": gen}
     if system:
         body["systemInstruction"] = {"parts": [{"text": system}]}
-    r = requests.post(url, headers={"x-goog-api-key": GEMINI_API_KEY,
-                                    "Content-Type": "application/json"},
-                      json=body, timeout=60)
-    r.raise_for_status()
-    data = r.json()
-    u = data.get("usageMetadata") or {}
-    _USAGE_GEMINI["in"]  += u.get("promptTokenCount", 0) or 0
-    _USAGE_GEMINI["out"] += u.get("candidatesTokenCount", 0) or 0
+    data = _post_gemini(url, body, famille="texte", timeout=60)
+    _usage_gemini(data)
     return data["candidates"][0]["content"]["parts"][0]["text"]
 
 
@@ -2035,9 +2091,9 @@ def _visage_par_ia(pil_img):
         pil_img.convert("RGB").save(buf, format="JPEG", quality=85)
         url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
                f"{GEMINI_MODEL}:generateContent")
-        r = requests.post(
-            url, headers={"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"},
-            json={"contents": [{"parts": [
+        d = _post_gemini(
+            url, famille="vision", timeout=45,
+            payload={"contents": [{"parts": [
                       {"inlineData": {"mimeType": "image/jpeg",
                                       "data": _b64.b64encode(buf.getvalue()).decode()}},
                       {"text": "Où se trouve le CENTRE DU VISAGE de la personne principale "
@@ -2048,16 +2104,8 @@ def _visage_par_ia(pil_img):
                                'ou {"x": null, "y": null} si aucun visage humain.'}]}],
                   "generationConfig": {"maxOutputTokens": 60, "temperature": 0,
                                        "responseMimeType": "application/json",
-                                       "thinkingConfig": {"thinkingBudget": 0}}},
-            timeout=45)
-        r.raise_for_status()
-        d = r.json()
-        try:
-            u = d.get("usageMetadata") or {}
-            _USAGE_GEMINI["in"] += u.get("promptTokenCount", 0) or 0
-            _USAGE_GEMINI["out"] += u.get("candidatesTokenCount", 0) or 0
-        except Exception:
-            pass
+                                       "thinkingConfig": {"thinkingBudget": 0}}})
+        _usage_gemini(d)
         txt = (((d.get("candidates") or [{}])[0].get("content") or {})
                .get("parts") or [{}])[0].get("text", "")
         rep = _parse_json_reponse(txt)
@@ -4067,41 +4115,62 @@ def _wiki_page_image(page_title):
         return None
 
 
-IMAGE_MODEL = os.environ.get("IMAGE_MODEL", "gemini-2.5-flash-image")
+# 🎨 Modèle d'illustration. Nano Banana par défaut : ~500 images/jour sur le palier
+#    gratuit, et c'est la voie recommandée par Google. Un modèle de SECOURS peut être
+#    indiqué si le premier n'est pas ouvert sur le compte (ex. IMAGE_MODEL_SECOURS=
+#    imagen-4.0-ultra-generate-001) — mais les points d'accès Imagen ferment le
+#    17 août 2026, ce n'est donc qu'un dépannage temporaire.
+IMAGE_MODEL         = os.environ.get("IMAGE_MODEL", "gemini-2.5-flash-image")
+IMAGE_MODEL_SECOURS = os.environ.get("IMAGE_MODEL_SECOURS", "")
 
 def _gemini_image(description, libelle="Illustration"):
-    """Génère une image d'illustration. ⚠️ USAGE STRICTEMENT LIMITÉ aux ÉVOCATIONS
-    HISTORIQUES, et le tweet DOIT porter la mention « image représentative ».
-    Une actualité n'est JAMAIS illustrée par une image générée : fabriquer l'image d'un
-    fait réel détruirait la crédibilité du compte.
-    Renvoie les octets de l'image, ou None."""
+    """Génère une image d'illustration.
+    Deux familles de modèles cohabitent et n'ont PAS le même point d'accès :
+      • Nano Banana (gemini-*-flash-image) → :generateContent, ~500 images/jour gratuites ;
+      • Imagen (imagen-*) → :predict, format différent. ⚠️ Ces points d'accès sont
+        DÉPRÉCIÉS et ferment le 17 août 2026 — à n'utiliser qu'en dépannage.
+    Le bot choisit le format d'après le nom du modèle, et bascule sur l'autre si le
+    premier échoue. Renvoie les octets de l'image, ou None.
+    ⚠️ Une actualité n'est illustrée ainsi qu'en DERNIER RECOURS, et le tweet porte
+    alors la mention correspondante."""
     if not description or not GEMINI_API_KEY:
         return None
-    try:
-        import base64 as _b64
-        url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
-               f"{IMAGE_MODEL}:generateContent")
-        consigne = (
-            "Illustration d'évocation historique, style peinture documentaire sobre, "
-            "atmosphère d'époque, sans texte ni logo, sans visage reconnaissable de "
-            "personnalité réelle, cadrage large. Sujet : " + description[:400])
-        r = requests.post(url,
-                          headers={"x-goog-api-key": GEMINI_API_KEY,
-                                   "Content-Type": "application/json"},
-                          json={"contents": [{"parts": [{"text": consigne}]}]},
-                          timeout=90)
-        r.raise_for_status()
-        parts = (((r.json().get("candidates") or [{}])[0].get("content") or {}).get("parts") or [])
-        for p in parts:
+    import base64 as _b64
+    base = "https://generativelanguage.googleapis.com/v1beta/models"
+
+    def _via_generate(modele, consigne):
+        d = _post_gemini(f"{base}/{modele}:generateContent",
+                         {"contents": [{"parts": [{"text": consigne}]}]},
+                         famille="image", timeout=90)
+        for p in (((d.get("candidates") or [{}])[0].get("content") or {}).get("parts") or []):
             inl = p.get("inlineData") or p.get("inline_data") or {}
             mime = (inl.get("mimeType") or inl.get("mime_type") or "")
             if inl.get("data") and mime.startswith("image/"):
-                brut = _b64.b64decode(inl["data"])
-                if len(brut) > 2000:
-                    print(f"  🎨 {libelle} générée (mention obligatoire ajoutée)")
-                    return brut
-    except Exception as e:
-        print(f"  ⚠️ Illustration indisponible ({str(e)[:70]}) → carte sans image")
+                return _b64.b64decode(inl["data"])
+        return None
+
+    def _via_predict(modele, consigne):
+        d = _post_gemini(f"{base}/{modele}:predict",
+                         {"instances": [{"prompt": consigne}],
+                          "parameters": {"sampleCount": 1, "aspectRatio": "16:9"}},
+                         famille="image", timeout=90)
+        for pr in (d.get("predictions") or []):
+            b64 = pr.get("bytesBase64Encoded") or pr.get("image", {}).get("bytesBase64Encoded")
+            if b64:
+                return _b64.b64decode(b64)
+        return None
+
+    consigne = description[:600]
+    modeles = [IMAGE_MODEL] + [m for m in (IMAGE_MODEL_SECOURS,) if m and m != IMAGE_MODEL]
+    for modele in modeles:
+        appel = _via_predict if modele.lower().startswith("imagen") else _via_generate
+        try:
+            brut = appel(modele, consigne)
+            if brut and len(brut) > 2000:
+                print(f"  🎨 {libelle} générée par {modele} (mention obligatoire ajoutée)")
+                return brut
+        except Exception as e:
+            print(f"  ⚠️ {modele} indisponible ({str(e)[:60]})")
     return None
 
 
@@ -4191,7 +4260,7 @@ OU
         _photo = _histoire_img(events, result.get("index"))
         _brut, _generee = None, False
         if not _photo:
-            _brut = _gemini_image(result.get("headline_court") or body[:200],
+            _brut = _gemini_image(_prompt_historique(result.get("headline_court") or body[:200]),
                                   libelle="Illustration historique")
             _generee = _brut is not None
         _corps = build_full_tweet(body, "histoire")
@@ -4827,19 +4896,16 @@ def _gemini_tts(texte, wav_out):
         url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
                f"{TTS_MODEL}:generateContent")
         # le modèle ne parle que si on le lui demande explicitement ("Lis…")
-        r = requests.post(url,
-                          headers={"x-goog-api-key": GEMINI_API_KEY,
-                                   "Content-Type": "application/json"},
-                          json={"contents": [{"parts": [{"text":
-                                    "Lis ce texte d'un ton posé, clair et journalistique, "
-                                    "sans emphase excessive : " + texte[:1200]}]}],
-                                "generationConfig": {
-                                    "responseModalities": ["AUDIO"],
-                                    "speechConfig": {"voiceConfig": {
-                                        "prebuiltVoiceConfig": {"voiceName": TTS_VOICE}}}}},
-                          timeout=90)
-        r.raise_for_status()
-        parts = (((r.json().get("candidates") or [{}])[0].get("content") or {}).get("parts") or [])
+        d = _post_gemini(url,
+                         {"contents": [{"parts": [{"text":
+                              "Lis ce texte d'un ton posé, clair et journalistique, "
+                              "sans emphase excessive : " + texte[:1200]}]}],
+                          "generationConfig": {
+                              "responseModalities": ["AUDIO"],
+                              "speechConfig": {"voiceConfig": {
+                                  "prebuiltVoiceConfig": {"voiceName": TTS_VOICE}}}}},
+                         famille="tts", timeout=90)
+        parts = (((d.get("candidates") or [{}])[0].get("content") or {}).get("parts") or [])
         b64 = None
         for p in parts:
             inl = p.get("inlineData") or p.get("inline_data") or {}
@@ -8753,15 +8819,10 @@ def _embed(texte, conn=None, essentiel=False):
     try:
         url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
                f"{EMBED_MODEL}:embedContent")
-        r = requests.post(url,
-                          headers={"x-goog-api-key": GEMINI_API_KEY,
-                                   "Content-Type": "application/json"},
-                          json={"model": f"models/{EMBED_MODEL}",
+        _d = _post_gemini(url, {"model": f"models/{EMBED_MODEL}",
                                 "content": {"parts": [{"text": texte[:2000]}]},
                                 "outputDimensionality": 768},
-                          timeout=20)
-        r.raise_for_status()
-        _d = r.json()
+                          famille="texte", timeout=20)
         try:
             _USAGE_GEMINI["in"] += ((_d.get("usageMetadata") or {}).get("promptTokenCount")
                                     or max(1, len(texte) // 4))
@@ -9575,24 +9636,16 @@ def _image_pertinente(raw, titre, resume=""):
             "Réponds OUI si l'image montre le sujet, la personne concernée, le lieu, "
             "l'événement, ou un visuel générique cohérent avec le thème.\n"
             'Réponds UNIQUEMENT : {"ok": true|false, "raison": "<5 mots max>"}')
-        r = requests.post(
-            url, headers={"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"},
-            json={"contents": [{"parts": [
+        d = _post_gemini(
+            url, {"contents": [{"parts": [
                       {"inlineData": {"mimeType": "image/jpeg",
                                       "data": _b64.b64encode(raw).decode()}},
                       {"text": question}]}],
                   "generationConfig": {"maxOutputTokens": 80, "temperature": 0,
                                        "responseMimeType": "application/json",
                                        "thinkingConfig": {"thinkingBudget": 0}}},
-            timeout=45)
-        r.raise_for_status()
-        d = r.json()
-        try:
-            u = d.get("usageMetadata") or {}
-            _USAGE_GEMINI["in"] += u.get("promptTokenCount", 0) or 0
-            _USAGE_GEMINI["out"] += u.get("candidatesTokenCount", 0) or 0
-        except Exception:
-            pass
+            famille="vision", timeout=45)
+        _usage_gemini(d)
         txt = (((d.get("candidates") or [{}])[0].get("content") or {})
                .get("parts") or [{}])[0].get("text", "")
         rep = _parse_json_reponse(txt)
@@ -9603,6 +9656,16 @@ def _image_pertinente(raw, titre, resume=""):
     except Exception as e:
         print(f"  ⚠️ Contrôle visuel indisponible ({str(e)[:60]}) → image conservée")
     return None
+
+
+def _prompt_historique(sujet):
+    """Consigne de génération pour une ÉVOCATION HISTORIQUE : style d'époque assumé,
+    jamais confondable avec un document authentique. Le tweet porte la mention
+    « image représentative »."""
+    return ("Illustration d'évocation historique, style peinture documentaire sobre, "
+            "atmosphère d'époque, sans texte ni logo, sans visage reconnaissable de "
+            "personnalité réelle, cadrage large. Sujet : "
+            + re.sub(r"\s+", " ", str(sujet or "")).strip()[:400])
 
 
 def _prompt_illustration(titre, categorie=""):
