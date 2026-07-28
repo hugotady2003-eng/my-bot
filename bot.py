@@ -4,6 +4,7 @@ Génère des tweets engageants avec image PNG, envoyés par email + posté sur X
 """
 import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib, random
 import requests   # déjà présent dans requirements.txt (inchangé) — sert aux API REST
+import unicodedata
 import socket
 socket.setdefaulttimeout(12)   # aucun flux RSS/site mort ne peut geler un run
 import urllib.request, urllib.parse, urllib.error, re
@@ -77,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.34.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.37.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -319,6 +320,12 @@ def init_db():
     #    reformulé. Colonne ajoutée après coup → tolérante si elle existe déjà.
     try:
         conn.execute("ALTER TABLE topic_memory ADD COLUMN vec TEXT")
+    except Exception:
+        pass
+    # 📚 Corps réellement publié : la mémoire éditoriale a besoin de savoir CE QU'ON A DIT,
+    #    pas seulement qu'on a parlé du sujet. Sert à ne jamais répéter un fait déjà donné.
+    try:
+        conn.execute("ALTER TABLE topic_memory ADD COLUMN corps TEXT")
     except Exception:
         pass
     # 🧮 journal des embeddings du jour : sert à respecter le budget du palier gratuit
@@ -978,6 +985,139 @@ def _hashtag_candidates(person, keywords):
             seen.add(w.lower()); out.append(w)
     return out
 
+TRENDS_URL   = os.environ.get("TRENDS_URL", "https://getdaytrends.com/france/")
+TRENDS_TTL   = 3600            # une heure : les tendances bougent lentement
+_TRENDS_CACHE = {"t": 0.0, "v": []}
+
+def _tendances_x():
+    """Tendances X France, récupérées sur getdaytrends. Mises en cache 1 h.
+    ⚠️ C'est du relevé de page web, pas une API contractuelle : ça peut cesser de
+    fonctionner sans prévenir. Tout est donc en repli silencieux — sans tendances, les
+    hashtags restent choisis sur les mots du tweet, ce qui marche déjà.
+    ⛔ Les tendances ne servent JAMAIS à choisir un sujet : uniquement à départager
+    des hashtags déjà pertinents pour l'article traité."""
+    import time as _t
+    if _TRENDS_CACHE["v"] and (_t.time() - _TRENDS_CACHE["t"]) < TRENDS_TTL:
+        return _TRENDS_CACHE["v"]
+    try:
+        r = requests.get(TRENDS_URL, timeout=12, headers={
+            "User-Agent": "Mozilla/5.0 (compatible; PulseBot/1.0)",
+            "Accept-Language": "fr-FR,fr;q=0.9"})
+        r.raise_for_status()
+        html = r.text
+        vus, out = set(), []
+        # ① liens de tendance : <a href="/france/trend/XXX/">…</a>
+        for m in re.finditer(r'href="[^"]*/trend/[^"]*"[^>]*>\s*([^<]{2,60}?)\s*<', html, re.I):
+            t = re.sub(r"\s+", " ", m.group(1)).strip()
+            if t and t.lower() not in vus:
+                vus.add(t.lower()); out.append(t)
+        # ② repli : tous les hashtags visibles dans la page
+        if len(out) < 5:
+            for m in re.finditer(r"#([A-Za-zÀ-ÿ0-9_]{3,40})", html):
+                t = "#" + m.group(1)
+                if t.lower() not in vus:
+                    vus.add(t.lower()); out.append(t)
+        out = out[:50]
+        if out:
+            _TRENDS_CACHE.update({"t": _t.time(), "v": out})
+            print(f"  📈 {len(out)} tendances X récupérées")
+        return out
+    except Exception as e:
+        print(f"  ⚠️ Tendances X indisponibles ({str(e)[:60]}) → hashtags sur les mots du tweet")
+        return []
+
+
+def _norm_tag(mot):
+    """Normalise un mot en hashtag : accents retirés, casse chameau, sans ponctuation."""
+    t = unicodedata.normalize("NFD", str(mot or ""))
+    t = "".join(c for c in t if unicodedata.category(c) != "Mn")
+    parties = [p for p in re.split(r"[^A-Za-z0-9]+", t) if p]
+    if not parties:
+        return ""
+    return "".join(p[:1].upper() + p[1:] for p in parties)
+
+
+_TAG_BANNIS = {
+    "France", "Info", "Actu", "Actualite", "News", "Video", "Direct", "Urgent",
+    "Aujourdhui", "Hier", "Demain", "Nouveau", "Nouvelle", "Selon", "Apres",
+    "Pulse", "Twitter", "Breaking",
+}
+
+def _hashtags_pertinents(body, keywords=None, person=None, pays=None, maxi=3):
+    """Choisit 1 à 3 hashtags à partir des MOTS DU TWEET (personne citée, mots-clés,
+    noms propres). Les tendances X servent seulement à PRIORISER parmi ces candidats.
+    ⛔ Jamais un hashtag hors-sujet, même s'il est massivement en tendance : le hashtag
+    doit décrire le tweet, pas courir après l'audience."""
+    txt = str(body or "")
+    cands = []
+    for src in ([person] if person else []) + list(keywords or []):
+        t = _norm_tag(src)
+        if t and len(t) >= 3:
+            cands.append(t)
+    # noms propres du corps (hors début de phrase et hors mots tout en majuscules du style Pulse)
+    for m in re.finditer(r"(?<![.!?\n]\s)(?<!^)\b([A-ZÀ-Þ][a-zà-ÿ]{3,})\b", txt):
+        t = _norm_tag(m.group(1))
+        if t:
+            cands.append(t)
+    # dédoublonnage en gardant l'ordre
+    vus, propres = set(), []
+    for t in cands:
+        k = t.lower()
+        if k in vus or t in _TAG_BANNIS or len(t) < 3:
+            continue
+        if f"#{k}" in txt.lower():          # déjà présent dans le tweet
+            continue
+        vus.add(k); propres.append(t)
+    if not propres:
+        return []
+    # priorisation par les tendances : un candidat qui EST en tendance passe devant
+    tend = {_norm_tag(t.lstrip("#")).lower() for t in _tendances_x()}
+    if tend:
+        en_tendance = [t for t in propres if t.lower() in tend]
+        autres = [t for t in propres if t.lower() not in tend]
+        if en_tendance:
+            print(f"  📈 Hashtag(s) en tendance : {', '.join('#' + t for t in en_tendance[:maxi])}")
+        propres = en_tendance + autres
+    return [f"#{t}" for t in propres[:maxi]]
+
+
+_ACCENTS = {"a": "àâä", "e": "éèêë", "i": "îï", "o": "ôö", "u": "ùûü", "c": "ç"}
+
+def _poser_hashtags(body, tags, maxi=3):
+    """Intègre les hashtags DANS LA PHRASE, en préfixant d'un dièse un mot DÉJÀ PRÉSENT.
+    ⚠️ Aucun mot n'est ajouté, aucune tournure modifiée : « en Gironde » devient
+    « en #Gironde ». C'est la seule façon d'intégrer un hashtag sans risquer de casser
+    la formulation.
+    Un candidat absent du texte est ignoré. Si AUCUN ne peut être intégré, on en pose
+    au plus deux en fin de corps, avant la source."""
+    if not tags:
+        return body
+    txt = str(body or "")
+    # la source finale « (Le Monde) » est une zone protégée : jamais de dièse dedans
+    msrc = re.search(r"\n*\([^()]{1,60}\)\s*$", txt)
+    core, tail = (txt[:msrc.start()], txt[msrc.start():]) if msrc else (txt, "")
+    poses, restants = 0, []
+    for tag in tags:
+        if poses >= maxi:
+            restants.append(tag); continue
+        mot = tag.lstrip("#")
+        # tolérant aux accents : on cherche le mot tel qu'il apparaît réellement
+        motif = "".join(
+            f"[{c}{c.upper()}{_ACCENTS.get(c, '')}]" if c.isalpha() else re.escape(c)
+            for c in mot.lower())
+        m = re.search(rf"(?<![#\w'’])({motif})(?!\w)", core)
+        if m and m.start() > 0:              # jamais sur le tout premier mot du tweet
+            core = core[:m.start()] + "#" + m.group(1) + core[m.end():]
+            poses += 1
+        else:
+            restants.append(tag)
+    if poses == 0 and restants:              # aucun intégrable → repli en fin de corps
+        core = core.rstrip() + " " + " ".join(restants[:2])
+        if tail and not tail.startswith("\n"):
+            tail = "\n\n" + tail.lstrip()
+    return core + tail
+
+
 def _attach_hashtag(body, person, keywords):
     """Garantit UN hashtag, intégré dans la phrase si possible. Ne touche à rien s'il y en a déjà.
     Désactivable par HASHTAGS=0 : les tweets de référence de Pulse n'en portent aucun."""
@@ -1266,6 +1406,10 @@ _FORMATS = {
         "2) une ligne vide ;\n"
         "3) 2 à 4 puces « – », UNE IDÉE PAR PUCE, chacune sur une ligne, TRÈS COURTES "
         "(pas de phrase à rallonge : un élément, un chiffre, un fait) ;\n"
+        "   🎯 ORDRE DES PUCES : commence par celle qui se rattache DIRECTEMENT au fait "
+        "annoncé en ouverture. Si le tweet ouvre sur un pompier décédé, la puce sur les "
+        "pompiers blessés vient EN PREMIER — pas en dernier. Les autres suivent par "
+        "ordre d'importance décroissante ;\n"
         "4) la source à la fin.\n"
         "⛔ N'invente aucun élément pour remplir la liste : s'il n'y a que deux éléments réels, "
         "fais deux puces."),
@@ -1304,7 +1448,20 @@ def choisir_format_tweet(title, summary, article_text=""):
     return nom, _FORMATS[nom]
 
 
-def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, prev_angles=None, correction=None, angle_neuf=None):
+def _normalise_source(body):
+    """Place la source « (BFMTV) » sur SA PROPRE LIGNE, après une ligne vide.
+    Le modèle le fait la plupart du temps mais pas toujours : la mise en forme d'un
+    compte d'actualité doit être constante, pas dépendre de l'humeur du rédacteur."""
+    txt = re.sub(r"[ \t]+\n", "\n", str(body or "").strip())
+    m = re.search(r"\(\s*([^()]{2,40}?)\s*\)\s*$", txt)
+    if not m:
+        return txt
+    source = f"({m.group(1).strip()})"
+    corps = txt[:m.start()].rstrip(" \n\t—-–;,")
+    return f"{corps}\n\n{source}" if corps else source
+
+
+def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, prev_angles=None, correction=None, angle_neuf=None, dossier=None):
     """Génère tweet + titre image + image_query + mots-clés majeurs.
     prev_angles = titres déjà publiés par Pulse sur CE sujet (suite = nouvel angle obligatoire)."""
     today = datetime.now().strftime("%d %B %Y")
@@ -1365,6 +1522,7 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
     # 🧭 FORMAT DE COMPOSITION choisi d'après la matière de l'article : un fait simple
     #    ne s'écrit pas comme une réforme à plusieurs échéances. Gratuit et déterministe.
     #    Les hommages gardent leur ton sobre : jamais de liste ni de chiffre mis en scène.
+    dossier_str = _dossier_en_texte(dossier)
     if category == "hommage":
         _fmt_nom, format_instr = "direct", _FORMATS["direct"]
     else:
@@ -1376,7 +1534,7 @@ Catégorie de ce tweet (libellé à NE PAS reprendre en tête du body) : {label}
 Article à traiter :
 - Source : {source}
 - Titre  : {title}
-- Résumé : {summary}{video_str}{art_str}{corr_str}{prev_str}
+- Résumé : {summary}{video_str}{art_str}{corr_str}{prev_str}{dossier_str}
 
 {style_instr}
 {format_instr}""", max_tokens=900, system=_tweet_system(category == "hommage"), task="redaction")
@@ -1549,7 +1707,7 @@ def _annonce_perimee(text, now=None, pub_ts=None, stale_h=18):
             return True
     return False
 
-def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=None, pub_ts=None, angle_neuf=None):
+def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=None, pub_ts=None, angle_neuf=None, dossier=None):
     """gen_tweet_complet + lecture de l'article UNIQUEMENT sur sujets sensibles
     (mort, procès, accusations… où la précision juridique est vitale) + vérification factuelle.
     Sur les sujets non sensibles, le titre + résumé RSS suffisent → coût minimal."""
@@ -1567,7 +1725,7 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
             article_text = None
     body, headline, image_query, keywords, person, pays = gen_tweet_complet(
         title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-        angle_neuf=angle_neuf)
+        angle_neuf=angle_neuf, dossier=dossier)
     # 💰 UNE SEULE régénération payante par tweet. Les trois garde-fous (fait, teaser,
     #    annonce périmée) pouvaient s'enchaîner : jusqu'à 4 appels facturés pour UN tweet.
     #    Au-delà du quota, on applique la correction LOCALE (gratuite) déjà prévue.
@@ -1583,7 +1741,7 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
         print(f"  ⚖️ Erreur factuelle détectée ({'; '.join(issues)}) → régénération")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
             title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-            angle_neuf=angle_neuf, correction="; ".join(issues))
+            angle_neuf=angle_neuf, dossier=dossier, correction="; ".join(issues))
         if _fact_guard(body + " " + headline, src_text):
             body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
             print("  ⚖️ Correction forcée appliquée")
@@ -1603,7 +1761,7 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
                 "émission/dossier, sans question creuse. Le lecteur doit connaître le fait en te lisant, sans cliquer ailleurs.")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
             title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-            angle_neuf=angle_neuf, correction=anti)
+            angle_neuf=angle_neuf, dossier=dossier, correction=anti)
     # ✂️ TROP BAVARD — le plafond dépend du format retenu pour ce sujet.
     _fmt = "direct" if category == "hommage" else choisir_format_tweet(title, summary, article_text)[0]
     _struct = _fmt in ("liste", "echeances")
@@ -1620,7 +1778,7 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
                     f"Supprime le contexte, les conséquences et tout commentaire.")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
             title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-            angle_neuf=angle_neuf, correction=anti)
+            angle_neuf=angle_neuf, dossier=dossier, correction=anti)
     # resserrage LOCAL (gratuit) : s'applique aussi quand le quota est épuisé
     if _trop_long(body, _struct):
         avant = len(body)
@@ -1637,7 +1795,9 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
                 "« nouveau rebondissement », « ce mardi soir »), et mets l'ÉLÉMENT NOUVEAU en avant.")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
             title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-            angle_neuf=angle_neuf, correction=anti)
+            angle_neuf=angle_neuf, dossier=dossier, correction=anti)
+
+    body = _normalise_source(body)   # source TOUJOURS isolée, sur sa propre ligne
 
     # Nettoyage LOCAL (gratuit) : s'applique aussi quand le quota de régénération est épuisé.
     if _is_teaser(body):
@@ -3851,7 +4011,7 @@ def _wiki_page_image(page_title):
 
 IMAGE_MODEL = os.environ.get("IMAGE_MODEL", "gemini-2.5-flash-image")
 
-def _gemini_image(description):
+def _gemini_image(description, libelle="Illustration"):
     """Génère une image d'illustration. ⚠️ USAGE STRICTEMENT LIMITÉ aux ÉVOCATIONS
     HISTORIQUES, et le tweet DOIT porter la mention « image représentative ».
     Une actualité n'est JAMAIS illustrée par une image générée : fabriquer l'image d'un
@@ -3880,7 +4040,7 @@ def _gemini_image(description):
             if inl.get("data") and mime.startswith("image/"):
                 brut = _b64.b64decode(inl["data"])
                 if len(brut) > 2000:
-                    print("  🎨 Illustration historique générée (mention obligatoire ajoutée)")
+                    print(f"  🎨 {libelle} générée (mention obligatoire ajoutée)")
                     return brut
     except Exception as e:
         print(f"  ⚠️ Illustration indisponible ({str(e)[:70]}) → carte sans image")
@@ -3973,7 +4133,8 @@ OU
         _photo = _histoire_img(events, result.get("index"))
         _brut, _generee = None, False
         if not _photo:
-            _brut = _gemini_image(result.get("headline_court") or body[:200])
+            _brut = _gemini_image(result.get("headline_court") or body[:200],
+                                  libelle="Illustration historique")
             _generee = _brut is not None
         _corps = build_full_tweet(body, "histoire")
         if _generee and "représentative" not in _corps.lower():
@@ -8475,15 +8636,17 @@ def _topic_sig_words(title):
     """Mots saillants d'un titre (réutilise _sig_words) : sert à reconnaître un même sujet."""
     return _sig_words(title)
 
-def log_topic(conn, title, keywords):
+def log_topic(conn, title, keywords, corps=None):
     """Enregistre un sujet qu'on vient de publier (signature + titre + angle + heure)."""
     try:
         sig = " ".join(sorted(_topic_sig_words(title)))
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         v = _embed(title, conn, essentiel=True)   # mémoriser un sujet publié : prioritaire
         conn.execute(
-            "INSERT INTO topic_memory (topic_sig, headline, keywords, sent_at, vec) VALUES (?,?,?,?,?)",
-            (sig, title or "", ", ".join(keywords or []), now, json.dumps(v) if v else None)
+            "INSERT INTO topic_memory (topic_sig, headline, keywords, sent_at, vec, corps) "
+            "VALUES (?,?,?,?,?,?)",
+            (sig, title or "", ", ".join(keywords or []), now,
+             json.dumps(v) if v else None, (corps or "")[:400])
         )
         conn.commit()
     except Exception as e:
@@ -8582,6 +8745,72 @@ def _meme_sujet(titre_a, titre_b, vec_a=None, vec_b=None, min_overlap=2):
     if vec_a is not None and vec_b is not None:
         return _cos(vec_a, vec_b) >= EMBED_SEUIL
     return len(_sig_words(titre_a) & _sig_words(titre_b)) >= min_overlap
+
+
+DOSSIER_JOURS = 14        # mémoire ÉDITORIALE : une grosse affaire se suit deux semaines
+
+def dossier_sujet(conn, title, jours=DOSSIER_JOURS, maxi=8):
+    """Tout ce que Pulse a DÉJÀ PUBLIÉ sur ce sujet, sur les `jours` derniers jours.
+
+    ⚠️ À ne pas confondre avec topic_history(), qui compte les publications des dernières
+    24 h pour appliquer la CADENCE (3 max/jour). Ici c'est la mémoire ÉDITORIALE : sur une
+    affaire suivie deux semaines — un incendie, un procès —, le rédacteur doit savoir ce
+    qui a déjà été dit pour ne pas le redire.
+
+    Renvoie une liste chronologique de (âge_lisible, corps_publié), du plus ancien au plus
+    récent. Vide si le sujet est neuf."""
+    sig = _topic_sig_words(title)
+    if not sig:
+        return []
+    depuis = (datetime.now() - timedelta(days=jours)).strftime("%Y-%m-%d %H:%M:%S")
+    try:
+        rows = conn.execute(
+            "SELECT topic_sig, headline, corps, sent_at, vec FROM topic_memory "
+            "WHERE sent_at >= ? ORDER BY sent_at ASC", (depuis,)
+        ).fetchall()
+    except Exception:
+        return []
+    vec_courant = _embed(title, conn)
+    out = []
+    for topic_sig, head, corps, sent_at, vec_txt in rows:
+        autre = None
+        if vec_courant is not None and vec_txt:
+            try:
+                autre = json.loads(vec_txt)
+            except Exception:
+                autre = None
+        meme = (_cos(vec_courant, autre) >= EMBED_SEUIL) if autre is not None \
+            else (len(sig & set((topic_sig or "").split())) >= 2)
+        if not meme:
+            continue
+        try:
+            dt = datetime.strptime((sent_at or "")[:19], "%Y-%m-%d %H:%M:%S")
+            h = (datetime.now() - dt).total_seconds() / 3600
+            age = (f"il y a {int(h * 60)} min" if h < 1.5 else
+                   f"il y a {int(h)} h" if h < 36 else
+                   f"il y a {int(h / 24)} jours")
+        except Exception:
+            age = "récemment"
+        texte = re.sub(r"\s+", " ", (corps or head or "")).strip()
+        if texte:
+            out.append((age, texte[:200]))
+    return out[-maxi:]           # les plus récents priment si le dossier est épais
+
+
+def _dossier_en_texte(dossier):
+    """Met le dossier en forme pour le rédacteur, du plus ancien au plus récent."""
+    if not dossier:
+        return ""
+    lignes = "\n".join(f"• [{age}] {txt}" for age, txt in dossier)
+    return (
+        f"\n\n📚 CE QUE PULSE A DÉJÀ PUBLIÉ SUR CETTE AFFAIRE ({len(dossier)} publication(s)) :\n"
+        + lignes +
+        "\n\n⛔ NE RÉPÈTE AUCUN de ces faits : nos abonnés les connaissent. Un chiffre, un bilan "
+        "ou une circonstance déjà donnés plus haut ne doivent PAS être redits comme une nouveauté.\n"
+        "✅ Compare l'article à cet historique et ne garde QUE ce qui a changé depuis. "
+        "Si un bilan a évolué, dis explicitement l'évolution (« le bilan passe de X à Y »).\n"
+        "✅ Écris en CONTINUITÉ : le lecteur doit sentir que l'histoire avance."
+    )
 
 
 def topic_history(conn, title, min_overlap=2):
@@ -9123,6 +9352,9 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     if _is_obituary(item.get("title", ""), item.get("summary", "")):
         cat = "hommage"   # décès → ton sobre, même en breaking (le label URGENT reste si urgent=True)
     _bn, _bl, _prev_heads = topic_history(conn, item.get("title", ""))
+    _dossier = dossier_sujet(conn, item.get("title", ""))     # mémoire éditoriale 14 jours
+    if _dossier:
+        print(f"  📚 Affaire suivie : {len(_dossier)} publication(s) en mémoire")
     # 🚨→📰 ANTI-RÉCHAUFFÉ DU LABEL : "URGENT" est réservé à ce qui VIENT d'arriver.
     #    Un résultat sportif dont l'événement date (article > 3h) ou dont le sujet a DÉJÀ été
     #    couvert (suivi, défilé du lendemain…) redescend en label normal : l'info reste
@@ -9135,17 +9367,17 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     label_cat = "breaking" if urgent else cat
     body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
         item["title"], item["summary"], item["source"], cat, url=item.get("url"),
-        prev_angles=_prev_heads, pub_ts=item.get("pub_ts"), angle_neuf=_angle
+        prev_angles=_prev_heads, pub_ts=item.get("pub_ts"), angle_neuf=_angle,
+        dossier=_dossier
     )
     if not body:
         print(f"  ⛔ Breaking abandonné (génération vide ou annonce périmée) : {item['title'][:50]}")
         return None
     tweet_final = build_full_tweet(body, label_cat, country=pays)
     photo = extract_photo(item["entry"]) if item.get("entry") else None
-    raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, label_cat)
-    if not has_real:
-        # 🤝 sujet multi-médias par définition : l'image d'un article jumeau est presque toujours là
-        raw_src, has_real = _photo_secours_jumeau(item, candidates)
+    raw_src, has_real, _generee = _meilleure_image(item, candidates, photo, person, image_query, label_cat)
+    if _generee:
+        body = _mention_illustration(body)
     if has_real:
         png_bytes, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
                                  article_url=item.get("url"), person=person, W=1080, H=1350,
@@ -9215,7 +9447,7 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     if item.get("_topic_canon"):
         topic_echo_mark_alerted(conn, item["_topic_canon"], item.get("_echo_n", BREAKING_SOURCES))
     log_keywords(conn, keywords)
-    log_topic(conn, item.get("title", ""), keywords)   # mémoire par sujet (suivi éditorial)
+    log_topic(conn, item.get("title", ""), keywords, corps=body)   # mémoire par sujet (suivi éditorial)
     # 🏷️ Un canal = un registre : l'hommage n'arme jamais le frein des buzz,
     #    et chaque canal garde son propre anti-rafale.
     _kind = "hommage" if label_cat == "hommage" else ("breaking" if urgent else "buzz")
@@ -9242,6 +9474,72 @@ def _strip_html(text):
     text = re.sub(r'https?://\S+', '', text)              # liens bruts
     text = re.sub(r'\s+', ' ', text).strip()
     return text[:400]
+
+_SOURCES_PLATEAU = ("bfmtv", "bfm tv")
+
+def _image_plateau_probable(source):
+    """Vrai si la source illustre systématiquement ses articles par des captures de
+    PLATEAU TÉLÉ (présentateurs, décor de studio) plutôt que par une photo du sujet.
+    ⚠️ On ne cherche PAS à reconnaître un plateau sur l'image : une photo de studio a des
+    visages, une vraie photo d'actualité aussi — la détection visuelle serait peu fiable.
+    La règle par source est déterministe. Limitée à BFMTV, le cas constaté."""
+    s = str(source or "").lower()
+    return any(m in s for m in _SOURCES_PLATEAU)
+
+
+def _prompt_illustration(titre, categorie=""):
+    """Consigne de génération d'une IMAGE D'ILLUSTRATION pour une actualité.
+    ⚠️ L'image ne doit JAMAIS prétendre montrer l'événement réel : pas de visage
+    reconnaissable, pas de scène documentaire, pas de logo ni de texte. Une évocation
+    du contexte, rien de plus — et le tweet portera la mention « illustration »."""
+    sujet = re.sub(r"\s+", " ", str(titre or "")).strip()[:200]
+    return ("Image d'illustration éditoriale, photographie d'ambiance sobre et réaliste, "
+            "lumière naturelle, cadrage large, AUCUN texte, AUCUN logo, AUCUN visage "
+            "reconnaissable, aucune personne identifiable, pas de scène de reportage. "
+            "Évoque simplement le CONTEXTE de ce sujet : " + sujet)
+
+
+def _meilleure_image(item, candidates, photo, person, image_query, cat):
+    """Choisit la meilleure image disponible pour un article.
+    ① Si la source est BFMTV, on tente d'abord la photo d'un autre média couvrant le même
+       sujet : leurs illustrations sont des plateaux, sans rapport avec l'actualité.
+    ② Sinon, la photo de l'article, comme d'habitude.
+    ③ Si rien de réel n'est trouvé, une image d'ILLUSTRATION est générée — le tweet
+       portera alors la mention correspondante.
+    Renvoie (octets, trouvée, générée)."""
+    src = item.get("source", "")
+    if _image_plateau_probable(src):
+        raw, ok = _photo_secours_jumeau(item, candidates)
+        if ok:
+            print(f"  📺 {src} illustre en plateau → photo d'un autre média retenue")
+            return raw, True, False
+        brut = _gemini_image(_prompt_illustration(item.get("title", ""), cat),
+                             libelle="Illustration d'actualité")
+        if brut:
+            print(f"  🎨 {src} : aucun média jumeau → illustration générée (mention ajoutée)")
+            return brut, True, True
+        raw, ok = get_best_image(item.get("url"), photo, person, image_query, cat)
+        if ok:
+            print(f"  📺 {src} : ni jumeau ni illustration, on garde son image")
+        return raw, ok, False
+    raw, ok = get_best_image(item.get("url"), photo, person, image_query, cat)
+    if not ok:
+        raw, ok = _photo_secours_jumeau(item, candidates)
+    return raw, ok, False
+
+
+def _mention_illustration(body):
+    """Ajoute la mention obligatoire quand l'image accompagnant le tweet est générée.
+    Sans elle, un lecteur pourrait croire à une photo de l'événement — c'est
+    précisément ce qu'un compte d'actualité ne doit jamais laisser penser."""
+    txt = str(body or "").strip()
+    if "illustration" in txt.lower():
+        return txt
+    m = re.search(r"\n\n\(\s*([^()]{2,40}?)\s*\)\s*$", txt)
+    if m:      # fusionner avec la source : une seule ligne de pied
+        return txt[:m.start()] + f"\n\n({m.group(1).strip()} · illustration générée)"
+    return txt + "\n\n(Illustration générée)"
+
 
 def _photo_secours_jumeau(item, candidates):
     """🖼️🤝 L'article sélectionné n'a pas d'image exploitable (403, paywall, flux nu) ?
@@ -9918,10 +10216,13 @@ def check_feeds(conn):
             else:
                 video = None
                 _hn, _hl, _prev_heads = topic_history(conn, item["title"])
+                _dossier = dossier_sujet(conn, item["title"])
+                if _dossier:
+                    print(f"  📚 Affaire suivie : {len(_dossier)} publication(s) en mémoire")
                 body, headline_court, image_query, keywords, person, pays = gen_tweet_verified(
                     item["title"], item["summary"], item["source"], cat, url=item.get("url"),
                     prev_angles=_prev_heads, pub_ts=item.get("pub_ts"),
-                    angle_neuf=item.get("_angle_neuf") or ""
+                    angle_neuf=item.get("_angle_neuf") or "", dossier=_dossier
                 )
                 if not body:
                     print(f"  ⛔ Sujet abandonné (génération vide ou annonce périmée) : {item['title'][:50]}")
@@ -9934,10 +10235,9 @@ def check_feeds(conn):
             video_path = None
 
             # Image paysage (X + Facebook) — on récupère aussi l'image source pour réutilisation
-            raw_src, has_real = get_best_image(item.get("url"), photo, person, image_query, cat)
-            if not has_real:
-                # 🤝 le site bloque (403/paywall) ou le flux est nu → même sujet chez un autre média
-                raw_src, has_real = _photo_secours_jumeau(item, candidates)
+            raw_src, has_real, _generee = _meilleure_image(item, candidates, photo, person, image_query, cat)
+            if _generee:
+                body = _mention_illustration(body)
             if not has_real and item.get("raw_image"):
                 # 🎨 uniquement l'histoire du jour : illustration générée, tweet déjà annoté
                 raw_src, has_real = item["raw_image"], True
@@ -10088,7 +10388,7 @@ def check_feeds(conn):
                 continue
             if cat == "hommage":
                 log_keywords(conn, keywords)
-                log_topic(conn, item.get("title", ""), keywords)
+                log_topic(conn, item.get("title", ""), keywords, corps=body)
                 if item.get("url"):
                     mark_seen(conn, item["url"], item["title"])
                 print(f"  🕊️ Hommage publié (canal bonus, cadence intacte) : {item['title'][:50]}")
@@ -10096,7 +10396,7 @@ def check_feeds(conn):
                 continue
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
-            log_topic(conn, item.get("title", ""), keywords)   # mémoire par sujet (suivi éditorial)
+            log_topic(conn, item.get("title", ""), keywords, corps=body)   # mémoire par sujet (suivi éditorial)
             if cat == "sport" and _is_sport_result(item.get("title", "")):
                 log_special(conn, "sport_result", keywords)   # 1 dérogation résultat / 4h
             if item.get("url"):
