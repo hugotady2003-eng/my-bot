@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.37.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.39.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -2019,12 +2019,70 @@ def img_dimensions_ok(raw, min_w=600, min_h=400):
     except:
         return False
 
-def detect_face_center(pil_img):
+def _visage_par_ia(pil_img):
+    """Centre du visage principal, repéré par l'IA. Renvoie (cx, cy) en pixels, ou None.
+
+    Réservé aux HOMMAGES : c'est le seul visuel où un mauvais cadrage se voit vraiment
+    (portrait coupé, tête décentrée sur une carte de deuil). La détection classique par
+    OpenCV rate les profils, les visages de trois quarts et les photos anciennes ;
+    l'IA les voit. Ailleurs, OpenCV suffit et ne coûte rien.
+    🛡️ En cas d'échec : None → OpenCV reprend la main."""
+    if not GEMINI_API_KEY or pil_img is None:
+        return None
+    try:
+        import base64 as _b64, io as _io
+        buf = _io.BytesIO()
+        pil_img.convert("RGB").save(buf, format="JPEG", quality=85)
+        url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+               f"{GEMINI_MODEL}:generateContent")
+        r = requests.post(
+            url, headers={"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"},
+            json={"contents": [{"parts": [
+                      {"inlineData": {"mimeType": "image/jpeg",
+                                      "data": _b64.b64encode(buf.getvalue()).decode()}},
+                      {"text": "Où se trouve le CENTRE DU VISAGE de la personne principale "
+                               "sur cette image ? Donne des coordonnées relatives entre 0 et 1 "
+                               "(0,0 = coin haut gauche ; 1,1 = coin bas droit). Vise le milieu "
+                               "du visage, entre les yeux et la bouche.\n"
+                               'Réponds UNIQUEMENT : {"x": <0-1>, "y": <0-1>} '
+                               'ou {"x": null, "y": null} si aucun visage humain.'}]}],
+                  "generationConfig": {"maxOutputTokens": 60, "temperature": 0,
+                                       "responseMimeType": "application/json",
+                                       "thinkingConfig": {"thinkingBudget": 0}}},
+            timeout=45)
+        r.raise_for_status()
+        d = r.json()
+        try:
+            u = d.get("usageMetadata") or {}
+            _USAGE_GEMINI["in"] += u.get("promptTokenCount", 0) or 0
+            _USAGE_GEMINI["out"] += u.get("candidatesTokenCount", 0) or 0
+        except Exception:
+            pass
+        txt = (((d.get("candidates") or [{}])[0].get("content") or {})
+               .get("parts") or [{}])[0].get("text", "")
+        rep = _parse_json_reponse(txt)
+        x, y = rep.get("x"), rep.get("y")
+        if isinstance(x, (int, float)) and isinstance(y, (int, float)) \
+                and 0 <= x <= 1 and 0 <= y <= 1:
+            w, h = pil_img.size
+            print(f"  👤 Visage localisé par l'IA ({x:.2f}, {y:.2f})")
+            return (x * w, y * h)
+    except Exception as e:
+        print(f"  ⚠️ Repérage du visage indisponible ({str(e)[:50]}) → détection classique")
+    return None
+
+
+def detect_face_center(pil_img, par_ia=False):
     """
     Retourne (cx, cy) du centre du plus grand visage détecté, ou None.
-    Utilise OpenCV (Haar cascade). Si OpenCV absent ou aucun visage, retourne None
-    (on retombe alors sur le cadrage par défaut). Aucun coût API.
+    `par_ia=True` (hommages) : on demande d'abord à l'IA, qui voit les profils et les
+    photos anciennes que la détection classique rate. Sinon, OpenCV seul — instantané
+    et gratuit, largement suffisant pour les cartes d'actualité.
     """
+    if par_ia:
+        c = _visage_par_ia(pil_img)
+        if c:
+            return c
     try:
         import cv2, numpy as np
         arr  = np.array(pil_img.convert("RGB"))[:, :, ::-1].copy()  # RGB -> BGR
@@ -2844,7 +2902,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
                     try:
                         probe = photo.resize((int(src_w * cover_scale + 0.5),
                                               int(src_h * cover_scale + 0.5)), Image.LANCZOS)
-                        face = detect_face_center(probe)
+                        face = detect_face_center(probe, par_ia=(category == "hommage"))
                     except Exception:
                         face = None
 
@@ -6562,7 +6620,7 @@ def build_hommage_card(raw_photo, name, dates, desc, source, W=1080, H=1350):
             big = ph.resize((int(ph.width * scale + 0.5), int(ph.height * scale + 0.5)), Image.LANCZOS)
             face = None
             try:
-                face = detect_face_center(big)
+                face = detect_face_center(big, par_ia=True)
             except Exception:
                 face = None
             if face:
@@ -9487,6 +9545,66 @@ def _image_plateau_probable(source):
     return any(m in s for m in _SOURCES_PLATEAU)
 
 
+def _image_pertinente(raw, titre, resume=""):
+    """Vérifie EN REGARDANT l'image qu'elle illustre bien le sujet de l'article.
+
+    Aucune règle par source ne peut attraper tous les cas : un média peut illustrer une
+    nomination de sélectionneur par un mème sans rapport, une brève people par une photo
+    de plateau. Le seul contrôle fiable est de regarder l'image.
+
+    Renvoie True (garder), False (écarter), ou None si le contrôle n'a pas pu se faire —
+    dans ce cas on GARDE l'image : on ne bloque jamais une publication sur un doute."""
+    if not raw or not GEMINI_API_KEY:
+        return None
+    try:
+        import base64 as _b64
+        url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+               f"{GEMINI_MODEL}:generateContent")
+        sujet = re.sub(r"\s+", " ", f"{titre}. {resume}").strip()[:300]
+        question = (
+            "Voici l'image qu'un compte d'actualité s'apprête à publier avec cette info :\n"
+            f"« {sujet} »\n\n"
+            "Cette image est-elle une illustration ACCEPTABLE de cette information ?\n"
+            "Réponds NON si : c'est un mème ou un détournement humoristique ; c'est une "
+            "personne DIFFÉRENTE de celle dont parle l'info ; c'est un plateau de télévision "
+            "ou des présentateurs alors que l'info n'y a aucun rapport ; c'est une capture "
+            "d'écran de réseau social ; l'image n'a visiblement AUCUN lien avec le sujet.\n"
+            "Réponds NON ÉGALEMENT si l'image est CHOQUANTE et impubliable telle quelle : "
+            "corps, sang, blessures visibles, cadavre, scène de violence explicite, "
+            "détresse humaine crue. Un compte d'actualité ne publie pas ces images.\n"
+            "Réponds OUI si l'image montre le sujet, la personne concernée, le lieu, "
+            "l'événement, ou un visuel générique cohérent avec le thème.\n"
+            'Réponds UNIQUEMENT : {"ok": true|false, "raison": "<5 mots max>"}')
+        r = requests.post(
+            url, headers={"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"},
+            json={"contents": [{"parts": [
+                      {"inlineData": {"mimeType": "image/jpeg",
+                                      "data": _b64.b64encode(raw).decode()}},
+                      {"text": question}]}],
+                  "generationConfig": {"maxOutputTokens": 80, "temperature": 0,
+                                       "responseMimeType": "application/json",
+                                       "thinkingConfig": {"thinkingBudget": 0}}},
+            timeout=45)
+        r.raise_for_status()
+        d = r.json()
+        try:
+            u = d.get("usageMetadata") or {}
+            _USAGE_GEMINI["in"] += u.get("promptTokenCount", 0) or 0
+            _USAGE_GEMINI["out"] += u.get("candidatesTokenCount", 0) or 0
+        except Exception:
+            pass
+        txt = (((d.get("candidates") or [{}])[0].get("content") or {})
+               .get("parts") or [{}])[0].get("text", "")
+        rep = _parse_json_reponse(txt)
+        if isinstance(rep, dict) and "ok" in rep:
+            if not rep["ok"]:
+                print(f"  👁️ Image écartée : {str(rep.get('raison') or 'hors-sujet')[:40]}")
+            return bool(rep["ok"])
+    except Exception as e:
+        print(f"  ⚠️ Contrôle visuel indisponible ({str(e)[:60]}) → image conservée")
+    return None
+
+
 def _prompt_illustration(titre, categorie=""):
     """Consigne de génération d'une IMAGE D'ILLUSTRATION pour une actualité.
     ⚠️ L'image ne doit JAMAIS prétendre montrer l'événement réel : pas de visage
@@ -9503,25 +9621,39 @@ def _meilleure_image(item, candidates, photo, person, image_query, cat):
     """Choisit la meilleure image disponible pour un article.
     ① Si la source est BFMTV, on tente d'abord la photo d'un autre média couvrant le même
        sujet : leurs illustrations sont des plateaux, sans rapport avec l'actualité.
-    ② Sinon, la photo de l'article, comme d'habitude.
-    ③ Si rien de réel n'est trouvé, une image d'ILLUSTRATION est générée — le tweet
-       portera alors la mention correspondante.
+    ② Sinon, la photo de l'article, CONTRÔLÉE VISUELLEMENT : un média peut illustrer une
+       nomination par un mème (vécu : Brad Pitt bandé sur une info Zidane).
+    ③ Image écartée → photo d'un autre média, puis illustration générée.
     Renvoie (octets, trouvée, générée)."""
     src = item.get("source", "")
+    titre, resume = item.get("title", ""), item.get("summary", "")
+
+    def _valide(raw):
+        return raw if _image_pertinente(raw, titre, resume) is not False else None
+
     if _image_plateau_probable(src):
         raw, ok = _photo_secours_jumeau(item, candidates)
-        if ok:
+        if ok and _valide(raw):
             print(f"  📺 {src} illustre en plateau → photo d'un autre média retenue")
             return raw, True, False
-        brut = _gemini_image(_prompt_illustration(item.get("title", ""), cat),
-                             libelle="Illustration d'actualité")
-        if brut:
-            print(f"  🎨 {src} : aucun média jumeau → illustration générée (mention ajoutée)")
-            return brut, True, True
+    else:
         raw, ok = get_best_image(item.get("url"), photo, person, image_query, cat)
+        if ok and _valide(raw):
+            return raw, True, False
         if ok:
-            print(f"  📺 {src} : ni jumeau ni illustration, on garde son image")
-        return raw, ok, False
+            # l'image de l'article a été écartée : on cherche chez un confrère
+            raw2, ok2 = _photo_secours_jumeau(item, candidates)
+            if ok2 and _valide(raw2):
+                print("  🤝 Image d'origine hors-sujet → photo d'un autre média retenue")
+                return raw2, True, False
+
+    brut = _gemini_image(_prompt_illustration(titre, cat),
+                         libelle="Illustration d'actualité")
+    if brut:
+        print(f"  🎨 Aucune photo exploitable → illustration générée (mention ajoutée)")
+        return brut, True, True
+
+    # dernier recours : l'image d'origine, même imparfaite, plutôt que rien
     raw, ok = get_best_image(item.get("url"), photo, person, image_query, cat)
     if not ok:
         raw, ok = _photo_secours_jumeau(item, candidates)
