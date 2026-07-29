@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.46.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.47.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -1210,7 +1210,12 @@ _HOOK_INSTR = (
             "- CRÉE UNE ÉMOTION immédiate (indignation, stupeur, admiration, curiosité). Demande-toi : \"en lisant juste cette phrase, aurait-on envie de commenter ou de lire la suite ?\"\n"
             "- CONCRET ET IMAGÉ, jamais abstrait : \"un homme de 92 ans\" plutôt que \"une personne âgée\" ; \"18 MILLIONS d'euros\" plutôt que \"une grosse somme\".\n"
             "- 💥 CHIFFRE-CHOC : si l'article contient un chiffre FORT et surprenant (montant, pourcentage, nombre, record, comparaison), METS-LE EN VEDETTE dès la 1ʳᵉ phrase — c'est ce qui fait le plus réagir/commenter. Écris-le en toutes lettres marquantes (\"3 200 €/mois\", \"+47 % en un an\", \"1 Français sur 4\"). Donne-lui du relief (ce qu'il représente concrètement) SANS jamais l'arrondir à la hausse ni le sortir de son contexte réel. Pas de chiffre → n'en invente pas, garde une autre accroche.\n"
-            "- 🎬 LE FAIT EST L'ACCROCHE : n'ajoute PAS une phrase d'ambiance avant l'info (\"La ville retient son souffle.\") — c'est du remplissage. Un fait précis et net accroche mieux qu'une mise en scène. Évite le jargon de journaliste (\"embargo levé\", \"selon nos sources\") : parle comme au grand public.\n"
+            "- 📖 MÉTHODE — LIS L'ARTICLE EN ENTIER AVANT D'ÉCRIRE. Le fait le plus important n'est PAS toujours au début : un article ouvre souvent sur le contexte ou le portrait des personnes, et ne donne la décision qu'au milieu. Repère d'abord CE QUI EST NOUVEAU dans tout le texte, puis condense.\n"
+            "  ① Relève tous les faits de l'article. ② Classe-les : lequel un lecteur retiendrait-il s'il n'en gardait qu'un ? ③ Écris ce fait en premier. ④ Ajoute au plus UN élément de contexte, s'il est indispensable. ⑤ Jette tout le reste — les détails de parcours, les précisions secondaires, les rappels historiques.\n"
+            "- 🥇 OUVRE SUR L'ACTE, PAS SUR LE PORTRAIT : le début du tweet doit porter CE QUI VIENT DE SE PASSER (la décision, l'annonce, le fait nouveau). L'identité et le parcours des personnes viennent APRÈS, en quelques mots, et seulement s'ils éclairent. Un seul élément d'identification suffit — jamais la liste complète des employeurs.\n"
+            "  ⛔ MAUVAIS : « Xenia Fedorova, chroniqueuse régulière sur CNews, Europe 1 et au Journal du dimanche, est accusée de propagande. Le ministère a signé son arrêté d'expulsion. » — l'information est enterrée en troisième position.\n"
+            "  ✅ BON : « La France ORDONNE l'expulsion de la propagandiste russe Xenia Fedorova, qui officiait notamment sur CNews. »\n"
+            "- 🎬 LE FAIT EST L'ACCROCHE : n'ajoute PAS une phrase d'ambiance avant l'info (« La ville retient son souffle. ») — c'est du remplissage. Un fait précis et net accroche mieux qu'une mise en scène. Évite le jargon de journaliste (« embargo levé », « selon nos sources ») : parle comme au grand public.\n"
             "- 💬 CITATIONS-CHOC : si l'article contient de VRAIES citations fortes et courtes (critiques dithyrambiques, phrase-choc d'un témoin ou d'une personnalité), reprends-en 1 ou 2 entre guillemets — c'est très engageant. UNIQUEMENT des citations réellement présentes dans la source, JAMAIS inventées ni reformulées en plus fort. Si l'article n'en contient pas, n'en invente aucune.\n"
             "- Sujets clivants (politique, société, sécurité) : formule le FAIT pour que chacun ait aussitôt un avis — SANS prendre parti ni déformer l'info.\n"
             "- ⛔ JAMAIS AU PRIX DE LA VÉRITÉ : accroche fondée sur un fait RÉEL de la source. Aucune exagération, aucun mot plus fort que la source, aucun teaser trompeur, aucune question racoleuse creuse. Elle rend le vrai fait saillant, elle ne l'invente ni ne l'amplifie."
@@ -1430,12 +1435,22 @@ def _resserre(body, structure=False):
         #    long vaut infiniment mieux qu'une phrase amputée.
         # Plancher à 40 caractères : le plus court tweet de référence en fait 50.
         # Couper à la 1re phrase donne souvent le meilleur tweet — c'est elle qui porte le fait.
-        fins = [m.end() for m in re.finditer(r"[.!?…](?:\s|$)", corps) if m.end() <= _cible]
-        if fins and fins[-1] >= 40:
-            essai = corps[:fins[-1]].strip()
-            # ⛔ ne jamais s'arrêter sur une annonce non livrée : mieux vaut tout garder
-            if not _annonce_creuse(essai):
-                corps = essai
+        fins = [m.end() for m in re.finditer(r"[.!?…](?:\s|$)", corps)]
+        # ⛔ On ne coupe QU'À UNE FIN DE PHRASE. Couper au dernier espace produisait du
+        #    français cassé (vécu : « … et 1,2 million dans la. »).
+        avant_cible = [f for f in fins if f <= _cible and f >= 40]
+        if avant_cible:
+            essai = corps[:avant_cible[-1]].strip()
+        elif fins and fins[0] >= 40:
+            # Aucune fin de phrase avant la cible : on garde la PREMIÈRE phrase entière.
+            #    Une phrase de 160 caractères vaut toujours mieux que trois de 300 (vécu :
+            #    un tweet de 305 caractères restait intact faute de point avant la cible).
+            essai = corps[:fins[0]].strip()
+        else:
+            essai = corps
+        # ⛔ ne jamais s'arrêter sur une annonce non livrée : mieux vaut tout garder
+        if essai != corps and not _annonce_creuse(essai):
+            corps = essai
     return (corps + ("\n\n" + source if source else "")).strip()
 
 
@@ -1555,7 +1570,14 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
     today = datetime.now().strftime("%d %B %Y")
     label = LABELS[category]
     video_str = ""
-    art_str  = f"\n- EXTRAIT DE L'ARTICLE (fait foi sur les faits et qualifications) : {article_text[:1200]}" if article_text else ""
+    # 📖 L'article est transmis ENTIER (jusqu'à 6 000 caractères). Il était auparavant
+    #    tronqué à 1 200 : le fait le plus important pouvait se trouver au-delà, et le
+    #    tweet ouvrait alors sur le contexte du début (vécu : l'ordre d'expulsion de
+    #    Xenia Fedorova arrivait après le portrait). L'analyse étant gratuite, il n'y a
+    #    aucune raison de lire l'article en partie.
+    art_str = (f"\n\n📖 ARTICLE COMPLET (fait foi sur les faits et qualifications — "
+               f"LIS-LE EN ENTIER avant d'écrire) :\n{article_text[:6000]}"
+               if article_text else "")
     corr_str = f"\n\n🚨 CORRECTION OBLIGATOIRE — ta version précédente contenait une ERREUR FACTUELLE : {correction}. Corrige-la impérativement." if correction else ""
 
     # 🔁 SUITE D'UN SUJET DÉJÀ TRAITÉ : on montre à Claude ce que Pulse a DÉJÀ publié
@@ -6083,7 +6105,7 @@ def gather_articles_with_urls(limit_per_feed=4):
             pass
     return arts
 
-def fetch_article_text(url, max_chars=3000):
+def fetch_article_text(url, max_chars=7000):
     """Récupère le texte principal d'un article (paragraphes), pour en extraire les vrais chiffres."""
     if not url:
         return ""
