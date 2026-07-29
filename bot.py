@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.40.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.46.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -1328,7 +1328,7 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - 🎙️ NE RELAIE JAMAIS LA PUB D'UN AUTRE MÉDIA : beaucoup d'articles (BFMTV, etc.) servent à promouvoir LEUR podcast, émission, dossier ou reportage. IGNORE totalement cette promo. Ne finis JAMAIS par "on en parle dans le podcast", "à écouter dans notre émission", "à retrouver dans notre dossier", "rendez-vous dans…". Ne pose pas non plus de questions creuses qui renvoient à ce contenu ("Pourquoi ce choix ? On en parle dans…"). Extrais UNIQUEMENT le fait d'actualité (le quoi/qui/quand) et donne-le en clair. Si l'article n'a qu'une promo sans réel fait, garde juste le fait vérifiable et rien d'autre.
 - Mets en avant le CHIFFRE ou le FAIT clé. Tu peux écrire UN mot ou chiffre important en MAJUSCULES pour l'emphase (avec parcimonie).
 - ⛔ INTERDIT : les pavés, les paragraphes "conséquence/enjeu", les ouvertures "Et si...", "Saviez-vous que...", le remplissage.
-- Longueur cible : 80 à 200 caractères (source comprise). Les meilleurs tweets de Pulse font ~135 caractères. 250 est un MAXIMUM absolu, réservé aux sujets à plusieurs éléments. Un tweet court et net vaut TOUJOURS mieux qu'un tweet complet et long.
+- Longueur cible : 50 à 140 caractères, source comprise. La MÉDIANE des tweets de Pulse est de 87 caractères — soit une phrase, pas deux. Exemples réels : « Lebron James va rejoindre les Philadelphia 76ers ! » (50), « Il y a près de 6 millions de chômeurs en France. (20 Minutes) » (61), « La Birmanie APPROUVE la peine de mort pour les délits liés aux arnaques en ligne. (AFP) » (87). ⛔ Au-delà de 160 caractères tu es HORS FORMAT : coupe le contexte, les conséquences, les précisions secondaires. Un tweet court et net vaut TOUJOURS mieux qu'un tweet complet et long.
 - 🇫🇷 FRANÇAIS IMPECCABLE : aucun mot ni expression en anglais (traduis tout), aucune faute d'orthographe/grammaire/accord, aucun mot tronqué. RELIS-toi avant de répondre.
 - 1 à 2 hashtags INTÉGRÉS DANS LES PHRASES (3 max si vraiment justifié) : colle "#" sur un mot DÉJÀ présent.
 - 🎯 CHOIX DU HASHTAG — vise le SUJET, jamais le décor. Le hashtag principal = LE nom propre central de l'actu (entreprise, personne, club, événement, jeu vidéo). Test : "cette actu parle de quoi en UN mot ?" → c'est CE mot qui prend le #. Ex : actu sur l'entrée en Bourse de SpaceX → #SpaceX (PAS #Bourse ni #TimesSquare) ; actu sur Mbappé → #Mbappé (pas #football) ; match des Bleus → #CoupeDuMonde2026 ; sortie de GTA 6 → #GTA6.
@@ -1366,10 +1366,10 @@ def _manque_marqueur_suite(texte):
 
 # 📏 Le plafond dépend du FORMAT : un fait direct doit tenir en deux lignes, un sujet à
 #    plusieurs éléments a besoin de sa liste. Repères tirés des tweets de référence :
-#    formats direct/chiffre → 38 à 214 caractères (médiane 135) ;
+#    formats direct/chiffre → 50 à 140 caractères (médiane 87) ;
 #    formats liste/échéances → 385 à 417 caractères, mais en LIGNES COURTES.
-TWEET_LONG_MAX = 230      # plafond des formats DIRECT et CHIFFRE
-TWEET_LONG_CIBLE = 170    # cible du resserrage local
+TWEET_LONG_MAX = 160      # plafond des formats DIRECT et CHIFFRE
+TWEET_LONG_CIBLE = 120    # cible du resserrage local
 TWEET_STRUCT_MAX = 460    # plafond des formats LISTE et ÉCHÉANCES
 TWEET_LIGNE_MAX = 110     # aucune LIGNE ne doit être à rallonge, quel que soit le format
 
@@ -1394,6 +1394,19 @@ def _ligne_a_rallonge(body):
     return False
 
 
+def _annonce_creuse(texte):
+    """Vrai si le tweet ANNONCE quelque chose sans le livrer.
+    « Le PDG défend son travail. » promet une explication et n'en donne aucune — c'est
+    pire qu'un tweet long : le lecteur n'apprend rien. Ces sujets doivent partir en
+    format LISTE, jamais être tronqués à leur phrase d'annonce."""
+    t = re.sub(r"\s*\([^()]{2,40}\)\s*$", "", str(texte or "")).strip()
+    if not t or not _FMT_ANNONCE_RX.search(t):
+        return False
+    # une annonce est « livrée » si elle s'accompagne d'un chiffre, d'une citation
+    # ou d'une énumération
+    return not (_FMT_CHIFFRE_RX.search(t) or '"' in t or "«" in t or "\n" in t)
+
+
 def _resserre(body, structure=False):
     """Raccourcit un tweet trop long SANS appel payant : on retire les phrases de la fin
     en gardant la source. La première phrase porte le fait, c'est elle qu'on protège.
@@ -1411,15 +1424,18 @@ def _resserre(body, structure=False):
         blocs.pop()                                  # on sacrifie le dernier bloc
     corps = "\n\n".join(blocs)
     if len(corps) > (TWEET_STRUCT_MAX if structure else TWEET_LONG_MAX):
-        # une seule phrase, mais trop longue : on coupe à la dernière ponctuation utile,
-        # et à défaut au dernier espace — jamais au milieu d'un mot.
-        coupe = max(corps.rfind(". ", 0, _cible), corps.rfind(" ; ", 0, _cible))
-        if coupe > 60:
-            corps = corps[:coupe + 1].strip()
-        else:
-            coupe = corps.rfind(" ", 0, _cible)
-            if coupe > 60:
-                corps = corps[:coupe].rstrip(" ,;:-–—") + "."
+        # ⛔ On ne coupe QU'À UNE FIN DE PHRASE. Couper au dernier espace produisait du
+        #    français cassé (vécu : « … et 1,2 million dans la. »). Si aucune fin de
+        #    phrase n'existe avant la limite, on GARDE le texte entier : un tweet un peu
+        #    long vaut infiniment mieux qu'une phrase amputée.
+        # Plancher à 40 caractères : le plus court tweet de référence en fait 50.
+        # Couper à la 1re phrase donne souvent le meilleur tweet — c'est elle qui porte le fait.
+        fins = [m.end() for m in re.finditer(r"[.!?…](?:\s|$)", corps) if m.end() <= _cible]
+        if fins and fins[-1] >= 40:
+            essai = corps[:fins[-1]].strip()
+            # ⛔ ne jamais s'arrêter sur une annonce non livrée : mieux vaut tout garder
+            if not _annonce_creuse(essai):
+                corps = essai
     return (corps + ("\n\n" + source if source else "")).strip()
 
 
@@ -1481,6 +1497,18 @@ _FORMATS = {
 }
 
 
+# 🗣️ Verbes d'ANNONCE : ils promettent un contenu que le tweet DOIT livrer.
+#    « Le PDG défend son travail » sans dire comment, c'est une annonce creuse.
+#    Dès qu'un de ces verbes accompagne plusieurs données, le format LISTE s'impose.
+_FMT_ANNONCE_RX = re.compile(
+    r"\b(?:défend|defend|justifie|explique|détaille|detaille|précise|precise|"
+    r"présente|presente|dévoile|devoile|annonce|répond|repond|argumente|"
+    r"se défend|assure que|affirme que|fait valoir|met en avant|"
+    r"revient sur|réagit|reagit|dénonce|denonce|alerte sur|"
+    r"plusieurs (?:mesures|points|raisons|arguments|chiffres|éléments))\b",
+    re.IGNORECASE)
+
+
 def choisir_format_tweet(title, summary, article_text=""):
     """Choisit le FORMAT de composition d'un tweet à partir de la matière de l'article.
     Mécanique et gratuit : on compte ce que l'article contient réellement.
@@ -1490,9 +1518,13 @@ def choisir_format_tweet(title, summary, article_text=""):
     chiffres = len({m.group(0).lower().replace(" ", "") for m in _FMT_CHIFFRE_RX.finditer(src)})
     dates    = len({m.group(0).lower() for m in _FMT_DATE_RX.finditer(src)})
     enum     = bool(_FMT_ENUM_RX.search(src))
+    annonce  = bool(_FMT_ANNONCE_RX.search(src))
     # ordre du plus structurant au plus simple
     if dates >= 2 and (chiffres >= 1 or enum):
         nom = "echeances"
+    elif annonce and chiffres >= 2:
+        # une ANNONCE avec des données : le tweet doit livrer le détail, pas le promettre
+        nom = "liste"
     elif enum and chiffres >= 2:
         nom = "liste"
     elif chiffres >= 3:
@@ -1840,6 +1872,17 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
         avant = len(body)
         body = _resserre(body, _struct)
         print(f"  ✂️ Tweet resserré localement ({avant} → {len(body)} car.)")
+
+    # 🗣️ ANNONCE CREUSE : le tweet promet une explication et ne la donne pas.
+    if _annonce_creuse(body) and _can_regen():
+        print("  🗣️ Annonce sans contenu → régénération avec le détail")
+        anti = ("Ton tweet annonce quelque chose (« défend », « justifie », « explique »…) "
+                "sans dire QUOI. Le lecteur n'apprend rien. Réécris-le en donnant "
+                "CONCRÈTEMENT les éléments : les chiffres, les arguments, les mesures — "
+                "sous forme de liste à puces courtes si nécessaire.")
+        body, headline, image_query, keywords, person, pays = gen_tweet_complet(
+            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
+            angle_neuf=angle_neuf, dossier=dossier, correction=anti)
 
     # 🔁 SUITE écrite comme une découverte : nos abonnés connaissent déjà l'histoire.
     if prev_angles and _manque_marqueur_suite(body) and _can_regen():
@@ -4224,10 +4267,19 @@ Aujourd'hui nous sommes le {today} {current_yr}. Voici les événements historiq
 3. OU une anecdote / un détail fou que peu de gens connaissent.
 REJETTE l'obscur, l'administratif, le « déjà vu mille fois sans angle neuf ».
 À FORCE ÉGALE, préfère un événement marqué 🖼️ (il a une illustration d'époque) — mais ne sacrifie JAMAIS la force du sujet juste pour l'image.
-⚠️ SOIS TRÈS EXIGEANT : si le jour n'offre RIEN de vraiment marquant ou surprenant, réponds {{"skip": true}}. Mieux vaut NE RIEN publier qu'un éphéméride banal — c'est un choix assumé, pas un échec.
+⛔ NOTE OBLIGATOIRE — donne d'abord une note d'INTÉRÊT sur 10 à l'événement retenu :
+   • 9-10 : tout le monde connaît et ça marque encore (Apollo 11, chute du Mur, 11-Septembre).
+   • 7-8  : événement fort, ou anecdote vraiment surprenante que peu de gens connaissent.
+   • 4-6  : intéressant mais oubliable — un simple « tiens, c'était ce jour-là ».
+   • 0-3  : anodin. Sortie d'un logiciel, d'une console ou d'un produit ; création d'un
+            organisme ; nomination administrative ; record sportif mineur ; anniversaire
+            d'entreprise. Rien de tout cela n'intéresse un lecteur d'actualité.
+⛔ Si la note est INFÉRIEURE À 7, réponds {{"skip": true}} et rien d'autre. Ne rien
+   publier est un choix assumé : un éphéméride banal dessert le compte.
 
-ÉTAPE 2 — ÉCRIS UN TWEET COURT, FACTUEL, PERCUTANT (registre sobre, PAS une dissertation) :
-- 2 à 4 phrases MAXIMUM. Concis, chaque mot compte. Va droit au fait.
+ÉTAPE 2 — ÉCRIS UN TWEET TRÈS COURT, au FORMAT DE PULSE (le même que les actualités) :
+- 60 à 180 caractères. UNE phrase, DEUX au maximum. C'est un tweet, pas un paragraphe.
+- Modèle : « Il y a 57 ans, Apollo 11 se posait sur la Lune. 600 millions de personnes ont suivi l'alunissage en direct. »
 - Commence par le fait le plus fort/surprenant, puis « il y a X ans » et le contexte essentiel — pas plus.
 - CONCRET et FACTUEL. ⛔ INTERDIT le lyrisme et les envolées : pas de « cathédrale de la solidarité », « acte de rébellion contre l'indifférence », « la planète bat au même rythme », « moment suspendu », « cathédrales »… On informe, on ne fait pas de poésie.
 - ⛔ RIGUEUR : n'invente aucun fait/date/chiffre. Utilise EXACTEMENT le nombre d'années donné (« il y a 57 ans » → écris 57, pas 56 ni 58).
@@ -4239,12 +4291,21 @@ Format :
 - body : le fait fort d'emblée, puis le contexte court. 1-2 hashtags pertinents max. Fini par « (Source : Wikipédia) »
 
 JSON :
-{{"index":0,"headline_court":"...","image_query":"...","body":"..."}}
+{{"index":0,"note":<0-10>,"headline_court":"...","image_query":"...","body":"..."}}
 OU
 {{"skip": true}}""", max_tokens=450, task="special")
 
         if result.get("skip"):
             print("  📜 Aucun événement assez connu — skip.")
+            return None
+        # 🎚️ GARDE-FOU D'INTÉRÊT : la consigne demande une note, on la fait respecter.
+        #    Sans ce contrôle, une sortie de logiciel finissait publiée (défaut vécu).
+        try:
+            _note = int(result.get("note", 0) or 0)
+        except Exception:
+            _note = 0
+        if _note < HISTOIRE_NOTE_MINI:
+            print(f"  ⏭️ Éphéméride trop banal (intérêt {_note}/10) → on ne publie pas.")
             return None
 
         body = (result.get("body") or "").strip()
@@ -4252,6 +4313,11 @@ OU
             body = re.sub(rf"^{lbl}\s*\|\s*", "", body, flags=re.IGNORECASE)
         body = re.sub(r"^[\U0001F300-\U0001F9FF\u2600-\u27BF\s]+", "", body).strip()
         if not body: return None
+        # ✂️ Même exigence de concision que les actualités : pas de pavé historique.
+        if _trop_long(body):
+            avant = len(body)
+            body = _resserre(body)
+            print(f"  ✂️ Éphéméride resserré ({avant} → {len(body)} car.)")
 
         # 🖼️ Image : d'abord la vraie photo Wikipédia de l'événement choisi. Si elle
         #    n'existe pas, une ILLUSTRATION générée — et dans ce cas SEULEMENT, le tweet
@@ -5128,37 +5194,50 @@ def _carr_lignes_titre(texte, maxi=3):
     return [" ".join(mots[i:i + taille]) for i in range(0, len(mots), taille)][:maxi]
 
 
-def _carr_numerote(slides):
-    """Pose la pastille « k/total » sur chaque slide."""
-    total = len(slides)
+def _carr_numerote(slides, date_txt=""):
+    """Prépare l'en-tête de chaque slide : date au centre, et flèche « suite » sur toutes
+    sauf la dernière. Le compteur « k/total » a été retiré — il n'apportait rien au
+    lecteur et mentait dès qu'une slide était écartée."""
+    date_txt = date_txt or _date_fr()
     for i, s in enumerate(slides):
-        s["pageLabel"] = f"{i + 1}/{total}"
+        s["dateTxt"] = date_txt
+        s["fleche"] = (i < len(slides) - 1)
     return slides
 
 
-def carrousel_recap(items, date_txt=""):
+def carrousel_recap(items, date_txt="", maxi=7):
     """Transforme le récap du soir en carrousel d'images.
     `items` = [(emoji, texte, categorie, raw_image), …] — même entrée que la carte récap.
-    Renvoie (slides, accents, photos) — une couleur et une photo PAR slide, la couleur
-    étant celle de la catégorie de l'actu (le décryptage, lui, garde le lavande)."""
+
+    🧵 Le carrousel part en FIL : 4 images dans l'ouverture, les suivantes en réponse.
+    La limite de 4 médias par publication ne borne donc plus le nombre d'actualités.
+    La couverture prend une photo DIFFÉRENTE de la première actu — sans quoi les deux
+    premières vignettes se ressemblent et le carrousel paraît répétitif.
+
+    Renvoie (slides, accents, photos) — une couleur et une photo par slide."""
+    items = list(items or [])[:max(1, maxi - 1)]        # 1 couverture + N actus = maxi
     slides = [{"kind": "recapCover", "subjectTag": (date_txt or _date_fr()).upper(),
                "titleLines": ["Ce qu'il faut", "retenir"]}]
     accents = [CARR_ACCENT]
     photos  = [None]
-    for i, it in enumerate(items or []):
+    for i, it in enumerate(items):
         emo, texte, cat, raw = (list(it) + [None, None, None, None])[:4]
         cat = (cat or "france").lower()
         slides.append({
             "kind": "info",
-            "titleLines": [f"{i + 1} — {(STYLES.get(cat, {}) or {}).get('label', cat).upper()}"],
+            "badge": (i + 1, (STYLES.get(cat, {}) or {}).get("label", cat)),
             "paras": [_carr_surligne(texte)],
         })
         accents.append(_carr_accent(cat))
         photos.append(raw)
-    # la couverture reprend la photo de la première actu, à défaut de la sienne
-    if len(photos) > 1 and photos[1]:
-        photos[0] = photos[1]
-    return _carr_numerote(slides), accents, photos
+    # couverture : on prend la photo d'une AUTRE actu que la première, en partant de la fin
+    for p in reversed(photos[2:]):
+        if p:
+            photos[0] = p
+            break
+    if photos[0] is None and len(photos) > 1:
+        photos[0] = photos[1]        # une seule actu illustrée : pas le choix
+    return _carr_numerote(slides, date_txt), accents, photos
 
 
 def carrousel_decryptage(carousel, raw_photo=None, categorie="monde"):
@@ -5442,8 +5521,9 @@ def _carr_dessine_paragraphe(img, draw, segments, font, x, y, largeur_max, accen
                 draw = ImageDraw.Draw(img)
                 draw.text((cx, y), mot, font=font, fill=coul_txt)
             else:
-                # texte blanc avec ombre portée (text-shadow du gabarit)
-                draw.text((cx + 2, y + 2), mot, font=font, fill=(0, 0, 0, 170))
+                # texte blanc détaché par une ombre FLOUTÉE (pas un simple décalage net)
+                draw = _carr_ombre(img, draw, cx, y, mot, font,
+                                   decal=2, flou=4, opacite=180)
                 draw.text((cx, y), mot, font=font, fill=(255, 255, 255))
             cx += w + espace
         y += interligne
@@ -5497,16 +5577,32 @@ def _carr_font_ajustee(draw, lignes, px, largeur_max, mini=0.55):
     return f, _replie(f, src)
 
 
-def _carr_titre(draw, lignes, font, x, y, centre=False, largeur=None, stroke=5):
-    """Titre en CAPITALES, blanc contouré de sombre, interligne serré (0.94)."""
+def _carr_ombre(img, dessine, x, y, texte, font, decal=3, flou=6, opacite=190):
+    """Pose une OMBRE PORTÉE douce sous un texte, puis renvoie un Draw à jour.
+    Remplace le contour noir : un liseré épais durcit la typographie et donne un rendu
+    d'autocollant. Une ombre floutée détache le texte du fond sans le cerner."""
+    cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    ImageDraw.Draw(cal).text((x + decal, y + decal), texte, font=font,
+                             fill=(0, 0, 0, opacite))
+    cal = cal.filter(ImageFilter.GaussianBlur(flou))
+    img.alpha_composite(cal)
+    return ImageDraw.Draw(img)
+
+
+def _carr_titre(draw, lignes, font, x, y, centre=False, largeur=None, stroke=5, img=None):
+    """Titre en CAPITALES, blanc, détaché du fond par une OMBRE PORTÉE (pas un contour).
+    Interligne serré (0.94). `img` doit être fourni pour que l'ombre soit dessinée."""
     interligne = int(font.size * 0.94)
     for l in (lignes or []):
         t = str(l).upper()
         px = x
         if centre and largeur:
             px = x + (largeur - draw.textlength(t, font=font)) // 2
-        draw.text((px, y), t, font=font, fill=(255, 255, 255),
-                  stroke_width=stroke, stroke_fill=CARR_STROKE)
+        if img is not None:
+            draw = _carr_ombre(img, draw, px, y, t, font,
+                               decal=max(2, font.size // 22),
+                               flou=max(4, font.size // 12))
+        draw.text((px, y), t, font=font, fill=(255, 255, 255))
         y += interligne
     return y
 
@@ -5565,6 +5661,116 @@ def _carr_voiles(img, sombre):
         img.alpha_composite(cal2)
 
 
+def _carr_badge_cat(img, draw, x, y, numero, libelle, accent):
+    """Badge « [N] CATÉGORIE » : le numéro dans un carré à la couleur du sujet, le libellé
+    à côté, le tout sur une pastille claire. C'est le repère visuel qui structure un
+    carrousel d'actualité — plus lisible qu'un titre en capitales géantes."""
+    fn = _carr_font(40, titre=True)
+    fl = _carr_font(38, titre=True)
+    num, lib = str(numero), str(libelle).upper()
+    wn = int(draw.textlength(num, font=fn))
+    wl = int(draw.textlength(lib, font=fl))
+    h    = int(fl.size * 1.55)
+    cote = h - 14                                  # carré du numéro
+    larg = 10 + cote + 16 + wl + 22
+    cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    cd  = ImageDraw.Draw(cal)
+    cd.rounded_rectangle([x, y, x + larg, y + h], radius=12, fill=(248, 247, 252, 245))
+    cd.rounded_rectangle([x + 10, y + 7, x + 10 + cote, y + 7 + cote],
+                         radius=8, fill=tuple(accent) + (255,))
+    img.alpha_composite(cal)
+    draw = ImageDraw.Draw(img)
+    _lum = 0.299 * accent[0] + 0.587 * accent[1] + 0.114 * accent[2]
+    draw.text((x + 10 + cote // 2, y + 7 + cote // 2), num, font=fn,
+              fill=((25, 20, 40) if _lum > 145 else (255, 255, 255)), anchor="mm")
+    draw.text((x + 10 + cote + 16, y + h // 2), lib, font=fl, fill=(28, 24, 48), anchor="lm")
+    return draw, y + h + 26
+
+
+def _carr_bulle(img, raw_photo, x, y, w, h):
+    """Insère une PHOTO dans une bulle arrondie posée sur le visuel — un second point de
+    vue sur le sujet, cadre clair et ombre portée. Ne fait rien si aucune photo."""
+    if not raw_photo:
+        return False
+    try:
+        import io as _io
+        ph = Image.open(_io.BytesIO(raw_photo)).convert("RGB")
+        sw, sh = ph.size
+        k = max(w / sw, h / sh)
+        ph = ph.resize((int(sw * k + 0.5), int(sh * k + 0.5)), Image.LANCZOS)
+        nw, nh = ph.size
+        ph = ph.crop(((nw - w) // 2, int((nh - h) * 0.35),
+                      (nw - w) // 2 + w, int((nh - h) * 0.35) + h)).convert("RGBA")
+        m = Image.new("L", (w, h), 0)
+        ImageDraw.Draw(m).rounded_rectangle([0, 0, w - 1, h - 1], radius=26, fill=255)
+        ph.putalpha(m)
+        # ombre portée sous la bulle
+        ombre = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        ImageDraw.Draw(ombre).rounded_rectangle([x + 6, y + 8, x + w + 6, y + h + 8],
+                                                radius=26, fill=(0, 0, 0, 130))
+        img.alpha_composite(ombre.filter(ImageFilter.GaussianBlur(12)))
+        img.alpha_composite(ph, (x, y))
+        # liseré clair
+        ImageDraw.Draw(img).rounded_rectangle([x, y, x + w - 1, y + h - 1],
+                                              radius=26, outline=(255, 255, 255, 210), width=4)
+        return True
+    except Exception:
+        return False
+
+
+def _carr_trame(img, pas=3, force=16):
+    """Pose une TRAME de points sur toute l'image — la texture qu'on voit sur les visuels
+    des grands comptes d'actualité. Elle unifie des photos de qualités très différentes
+    et donne un aspect « imprimé » qui masque la compression."""
+    try:
+        import numpy as _np
+        a = _np.asarray(img.convert("RGBA")).astype(_np.int16)
+        h, w = a.shape[:2]
+        motif = _np.zeros((h, w), dtype=_np.int16)
+        motif[::pas, ::pas] = force              # un point clair tous les `pas` pixels
+        motif[1::pas, 1::pas] = -force // 2      # et un point sombre en décalé
+        for c in range(3):
+            a[:, :, c] = _np.clip(a[:, :, c] + motif, 0, 255)
+        return Image.fromarray(a.astype("uint8"), "RGBA")
+    except Exception:
+        return img
+
+
+def _carr_entete(img, draw, date_txt=""):
+    """En-tête commun à toutes les slides : logo Pulse à gauche, date au centre.
+    Remplace la pastille « k/total », qui n'apportait rien au lecteur."""
+    _pulse_brand(img, draw, CARR_W, CARR_H)
+    draw = ImageDraw.Draw(img)
+    if date_txt:
+        f = _carr_font(30, titre=True)
+        t = str(date_txt).upper()
+        tw = int(draw.textlength(t, font=f))
+        x0 = (CARR_W - tw - 44) // 2
+        cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        ImageDraw.Draw(cal).rounded_rectangle([x0, 44, x0 + tw + 44, 44 + f.size + 20],
+                                              radius=10, fill=(248, 247, 252, 240))
+        img.alpha_composite(cal)
+        draw = ImageDraw.Draw(img)
+        draw.text((CARR_W // 2, 44 + (f.size + 20) // 2), t, font=f,
+                  fill=(28, 24, 48), anchor="mm")
+    return draw
+
+
+def _carr_fleche(img, draw):
+    """Flèche « suite » en bas à droite : invite à faire défiler, sans compteur."""
+    r, m = 34, 44
+    cx, cy = CARR_W - m - r, CARR_H - m - r - 30
+    cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    ImageDraw.Draw(cal).ellipse([cx - r, cy - r, cx + r, cy + r], fill=(248, 247, 252, 240))
+    img.alpha_composite(cal)
+    draw = ImageDraw.Draw(img)
+    d = int(r * 0.46)
+    draw.line([(cx - d, cy), (cx + d, cy)], fill=(28, 24, 48), width=6)
+    draw.line([(cx + d - 11, cy - 11), (cx + d, cy)], fill=(28, 24, 48), width=6)
+    draw.line([(cx + d - 11, cy + 11), (cx + d, cy)], fill=(28, 24, 48), width=6)
+    return draw
+
+
 def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_photo=None):
     """Rend UNE slide de carrousel au format du gabarit fourni (1080×1350).
     `slide` : {"kind": cover|recapCover|info|cta, ...} — voir le modèle.
@@ -5577,18 +5783,8 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_p
         _carr_voiles(img, kind in ("info", "recapCover"))
         d = ImageDraw.Draw(img)
 
-        # pastille « k/total » en haut à droite
-        if slide.get("pageLabel"):
-            f = _carr_font(30)
-            t = str(slide["pageLabel"])
-            tw = d.textlength(t, font=f)
-            x1, y1 = CARR_W - 34, 34
-            x0, y0 = x1 - tw - 44, y1
-            cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
-            ImageDraw.Draw(cal).rounded_rectangle([x0, y0, x1, y0 + f.size + 16],
-                                                  radius=24, fill=(28, 23, 42, 153))
-            img.alpha_composite(cal); d = ImageDraw.Draw(img)
-            d.text((x0 + 22, y0 + 8), t, font=f, fill=(255, 255, 255))
+        # en-tête : logo Pulse à gauche, date au centre (plus de compteur « k/total »)
+        d = _carr_entete(img, d, slide.get("dateTxt", ""))
 
         M = 64
         larg = CARR_W - 2 * M
@@ -5605,7 +5801,7 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_p
                 img.alpha_composite(cal); d = ImageDraw.Draw(img)
                 d.text((M + 20, 72), t, font=f, fill=(32, 32, 42))
             f, tl = _carr_font_ajustee(d, slide.get("titleLines"), 98, larg)
-            _carr_titre(d, tl, f, M, CARR_H - 120 - int(f.size * 0.94) * max(1, len(tl)))
+            _carr_titre(d, tl, f, M, CARR_H - 120 - int(f.size * 0.94) * max(1, len(tl)), img=img)
 
         elif kind == "recapCover":
             if slide.get("subjectTag"):
@@ -5622,38 +5818,64 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_p
             f, tl = _carr_font_ajustee(d, slide.get("titleLines"), 112, larg)
             _carr_titre(d, tl, f, M,
                         CARR_H // 2 - int(f.size * 0.94) * max(1, len(tl)) // 2 + 20,
-                        centre=True, largeur=larg)
+                        centre=True, largeur=larg, img=img)
 
         elif kind == "cta":
             y = 80
             f, tl = _carr_font_ajustee(d, slide.get("ctaLines"), 72, larg)
-            y = _carr_titre(d, tl, f, M, y)
+            y = _carr_titre(d, tl, f, M, y, img=img)
             if slide.get("ctaSub"):
                 fs = _carr_font(36, titre=True)
-                d.text((M, y + 20), str(slide["ctaSub"]).upper(), font=fs,
-                       fill=(255, 255, 255), stroke_width=2, stroke_fill=CARR_STROKE)
+                d = _carr_ombre(img, d, M, y + 20, str(slide["ctaSub"]).upper(), fs,
+                                decal=2, flou=4)
+                d.text((M, y + 20), str(slide["ctaSub"]).upper(), font=fs, fill=(255, 255, 255))
             if slide.get("ctaBig"):
                 fb, _tb = _carr_font_ajustee(d, [slide["ctaBig"]], 92, larg)
                 t = (_tb[0] if _tb else str(slide["ctaBig"]).upper())
                 tw = d.textlength(t, font=fb)
-                d.text(((CARR_W - tw) // 2, CARR_H - 300), t, font=fb,
-                       fill=(255, 255, 255), stroke_width=6, stroke_fill=CARR_STROKE)
+                d = _carr_ombre(img, d, (CARR_W - tw) // 2, CARR_H - 300, t, fb,
+                                decal=4, flou=8)
+                d.text(((CARR_W - tw) // 2, CARR_H - 300), t, font=fb, fill=(255, 255, 255))
 
         else:  # info
-            y = 70
-            if slide.get("titleLines"):
-                f, tl = _carr_font_ajustee(d, slide["titleLines"], 76, larg)
-                y = _carr_titre(d, tl, f, M, y) + 44
-            fp = _carr_font(33, gras=False)
-            for p in (slide.get("paras") or []):
+            # 📐 Composition d'un carrousel d'actualité : badge de catégorie en haut,
+            #    le fait principal en GRAS juste dessous, le complément en graisse
+            #    normale ensuite. Le texte reste HAUT ; s'il y a peu à dire, la photo
+            #    occupe le reste du cadre sans qu'on ait besoin de meubler.
+            # 📐 Bloc ANCRÉ EN BAS : badge, fait principal, complément — le tout calé
+            #    au-dessus du filigrane, sur le dégradé. La photo occupe tout le cadre.
+            paras = slide.get("paras") or []
+            h_badge = int(_carr_font(38, titre=True).size * 1.55) + 26 if slide.get("badge") else 0
+            h_txt = 0
+            for i, p in enumerate(paras):
+                _f = _carr_font(38 if i == 0 else 33, gras=(i == 0))
+                h_txt += max(1, len(_carr_wrap(d, _carr_segments(p), _f, larg))) \
+                    * int(_f.size * 1.5) + (30 if i == 0 else 22)
+            y = max(int(CARR_H * 0.22), CARR_H - 150 - h_badge - h_txt)
+            if slide.get("badge"):
+                d, y = _carr_badge_cat(img, d, M, y, slide["badge"][0],
+                                       slide["badge"][1], accent)
+            elif slide.get("titleLines"):
+                f_t, tl = _carr_font_ajustee(d, slide["titleLines"], 76, larg)
+                y = _carr_titre(d, tl, f_t, M, y, img=img) + 40
+            for i, p in enumerate(paras):
+                # 1er paragraphe : le FAIT, en gras. Les suivants : le contexte, plus léger.
+                fp = _carr_font(38 if i == 0 else 33, gras=(i == 0))
                 y = _carr_dessine_paragraphe(img, d, _carr_segments(p), fp, M, y, larg, accent)
                 d = ImageDraw.Draw(img)
-                y += 24                      # margin-bottom du gabarit
+                y += 30 if i == 0 else 22
+            # 🫧 seconde photo en bulle, AU-DESSUS du bloc de texte s'il reste de la place
+            _haut_bloc = CARR_H - 150 - h_badge - h_txt
+            if slide.get("bulle") and _haut_bloc > 560:
+                _carr_bulle(img, slide["bulle"], M, _haut_bloc - 330,
+                            int(larg * 0.58), 300)
             if slide.get("kicker"):
                 fk, tk = _carr_font_ajustee(d, [slide["kicker"]], 78, larg)
                 _carr_titre(d, tk, fk, M, CARR_H - 260 - int(fk.size * 0.94) * (len(tk) - 1),
-                            centre=True, largeur=larg)
+                            centre=True, largeur=larg, img=img)
 
+        if slide.get("fleche"):
+            d = _carr_fleche(img, d)
         # filigrane centré en bas
         if watermark:
             fw = _carr_font(22)
@@ -5662,6 +5884,7 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_p
             d.text(((CARR_W - tw) // 2, CARR_H - 44 - fw.size), t, font=fw,
                    fill=(255, 255, 255, 209))
 
+        img = _carr_trame(img)          # texture de trame sur l'ensemble du visuel
         buf = _io.BytesIO()
         img.convert("RGB").save(buf, format="PNG", optimize=True)
         return buf.getvalue()
@@ -8152,6 +8375,8 @@ Réponds avec ce JSON UNIQUEMENT :
             if len(sw) >= 2 and any(len(sw & ps) >= 2 for ps in seen_sigs):
                 continue
             items.append((e, t)); seen_sigs.append(sw)
+            # 🧵 Le carrousel est publié en FIL : plus de limite à 4 images. On garde
+            #    5 actus, soit 6 visuels — 4 dans l'ouverture, 2 en réponse.
             if len(items) >= 5:
                 break
         if len(items) < 3:
@@ -8205,7 +8430,7 @@ Réponds avec ce JSON UNIQUEMENT :
     png_list = []
     try:
         _sl, _ac, _ph = carrousel_recap(_items)
-        png_list = rendre_carrousel(_sl, _ac, _ph, maxi=4)
+        png_list = rendre_carrousel(_sl, _ac, _ph)
         if len(png_list) > 1:
             print(f"  🎠 Récap en carrousel : {len(png_list)} images")
     except Exception as e:
@@ -8214,7 +8439,8 @@ Réponds avec ce JSON UNIQUEMENT :
     png = png_list[0] if png_list else build_recap_card(_items, 1080, 1350)
     _x = _fb = _ig = None
     try:
-        _x = post_to_twitter(body, png, png_list=(png_list if len(png_list) > 1 else None))
+        _x = (publier_carrousel_en_fil(body, png_list, "⬇️ La suite du récap du jour")
+              if len(png_list) > 1 else post_to_twitter(body, png))
     except Exception as e:
         print(f"  ❌ X isolé : {e}")
     try:
@@ -8866,6 +9092,7 @@ def _meme_sujet(titre_a, titre_b, vec_a=None, vec_b=None, min_overlap=2):
     return len(_sig_words(titre_a) & _sig_words(titre_b)) >= min_overlap
 
 
+HISTOIRE_NOTE_MINI = 7    # en dessous, l'éphéméride du jour n'est pas publié
 DOSSIER_JOURS = 14        # mémoire ÉDITORIALE : une grosse affaire se suit deux semaines
 
 def dossier_sujet(conn, title, jours=DOSSIER_JOURS, maxi=8):
@@ -9489,6 +9716,9 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
         prev_angles=_prev_heads, pub_ts=item.get("pub_ts"), angle_neuf=_angle,
         dossier=_dossier
     )
+    if item.get("_tendance"):
+        # le mot qui a fait remonter le sujet passe en tête des hashtags candidats
+        keywords = [item["_tendance"]] + [k for k in (keywords or [])]
     if not body:
         print(f"  ⛔ Breaking abandonné (génération vide ou annonce périmée) : {item['title'][:50]}")
         return None
@@ -9734,6 +9964,82 @@ def _mention_illustration(body):
     if m:      # fusionner avec la source : une seule ligne de pied
         return txt[:m.start()] + f"\n\n({m.group(1).strip()} · illustration générée)"
     return txt + "\n\n(Illustration générée)"
+
+
+TREND_FRAICHEUR_H = 20      # un sujet en tendance doit reposer sur un article DU JOUR
+
+def _sujets_en_tendance(candidates, maxi=3):
+    """Croise les TENDANCES X avec les articles déjà collectés ce cycle.
+
+    Plutôt que de chercher à l'aveugle sur le web, on regarde si un mot qui monte
+    correspond à une actualité que la presse française traite AUJOURD'HUI. C'est plus
+    sûr : la source reste un média identifié, et l'article est daté.
+
+    Trois sécurités :
+      • l'article doit dater de moins de TREND_FRAICHEUR_H heures ;
+      • le mot en tendance doit VRAIMENT figurer dans le titre ou le résumé ;
+      • le mot doit être significatif (≥ 4 lettres, hors mots vides).
+
+    Renvoie [(article, mot_en_tendance), …]. Vide si rien ne correspond."""
+    tend = _tendances_x()
+    if not tend or not candidates:
+        return []
+    import time as _t
+    maintenant = _t.time()
+    mots = []
+    for t in tend:
+        m = str(t).lstrip("#").strip()
+        if len(m) >= 4 and _norm_tag(m) and _norm_tag(m) not in _TAG_BANNIS:
+            mots.append(m)
+    out, vus = [], set()
+    for c in candidates:
+        ts = c.get("pub_ts")
+        if ts and (maintenant - ts) > TREND_FRAICHEUR_H * 3600:
+            continue                                   # article trop ancien
+        blob = f"{c.get('title','')} {c.get('summary','')}".lower()
+        for m in mots:
+            if m.lower() in vus:
+                continue
+            # le mot doit apparaître comme un MOT ENTIER, pas au milieu d'un autre
+            if re.search(rf"(?<![\w#]){re.escape(m.lower())}(?!\w)", blob):
+                out.append((c, m))
+                vus.add(m.lower())
+                break
+        if len(out) >= maxi:
+            break
+    if out:
+        print(f"  📈 {len(out)} sujet(s) en tendance trouvé(s) dans l'actualité du jour : "
+              + ", ".join(f"#{_norm_tag(m)}" for _, m in out))
+    return out
+
+
+def publier_carrousel_en_fil(texte, pngs, texte_suite="", par_tweet=4):
+    """Publie un carrousel de PLUS de 4 images en FIL : les 4 premières dans le tweet
+    d'ouverture, les suivantes en réponse à celui-ci.
+
+    X plafonne à 4 médias par publication — mais rien n'empêche d'enchaîner. Le lecteur
+    voit un fil continu, et aucune actualité n'est annoncée sans son visuel.
+
+    Renvoie l'URL du premier tweet, ou None si même l'ouverture a échoué."""
+    if not pngs:
+        return None
+    lots = [pngs[i:i + par_tweet] for i in range(0, len(pngs), par_tweet)]
+    url = post_to_twitter(texte, lots[0][0], png_list=(lots[0] if len(lots[0]) > 1 else None))
+    if not url or len(lots) == 1:
+        return url
+    # identifiant du tweet d'ouverture, pour y répondre
+    tid = str(url).rstrip("/").split("/")[-1]
+    for i, lot in enumerate(lots[1:], start=2):
+        try:
+            suite = texte_suite or "⬇️ La suite du récap"
+            post_to_twitter(f"{suite} ({i}/{len(lots)})", lot[0],
+                            reply_to_id=tid, png_list=(lot if len(lot) > 1 else None))
+            time.sleep(2)
+        except Exception as e:
+            print(f"  ⚠️ Suite du fil non publiée ({str(e)[:60]})")
+            break
+    print(f"  🧵 Carrousel publié en fil : {len(pngs)} images en {len(lots)} tweets")
+    return url
 
 
 def _photo_secours_jumeau(item, candidates):
@@ -10013,7 +10319,18 @@ def check_feeds(conn):
     #     sinon on passe au sujet chaud suivant.
     # Le 1er qui publie arrête le run (1 post/run). Si aucun ne publie → on continue vers les news.
     nb_today = posts_today(conn)
+    # 📈 Un sujet qui MONTE sur X et que la presse traite aujourd'hui mérite d'être
+    #    remonté dans la file des sujets chauds — le hashtag correspondant sera intégré
+    #    naturellement à la rédaction. Les garde-fous habituels s'appliquent ensuite.
     hot_topics = detect_breaking(conn, candidates, return_all=True)
+    try:
+        _deja = {h.get("url") for h in hot_topics}
+        for _art, _mot in _sujets_en_tendance(candidates):
+            if _art.get("url") not in _deja:
+                _art["_tendance"] = _mot
+                hot_topics.append(_art)
+    except Exception as e:
+        print(f"  ⚠️ Canal tendances ignoré ({str(e)[:60]})")
     if hot_topics and not breaking_recent(conn):
         # 💰 UN SEUL appel d'analyse pour TOUS les sujets chauds du run. Le prompt d'analyse
         #    pèse ~2 400 tokens : l'envoyer une fois par sujet était le principal gaspillage
