@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.47.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.48.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -715,7 +715,10 @@ def _attendre_creneau(famille="texte"):
 
 def _post_gemini(url, payload, famille="texte", timeout=60, essais=2):
     """Appel POST vers Gemini, régulé et tolérant au 429.
-    Un refus pour dépassement de débit n'est pas une panne : on attend et on réessaie."""
+    Un refus pour dépassement de débit n'est pas une panne : on attend et on réessaie.
+    ⚠️ En cas d'erreur 4xx, on affiche le MESSAGE de l'API : sans lui, un contrat
+    d'appel qui change se traduit par un « 400 Bad Request » indéchiffrable et le bot
+    bascule silencieusement sur le repli payant (défaut vécu)."""
     import time as _t
     derniere = None
     for essai in range(essais):
@@ -724,10 +727,18 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=2):
             r = requests.post(url, headers={"x-goog-api-key": GEMINI_API_KEY,
                                             "Content-Type": "application/json"},
                               json=payload, timeout=timeout)
-            if getattr(r, "status_code", 200) == 429 and essai + 1 < essais:
+            code = getattr(r, "status_code", 200)
+            if code == 429 and essai + 1 < essais:
                 print(f"  ⏱️ Débit {famille} refusé par l'API → nouvelle tentative dans 20 s")
                 _t.sleep(20)
                 continue
+            if code and code >= 400:
+                try:
+                    msg = ((r.json().get("error") or {}).get("message") or "")[:180]
+                except Exception:
+                    msg = (getattr(r, "text", "") or "")[:180]
+                if msg:
+                    print(f"  🔎 Gemini {code} — {msg}")
             r.raise_for_status()
             return r.json()
         except Exception as e:
@@ -749,17 +760,37 @@ def _usage_gemini(d):
         pass
 
 
+def _gen_config(max_tokens=None, json_out=False, extra=None):
+    """Construit le bloc `generationConfig` ADAPTÉ à la génération du modèle.
+
+    ⚠️ Les modèles Gemini 3.x ont changé de contrat (juillet 2026) :
+      • `thinkingBudget` est remplacé par `thinkingLevel` — envoyer l'ancien renvoie
+        une ERREUR 400, ce qui faisait échouer toutes les rédactions (défaut vécu) ;
+      • `temperature`, `topP` et `topK` sont dépréciés et ignorés.
+    On omet donc ces paramètres sur les 3.x, où le niveau « minimal » est déjà le défaut
+    de Flash-Lite. Les modèles plus anciens gardent l'ancienne forme."""
+    cfg = {}
+    if max_tokens:
+        cfg["maxOutputTokens"] = int(max_tokens)
+    if json_out:
+        cfg["responseMimeType"] = "application/json"
+    moderne = bool(re.match(r"gemini-3\.[5-9]|gemini-[4-9]", str(GEMINI_MODEL or "")))
+    if not moderne:
+        # anciens modèles : pas de « réflexion » facturée, température maîtrisée
+        cfg["thinkingConfig"] = {"thinkingBudget": 0}
+        cfg["temperature"] = 0.7 if not json_out else 0
+    if extra:
+        cfg.update(extra)
+    return cfg
+
+
 def _gemini_call(prompt, system, max_tokens, want_json=True):
     """Appel du modèle Gemini en REST — aucune dépendance nouvelle, `requests` suffit,
     donc requirements.txt reste intact. Lève une exception en cas d'échec (le repli
     Claude est géré par _llm_json)."""
     global _USAGE_GEMINI
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
-    gen = {"maxOutputTokens": int(max_tokens), "temperature": 0.7,
-           # pas de « réflexion » : elle est facturée comme de la sortie et ralentit le run
-           "thinkingConfig": {"thinkingBudget": 0}}
-    if want_json:
-        gen["responseMimeType"] = "application/json"
+    gen = _gen_config(max_tokens=max_tokens, json_out=want_json)
     body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": gen}
     if system:
         body["systemInstruction"] = {"parts": [{"text": system}]}
@@ -2167,9 +2198,7 @@ def _visage_par_ia(pil_img):
                                "du visage, entre les yeux et la bouche.\n"
                                'Réponds UNIQUEMENT : {"x": <0-1>, "y": <0-1>} '
                                'ou {"x": null, "y": null} si aucun visage humain.'}]}],
-                  "generationConfig": {"maxOutputTokens": 60, "temperature": 0,
-                                       "responseMimeType": "application/json",
-                                       "thinkingConfig": {"thinkingBudget": 0}}})
+                  "generationConfig": _gen_config(60, json_out=True)})
         _usage_gemini(d)
         txt = (((d.get("candidates") or [{}])[0].get("content") or {})
                .get("parts") or [{}])[0].get("text", "")
@@ -8424,20 +8453,32 @@ Réponds avec ce JSON UNIQUEMENT :
         out = []
         for e, t in items:
             sig = _sig_words(t)
-            best = None
-            for (atitle, aurl, acat) in rows2:
-                if len(sig & _sig_words(atitle or "")) >= 2:
-                    best = (aurl, acat); break
-            # catégorie : celle de l'article source si trouvé, sinon déduite du texte de l'actu
-            cat = (best[1] if best and best[1] else None) or _recap_guess_cat(t)
+            # ① TOUS les articles du jour qui parlent de ce sujet, pas seulement le premier :
+            #    une page bloquée ne doit pas laisser la slide sans image (défaut vécu).
+            corr = [(aurl, acat) for (atitle, aurl, acat) in rows2
+                    if aurl and len(sig & _sig_words(atitle or "")) >= 2]
+            cat = next((c for _, c in corr if c), None) or _recap_guess_cat(t)
             raw = None
-            if best and best[0]:
+            for aurl, _ in corr[:4]:
                 try:
-                    raw, ok = get_best_image(best[0], None, None, None, cat)
-                    if not ok:
-                        raw = None
+                    r, ok = get_best_image(aurl, None, None, None, cat)
+                    if ok and r:
+                        raw = r
+                        break
+                except Exception:
+                    continue
+            # ② aucune photo trouvée : on génère une illustration plutôt que de laisser
+            #    une slide nue. Le récap ne sort qu'une fois par jour, le coût est nul.
+            if not raw:
+                try:
+                    raw = _gemini_image(_prompt_illustration(t, cat),
+                                        libelle="Illustration du récap")
                 except Exception:
                     raw = None
+                if raw:
+                    print(f"  🎨 Récap : illustration générée pour « {t[:40]}… »")
+                else:
+                    print(f"  🖼️ Récap : aucune image pour « {t[:40]}… » → fond de catégorie")
             out.append((e, t, cat, raw))
         return out
 
@@ -9297,7 +9338,39 @@ def topic_gate(conn, title, resume=None, juge_modele=False):
     new_words -= _FOLLOWUP_GENERIC
     if not new_words:
         return False, "stale", heads
+    # 🛡️ Quand le JUGE N'A PAS PU SE PRONONCER, on ne se fie pas au simple fait qu'il y
+    #    ait des mots neufs : une reformulation en produit toujours (« banlieusard »,
+    #    « révélations »…) sans apporter le moindre fait. On exige un mot qui signale un
+    #    VRAI DÉVELOPPEMENT — plainte, interpellation, verdict, nouveau bilan.
+    #    (Défaut vécu : une panne de l'API a laissé republier le même sujet dans la journée.)
+    _sans_accent = {"".join(c for c in unicodedata.normalize("NFD", m)
+                            if unicodedata.category(c) != "Mn") for m in new_words}
+    if juge_modele and not (_sans_accent & _MOTS_DEVELOPPEMENT):
+        print(f"  ⏭️  Juge indisponible et aucun fait nouveau détecté "
+              f"({', '.join(sorted(new_words))}) → on ne republie pas")
+        return False, "stale", heads
     return True, "followup", heads
+
+
+# Vocabulaire du DÉVELOPPEMENT : ces mots signalent qu'une histoire a AVANCÉ, par
+# opposition à une simple reformulation. Sert de garde-fou quand l'IA est indisponible.
+_MOTS_DEVELOPPEMENT = {
+    "plainte", "plaintes", "porte", "interpelle", "interpelle", "interpellation",
+    "interpellations", "arrete", "arretee", "arrestation", "garde", "vue", "mise",
+    "examen", "inculpe", "inculpation", "verdict", "condamne", "condamnee",
+    "condamnation", "relaxe", "acquitte", "proces", "juge", "jugee", "requiem",
+    "appel", "recours", "cassation", "bilan", "morts", "mort", "deces", "blesses",
+    "victimes", "disparus", "evacues", "evacuation", "hospitalise", "hospitalisee",
+    "demission", "demissionne", "limoge", "limogee", "revocation", "suspendu",
+    "suspendue", "suspension", "reaction", "reactions", "repond", "riposte",
+    "annonce", "annoncee", "confirme", "confirmee", "dementi", "dement",
+    "adopte", "adoptee", "vote", "votee", "rejete", "rejetee", "promulgue",
+    "signe", "signee", "decret", "arrete", "sanction", "sanctions", "amende",
+    "greve", "manifestation", "mobilisation", "accord", "rupture", "retrait",
+    "fixe", "maitrise", "eteint", "circonscrit", "rouvre", "reouverture",
+    "ferme", "fermeture", "annule", "annulation", "reporte", "report",
+    "nouveau", "nouvelle", "premier", "premiere", "record", "hausse", "baisse",
+}
 
 # Mots trop génériques pour à eux seuls justifier une "suite" : présents dans presque
 # toutes les reformulations d'un même drame, ils n'apportent aucune information nouvelle.
@@ -9893,9 +9966,7 @@ def _image_pertinente(raw, titre, resume=""):
                       {"inlineData": {"mimeType": "image/jpeg",
                                       "data": _b64.b64encode(raw).decode()}},
                       {"text": question}]}],
-                  "generationConfig": {"maxOutputTokens": 80, "temperature": 0,
-                                       "responseMimeType": "application/json",
-                                       "thinkingConfig": {"thinkingBudget": 0}}},
+                  "generationConfig": _gen_config(80, json_out=True)},
             famille="vision", timeout=45)
         _usage_gemini(d)
         txt = (((d.get("candidates") or [{}])[0].get("content") or {})
