@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.54.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.58.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -588,13 +588,35 @@ def _is_night(h=None):
         h = _paris_hour()
     return h < 7
 
-def _cadence_minutes(h):
-    """Rythme de publication. Base ~1h30 partout (probabilité croissante jusqu'à 2h30),
-    nuit fortement ralentie. PLUS d'accélération prime-time (trop coûteux). Les alertes
-    (breaking, résultats sport) restent prioritaires et ne passent pas par ce rythme."""
+def _cadence_minutes(h, conn=None):
+    """Rythme de publication entre deux actualités normales.
+
+    🎯 CADENCE ADAPTATIVE : le rythme ne dépend plus seulement de l'heure, mais du
+    BUDGET RESTANT. On répartit les publications qui restent sur les heures qui restent.
+    Concrètement : si le bot a beaucoup publié le matin, il espace l'après-midi ; s'il a
+    peu publié, il resserre pour ne pas laisser le fil mourir en soirée.
+    Sans cela, une matinée dense pouvait épuiser le quota et donner l'impression que le
+    compte s'arrête en début de soirée."""
     if h < 7:
         return 180, 300, "nuit (quasi-pause, seule une alerte vitale passe)"
-    return 30, 90, "journée (30 min à 1h30 entre deux actus normales)"
+    base_min, base_max = 30, 90
+    if conn is None:
+        return base_min, base_max, "journée (30 min à 1h30 entre deux actus normales)"
+    try:
+        deja = posts_today(conn)
+    except Exception:
+        return base_min, base_max, "journée (30 min à 1h30 entre deux actus normales)"
+
+    restant = max(0, DAILY_POST_SOFT - deja)
+    heures_restantes = max(0.5, 24 - h)          # la journée s'arrête à minuit
+    if restant <= 0:
+        return 150, 240, f"quota atteint ({deja}) — seules les alertes passent"
+    # écart idéal pour étaler ce qui reste jusqu'à minuit
+    ideal = (heures_restantes * 60) / restant
+    mini = int(max(25, min(150, ideal * 0.65)))
+    maxi = int(max(mini + 20, min(240, ideal * 1.35)))
+    return mini, maxi, (f"journée ({mini}-{maxi} min · {deja} publié(s), "
+                        f"{restant} restant(s) sur {heures_restantes:.1f} h)")
 
 _CADENCE_DECISION = None   # décision de cadence du run courant (un seul tirage par run)
 
@@ -607,7 +629,7 @@ def should_publish_now(conn, min_minutes=None, max_minutes=None):
         return _CADENCE_DECISION
     if min_minutes is None or max_minutes is None:
         h = _paris_hour()
-        min_minutes, max_minutes, mode = _cadence_minutes(h)
+        min_minutes, max_minutes, mode = _cadence_minutes(h, conn)
         print(f"  🕐 {h}h (Paris) — rythme {mode} : {min_minutes}-{max_minutes} min")
     last = last_publish_time(conn)
     if not last:
@@ -8704,10 +8726,26 @@ Réponds avec ce JSON UNIQUEMENT :
         out = []
         for e, t in items:
             sig = _sig_words(t)
-            # ① TOUS les articles du jour qui parlent de ce sujet, pas seulement le premier :
-            #    une page bloquée ne doit pas laisser la slide sans image (défaut vécu).
+            # ① Rapprochement EN CASCADE. Le texte du récap est REFORMULÉ par l'IA :
+            #    exiger deux mots communs avec le titre d'origine ne trouvait presque
+            #    jamais l'article (défaut vécu : « Incendies en Gironde et Var » ne
+            #    correspondait pas à « Feu de forêt : le Var à nouveau touché »).
             corr = [(aurl, acat) for (atitle, aurl, acat) in rows2
                     if aurl and len(sig & _sig_words(atitle or "")) >= 2]
+            if not corr:      # ② un seul mot LONG suffit : Gironde, Zidane, incendie…
+                longs = {m for m in sig if len(m) >= 6}
+                corr = [(aurl, acat) for (atitle, aurl, acat) in rows2
+                        if aurl and (longs & _sig_words(atitle or ""))]
+            if not corr:      # ③ un seul mot significatif, en dernier recours
+                corr = [(aurl, acat) for (atitle, aurl, acat) in rows2
+                        if aurl and (sig & _sig_words(atitle or ""))]
+            _cat_devinee = _recap_guess_cat(t)
+            if not corr and _cat_devinee:
+                # ④ aucun mot commun (reformulation totale) : on prend la photo d'un
+                #    article de la MÊME CATÉGORIE du jour. Mieux qu'un fond nu, et le
+                #    sujet reste proche puisque la catégorie est déduite du texte.
+                corr = [(aurl, acat) for (atitle, aurl, acat) in rows2
+                        if aurl and acat == _cat_devinee]
             cat = next((c for _, c in corr if c), None) or _recap_guess_cat(t)
             raw = None
             for aurl, _ in corr[:4]:
@@ -10266,6 +10304,64 @@ def _prompt_illustration(titre, categorie=""):
             "Évoque simplement le CONTEXTE de ce sujet : " + sujet)
 
 
+def _portrait_hommage(person, item, candidates, cat):
+    """Photo pour un HOMMAGE : le PORTRAIT de la personne, en priorité absolue.
+
+    L'ordre normal — image de l'article d'abord — ne convient pas ici : un article
+    nécrologique est souvent illustré par une photo de contexte sans rapport avec le
+    défunt (vécu : une photo du RAID sur l'hommage à l'écrivain Marcel Cohen).
+    On cherche donc, dans l'ordre :
+      ① le portrait Wikipédia de la personne ;
+      ② la photo de l'article, mais SEULEMENT si elle montre bien cette personne ;
+      ③ la photo d'un autre média couvrant le décès, même contrôle.
+    Sans portrait vérifié, on préfère la carte SANS photo : un hommage illustré par
+    quelqu'un d'autre est pire qu'un hommage sobre.
+    Renvoie (octets, trouvée)."""
+    sujet = f"portrait de {person}" if person else str(item.get("title") or "")
+
+    def _valide(raw, exigeant=True):
+        """L'image montre-t-elle bien la bonne personne ?"""
+        if not raw:
+            return False
+        if not exigeant:
+            return True
+        return _image_pertinente(
+            raw, f"Hommage à {person}. L'image doit montrer CETTE personne, "
+                 f"pas une scène de contexte") is not False
+
+    # ① portrait Wikipédia — la source la plus sûre pour une personnalité
+    if person:
+        try:
+            raw = fetch_wikipedia_portrait(person)
+            if raw:
+                print(f"  🖼️ Portrait Wikipédia trouvé pour {person}")
+                return raw, True
+        except Exception as e:
+            print(f"  ⚠️ Portrait Wikipédia indisponible ({str(e)[:50]})")
+
+    # ② image de l'article, sous condition qu'elle montre la personne
+    try:
+        raw, ok = get_best_image(item.get("url"), item.get("photo_url"), person, sujet, cat)
+        if ok and _valide(raw):
+            return raw, True
+        if ok:
+            print("  👁️ Image de l'article écartée : ne montre pas la personne")
+    except Exception:
+        pass
+
+    # ③ un autre média couvrant le même décès
+    try:
+        raw2, ok2 = _photo_secours_jumeau(item, candidates)
+        if ok2 and _valide(raw2):
+            print("  🤝 Portrait trouvé chez un autre média")
+            return raw2, True
+    except Exception:
+        pass
+
+    print("  🕊️ Aucun portrait vérifié → hommage sans photo (plutôt qu'une image fausse)")
+    return None, False
+
+
 def _meilleure_image(item, candidates, photo, person, image_query, cat):
     """Choisit la meilleure image disponible pour un article.
     ① Si la source est BFMTV, on tente d'abord la photo d'un autre média couvrant le même
@@ -10276,6 +10372,11 @@ def _meilleure_image(item, candidates, photo, person, image_query, cat):
     Renvoie (octets, trouvée, générée)."""
     src = item.get("source", "")
     titre, resume = item.get("title", ""), item.get("summary", "")
+    # 🕊️ HOMMAGE : le portrait de la personne prime sur l'image de l'article, qui est
+    #    souvent une photo de contexte sans rapport avec le défunt.
+    if cat == "hommage":
+        raw, ok = _portrait_hommage(person, item, candidates, cat)
+        return raw, ok, False
 
     def _valide(raw):
         return raw if _image_pertinente(raw, titre, resume) is not False else None
@@ -10323,6 +10424,142 @@ def _mention_illustration(body):
 
 
 TREND_FRAICHEUR_H = 20      # un sujet en tendance doit reposer sur un article DU JOUR
+TREND_RECHERCHE_WEB = os.environ.get("TREND_WEB", "1").strip() not in ("0", "false", "non")
+TREND_IMPORTANCE_MINI = 6   # en dessous, un sujet en tendance ne mérite pas de publication
+
+def _rechercher_actu_tendance(mot, heures=TREND_FRAICHEUR_H, maxi=4):
+    """Cherche sur le web une actualité RÉCENTE correspondant à un mot en tendance.
+
+    Complète le croisement avec les flux RSS : un sujet peut monter sur X sans figurer
+    dans les 50 sources suivies. On interroge Google Actualités en français, qui expose
+    un flux daté — chaque résultat porte sa date de publication, ce qui permet d'écarter
+    mécaniquement tout ce qui n'est pas du jour.
+
+    ⚠️ Aucune publication n'est décidée ici : on rend des CANDIDATS, qui repassent
+    ensuite par tous les filtres éditoriaux habituels.
+    Renvoie [{title, url, summary, source, pub_ts}, …], du plus récent au plus ancien."""
+    if not mot or len(str(mot).strip()) < 3:
+        return []
+    import time as _t
+    from urllib.parse import quote_plus
+    terme = str(mot).lstrip("#").strip()
+    url = (f"https://news.google.com/rss/search?q={quote_plus(terme)}"
+           f"+when:1d&hl=fr&gl=FR&ceid=FR:fr")
+    try:
+        flux = feedparser.parse(url)
+    except Exception as e:
+        print(f"  ⚠️ Recherche « {terme} » impossible ({str(e)[:50]})")
+        return []
+    maintenant = _t.time()
+    out = []
+    for e in (getattr(flux, "entries", []) or [])[:14]:
+        ts = None
+        for champ in ("published_parsed", "updated_parsed"):
+            p = getattr(e, champ, None)
+            if p:
+                try:
+                    ts = _t.mktime(p)
+                    break
+                except Exception:
+                    pass
+        # ⏱️ FRAÎCHEUR : sans date exploitable, on écarte — on ne devine pas l'heure
+        #    d'un fait. Un article non daté peut avoir des mois.
+        if ts is None or (maintenant - ts) > heures * 3600:
+            continue
+        titre = re.sub(r"\s+", " ", getattr(e, "title", "") or "").strip()
+        if not titre:
+            continue
+        # Google Actualités suffixe le média : « Titre - Le Monde »
+        média = ""
+        m = re.search(r"\s+-\s+([^-]{2,40})$", titre)
+        if m:
+            média = m.group(1).strip()
+            titre = titre[:m.start()].strip()
+        # le mot recherché doit VRAIMENT figurer : la recherche est parfois large
+        if not re.search(rf"(?<![\w#]){re.escape(terme.lower())}(?!\w)", titre.lower()):
+            continue
+        out.append({
+            "title": titre,
+            "url": getattr(e, "link", "") or "",
+            "summary": re.sub(r"<[^>]+>", " ", getattr(e, "summary", "") or "")[:600].strip(),
+            "source": média or "Google Actualités",
+            "pub_ts": ts,
+            "_tendance": terme,
+        })
+        if len(out) >= maxi:
+            break
+    out.sort(key=lambda a: -(a.get("pub_ts") or 0))
+    if out:
+        age = (maintenant - out[0]["pub_ts"]) / 3600
+        print(f"  🔎 « {terme} » : {len(out)} article(s) frais, le plus récent il y a "
+              f"{age:.1f} h ({out[0]['source']})")
+    return out
+
+
+def _juger_tendance(mot, article):
+    """Un sujet en tendance mérite-t-il une publication de Pulse ?
+
+    Une tendance X n'est pas une actualité : #HOTD ou #SummerSlam agitent le réseau sans
+    qu'il se passe rien. À l'inverse, un fait majeur peut monter avec un mot-clé que nos
+    règles de gravité noteraient mal. C'est un jugement ÉDITORIAL, pas un score mécanique.
+
+    Renvoie (interesse, bonus, raison) :
+      • interesse : False → on écarte, quoi qu'en dise le score de gravité ;
+      • bonus     : 0 à 3 points ajoutés au score, pour un fait réellement important ;
+      • raison    : une ligne pour le journal."""
+    titre = str(article.get("title") or "")[:220]
+    resume = str(article.get("summary") or "")[:400]
+    try:
+        r = _llm_json(
+        f"""« {mot} » est en tendance sur X en France. Voici l'article le plus récent trouvé :
+
+TITRE : {titre}
+RÉSUMÉ : {resume}
+
+Pulse est un média d'ACTUALITÉ française généraliste : politique, faits divers, société,
+économie, international, sciences, sport, culture quand l'événement est marquant.
+
+Réponds à DEUX questions.
+
+① EST-CE UNE ACTUALITÉ ? Un fait NOUVEAU s'est-il produit ?
+   ⛔ NON si c'est : une série ou un film dont on parle sans annonce concrète ; un
+   épisode diffusé ; un match de catch ou de divertissement ; un jeu vidéo sans sortie
+   ni incident ; une communauté de fans qui s'exprime ; un hashtag militant sans
+   événement ; une blague ou un mème ; une célébration récurrente sans nouveauté.
+   ✅ OUI si : une décision, un accident, un décès, une nomination, un résultat, une
+   annonce officielle, un chiffre publié, une action en justice, un fait de société.
+
+② SI C'EST UNE ACTUALITÉ, quelle est son IMPORTANCE pour un lecteur français, sur 10 ?
+   9-10 : événement majeur (drame national, décision d'État, mort d'une figure connue).
+   7-8  : information forte qui concerne beaucoup de monde.
+   5-6  : intéressante mais secondaire.
+   0-4  : anecdotique.
+
+Réponds UNIQUEMENT en JSON :
+{{"actualite": true|false, "importance": <0-10>, "raison": "<8 mots max>"}}""",
+            max_tokens=140, system=None, task="analyse")
+    except Exception as e:
+        # ⚠️ Sans jugement, on ÉCARTE : publier une tendance non vérifiée est pire que
+        #    rater un sujet. Le canal tendances est un bonus, jamais une obligation.
+        print(f"  ⚠️ Jugement de « {mot} » impossible ({str(e)[:50]}) → écarté")
+        return False, 0, "jugement indisponible"
+
+    if not isinstance(r, dict):
+        return False, 0, "jugement indisponible"
+    raison = str(r.get("raison") or "")[:60]
+    if not r.get("actualite"):
+        return False, 0, raison or "pas une actualité"
+    try:
+        imp = int(r.get("importance", 0) or 0)
+    except Exception:
+        imp = 0
+    if imp < TREND_IMPORTANCE_MINI:
+        return False, 0, f"trop secondaire ({imp}/10)"
+    # 🎚️ Un fait important dont le mot-clé serait mal noté par nos règles mécaniques
+    #    reçoit un bonus — c'est tout l'intérêt de croiser avec les tendances.
+    bonus = 3 if imp >= 9 else (2 if imp >= 8 else 1)
+    return True, bonus, f"{raison} ({imp}/10)"
+
 
 def _sujets_en_tendance(candidates, maxi=3):
     """Croise les TENDANCES X avec les articles déjà collectés ce cycle.
@@ -10363,6 +10600,27 @@ def _sujets_en_tendance(candidates, maxi=3):
                 break
         if len(out) >= maxi:
             break
+    # 🔎 Les tendances SANS article dans nos flux : on cherche sur le web une actualité
+    #    du jour. Un sujet peut monter sur X sans figurer dans nos 50 sources.
+    if len(out) < maxi and TREND_RECHERCHE_WEB:
+        for m in mots[:8]:
+            if len(out) >= maxi:
+                break
+            if m.lower() in vus:
+                continue
+            for art in _rechercher_actu_tendance(m, maxi=1):
+                # 🧭 Une tendance n'est pas une actualité : on demande un jugement
+                #    éditorial avant de la laisser entrer dans la file.
+                ok, bonus, raison = _juger_tendance(m, art)
+                if not ok:
+                    print(f"  ⏭️  « {m} » écarté : {raison}")
+                    vus.add(m.lower())
+                    break
+                art["_bonus_tendance"] = bonus
+                print(f"  ✅ « {m} » retenu : {raison} (+{bonus} au score)")
+                out.append((art, m))
+                vus.add(m.lower())
+                break
     if out:
         print(f"  📈 {len(out)} sujet(s) en tendance trouvé(s) dans l'actualité du jour : "
               + ", ".join(f"#{_norm_tag(m)}" for _, m in out))
@@ -11017,6 +11275,13 @@ def check_feeds(conn):
                 print("  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant")
                 continue
             score = int(a.get("score", 0))
+            # 📈 Un sujet remonté par les TENDANCES et jugé important reçoit un bonus : nos
+            #    règles de gravité sont mécaniques et sous-notent parfois un fait majeur dont
+            #    le vocabulaire ne déclenche aucun mot-clé fort.
+            _bt = int(hot.get("_bonus_tendance", 0) or 0)
+            if _bt:
+                score += _bt
+                print(f"  📈 Sujet en tendance : score {score - _bt} → {score} (+{_bt})")
             if is_followup:
                 if score >= BREAKING_SCORE:
                     # 🚨➕ SUIVI D'UN VRAI BREAKING (événement majeur EN COURS) : c'est À PART.
