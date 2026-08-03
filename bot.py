@@ -8,7 +8,7 @@ import unicodedata
 import socket
 socket.setdefaulttimeout(12)   # aucun flux RSS/site mort ne peut geler un run
 import urllib.request, urllib.parse, urllib.error, re
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 
 # En-têtes proches d'un vrai navigateur → réduit fortement les 403/404 des sites de presse
 _BROWSER_HEADERS = {
@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.48.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.53.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -243,7 +243,15 @@ UNSPLASH_FALLBACK = {
 # BASE DE DONNÉES
 # ═══════════════════════════════════════════════════════════════════════════
 def init_db():
-    conn = sqlite3.connect("seen_articles.db")
+    # 🔒 timeout : le cron tourne toutes les 5 min et un run peut déborder sur le suivant.
+    #    WAL : lectures et écritures ne se bloquent plus mutuellement.
+    conn = sqlite3.connect("seen_articles.db", timeout=30, check_same_thread=False)
+    try:
+        conn.execute("PRAGMA journal_mode=WAL")
+        conn.execute("PRAGMA busy_timeout=30000")
+        conn.execute("PRAGMA synchronous=NORMAL")
+    except Exception as e:
+        print(f"  ⚠️ Réglages SQLite ignorés ({str(e)[:60]})")
     for sql in [
         "CREATE TABLE IF NOT EXISTS seen (hash TEXT PRIMARY KEY, title TEXT, seen_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)",
         "CREATE TABLE IF NOT EXISTS recent_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)",
@@ -329,6 +337,19 @@ def init_db():
     except Exception:
         pass
     # 🧮 journal des embeddings du jour : sert à respecter le budget du palier gratuit
+    # 🕊️ Décès DÉJÀ annoncés : un hommage ne se publie qu'UNE fois par personne.
+    #    Sans cette mémoire, un article de réaction publié le lendemain redéclenchait
+    #    l'annonce (défaut vécu : le décès de Kavinsky annoncé deux jours de suite).
+    # 💡 Historique de « Le Saviez-vous ? » : aucun sujet ne doit sortir deux fois,
+    #    et la rotation des thèmes s'appuie sur les dernières publications.
+    conn.execute("""CREATE TABLE IF NOT EXISTS saviez_vous (
+        sujet TEXT PRIMARY KEY,
+        theme TEXT,
+        publie_le TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+    conn.execute("""CREATE TABLE IF NOT EXISTS deces_annonces (
+        personne TEXT PRIMARY KEY,
+        annonce_le TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+    conn.execute("DELETE FROM deces_annonces WHERE annonce_le < datetime('now', '-120 days')")
     conn.execute("""CREATE TABLE IF NOT EXISTS embed_log (
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
     conn.execute("DELETE FROM embed_log WHERE created_at < datetime('now', '-2 days')")
@@ -384,11 +405,11 @@ def add_recent(conn, title):
     conn.commit()
 
 def cats_today(conn):
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = _now_paris().strftime("%Y-%m-%d")
     return {r[0] for r in conn.execute("SELECT category FROM category_log WHERE last_sent LIKE ?", (f"{today}%",)).fetchall()}
 
 def mark_cat(conn, cat):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    now = _now_utc().strftime("%Y-%m-%d %H:%M:%S")
     conn.execute("INSERT INTO category_log (category,last_sent) VALUES (?,?) ON CONFLICT(category) DO UPDATE SET last_sent=excluded.last_sent", (cat, now))
     # Journal des VRAIES publications (une ligne par post réellement sorti) → compteur du jour fiable,
     # séparé de recent_titles (anti-doublon). mark_cat n'est appelé qu'après une publication réussie.
@@ -425,7 +446,7 @@ def recent_keywords(conn, hours=2):
 
 def log_keywords(conn, keywords):
     """Enregistre les mots-clés majeurs d'un tweet qui vient d'être publié."""
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    now = _now_utc().strftime("%Y-%m-%d %H:%M:%S")
     for kw in keywords:
         kw = kw.lower().strip()
         if kw:
@@ -437,7 +458,7 @@ def log_keywords(conn, keywords):
 
 def special_done_today(conn, kind):
     """Vrai si un thread/sondage a déjà été publié aujourd'hui."""
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = _now_paris().strftime("%Y-%m-%d")
     return conn.execute(
         "SELECT 1 FROM special_log WHERE kind=? AND sent_at LIKE ?",
         (kind, f"{today}%")
@@ -473,7 +494,7 @@ def last_publish_time(conn):
         with open("last_publish.txt", encoding="utf-8") as fh:
             ts = datetime.strptime(fh.read().strip()[:19], "%Y-%m-%d %H:%M:%S")
             # Ignore une date FUTURE (corruption) : sinon elle bloquerait toute publication.
-            if ts <= datetime.now() + timedelta(minutes=5):
+            if ts <= _now_paris() + timedelta(minutes=5):
                 candidates.append(ts)
     except Exception:
         pass
@@ -483,7 +504,7 @@ def _touch_publish_time():
     """Écrit l'heure de publication dans last_publish.txt (persisté via le workflow Git)."""
     try:
         with open("last_publish.txt", "w", encoding="utf-8") as fh:
-            fh.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            fh.write(_now_utc().strftime("%Y-%m-%d %H:%M:%S"))
     except Exception:
         pass
 
@@ -530,6 +551,26 @@ def posts_today(conn):
         except Exception:
             return 0
 
+def _now_paris():
+    """Heure locale de Paris. ⚠️ Le runner GitHub tourne en UTC : sans ce décalage, les
+    fenêtres de cadence et les horodatages de la mémoire dérivent de deux heures l'été."""
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("Europe/Paris")).replace(tzinfo=None)
+    except Exception:
+        from datetime import timezone, timedelta
+        return datetime.now(timezone.utc).astimezone(
+            timezone(timedelta(hours=2))).replace(tzinfo=None)
+
+
+def _now_utc():
+    """Horodatage destiné à SQLite. ⚠️ La base compare avec datetime('now'), qui est en
+    UTC : un horodatage écrit en heure de Paris paraîtrait futur de deux heures et
+    fausserait tous les calculs d'ancienneté (cadence, mémoire des sujets)."""
+    from datetime import timezone as _tz
+    return datetime.now(_tz.utc).replace(tzinfo=None)
+
+
 def _paris_hour():
     try:
         from zoneinfo import ZoneInfo
@@ -572,7 +613,7 @@ def should_publish_now(conn, min_minutes=None, max_minutes=None):
     if not last:
         _CADENCE_DECISION = True
         return True
-    elapsed = (datetime.now() - last).total_seconds() / 60
+    elapsed = (_now_utc() - last).total_seconds() / 60
     if elapsed < min_minutes:
         print(f"  ⏸️  Dernière publi il y a {int(elapsed)} min — attente.")
         _CADENCE_DECISION = False
@@ -954,7 +995,7 @@ def analyse_batch(articles, recent, blocked_keywords):
     # 12 titres suffisent pour juger un doublon (les plus récents) — 20 gonflaient le prompt
     recent_str  = "\n".join(f"- {t}" for t in recent[:12]) or "Aucun"
     blocked_str = ", ".join(blocked_keywords) if blocked_keywords else "Aucun"
-    today       = datetime.now().strftime("%d %B %Y")
+    today       = _now_paris().strftime("%d %B %Y")
     cats        = "|".join(LABELS.keys())
 
     articles_str = "\n\n".join(
@@ -1598,7 +1639,7 @@ def _normalise_source(body):
 def gen_tweet_complet(title, summary, source, category, video_url=None, article_text=None, prev_angles=None, correction=None, angle_neuf=None, dossier=None):
     """Génère tweet + titre image + image_query + mots-clés majeurs.
     prev_angles = titres déjà publiés par Pulse sur CE sujet (suite = nouvel angle obligatoire)."""
-    today = datetime.now().strftime("%d %B %Y")
+    today = _now_paris().strftime("%d %B %Y")
     label = LABELS[category]
     video_str = ""
     # 📖 L'article est transmis ENTIER (jusqu'à 6 000 caractères). Il était auparavant
@@ -1696,9 +1737,14 @@ Article à traiter :
     person         = (result.get("person") or "").strip()
     pays           = (result.get("pays") or "").strip()
 
-    # 🏷️ GARDE-FOU HASHTAG : un tweet ne doit jamais partir SANS hashtag (sauf hommage, qui reste sobre).
-    if category != "hommage":
-        body = _attach_hashtag(body, person, keywords)
+    # ✳️ HASHTAGS : 1 à 3 mots du tweet reçoivent un dièse, DANS la phrase (aucun mot
+    #    ajouté, aucune tournure modifiée). Les tendances X priorisent les candidats sans
+    #    jamais en imposer un hors-sujet. Les hommages restent sobres : aucun hashtag.
+    #    ⚠️ Ce branchement avait disparu lors d'une refonte — la fonctionnalité était
+    #    livrée mais inerte. Un test de non-orphelinage l'empêche désormais.
+    if category != "hommage" and HASHTAGS_ACTIFS:
+        _tags = _hashtags_pertinents(body, keywords, person, pays)
+        body = _poser_hashtags(body, _tags) if _tags else _attach_hashtag(body, person, keywords)
     else:
         # 🕊️ GARDE-FOU HOMMAGE : on RETIRE toute date de décès résiduelle (le prompt l'interdit déjà,
         # mais un modèle peut se tromper). On ne garde JAMAIS une date — seul l'âge est autorisé —
@@ -1814,7 +1860,7 @@ def _annonce_perimee(text, now=None, pub_ts=None, stale_h=18):
     t = str(text or "")
     if not t:
         return False
-    now = now or datetime.now()
+    now = now or _now_paris()
     bas = t.lower()
     autre_jour = bool(re.search(
         r"\b(demain|après-demain|apres-demain|prochaine? (semaine|mois|année)|semaine prochaine|"
@@ -1964,7 +2010,7 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
             print("  ⛔ Annonce périmée et quota épuisé → sujet abandonné (0 coût)")
             return None, None, None, None, None, None
         print("  ⏰ Annonce périmée détectée (horaire déjà passé) → régénération")
-        corr = (f"Il est actuellement {datetime.now().strftime('%Hh%M')}. Ton tweet précédent annonçait "
+        corr = (f"Il est actuellement {_now_paris().strftime('%Hh%M')}. Ton tweet précédent annonçait "
                 "comme À VENIR un événement dont l'heure est DÉJÀ PASSÉE. INTERDIT. "
                 "Si l'événement a commencé ou est terminé, écris-le au présent ou au passé "
                 "(« a débuté », « est en cours », « s'est achevé ») et donne l'information réellement "
@@ -2013,10 +2059,10 @@ def search_unsplash(query, category):
                 data = json.loads(r.read())
             if data.get("results"):
                 return data["results"][0]["urls"]["regular"]
-        except: pass
+        except Exception: pass
     try:
         return f"https://source.unsplash.com/1200x675/?{urllib.parse.quote(query)}"
-    except:
+    except Exception:
         return UNSPLASH_FALLBACK.get(category)
 
 def fetch_img(url):
@@ -2085,6 +2131,40 @@ def fetch_og_image(article_url):
         print(f"  ⚠️ og:image: {e}")
     return None
 
+def _cle_personne(nom):
+    """Clé de comparaison d'un nom : sans accents, sans ponctuation, en minuscules.
+    « Kavinsky », « KAVINSKY » et « Kavinsky, » désignent la même personne."""
+    t = unicodedata.normalize("NFD", str(nom or ""))
+    t = "".join(c for c in t if unicodedata.category(c) != "Mn")
+    return re.sub(r"[^a-z0-9 ]+", " ", t.lower()).strip()
+
+
+def deces_deja_annonce(conn, nom):
+    """Vrai si Pulse a DÉJÀ publié l'hommage de cette personne.
+    Un décès est un événement unique : il ne s'annonce pas deux fois. Les articles de
+    réaction, d'obsèques ou de rétrospective qui suivent ne doivent pas rouvrir le canal."""
+    cle = _cle_personne(nom)
+    if not cle or len(cle) < 3:
+        return False
+    try:
+        return conn.execute("SELECT 1 FROM deces_annonces WHERE personne = ?",
+                            (cle,)).fetchone() is not None
+    except Exception:
+        return False
+
+
+def marquer_deces_annonce(conn, nom):
+    """Mémorise que l'hommage de cette personne a été publié."""
+    cle = _cle_personne(nom)
+    if not cle or len(cle) < 3:
+        return
+    try:
+        conn.execute("INSERT OR IGNORE INTO deces_annonces (personne) VALUES (?)", (cle,))
+        conn.commit()
+    except Exception:
+        pass
+
+
 def _extract_person_name(title, summary=""):
     """Extrait le nom probable d'une personne (Prénom Nom) mentionnée dans un titre/résumé.
     Heuristique gratuite : cherche 2-3 mots capitalisés consécutifs (gère les particules)."""
@@ -2124,8 +2204,16 @@ def verify_death_wikipedia(name):
                 return "unknown"          # pas de page Wikipedia → on ne peut pas trancher
             cats = " ".join(c.get("title", "").lower() for c in page.get("categories", []))
             extract = (page.get("extract", "") or "").lower()
-            # Signes FORTS de décès : catégorie "décès en AAAA" ou "mort en AAAA"
-            if re.search(r"décès en \d{4}|morts? en \d{4}|décès à", cats):
+            # 🗓️ ANNÉE du décès : un décès ancien n'est PAS une actualité. Sans ce
+            #    contrôle, un article de clash citant une personne morte depuis des
+            #    années déclenchait un hommage (défaut vécu : Brigitte Bardot).
+            _an = re.search(r"décès en (\d{4})|morts? en (\d{4})", cats)
+            if _an:
+                _annee = int(_an.group(1) or _an.group(2))
+                if _annee < _now_paris().year - 1:
+                    return "ancien"
+                return "dead"
+            if re.search(r"décès à", cats):
                 return "dead"
             # Dans l'intro : "est un ... mort le" / "était un" (imparfait = souvent décédé)
             if re.search(r"\bmort[e]?\s+le\s+\d|\bdécédé[e]?\s+le\s+\d|"
@@ -2168,7 +2256,7 @@ def img_dimensions_ok(raw, min_w=600, min_h=400):
         im = Image.open(io.BytesIO(raw))
         w, h = im.size
         return w >= min_w and h >= min_h
-    except:
+    except Exception:
         return False
 
 def _visage_par_ia(pil_img):
@@ -2212,6 +2300,85 @@ def _visage_par_ia(pil_img):
     except Exception as e:
         print(f"  ⚠️ Repérage du visage indisponible ({str(e)[:50]}) → détection classique")
     return None
+
+
+def cadrer_intelligemment(ph, W, H, biais_haut=0.38, par_ia=False):
+    """Recadre une photo au format (W, H) en préservant ce qui compte.
+
+    Le recadrage naïf coupe au centre : sur une photo où le sujet est décentré, ou en
+    portrait alors que la source est panoramique, cela tranche les têtes. Ici :
+      ① on repère TOUS les visages, pas seulement le plus grand ;
+      ② le zoom est le plus faible possible — moins on agrandit, moins on coupe ;
+      ③ la fenêtre se place pour contenir l'ENSEMBLE des visages ;
+      ④ si un visage reste coupé, on élargit et on recommence.
+    Sans visage, on applique un biais vers le haut : le sujet d'une photo d'actualité
+    est rarement dans le bas du cadre.
+
+    Renvoie (image_recadrée, ok) — `ok` à False signale un cadrage de dernier recours,
+    ce qui permet à l'appelant de tenter une AUTRE image."""
+    sw, sh = ph.size
+    if sw <= 0 or sh <= 0:
+        return ph, False
+    zones = _zones_visages(ph, par_ia=par_ia)
+
+    for essai, marge in enumerate((1.0, 1.14, 1.32)):
+        k = max(W / sw, H / sh) * marge
+        nw, nh = max(W, int(sw * k + 0.5)), max(H, int(sh * k + 0.5))
+        gd = ph.resize((nw, nh), Image.LANCZOS)
+        zs = [(x * k, y * k, w * k, h * k) for (x, y, w, h) in zones]
+
+        if zs:
+            # fenêtre englobant tous les visages, avec un peu d'air autour
+            x0 = min(x for x, _, _, _ in zs)
+            x1 = max(x + w for x, _, w, _ in zs)
+            y0 = min(y for _, y, _, _ in zs)
+            y1 = max(y + h for _, y, _, h in zs)
+            air = (y1 - y0) * 0.42                    # jamais de front rasé
+            cx, cy = (x0 + x1) / 2, (y0 + y1) / 2 - air * 0.30
+            left = int(max(0, min(cx - W / 2, nw - W)))
+            top = int(max(0, min(cy - H / 2, nh - H)))
+            # ✅ tous les visages tiennent-ils dans la fenêtre ?
+            entiers = all(left <= x and x + w <= left + W
+                          and top <= y - air * 0.55 and y + h <= top + H
+                          for (x, y, w, h) in zs)
+            if entiers or essai == 2:
+                return gd.crop((left, top, left + W, top + H)), entiers
+        else:
+            left = (nw - W) // 2
+            top = int(max(0, min((nh - H) * biais_haut, nh - H)))
+            return gd.crop((left, top, left + W, top + H)), True
+    return ph.resize((W, H), Image.LANCZOS), False
+
+
+def _zones_visages(pil_img, par_ia=False):
+    """Rectangles (x, y, w, h) de TOUS les visages détectés. Liste vide si aucun.
+    On garde l'étendue complète de chaque visage, pas seulement son centre : c'est ce
+    qui permet de vérifier qu'aucune tête n'est coupée par le cadre."""
+    try:
+        import cv2, numpy as _np
+        arr = _np.array(pil_img.convert("RGB"))
+        gris = cv2.cvtColor(arr, cv2.COLOR_RGB2GRAY)
+        res = []
+        for nom in ("haarcascade_frontalface_default.xml", "haarcascade_profileface.xml"):
+            try:
+                casc = cv2.CascadeClassifier(cv2.data.haarcascades + nom)
+                for (x, y, w, h) in casc.detectMultiScale(gris, 1.16, 5, minSize=(46, 46)):
+                    if not any(abs(x - a) < w * 0.5 and abs(y - b) < h * 0.5
+                               for (a, b, _, _) in res):
+                        res.append((int(x), int(y), int(w), int(h)))
+            except Exception:
+                continue
+        if res:
+            return res
+    except Exception:
+        pass
+    if par_ia:
+        c = _visage_par_ia(pil_img)
+        if c:
+            # l'IA donne un centre : on lui suppose une étendue raisonnable
+            cote = int(min(pil_img.size) * 0.26)
+            return [(int(c[0] - cote / 2), int(c[1] - cote / 2), cote, cote)]
+    return []
 
 
 def detect_face_center(pil_img, par_ia=False):
@@ -3003,7 +3170,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
     prefetched = (raw_bytes, has_real_photo) pour réutiliser une image déjà téléchargée.
     """
     try:
-        from PIL import Image, ImageDraw, ImageFont, ImageFilter
+        from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
         import io
 
         _ss = _IMG_SS if ss is None else max(1, int(ss))
@@ -3138,7 +3305,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             ]
             for p in paths:
                 try: return ImageFont.truetype(p, size)
-                except: continue
+                except Exception: continue
             return ImageFont.load_default()
 
         logo_sz  = int(W * 0.047)
@@ -3213,15 +3380,8 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             sizes = [int(H * x) for x in (0.0672, 0.0600, 0.0528, 0.0464, 0.0408, 0.0352)]
 
             def _wrap_words(ft):
-                lines, line = [], ""
-                for w in clean_title.split():
-                    test = (line + " " + w).strip()
-                    if draw.textbbox((0, 0), test, font=ft)[2] <= max_w:
-                        line = test
-                    else:
-                        if line: lines.append(line)
-                        line = w
-                if line: lines.append(line)
+                # 🧩 même découpe que partout ailleurs : une seule source de vérité
+                lines = _wrap(draw, clean_title, ft, max_w)
                 return lines
 
             def _all_words_fit(ft):
@@ -3338,16 +3498,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             chosen_lines, chosen_size = None, sizes[-1]
             for fsize in sizes:
                 ft    = font(fsize)
-                words = headline_court.split()
-                lines, line = [], ""
-                for w in words:
-                    test = (line + " " + w).strip()
-                    if draw.textbbox((0, 0), test, font=ft)[2] <= max_w:
-                        line = test
-                    else:
-                        if line: lines.append(line)
-                        line = w
-                if line: lines.append(line)
+                lines = _wrap(draw, headline_court, ft, max_w)   # découpe unifiée
                 if len(lines) <= 3:
                     chosen_lines, chosen_size = lines, fsize
                     break
@@ -3366,7 +3517,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
 
         # ─── SOURCE + DATE EN BAS ───
         mois     = ["jan", "fév", "mar", "avr", "mai", "juin", "juil", "août", "sep", "oct", "nov", "déc"]
-        now      = datetime.now()
+        now      = _now_paris()
         date_str = f"{now.day} {mois[now.month - 1]} {now.year}"
         by2 = int(H - H * 0.077)
         draw.text((margin, by2), source, font=f_sm, fill=(255, 255, 255, 200))
@@ -3393,7 +3544,7 @@ def send_email(subject, tweet_text, title, source, url, video, png_bytes, png_na
     msg["To"]      = EMAIL_TO
 
     mois     = ["jan","fév","mar","avr","mai","juin","juil","août","sep","oct","nov","déc"]
-    now      = datetime.now()
+    now      = _now_paris()
     date_str = f"{now.day} {mois[now.month-1]} {now.year} · {now.strftime('%H:%M')}"
 
     video_section = f"\n\n🎬 Vidéo associée :\n{video['title']}\n{video['url']}" if video else ""
@@ -3430,6 +3581,18 @@ def send_email(subject, tweet_text, title, source, url, video, png_bytes, png_na
 # ═══════════════════════════════════════════════════════════════════════════
 # POST TWITTER
 # ═══════════════════════════════════════════════════════════════════════════
+def _clients_twitter():
+    """Clients X (v1 pour les médias, v2 pour la publication).
+    🧩 Une seule source de vérité : ce bloc était dupliqué à deux endroits, avec le
+    risque qu'une correction n'en touche qu'un."""
+    import tweepy
+    auth = tweepy.OAuth1UserHandler(TWITTER_API_KEY, TWITTER_API_SECRET,
+                                    TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
+    return tweepy.API(auth), tweepy.Client(
+        consumer_key=TWITTER_API_KEY, consumer_secret=TWITTER_API_SECRET,
+        access_token=TWITTER_ACCESS_TOKEN, access_token_secret=TWITTER_ACCESS_TOKEN_SECRET)
+
+
 def post_to_twitter(tweet_text, png_bytes=None, video_path=None, reply_to_id=None, png_list=None):
     """Poste sur X avec vidéo MP4 (prioritaire), plusieurs images, ou une seule.
     `png_list` : jusqu'à 4 images publiées ENSEMBLE (carrousel). X n'en accepte pas plus.
@@ -3439,12 +3602,7 @@ def post_to_twitter(tweet_text, png_bytes=None, video_path=None, reply_to_id=Non
         return None
     try:
         import tweepy, io, os
-        auth   = tweepy.OAuth1UserHandler(TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
-        api_v1 = tweepy.API(auth)
-        client_v2 = tweepy.Client(
-            consumer_key=TWITTER_API_KEY, consumer_secret=TWITTER_API_SECRET,
-            access_token=TWITTER_ACCESS_TOKEN, access_token_secret=TWITTER_ACCESS_TOKEN_SECRET
-        )
+        api_v1, client_v2 = _clients_twitter()
         media_ids = None
         if video_path and os.path.exists(video_path):
             try:
@@ -3573,7 +3731,7 @@ def _nice_bounds(vmin, vmax):
 
 def render_stat_chart(key):
     """Génère le PNG (bytes) d'une data card à partir d'une série vérifiée. Rendu pro (sur-échantillonnage ×3)."""
-    from PIL import Image, ImageDraw, ImageFont, ImageFilter
+    from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
     import numpy as _np, io as _io, math as _m
     s = STAT_SERIES[key]
     years, values = s["years"], s["values"]
@@ -3781,7 +3939,7 @@ def post_to_facebook(message, png_bytes=None, video_path=None):
     except urllib.error.HTTPError as e:
         try:
             body = e.read().decode("utf-8", errors="ignore")
-        except:
+        except Exception:
             body = ""
         print(f"  ❌ Post Facebook échoué : {e} | détail : {body}")
         if _detect_meta_limit(body):
@@ -3908,7 +4066,7 @@ def post_to_instagram(caption, png_bytes=None, video_path=None):
     except urllib.error.HTTPError as e:
         try:
             body = e.read().decode("utf-8", errors="ignore")
-        except:
+        except Exception:
             body = ""
         print(f"  ❌ Post Instagram échoué : {e} | détail : {body}")
         if _detect_meta_limit(body):
@@ -3923,7 +4081,7 @@ def post_to_instagram(caption, png_bytes=None, video_path=None):
 # ═══════════════════════════════════════════════════════════════════════════
 def fetch_wikipedia_onthisday():
     try:
-        now = datetime.now()
+        now = _now_paris()
         url = f"https://api.wikimedia.org/feed/v1/wikipedia/fr/onthisday/events/{now.month:02d}/{now.day:02d}"
         req = urllib.request.Request(url, headers={"User-Agent": "PulseBot/1.0"})
         with urllib.request.urlopen(req, timeout=8) as r:
@@ -4045,9 +4203,9 @@ def gen_gta6_hype(conn, candidates=None):
     Renvoie un item spécial ou None (le silence vaut mieux qu'une info sans valeur)."""
     KIND = "gta6"
     MAX_PAR_JOUR = 2
-    if datetime.now() >= GTA6_END:          # rubrique désactivée automatiquement après fin déc. 2026
+    if _now_paris() >= GTA6_END:          # rubrique désactivée automatiquement après fin déc. 2026
         return None
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = _now_paris().strftime("%Y-%m-%d")
     deja = conn.execute("SELECT COUNT(*) FROM special_log WHERE kind=? AND sent_at LIKE ?",
                         (KIND, f"{today}%")).fetchone()[0]
     if deja >= MAX_PAR_JOUR:
@@ -4091,7 +4249,7 @@ def gen_gta6_hype(conn, candidates=None):
         if last_gta:
             try:
                 from datetime import datetime as _dt
-                if (datetime.now() - _dt.fromisoformat(last_gta[0])).total_seconds() / 3600 < 5:
+                if (_now_utc() - _dt.fromisoformat(last_gta[0])).total_seconds() / 3600 < 5:
                     return None              # au moins 5h entre deux tweets GTA 6
             except Exception:
                 pass
@@ -4100,7 +4258,7 @@ def gen_gta6_hype(conn, candidates=None):
             return None
 
     # ── 5. Conscience de la date (avant / semaine de sortie / après) ──
-    jours = (GTA6_RELEASE - datetime.now()).days
+    jours = (GTA6_RELEASE - _now_paris()).days
     if jours > 7:
         temporalite = (f"Nous sommes à J-{jours} de la sortie (19 nov. 2026). Parle au FUTUR : "
                        f"la hype monte, les fans attendent.")
@@ -4292,7 +4450,7 @@ def gen_histoire_du_jour(conn):
     events = fetch_wikipedia_onthisday()
     if not events: return None
 
-    now        = datetime.now()
+    now        = _now_paris()
     today      = now.strftime("%d %B")
     current_yr = now.year
 
@@ -4422,7 +4580,7 @@ def gather_all_headlines(resume_max=80):
                         headlines.append(f"[{fi['source']}] {title} — {summ[:resume_max]}")
                     else:
                         headlines.append(f"[{fi['source']}] {title}")
-        except: pass
+        except Exception: pass
     return headlines
 
 def post_thread(tweets_list, png_bytes=None):
@@ -4432,12 +4590,7 @@ def post_thread(tweets_list, png_bytes=None):
         return None
     try:
         import tweepy, io
-        auth   = tweepy.OAuth1UserHandler(TWITTER_API_KEY, TWITTER_API_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
-        api_v1 = tweepy.API(auth)
-        client_v2 = tweepy.Client(
-            consumer_key=TWITTER_API_KEY, consumer_secret=TWITTER_API_SECRET,
-            access_token=TWITTER_ACCESS_TOKEN, access_token_secret=TWITTER_ACCESS_TOKEN_SECRET
-        )
+        api_v1, client_v2 = _clients_twitter()
         media_ids = None
         if png_bytes:
             try:
@@ -4481,7 +4634,7 @@ def gen_poll(conn):
     avoid = recent_special_topics(conn, "poll", days=7)
     avoid_str = " ; ".join(avoid) if avoid else "Aucun"
     headlines_str = "\n".join(headlines[:30])
-    today = datetime.now().strftime("%d %B %Y")
+    today = _now_paris().strftime("%d %B %Y")
 
     try:
         result = _llm_json(f"""Tu animes Pulse, compte Twitter d'actualité française. Aujourd'hui : {today}.
@@ -4579,7 +4732,7 @@ def _cfont(size, bold=True):
     for p in [f"/usr/share/fonts/truetype/noto/NotoSans-{'Bold' if bold else 'Regular'}.ttf",
               f"/usr/share/fonts/truetype/dejavu/DejaVuSans{'-Bold' if bold else ''}.ttf"]:
         try: return ImageFont.truetype(p, size)
-        except: continue
+        except Exception: continue
     return ImageFont.load_default()
 
 def _lerp(a, b, t): return tuple(int(a[i] + (b[i] - a[i]) * t) for i in range(3))
@@ -4704,7 +4857,7 @@ def _snd_pad(np, sr, buf, chords, dur, vol=1.0, dark=False):
 
 def _last_sound_variant():
     try:
-        c = sqlite3.connect("seen_articles.db")
+        c = sqlite3.connect("seen_articles.db", timeout=30, check_same_thread=False)
         row = c.execute("SELECT keywords FROM special_log WHERE kind='sound' ORDER BY id DESC LIMIT 1").fetchone()
         c.close()
         return (row[0] or "") if row else ""
@@ -4713,7 +4866,7 @@ def _last_sound_variant():
 
 def _log_sound_variant(tag):
     try:
-        c = sqlite3.connect("seen_articles.db")
+        c = sqlite3.connect("seen_articles.db", timeout=30, check_same_thread=False)
         c.execute("INSERT INTO special_log (kind, keywords) VALUES ('sound', ?)", (tag,))
         c.commit(); c.close()
     except Exception:
@@ -5545,41 +5698,6 @@ def _carr_zone_encre(draw, font):
     return _CARR_INK[cle]
 
 
-def _carr_dessine_paragraphe(img, draw, segments, font, x, y, largeur_max, accent):
-    """Dessine un paragraphe avec ses surlignages (fond arrondi à la couleur d'accent).
-    Renvoie la hauteur consommée."""
-    espace = draw.textlength(" ", font=font)
-    pad_x, pad_y, rayon = 8, 3, 6              # padding du gabarit ; rayon 6px
-    haut, bas = _carr_zone_encre(draw, font)
-    # ↕️ L'interligne doit laisser respirer les surlignages : la chaîne de référence
-    #    inclut les capitales accentuées (É, À), qui montent haut — sans cette marge,
-    #    les fonds de deux lignes successives se touchent et forment un pavé continu.
-    ECART_MINI = 10
-    interligne = max(int(font.size * 1.5), (bas - haut) + 2 * pad_y + ECART_MINI)
-    coul_txt = _carr_texte_sur_accent(accent)
-    for ligne in _carr_wrap(draw, segments, font, largeur_max):
-        cx = x
-        for mot, hl in ligne:
-            w = draw.textlength(mot, font=font)
-            if hl:
-                # fond à la couleur d'accent, calé sur l'encre → identique pour tous les
-                # mots d'une même ligne, qu'ils aient ou non un jambage
-                cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
-                ImageDraw.Draw(cal).rounded_rectangle(
-                    [cx - pad_x, y + haut - pad_y, cx + w + pad_x, y + bas + pad_y],
-                    radius=rayon, fill=tuple(accent) + (255,))
-                img.alpha_composite(cal)
-                draw = ImageDraw.Draw(img)
-                draw.text((cx, y), mot, font=font, fill=coul_txt)
-            else:
-                # texte blanc détaché par une ombre FLOUTÉE (pas un simple décalage net)
-                draw = _carr_ombre(img, draw, cx, y, mot, font,
-                                   decal=2, flou=4, opacite=180)
-                draw.text((cx, y), mot, font=font, fill=(255, 255, 255))
-            cx += w + espace
-        y += interligne
-    return y
-
 
 def _carr_font_ajustee(draw, lignes, px, largeur_max, mini=0.55):
     """Choisit la plus grande taille de titre qui TIENNE dans la largeur, en repliant
@@ -5666,19 +5784,9 @@ def _carr_fond(img, raw_photo):
             import io as _io
             ph = Image.open(_io.BytesIO(raw_photo)).convert("RGB")
             sw, sh = ph.size
-            k = max(CARR_W / sw, CARR_H / sh)
-            nw, nh = int(sw * k + 0.5), int(sh * k + 0.5)
-            ph = ph.resize((nw, nh), Image.LANCZOS)
-            fx, fy = (nw // 2, int(nh * 0.38))
-            try:
-                f = detect_face_center(ph)
-                if f:
-                    fx, fy = f
-            except Exception:
-                pass
-            left = max(0, min(int(fx - CARR_W / 2), nw - CARR_W))
-            top  = max(0, min(int(fy - CARR_H / 2), nh - CARR_H))
-            img.paste(ph.crop((left, top, left + CARR_W, top + CARR_H)).convert("RGBA"), (0, 0))
+            # 🎯 cadrage unifié : zoom minimal, visages entiers, second essai si besoin
+            ph, _ok = cadrer_intelligemment(ph, CARR_W, CARR_H, biais_haut=0.38)
+            img.paste(ph.convert("RGBA"), (0, 0))
             return True
     except Exception:
         pass
@@ -5822,6 +5930,107 @@ def _carr_fleche(img, draw):
     return draw
 
 
+def _bloc_texte_adaptatif(draw, titre_lignes, paragraphes, x, largeur,
+                          haut_dispo, bas_dispo,
+                          px_titre=76, px_para=32, titre_gras=True,
+                          mini_titre=0.55, mini_para=0.70,
+                          interligne_para=1.45, ecart_titre=34, ecart_para=20):
+    """Calcule une mise en page qui TIENT dans l'espace disponible, quel que soit le texte.
+
+    Le problème résolu : des positions fixes marchent pour un texte court et débordent
+    pour un texte long — le paragraphe descendait alors sur le logo (défaut vécu).
+    Ici on procède dans l'autre sens : on part de la hauteur RÉELLEMENT disponible
+    (`bas_dispo - haut_dispo`) et on réduit progressivement les tailles jusqu'à ce que
+    l'ensemble rentre. Le titre reste dominant : il est réduit en dernier et moins fort
+    que le corps, dont la lisibilité ne dépend pas de la taille.
+
+    Renvoie un plan : {"font_titre", "titre", "paras": [(font, lignes)], "y", "hauteur"}
+    où `y` est la position de départ, déjà calée dans la zone."""
+    dispo = max(60, bas_dispo - haut_dispo)
+    t_titre, t_para = int(px_titre), int(px_para)
+    plan = None
+
+    for _ in range(40):
+        f_titre = _carr_font(t_titre, titre=True) if titre_gras else _carr_font(t_titre)
+        lignes_t = []
+        for l in (titre_lignes or []):
+            lignes_t += _carr_wrap(draw, [(str(l).upper(), False)], f_titre, largeur) or [[]]
+        f_para = _carr_font(t_para, gras=False)
+        blocs_p = []
+        for p in (paragraphes or []):
+            segs = p if isinstance(p, list) else [(str(p), False)]
+            blocs_p.append((f_para, _carr_wrap(draw, segs, f_para, largeur)))
+
+        h = sum(int(f_titre.size * 0.96) for _ in lignes_t)
+        if lignes_t and blocs_p:
+            h += ecart_titre
+        for i, (fp, lg) in enumerate(blocs_p):
+            h += max(1, len(lg)) * int(fp.size * interligne_para)
+            if i < len(blocs_p) - 1:
+                h += ecart_para
+
+        if h <= dispo:
+            plan = {"font_titre": f_titre, "titre": lignes_t, "paras": blocs_p, "hauteur": h}
+            break
+        # ⬇️ On réduit d'abord le CORPS : le titre doit rester l'élément dominant.
+        if t_para > int(px_para * mini_para):
+            t_para -= 1
+        elif t_titre > int(px_titre * mini_titre):
+            t_titre -= 2
+        else:
+            plan = {"font_titre": f_titre, "titre": lignes_t, "paras": blocs_p, "hauteur": h}
+            break
+
+    if plan is None:
+        plan = {"font_titre": _carr_font(t_titre, titre=True), "titre": [], "paras": [],
+                "hauteur": 0}
+    # 📐 calage : le bloc s'appuie sur le BAS de la zone, sans jamais la dépasser
+    plan["y"] = max(haut_dispo, bas_dispo - plan["hauteur"])
+    plan["x"] = x
+    plan["largeur"] = largeur
+    return plan
+
+
+def _dessiner_bloc_adaptatif(img, draw, plan, accent, couleur_para=(238, 236, 245)):
+    """Dessine le plan produit par `_bloc_texte_adaptatif`.
+    Le corps est volontairement plus DISCRET que le titre : plus petit, moins gras, et
+    d'un blanc légèrement adouci — il accompagne l'information, il ne la concurrence pas."""
+    x, y, larg = plan["x"], plan["y"], plan["largeur"]
+    f_titre = plan["font_titre"]
+    for ligne in plan["titre"]:
+        txt = " ".join(m for m, _ in ligne)
+        draw = _carr_ombre(img, draw, x, y, txt, f_titre,
+                           decal=max(2, f_titre.size // 22), flou=max(4, f_titre.size // 12))
+        draw.text((x, y), txt, font=f_titre, fill=(255, 255, 255))
+        y += int(f_titre.size * 0.96)
+    if plan["titre"] and plan["paras"]:
+        y += 34
+    for i, (fp, lignes) in enumerate(plan["paras"]):
+        interligne = int(fp.size * 1.45)
+        espace = draw.textlength(" ", font=fp)
+        haut, bas = _carr_zone_encre(draw, fp)
+        for ligne in lignes:
+            cx = x
+            for mot, hl in ligne:
+                w = draw.textlength(mot, font=fp)
+                if hl:
+                    cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
+                    ImageDraw.Draw(cal).rounded_rectangle(
+                        [cx - 8, y + haut - 3, cx + w + 8, y + bas + 3],
+                        radius=6, fill=tuple(accent) + (255,))
+                    img.alpha_composite(cal)
+                    draw = ImageDraw.Draw(img)
+                    draw.text((cx, y), mot, font=fp, fill=_carr_texte_sur_accent(accent))
+                else:
+                    draw = _carr_ombre(img, draw, cx, y, mot, fp, decal=2, flou=4, opacite=165)
+                    draw.text((cx, y), mot, font=fp, fill=couleur_para)
+                cx += w + espace
+            y += interligne
+        if i < len(plan["paras"]) - 1:
+            y += 20
+    return draw, y
+
+
 def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_photo=None):
     """Rend UNE slide de carrousel au format du gabarit fourni (1080×1350).
     `slide` : {"kind": cover|recapCover|info|cta, ...} — voir le modèle.
@@ -5893,28 +6102,25 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_p
             #    le fait principal en GRAS juste dessous, le complément en graisse
             #    normale ensuite. Le texte reste HAUT ; s'il y a peu à dire, la photo
             #    occupe le reste du cadre sans qu'on ait besoin de meubler.
-            # 📐 Bloc ANCRÉ EN BAS : badge, fait principal, complément — le tout calé
-            #    au-dessus du filigrane, sur le dégradé. La photo occupe tout le cadre.
+            # 📐 MISE EN PAGE ADAPTATIVE : on part de l'espace RÉELLEMENT disponible et
+            #    on réduit les tailles jusqu'à ce que tout rentre. Le bas de la zone
+            #    s'arrête AU-DESSUS du filigrane : le texte ne peut plus le recouvrir.
             paras = slide.get("paras") or []
-            h_badge = int(_carr_font(38, titre=True).size * 1.55) + 26 if slide.get("badge") else 0
-            h_txt = 0
-            for i, p in enumerate(paras):
-                _f = _carr_font(38 if i == 0 else 33, gras=(i == 0))
-                h_txt += max(1, len(_carr_wrap(d, _carr_segments(p), _f, larg))) \
-                    * int(_f.size * 1.5) + (30 if i == 0 else 22)
-            y = max(int(CARR_H * 0.22), CARR_H - 150 - h_badge - h_txt)
+            _h_badge = (int(_carr_font(38, titre=True).size * 1.55) + 26
+                        if slide.get("badge") else 0)
+            _bas = CARR_H - 150              # marge de sécurité au-dessus du filigrane
+            _plan = _bloc_texte_adaptatif(
+                d, slide.get("titleLines") if not slide.get("badge") else [],
+                [_carr_segments(p) for p in paras],
+                M, larg, haut_dispo=int(CARR_H * 0.20) + _h_badge, bas_dispo=_bas,
+                px_titre=76, px_para=34)
+            y = _plan["y"] - _h_badge
             if slide.get("badge"):
                 d, y = _carr_badge_cat(img, d, M, y, slide["badge"][0],
                                        slide["badge"][1], accent)
-            elif slide.get("titleLines"):
-                f_t, tl = _carr_font_ajustee(d, slide["titleLines"], 76, larg)
-                y = _carr_titre(d, tl, f_t, M, y, img=img) + 40
-            for i, p in enumerate(paras):
-                # 1er paragraphe : le FAIT, en gras. Les suivants : le contexte, plus léger.
-                fp = _carr_font(38 if i == 0 else 33, gras=(i == 0))
-                y = _carr_dessine_paragraphe(img, d, _carr_segments(p), fp, M, y, larg, accent)
-                d = ImageDraw.Draw(img)
-                y += 30 if i == 0 else 22
+                _plan["y"] = y
+            d, y = _dessiner_bloc_adaptatif(img, d, _plan, accent)
+            h_badge, h_txt = _h_badge, _plan["hauteur"]
             # 🫧 seconde photo en bulle, AU-DESSUS du bloc de texte s'il reste de la place
             _haut_bloc = CARR_H - 150 - h_badge - h_txt
             if slide.get("bulle") and _haut_bloc > 560:
@@ -6130,7 +6336,7 @@ def gather_articles_with_urls(limit_per_feed=4):
                     "source":  fi["source"],
                     "pub_ts":  pub_ts,
                 })
-        except:
+        except Exception:
             pass
     return arts
 
@@ -6171,7 +6377,7 @@ def gen_carousel(conn):
     💰 Le résultat est mis en CACHE pour la journée : si la publication échoue ensuite
     (ex : aucune image exploitable), les runs suivants ne re-paient PAS Claude.
     """
-    _ck = "__carousel__" + datetime.now().strftime("%Y-%m-%d")
+    _ck = "__carousel__" + _now_paris().strftime("%Y-%m-%d")
     try:
         row = conn.execute("SELECT payload FROM daily_cache WHERE key=?", (_ck,)).fetchone()
         if row:
@@ -6186,7 +6392,7 @@ def gen_carousel(conn):
     listing = "\n".join(f"{i}. [{a['source']}] {a['title']} — {a['summary']}" for i, a in enumerate(arts))
     avoid = recent_special_topics(conn, "thread", days=7)
     avoid_str = ", ".join(avoid) if avoid else "(aucun)"
-    today = datetime.now().strftime("%d %B %Y")
+    today = _now_paris().strftime("%d %B %Y")
     try:
         # ÉTAPE 1 : choisir LE sujet de fond du jour
         deja = recent_thread_topics(conn)
@@ -6368,7 +6574,7 @@ def post_carousel_to_instagram(slides_png, caption):
         return post_id
     except urllib.error.HTTPError as e:
         try: body = e.read().decode("utf-8", errors="ignore")
-        except: body = ""
+        except Exception: body = ""
         print(f"  ❌ Carrousel Instagram échoué : {e} | détail : {body}")
         return None
     except Exception as e:
@@ -6705,7 +6911,7 @@ def build_victory_card(raw_photo, res, source, W=1200, H=675):
 
     shadow(img, lambda l: l.text((int(W * 0.038), H - int(H * 0.08)), "Pulse", font=f(W * 0.025), fill=(0, 0, 0, 220)), 6); d = ImageDraw.Draw(img)
     d.text((int(W * 0.038), H - int(H * 0.08)), "Pulse", font=f(W * 0.025), fill=WHITE)
-    d.text((W - int(W * 0.038), H - int(H * 0.055)), f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
+    d.text((W - int(W * 0.038), H - int(H * 0.055)), f"{source} · {_now_paris().strftime('%d/%m/%Y')}",
            font=f(W * 0.018, False), fill=DIM, anchor="rm")
 
     buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
@@ -6833,7 +7039,7 @@ def _is_obituary(title, summary):
     m = re.search(r"(?:tué|tuée|mort|morte|décédé|décédée|disparu|disparue)[^.]{0,25}?"
                   r"\ben\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|"
                   r"octobre|novembre|décembre\s+)?((?:19|20)\d{2})", t)
-    if m and int(m.group(1)) < datetime.now().year:
+    if m and int(m.group(1)) < _now_paris().year:
         return False
 
     # ── 1g. NOMINATION / SUCCESSION POLITIQUE → jamais un hommage : quelqu'un qui PREND ses
@@ -6919,7 +7125,7 @@ Si ce n'est pas le décès d'une personne nommée, réponds {{"ok":false}}.""", 
         if not name:
             return None
         # L'année du décès vient de Python (vraie année), pas de Claude
-        cur = datetime.now().year
+        cur = _now_paris().year
         by, age, dates = r.get("birth_year"), r.get("age"), ""
         try:
             if by and 1850 < int(by) <= cur:
@@ -6934,81 +7140,99 @@ Si ce n'est pas le décès d'une personne nommée, réponds {{"ok":false}}.""", 
         return None
 
 def build_hommage_card(raw_photo, name, dates, desc, source, W=1080, H=1350):
-    """Carte hommage sobre en PORTRAIT : portrait de la personne cadré sur son VISAGE,
-    en noir & blanc, + nom + dates (DA Pulse discrète). Le visage est détecté pour ne jamais
-    le couper ; à défaut, léger biais vers le haut (le visage est rarement en bas d'un portrait)."""
-    import io
+    """Carte HOMMAGE : une image unique, sobre et lisible sur les réseaux.
+
+    Composition : portrait en noir et blanc cadré sur le VISAGE, dégradé sombre montant
+    du bas pour détacher le texte, nom en grand, dates et description plus discrètes.
+    Tout le texte passe par le moteur adaptatif : il ne peut ni déborder de la zone, ni
+    recouvrir le filigrane, quelle que soit la longueur du nom ou de la description.
+
+    Les hommages ne sont plus publiés en vidéo : une image se lit d'un coup d'œil et
+    convient mieux au registre sobre de ce canal."""
+    import io as _io
     from PIL import ImageOps
-    WHITE, GREY, FAINT = (245, 245, 248), (176, 180, 194), (140, 144, 158)
-    def f(px, bold=True, serif=False):
-        fam = "DejaVuSerif" if serif else "DejaVuSans"
-        p = f"/usr/share/fonts/truetype/dejavu/{fam}{'-Bold' if bold else ''}.ttf"
-        try: return ImageFont.truetype(p, int(px))
-        except: return ImageFont.load_default()
-    def fit(d, txt, maxw, start, mins=24, **kw):
-        s = start
-        while s > mins and d.textbbox((0, 0), txt, font=f(s, **kw))[2] > maxw: s -= 2
-        return f(s, **kw)
+    try:
+        img = Image.new("RGBA", (W, H), (16, 14, 26, 255))
 
-    # fond : portrait recadré SUR LE VISAGE (detect_face_center) + NOIR & BLANC
-    if raw_photo:
-        try:
-            ph = Image.open(io.BytesIO(raw_photo)).convert('RGB')
-            tr = W / H
-            # on agrandit pour couvrir le cadre portrait, puis on recadre autour du visage
-            scale = max(W / ph.width, H / ph.height)
-            big = ph.resize((int(ph.width * scale + 0.5), int(ph.height * scale + 0.5)), Image.LANCZOS)
-            face = None
+        # ── ① Portrait : recadré sur le visage, puis désaturé ──
+        pose = False
+        if raw_photo:
             try:
-                face = detect_face_center(big, par_ia=True)
-            except Exception:
-                face = None
-            if face:
-                fcx, fcy = face
-                left = int(fcx - W / 2)
-                # visage placé dans le tiers supérieur (portrait digne), jamais coupé en haut
-                top = int(fcy - H * 0.34)
-            else:
-                left = (big.width - W) // 2
-                top = int((big.height - H) * 0.18)   # léger biais vers le haut (visage rarement en bas)
-            left = max(0, min(left, big.width - W))
-            top = max(0, min(top, big.height - H))
-            ph = big.crop((left, top, left + W, top + H))
-            bw = ImageOps.grayscale(ph).convert('RGB')
-            bw = Image.blend(bw, Image.new('RGB', (W, H), (0, 0, 0)), 0.18)
-        except Exception:
-            bw = Image.new('RGB', (W, H), (28, 28, 34))
-    else:
-        bw = Image.new('RGB', (W, H), (28, 28, 34))
-    img = bw.convert('RGBA')
+                ph = Image.open(_io.BytesIO(raw_photo)).convert("RGB")
+                # 🎯 cadrage unifié : zoom minimal, visages entiers, second essai si besoin
+                ph, _cadre_ok = cadrer_intelligemment(ph, W, H, biais_haut=0.24, par_ia=True)
+                if not _cadre_ok:
+                    print("  ⚠️ Portrait difficile à cadrer sans couper — cadrage élargi")
+                # monochrome sobre : on repasse en RVB avant d'ajuster le contraste,
+                # ImageEnhance ne traite pas correctement une image en niveaux de gris
+                ph = ImageOps.grayscale(ph).convert("RGB")
+                ph = ImageEnhance.Contrast(ph).enhance(1.06).convert("RGBA")
+                img.paste(ph, (0, 0))
+                pose = True
+            except Exception as e:
+                print(f"  ⚠️ Portrait d'hommage non exploitable ({str(e)[:60]})")
+        if not pose:
+            d0 = ImageDraw.Draw(img)
+            for y in range(H):
+                v = int(22 + 26 * (y / H))
+                d0.line([(0, y), (W, y)], fill=(v, v - 2, v + 6, 255))
 
-    # voile sombre : léger en haut, très sombre en bas (pour le texte)
-    ov = Image.new('RGBA', (W, H), (0, 0, 0, 0)); od = ImageDraw.Draw(ov)
-    for y in range(H):
-        t = y / H
-        a = int(245 * ((t - 0.42) / 0.58)) if t > 0.42 else int(60 * (1 - t / 0.42))
-        od.line([(0, y), (W, y)], fill=(8, 8, 12, min(238, max(0, a))))
-    img = Image.alpha_composite(img, ov); d = ImageDraw.Draw(img)
+        # ── ② Dégradé sombre montant du bas : le texte doit rester lisible ──
+        cal = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        dc = ImageDraw.Draw(cal)
+        for y in range(int(H * 0.34), H):
+            # ⚠️ t doit rester dans [0,1] : une puissance fractionnaire d'un nombre
+            #    négatif renvoie un complexe, que int() refuse.
+            t = min(1.0, max(0.0, (y - H * 0.34) / (H * 0.66)))
+            dc.line([(0, y), (W, y)], fill=(10, 8, 18, int(248 * (t ** 1.25))))
+        img.alpha_composite(cal)
+        d = ImageDraw.Draw(img)
 
-    # fine barre sobre (gris ardoise, pas de néon festif)
-    for x in range(W):
-        d.line([(x, 0), (x, 5)], fill=(int(70 + 30 * x / W), int(72 + 26 * x / W), int(90 + 40 * x / W)))
-    d.text((int(W * 0.038), int(H * 0.05)), "Pulse", font=f(W * 0.034), fill=WHITE)
-    d.text((W - int(W * 0.038), int(H * 0.075)), "H O M M A G E", font=f(W * 0.020, True), fill=GREY, anchor="rm")
+        # ── ③ Bandeau « HOMMAGE » discret, en haut ──
+        fb = _carr_font(30, titre=True)
+        lib = "HOMMAGE"
+        wb = int(d.textlength(lib, font=fb))
+        cal2 = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(cal2).rounded_rectangle([64, 58, 64 + wb + 44, 58 + fb.size + 20],
+                                               radius=8, fill=(248, 247, 252, 235))
+        img.alpha_composite(cal2)
+        d = ImageDraw.Draw(img)
+        d.text((64 + 22, 58 + (fb.size + 20) // 2), lib, font=fb, fill=(28, 24, 48), anchor="lm")
 
-    # bloc nom + dates en bas
-    ny = int(H * 0.66)
-    fn = fit(d, name.upper(), int(W * 0.86), W * 0.062, serif=True)
-    d.text((int(W * 0.045), ny), name.upper(), font=fn, fill=WHITE)
-    y2 = ny + fn.size + int(H * 0.02)
-    d.rectangle([int(W * 0.046), y2, int(W * 0.046) + int(W * 0.12), y2 + 3], fill=GREY)
-    if dates:
-        d.text((int(W * 0.045), y2 + int(H * 0.025)), dates, font=f(W * 0.025, False), fill=GREY)
-    if desc:
-        d.text((int(W * 0.045), y2 + int(H * 0.085)), desc, font=f(W * 0.021, False), fill=FAINT)
-    d.text((W - int(W * 0.038), H - int(H * 0.05)), f"{source}", font=f(W * 0.018, False), fill=FAINT, anchor="rm")
+        # ── ④ Texte : nom dominant, dates et description discrètes ──
+        M = 64
+        larg = W - 2 * M
+        paras = []
+        if dates:
+            paras.append([(str(dates).strip(), False)])
+        if desc:
+            paras.append([(re.sub(r"\s+", " ", str(desc)).strip(), False)])
+        plan = _bloc_texte_adaptatif(
+            d, [str(name or "").strip()], paras, M, larg,
+            haut_dispo=int(H * 0.34), bas_dispo=H - 150,
+            px_titre=92, px_para=34, mini_titre=0.45)
+        d, _ = _dessiner_bloc_adaptatif(img, d, plan, CARR_ACCENT,
+                                        couleur_para=(206, 205, 218))
 
-    buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
+        # ── ⑤ Filigrane et source ──
+        fw = _carr_font(22)
+        t = " ".join("@PULSEACTUS")
+        tw = int(d.textlength(t, font=fw))
+        d.text(((W - tw) // 2, H - 44 - fw.size), t, font=fw, fill=(255, 255, 255, 200))
+        if source:
+            fs = _carr_font(24, gras=False)
+            st = f"({source})"
+            d.text((W - M - int(d.textlength(st, font=fs)), 66), st, font=fs,
+                   fill=(198, 197, 212))
+
+        img = _carr_trame(img, force=10)
+        buf = _io.BytesIO()
+        img.convert("RGB").save(buf, format="PNG", optimize=True)
+        return buf.getvalue()
+    except Exception as e:
+        print(f"  ⚠️ Carte hommage non rendue ({str(e)[:80]})")
+        return None
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # VIDÉOS ANIMÉES (motion design Pulse) — 0 appel Claude, rendu local + ffmpeg
@@ -7812,7 +8036,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                 # Marque : uniquement l'en-tête animé "PULSE" en haut à gauche.
                 # (On ne la répète PAS en pied de page — doublon visuel inutile.)
                 d.text((W - int(W * 0.04), H - int(H * (VIDEO_SAFE_BOTTOM + 0.028))),
-                       f"{source} · {datetime.now().strftime('%d/%m/%Y')}",
+                       f"{source} · {_now_paris().strftime('%d/%m/%Y')}",
                        font=_vf(W * 0.016, False), fill=DIM + (int(230 * fa),), anchor="rm")
             # ── finition photographique : vignettage + grain fusionnés (1 seul composite) ──
             img.alpha_composite(finish)
@@ -7936,7 +8160,7 @@ MOIS_FR  = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
             "août", "septembre", "octobre", "novembre", "décembre"]
 
 def _date_fr():
-    d = datetime.now()
+    d = _now_paris()
     return f"{JOURS_FR[d.weekday()]} {d.day} {MOIS_FR[d.month - 1]}"
 
 def _liquid_glass_bg(W, H):
@@ -8372,7 +8596,7 @@ def publish_recap(conn):
     titles = list(reversed(titles))   # du MATIN au SOIR : la dernière mention d'un sujet = son état final
     # 💰 Cache du jour : si la publication du récap échoue (réseau…), les runs suivants
     #    réutilisent le contenu déjà généré au lieu de re-payer Claude.
-    _rk = "__recap__" + datetime.now().strftime("%Y-%m-%d")
+    _rk = "__recap__" + _now_paris().strftime("%Y-%m-%d")
     _cached_items = None
     try:
         row = conn.execute("SELECT payload FROM daily_cache WHERE key=?", (_rk,)).fetchone()
@@ -8386,7 +8610,7 @@ def publish_recap(conn):
         from zoneinfo import ZoneInfo
         now_p = datetime.now(ZoneInfo("Europe/Paris"))
     except Exception:
-        now_p = datetime.now()
+        now_p = _now_paris()
     now_str = f"{JOURS_FR[now_p.weekday()]} {now_p.day} {MOIS_FR[now_p.month - 1]} {now_p.year}, {now_p.hour}h{now_p.minute:02d}"
     arts = "\n".join(f"- {t}" for t in titles)
     if _cached_items is not None:
@@ -8524,7 +8748,7 @@ Réponds avec ce JSON UNIQUEMENT :
 # ── MODE COUPE DU MONDE (calendrier fourni via cdm2026.txt à la racine du repo) ──
 def _france_match_today():
     """Renvoie le match de la France prévu aujourd'hui (dict du calendrier) ou None."""
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = _now_paris().strftime("%Y-%m-%d")
     for m in load_cdm():
         if m["date"] == today and "france" in (m["a"] + m["b"]).lower():
             return m
@@ -8700,7 +8924,7 @@ def publish_france_live(conn, candidates):
         if phase not in ("half", "final"):
             return False      # match pas à la pause / pas fini → rien à publier ce run
         adversaire = live["adversaire"]
-        match_key = f"{datetime.now().strftime('%Y')}-France-{adversaire.lower().strip()}"
+        match_key = f"{_now_paris().strftime('%Y')}-France-{adversaire.lower().strip()}"
         kind = "fr_final" if phase == "final" else "fr_half"
         if conn.execute("SELECT 1 FROM special_log WHERE kind=? AND keywords=?",
                         (kind, match_key)).fetchone():
@@ -8751,7 +8975,7 @@ def _publish_france_live_rss(conn, candidates):
         return False
 
     # Clé anti-doublon : le jour + l'adversaire (un seul match France/jour en pratique)
-    match_key = f"{datetime.now().strftime('%Y')}-France-{adversaire.lower().strip()}"
+    match_key = f"{_now_paris().strftime('%Y')}-France-{adversaire.lower().strip()}"
 
     # ── 1) SCORE FINAL (prioritaire) : article avec marqueur de fin de match ──
     FINAL_CUES = ("score final", "terminé", "termine", "fin du match", "coup de sifflet final",
@@ -8865,7 +9089,7 @@ def load_cdm(path="cdm2026.txt"):
 
 def publish_cdm_day(conn):
     """🏆 Chaque matin pendant la CDM : les matchs du jour."""
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = _now_paris().strftime("%Y-%m-%d")
     matchs = [m for m in load_cdm() if m["date"] == today]
     if not matchs:
         return False
@@ -8900,7 +9124,7 @@ def publish_cdm_day(conn):
 def publish_cdm_prono(conn):
     """🔮 La veille d'un match de la France : sondage pronostic natif sur X."""
     from datetime import timedelta
-    demain = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+    demain = (_now_paris() + timedelta(days=1)).strftime("%Y-%m-%d")
     for m in load_cdm():
         if m["date"] != demain:
             continue
@@ -9053,7 +9277,7 @@ def log_topic(conn, title, keywords, corps=None):
     """Enregistre un sujet qu'on vient de publier (signature + titre + angle + heure)."""
     try:
         sig = " ".join(sorted(_topic_sig_words(title)))
-        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        now = _now_utc().strftime("%Y-%m-%d %H:%M:%S")
         v = _embed(title, conn, essentiel=True)   # mémoriser un sujet publié : prioritaire
         conn.execute(
             "INSERT INTO topic_memory (topic_sig, headline, keywords, sent_at, vec, corps) "
@@ -9171,7 +9395,7 @@ def dossier_sujet(conn, title, jours=DOSSIER_JOURS, maxi=8):
     sig = _topic_sig_words(title)
     if not sig:
         return []
-    depuis = (datetime.now() - timedelta(days=jours)).strftime("%Y-%m-%d %H:%M:%S")
+    depuis = (_now_utc() - timedelta(days=jours)).strftime("%Y-%m-%d %H:%M:%S")
     try:
         rows = conn.execute(
             "SELECT topic_sig, headline, corps, sent_at, vec FROM topic_memory "
@@ -9194,7 +9418,7 @@ def dossier_sujet(conn, title, jours=DOSSIER_JOURS, maxi=8):
             continue
         try:
             dt = datetime.strptime((sent_at or "")[:19], "%Y-%m-%d %H:%M:%S")
-            h = (datetime.now() - dt).total_seconds() / 3600
+            h = (_now_utc() - dt).total_seconds() / 3600
             age = (f"il y a {int(h * 60)} min" if h < 1.5 else
                    f"il y a {int(h)} h" if h < 36 else
                    f"il y a {int(h / 24)} jours")
@@ -9231,7 +9455,7 @@ def topic_history(conn, title, min_overlap=2):
         return 0, None, []
     # ⏱️ Fenêtre GLISSANTE de 24 h, et non le jour calendaire : sinon, à minuit, le bot oublie
     #    d'un coup ce qu'il vient de publier et le plafond anti-répétition se réinitialise.
-    depuis = (datetime.now() - timedelta(hours=24)).strftime("%Y-%m-%d %H:%M:%S")
+    depuis = (_now_utc() - timedelta(hours=24)).strftime("%Y-%m-%d %H:%M:%S")
     try:
         rows = conn.execute(
             "SELECT topic_sig, headline, sent_at, vec FROM topic_memory WHERE sent_at >= ?",
@@ -9263,8 +9487,6 @@ def topic_history(conn, title, min_overlap=2):
             except Exception:
                 pass
     return n, last, heads
-
-_DERNIER_ANGLE = {"v": ""}   # élément neuf du dernier sujet jugé (passé au rédacteur)
 
 def _suite_apporte_du_neuf(titre, resume, deja_publies):
     """Une SUITE de sujet mérite-t-elle une publication ?
@@ -9302,7 +9524,14 @@ Réponds UNIQUEMENT :
     return None, ""
 
 
-def topic_gate(conn, title, resume=None, juge_modele=False):
+def _rep_gate(ok, code, heads, angle, avec_angle):
+    """Retour de topic_gate. Avec `avec_angle`, on ajoute l'élément neuf identifié —
+    il transitait auparavant par une variable GLOBALE, ce qui pouvait attribuer l'angle
+    d'un sujet au candidat suivant."""
+    return (ok, code, heads, angle) if avec_angle else (ok, code, heads)
+
+
+def topic_gate(conn, title, resume=None, juge_modele=False, avec_angle=False):
     """Décide si un sujet DÉJÀ traité aujourd'hui a le droit de ressortir MAINTENANT.
     Renvoie (autorisé: bool, code: str, titres_déjà_publiés: list).
     code ∈ {'new','followup','cap','too_soon','stale'}.
@@ -9310,26 +9539,29 @@ def topic_gate(conn, title, resume=None, juge_modele=False):
     avec repli automatique sur la règle par mots-clés si l'évaluation échoue."""
     n, last, heads = topic_history(conn, title)
     if n == 0:
-        return True, "new", heads
+        return _rep_gate(True, "new", heads, "", avec_angle)
     if n >= TOPIC_MAX_PER_DAY:
-        return False, "cap", heads
+        return _rep_gate(False, "cap", heads, "", avec_angle)
     if last is not None:
-        gap_min = (datetime.now() - last).total_seconds() / 60.0
+    # ⚠️ `last` vient de la BASE (UTC) : comparer avec l'heure de Paris ajouterait
+    #    deux heures et neutraliserait ce garde-fou.
+        gap_min = (_now_utc() - last).total_seconds() / 60.0
         if gap_min < TOPIC_MIN_GAP_MIN:
-            return False, "too_soon", heads
+            return _rep_gate(False, "too_soon", heads, "", avec_angle)
     # 🆕 EXIGENCE DE NOUVEAUTÉ : une "suite" doit apporter des mots SIGNIFICATIFS absents des
     #    titres déjà publiés sur ce sujet. Sinon c'est le même fait reformulé par un autre média
     #    (vécu : incendie du Var tweeté en URGENT puis re-tweeté en FAITS DIVERS 1h après).
+    _angle = ""
     if juge_modele:
         neuf, angle = _suite_apporte_du_neuf(title, resume, heads)
-        _DERNIER_ANGLE["v"] = angle if neuf else ""
+        _angle = angle if neuf else ""
         if neuf is True:
             if angle:
                 print(f"  🆕 Développement réel : {angle}")
-            return True, "followup", heads
+            return _rep_gate(True, "followup", heads, _angle, avec_angle)
         if neuf is False:
             print("  ⏭️  Même fait reformulé (jugé par le modèle) → pas de republication")
-            return False, "stale", heads
+            return _rep_gate(False, "stale", heads, "", avec_angle)
         # neuf is None → l'évaluation a échoué, on retombe sur la règle par mots-clés
     new_words = _sig_words(title)
     for h in heads:
@@ -9337,7 +9569,7 @@ def topic_gate(conn, title, resume=None, juge_modele=False):
     # on ignore les mots "génériques de gravité" qui ne portent aucune info neuve
     new_words -= _FOLLOWUP_GENERIC
     if not new_words:
-        return False, "stale", heads
+        return _rep_gate(False, "stale", heads, "", avec_angle)
     # 🛡️ Quand le JUGE N'A PAS PU SE PRONONCER, on ne se fie pas au simple fait qu'il y
     #    ait des mots neufs : une reformulation en produit toujours (« banlieusard »,
     #    « révélations »…) sans apporter le moindre fait. On exige un mot qui signale un
@@ -9348,8 +9580,8 @@ def topic_gate(conn, title, resume=None, juge_modele=False):
     if juge_modele and not (_sans_accent & _MOTS_DEVELOPPEMENT):
         print(f"  ⏭️  Juge indisponible et aucun fait nouveau détecté "
               f"({', '.join(sorted(new_words))}) → on ne republie pas")
-        return False, "stale", heads
-    return True, "followup", heads
+        return _rep_gate(False, "stale", heads, "", avec_angle)
+    return _rep_gate(True, "followup", heads, _angle, avec_angle)
 
 
 # Vocabulaire du DÉVELOPPEMENT : ces mots signalent qu'une histoire a AVANCÉ, par
@@ -9752,12 +9984,12 @@ def detect_breaking(conn, candidates, return_all=False):
                 continue
             # 🆕 …ET si le titre apporte des mots SIGNIFICATIFS neufs (pas une reformulation).
             #    Sans ça, un 2e média qui redit la même chose relançait le sujet (incendie du Var).
-            _allowed, _code, _heads = topic_gate(conn, c["title"],
-                                                 resume=c.get("summary"), juge_modele=True)
+            _allowed, _code, _heads, _angle_c = topic_gate(
+                conn, c["title"], resume=c.get("summary"), juge_modele=True, avec_angle=True)
             if not _allowed and _code in ("stale", "too_soon", "cap"):
                 continue
-            # 🆕 l'élément nouveau identifié voyage avec le candidat jusqu'à la rédaction
-            c["_angle_neuf"] = _DERNIER_ANGLE.get("v", "")
+            # 🆕 l'élément nouveau voyage AVEC le candidat — plus de variable partagée
+            c["_angle_neuf"] = _angle_c
             kind = "followup"
         else:
             # nouveau sujet chaud : pas déjà couvert récemment par Pulse
@@ -9892,6 +10124,10 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
         topic_echo_mark_alerted(conn, item["_topic_canon"], item.get("_echo_n", BREAKING_SOURCES))
     log_keywords(conn, keywords)
     log_topic(conn, item.get("title", ""), keywords, corps=body)   # mémoire par sujet (suivi éditorial)
+    if cat == "hommage":
+        # 🕊️ mémorise la personne : aucun second hommage ne partira pour elle
+        marquer_deces_annonce(conn, person or _extract_person_name(
+            item.get("title", ""), item.get("summary", "")))
     # 🏷️ Un canal = un registre : l'hommage n'arme jamais le frein des buzz,
     #    et chaque canal garde son propre anti-rafale.
     _kind = "hommage" if label_cat == "hommage" else ("breaking" if urgent else "buzz")
@@ -10135,6 +10371,231 @@ def publier_carrousel_en_fil(texte, pngs, texte_suite="", par_tweet=4):
     return url
 
 
+SAVIEZ_THEMES = [
+    ("marques",     "Marques devenues des noms communs (Sopalin, Frigidaire, Kleenex, Velcro, "
+                    "Bic, Scotch, Caddie, Post-it, Thermos, Jacuzzi, Rustine, Klaxon…)"),
+    ("expressions", "Origine d'une expression française (poser un lapin, avoir le cafard, "
+                    "tomber dans les pommes, être au pied du mur, la charrue avant les bœufs…)"),
+    ("sciences",    "Un phénomène scientifique du quotidien expliqué simplement (pourquoi le "
+                    "ciel est bleu, pourquoi les glaçons flottent, pourquoi le savon mousse…)"),
+    ("technologies", "L'origine d'un nom ou d'un choix technique (pourquoi Bluetooth, pourquoi "
+                     "Wi-Fi, pourquoi les claviers sont AZERTY, pourquoi le port USB…)"),
+    ("histoire",    "Une décision historique aux conséquences visibles aujourd'hui (pourquoi les "
+                    "panneaux STOP sont rouges, pourquoi les boîtes noires sont orange…)"),
+    ("langue",      "L'origine d'un mot ou d'une formule du français (pourquoi dit-on OK, "
+                    "d'où vient bonjour, pourquoi vingt-deux pour signaler un danger…)"),
+    ("corps",       "Un fait surprenant sur le corps humain, vérifiable et sans conseil médical"),
+    ("geographie",  "Une curiosité géographique ou administrative française vérifiable"),
+    ("animaux",     "Un comportement animal surprenant et documenté"),
+    ("objets",      "L'histoire d'un objet du quotidien et de sa forme actuelle"),
+]
+
+def _saviez_theme_du_jour(conn):
+    """Choisit le thème du jour en évitant ceux traités récemment.
+    La rotation est mécanique : sans elle, le modèle reviendrait spontanément sur les
+    marques et les expressions, qui sont les plus faciles à produire."""
+    try:
+        recents = [r[0] for r in conn.execute(
+            "SELECT theme FROM saviez_vous ORDER BY publie_le DESC LIMIT 6").fetchall()]
+    except Exception:
+        recents = []
+    dispo = [t for t in SAVIEZ_THEMES if t[0] not in recents] or SAVIEZ_THEMES
+    return random.choice(dispo)
+
+
+def _saviez_deja_traite(conn, sujet):
+    """Vrai si ce sujet a déjà fait l'objet d'une publication.
+    La comparaison porte sur les mots significatifs : « Pourquoi le ciel est bleu » et
+    « D'où vient la couleur bleue du ciel » sont le même sujet."""
+    def _racines(txt):
+        # 🌱 On compare des RACINES : « bleu » et « bleue », « marque » et « marques »
+        #    désignent le même sujet. Sans cela, une simple reformulation passait.
+        out = set()
+        for m in _sig_words(txt):
+            r = re.sub(r"(?:aux|es|s|e|x)$", "", m)
+            out.add(r if len(r) >= 4 else m)
+        return out
+
+    mots = _racines(sujet)
+    if not mots:
+        return False
+    try:
+        for (anc,) in conn.execute("SELECT sujet FROM saviez_vous").fetchall():
+            if len(mots & _racines(anc or "")) >= 2:
+                return True
+    except Exception:
+        pass
+    return False
+
+
+def gen_saviez_vous(conn):
+    """« Le Saviez-vous ? » — une publication par jour : une information surprenante,
+    utile ou culturelle, hors actualité.
+
+    Le sujet est choisi dans un THÈME tournant, vérifié contre l'historique complet pour
+    ne jamais se répéter, et le fait doit être suffisamment établi pour être vérifiable.
+    Renvoie le dict de publication, ou None."""
+    if special_done_today(conn, "saviez"):
+        return None
+    cle_theme, consigne = _saviez_theme_du_jour(conn)
+    try:
+        deja = [r[0] for r in conn.execute(
+            "SELECT sujet FROM saviez_vous ORDER BY publie_le DESC LIMIT 40").fetchall()]
+    except Exception:
+        deja = []
+    evite = (" | ".join(deja[:25])) or "(aucun)"
+
+    r = _llm_json(f"""Aujourd'hui : {_date_fr()}.
+
+Tu écris la rubrique « LE SAVIEZ-VOUS ? » de Pulse, média d'actualité français.
+Une information surprenante, utile ou culturelle — PAS une actualité.
+
+THÈME IMPOSÉ AUJOURD'HUI : {consigne}
+
+⛔ SUJETS DÉJÀ PUBLIÉS — n'en reprends AUCUN, ni une variante :
+{evite}
+
+RÈGLES DE FIABILITÉ (les plus importantes) :
+- Le fait doit être ÉTABLI et vérifiable, pas une légende urbaine ni une étymologie
+  contestée. Si l'origine d'une expression fait débat, dis-le ou change de sujet.
+- N'invente AUCUNE date, AUCUN nom, AUCUN chiffre. Dans le doute, reste général.
+- Donne une note de FIABILITÉ sur 10. En dessous de 8, réponds {{"skip": true}}.
+
+FORMAT DU TWEET :
+- 90 à 200 caractères, deux phrases maximum. Le fait d'abord, l'explication ensuite.
+- Ton simple et vivant, sans « incroyable » ni « vous n'allez pas le croire ».
+- Aucune source entre parenthèses : ce n'est pas une actualité.
+
+ILLUSTRATION : décris en une phrase précise l'image qui aiderait à COMPRENDRE ou à
+mémoriser le fait — l'objet, la scène, la comparaison. Pas une image décorative.
+
+Réponds en JSON :
+{{"skip": false, "fiabilite": <0-10>, "sujet": "<3-6 mots>", "tweet": "<le tweet>",
+  "illustration": "<description de l'image>"}}""",
+                  max_tokens=500, system=None, task="special")
+
+    if not isinstance(r, dict) or r.get("skip"):
+        print("  ⏭️  Le Saviez-vous : aucun sujet solide aujourd'hui")
+        return None
+    try:
+        fiab = int(r.get("fiabilite", 0) or 0)
+    except Exception:
+        fiab = 0
+    if fiab < 8:
+        print(f"  ⏭️  Le Saviez-vous : fait trop incertain ({fiab}/10) → on ne publie pas")
+        return None
+
+    sujet = re.sub(r"\s+", " ", str(r.get("sujet") or "")).strip()
+    tweet = re.sub(r"\s+", " ", str(r.get("tweet") or "")).strip()
+    if not sujet or len(tweet) < 40:
+        return None
+    if _saviez_deja_traite(conn, sujet):
+        print(f"  ⏭️  Le Saviez-vous : « {sujet} » a déjà été traité")
+        return None
+    if _trop_long(tweet):
+        tweet = _resserre(tweet)
+    return {"sujet": sujet, "tweet": f"💡 LE SAVIEZ-VOUS ?\n\n{tweet}",
+            "illustration": str(r.get("illustration") or sujet), "theme": cle_theme}
+
+
+def _prompt_saviez(illustration, sujet):
+    """Consigne graphique d'une carte « Le Saviez-vous ? ».
+    L'image doit EXPLIQUER, pas décorer — et rester dans une identité reconnaissable :
+    illustration vectorielle épurée, fond uni, un seul sujet au centre."""
+    return ("Illustration vectorielle éditoriale moderne, style plat et épuré, "
+            "fond uni sombre violet profond, UN SEUL sujet central bien lisible, "
+            "formes simples et nettes, éclairage doux, palette violet et lavande avec "
+            "une touche de rose, AUCUN texte, AUCUNE lettre, AUCUN logo, "
+            "AUCUN visage reconnaissable, composition centrée carrée, "
+            "rendu pédagogique et élégant. Sujet à illustrer : "
+            + re.sub(r"\s+", " ", str(illustration or sujet)).strip()[:300])
+
+
+def build_saviez_card(texte, illustration, sujet, W=1080, H=1350):
+    """Carte « LE SAVIEZ-VOUS ? » : illustration générée par l'IA en haut, texte en bas.
+
+    Contrairement aux autres rubriques, celle-ci ne dépend d'aucune photo d'actualité :
+    l'illustration est produite à partir du contenu, dans une identité graphique fixe —
+    fond violet profond, formes plates, aucun texte incrusté.
+    L'image est CONTRÔLÉE avant usage : si elle ne correspond pas au sujet, la carte sort
+    sans elle plutôt qu'avec un visuel trompeur."""
+    import io as _io
+    try:
+        img = Image.new("RGBA", (W, H), (28, 22, 48, 255))
+        d = ImageDraw.Draw(img)
+        for y in range(H):                       # fond dégradé maison
+            t = y / H
+            d.line([(0, y), (W, y)],
+                   fill=(int(30 + 26 * t), int(23 + 14 * t), int(52 + 30 * t), 255))
+
+        cote = 0
+        # ── ① Illustration générée, vérifiée avant usage ──
+        brut = _gemini_image(_prompt_saviez(illustration, sujet),
+                             libelle="Illustration Le Saviez-vous")
+        if brut and _image_pertinente(brut, f"Le saviez-vous : {sujet}") is False:
+            print("  👁️ Illustration hors-sujet → carte sans image")
+            brut = None
+        if brut:
+            try:
+                vis = Image.open(_io.BytesIO(brut)).convert("RGB")
+                # 📐 L'illustration s'adapte au TEXTE, pas l'inverse : on mesure d'abord
+                #    la place qu'il réclame, l'image prend ce qui reste. Sans cela, une
+                #    image pleine largeur ne laissait plus de place et le texte débordait.
+                _corps = re.sub(r"^💡\s*LE SAVIEZ-VOUS \?\s*", "", str(texte or "")).strip()
+                _fm = _carr_font(42, gras=False)
+                _nl = max(1, len(_carr_wrap(d, [(_corps, False)], _fm, W - 128)))
+                _h_txt = _nl * int(_fm.size * 1.45) + 40
+                cote = max(360, min(W - 128, (H - 150) - 196 - _h_txt - 54))
+                vis, _ = cadrer_intelligemment(vis, cote, cote)
+                m = Image.new("L", (cote, cote), 0)
+                ImageDraw.Draw(m).rounded_rectangle([0, 0, cote - 1, cote - 1],
+                                                    radius=28, fill=255)
+                vis = vis.convert("RGBA")
+                vis.putalpha(m)
+                ombre = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+                ImageDraw.Draw(ombre).rounded_rectangle(
+                    [64 + 6, 196 + 10, 64 + cote + 6, 196 + cote + 10],
+                    radius=28, fill=(0, 0, 0, 120))
+                img.alpha_composite(ombre.filter(ImageFilter.GaussianBlur(14)))
+                img.alpha_composite(vis, (64, 196))
+                d = ImageDraw.Draw(img)
+            except Exception as e:
+                print(f"  ⚠️ Illustration non exploitable ({str(e)[:50]})")
+
+        # ── ② Bandeau de rubrique ──
+        fb = _carr_font(34, titre=True)
+        lib = "LE SAVIEZ-VOUS ?"
+        wb = int(d.textlength(lib, font=fb))
+        cal = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(cal).rounded_rectangle([64, 74, 64 + wb + 52, 74 + fb.size + 22],
+                                              radius=10, fill=tuple(CARR_ACCENT) + (245,))
+        img.alpha_composite(cal)
+        d = ImageDraw.Draw(img)
+        d.text((64 + 26, 74 + (fb.size + 22) // 2), lib, font=fb,
+               fill=(26, 20, 46), anchor="lm")
+
+        # ── ③ Texte, mis en page dynamiquement sous l'illustration ──
+        corps = re.sub(r"^💡\s*LE SAVIEZ-VOUS \?\s*", "", str(texte or "")).strip()
+        haut = (196 + cote + 54) if brut else 260
+        plan = _bloc_texte_adaptatif(d, [], [[(corps, False)]], 64, W - 128,
+                                     haut_dispo=haut, bas_dispo=H - 150,
+                                     px_para=42, mini_para=0.60)
+        d, _ = _dessiner_bloc_adaptatif(img, d, plan, CARR_ACCENT,
+                                        couleur_para=(246, 245, 252))
+
+        fw = _carr_font(22)
+        t = " ".join("@PULSEACTUS")
+        d.text(((W - int(d.textlength(t, font=fw))) // 2, H - 44 - fw.size), t,
+               font=fw, fill=(255, 255, 255, 205))
+        img = _carr_trame(img, force=9)
+        buf = _io.BytesIO()
+        img.convert("RGB").save(buf, format="PNG", optimize=True)
+        return buf.getvalue()
+    except Exception as e:
+        print(f"  ⚠️ Carte Le Saviez-vous non rendue ({str(e)[:70]})")
+        return None
+
+
 def _photo_secours_jumeau(item, candidates):
     """🖼️🤝 L'article sélectionné n'a pas d'image exploitable (403, paywall, flux nu) ?
     On tente celle d'un article JUMEAU : même sujet (≥2 mots saillants communs) chez un
@@ -10184,16 +10645,11 @@ def _titre_propre(titre):
     return t or (titre or "").strip()
 
 
-def check_feeds(conn):
-    global _META_CONN, _CLAUDE_CALLS, _CADENCE_DECISION, _EMBED_CONN
-    _EMBED_CONN = conn
-    _META_CONN = conn
-    _CLAUDE_CALLS = 0
-    _CADENCE_DECISION = None
-    print(f"\n[{datetime.now().strftime('%H:%M')}] 🔍 Check Pulse — version {PULSE_VERSION}")
-    # 🔧 Diagnostic de configuration : dit NOIR SUR BLANC quel moteur est réellement actif.
-    #    (Piège vécu : une clé rangée dans les secrets GitHub mais non transmise par le
-    #    workflow reste invisible pour le bot — sans ce message, ça passe inaperçu.)
+def _afficher_moteur():
+    """Annonce, dès la première ligne du cycle, quel moteur traite chaque tâche.
+    Existe parce qu'une clé rangée dans les secrets GitHub mais non transmise par le
+    workflow reste invisible pour le bot : sans ce message, la bascule silencieuse
+    vers le repli payant passe inaperçue."""
     try:
         _souhaits = {"analyse": LLM_ANALYSE, "rédaction": LLM_REDACTION,
                      "spéciaux": LLM_SPECIAUX}
@@ -10213,15 +10669,22 @@ def check_feeds(conn):
     except Exception:
         pass
 
+
+
+def _traiter_rendez_vous(conn):
+    """Rendez-vous FIXES du jour : Coupe du monde, récap du soir, décryptage, sondage.
+    Chacun ne sort qu'une fois par jour et à son heure. Le premier qui publie arrête le
+    cycle — un seul post par passage, jamais de rafale.
+    Renvoie True si quelque chose a été publié."""
     # ── MODE COUPE DU MONDE : matchs du jour (matin) + prono la veille des matchs de la France ──
     # Chaque rendez-vous fixe qui publie fait 'return' → UN SEUL post par run (pas de rafale).
     try:
         if not special_done_today(conn, "cdm_jour") and _paris_hour() >= 8:
             if publish_cdm_day(conn):
-                return
+                return True
         if _paris_hour() >= 18:
             if publish_cdm_prono(conn):
-                return
+                return True
     except Exception as e:
         print(f"  ⚠️ Mode CDM : {e}")
 
@@ -10229,7 +10692,7 @@ def check_feeds(conn):
     try:
         if not special_done_today(conn, "recap") and _paris_hour() >= 21:
             if publish_recap(conn):
-                return
+                return True
     except Exception as e:
         print(f"  ⚠️ Récap du soir : {e}")
 
@@ -10327,9 +10790,31 @@ def check_feeds(conn):
                     print(f"  ❌ Instagram isolé : {e}")
                 log_special(conn, "thread", carousel["keywords"])
                 print(f"  🎠 Décryptage du jour publié (carrousel Instagram) [{carousel['sujet']}]")
-                return
+                return True
             else:
                 print("  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)")
+
+    # ── 💡 LE SAVIEZ-VOUS ? (1×/jour, hors actualité) ──
+    try:
+        if 10 <= _paris_hour() <= 21 and not special_done_today(conn, "saviez"):
+            sv = gen_saviez_vous(conn)
+            if sv:
+                png = build_saviez_card(sv["tweet"], sv["illustration"], sv["sujet"])
+                url = post_to_twitter(sv["tweet"], png)
+                if url:
+                    try:
+                        post_to_facebook(sv["tweet"], png)
+                    except Exception as e:
+                        print(f"  ⚠️ Facebook isolé : {str(e)[:60]}")
+                    conn.execute(
+                        "INSERT OR REPLACE INTO saviez_vous (sujet, theme) VALUES (?,?)",
+                        (sv["sujet"], sv["theme"]))
+                    conn.commit()
+                    log_special(conn, "saviez", [sv["sujet"]])
+                    print(f"  💡 Le Saviez-vous publié : {sv['sujet']}")
+                    return True
+    except Exception as e:
+        print(f"  ⚠️ Le Saviez-vous ignoré ({str(e)[:70]})")
 
     # ── SONDAGE QUOTIDIEN (après-midi, 1×/jour) ──
     if not special_done_today(conn, "poll") and _paris_hour() >= 12:
@@ -10342,7 +10827,21 @@ def check_feeds(conn):
             if url:
                 log_special(conn, "poll", poll["keywords"])
                 print(f"  📊 Sondage du jour publié")
-                return  # on s'arrête là pour ce run
+                return True  # on s'arrête là pour ce run
+
+    return False
+
+
+def check_feeds(conn):
+    global _META_CONN, _CLAUDE_CALLS, _CADENCE_DECISION, _EMBED_CONN
+    _EMBED_CONN = conn
+    _META_CONN = conn
+    _CLAUDE_CALLS = 0
+    _CADENCE_DECISION = None
+    print(f"\n[{_now_paris().strftime('%H:%M')}] 🔍 Check Pulse — version {PULSE_VERSION}")
+    _afficher_moteur()
+    if _traiter_rendez_vous(conn):
+        return
 
     # ── SCAN RSS (à chaque run, gratuit) — sert au MODE BREAKING et à la publi normale ──
     print(f"  → Scan RSS...")
@@ -10788,14 +11287,31 @@ def check_feeds(conn):
             # s'il contient un mot de décès ET un nom de personne → quelques appels/jour maximum.
             # Corrige dans les DEUX sens : rattrape un vrai décès mal classé (ex: chef cuisinier
             # en "culture"), et bloque un faux hommage (personne bien vivante).
+            # ⚠️ « hommage », « obsèques » et « in memoriam » ont été RETIRÉS de ce motif :
+            #    un article où QUELQU'UN REND HOMMAGE n'annonce pas un décès. Le nom extrait
+            #    était celui du défunt, Wikipédia confirmait sa mort, et un article de
+            #    réaction partait en hommage (défaut vécu : Bouli Lanners / Kavinsky).
             DEATH_HINT = re.compile(r"\b(mort|morte|décès|décédé|décédée|disparition|"
-                                    r"s'est éteint|nous a quitté|meurt|obsèques|funérailles|"
-                                    r"in memoriam|hommage)\b", re.I)
+                                    r"s'est éteint|nous a quitté|meurt)\b", re.I)
             already_obit = _is_obituary(title_s, summary_s)
-            if cat != "breaking" and DEATH_HINT.search(title_s + " " + summary_s):
+            # 🛡️ La confirmation Wikipédia ne suffit PAS : il faut aussi que l'article
+            #    ANNONCE le décès. Sinon toute réaction à une mort connue deviendrait
+            #    un nouvel hommage.
+            if cat != "breaking" and already_obit and DEATH_HINT.search(title_s + " " + summary_s):
                 person_name = _extract_person_name(title_s, summary_s)
                 if person_name:
+                    # 🕊️ Un décès ne s'annonce qu'UNE fois : les articles de réaction,
+                    #    d'obsèques ou de rétrospective ne rouvrent pas le canal.
+                    if deces_deja_annonce(conn, person_name):
+                        print(f"  ⏭️  Hommage à {person_name} déjà publié → on ne republie pas")
+                        continue
                     verdict = verify_death_wikipedia(person_name)
+                    if verdict == "ancien":
+                        # 🗓️ Morte, mais depuis des années : ce n'est pas une actualité.
+                        #    Un article de clash ou de rétrospective qui la cite ne doit
+                        #    pas déclencher d'hommage.
+                        print(f"  ⏭️  {person_name} est décédé(e) depuis longtemps → pas un hommage")
+                        continue
                     if verdict == "dead":
                         cat = "hommage"           # décès confirmé → hommage (même si classé culture/sport)
                         print(f"  ✅ Décès CONFIRMÉ sur Wikipedia ({person_name}) → hommage")
@@ -10867,7 +11383,9 @@ def check_feeds(conn):
                                                obituary["desc"], item["source"], W=1080, H=1350)
                 png_ig = build_hommage_card(raw_src, obituary["name"], obituary["dates"],
                                             obituary["desc"], item["source"], W=1080, H=1350)
-                video_path = build_video("hommage", obituary, "hommage", raw_src, item["source"])
+                # 🕊️ IMAGE UNIQUE, plus de vidéo : un hommage se lit d'un coup d'œil et
+                #    le registre sobre s'accommode mal d'une animation.
+                video_path = None
                 print(f"  🕊️ Carte hommage : {obituary['name']}")
             elif not has_real and cat != "gta6":
                 # 🚫 Aucune vraie photo → on publie SANS visuel généré (ni carte, ni vidéo sur
@@ -10959,7 +11477,7 @@ def check_feeds(conn):
                     import os as _os
                     if _os.path.exists(video_path):
                         _os.remove(video_path)
-                except: pass
+                except Exception: pass
 
             # ⚠️ On ne "consomme" le sujet (blocage mots-clés 12h, marquage vu, cadence) QUE si
             # au moins une plateforme a VRAIMENT publié. Sinon un échec réseau/403 ferait perdre
@@ -10994,6 +11512,10 @@ def check_feeds(conn):
             if cat == "hommage":
                 log_keywords(conn, keywords)
                 log_topic(conn, item.get("title", ""), keywords, corps=body)
+                if cat == "hommage":
+                    # 🕊️ mémorise la personne : aucun second hommage ne partira pour elle
+                    marquer_deces_annonce(conn, person or _extract_person_name(
+                        item.get("title", ""), item.get("summary", "")))
                 if item.get("url"):
                     mark_seen(conn, item["url"], item["title"])
                 print(f"  🕊️ Hommage publié (canal bonus, cadence intacte) : {item['title'][:50]}")
@@ -11002,6 +11524,10 @@ def check_feeds(conn):
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
             log_topic(conn, item.get("title", ""), keywords, corps=body)   # mémoire par sujet (suivi éditorial)
+            if cat == "hommage":
+                # 🕊️ mémorise la personne : aucun second hommage ne partira pour elle
+                marquer_deces_annonce(conn, person or _extract_person_name(
+                    item.get("title", ""), item.get("summary", "")))
             if cat == "sport" and _is_sport_result(item.get("title", "")):
                 log_special(conn, "sport_result", keywords)   # 1 dérogation résultat / 4h
             if item.get("url"):
