@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.53.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.54.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -1113,46 +1113,73 @@ def _hashtag_candidates(person, keywords):
             seen.add(w.lower()); out.append(w)
     return out
 
-TRENDS_URL   = os.environ.get("TRENDS_URL", "https://getdaytrends.com/france/")
+TRENDS_SOURCES = [s.strip() for s in os.environ.get(
+    "TRENDS_URL",
+    "https://trends24.in/france/,https://getdaytrends.com/france/").split(",") if s.strip()]
+TRENDS_URL   = TRENDS_SOURCES[0] if TRENDS_SOURCES else ""
 TRENDS_TTL   = 3600            # une heure : les tendances bougent lentement
 _TRENDS_CACHE = {"t": 0.0, "v": []}
 
+def _lire_tendances(html):
+    """Extrait les tendances d'une page. Trois motifs, du plus précis au plus large :
+    les sites de tendances changent de structure sans prévenir, et un seul motif casse
+    silencieusement. On garde l'ordre d'apparition — il reflète le classement."""
+    vus, out = set(), []
+
+    def _ajout(t):
+        t = re.sub(r"\s+", " ", str(t)).strip()
+        if 2 <= len(t) <= 60 and t.lower() not in vus and not t.lower().startswith("http"):
+            vus.add(t.lower()); out.append(t)
+
+    # ① liens de tendance (getdaytrends : /trend/… ; trends24 : ?q=…)
+    for m in re.finditer(r'href="[^"]*(?:/trend/|[?&]q=)[^"]*"[^>]*>\s*([^<]{2,60}?)\s*<',
+                         html, re.I):
+        _ajout(m.group(1))
+    # ② éléments de liste d'un bloc de tendances
+    if len(out) < 5:
+        for m in re.finditer(r'class="[^"]*trend[^"]*"[^>]*>\s*(?:<[^>]+>\s*)*'
+                             r'([^<]{2,60}?)\s*<', html, re.I):
+            _ajout(m.group(1))
+    # ③ repli : tous les hashtags visibles
+    if len(out) < 5:
+        for m in re.finditer(r"#([A-Za-zÀ-ÿ0-9_]{3,40})", html):
+            _ajout("#" + m.group(1))
+    return out[:50]
+
+
 def _tendances_x():
-    """Tendances X France, récupérées sur getdaytrends. Mises en cache 1 h.
-    ⚠️ C'est du relevé de page web, pas une API contractuelle : ça peut cesser de
-    fonctionner sans prévenir. Tout est donc en repli silencieux — sans tendances, les
-    hashtags restent choisis sur les mots du tweet, ce qui marche déjà.
-    ⛔ Les tendances ne servent JAMAIS à choisir un sujet : uniquement à départager
-    des hashtags déjà pertinents pour l'article traité."""
+    """Tendances X France. Plusieurs sources sont tentées dans l'ordre : ces sites
+    bloquent parfois les accès automatisés (403), et une seule source rend le canal
+    entièrement inerte sans qu'on s'en aperçoive.
+    ⛔ Les tendances ne servent JAMAIS à choisir un sujet : uniquement à départager des
+    hashtags déjà pertinents pour l'article traité."""
     import time as _t
     if _TRENDS_CACHE["v"] and (_t.time() - _TRENDS_CACHE["t"]) < TRENDS_TTL:
         return _TRENDS_CACHE["v"]
-    try:
-        r = requests.get(TRENDS_URL, timeout=12, headers={
-            "User-Agent": "Mozilla/5.0 (compatible; PulseBot/1.0)",
-            "Accept-Language": "fr-FR,fr;q=0.9"})
-        r.raise_for_status()
-        html = r.text
-        vus, out = set(), []
-        # ① liens de tendance : <a href="/france/trend/XXX/">…</a>
-        for m in re.finditer(r'href="[^"]*/trend/[^"]*"[^>]*>\s*([^<]{2,60}?)\s*<', html, re.I):
-            t = re.sub(r"\s+", " ", m.group(1)).strip()
-            if t and t.lower() not in vus:
-                vus.add(t.lower()); out.append(t)
-        # ② repli : tous les hashtags visibles dans la page
-        if len(out) < 5:
-            for m in re.finditer(r"#([A-Za-zÀ-ÿ0-9_]{3,40})", html):
-                t = "#" + m.group(1)
-                if t.lower() not in vus:
-                    vus.add(t.lower()); out.append(t)
-        out = out[:50]
-        if out:
-            _TRENDS_CACHE.update({"t": _t.time(), "v": out})
-            print(f"  📈 {len(out)} tendances X récupérées")
-        return out
-    except Exception as e:
-        print(f"  ⚠️ Tendances X indisponibles ({str(e)[:60]}) → hashtags sur les mots du tweet")
-        return []
+    entetes = {
+        "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                       "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
+    }
+    for url in TRENDS_SOURCES:
+        try:
+            r = requests.get(url, timeout=12, headers=entetes)
+            if r.status_code != 200:
+                print(f"  ⚠️ Tendances : {url.split('/')[2]} répond {r.status_code}")
+                continue
+            out = _lire_tendances(r.text)
+            if out:
+                _TRENDS_CACHE.update({"t": _t.time(), "v": out})
+                print(f"  📈 {len(out)} tendances lues sur {url.split('/')[2]} : "
+                      + ", ".join(out[:5]))
+                return out
+            print(f"  ⚠️ Tendances : page de {url.split('/')[2]} illisible "
+                  f"(structure changée ?)")
+        except Exception as e:
+            print(f"  ⚠️ Tendances : {url.split('/')[2]} injoignable ({str(e)[:50]})")
+    print("  ⚠️ Aucune tendance disponible → hashtags choisis sur les mots du tweet")
+    return []
 
 
 def _norm_tag(mot):
