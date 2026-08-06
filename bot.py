@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.62.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.66.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -806,6 +806,27 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
             #    passager. Tous sont TEMPORAIRES : on attend et on réessaie, au lieu de
             #    basculer aussitôt sur le repli payant (vécu : 12 erreurs 503 en un run,
             #    dont l'échec silencieux d'une génération d'image).
+            # ⚠️ Deux 429 très différents : « rate limit » (débit momentané, on attend)
+            #    et « exceeded your quota » (quota JOURNALIER épuisé — réessayer ne sert
+            #    à rien et fait perdre 40 s par appel, vécu sur le quota d'images).
+            _quota_epuise = False
+            if code == 429:
+                try:
+                    _msg = ((r.json().get("error") or {}).get("message") or "").lower()
+                    _quota_epuise = "exceeded your current quota" in _msg
+                except Exception:
+                    pass
+            if _quota_epuise:
+                print(f"  🚫 Quota {famille} épuisé pour aujourd'hui → on n'insiste pas")
+                raise RuntimeError(f"quota {famille} épuisé")
+            # ⛔ 404 = le modèle n'existe pas (ou plus) sur ce compte : réessayer est
+            #    inutile et fait perdre du temps, jusqu'à saturer le régulateur de débit.
+            if code == 404:
+                try:
+                    _m404 = ((r.json().get("error") or {}).get("message") or "")[:120]
+                except Exception:
+                    _m404 = ""
+                raise RuntimeError(f"modèle introuvable ({_m404})")
             if code in (429, 500, 502, 503, 504) and essai + 1 < essais:
                 pause = 20 if code == 429 else 8
                 print(f"  ⏱️ {famille} : API indisponible ({code}) → nouvelle tentative "
@@ -821,6 +842,8 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
                     print(f"  🔎 Gemini {code} — {msg}")
             r.raise_for_status()
             return r.json()
+        except RuntimeError:
+            raise                      # quota épuisé : inutile de réessayer
         except Exception as e:
             derniere = e
             if essai + 1 >= essais:
@@ -4411,8 +4434,21 @@ def _wiki_page_image(page_title):
 #    indiqué si le premier n'est pas ouvert sur le compte (ex. IMAGE_MODEL_SECOURS=
 #    imagen-4.0-ultra-generate-001) — mais les points d'accès Imagen ferment le
 #    17 août 2026, ce n'est donc qu'un dépannage temporaire.
-IMAGE_MODEL         = os.environ.get("IMAGE_MODEL", "gemini-2.5-flash-image")
-IMAGE_MODEL_SECOURS = os.environ.get("IMAGE_MODEL_SECOURS", "")
+#    ⚠️ Un modèle peut n'être PAS OUVERT sur un compte donné : l'API répond alors
+#    « exceeded your current quota » alors qu'aucune image n'a été générée. On tente
+#    donc plusieurs modèles dans l'ordre, du plus généreux au plus rare.
+#    ✅ Constaté sur ce compte (août 2026) : les modèles Nano Banana affichent 0/0 —
+#    aucune allocation —, tandis que les trois Imagen 4 ont 25 images/jour chacun.
+#    On part donc sur Imagen 4 Fast, les deux autres Imagen en secours (75 images/jour
+#    au total), puis Nano Banana en dernier.
+#    ⚠️ Google ferme les modèles Imagen le 17 AOÛT 2026 et recommande Nano Banana.
+#    L'ordre ci-dessous gère la transition tout seul : le jour où Imagen s'arrête ou
+#    que Nano Banana s'ouvre sur le compte, la bascule est automatique. Aucun code à
+#    modifier — au besoin, la variable IMAGE_MODEL suffit à inverser la priorité.
+IMAGE_MODEL         = os.environ.get("IMAGE_MODEL", "imagen-4.0-fast-generate-001")
+IMAGE_MODEL_SECOURS = os.environ.get(
+    "IMAGE_MODEL_SECOURS",
+    "imagen-4.0-generate-001,imagen-4.0-ultra-generate-001,gemini-2.5-flash-image")
 
 def _gemini_image(description, libelle="Illustration"):
     """Génère une image d'illustration.
@@ -4452,7 +4488,8 @@ def _gemini_image(description, libelle="Illustration"):
         return None
 
     consigne = description[:600]
-    modeles = [IMAGE_MODEL] + [m for m in (IMAGE_MODEL_SECOURS,) if m and m != IMAGE_MODEL]
+    modeles = [IMAGE_MODEL] + [m.strip() for m in str(IMAGE_MODEL_SECOURS).split(",")
+                               if m.strip() and m.strip() != IMAGE_MODEL]
     for modele in modeles:
         appel = _via_predict if modele.lower().startswith("imagen") else _via_generate
         try:
@@ -6998,16 +7035,41 @@ OBITUARY_BLOCKERS = (
     "erreur administrative", "rayé des vivants", "considéré comme mort", "considérée comme morte",
 )
 
+_ALERTE_HORS_SUJET = re.compile(
+    r"\b(?:taxe|contribution|fonds|indemnisation|cotisation|prime|prélèvement|"
+    r"budget|assurance|assurances|loi|décret|projet de loi|amendement|commission|"
+    r"procès|jugement|verdict|condamné|condamnation|anniversaire|commémoration|"
+    r"hommage|mémorial|documentaire|film|série|livre|exposition|rapport|étude|"
+    r"sondage|statistiques|bilan annuel|rétrospective)\b", re.IGNORECASE)
+
+_ALERTE_EN_COURS = re.compile(
+    r"\b(?:en cours|actuellement|ce matin|cet après-midi|ce soir|cette nuit|"
+    r"vient de|à l'instant|urgence|évacuez|évacuation en cours|confinez|"
+    r"mettez-vous|restez chez vous|périmètre de sécurité|intervention|"
+    r"secours|pompiers mobilisés|police mobilisée|blessés|victimes|"
+    r"survenu|s'est produit|frappe|frappé)\b", re.IGNORECASE)
+
+
 def _is_urgent_alert(title, summary):
-    """Détecte une alerte de DANGER IMMINENT qui doit passer coûte que coûte (contourne la cadence) :
-    tsunami, évacuation, alerte rouge, attentat/fusillade en cours, séisme de forte magnitude.
-    Conçu pour éviter les faux positifs (mots-clés de danger physique réel, pas métaphoriques)."""
+    """Alerte de DANGER IMMINENT à publier coûte que coûte : tsunami, évacuation,
+    attentat ou fusillade EN COURS, séisme de forte magnitude.
+
+    ⚠️ Le mot-clé seul ne suffit pas. « La taxe attentat va augmenter de 2 euros » a
+    déclenché une alerte urgente (défaut vécu) : le vocabulaire du danger apparaît
+    constamment dans des sujets administratifs, judiciaires ou commémoratifs.
+    Deux conditions désormais :
+      ① aucun terme de contexte non urgent (taxe, loi, procès, anniversaire…) ;
+      ② un marqueur d'événement EN COURS ou de conséquence humaine."""
     t = (str(title or "") + " " + str(summary or "")).lower()
     strong = ("tsunami", "alerte rouge", "évacuation", "évacuer", "attentat",
               "fusillade", "prise d'otage", "mettez-vous à l'abri", "se mettre à l'abri",
               "immédiatement en hauteur", "alerte enlèvement")
     if any(k in t for k in strong):
-        return True
+        # ⛔ le mot apparaît dans un contexte qui n'a rien d'urgent
+        if _ALERTE_HORS_SUJET.search(t):
+            return False
+        # ✅ il faut un signe que l'événement se déroule MAINTENANT
+        return bool(_ALERTE_EN_COURS.search(t))
     if "séisme" in t or "tremblement de terre" in t or "magnitude" in t:
         m = re.search(r"magnitude\s*(\d[\.,]?\d?)", t)
         if m:
@@ -10903,12 +10965,32 @@ def build_saviez_card(texte, illustration, sujet, W=1080, H=1350):
         d.text((64 + 26, 74 + (fb.size + 22) // 2), lib, font=fb,
                fill=(26, 20, 46), anchor="lm")
 
-        # ── ③ Texte, mis en page dynamiquement sous l'illustration ──
+        # ── ③ Texte, mis en page dynamiquement ──
         corps = re.sub(r"^💡\s*LE SAVIEZ-VOUS \?\s*", "", str(texte or "")).strip()
-        haut = (196 + cote + 54) if brut else 260
+        if brut:
+            haut = 196 + cote + 54
+            _px, _mini = 42, 0.60
+        else:
+            # 🎨 SANS ILLUSTRATION (quota d'images épuisé, par exemple) : la carte est
+            #    conçue pour s'en passer, pas amputée. Le texte devient l'élément
+            #    principal — grand, centré verticalement — et un motif discret occupe
+            #    le fond. Une carte vide aux trois quarts est pire qu'une carte sobre.
+            _motif = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            _dm = ImageDraw.Draw(_motif)
+            for _k in range(7):
+                _r = 150 + _k * 105
+                _dm.ellipse([W // 2 - _r, int(H * 0.42) - _r, W // 2 + _r, int(H * 0.42) + _r],
+                            outline=tuple(CARR_ACCENT) + (16,), width=3)
+            img.alpha_composite(_motif)
+            d = ImageDraw.Draw(img)
+            haut = 240
+            _px, _mini = 64, 0.55        # texte nettement plus grand : il porte la carte
         plan = _bloc_texte_adaptatif(d, [], [[(corps, False)]], 64, W - 128,
                                      haut_dispo=haut, bas_dispo=H - 150,
-                                     px_para=42, mini_para=0.60)
+                                     px_para=_px, mini_para=_mini)
+        if not brut:
+            # centrage vertical dans l'espace libre
+            plan["y"] = max(haut, (haut + (H - 150) - plan["hauteur"]) // 2)
         d, _ = _dessiner_bloc_adaptatif(img, d, plan, CARR_ACCENT,
                                         couleur_para=(246, 245, 252))
 
