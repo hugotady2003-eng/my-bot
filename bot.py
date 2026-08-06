@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.58.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.62.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -342,6 +342,17 @@ def init_db():
     #    l'annonce (défaut vécu : le décès de Kavinsky annoncé deux jours de suite).
     # 💡 Historique de « Le Saviez-vous ? » : aucun sujet ne doit sortir deux fois,
     #    et la rotation des thèmes s'appuie sur les dernières publications.
+    # 🖼️ PHOTOTHÈQUE DU JOUR : chaque photo réellement téléchargée est conservée.
+    #    Le soir, les pages d'articles sont souvent bloquées ou vidées de leur og:image
+    #    — mais le bot les avait déjà récupérées quelques heures plus tôt pour publier.
+    #    Sans ce cache, le récap perdait ces images (défaut vécu, plusieurs soirs).
+    conn.execute("""CREATE TABLE IF NOT EXISTS photo_cache (
+        url TEXT PRIMARY KEY,
+        titre TEXT,
+        categorie TEXT,
+        image BLOB,
+        pris_le TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+    conn.execute("DELETE FROM photo_cache WHERE pris_le < datetime('now', '-3 days')")
     conn.execute("""CREATE TABLE IF NOT EXISTS saviez_vous (
         sujet TEXT PRIMARY KEY,
         theme TEXT,
@@ -776,7 +787,7 @@ def _attendre_creneau(famille="texte"):
     hist.append(maintenant)
 
 
-def _post_gemini(url, payload, famille="texte", timeout=60, essais=2):
+def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
     """Appel POST vers Gemini, régulé et tolérant au 429.
     Un refus pour dépassement de débit n'est pas une panne : on attend et on réessaie.
     ⚠️ En cas d'erreur 4xx, on affiche le MESSAGE de l'API : sans lui, un contrat
@@ -791,9 +802,15 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=2):
                                             "Content-Type": "application/json"},
                               json=payload, timeout=timeout)
             code = getattr(r, "status_code", 200)
-            if code == 429 and essai + 1 < essais:
-                print(f"  ⏱️ Débit {famille} refusé par l'API → nouvelle tentative dans 20 s")
-                _t.sleep(20)
+            # 🔁 429 = débit dépassé, 503 = service saturé, 500/502/504 = incident
+            #    passager. Tous sont TEMPORAIRES : on attend et on réessaie, au lieu de
+            #    basculer aussitôt sur le repli payant (vécu : 12 erreurs 503 en un run,
+            #    dont l'échec silencieux d'une génération d'image).
+            if code in (429, 500, 502, 503, 504) and essai + 1 < essais:
+                pause = 20 if code == 429 else 8
+                print(f"  ⏱️ {famille} : API indisponible ({code}) → nouvelle tentative "
+                      f"dans {pause} s")
+                _t.sleep(pause)
                 continue
             if code and code >= 400:
                 try:
@@ -1965,84 +1982,77 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
     # 💰 UNE SEULE régénération payante par tweet. Les trois garde-fous (fait, teaser,
     #    annonce périmée) pouvaient s'enchaîner : jusqu'à 4 appels facturés pour UN tweet.
     #    Au-delà du quota, on applique la correction LOCALE (gratuite) déjà prévue.
-    _regen = [1]
-    def _can_regen():
-        if _regen[0] <= 0:
-            print("  💰 Quota de régénération atteint → correction locale (0 coût)")
-            return False
-        _regen[0] -= 1
-        return True
-    issues = _fact_guard(body + " " + headline, src_text)
-    if issues and _can_regen():
-        print(f"  ⚖️ Erreur factuelle détectée ({'; '.join(issues)}) → régénération")
-        body, headline, image_query, keywords, person, pays = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-            angle_neuf=angle_neuf, dossier=dossier, correction="; ".join(issues))
-        if _fact_guard(body + " " + headline, src_text):
-            body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
-            print("  ⚖️ Correction forcée appliquée")
-    elif issues:
-        # quota épuisé : correction locale gratuite, l'exigence factuelle reste tenue
-        body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
-        print("  ⚖️ Correction forcée appliquée (sans régénération)")
-
-    # 🚫 GARDE-FOU ANTI-TEASER : un tweet qui CACHE l'info ("découvrez si...", "on vous dit tout")
-    # est un échec éditorial. On régénère UNE fois avec une consigne explicite de donner le fait.
-    if _is_teaser(body) and _can_regen():
-        print(f"  🚫 Teaser/clickbait détecté → régénération (l'info doit être DONNÉE, pas appâtée)")
-        anti = ("Ton tweet précédent CACHAIT l'information (formulation racoleuse type 'découvrez si...', "
-                "'on vous dit tout') OU relayait la promo d'un autre média ('on en parle dans le podcast', "
-                "'à écouter dans notre émission', questions creuses renvoyant à ce contenu). INTERDIT. "
-                "DONNE le FAIT d'actualité en clair, directement, dans le tweet — sans aucune promo de podcast/"
-                "émission/dossier, sans question creuse. Le lecteur doit connaître le fait en te lisant, sans cliquer ailleurs.")
-        body, headline, image_query, keywords, person, pays = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-            angle_neuf=angle_neuf, dossier=dossier, correction=anti)
-    # ✂️ TROP BAVARD — le plafond dépend du format retenu pour ce sujet.
+    # 🧮 UN SEUL POINT DE CORRECTION. Cinq garde-fous pouvaient chacun relancer une
+    #    rédaction : même bornés par un quota, ils rendaient le coût imprévisible et
+    #    l'ordre des corrections arbitraire — la dernière écrasait les précédentes.
+    #    Ici on DIAGNOSTIQUE tout, puis on corrige EN UNE FOIS, toutes consignes réunies.
     _fmt = "direct" if category == "hommage" else choisir_format_tweet(title, summary, article_text)[0]
     _struct = _fmt in ("liste", "echeances")
-    if (_trop_long(body, _struct) or _ligne_a_rallonge(body)) and _can_regen():
-        if _ligne_a_rallonge(body):
-            print("  ✂️ Ligne à rallonge détectée → régénération en lignes courtes")
-            anti = ("Une de tes lignes est BEAUCOUP trop longue. Chaque ligne doit tenir à l'écran "
-                    "sur mobile (100 caractères maximum). Découpe : une idée par ligne, "
-                    "des puces COURTES, pas de phrase à rallonge.")
-        else:
-            print(f"  ✂️ Tweet trop long ({len(body)} car.) → régénération plus concise")
-            anti = (f"Ton tweet fait {len(body)} caractères : trop long pour Pulse. "
-                    f"Réécris-le en gardant UNIQUEMENT l'essentiel, en lignes COURTES. "
-                    f"Supprime le contexte, les conséquences et tout commentaire.")
+
+    def _diagnostiquer(txt, head):
+        """Liste TOUS les défauts du tweet, sous forme de consignes de correction."""
+        consignes = []
+        faits = _fact_guard(txt + " " + head, src_text)
+        if faits:
+            consignes.append("ERREUR FACTUELLE : " + "; ".join(faits))
+        if _is_teaser(txt):
+            consignes.append(
+                "TEASER : ton tweet CACHE l'information (formulation racoleuse type "
+                "« découvrez si… », « on vous dit tout », ou renvoi vers une émission). "
+                "DONNE le fait en clair, directement, sans aucune promo ni question creuse.")
+        if _ligne_a_rallonge(txt):
+            consignes.append(
+                "LIGNE TROP LONGUE : chaque ligne doit tenir à l'écran sur mobile "
+                "(100 caractères maximum). Une idée par ligne, des puces COURTES.")
+        elif _trop_long(txt, _struct):
+            consignes.append(
+                f"TROP LONG ({len(txt)} caractères) : garde UNIQUEMENT l'essentiel, "
+                f"en lignes courtes. Supprime le contexte et les conséquences.")
+        if _annonce_creuse(txt):
+            consignes.append(
+                "ANNONCE SANS CONTENU : ton tweet annonce quelque chose (« défend », "
+                "« justifie », « explique »…) sans dire QUOI. Donne CONCRÈTEMENT les "
+                "chiffres, les arguments, les mesures — en liste à puces si nécessaire.")
+        if prev_angles and _manque_marqueur_suite(txt):
+            consignes.append(
+                "SUITE MAL ÉCRITE : ce sujet a DÉJÀ été publié par Pulse, mais ton tweet "
+                "le présente comme une découverte. Réécris en CONTINUITÉ, avec un marqueur "
+                "de suivi dès les premiers mots (« toujours en cours », « le bilan grimpe "
+                "à », « désormais », « nouveau rebondissement »).")
+        if _annonce_perimee(txt, pub_ts=pub_ts):
+            consignes.append(
+                f"ANNONCE PÉRIMÉE : il est {_now_paris().strftime('%Hh%M')} et ton tweet "
+                f"présente comme À VENIR un événement DÉJÀ PASSÉ. Écris-le au présent ou "
+                f"au passé (« a débuté », « est en cours », « s'est achevé »).")
+        return consignes, faits
+
+    _defauts, _faits = _diagnostiquer(body, headline)
+    if _defauts:
+        print(f"  🔎 {len(_defauts)} défaut(s) détecté(s) → une seule régénération")
+        for _d in _defauts:
+            print(f"     • {_d.split(' :')[0]}")
         body, headline, image_query, keywords, person, pays = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-            angle_neuf=angle_neuf, dossier=dossier, correction=anti)
-    # resserrage LOCAL (gratuit) : s'applique aussi quand le quota est épuisé
+            title, summary, source, category, article_text=article_text,
+            prev_angles=prev_angles, angle_neuf=angle_neuf, dossier=dossier,
+            correction="\n".join(f"— {c}" for c in _defauts))
+        _defauts, _faits = _diagnostiquer(body, headline)
+
+    # ── Corrections LOCALES (gratuites) sur ce qui reste ──
+    if _faits:
+        body, headline = _fact_hardfix(body, src_text), _fact_hardfix(headline, src_text)
+        print("  ⚖️ Correction factuelle forcée appliquée")
     if _trop_long(body, _struct):
         avant = len(body)
         body = _resserre(body, _struct)
         print(f"  ✂️ Tweet resserré localement ({avant} → {len(body)} car.)")
-
-    # 🗣️ ANNONCE CREUSE : le tweet promet une explication et ne la donne pas.
-    if _annonce_creuse(body) and _can_regen():
-        print("  🗣️ Annonce sans contenu → régénération avec le détail")
-        anti = ("Ton tweet annonce quelque chose (« défend », « justifie », « explique »…) "
-                "sans dire QUOI. Le lecteur n'apprend rien. Réécris-le en donnant "
-                "CONCRÈTEMENT les éléments : les chiffres, les arguments, les mesures — "
-                "sous forme de liste à puces courtes si nécessaire.")
-        body, headline, image_query, keywords, person, pays = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-            angle_neuf=angle_neuf, dossier=dossier, correction=anti)
-
-    # 🔁 SUITE écrite comme une découverte : nos abonnés connaissent déjà l'histoire.
-    if prev_angles and _manque_marqueur_suite(body) and _can_regen():
-        print("  🔁 Suite écrite comme une nouveauté → régénération en mode continuité")
-        anti = ("Ce sujet a DÉJÀ été publié par Pulse : ton tweet le présente pourtant comme "
-                "une découverte, ce qui donne l'impression d'un compte qui se répète. "
-                "Réécris-le en CONTINUITÉ, avec un marqueur de suivi dès les premiers mots "
-                "(« toujours en cours », « le bilan grimpe à », « désormais », « après X heures », "
-                "« nouveau rebondissement », « ce mardi soir »), et mets l'ÉLÉMENT NOUVEAU en avant.")
-        body, headline, image_query, keywords, person, pays = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text, prev_angles=prev_angles,
-            angle_neuf=angle_neuf, dossier=dossier, correction=anti)
+    if _is_teaser(body):
+        body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
+                      "", body, flags=re.IGNORECASE).strip()
+        print("  🚫 Tournure teaser retirée de force")
+    # ⛔ Une annonce périmée qui subsiste est ABANDONNÉE : jamais d'horaire faux.
+    if _annonce_perimee(body, pub_ts=pub_ts):
+        print("  ⛔ Annonce toujours périmée après correction → sujet abandonné")
+        return None, None, None, None, None, None
 
     body = _normalise_source(body)   # source TOUJOURS isolée, sur sa propre ligne
 
@@ -2052,26 +2062,6 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
                       "", body, flags=re.IGNORECASE).strip()
         print("  🚫 Tournure teaser retirée de force")
 
-    # ⏰ Annonce périmée : le tweet présente comme À VENIR un horaire déjà passé aujourd'hui.
-    if _annonce_perimee(body, pub_ts=pub_ts):
-        if not _can_regen():
-            # quota épuisé : on n'invente pas, on abandonne (0 coût) — jamais d'annonce périmée
-            print("  ⛔ Annonce périmée et quota épuisé → sujet abandonné (0 coût)")
-            return None, None, None, None, None, None
-        print("  ⏰ Annonce périmée détectée (horaire déjà passé) → régénération")
-        corr = (f"Il est actuellement {_now_paris().strftime('%Hh%M')}. Ton tweet précédent annonçait "
-                "comme À VENIR un événement dont l'heure est DÉJÀ PASSÉE. INTERDIT. "
-                "Si l'événement a commencé ou est terminé, écris-le au présent ou au passé "
-                "(« a débuté », « est en cours », « s'est achevé ») et donne l'information réellement "
-                "nouvelle. N'annonce JAMAIS un horaire déjà écoulé comme un rendez-vous à venir.")
-        body2, headline2, iq2, kw2, p2, pays2 = gen_tweet_complet(
-            title, summary, source, category, article_text=article_text,
-            prev_angles=prev_angles, correction=corr)
-        if body2 and not _annonce_perimee(body2, pub_ts=pub_ts):
-            body, headline, image_query, keywords, person, pays = body2, headline2, iq2, kw2, p2, pays2
-        else:
-            print("  ⛔ Toujours périmé après régénération → sujet abandonné")
-            return None, None, None, None, None, None
     return body, headline, image_query, keywords, person, pays
 
 def _flag_emoji(country_code):
@@ -5218,7 +5208,9 @@ def _gemini_tts(texte, wav_out):
         d = _post_gemini(url,
                          {"contents": [{"parts": [{"text":
                               "Lis ce texte d'un ton posé, clair et journalistique, "
-                              "sans emphase excessive : " + texte[:1200]}]}],
+                              "sans emphase excessive, à un RYTHME SOUTENU — le débit "
+                              "d'un présentateur de journal télévisé, ni lent ni "
+                              "précipité : " + texte[:1200]}]}],
                           "generationConfig": {
                               "responseModalities": ["AUDIO"],
                               "speechConfig": {"voiceConfig": {
@@ -5574,7 +5566,10 @@ def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=
                 d = _duree_audio(w) if w else 0.0
                 voix_slides.append(w)
                 # la slide dure le temps de sa narration + une respiration, bornée
-                durees.append(max(2.5, min(14.0, d + 0.9)) if d > 0
+                # ⛔ AUCUN PLAFOND sur une slide narrée : la borner tronquait l'affichage
+                #    et la voix débordait sur la slide suivante — le décalage s'accumulait
+                #    ensuite jusqu'à la fin de la vidéo (défaut vécu).
+                durees.append(max(2.5, d + 0.7) if d > 0
                               else _carr_duree_slide(slides[i] if i < len(slides) else {}))
         if not durees:
             durees = [_carr_duree_slide(slides[i] if i < len(slides) else {})
@@ -8748,14 +8743,26 @@ Réponds avec ce JSON UNIQUEMENT :
                         if aurl and acat == _cat_devinee]
             cat = next((c for _, c in corr if c), None) or _recap_guess_cat(t)
             raw = None
-            for aurl, _ in corr[:4]:
-                try:
-                    r, ok = get_best_image(aurl, None, None, None, cat)
-                    if ok and r:
-                        raw = r
-                        break
-                except Exception:
-                    continue
+            # ① PHOTOTHÈQUE : la photo a peut-être déjà été téléchargée aujourd'hui,
+            #    quand la page répondait encore. C'est la source la plus fiable le soir.
+            for aurl, _ in corr[:6]:
+                raw = photo_memorisee(conn, aurl)
+                if raw:
+                    break
+            if not raw:
+                raw = photo_memorisee(conn, None, t)      # rapprochement par titre
+            if raw:
+                print(f"  🖼️ Récap : photo retrouvée en mémoire pour « {t[:38]}… »")
+            # ② à défaut, on retente les pages
+            if not raw:
+                for aurl, _ in corr[:4]:
+                    try:
+                        r, ok = get_best_image(aurl, None, None, None, cat)
+                        if ok and r:
+                            raw = r
+                            break
+                    except Exception:
+                        continue
             # ② aucune photo trouvée : on génère une illustration plutôt que de laisser
             #    une slide nue. Le récap ne sort qu'une fois par jour, le coût est nul.
             if not raw:
@@ -10117,6 +10124,10 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     tweet_final = build_full_tweet(body, label_cat, country=pays)
     photo = extract_photo(item["entry"]) if item.get("entry") else None
     raw_src, has_real, _generee = _meilleure_image(item, candidates, photo, person, image_query, label_cat)
+    # 🖼️ On garde la photo pour le soir : la page sera peut-être bloquée.
+    if has_real and raw_src and not _generee:
+        memoriser_photo(conn, item.get("url"), raw_src,
+                        item.get("title", ""), label_cat)
     if _generee:
         body = _mention_illustration(body)
     if has_real:
@@ -10688,6 +10699,27 @@ def _saviez_theme_du_jour(conn):
     return random.choice(dispo)
 
 
+# Mots qui EXPLIQUENT, par opposition à ceux qui situent. Un « Le saviez-vous » qui
+# donne une date sans dire pourquoi rate sa cible : le lecteur n'apprend rien.
+_SAVIEZ_EXPLIQUE = re.compile(
+    r"\b(?:parce que|car|puisque|en raison|à cause|grâce à|afin de|afin d|pour éviter|"
+    r"pour permettre|pour que|ce qui permet|ce qui évite|résulte|provient|vient du fait|"
+    r"s'explique|explique pourquoi|de sorte que|si bien que|d'où|raison pour laquelle|"
+    r"permet de|empêche|évite|sert à|conçu pour|choisi pour|imposé par|dû à|due à|"
+    r"c'est qu|c'est parce|tient au|tient à|hérité de|remonte au fait|"
+    r"faute de|sans quoi|sinon|au risque de|de peur que)\b", re.IGNORECASE)
+
+
+def _saviez_sans_explication(sujet, tweet):
+    """Vrai si le sujet POSE une question (« pourquoi… ») à laquelle le tweet ne répond
+    pas. Vécu : « La fourchette à trois dents date du Moyen Âge » — le lecteur ne sait
+    toujours pas pourquoi trois dents."""
+    pose = re.search(r"\b(pourquoi|d'où vient|origine)\b", str(sujet or ""), re.I)
+    if not pose:
+        return False
+    return not _SAVIEZ_EXPLIQUE.search(str(tweet or ""))
+
+
 def _saviez_deja_traite(conn, sujet):
     """Vrai si ce sujet a déjà fait l'objet d'une publication.
     La comparaison porte sur les mots significatifs : « Pourquoi le ciel est bleu » et
@@ -10746,6 +10778,14 @@ RÈGLES DE FIABILITÉ (les plus importantes) :
 - N'invente AUCUNE date, AUCUN nom, AUCUN chiffre. Dans le doute, reste général.
 - Donne une note de FIABILITÉ sur 10. En dessous de 8, réponds {{"skip": true}}.
 
+RÈGLE ÉDITORIALE LA PLUS IMPORTANTE — RÉPONDS À LA QUESTION QUE TU POSES :
+- Si le sujet est « pourquoi X », le tweet doit donner le POURQUOI, pas le contexte.
+- ⛔ MAUVAIS : « La fourchette à trois dents date du Moyen Âge. Avant, on mangeait à la
+  main. » → le lecteur ne sait toujours pas POURQUOI trois dents. C'est un ratage.
+- ✅ BON : « Si la fourchette a trois ou quatre dents, c'est qu'à deux elle laissait
+  glisser les aliments, et qu'au-delà elle devenait une cuillère inefficace. »
+- Une date, une origine ou un contexte ne sont PAS une explication.
+
 FORMAT DU TWEET :
 - 90 à 200 caractères, deux phrases maximum. Le fait d'abord, l'explication ensuite.
 - Ton simple et vivant, sans « incroyable » ni « vous n'allez pas le croire ».
@@ -10756,7 +10796,7 @@ mémoriser le fait — l'objet, la scène, la comparaison. Pas une image décora
 
 Réponds en JSON :
 {{"skip": false, "fiabilite": <0-10>, "sujet": "<3-6 mots>", "tweet": "<le tweet>",
-  "illustration": "<description de l'image>"}}""",
+  "explication_donnee": true|false, "illustration": "<description de l'image>"}}""",
                   max_tokens=500, system=None, task="special")
 
     if not isinstance(r, dict) or r.get("skip"):
@@ -10776,6 +10816,10 @@ Réponds en JSON :
         return None
     if _saviez_deja_traite(conn, sujet):
         print(f"  ⏭️  Le Saviez-vous : « {sujet} » a déjà été traité")
+        return None
+    # 🎓 Le tweet doit RÉPONDRE à la question posée, pas seulement situer une époque.
+    if r.get("explication_donnee") is False or _saviez_sans_explication(sujet, tweet):
+        print(f"  ⏭️  Le Saviez-vous : « {sujet} » n'explique pas vraiment → on ne publie pas")
         return None
     if _trop_long(tweet):
         tweet = _resserre(tweet)
@@ -10879,6 +10923,47 @@ def build_saviez_card(texte, illustration, sujet, W=1080, H=1350):
     except Exception as e:
         print(f"  ⚠️ Carte Le Saviez-vous non rendue ({str(e)[:70]})")
         return None
+
+
+PHOTO_CACHE_MAX = 900_000       # au-delà, on ne stocke pas : la base resterait légère
+
+def memoriser_photo(conn, url, image, titre="", categorie=""):
+    """Garde en mémoire une photo RÉELLEMENT téléchargée, avec l'URL de son article.
+
+    Le bot récupère ces images tout au long de la journée pour illustrer ses tweets.
+    Le soir, la même page peut être bloquée, avoir perdu son og:image ou être passée
+    derrière un paywall — et le récap se retrouve sans visuel. Conserver l'image au
+    moment où on l'a vaut mieux que d'espérer la retrouver douze heures plus tard."""
+    if not url or not image or len(image) > PHOTO_CACHE_MAX:
+        return
+    try:
+        conn.execute(
+            "INSERT OR REPLACE INTO photo_cache (url, titre, categorie, image) "
+            "VALUES (?,?,?,?)",
+            (str(url)[:400], str(titre or "")[:300], str(categorie or ""), image))
+        conn.commit()
+    except Exception:
+        pass
+
+
+def photo_memorisee(conn, url=None, titre=""):
+    """Retrouve une photo déjà téléchargée, par URL d'abord, par titre ensuite.
+    Le rapprochement par titre sert quand l'URL diffère (agrégateur, redirection)."""
+    try:
+        if url:
+            r = conn.execute("SELECT image FROM photo_cache WHERE url = ?",
+                             (str(url)[:400],)).fetchone()
+            if r and r[0]:
+                return bytes(r[0])
+        mots = _sig_words(titre)
+        if len(mots) >= 2:
+            for (t, img) in conn.execute(
+                    "SELECT titre, image FROM photo_cache ORDER BY pris_le DESC LIMIT 250"):
+                if img and len(mots & _sig_words(t or "")) >= 2:
+                    return bytes(img)
+    except Exception:
+        pass
+    return None
 
 
 def _photo_secours_jumeau(item, candidates):
@@ -11649,6 +11734,10 @@ def check_feeds(conn):
 
             # Image paysage (X + Facebook) — on récupère aussi l'image source pour réutilisation
             raw_src, has_real, _generee = _meilleure_image(item, candidates, photo, person, image_query, cat)
+            # 🖼️ On garde la photo pour le soir : la page sera peut-être bloquée.
+            if has_real and raw_src and not _generee:
+                memoriser_photo(conn, item.get("url"), raw_src,
+                                item.get("title", ""), cat)
             if _generee:
                 body = _mention_illustration(body)
             if not has_real and item.get("raw_image"):
