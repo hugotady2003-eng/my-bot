@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.66.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.68.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -823,7 +823,7 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
             #    inutile et fait perdre du temps, jusqu'à saturer le régulateur de débit.
             if code == 404:
                 try:
-                    _m404 = ((r.json().get("error") or {}).get("message") or "")[:120]
+                    _m404 = ((r.json().get("error") or {}).get("message") or "")[:300]
                 except Exception:
                     _m404 = ""
                 raise RuntimeError(f"modèle introuvable ({_m404})")
@@ -1612,7 +1612,11 @@ def _resserre(body, structure=False):
         # ⛔ ne jamais s'arrêter sur une annonce non livrée : mieux vaut tout garder
         if essai != corps and not _annonce_creuse(essai):
             corps = essai
-    return (corps + ("\n\n" + source if source else "")).strip()
+    _resultat = (corps + ("\n\n" + source if source else "")).strip()
+    # ⚠️ « Resserrer » ne doit JAMAIS allonger : isoler la source sur sa propre ligne
+    #    ajoute des caractères, et quand il n'y avait rien à couper le tweet grossissait
+    #    (constaté : 189 → 190 caractères dans le journal). On rend alors l'original.
+    return _resultat if len(_resultat) <= len(txt) else txt
 
 
 # Données chiffrées : avec unité (10%, 890 M€) OU nombre nu suivi d'un nom
@@ -3939,8 +3943,37 @@ def post_stat_followup(conn, item, main_x_url):
 # ═══════════════════════════════════════════════════════════════════════════
 # POST FACEBOOK
 # ═══════════════════════════════════════════════════════════════════════════
+# 📵 META : RENDEZ-VOUS SEULEMENT.
+#    Facebook et Instagram ne reçoivent QUE les trois rendez-vous quotidiens :
+#    le décryptage du matin, « Le Saviez-vous ? » et le récap du soir.
+#    Publier chaque actualité sur ces réseaux a déjà valu un blocage de la clé API :
+#    leur tolérance au volume est bien plus basse que celle de X. Trois publications
+#    par jour restent sous tous les seuils, et ces formats sont les mieux adaptés à
+#    ces plateformes — visuels soignés, contenu qui ne périme pas dans l'heure.
+META_RENDEZ_VOUS = {"decryptage", "saviez", "recap"}
+_META_CONTEXTE = {"v": ""}
+
+
+def contexte_meta(nom=""):
+    """Déclare le rendez-vous en cours de publication. Sans déclaration, Facebook et
+    Instagram sont ignorés — c'est volontaire : un nouvel appel oublié reste muet sur
+    Meta plutôt que d'alourdir le volume à l'insu de tous."""
+    _META_CONTEXTE["v"] = str(nom or "")
+
+
+def _meta_autorise():
+    ok = _META_CONTEXTE["v"] in META_RENDEZ_VOUS
+    if not ok:
+        print(f"  📵 Meta ignoré (réservé aux rendez-vous : "
+              f"{', '.join(sorted(META_RENDEZ_VOUS))})")
+    return ok
+
+
 def post_to_facebook(message, png_bytes=None, video_path=None):
-    """Poste sur la Page Facebook : photo + texte, ou vidéo, ou texte seul."""
+    """Poste sur la Page Facebook : photo + texte, ou vidéo, ou texte seul.
+    ⚠️ Réservé aux rendez-vous quotidiens (voir META_RENDEZ_VOUS)."""
+    if not _meta_autorise():
+        return None
     if not (FACEBOOK_PAGE_TOKEN and FACEBOOK_PAGE_ID):
         return None
     if meta_backoff_active():
@@ -4068,6 +4101,8 @@ def build_ig_caption(tweet_text, keywords=None):
     return f"{text}\n\n{cta}" + (f"\n\n{extra}" if extra else "")
 
 def post_to_instagram(caption, png_bytes=None, video_path=None):
+    if not _meta_autorise():
+        return None
     """
     Poste sur Instagram via l'API Graph (image 4:5 uniquement pour l'instant).
     Process en 2 étapes : créer un conteneur média (avec URL image) puis publier.
@@ -4445,10 +4480,17 @@ def _wiki_page_image(page_title):
 #    L'ordre ci-dessous gère la transition tout seul : le jour où Imagen s'arrête ou
 #    que Nano Banana s'ouvre sur le compte, la bascule est automatique. Aucun code à
 #    modifier — au besoin, la variable IMAGE_MODEL suffit à inverser la priorité.
-IMAGE_MODEL         = os.environ.get("IMAGE_MODEL", "imagen-4.0-fast-generate-001")
+_IMAGE_INDISPO = {"jour": ""}     # mémoire du jour où plus aucun modèle ne répond
+#    ⚠️ CONSTAT (août 2026) : l'API Gemini (generativelanguage.googleapis.com) n'expose
+#    QUE les modèles Nano Banana. Les Imagen visibles dans la console AI Studio relèvent
+#    de VERTEX AI — une autre plateforme, qui exige un projet Google Cloud et la
+#    facturation activée. Les appeler ici renvoie 404.
+#    Sur ce compte, Nano Banana est à 0/0 : la génération d'images est donc INDISPONIBLE
+#    tant que la facturation n'est pas activée. Le bot le détecte et suspend ses
+#    tentatives pour la journée — toutes les cartes savent se passer d'illustration.
+IMAGE_MODEL         = os.environ.get("IMAGE_MODEL", "gemini-2.5-flash-image")
 IMAGE_MODEL_SECOURS = os.environ.get(
-    "IMAGE_MODEL_SECOURS",
-    "imagen-4.0-generate-001,imagen-4.0-ultra-generate-001,gemini-2.5-flash-image")
+    "IMAGE_MODEL_SECOURS", "gemini-3.1-flash-image,gemini-2.0-flash-preview-image-generation")
 
 def _gemini_image(description, libelle="Illustration"):
     """Génère une image d'illustration.
@@ -4461,6 +4503,13 @@ def _gemini_image(description, libelle="Illustration"):
     ⚠️ Une actualité n'est illustrée ainsi qu'en DERNIER RECOURS, et le tweet porte
     alors la mention correspondante."""
     if not description or not GEMINI_API_KEY:
+        return None
+    # 🗓️ Si AUCUN modèle n'a répondu aujourd'hui, on cesse d'essayer jusqu'à demain.
+    #    Réessayer à chaque run coûtait des secondes et polluait le journal de messages
+    #    d'erreur identiques, sans aucune chance d'aboutir (constaté : Nano Banana à 0/0
+    #    sur le compte, et les Imagen ne sont pas exposés par l'API Gemini).
+    _jour = _now_paris().strftime("%Y-%m-%d")
+    if _IMAGE_INDISPO.get("jour") == _jour:
         return None
     import base64 as _b64
     base = "https://generativelanguage.googleapis.com/v1beta/models"
@@ -4498,7 +4547,9 @@ def _gemini_image(description, libelle="Illustration"):
                 print(f"  🎨 {libelle} générée par {modele} (mention obligatoire ajoutée)")
                 return brut
         except Exception as e:
-            print(f"  ⚠️ {modele} indisponible ({str(e)[:60]})")
+            print(f"  ⚠️ {modele} indisponible ({str(e)[:220]})")
+    _IMAGE_INDISPO["jour"] = _jour
+    print("  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain")
     return None
 
 
@@ -6601,6 +6652,8 @@ def carousel_to_text(carousel):
     return out.strip()
 
 def post_carousel_to_instagram(slides_png, caption):
+    if not _meta_autorise():
+        return None
     """Publie un carrousel (2 à 10 images) sur Instagram via l'API Graph."""
     if meta_backoff_active():
         print("  ⏸️ Carrousel Instagram sauté (pause Meta en cours)")
@@ -8858,6 +8911,7 @@ Réponds avec ce JSON UNIQUEMENT :
         print(f"  ⚠️ Carrousel récap indisponible ({str(e)[:70]}) → carte unique")
         png_list = []
     png = png_list[0] if png_list else build_recap_card(_items, 1080, 1350)
+    contexte_meta("recap")          # 📵 rendez-vous autorisé sur Meta
     _x = _fb = _ig = None
     try:
         _x = (publier_carrousel_en_fil(body, png_list, "⬇️ La suite du récap du jour")
@@ -11124,7 +11178,10 @@ def _afficher_moteur():
 
 
 def _traiter_rendez_vous(conn):
-    """Rendez-vous FIXES du jour : Coupe du monde, récap du soir, décryptage, sondage.
+    """⚠️ Chaque rendez-vous déclare son contexte via contexte_meta() : sans cela,
+    Facebook et Instagram restent muets. C'est un choix de conception — un oubli rend
+    silencieux plutôt que bavard.
+    Rendez-vous FIXES du jour : Coupe du monde, récap du soir, décryptage, sondage.
     Chacun ne sort qu'une fois par jour et à son heure. Le premier qui publie arrête le
     cycle — un seul post par passage, jamais de rafale.
     Renvoie True si quelque chose a été publié."""
@@ -11219,13 +11276,16 @@ def _traiter_rendez_vous(conn):
                                                  carousel.get("sujet", ""), bg_photo=raw_src,
                                                  decrypt_cat="monde",
                                                  voice_text=carousel.get("cover_title", ""))
+            contexte_meta("decryptage")     # 📵 rendez-vous autorisé sur Meta
             url = None
             try:
                 url = post_to_twitter(xfb, cover_paysage, vid_thread)
             except Exception as e:
                 print(f"  ❌ X isolé : {e}")
             try:
-                post_to_facebook(xfb, cover_paysage, vid_thread)
+                # 📸 Facebook reçoit la PREMIÈRE SLIDE, pas la vidéo : le format y est
+                #    mal servi, et une vidéo lourde multiplie les échecs d'envoi.
+                post_to_facebook(xfb, (slides_png[0] if slides_png else cover_paysage))
             except Exception as e:
                 print(f"  ❌ Facebook isolé : {e}")
             if vid_thread and os.path.exists(vid_thread):
@@ -11252,6 +11312,7 @@ def _traiter_rendez_vous(conn):
             sv = gen_saviez_vous(conn)
             if sv:
                 png = build_saviez_card(sv["tweet"], sv["illustration"], sv["sujet"])
+                contexte_meta("saviez")     # 📵 rendez-vous autorisé sur Meta
                 url = post_to_twitter(sv["tweet"], png)
                 if url:
                     try:
@@ -11292,6 +11353,7 @@ def check_feeds(conn):
     _CADENCE_DECISION = None
     print(f"\n[{_now_paris().strftime('%H:%M')}] 🔍 Check Pulse — version {PULSE_VERSION}")
     _afficher_moteur()
+    contexte_meta("")        # 📵 aucun rendez-vous déclaré : Meta muet par défaut
     if _traiter_rendez_vous(conn):
         return
 
