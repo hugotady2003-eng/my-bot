@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.68.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.69.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -11151,6 +11151,40 @@ def _titre_propre(titre):
     return t or (titre or "").strip()
 
 
+RUN_LOCK = "pulse_run.lock"
+RUN_LOCK_MAX_MIN = 12          # au-delà, le verrou est jugé abandonné
+
+def _prendre_verrou():
+    """Empêche DEUX RUNS de publier en même temps.
+
+    Le cron se déclenche toutes les 5 minutes ; un run qui dépasse cette durée — montage
+    vidéo, attente de débit, régénération — se retrouve doublé par le suivant. Les deux
+    lisent alors la même base AVANT que le premier ait marqué l'article comme vu, et
+    publient le même tweet (défaut vécu).
+    Renvoie True si ce run peut travailler."""
+    import time as _t
+    try:
+        if os.path.exists(RUN_LOCK):
+            age = (_t.time() - os.path.getmtime(RUN_LOCK)) / 60
+            if age < RUN_LOCK_MAX_MIN:
+                print(f"  🔒 Un autre run est en cours depuis {age:.1f} min → on passe")
+                return False
+            print(f"  🔓 Verrou abandonné ({age:.0f} min) → on le reprend")
+        with open(RUN_LOCK, "w") as f:
+            f.write(str(_t.time()))
+        return True
+    except Exception:
+        return True            # en cas de doute, on laisse travailler
+
+
+def _rendre_verrou():
+    try:
+        if os.path.exists(RUN_LOCK):
+            os.remove(RUN_LOCK)
+    except Exception:
+        pass
+
+
 def _afficher_moteur():
     """Annonce, dès la première ligne du cycle, quel moteur traite chaque tâche.
     Existe parce qu'une clé rangée dans les secrets GitHub mais non transmise par le
@@ -11354,6 +11388,17 @@ def check_feeds(conn):
     print(f"\n[{_now_paris().strftime('%H:%M')}] 🔍 Check Pulse — version {PULSE_VERSION}")
     _afficher_moteur()
     contexte_meta("")        # 📵 aucun rendez-vous déclaré : Meta muet par défaut
+    # 🔒 un seul run à la fois : deux runs simultanés publiaient le même tweet
+    if not _prendre_verrou():
+        return
+    try:
+        return _check_feeds_interne(conn)
+    finally:
+        _rendre_verrou()
+
+
+def _check_feeds_interne(conn):
+    """Corps du cycle. Séparé pour que le verrou soit rendu quoi qu'il arrive."""
     if _traiter_rendez_vous(conn):
         return
 
@@ -11532,7 +11577,7 @@ def check_feeds(conn):
                         print(f"  🚰 Buzz déjà publié il y a moins de {BUZZ_GAP_MIN} min → on espace")
                         continue
                     try:
-                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=False, candidates=candidates) is not None:
+                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True, candidates=candidates) is not None:
                             print(f"  ➕ Suivi publié (info complémentaire) : {hot['title'][:50]}")
                             return
                         continue          # abandonné → sujet suivant
@@ -11564,7 +11609,7 @@ def check_feeds(conn):
                     # ne la réinitialise pas. Un décès garde le label sobre (géré dans publish_breaking).
                     try:
                         if publish_breaking(conn, hot, a.get("category", "breaking"),
-                                            urgent=not is_obit, bump_cadence=False, candidates=candidates) is not None:
+                                            urgent=not is_obit, bump_cadence=True, candidates=candidates) is not None:
                             tag = "🕊️ Hommage" if is_obit else ("🚨🌊 ALERTE URGENTE" if urgent_alert else "🚨 BREAKING")
                             print(f"  {tag} publié immédiatement (contourne la cadence) : {hot['title'][:55]}")
                             return
@@ -11579,7 +11624,7 @@ def check_feeds(conn):
                         print(f"  🚰 Buzz déjà publié il y a moins de {BUZZ_GAP_MIN} min → on espace")
                         continue
                     try:
-                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=False, candidates=candidates) is not None:
+                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True, candidates=candidates) is not None:
                             print(f"  ⚡ Sujet chaud publié (dans le rythme) : {hot['title'][:55]}")
                             return
                         continue          # abandonné → sujet suivant
