@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.69.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.71.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -1716,6 +1716,21 @@ def choisir_format_tweet(title, summary, article_text=""):
     return nom, _FORMATS[nom]
 
 
+_TROU_DATE = re.compile(
+    r"\b(?:le|du|dès|à partir du|jusqu'au|ce)\s+(?=[a-zà-ÿ]{0,3}\b(?:à|au|en|dans|sur|"
+    r"pour|avec|par|chez|vers)\b)|"
+    r"\b(?:le|du|dès|jusqu'au)\s*[,.]|\b(?:le|du|dès)\s+(?=[A-ZÀ-Þ])", re.IGNORECASE)
+
+
+def _date_manquante(texte):
+    """Vrai si une date a été ANNONCÉE puis omise : « auront lieu le à l'église ».
+    Le modèle laisse parfois l'article défini sans la date qui devait suivre — le tweet
+    devient bancal et donne l'impression d'une information tronquée (défaut vécu)."""
+    t = re.sub(r"\s+", " ", str(texte or ""))
+    return bool(re.search(r"\b(?:le|du|dès|jusqu'au|à partir du)\s+(?:à|au|en|dans|sur|"
+                          r"pour|avec|par|chez|vers)\b", t, re.IGNORECASE))
+
+
 def _normalise_source(body):
     """Place la source « (BFMTV) » sur SA PROPRE LIGNE, après une ligne vide.
     Le modèle le fait la plupart du temps mais pas toujours : la mise en forme d'un
@@ -2046,6 +2061,11 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
                 "le présente comme une découverte. Réécris en CONTINUITÉ, avec un marqueur "
                 "de suivi dès les premiers mots (« toujours en cours », « le bilan grimpe "
                 "à », « désormais », « nouveau rebondissement »).")
+        if _date_manquante(txt):
+            consignes.append(
+                "DATE MANQUANTE : tu annonces une date (« le », « du », « dès ») sans la "
+                "donner — « auront lieu LE À l'église ». Soit tu écris la date exacte de "
+                "l'article, soit tu retires le mot qui l'annonce. N'INVENTE aucune date.")
         if _annonce_perimee(txt, pub_ts=pub_ts):
             consignes.append(
                 f"ANNONCE PÉRIMÉE : il est {_now_paris().strftime('%Hh%M')} et ton tweet "
@@ -2076,6 +2096,12 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
         body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
                       "", body, flags=re.IGNORECASE).strip()
         print("  🚫 Tournure teaser retirée de force")
+    if _date_manquante(body):
+        # ✂️ correction locale : on retire le mot qui annonçait la date absente
+        body = re.sub(r"\b(le|du|dès|jusqu'au|à partir du)\s+(?=(?:à|au|en|dans|sur|pour|"
+                      r"avec|par|chez|vers)\b)", "", body, flags=re.IGNORECASE)
+        body = re.sub(r"\s{2,}", " ", body).strip()
+        print("  📅 Date annoncée mais absente → mention retirée")
     # ⛔ Une annonce périmée qui subsiste est ABANDONNÉE : jamais d'horaire faux.
     if _annonce_perimee(body, pub_ts=pub_ts):
         print("  ⛔ Annonce toujours périmée après correction → sujet abandonné")
@@ -2088,6 +2114,12 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
         body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
                       "", body, flags=re.IGNORECASE).strip()
         print("  🚫 Tournure teaser retirée de force")
+    if _date_manquante(body):
+        # ✂️ correction locale : on retire le mot qui annonçait la date absente
+        body = re.sub(r"\b(le|du|dès|jusqu'au|à partir du)\s+(?=(?:à|au|en|dans|sur|pour|"
+                      r"avec|par|chez|vers)\b)", "", body, flags=re.IGNORECASE)
+        body = re.sub(r"\s{2,}", " ", body).strip()
+        print("  📅 Date annoncée mais absente → mention retirée")
 
     return body, headline, image_query, keywords, person, pays
 
@@ -7132,6 +7164,34 @@ def _is_urgent_alert(title, summary):
                 return False
     return False
 
+_APRES_DECES = re.compile(
+    r"\b(?:obsèques|funérailles|inhumation|crémation|enterrement|cérémonie|"
+    r"mémorial|commémoration|veillée|recueillement|testament|succession|"
+    r"héritage|posthume|rétrospective|cause du décès|autopsie|"
+    r"enquête sur la mort|dernières volontés|rend hommage|rendent hommage)\b",
+    re.IGNORECASE)
+
+
+def _suite_de_deces(titre, resume=""):
+    """Vrai si l'article traite des SUITES d'un décès — obsèques, testament, album
+    posthume, hommage rendu par un tiers — plutôt que du décès lui-même.
+
+    Ces sujets ne sont PAS des hommages : la personne est morte depuis des jours, Pulse
+    l'a déjà annoncé, et le registre solennel de la carte hommage est déplacé pour une
+    information d'organisation (vécu : « Les obsèques de Kavinsky auront lieu… » publié
+    en HOMMAGE). Ils partent en actualité normale, dans leur catégorie d'origine."""
+    t = f"{titre} {resume}"
+    if not _APRES_DECES.search(t):
+        return False
+    # ⚠️ Un article qui ANNONCE le décès peut mentionner les obsèques au passage : on
+    #    ne bloque que si rien n'annonce la mort elle-même.
+    annonce = re.compile(
+        r"\b(?:est (?:mort|morte|décédé|décédée)|s'est éteint|nous a quitté|meurt|"
+        r"mort de|décès de|disparition de|est mort|est morte)\b", re.IGNORECASE)
+    return not annonce.search(t)
+
+
+
 def _is_obituary(title, summary):
     """Vrai UNIQUEMENT si l'article ANNONCE le décès d'une PERSONNE (personnalité).
     Approche robuste (pas une simple liste de mots) :
@@ -10212,6 +10272,11 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     # (add_recent est appelé plus bas, UNIQUEMENT si une plateforme a réellement publié)
     if _is_obituary(item.get("title", ""), item.get("summary", "")):
         cat = "hommage"   # décès → ton sobre, même en breaking (le label URGENT reste si urgent=True)
+    # 🕊️ RÉTROGRADATION : obsèques, testament, album posthume… ce sont les SUITES d'un
+    #    décès déjà annoncé, pas un hommage. Le registre solennel y est déplacé.
+    if cat == "hommage" and _suite_de_deces(item.get("title", ""), item.get("summary", "")):
+        cat = item.get("_cat_origine") or "culture"
+        print(f"  ↩️ Suites d'un décès (obsèques, hommage tiers…) → actualité normale [{cat}]")
     _bn, _bl, _prev_heads = topic_history(conn, item.get("title", ""))
     _dossier = dossier_sujet(conn, item.get("title", ""))     # mémoire éditoriale 14 jours
     if _dossier:
@@ -10910,9 +10975,16 @@ FORMAT DU TWEET :
 ILLUSTRATION : décris en une phrase précise l'image qui aiderait à COMPRENDRE ou à
 mémoriser le fait — l'objet, la scène, la comparaison. Pas une image décorative.
 
+MOTS-CLÉS D'IMAGE : donne 3 expressions EN ANGLAIS pour trouver une photo du sujet dans
+une banque d'images, de la PLUS PRÉCISE à la PLUS LARGE. Des objets ou des scènes
+concrètes, jamais des concepts abstraits.
+  Exemple pour le Sopalin : ["paper towel roll", "kitchen paper", "paper products"]
+  Exemple pour le ciel bleu : ["blue sky clouds", "clear sky", "sky"]
+
 Réponds en JSON :
 {{"skip": false, "fiabilite": <0-10>, "sujet": "<3-6 mots>", "tweet": "<le tweet>",
-  "explication_donnee": true|false, "illustration": "<description de l'image>"}}""",
+  "explication_donnee": true|false, "illustration": "<description de l'image>",
+  "mots_image": ["<précis>", "<moyen>", "<large>"]}}""",
                   max_tokens=500, system=None, task="special")
 
     if not isinstance(r, dict) or r.get("skip"):
@@ -10939,8 +11011,10 @@ Réponds en JSON :
         return None
     if _trop_long(tweet):
         tweet = _resserre(tweet)
+    mots = [str(m).strip() for m in (r.get("mots_image") or []) if str(m).strip()]
     return {"sujet": sujet, "tweet": f"💡 LE SAVIEZ-VOUS ?\n\n{tweet}",
-            "illustration": str(r.get("illustration") or sujet), "theme": cle_theme}
+            "illustration": str(r.get("illustration") or sujet),
+            "mots_image": mots or [sujet], "theme": cle_theme}
 
 
 def _prompt_saviez(illustration, sujet):
@@ -10956,7 +11030,53 @@ def _prompt_saviez(illustration, sujet):
             + re.sub(r"\s+", " ", str(illustration or sujet)).strip()[:300])
 
 
-def build_saviez_card(texte, illustration, sujet, W=1080, H=1350):
+def chercher_image_libre(termes, mini_px=500, essais=3):
+    """Cherche une photo LIBRE DE DROITS sur Wikimedia Commons.
+
+    Sert quand aucune illustration ne peut être générée : Commons héberge des millions
+    de photos réutilisables, c'est la seule banque d'images à la fois vaste, gratuite
+    et sans risque juridique. On y prend une photo réelle plutôt qu'une carte nue.
+
+    `termes` : une liste d'expressions à essayer, de la plus précise à la plus large —
+    « rouleau essuie-tout », puis « essuie-tout », puis « papier ».
+    Renvoie les octets de l'image, ou None."""
+    import json as _json, urllib.parse as _up, urllib.request as _ur
+    for terme in [t for t in (termes or []) if t and len(str(t).strip()) >= 3][:essais]:
+        try:
+            q = _up.quote(str(terme).strip())
+            url = ("https://commons.wikimedia.org/w/api.php?action=query&format=json"
+                   "&generator=search&gsrnamespace=6&gsrlimit=12"
+                   f"&gsrsearch={q}&prop=imageinfo&iiprop=url|size|mime"
+                   "&iiurlwidth=1200")
+            req = _ur.Request(url, headers={"User-Agent": "PulseBot/1.0 (actualites)"})
+            with _ur.urlopen(req, timeout=12) as r:
+                data = _json.loads(r.read().decode("utf-8", "ignore"))
+            pages = ((data.get("query") or {}).get("pages") or {})
+            for p in pages.values():
+                info = (p.get("imageinfo") or [{}])[0]
+                mime = info.get("mime", "")
+                if not mime.startswith("image/") or "svg" in mime:
+                    continue          # les SVG rendent mal en photo de fond
+                if min(info.get("width", 0), info.get("height", 0)) < mini_px:
+                    continue
+                lien = info.get("thumburl") or info.get("url")
+                if not lien:
+                    continue
+                try:
+                    rq = _ur.Request(lien, headers={"User-Agent": "PulseBot/1.0 (actualites)"})
+                    with _ur.urlopen(rq, timeout=15) as im:
+                        brut = im.read()
+                    if brut and len(brut) > 12_000:
+                        print(f"  🖼️ Image libre trouvée sur Commons « {terme} »")
+                        return brut
+                except Exception:
+                    continue
+        except Exception as e:
+            print(f"  ⚠️ Recherche d'image « {terme} » échouée ({str(e)[:50]})")
+    return None
+
+
+def build_saviez_card(texte, illustration, sujet, mots_image=None, W=1080, H=1350):
     """Carte « LE SAVIEZ-VOUS ? » : illustration générée par l'IA en haut, texte en bas.
 
     Contrairement aux autres rubriques, celle-ci ne dépend d'aucune photo d'actualité :
@@ -10977,6 +11097,10 @@ def build_saviez_card(texte, illustration, sujet, W=1080, H=1350):
         # ── ① Illustration générée, vérifiée avant usage ──
         brut = _gemini_image(_prompt_saviez(illustration, sujet),
                              libelle="Illustration Le Saviez-vous")
+        if not brut:
+            # 🖼️ Pas de génération possible → on cherche une PHOTO LIBRE. Une vraie
+            #    image illustre mieux qu'un fond nu, et Commons est sans risque de droits.
+            brut = chercher_image_libre(list(mots_image or []) + [sujet])
         if brut and _image_pertinente(brut, f"Le saviez-vous : {sujet}") is False:
             print("  👁️ Illustration hors-sujet → carte sans image")
             brut = None
@@ -11345,7 +11469,8 @@ def _traiter_rendez_vous(conn):
         if 10 <= _paris_hour() <= 21 and not special_done_today(conn, "saviez"):
             sv = gen_saviez_vous(conn)
             if sv:
-                png = build_saviez_card(sv["tweet"], sv["illustration"], sv["sujet"])
+                png = build_saviez_card(sv["tweet"], sv["illustration"], sv["sujet"],
+                                        mots_image=sv.get("mots_image"))
                 contexte_meta("saviez")     # 📵 rendez-vous autorisé sur Meta
                 url = post_to_twitter(sv["tweet"], png)
                 if url:
@@ -11887,6 +12012,9 @@ def _check_feeds_interne(conn):
                         continue                  # on n'publie pas ce faux hommage
                     elif already_obit:
                         cat = "hommage"           # Wikipedia incertain → on garde la décision mots-clés
+                    if cat == "hommage" and _suite_de_deces(title_s, summary_s):
+                        cat = a.get("category") or "culture"
+                        print(f"  ↩️ Suites d'un décès → actualité normale [{cat}]")
                 elif already_obit:
                     cat = "hommage"
             elif cat != "breaking" and already_obit:
