@@ -78,13 +78,19 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.71.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.77.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
 HASHTAGS_ACTIFS = os.environ.get("HASHTAGS", "1").strip() not in ("0", "false", "non")
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
 GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.5-flash-lite")
+# 🪜 Modèles de secours, du plus généreux au plus rare. Chacun a son PROPRE quota
+#    journalier : 500 requêtes pour les Flash Lite, 20 pour les Flash. Les enchaîner
+#    multiplie la réserve gratuite avant tout recours à Claude, qui lui est payant.
+GEMINI_MODELES_SECOURS = os.environ.get(
+    "GEMINI_MODELES_SECOURS",
+    "gemini-3.1-flash-lite,gemini-2.5-flash-lite,gemini-3.6-flash,gemini-3-flash")
 LLM_ANALYSE       = os.environ.get("LLM_ANALYSE",       "gemini").strip().lower()
 LLM_REDACTION     = os.environ.get("LLM_REDACTION",     "gemini").strip().lower()
 LLM_SPECIAUX      = os.environ.get("LLM_SPECIAUX",      "gemini").strip().lower()
@@ -340,6 +346,14 @@ def init_db():
     # 🕊️ Décès DÉJÀ annoncés : un hommage ne se publie qu'UNE fois par personne.
     #    Sans cette mémoire, un article de réaction publié le lendemain redéclenchait
     #    l'annonce (défaut vécu : le décès de Kavinsky annoncé deux jours de suite).
+    # 🏷️ ENTITÉS des sujets publiés : qui, où, quoi. Permet de reconnaître un même
+    #    événement des jours plus tard, même reformulé — « Kavinsky » et « Vincent
+    #    Belorgey » désignent la même personne, « l'A13 » et « le tunnel de Saint-Cloud »
+    #    le même chantier. Les mots seuls ne le voient pas.
+    try:
+        conn.execute("ALTER TABLE topic_memory ADD COLUMN entites TEXT")
+    except Exception:
+        pass          # colonne déjà présente
     # 💡 Historique de « Le Saviez-vous ? » : aucun sujet ne doit sortir deux fois,
     #    et la rotation des thèmes s'appuie sur les dernières publications.
     # 🖼️ PHOTOTHÈQUE DU JOUR : chaque photo réellement téléchargée est conservée.
@@ -817,7 +831,7 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
                 except Exception:
                     pass
             if _quota_epuise:
-                print(f"  🚫 Quota {famille} épuisé pour aujourd'hui → on n'insiste pas")
+                # le message est laissé à l'appelant : lui seul connaît le MODÈLE concerné
                 raise RuntimeError(f"quota {famille} épuisé")
             # ⛔ 404 = le modèle n'existe pas (ou plus) sur ce compte : réessayer est
             #    inutile et fait perdre du temps, jusqu'à saturer le régulateur de débit.
@@ -863,7 +877,7 @@ def _usage_gemini(d):
         pass
 
 
-def _gen_config(max_tokens=None, json_out=False, extra=None):
+def _gen_config(max_tokens=None, json_out=False, extra=None, modele=None):
     """Construit le bloc `generationConfig` ADAPTÉ à la génération du modèle.
 
     ⚠️ Les modèles Gemini 3.x ont changé de contrat (juillet 2026) :
@@ -877,7 +891,7 @@ def _gen_config(max_tokens=None, json_out=False, extra=None):
         cfg["maxOutputTokens"] = int(max_tokens)
     if json_out:
         cfg["responseMimeType"] = "application/json"
-    moderne = bool(re.match(r"gemini-3\.[5-9]|gemini-[4-9]", str(GEMINI_MODEL or "")))
+    moderne = bool(re.match(r"gemini-3\.[5-9]|gemini-[4-9]", str(modele or GEMINI_MODEL or "")))
     if not moderne:
         # anciens modèles : pas de « réflexion » facturée, température maîtrisée
         cfg["thinkingConfig"] = {"thinkingBudget": 0}
@@ -887,13 +901,29 @@ def _gen_config(max_tokens=None, json_out=False, extra=None):
     return cfg
 
 
-def _gemini_call(prompt, system, max_tokens, want_json=True):
+_MODELE_EPUISE = {}        # modèle → jour où son quota a été constaté épuisé
+
+def _modeles_gemini():
+    """Modèles de texte à essayer, dans l'ordre. Chacun a son propre quota journalier :
+    500 requêtes pour les Flash Lite, 20 pour les Flash. On enchaîne du plus généreux au
+    plus rare, ce qui multiplie la réserve gratuite avant tout recours à Claude."""
+    liste = [GEMINI_MODEL] + [m.strip() for m in str(GEMINI_MODELES_SECOURS).split(",")
+                              if m.strip()]
+    vus, out = set(), []
+    for m in liste:
+        if m and m not in vus:
+            vus.add(m); out.append(m)
+    return out
+
+
+def _gemini_call(prompt, system, max_tokens, want_json=True, modele=None):
     """Appel du modèle Gemini en REST — aucune dépendance nouvelle, `requests` suffit,
     donc requirements.txt reste intact. Lève une exception en cas d'échec (le repli
     Claude est géré par _llm_json)."""
     global _USAGE_GEMINI
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
-    gen = _gen_config(max_tokens=max_tokens, json_out=want_json)
+    _mod = modele or GEMINI_MODEL
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{_mod}:generateContent"
+    gen = _gen_config(max_tokens=max_tokens, json_out=want_json, modele=_mod)
     body = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": gen}
     if system:
         body["systemInstruction"] = {"parts": [{"text": system}]}
@@ -904,17 +934,31 @@ def _gemini_call(prompt, system, max_tokens, want_json=True):
 
 def _llm_json(prompt, max_tokens=600, system=None, task="analyse"):
     """Appelle le modèle choisi POUR CETTE TÂCHE et renvoie du JSON.
-    🛡️ Claude reste le filet : si le fournisseur gratuit échoue (quota, réseau, réponse
-    illisible), on repasse par Claude immédiatement — la publication n'est jamais perdue."""
+
+    🪜 CHAÎNE DE REPLI GRATUITE, puis Claude. Chaque modèle Gemini a son PROPRE quota
+    journalier : quand le principal est épuisé, les autres sont intacts. Basculer aussitôt
+    sur Claude revenait à payer alors que des centaines de requêtes gratuites attendaient
+    à côté (vécu : le bot a cessé de publier, quota de Gemini 3.5 Flash Lite atteint).
+    Claude reste le dernier filet — la publication n'est jamais perdue."""
     global _LLM_FALLBACKS
     fournisseur = {"analyse": LLM_ANALYSE, "redaction": LLM_REDACTION,
                    "special": LLM_SPECIAUX}.get(task, "claude")
     if fournisseur == "gemini" and GEMINI_API_KEY:
-        try:
-            return _parse_json_reponse(_gemini_call(prompt, system, max_tokens, want_json=True))
-        except Exception as e:
-            _LLM_FALLBACKS += 1
-            print(f"  ⚠️ Gemini indisponible pour « {task} » ({str(e)[:90]}) → repli Claude")
+        jour = _now_paris().strftime("%Y-%m-%d")
+        for modele in _modeles_gemini():
+            if _MODELE_EPUISE.get(modele) == jour:
+                continue                     # quota déjà constaté épuisé aujourd'hui
+            try:
+                return _parse_json_reponse(
+                    _gemini_call(prompt, system, max_tokens, want_json=True, modele=modele))
+            except Exception as e:
+                msg = str(e)
+                if "quota" in msg.lower():
+                    _MODELE_EPUISE[modele] = jour
+                    print(f"  🚫 {modele} : quota épuisé aujourd'hui → modèle suivant")
+                else:
+                    print(f"  ⚠️ {modele} indisponible ({msg[:70]}) → modèle suivant")
+    _LLM_FALLBACKS += 1        # ↩️ recours RÉEL au payant : c'est cela qu'on surveille
     return claude(prompt, max_tokens=max_tokens, system=system)
 
 
@@ -9543,7 +9587,16 @@ EMBED_SEUIL = 0.82        # au-delà, deux titres parlent du MÊME sujet (calibr
 #    tourne 288 fois par jour : sans borne, les embeddings épuiseraient le quota à eux seuls
 #    et feraient basculer analyse et rédaction sur Claude (payant). D'où ce budget, avec une
 #    RÉSERVE pour les usages essentiels (mémoriser un sujet publié).
-EMBED_BUDGET_JOUR = int(os.environ.get("EMBED_BUDGET_JOUR", "300"))
+# 🧠 Quota constaté du compte : 1 000 vecteurs/jour. Le budget était fixé à 300 par
+#    prudence, ce qui privait le moteur de sa meilleure façon de reconnaître un même
+#    événement. Les vecteurs comprennent le SENS ; les mots ne comparent que la forme.
+EMBED_BUDGET_JOUR = int(os.environ.get("EMBED_BUDGET_JOUR", "800"))
+# 🧠 Arbitrages IA par cycle sur les rapprochements douteux. Borné : chaque arbitrage
+#    est un appel, et la zone de doute ne concerne qu'une poignée de paires par run.
+EVT_JUGES_MAX = int(os.environ.get("EVT_JUGES_MAX", "6"))
+# 🏷️ Extractions d'entités par cycle. Seuls les événements les mieux couverts sont
+#    concernés : les autres ne seront pas publiés, inutile de payer leur analyse.
+EVT_ENTITES_MAX = int(os.environ.get("EVT_ENTITES_MAX", "5"))
 EMBED_RESERVE     = 60    # au-delà du budget courant, seuls les appels essentiels passent
 _EMBED_CACHE = {}         # titre → vecteur, pour ne jamais payer deux fois dans un run
 _EMBED_CONN  = None       # base ouverte, pour compter la consommation du jour
@@ -10194,6 +10247,457 @@ def topic_echo_mark_alerted(conn, canon, n_sources):
         (canon, n_sources))
     conn.commit()
 
+class Evenement:
+    """UN fait d'actualité, vu à travers PLUSIEURS articles.
+
+    C'est le changement de fond du moteur : dix dépêches sur l'incendie de Gironde ne
+    sont pas dix actualités, mais un événement couvert par dix médias — et ce nombre est
+    lui-même une information. Le bot notait des articles ; il note désormais des faits.
+    """
+
+    def __init__(self, article):
+        self.articles = [article]
+        self.titre = article.get("title", "")
+        self.resume = article.get("summary", "")
+        self.url = article.get("url", "")
+        self.vec = None
+
+    @property
+    def medias(self):
+        """Nombre de médias DISTINCTS couvrant l'événement. Un même média qui republie
+        ne compte qu'une fois : ce qui fait la valeur, c'est la convergence."""
+        return len({str(a.get("source", "")).strip().lower()
+                    for a in self.articles if a.get("source")})
+
+    @property
+    def premiere_apparition(self):
+        """Horodatage du PLUS ANCIEN article : l'heure où l'information est sortie."""
+        ts = [a.get("pub_ts") for a in self.articles if a.get("pub_ts")]
+        return min(ts) if ts else None
+
+    @property
+    def age_heures(self):
+        t = self.premiere_apparition
+        return (time.time() - t) / 3600 if t else None
+
+    @property
+    def principal(self):
+        """L'article le plus complet : c'est lui qui sera rédigé. On préfère le plus long
+        résumé, qui contient généralement le plus de faits vérifiables."""
+        return max(self.articles, key=lambda a: len(str(a.get("summary") or "")))
+
+    def absorber(self, article):
+        self.articles.append(article)
+        # le titre le plus informatif représente l'événement
+        if len(str(article.get("title") or "")) > len(self.titre):
+            self.titre = article["title"]
+        if len(str(article.get("summary") or "")) > len(str(self.resume or "")):
+            self.resume = article.get("summary", "")
+
+    def __repr__(self):
+        return f"<Evenement {self.medias} média(s) : {self.titre[:50]}>"
+
+
+def _meme_evenement_ia(titre_a, titre_b):
+    """Demande à l'IA si deux titres racontent le MÊME fait.
+
+    Utilisé uniquement sur les cas DOUTEUX : quand les vecteurs hésitent, ni assez
+    proches pour conclure, ni assez éloignés pour écarter. Les mots ne comparent que la
+    forme — « Feu de forêt » et « Incendie » sont étrangers pour eux. L'IA, elle,
+    comprend qu'il s'agit du même sinistre.
+    Renvoie True, False, ou None si l'évaluation n'a pas pu se faire."""
+    try:
+        r = _llm_json(
+            f"""Deux titres de presse :
+
+A : {str(titre_a)[:180]}
+B : {str(titre_b)[:180]}
+
+Racontent-ils le MÊME événement — le même fait, au même endroit, au même moment ?
+
+✅ OUI même si les mots, l'angle ou le média diffèrent : « Feu de forêt en Gironde » et
+   « Incendie : 2 500 hectares ravagés » sont le même sinistre.
+⛔ NON si ce sont deux faits distincts, même sur un thème proche : deux incendies dans
+   deux départements, deux transferts de joueurs différents, deux décisions séparées.
+
+Réponds UNIQUEMENT : {{"meme": true|false}}""",
+            max_tokens=40, system=None, task="analyse")
+        if isinstance(r, dict) and "meme" in r:
+            return bool(r["meme"])
+    except Exception:
+        pass
+    return None
+
+
+def _racines_communes(a, b):
+    """Nombre de racines partagées entre deux ensembles de mots.
+    Compare « nommé » et « nomination », « flamme » et « flammes » : sans cette
+    normalisation, deux titres sur le même fait paraissent étrangers."""
+    def _r(mots):
+        out = set()
+        for m in mots:
+            r = re.sub(r"(?:ements?|ations?|ations|tions?|eurs?|euses?|aux|es|s|e|x)$", "", m)
+            out.add(r if len(r) >= 4 else m)
+        return out
+    return len(_r(a) & _r(b))
+
+
+SCORE_POIDS = {
+    "medias":      {2: 1, 3: 2, 5: 3},     # nombre de médias → points
+    "fraicheur":   {1.0: 2, 3.0: 1},       # âge en heures → points
+    "affinite":    2,                       # thème porteur sur X
+    "exclusivite": 1,                       # personne d'autre n'en parle encore
+    "deja_traite": -5,                      # sujet déjà publié aujourd'hui
+    "suite_neuve": 2,                       # suite qui apporte un vrai développement
+}
+
+# 📈 Thèmes qui portent naturellement sur X. Cette liste ne bloque RIEN : elle départage
+#    seulement deux actualités d'intérêt comparable, jamais elle n'écarte un sujet fort.
+AFFINITE_X = re.compile(
+    r"\b(?:politique|gouvernement|assemblée|élection|président|ministre|"
+    r"youtube|youtubeur|streamer|twitch|tiktok|influenceur|créateur de contenu|"
+    r"réseaux sociaux|instagram|snapchat|x\.com|twitter|"
+    r"intelligence artificielle|chatgpt|openai|google|apple|meta|tesla|spacex|"
+    r"transfert|mercato|psg|équipe de france|ligue des champions|"
+    r"polémique|clash|accusé|accusation|plainte|procès|condamné|"
+    r"attentat|fusillade|disparition|enlèvement|féminicide|"
+    r"prix|inflation|salaire|impôt|taxe|pouvoir d'achat|carburant|"
+    r"cyberattaque|piratage|fuite de données)\b", re.IGNORECASE)
+
+
+def extraire_entites(titre, resume=""):
+    """Extrait les ENTITÉS d'une actualité : qui, où, quelles organisations.
+
+    C'est ce qui permet de reconnaître un même événement des jours plus tard, sous une
+    formulation entièrement différente. « Kavinsky » et « Vincent Belorgey » sont la
+    même personne ; « l'A13 » et « le tunnel de Saint-Cloud » le même chantier. Aucune
+    comparaison de mots ne peut le voir.
+
+    Renvoie un dict {personnes, lieux, organisations}, listes de chaînes."""
+    try:
+        r = _llm_json(
+            f"""Extrais les entités de cette actualité.
+
+TITRE : {str(titre)[:200]}
+RÉSUMÉ : {str(resume)[:300]}
+
+Donne UNIQUEMENT ce qui est explicitement cité. N'invente rien, ne déduis rien.
+Pour une personne connue sous plusieurs noms, cite les DEUX (nom d'artiste ET nom civil).
+
+Réponds en JSON :
+{{"personnes": ["..."], "lieux": ["..."], "organisations": ["..."]}}""",
+            max_tokens=160, system=None, task="analyse")
+        if isinstance(r, dict):
+            return {k: [str(x).strip() for x in (r.get(k) or []) if str(x).strip()][:6]
+                    for k in ("personnes", "lieux", "organisations")}
+    except Exception:
+        pass
+    return {"personnes": [], "lieux": [], "organisations": []}
+
+
+def _cle_entite(nom):
+    """Forme comparable d'une entité : sans accents, sans ponctuation, en minuscules."""
+    t = unicodedata.normalize("NFD", str(nom or ""))
+    t = "".join(c for c in t if unicodedata.category(c) != "Mn")
+    return re.sub(r"[^a-z0-9 ]+", " ", t.lower()).strip()
+
+
+def entites_en_commun(a, b):
+    """Compte les entités partagées entre deux actualités, par famille.
+
+    Une PERSONNE en commun pèse plus qu'un lieu : deux faits divers à Paris n'ont rien
+    à voir, mais deux articles citant la même personne parlent souvent du même sujet.
+    Renvoie (personnes, lieux, organisations)."""
+    def _set(d, k):
+        return {_cle_entite(x) for x in (d or {}).get(k, []) if _cle_entite(x)}
+    return (len(_set(a, "personnes") & _set(b, "personnes")),
+            len(_set(a, "lieux") & _set(b, "lieux")),
+            len(_set(a, "organisations") & _set(b, "organisations")))
+
+
+def memoriser_entites(conn, titre, entites):
+    """Attache les entités au dernier sujet publié portant ce titre."""
+    if not entites or not any(entites.values()):
+        return
+    try:
+        sig = " ".join(sorted(_topic_sig_words(titre)))
+        conn.execute(
+            "UPDATE topic_memory SET entites = ? WHERE id = ("
+            "  SELECT id FROM topic_memory WHERE topic_sig = ? ORDER BY sent_at DESC LIMIT 1)",
+            (json.dumps(entites, ensure_ascii=False), sig))
+        conn.commit()
+    except Exception:
+        pass
+
+
+def sujet_connu_par_entites(conn, entites, jours=3):
+    """Ce sujet a-t-il déjà été traité, vu à travers ses ENTITÉS ?
+
+    Complète la comparaison par le sens : un article publié il y a deux jours sur le même
+    événement peut avoir un titre totalement différent, mais il cite les mêmes personnes
+    et les mêmes lieux.
+    Renvoie (titre_connu, age_heures) ou (None, None)."""
+    if not entites or not any(entites.values()):
+        return None, None
+    try:
+        lignes = conn.execute(
+            "SELECT headline, entites, "
+            "(julianday('now') - julianday(sent_at)) * 24 AS h "
+            "FROM topic_memory WHERE entites IS NOT NULL "
+            "AND sent_at > datetime('now', ?) ORDER BY sent_at DESC LIMIT 80",
+            (f"-{int(jours)} days",)).fetchall()
+    except Exception:
+        return None, None
+    for titre, brut, heures in lignes:
+        try:
+            anciennes = json.loads(brut or "{}")
+        except Exception:
+            continue
+        p, l, o = entites_en_commun(entites, anciennes)
+        # une personne + un lieu, ou deux personnes, ou une organisation + un lieu :
+        # la convergence de deux familles rend la coïncidence très improbable
+        if p >= 2 or (p >= 1 and l >= 1) or (o >= 1 and l >= 1) or (p >= 1 and o >= 1):
+            return titre, heures
+    return None, None
+
+
+def noter_evenement(ev, conn, note_ia=None, categorie=""):
+    """Note un ÉVÉNEMENT à partir de composantes MESURABLES.
+
+    Le score ne sort plus d'un seul chiffre décidé par le modèle : c'est une somme dont
+    chaque terme est traçable et réglable. Quand un sujet obtient 12, le journal dit
+    pourquoi — et si le résultat déplaît, on ajuste un poids, pas un prompt.
+
+    `note_ia` : la note de gravité du modèle (0-10), qui reste le socle. Les autres
+    composantes viennent de faits mesurés : combien de médias, depuis quand, déjà
+    publié ou non.
+    Renvoie (score, détail) où `détail` est la liste lisible des composantes."""
+    detail = []
+    score = 0.0
+
+    base = float(note_ia if note_ia is not None else 0)
+    score += base
+    detail.append(f"gravité {base:.0f}")
+
+    # ① COUVERTURE : plusieurs médias sur un même fait = convergence, donc importance
+    m = ev.medias if hasattr(ev, "medias") else 1
+    pts = 0
+    for seuil, p in sorted(SCORE_POIDS["medias"].items()):
+        if m >= seuil:
+            pts = p
+    if pts:
+        score += pts
+        detail.append(f"{m} médias +{pts}")
+
+    # ② FRAÎCHEUR : être parmi les premiers vaut mieux que d'arriver après tout le monde
+    age = ev.age_heures if hasattr(ev, "age_heures") else None
+    if age is not None:
+        pts = 0
+        for seuil, p in sorted(SCORE_POIDS["fraicheur"].items()):
+            if age <= seuil:
+                pts = max(pts, p)
+        if pts:
+            score += pts
+            detail.append(f"frais {age:.1f}h +{pts}")
+        elif age > 12:
+            score -= 2
+            detail.append(f"ancien {age:.0f}h -2")
+
+    # ③ AFFINITÉ X : à intérêt comparable, on privilégie ce qui fait réagir
+    if AFFINITE_X.search(f"{ev.titre} {ev.resume}"):
+        score += SCORE_POIDS["affinite"]
+        detail.append(f"thème porteur +{SCORE_POIDS['affinite']}")
+
+    # ④ EXCLUSIVITÉ : un seul média sur un fait FRAIS, c'est peut-être une primeur
+    if m == 1 and age is not None and age <= 1.5:
+        score += SCORE_POIDS["exclusivite"]
+        detail.append(f"primeur +{SCORE_POIDS['exclusivite']}")
+
+    # ⑤ HISTORIQUE : déjà traité aujourd'hui → forte pénalité, sauf vrai développement
+    try:
+        n, _last, _heads = topic_history(conn, ev.titre)
+    except Exception:
+        n = 0
+    if n:
+        score += SCORE_POIDS["deja_traite"]
+        detail.append(f"déjà publié {n}× {SCORE_POIDS['deja_traite']}")
+    else:
+        # 🏷️ Le comptage par mots n'a rien vu — mais les ENTITÉS peuvent reconnaître le
+        #    même événement sous une formulation entièrement différente, jusqu'à 3 jours
+        #    en arrière. C'est la mémoire qui survit aux reformulations.
+        try:
+            _ents = getattr(ev, "entites", None)
+            if _ents:
+                _connu, _h = sujet_connu_par_entites(conn, _ents)
+                if _connu:
+                    score += SCORE_POIDS["deja_traite"]
+                    detail.append(f"même événement qu'il y a {_h:.0f}h "
+                                  f"{SCORE_POIDS['deja_traite']}")
+        except Exception:
+            pass
+
+    return round(score, 1), detail
+
+
+def decider_publication(conn, ev, note_ia=None, categorie=""):
+    """POINT DE DÉCISION UNIQUE : faut-il publier cet événement ?
+
+    Remplace l'empilement de contrôles qui se sont ajoutés au fil du temps — comptage
+    par mots, vecteurs, juge de nouveauté, vocabulaire de développement, entités. Chacun
+    était testé isolément, jamais leur interaction : c'est par une combinaison imprévue
+    qu'un doublon est passé.
+
+    Ici, UNE fonction répond à UNE question, en cascade du plus sûr au plus large :
+      ① l'URL a-t-elle déjà été publiée ?          → jamais deux fois le même article
+      ② le sujet a-t-il été traité il y a peu ?     → délai minimum entre deux tweets
+      ③ les ENTITÉS reconnaissent-elles l'événement ? → même fait, autre formulation
+      ④ si oui, la nouveauté justifie-t-elle une suite ?
+
+    Renvoie (decision, raison, score, detail) où `decision` vaut :
+      "publier"  — sujet neuf, on y va
+      "suivre"   — sujet connu MAIS un fait nouveau le justifie
+      "ecarter"  — rien de neuf, ou trop tôt
+    """
+    titre = ev.titre if hasattr(ev, "titre") else str(ev)
+    resume = getattr(ev, "resume", "")
+    score, detail = noter_evenement(ev, conn, note_ia=note_ia, categorie=categorie)
+
+    # ① Le même ARTICLE ne repart jamais
+    try:
+        for art in getattr(ev, "articles", []):
+            u = art.get("url")
+            if u and is_seen(conn, u):
+                return "ecarter", "article déjà publié", score, detail
+    except Exception:
+        pass
+
+    # ② Délai minimum sur un sujet déjà traité
+    try:
+        n, last, heads = topic_history(conn, titre)
+    except Exception:
+        n, last, heads = 0, None, []
+    if last is not None:
+        gap = (_now_utc() - last).total_seconds() / 60.0
+        if gap < TOPIC_MIN_GAP_MIN:
+            return "ecarter", f"même sujet il y a {gap:.0f} min", score, detail
+
+    # ③ Les entités reconnaissent-elles l'événement ?
+    connu, age_h = None, None
+    if not n:
+        try:
+            ents = getattr(ev, "entites", None)
+            if ents:
+                connu, age_h = sujet_connu_par_entites(conn, ents)
+        except Exception:
+            pass
+
+    if not n and not connu:
+        return "publier", "sujet neuf", score, detail
+
+    # ④ Sujet connu : la nouveauté justifie-t-elle une suite ?
+    reference = heads or ([connu] if connu else [])
+    neuf, angle = _suite_apporte_du_neuf(titre, resume, reference)
+    if neuf is True:
+        detail.append(f"suite +{SCORE_POIDS['suite_neuve']}")
+        return "suivre", (angle or "développement réel"), \
+               round(score + SCORE_POIDS["suite_neuve"], 1), detail
+    if neuf is False:
+        return "ecarter", "même fait reformulé", score, detail
+
+    # ⑤ Le juge n'a pas pu se prononcer : on est PRUDENT. Republier deux fois est pire
+    #    que rater une suite — c'est la leçon du doublon passé pendant une panne d'API.
+    mots = _sig_words(titre)
+    for h in reference:
+        mots -= _sig_words(h or "")
+    mots -= _FOLLOWUP_GENERIC
+    sans_accent = {"".join(c for c in unicodedata.normalize("NFD", m)
+                           if unicodedata.category(c) != "Mn") for m in mots}
+    if sans_accent & _MOTS_DEVELOPPEMENT:
+        return "suivre", "fait nouveau détecté", score, detail
+    return "ecarter", "juge indisponible, aucun fait nouveau", score, detail
+
+
+def _memes_faits(a, b):
+    """Deux titres parlent-ils du même événement, sans recours aux vecteurs ?
+
+    Deux mots communs suffisent. MAIS un seul suffit aussi s'il est DISCRIMINANT —
+    « Gironde », « Zidane », « Sabena » : un nom propre long ne se retrouve pas par
+    hasard dans deux actualités. Les mots courts et fréquents (Paris, loi, mort) sont
+    exclus de cette règle, sinon tous les faits divers parisiens fusionneraient."""
+    communs_r = _racines_communes(a, b)
+    if communs_r >= 2:
+        return True
+    rares = {m for m in (a & b) if len(m) >= 6}
+    return bool(rares)
+
+
+def regrouper_en_evenements(articles, conn=None, seuil=None):
+    """Regroupe les articles du cycle en ÉVÉNEMENTS distincts.
+
+    Deux niveaux de rapprochement, du plus fiable au plus large :
+      ① le SENS, via les vecteurs — reconnaît deux titres aux mots différents ;
+      ② les MOTS SAILLANTS, quand les vecteurs sont indisponibles (budget, panne).
+
+    Renvoie la liste des événements, du mieux couvert au moins couvert : un fait relayé
+    par huit médias passe naturellement devant un fait isolé."""
+    seuil = EMBED_SEUIL if seuil is None else seuil
+    evenements = []
+    juges = [0]        # nombre d'arbitrages IA de ce cycle, borné par EVT_JUGES_MAX
+    for art in (articles or []):
+        titre = str(art.get("title") or "").strip()
+        if not titre:
+            continue
+        # 🧠 Les vecteurs sont la MEILLEURE façon de reconnaître un même événement :
+        #    on les demande toujours, la fonction gère elle-même budget et repli.
+        try:
+            vec = _embed(titre, conn)
+        except Exception:
+            vec = None
+        mots = _sig_words(titre)
+        rattache = False
+        for ev in evenements:
+            # ⚠️ On compare à TOUS les articles de l'événement, pas seulement à son titre :
+            #    « Feu de forêt » ne ressemble pas à « Incendie… hectares », mais les deux
+            #    ressemblent à « Gironde : les flammes ravagent ». Comparer au seul titre
+            #    représentatif faisait perdre ces rapprochements en chaîne.
+            proche = False
+            if vec is not None and ev.vec is not None:
+                sim = _cos(vec, ev.vec)
+                if sim >= seuil:
+                    proche = True
+                elif sim >= seuil - 0.14 and juges[0] < EVT_JUGES_MAX:
+                    # 🧠 ZONE DE DOUTE : les vecteurs hésitent. Ni assez proches pour
+                    #    conclure, ni assez éloignés pour écarter. On demande à l'IA,
+                    #    qui comprend le SENS là où les mots ne voient que la forme.
+                    juges[0] += 1
+                    verdict = _meme_evenement_ia(titre, ev.titre)
+                    if verdict is True:
+                        proche = True
+                        print(f"  🧠 Même événement (jugé) : « {titre[:38]}… »")
+                    elif verdict is False:
+                        continue          # tranché : ce n'est PAS le même fait
+            if not proche:
+                for autre_art in ev.articles:
+                    autres = _sig_words(autre_art.get("title", ""))
+                    if _memes_faits(mots, autres):
+                        proche = True
+                        break
+            if proche:
+                ev.absorber(art)
+                rattache = True
+                break
+        if not rattache:
+            ev = Evenement(art)
+            ev.vec = vec
+            evenements.append(ev)
+    evenements.sort(key=lambda e: (-e.medias, e.age_heures if e.age_heures else 99))
+    if evenements:
+        _gros = [e for e in evenements if e.medias >= 3]
+        print(f"  🧩 {len(articles or [])} articles → {len(evenements)} événement(s)"
+              + (f", dont {len(_gros)} suivi(s) par 3 médias ou plus" if _gros else ""))
+    return evenements
+
+
 def detect_breaking(conn, candidates, return_all=False):
     """🔥 Détecte les sujets chauds via l'ÉCHO MÉDIATIQUE PERSISTANT (12h) : ≥ BREAKING_SOURCES
     médias DISTINCTS sur 12h (le comptage est alimenté en amont, sur chaque article frais du flux,
@@ -10381,6 +10885,14 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
         topic_echo_mark_alerted(conn, item["_topic_canon"], item.get("_echo_n", BREAKING_SOURCES))
     log_keywords(conn, keywords)
     log_topic(conn, item.get("title", ""), keywords, corps=body)   # mémoire par sujet (suivi éditorial)
+    # 🏷️ ENTITÉS : permettent de reconnaître ce sujet dans les jours qui
+    #    suivent, même sous une formulation entièrement différente.
+    try:
+        memoriser_entites(conn, item.get("title", ""),
+                          extraire_entites(item.get("title", ""),
+                                           item.get("summary", "")))
+    except Exception:
+        pass
     if cat == "hommage":
         # 🕊️ mémorise la personne : aucun second hommage ne partira pour elle
         marquer_deces_annonce(conn, person or _extract_person_name(
@@ -11631,7 +12143,24 @@ def _check_feeds_interne(conn):
                 print(f"  💰 {len(_hot_batch)} sujets chauds analysés en UN seul appel (au lieu de {len(_hot_batch)})")
             except Exception:
                 pass                                       # la boucle analysera au cas par cas
-        for hot in hot_topics:
+        # 🧩 Regroupement en ÉVÉNEMENTS : dix dépêches sur le même fait ne sont pas dix
+    #    actualités. Le nombre de médias qui couvrent un événement devient une donnée
+    #    de notation, et non plus une simple information de journal.
+    _evenements_du_cycle = {}
+    try:
+        for _e in regrouper_en_evenements(candidates, conn):
+            for _a in _e.articles:
+                _evenements_du_cycle[_a.get("title", "")] = _e
+        # 🏷️ Entités des SEULS événements les mieux couverts : ce sont les seuls
+        #    susceptibles d'être publiés, et chaque extraction est un appel.
+        for _e in sorted(_evenements_du_cycle.values(),
+                         key=lambda x: -x.medias)[:EVT_ENTITES_MAX]:
+            if not hasattr(_e, "entites"):
+                _e.entites = extraire_entites(_e.titre, _e.resume)
+    except Exception as _e2:
+        print(f"  ⚠️ Regroupement indisponible ({str(_e2)[:60]})")
+
+    for hot in hot_topics:
             if nb_today >= DAILY_POST_CAP and not _is_urgent_alert(hot.get("title", ""), hot.get("summary", "")):
                 print(f"  🛑 Plafond quotidien atteint ({nb_today}) — sujet chaud ignoré (une ALERTE VITALE passerait).")
                 continue
@@ -11674,6 +12203,25 @@ def _check_feeds_interne(conn):
                 print("  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant")
                 continue
             score = int(a.get("score", 0))
+            # 🧮 NOTE COMPOSITE : la note du modèle n'est plus que le socle. On y ajoute
+            #    des faits MESURÉS — combien de médias couvrent l'événement, depuis quand
+            #    il est sorti, s'il porte sur X, s'il a déjà été traité aujourd'hui.
+            #    Le journal affiche le détail : un score se débogue, il ne se subit pas.
+            _ev = _evenements_du_cycle.get(hot.get("title", ""))
+            if _ev is not None:
+                # 🎯 DÉCISION UNIQUE : notation ET anti-doublon au même endroit.
+                #    Auparavant cinq contrôles séparés, dont l'interaction n'était
+                #    jamais testée — c'est par là qu'un doublon est passé.
+                _dec, _pq, _sc, _det = decider_publication(
+                    conn, _ev, note_ia=score, categorie=a.get("category", ""))
+                if _det:
+                    print(f"  🧮 Score {_sc} = {' + '.join(_det)}")
+                score = int(round(_sc))
+                if _dec == "ecarter":
+                    print(f"  ⏭️  Écarté : {_pq} → suivant")
+                    continue
+                if _dec == "suivre":
+                    print(f"  🆕 Suivi d'événement : {_pq}")
             # 📈 Un sujet remonté par les TENDANCES et jugé important reçoit un bonus : nos
             #    règles de gravité sont mécaniques et sous-notent parfois un fait majeur dont
             #    le vocabulaire ne déclenche aucun mot-clé fort.
@@ -12210,6 +12758,14 @@ def _check_feeds_interne(conn):
             if cat == "hommage":
                 log_keywords(conn, keywords)
                 log_topic(conn, item.get("title", ""), keywords, corps=body)
+                # 🏷️ ENTITÉS : permettent de reconnaître ce sujet dans les jours qui
+                #    suivent, même sous une formulation entièrement différente.
+                try:
+                    memoriser_entites(conn, item.get("title", ""),
+                                      extraire_entites(item.get("title", ""),
+                                                       item.get("summary", "")))
+                except Exception:
+                    pass
                 if cat == "hommage":
                     # 🕊️ mémorise la personne : aucun second hommage ne partira pour elle
                     marquer_deces_annonce(conn, person or _extract_person_name(
@@ -12222,6 +12778,14 @@ def _check_feeds_interne(conn):
             mark_cat(conn, cat)
             log_keywords(conn, keywords)
             log_topic(conn, item.get("title", ""), keywords, corps=body)   # mémoire par sujet (suivi éditorial)
+            # 🏷️ ENTITÉS : permettent de reconnaître ce sujet dans les jours qui
+            #    suivent, même sous une formulation entièrement différente.
+            try:
+                memoriser_entites(conn, item.get("title", ""),
+                                  extraire_entites(item.get("title", ""),
+                                                   item.get("summary", "")))
+            except Exception:
+                pass
             if cat == "hommage":
                 # 🕊️ mémorise la personne : aucun second hommage ne partira pour elle
                 marquer_deces_annonce(conn, person or _extract_person_name(
