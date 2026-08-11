@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.77.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.77.3"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -223,6 +223,30 @@ LABELS = {
     "tech": "TECH", "ia": "IA",
     "insolite": "INSOLITE", "positivity": "POSITIF", "gta6": "GTA 6",
 }
+
+
+# 🗺️ Catégories que le modèle produit spontanément, rattachées à celles que Pulse
+#    connaît. Sans cela, une catégorie inconnue faisait échouer la publication entière
+#    (vécu : « ❌ Breaking échoué : 'meteo' »).
+_CAT_VOISINES = {
+    "meteo": "environnement", "météo": "environnement", "climat": "environnement",
+    "canicule": "environnement", "catastrophe": "faitsdivers", "accident": "faitsdivers",
+    "incendie": "faitsdivers", "justice": "societe", "police": "faitsdivers",
+    "judiciaire": "societe", "proces": "societe", "procès": "societe",
+    "international": "monde", "guerre": "monde", "geopolitique": "monde",
+    "technologie": "tech", "numerique": "tech", "numérique": "tech",
+    "high-tech": "tech", "informatique": "tech", "internet": "tech",
+    "medias": "culture", "médias": "culture", "people": "culture", "musique": "culture",
+    "cinema": "culture", "cinéma": "culture", "education": "societe",
+    "éducation": "societe", "transport": "france", "social": "societe",
+    "finance": "economie", "bourse": "economie", "emploi": "economie",
+}
+
+
+def _categorie_voisine(c):
+    """Rattache une catégorie inconnue à la plus proche que Pulse sait afficher."""
+    return _CAT_VOISINES.get(str(c or "").strip().lower(), "")
+
 
 UNSPLASH_FALLBACK = {
     "breaking":      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=95",
@@ -1792,7 +1816,9 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
     """Génère tweet + titre image + image_query + mots-clés majeurs.
     prev_angles = titres déjà publiés par Pulse sur CE sujet (suite = nouvel angle obligatoire)."""
     today = _now_paris().strftime("%d %B %Y")
-    label = LABELS[category]
+    # ⚠️ Le modèle invente parfois une catégorie absente de la table (vécu : « meteo »,
+    #    qui faisait échouer toute la publication). On se rabat plutôt que de tout perdre.
+    label = LABELS.get(category) or LABELS.get(_categorie_voisine(category)) or LABELS["france"]
     video_str = ""
     # 📖 L'article est transmis ENTIER (jusqu'à 6 000 caractères). Il était auparavant
     #    tronqué à 1 200 : le fait le plus important pouvait se trouver au-delà, et le
@@ -2182,7 +2208,9 @@ def _flag_emoji(country_code):
 
 def build_full_tweet(body, category, country=""):
     emoji = EMOJIS[category]
-    label = LABELS[category]
+    # ⚠️ Le modèle invente parfois une catégorie absente de la table (vécu : « meteo »,
+    #    qui faisait échouer toute la publication). On se rabat plutôt que de tout perdre.
+    label = LABELS.get(category) or LABELS.get(_categorie_voisine(category)) or LABELS["france"]
     flag = _flag_emoji(country)
     # En-tête : "emoji [drapeau] LABEL | ..." — le drapeau situe le pays, le LABEL (catégorie) est conservé.
     # Emojis COLLÉS puis espace avant le libellé : « 🍅🇫🇷 FLASH | … » (format de référence)
@@ -4566,7 +4594,7 @@ _IMAGE_INDISPO = {"jour": ""}     # mémoire du jour où plus aucun modèle ne r
 #    tentatives pour la journée — toutes les cartes savent se passer d'illustration.
 IMAGE_MODEL         = os.environ.get("IMAGE_MODEL", "gemini-2.5-flash-image")
 IMAGE_MODEL_SECOURS = os.environ.get(
-    "IMAGE_MODEL_SECOURS", "gemini-3.1-flash-image,gemini-2.0-flash-preview-image-generation")
+    "IMAGE_MODEL_SECOURS", "gemini-3.1-flash-image")   # ⛔ le modèle 2.0-preview n'existe pas sur l'API
 
 def _gemini_image(description, libelle="Illustration"):
     """Génère une image d'illustration.
@@ -12207,6 +12235,7 @@ def _check_feeds_interne(conn):
             #    des faits MESURÉS — combien de médias couvrent l'événement, depuis quand
             #    il est sorti, s'il porte sur X, s'il a déjà été traité aujourd'hui.
             #    Le journal affiche le détail : un score se débogue, il ne se subit pas.
+            _suivi_valide = False
             _ev = _evenements_du_cycle.get(hot.get("title", ""))
             if _ev is not None:
                 # 🎯 DÉCISION UNIQUE : notation ET anti-doublon au même endroit.
@@ -12222,6 +12251,7 @@ def _check_feeds_interne(conn):
                     continue
                 if _dec == "suivre":
                     print(f"  🆕 Suivi d'événement : {_pq}")
+                    _suivi_valide = True
             # 📈 Un sujet remonté par les TENDANCES et jugé important reçoit un bonus : nos
             #    règles de gravité sont mécaniques et sous-notent parfois un fait majeur dont
             #    le vocabulaire ne déclenche aucun mot-clé fort.
@@ -12243,7 +12273,12 @@ def _check_feeds_interne(conn):
                         continue          # abandonné (annonce périmée) → sujet suivant
                     except Exception as e:
                         print(f"  ❌ Suivi breaking échoué : {e}")
-                elif score >= BUZZ_SCORE:
+                elif score >= BUZZ_SCORE or _suivi_valide:
+                    # ✅ La DÉCISION UNIQUE a déjà tranché : ce suivi apporte un fait
+                    #    nouveau. Le score porte la pénalité « déjà publié -5 », qui sert
+                    #    à classer les sujets entre eux — la réappliquer ici comme seuil
+                    #    reviendrait à punir deux fois la même chose, et à jeter un vrai
+                    #    développement (vécu : « suspect placé en garde à vue » écarté).
                     # Suivi d'un sujet chaud : CANAL BONUS — contourne la cadence et ne la
                     # réinitialise pas. Frein propre : 1 buzz max / BUZZ_GAP_MIN.
                     if buzz_recent(conn):
