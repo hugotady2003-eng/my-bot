@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.81.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.83.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -88,6 +88,12 @@ GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.5-flash-lite")
 # 🪜 Modèles de secours, du plus généreux au plus rare. Chacun a son PROPRE quota
 #    journalier : 500 requêtes pour les Flash Lite, 20 pour les Flash. Les enchaîner
 #    multiplie la réserve gratuite avant tout recours à Claude, qui lui est payant.
+# 👁️ Le contrôle visuel a son PROPRE modèle, distinct de la rédaction. Ils partageaient
+#    le même quota : quand le texte l'épuisait en cours de journée, plus aucune image
+#    n'était vérifiée (vécu, tous les soirs). Chaque modèle a pourtant ses 500 requêtes.
+VISION_MODEL = os.environ.get("VISION_MODEL", "gemini-2.5-flash-lite")
+VISION_MODELES_SECOURS = os.environ.get(
+    "VISION_MODELES_SECOURS", "gemini-3.1-flash-lite,gemini-3.5-flash-lite")
 GEMINI_MODELES_SECOURS = os.environ.get(
     "GEMINI_MODELES_SECOURS",
     "gemini-3.1-flash-lite,gemini-2.5-flash-lite,gemini-3.6-flash,gemini-3-flash")
@@ -562,8 +568,11 @@ def _touch_publish_time():
         pass
 
 # ── Plafond quotidien GLOBAL de publications (toutes sources confondues) ──
-DAILY_POST_CAP = 30          # plafond FERME (une alerte vitale peut seule passer au-delà)
-DAILY_POST_SOFT = 24         # au-delà, on ne garde QUE le très chaud (breaking/résultats forts)
+# 📉 Plafonds RESSERRÉS : le compte publiait 34 tweets par jour — 24 actualités plus
+#    une dizaine de canaux bonus qui échappent au compteur. Mieux vaut la qualité que
+#    la quantité : moins de tweets, mais chacun mérite sa place dans le fil.
+DAILY_POST_CAP = int(os.environ.get("DAILY_POST_CAP", "22"))    # plafond FERME (seule une alerte vitale passe au-delà)
+DAILY_POST_SOFT = int(os.environ.get("DAILY_POST_SOFT", "16"))  # au-delà, on ne garde QUE le très chaud
 
 # ── Mémoire par sujet : un gros sujet qui ÉVOLUE peut ressortir dans la journée ──
 # (ne fait PAS grimper le total quotidien : il PREND la place d'une opportunité plus faible)
@@ -9630,6 +9639,10 @@ def log_topic(conn, title, keywords, corps=None):
         print(f"  ⚠️ log_topic: {e}")
 
 EMBED_MODEL = os.environ.get("EMBED_MODEL", "gemini-embedding-001")
+# 🧠 Second modèle de vecteurs : ses 1 000 requêtes quotidiennes sont inutilisées. Les
+#    enchaîner double la capacité de comparaison par le SENS, qui est le meilleur
+#    mécanisme du moteur pour reconnaître un même événement.
+EMBED_MODELES_SECOURS = os.environ.get("EMBED_MODELES_SECOURS", "gemini-embedding-002")
 EMBED_SEUIL = 0.82        # au-delà, deux titres parlent du MÊME sujet (calibré prudemment)
 # 🛡️ Le palier gratuit plafonne à ~1 000 requêtes/jour, TOUTES tâches confondues. Le bot
 #    tourne 288 fois par jour : sans borne, les embeddings épuiseraient le quota à eux seuls
@@ -9679,9 +9692,18 @@ def _embed(texte, conn=None, essentiel=False):
             _EMBED_CACHE[cle] = None
             return None
     try:
+        # 🧠 Chaîne de modèles : chacun a ses 1 000 requêtes quotidiennes. Quand le
+        #    premier est épuisé, le second est intact — sans cela, le moteur perdait
+        #    sa meilleure façon de reconnaître un même événement en milieu de journée.
+        _jour = _now_paris().strftime("%Y-%m-%d")
+        _mod_e = next((m for m in ([EMBED_MODEL] + [x.strip() for x in
+                       str(EMBED_MODELES_SECOURS).split(",") if x.strip()])
+                       if _MODELE_EPUISE.get(m) != _jour), None)
+        if not _mod_e:
+            return None
         url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
-               f"{EMBED_MODEL}:embedContent")
-        _d = _post_gemini(url, {"model": f"models/{EMBED_MODEL}",
+               f"{_mod_e}:embedContent")
+        _d = _post_gemini(url, {"model": f"models/{_mod_e}",
                                 "content": {"parts": [{"text": texte[:2000]}]},
                                 "outputDimensionality": 768},
                           famille="texte", timeout=20)
@@ -9701,6 +9723,12 @@ def _embed(texte, conn=None, essentiel=False):
             _EMBED_CACHE[cle] = v
             return v
     except Exception as e:
+        # ⚠️ Le régulateur lève « quota <famille> épuisé » : on mémorise le MODÈLE
+        #    concerné et on relance une fois sur le suivant, dont le quota est intact.
+        if "quota" in str(e).lower() and _mod_e and _MODELE_EPUISE.get(_mod_e) != _jour:
+            _MODELE_EPUISE[_mod_e] = _jour
+            print(f"  🚫 {_mod_e} : quota de vecteurs épuisé → modèle suivant")
+            return _embed(texte, conn, essentiel)
         print(f"  ⚠️ Embedding indisponible ({str(e)[:70]}) → comparaison par mots-clés")
     _EMBED_CACHE[cle] = None
     return None
@@ -10597,8 +10625,19 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None):
         score += pts
         detail.append(f"{m} médias +{pts}")
 
-    # ② FRAÎCHEUR : être parmi les premiers vaut mieux que d'arriver après tout le monde
-    age = ev.age_heures if hasattr(ev, "age_heures") else None
+    # ② FRAÎCHEUR : être parmi les premiers vaut mieux que d'arriver après tout le monde.
+    #    ⚠️ On mesure l'article le PLUS RÉCENT, pas le premier : sur un événement suivi
+    #    depuis plusieurs jours, l'ancienneté de la première dépêche ne dit plus rien de
+    #    l'actualité du jour (vécu : « ancien 123h -2 » sur un article vieux de 6 minutes).
+    age = None
+    try:
+        _ts = [a.get("pub_ts") for a in getattr(ev, "articles", []) if a.get("pub_ts")]
+        if _ts:
+            age = (time.time() - max(_ts)) / 3600
+    except Exception:
+        age = None
+    if age is None:
+        age = ev.age_heures if hasattr(ev, "age_heures") else None
     if age is not None:
         pts = 0
         for seuil, p in sorted(SCORE_POIDS["fraicheur"].items()):
@@ -11063,7 +11102,15 @@ def _image_plateau_probable(source):
     return any(m in s for m in _SOURCES_PLATEAU)
 
 
-def _image_pertinente(raw, titre, resume=""):
+# 👁️ Catégories où une image fausse coûte le plus cher : un hommage illustré par
+#    quelqu'un d'autre, un fait divers illustré par une image choquante, un portrait
+#    qui n'est pas la bonne personne. Ces contrôles passent EN PRIORITÉ si le quota
+#    vient à manquer — une brève culture peut se passer de vérification, pas un décès.
+VISION_PRIORITAIRE = {"hommage", "faitsdivers", "france", "monde", "politique",
+                      "societe", "sante", "breaking"}
+
+
+def _image_pertinente(raw, titre, resume="", categorie="", prioritaire=None):
     """Vérifie EN REGARDANT l'image qu'elle illustre bien le sujet de l'article.
 
     Aucune règle par source ne peut attraper tous les cas : un média peut illustrer une
@@ -11074,42 +11121,63 @@ def _image_pertinente(raw, titre, resume=""):
     dans ce cas on GARDE l'image : on ne bloque jamais une publication sur un doute."""
     if not raw or not GEMINI_API_KEY:
         return None
-    try:
-        import base64 as _b64
-        url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
-               f"{GEMINI_MODEL}:generateContent")
-        sujet = re.sub(r"\s+", " ", f"{titre}. {resume}").strip()[:300]
-        question = (
-            "Voici l'image qu'un compte d'actualité s'apprête à publier avec cette info :\n"
-            f"« {sujet} »\n\n"
-            "Cette image est-elle une illustration ACCEPTABLE de cette information ?\n"
-            "Réponds NON si : c'est un mème ou un détournement humoristique ; c'est une "
-            "personne DIFFÉRENTE de celle dont parle l'info ; c'est un plateau de télévision "
-            "ou des présentateurs alors que l'info n'y a aucun rapport ; c'est une capture "
-            "d'écran de réseau social ; l'image n'a visiblement AUCUN lien avec le sujet.\n"
-            "Réponds NON ÉGALEMENT si l'image est CHOQUANTE et impubliable telle quelle : "
-            "corps, sang, blessures visibles, cadavre, scène de violence explicite, "
-            "détresse humaine crue. Un compte d'actualité ne publie pas ces images.\n"
-            "Réponds OUI si l'image montre le sujet, la personne concernée, le lieu, "
-            "l'événement, ou un visuel générique cohérent avec le thème.\n"
-            'Réponds UNIQUEMENT : {"ok": true|false, "raison": "<5 mots max>"}')
-        d = _post_gemini(
-            url, {"contents": [{"parts": [
-                      {"inlineData": {"mimeType": "image/jpeg",
-                                      "data": _b64.b64encode(raw).decode()}},
-                      {"text": question}]}],
-                  "generationConfig": _gen_config(80, json_out=True)},
-            famille="vision", timeout=45)
-        _usage_gemini(d)
-        txt = (((d.get("candidates") or [{}])[0].get("content") or {})
-               .get("parts") or [{}])[0].get("text", "")
-        rep = _parse_json_reponse(txt)
-        if isinstance(rep, dict) and "ok" in rep:
-            if not rep["ok"]:
-                print(f"  👁️ Image écartée : {str(rep.get('raison') or 'hors-sujet')[:40]}")
-            return bool(rep["ok"])
-    except Exception as e:
-        print(f"  ⚠️ Contrôle visuel indisponible ({str(e)[:60]}) → image conservée")
+    jour = _now_paris().strftime("%Y-%m-%d")
+    # 🎯 Si TOUS les modèles de vision sont épuisés sauf un, on le réserve aux sujets
+    #    sensibles : mieux vaut une brève culture non vérifiée qu'un hommage illustré
+    #    par la mauvaise personne.
+    if prioritaire is None:
+        prioritaire = str(categorie or "").lower() in VISION_PRIORITAIRE
+    _dispo = [m for m in ([VISION_MODEL] + [x.strip() for x in
+              str(VISION_MODELES_SECOURS).split(",") if x.strip()])
+              if _MODELE_EPUISE.get(m) != jour]
+    if len(_dispo) <= 1 and not prioritaire:
+        print("  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles")
+        return None
+    for _modele in ([VISION_MODEL] + [m.strip() for m in
+                    str(VISION_MODELES_SECOURS).split(",") if m.strip()]):
+      if _MODELE_EPUISE.get(_modele) == jour:
+        continue
+      try:
+          import base64 as _b64
+          url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+                 f"{_modele}:generateContent")
+          sujet = re.sub(r"\s+", " ", f"{titre}. {resume}").strip()[:300]
+          question = (
+              "Voici l'image qu'un compte d'actualité s'apprête à publier avec cette info :\n"
+              f"« {sujet} »\n\n"
+              "Cette image est-elle une illustration ACCEPTABLE de cette information ?\n"
+              "Réponds NON si : c'est un mème ou un détournement humoristique ; c'est une "
+              "personne DIFFÉRENTE de celle dont parle l'info ; c'est un plateau de télévision "
+              "ou des présentateurs alors que l'info n'y a aucun rapport ; c'est une capture "
+              "d'écran de réseau social ; l'image n'a visiblement AUCUN lien avec le sujet.\n"
+              "Réponds NON ÉGALEMENT si l'image est CHOQUANTE et impubliable telle quelle : "
+              "corps, sang, blessures visibles, cadavre, scène de violence explicite, "
+              "détresse humaine crue. Un compte d'actualité ne publie pas ces images.\n"
+              "Réponds OUI si l'image montre le sujet, la personne concernée, le lieu, "
+              "l'événement, ou un visuel générique cohérent avec le thème.\n"
+              'Réponds UNIQUEMENT : {"ok": true|false, "raison": "<5 mots max>"}')
+          d = _post_gemini(
+              url, {"contents": [{"parts": [
+                        {"inlineData": {"mimeType": "image/jpeg",
+                                        "data": _b64.b64encode(raw).decode()}},
+                        {"text": question}]}],
+                    "generationConfig": _gen_config(80, json_out=True, modele=_modele)},
+              famille="vision", timeout=45)
+          _usage_gemini(d)
+          txt = (((d.get("candidates") or [{}])[0].get("content") or {})
+                 .get("parts") or [{}])[0].get("text", "")
+          rep = _parse_json_reponse(txt)
+          if isinstance(rep, dict) and "ok" in rep:
+              if not rep["ok"]:
+                  print(f"  👁️ Image écartée : {str(rep.get('raison') or 'hors-sujet')[:40]}")
+              return bool(rep["ok"])
+      except Exception as e:
+          _m = str(e)
+          if "quota" in _m.lower():
+              _MODELE_EPUISE[_modele] = jour
+              continue          # modèle suivant : son quota est peut-être intact
+          print(f"  ⚠️ Contrôle visuel indisponible ({_m[:60]}) → image conservée")
+          return None
     return None
 
 
@@ -11158,7 +11226,7 @@ def _portrait_hommage(person, item, candidates, cat):
             return True
         return _image_pertinente(
             raw, f"Hommage à {person}. L'image doit montrer CETTE personne, "
-                 f"pas une scène de contexte") is not False
+                 f"pas une scène de contexte", prioritaire=True) is not False
 
     # ① portrait Wikipédia — la source la plus sûre pour une personnalité
     if person:
@@ -11740,7 +11808,7 @@ def build_saviez_card(texte, illustration, sujet, mots_image=None, W=1080, H=135
             # 🖼️ Pas de génération possible → on cherche une PHOTO LIBRE. Une vraie
             #    image illustre mieux qu'un fond nu, et Commons est sans risque de droits.
             brut = chercher_image_libre(list(mots_image or []) + [sujet])
-        if brut and _image_pertinente(brut, f"Le saviez-vous : {sujet}") is False:
+        if brut and _image_pertinente(brut, f"Le saviez-vous : {sujet}", prioritaire=False) is False:
             print("  👁️ Illustration hors-sujet → carte sans image")
             brut = None
         if brut:
