@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.77.3"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.81.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -110,8 +110,12 @@ IMGBB_KEY            = os.environ.get("IMGBB_KEY",            "")
 
 SCORE_MINIMUM = 6
 MAX_PAR_PASSE = 1
-BREAKING_SCORE = 9        # score minimum (analyse Claude) pour qu'une actu soit publiée en "breaking"
-BUZZ_SCORE = 7            # score minimum pour un fast-track "buzz" (multi-sources) — label normal, pas URGENT
+# ⚠️ Seuils RELEVÉS avec la note composite : elle ajoute jusqu'à +8 points (médias,
+#    fraîcheur, thème porteur, primeur) au-dessus de la gravité donnée par le modèle.
+#    Aux anciens seuils (9 et 7), une gravité de 1 suffisait à franchir la barre et
+#    TOUT partait en URGENT (vécu). Ces valeurs rétablissent l'exigence d'origine.
+BREAKING_SCORE = int(os.environ.get("BREAKING_SCORE", "13"))   # seuil du libellé URGENT
+BUZZ_SCORE = int(os.environ.get("BUZZ_SCORE", "10"))          # seuil du canal chaud, label normal
 BUZZ_GAP_MIN = 75         # espacement MINIMUM entre deux buzz non-urgents, le JOUR
 BUZZ_GAP_NIGHT_MIN = 150  # la nuit, on espace deux fois plus (cohérent avec la cadence nocturne)
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
@@ -1044,10 +1048,24 @@ RÈGLE DOUBLON — LIS ATTENTIVEMENT :
 - is_duplicate=true UNIQUEMENT si l'article répète essentiellement les MÊMES FAITS qu'un titre de la liste des DÉJÀ PUBLIÉS fournie ensuite (même information, rien de neuf pour le lecteur).
 - is_duplicate=false si l'article apporte un VRAI nouveau développement sur un sujet en cours : une réaction, un recours/un appel, un verdict, un nouveau bilan, une décision officielle, une interpellation, un rebondissement. Un sujet MAJEUR qui évolue MÉRITE une nouvelle publication — ne le bloque PAS juste parce qu'on en a déjà parlé. Note-le alors sur son vrai potentiel d'engagement.
 
+NOTE « u » — CARACTÈRE IMPRÉVU (0-10). C'est ce qui distingue une ALERTE d'une
+actualité ordinaire. Ne juge PAS la gravité ici, mais le caractère INATTENDU :
+  9-10 : personne ne s'y attendait ce matin, et cela CHANGE quelque chose —
+         attentat, démission d'un ministre, catastrophe, mort d'une personnalité,
+         dissolution, retournement judiciaire, annonce surprise d'une entreprise.
+  6-8  : fait nouveau non programmé, mais dans la continuité d'un sujet connu —
+         un bilan qui s'alourdit, une réaction politique forte, une interpellation.
+  3-5  : fait attendu dont on ignorait le détail — un résultat de match, un verdict
+         dont la date était connue, un chiffre publié à date fixe.
+  0-2  : PUREMENT PROGRAMMÉ ou sans changement — horaire d'un match, programme TV,
+         « quand aura lieu », « où voir », calendrier, conseil pratique, marronnier,
+         rappel d'un événement à venir, article de service.
+⛔ Un événement prévu de longue date n'est JAMAIS imprévu, même s'il est important.
+
 Réponds avec ce JSON UNIQUEMENT (un objet par article, dans le MÊME ORDRE).
 Clés compactes : i = numéro d'article, s = score, c = catégorie, d = is_duplicate (1=oui, 0=non), v = needs_video (1=oui, 0=non).
 {{"analyses":[
-  {{"i":1,"s":<0-10>,"c":"<{cats}>","d":<0|1>,"v":<0|1>}},
+  {{"i":1,"s":<0-10>,"c":"<{cats}>","d":<0|1>,"v":<0|1>,"u":<0-10>}},
   ...
 ]}}
 
@@ -1114,6 +1132,8 @@ def _normalise_analyse(a):
         "category":     (a.get("category") or a.get("c") or "france"),
         "is_duplicate": _b(a.get("is_duplicate", a.get("d", False))),
         "needs_video":  _b(a.get("needs_video", a.get("v", False))),
+        # ⚡ Caractère imprévu (0-10) : ce qui distingue une alerte d'un fait programmé.
+        "imprevu":      a.get("imprevu", a.get("u")),
     }
 
 
@@ -10489,7 +10509,46 @@ def sujet_connu_par_entites(conn, entites, jours=3):
     return None, None
 
 
-def noter_evenement(ev, conn, note_ia=None, categorie=""):
+# 🚨 FAITS QUI SONT URGENTS PAR NATURE, quel que soit le reste du calcul.
+#    Un ministre qui démissionne à l'instant n'a encore ni couverture médiatique ni
+#    ancienneté : la note composite le sous-évalue mécaniquement. Ces événements
+#    reçoivent un plancher, parce que leur importance ne dépend pas du nombre de
+#    médias qui en parlent déjà.
+FAITS_MAJEURS = [
+    # (motif, points de plancher, libellé pour le journal)
+    (r"\b(?:attentat|attaque terroriste|prise d'otages?|fusillade de masse)\b", 14,
+     "attentat"),
+    (r"\b(?:démission(?:ne|né)?|démissionner|remanie|limog[ée]|destitu[ée]|"
+     r"révoqu[ée]|censur[ée])\b.{0,60}\b(?:ministre|président|premier ministre|"
+     r"gouvernement|chef de l'État|maire de Paris|patron)\b", 14, "démission politique"),
+    (r"\b(?:ministre|président|premier ministre|gouvernement|chef de l'État)\b.{0,60}"
+     r"\b(?:démission(?:ne|né)?|démissionner|limog[ée]|destitu[ée]|révoqu[ée]|"
+     r"censur[ée])\b", 14, "démission politique"),
+    (r"\b(?:dissolution de l'Assemblée|motion de censure adoptée|"
+     r"état d'urgence|coup d'État|putsch)\b", 14, "crise institutionnelle"),
+    (r"\b(?:séisme|tremblement de terre)\b.{0,40}\b(?:magnitude\s*[6-9]|"
+     r"\d{2,}\s*morts?)\b", 14, "catastrophe majeure"),
+    (r"\b(?:crash|accident)\b.{0,40}\b(?:avion|aérien|train)\b.{0,40}\bmorts?\b", 14,
+     "catastrophe majeure"),
+    (r"\bguerre\b.{0,30}\b(?:déclarée|déclaration)\b|\bmobilisation générale\b", 14,
+     "guerre"),
+    (r"\b(?:mort|décès|assassinat)\b.{0,40}\b(?:président|chef de l'État|pape|"
+     r"souverain|roi|reine)\b", 14, "décès d'un chef d'État"),
+]
+_FAITS_MAJEURS_RX = [(re.compile(m, re.IGNORECASE), pts, lib)
+                     for m, pts, lib in FAITS_MAJEURS]
+
+
+def _fait_majeur(titre, resume=""):
+    """Cet événement est-il URGENT par nature ? Renvoie (points_plancher, libellé)."""
+    t = f"{titre} {resume}"
+    for rx, pts, lib in _FAITS_MAJEURS_RX:
+        if rx.search(t):
+            return pts, lib
+    return 0, ""
+
+
+def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None):
     """Note un ÉVÉNEMENT à partir de composantes MESURABLES.
 
     Le score ne sort plus d'un seul chiffre décidé par le modèle : c'est une somme dont
@@ -10506,6 +10565,27 @@ def noter_evenement(ev, conn, note_ia=None, categorie=""):
     base = float(note_ia if note_ia is not None else 0)
     score += base
     detail.append(f"gravité {base:.0f}")
+
+    # ⚡ IMPRÉVU : ce qui distingue une ALERTE d'une actualité ordinaire. Un événement
+    #    programmé — horaire de match, verdict à date connue, marronnier — n'est jamais
+    #    urgent, même important. Un fait que personne n'attendait ce matin l'est.
+    if imprevu is not None:
+        try:
+            imp = max(0, min(10, int(imprevu)))
+        except Exception:
+            imp = 5
+        if imp >= 9:
+            score += 3
+            detail.append(f"imprévu {imp}/10 +3")
+        elif imp >= 6:
+            score += 1
+            detail.append(f"imprévu {imp}/10 +1")
+        elif imp <= 2:
+            # 📅 Purement programmé : on retire ce que la fraîcheur et le thème auraient
+            #    pu apporter à tort. Un calendrier ne devient pas urgent parce qu'il
+            #    vient de paraître (vécu : un horaire de match publié en URGENT).
+            score -= 4
+            detail.append(f"programmé {imp}/10 -4")
 
     # ① COUVERTURE : plusieurs médias sur un même fait = convergence, donc importance
     m = ev.medias if hasattr(ev, "medias") else 1
@@ -10532,7 +10612,10 @@ def noter_evenement(ev, conn, note_ia=None, categorie=""):
             detail.append(f"ancien {age:.0f}h -2")
 
     # ③ AFFINITÉ X : à intérêt comparable, on privilégie ce qui fait réagir
-    if AFFINITE_X.search(f"{ev.titre} {ev.resume}"):
+    # ⚠️ L'affinité départage deux sujets d'intérêt COMPARABLE : elle ne doit jamais
+    #    propulser seule un sujet creux en tête (vécu : un horaire de match en URGENT
+    #    grâce au seul mot « OL »). On l'accorde donc à partir d'une gravité correcte.
+    if base >= 5 and AFFINITE_X.search(f"{ev.titre} {ev.resume}"):
         score += SCORE_POIDS["affinite"]
         detail.append(f"thème porteur +{SCORE_POIDS['affinite']}")
 
@@ -10564,10 +10647,19 @@ def noter_evenement(ev, conn, note_ia=None, categorie=""):
         except Exception:
             pass
 
+    # 🚨 PLANCHER : certains faits sont urgents PAR NATURE. Un ministre qui démissionne
+    #    à l'instant n'a encore ni couverture médiatique ni ancienneté — la note
+    #    composite le sous-évaluerait mécaniquement. On garantit un minimum, sans
+    #    jamais plafonner un score déjà plus élevé.
+    _pts, _lib = _fait_majeur(ev.titre, getattr(ev, "resume", ""))
+    if _pts and score < _pts:
+        detail.append(f"⚡ {_lib} → plancher {_pts}")
+        score = float(_pts)
+
     return round(score, 1), detail
 
 
-def decider_publication(conn, ev, note_ia=None, categorie=""):
+def decider_publication(conn, ev, note_ia=None, categorie="", imprevu=None):
     """POINT DE DÉCISION UNIQUE : faut-il publier cet événement ?
 
     Remplace l'empilement de contrôles qui se sont ajoutés au fil du temps — comptage
@@ -10588,7 +10680,8 @@ def decider_publication(conn, ev, note_ia=None, categorie=""):
     """
     titre = ev.titre if hasattr(ev, "titre") else str(ev)
     resume = getattr(ev, "resume", "")
-    score, detail = noter_evenement(ev, conn, note_ia=note_ia, categorie=categorie)
+    score, detail = noter_evenement(ev, conn, note_ia=note_ia, categorie=categorie,
+                                    imprevu=imprevu)
 
     # ① Le même ARTICLE ne repart jamais
     try:
@@ -10806,6 +10899,12 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
         cat = "hommage"   # décès → ton sobre, même en breaking (le label URGENT reste si urgent=True)
     # 🕊️ RÉTROGRADATION : obsèques, testament, album posthume… ce sont les SUITES d'un
     #    décès déjà annoncé, pas un hommage. Le registre solennel y est déplacé.
+    # 🛡️ GARDE SYMÉTRIQUE : le modèle peut IMPOSER « hommage » sur un sujet qui n'est
+    #    pas un décès (vécu : un ENLÈVEMENT au Venezuela publié en hommage). Nos
+    #    détecteurs ne servaient qu'à ACTIVER le canal, jamais à le réfuter.
+    if cat == "hommage" and not _is_obituary(item.get("title", ""), item.get("summary", "")):
+        cat = item.get("_cat_origine") or "monde"
+        print(f"  ↩️ Pas un décès malgré le classement du modèle → actualité normale [{cat}]")
     if cat == "hommage" and _suite_de_deces(item.get("title", ""), item.get("summary", "")):
         cat = item.get("_cat_origine") or "culture"
         print(f"  ↩️ Suites d'un décès (obsèques, hommage tiers…) → actualité normale [{cat}]")
@@ -12242,7 +12341,8 @@ def _check_feeds_interne(conn):
                 #    Auparavant cinq contrôles séparés, dont l'interaction n'était
                 #    jamais testée — c'est par là qu'un doublon est passé.
                 _dec, _pq, _sc, _det = decider_publication(
-                    conn, _ev, note_ia=score, categorie=a.get("category", ""))
+                    conn, _ev, note_ia=score, categorie=a.get("category", ""),
+                    imprevu=a.get("imprevu"))
                 if _det:
                     print(f"  🧮 Score {_sc} = {' + '.join(_det)}")
                 score = int(round(_sc))
@@ -12339,7 +12439,15 @@ def _check_feeds_interne(conn):
                     except Exception as e:
                         print(f"  ❌ Publication sujet chaud échouée : {e}")
                 else:
-                    print(f"  → Sujet chaud pas assez fort (score {score}) → suivant")
+                    # 🌙 La nuit, le canal buzz est FERMÉ : un score élevé peut tomber ici
+                    #    sans être faible. Le journal doit dire la vraie raison (vécu :
+                    #    « pas assez fort (score 10) » à 5h31 sur un sujet noté au maximum).
+                    if score >= BUZZ_SCORE and _night:
+                        print(f"  🌙 Sujet fort (score {score}) mais nuit → il attendra le matin")
+                    elif score >= BUZZ_SCORE and nb_today >= DAILY_POST_SOFT:
+                        print(f"  🛑 Sujet fort (score {score}) mais quota atteint → suivant")
+                    else:
+                        print(f"  → Sujet chaud pas assez fort (score {score}) → suivant")
                     continue
 
     # ── MATCH DE LA FRANCE : mi-temps + score final (prioritaire, contourne la cadence) ──
