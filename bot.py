@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.83.2"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.84.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -12354,6 +12354,7 @@ def _check_feeds_interne(conn):
     #    actualités. Le nombre de médias qui couvrent un événement devient une donnée
     #    de notation, et non plus une simple information de journal.
     _evenements_du_cycle = {}
+    _refuses_du_cycle = set()      # titres écartés par la décision unique, tous chemins
     try:
         for _e in regrouper_en_evenements(candidates, conn):
             for _a in _e.articles:
@@ -12428,6 +12429,11 @@ def _check_feeds_interne(conn):
                 score = int(round(_sc))
                 if _dec == "ecarter":
                     print(f"  ⏭️  Écarté : {_pq} → suivant")
+                    # 🚫 Le refus vaut pour TOUT LE CYCLE : sans cela le sujet revenait
+                    #    par le flux normal et partait quand même (vécu : canicule 2× en 2 h).
+                    for _a2 in getattr(_ev, "articles", []):
+                        if _a2.get("title"):
+                            _refuses_du_cycle.add(_a2["title"])
                     continue
                 if _dec == "suivre":
                     print(f"  🆕 Suivi d'événement : {_pq}")
@@ -12711,6 +12717,12 @@ def _check_feeds_interne(conn):
         a = _age_h(item)
         if a is not None and a > STALE_NEWS_HOURS and not item.get("followup"):
             print(f"     ⏳ Écarté (trop ancien, {a:.0f}h) : {item['title'][:44]}")
+            continue
+        # 🚫 Un sujet ÉCARTÉ par la décision unique ne doit pas revenir par ce
+        #    chemin : le canal chaud le refusait, le flux normal le publiait
+        #    quand même (vécu : la canicule publiée deux fois en 2 h).
+        if item.get("title") in _refuses_du_cycle:
+            print(f"     🚫 Déjà écarté ce cycle : {item['title'][:44]}")
             continue
         cat = item["analysis"]["category"]
         if cat not in used:
