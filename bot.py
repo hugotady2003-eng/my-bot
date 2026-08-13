@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.84.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.85.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -124,7 +124,7 @@ MAX_PAR_PASSE = 1
 #    fraîcheur, thème porteur, primeur) au-dessus de la gravité donnée par le modèle.
 #    Aux anciens seuils (9 et 7), une gravité de 1 suffisait à franchir la barre et
 #    TOUT partait en URGENT (vécu). Ces valeurs rétablissent l'exigence d'origine.
-BREAKING_SCORE = int(os.environ.get("BREAKING_SCORE", "13"))   # seuil du libellé URGENT
+BREAKING_SCORE = int(os.environ.get("BREAKING_SCORE", "15"))   # seuil du libellé URGENT
 BUZZ_SCORE = int(os.environ.get("BUZZ_SCORE", "10"))          # seuil du canal chaud, label normal
 BUZZ_GAP_MIN = 75         # espacement MINIMUM entre deux buzz non-urgents, le JOUR
 BUZZ_GAP_NIGHT_MIN = 150  # la nuit, on espace deux fois plus (cohérent avec la cadence nocturne)
@@ -575,7 +575,7 @@ def _touch_publish_time():
 # 📉 Plafonds RESSERRÉS : le compte publiait 34 tweets par jour — 24 actualités plus
 #    une dizaine de canaux bonus qui échappent au compteur. Mieux vaut la qualité que
 #    la quantité : moins de tweets, mais chacun mérite sa place dans le fil.
-DAILY_POST_CAP = int(os.environ.get("DAILY_POST_CAP", "22"))    # plafond FERME (seule une alerte vitale passe au-delà)
+DAILY_POST_CAP = int(os.environ.get("DAILY_POST_CAP", "20"))    # plafond FERME (seule une alerte vitale passe au-delà)
 DAILY_POST_SOFT = int(os.environ.get("DAILY_POST_SOFT", "16"))  # au-delà, on ne garde QUE le très chaud
 
 # ── Mémoire par sujet : un gros sujet qui ÉVOLUE peut ressortir dans la journée ──
@@ -7251,6 +7251,13 @@ def _is_urgent_alert(title, summary):
       ① aucun terme de contexte non urgent (taxe, loi, procès, anniversaire…) ;
       ② un marqueur d'événement EN COURS ou de conséquence humaine."""
     t = (str(title or "") + " " + str(summary or "")).lower()
+    # ⛔ Un fait divers LOCAL n'est pas une alerte nationale, si triste soit-il. Une
+    #    enquête ouverte après un décès est une procédure, pas un danger en cours
+    #    (vécu : « URGENT | enquête ouverte après la mort d'une fillette à Quimper »).
+    if re.search(r"\b(?:enquête ouverte|enquête est ouverte|autopsie|information judiciaire|"
+                 r"garde à vue|mis en examen|parquet a ouvert|plainte déposée)\b",
+                 t, re.IGNORECASE):
+        return False
     strong = ("tsunami", "alerte rouge", "évacuation", "évacuer", "attentat",
               "fusillade", "prise d'otage", "mettez-vous à l'abri", "se mettre à l'abri",
               "immédiatement en hauteur", "alerte enlèvement")
@@ -10548,24 +10555,24 @@ def sujet_connu_par_entites(conn, entites, jours=3):
 #    médias qui en parlent déjà.
 FAITS_MAJEURS = [
     # (motif, points de plancher, libellé pour le journal)
-    (r"\b(?:attentat|attaque terroriste|prise d'otages?|fusillade de masse)\b", 14,
+    (r"\b(?:attentat|attaque terroriste|prise d'otages?|fusillade de masse)\b", 16,
      "attentat"),
     (r"\b(?:démission(?:ne|né)?|démissionner|remanie|limog[ée]|destitu[ée]|"
      r"révoqu[ée]|censur[ée])\b.{0,60}\b(?:ministre|président|premier ministre|"
-     r"gouvernement|chef de l'État|maire de Paris|patron)\b", 14, "démission politique"),
+     r"gouvernement|chef de l'État|maire de Paris|patron)\b", 16, "démission politique"),
     (r"\b(?:ministre|président|premier ministre|gouvernement|chef de l'État)\b.{0,60}"
      r"\b(?:démission(?:ne|né)?|démissionner|limog[ée]|destitu[ée]|révoqu[ée]|"
-     r"censur[ée])\b", 14, "démission politique"),
+     r"censur[ée])\b", 16, "démission politique"),
     (r"\b(?:dissolution de l'Assemblée|motion de censure adoptée|"
-     r"état d'urgence|coup d'État|putsch)\b", 14, "crise institutionnelle"),
+     r"état d'urgence|coup d'État|putsch)\b", 16, "crise institutionnelle"),
     (r"\b(?:séisme|tremblement de terre)\b.{0,40}\b(?:magnitude\s*[6-9]|"
-     r"\d{2,}\s*morts?)\b", 14, "catastrophe majeure"),
-    (r"\b(?:crash|accident)\b.{0,40}\b(?:avion|aérien|train)\b.{0,40}\bmorts?\b", 14,
+     r"\d{2,}\s*morts?)\b", 16, "catastrophe majeure"),
+    (r"\b(?:crash|accident)\b.{0,40}\b(?:avion|aérien|train)\b.{0,40}\bmorts?\b", 16,
      "catastrophe majeure"),
-    (r"\bguerre\b.{0,30}\b(?:déclarée|déclaration)\b|\bmobilisation générale\b", 14,
+    (r"\bguerre\b.{0,30}\b(?:déclarée|déclaration)\b|\bmobilisation générale\b", 16,
      "guerre"),
     (r"\b(?:mort|décès|assassinat)\b.{0,40}\b(?:président|chef de l'État|pape|"
-     r"souverain|roi|reine)\b", 14, "décès d'un chef d'État"),
+     r"souverain|roi|reine)\b", 16, "décès d'un chef d'État"),
 ]
 _FAITS_MAJEURS_RX = [(re.compile(m, re.IGNORECASE), pts, lib)
                      for m, pts, lib in FAITS_MAJEURS]
@@ -12495,6 +12502,13 @@ def _check_feeds_interne(conn):
                 #    le matin plutôt que de réveiller le fil à 3h pour une actu non vitale.
                 _night = _is_night()
                 _vital = urgent_alert or is_obit
+                # 🛑 Au-delà du seuil souple, SEULE une alerte VITALE passe. Un score
+                #    élevé ne suffit plus : sinon le plafond ne veut rien dire, et cinq
+                #    tweets sortaient encore après « seuil atteint » (défaut vécu).
+                if nb_today >= DAILY_POST_SOFT and not urgent_alert:
+                    print(f"  🛑 Seuil atteint ({nb_today}/{DAILY_POST_SOFT}) — "
+                          f"seule une alerte vitale passerait → suivant")
+                    continue
                 breaking_immediat = (urgent_alert and score >= BUZZ_SCORE) \
                                     or (is_obit and score >= BUZZ_SCORE) \
                                     or (score >= BREAKING_SCORE and not (_night and not _vital))
