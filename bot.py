@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.83.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.83.2"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -11094,7 +11094,10 @@ def _strip_html(text):
     text = re.sub(r'\s+', ' ', text).strip()
     return text[:400]
 
-_SOURCES_PLATEAU = ("bfmtv", "bfm tv")
+# ⚠️ Toutes les DÉCLINAISONS comptent : « BFM Lyon », « BFM Régions », « BFM Business »
+#    illustrent de la même façon. Le motif ne couvrait que « bfmtv » et « bfm tv », si
+#    bien qu'un article de BFM Lyon est passé avec sa photo de plateau (défaut vécu).
+_SOURCES_PLATEAU = ("bfm",)
 
 def _image_plateau_probable(source):
     """Vrai si la source illustre systématiquement ses articles par des captures de
@@ -11102,8 +11105,10 @@ def _image_plateau_probable(source):
     ⚠️ On ne cherche PAS à reconnaître un plateau sur l'image : une photo de studio a des
     visages, une vraie photo d'actualité aussi — la détection visuelle serait peu fiable.
     La règle par source est déterministe. Limitée à BFMTV, le cas constaté."""
-    s = str(source or "").lower()
-    return any(m in s for m in _SOURCES_PLATEAU)
+    s = re.sub(r"[^a-z0-9]+", " ", str(source or "").lower())
+    # « bfm » doit COMMENCER un mot : couvre BFMTV, BFM Lyon, bfmtv.com, RMC BFM —
+    # sans attraper un média dont le nom contiendrait ces lettres par hasard.
+    return any(re.search(rf"\b{m}", s) for m in _SOURCES_PLATEAU)
 
 
 # 👁️ Catégories où une image fausse coûte le plus cher : un hommage illustré par
