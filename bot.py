@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.83.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.83.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -91,9 +91,13 @@ GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.5-flash-lite")
 # 👁️ Le contrôle visuel a son PROPRE modèle, distinct de la rédaction. Ils partageaient
 #    le même quota : quand le texte l'épuisait en cours de journée, plus aucune image
 #    n'était vérifiée (vécu, tous les soirs). Chaque modèle a pourtant ses 500 requêtes.
-VISION_MODEL = os.environ.get("VISION_MODEL", "gemini-2.5-flash-lite")
+#    ⚠️ gemini-2.5-flash-lite figure dans la console mais REFUSE les images
+#    (« This model … is not supported for generateContent »). On n'utilise que des
+#    modèles dont le fonctionnement est PROUVÉ par les journaux, dans l'ordre INVERSE
+#    de la rédaction pour que les deux usages ne se disputent pas le même quota.
+VISION_MODEL = os.environ.get("VISION_MODEL", "gemini-3.1-flash-lite")
 VISION_MODELES_SECOURS = os.environ.get(
-    "VISION_MODELES_SECOURS", "gemini-3.1-flash-lite,gemini-3.5-flash-lite")
+    "VISION_MODELES_SECOURS", "gemini-3.5-flash-lite")
 GEMINI_MODELES_SECOURS = os.environ.get(
     "GEMINI_MODELES_SECOURS",
     "gemini-3.1-flash-lite,gemini-2.5-flash-lite,gemini-3.6-flash,gemini-3-flash")
@@ -11173,10 +11177,13 @@ def _image_pertinente(raw, titre, resume="", categorie="", prioritaire=None):
               return bool(rep["ok"])
       except Exception as e:
           _m = str(e)
-          if "quota" in _m.lower():
+          # ⛔ « quota » ET « introuvable » écartent le modèle pour la journée : dans les
+          #    deux cas, insister est inutile — le second signale un modèle qui ne
+          #    supporte pas cet usage (vécu : gemini-2.5-flash-lite refuse les images).
+          if "quota" in _m.lower() or "introuvable" in _m.lower() or "not found" in _m.lower():
               _MODELE_EPUISE[_modele] = jour
-              continue          # modèle suivant : son quota est peut-être intact
-          print(f"  ⚠️ Contrôle visuel indisponible ({_m[:60]}) → image conservée")
+              continue          # modèle suivant : le sien est peut-être valide
+          print(f"  ⚠️ Contrôle visuel indisponible ({_m[:160]}) → image conservée")
           return None
     return None
 
