@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.87.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.93.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -3574,6 +3574,10 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             clean_title = re.sub(r'#(\w+)', r'\1', headline_court)
             clean_title = _EMOJI_RX.sub('', clean_title)        # retire les emojis du TEXTE (plus de « tofu »)
             clean_title = re.sub(r'\s{2,}', ' ', clean_title).strip()
+            # 🔗 Nombres INSÉCABLES avant tout découpage : « 2 500 » ne doit jamais se
+            #    retrouver coupé en fin de ligne (vécu : « 2 » puis « 500 » à la ligne
+            #    suivante, ce qui casse la lecture et la coloration du chiffre).
+            clean_title = _souder_nombres(clean_title)
             # Largeur de la colonne de texte : pleine largeur en portrait ; en format LARGE (16:9),
             # on limite à ~74 % pour éviter des lignes interminables et garder la photo respirante.
             max_w = int(W * (0.74 if W / max(1, H) > 1.2 else 0.90))
@@ -3678,15 +3682,28 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             # Texte blanc net par-dessus (sans contour) — le mot en cours en alpha fractionnaire
             _txt_layer = Image.new('RGBA', (W, H), (0, 0, 0, 0))
             _tdraw = ImageDraw.Draw(_txt_layer)
+            # 🎨 MOTS FORTS COLORÉS, comme sur les carrousels : chiffres, lieux et mots
+            #    en capitales prennent la couleur de la catégorie. Le titre est dessiné
+            #    MOT À MOT pour cela — l'animation d'apparition reste inchangée.
+            _acc = _carr_accent(category)
             ty = ty0
             last_y = ty0
             for li, ln in enumerate(_lines):
-                _tdraw.text((margin, ty), ln, font=ft, fill=(255, 255, 255, 255))
+                _cx = margin
+                _esp = _tdraw.textlength(" ", font=ft)
+                # ⚠️ split(" ") et non split() : ce dernier sépare aussi l'espace
+                #    insécable, ce qui recasserait « 2 500 » qu'on vient de souder.
+                for _im, _mot in enumerate([_m for _m in ln.split(" ") if _m]):
+                    _tdraw.text((_cx, ty), _mot, font=ft,
+                                fill=tuple(_acc) + (255,)
+                                if _mot_fort(_mot, premier=(li == 0 and _im == 0))
+                                else (255, 255, 255, 255))
+                    _cx += _tdraw.textlength(_mot, font=ft) + _esp
                 if li == _fade_line_idx and _fade_word:
-                    _pre = ln + (" " if ln else "")
-                    _fx = margin + int(_tdraw.textlength(_pre, font=ft))
-                    _tdraw.text((_fx, ty), _fade_word, font=ft,
-                                fill=(255, 255, 255, int(255 * _fade_alpha)))
+                    _tdraw.text((_cx, ty), _fade_word, font=ft,
+                                fill=(tuple(_acc) + (int(255 * _fade_alpha),))
+                                if _mot_fort(_fade_word)
+                                else (255, 255, 255, int(255 * _fade_alpha)))
                 last_y = ty
                 ty += line_h
             img = Image.alpha_composite(img.convert('RGBA'), _txt_layer).convert('RGB')
@@ -3727,6 +3744,13 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         bb2 = draw.textbbox((0, 0), date_str, font=f_sm)
         draw.text((W - bb2[2] - margin, by2), date_str, font=f_sm, fill=(255, 255, 255, 200))
 
+        # 🎨 TRAME DE POINTS : signature visuelle commune à toutes les productions
+        #    Pulse. Discrète, mais elle donne au fil une texture reconnaissable d'un
+        #    coup d'œil — la même que sur les carrousels de décryptage.
+        try:
+            img = _carr_trame(img.convert("RGBA"), force=max(6, int(10 * _ss)))
+        except Exception:
+            pass
         if as_image:
             return img.convert('RGB')
         buf = io.BytesIO()
@@ -5012,7 +5036,10 @@ def _neon_bg(W, H):
     return col.resize((W, H))
 
 def _wrap(draw, text, font, max_w):
-    words, lines, line = text.split(), [], ""
+    # ⚠️ On découpe sur l'espace NORMAL uniquement : l'espace insécable fine (\u202f)
+    #    sert justement à empêcher la coupure — « 2 500 » doit rester d'un bloc.
+    words = [w for w in re.split(r"[ \t\n]+", text) if w]
+    lines, line = [], ""
     for w in words:
         test = (line + " " + w).strip()
         if draw.textbbox((0, 0), test, font=font)[2] <= max_w:
@@ -5685,13 +5712,18 @@ def carrousel_recap(items, date_txt="", maxi=7):
     accents = [CARR_ACCENT]
     photos  = [None]
     for i, it in enumerate(items):
-        emo, texte, cat, raw = (list(it) + [None, None, None, None])[:4]
+        emo, texte, cat, raw, titre_r = (list(it) + [None] * 5)[:5]
         cat = (cat or "france").lower()
-        slides.append({
+        # 📰 TITRE + DESCRIPTION, comme le décryptage : le titre annonce, la phrase
+        #    explique. Le titre est facultatif — sans lui, la slide reste comme avant.
+        _sl = {
             "kind": "info",
             "badge": (i + 1, (STYLES.get(cat, {}) or {}).get("label", cat)),
             "paras": [_carr_surligne(texte)],
-        })
+        }
+        if titre_r:
+            _sl["titleLines"] = _carr_lignes_titre(titre_r, maxi=2)
+        slides.append(_sl)
         accents.append(_carr_accent(cat))
         photos.append(raw)
     # couverture : on prend la photo d'une AUTRE actu que la première, en partant de la fin
@@ -6409,7 +6441,9 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_p
                         if slide.get("badge") else 0)
             _bas = CARR_H - 150              # marge de sécurité au-dessus du filigrane
             _plan = _bloc_texte_adaptatif(
-                d, slide.get("titleLines") if not slide.get("badge") else [],
+                # 📰 Le titre s'affiche AUSSI avec un badge : le récap a désormais
+                #    « badge + titre + description », comme une fiche de journal.
+                d, slide.get("titleLines") or [],
                 [_carr_segments(p) for p in paras],
                 # 📐 Titre GRAS dominant, description en graisse normale un peu
                 #    plus grande : on lit le titre, puis l'explication.
@@ -7223,6 +7257,10 @@ def build_victory_card(raw_photo, res, source, W=1200, H=675):
     d.text((W - int(W * 0.038), H - int(H * 0.055)), f"{source} · {_now_paris().strftime('%d/%m/%Y')}",
            font=f(W * 0.018, False), fill=DIM, anchor="rm")
 
+    try:
+        img = _carr_trame(img.convert("RGBA"), force=9)   # 🎨 signature visuelle Pulse
+    except Exception:
+        pass
     buf = io.BytesIO(); img.convert('RGB').save(buf, format="PNG"); return buf.getvalue()
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -7659,6 +7697,66 @@ def _ease_soft(t):
     import math as _m
     t = max(0.0, min(1.0, t))
     return 0.5 - 0.5 * _m.cos(_m.pi * t)
+
+# Mots que l'œil doit accrocher : chiffres, mots en CAPITALES, noms propres.
+_MOT_CHIFFRE = re.compile(r"\d")
+_MOT_CAPS    = re.compile(r"^[«»\"']?[A-ZÀ-Þ]{3,}[.,;:!?»\"']?$")
+_MOT_PROPRE  = re.compile(r"^[«»\"']?[A-ZÀ-Þ][a-zà-ÿ']{2,}(?:-[A-ZÀ-Þ]?[a-zà-ÿ]+)*[.,;:!?»\"']?$")
+# mots grammaticaux qui commencent souvent une phrase : jamais colorés
+_MOT_BANAL = {"le", "la", "les", "un", "une", "des", "du", "de", "au", "aux", "ce",
+              "cet", "cette", "son", "sa", "ses", "leur", "leurs", "il", "elle",
+              "ils", "elles", "on", "en", "et", "ou", "mais", "car", "pour", "par",
+              "sur", "dans", "avec", "sans", "après", "avant", "plus", "moins"}
+
+
+def _souder_nombres(txt):
+    """Rend insécables les nombres à espace : « 2 500 » ne doit pas être coupé en fin
+    de ligne (vécu : « 2 » seul puis « 500 » colorié à la ligne suivante). On emploie
+    l'espace insécable fine, invisible à l'affichage mais qui interdit la coupure."""
+    return re.sub(r"(?<=\d)[\s\u00a0\u202f]+(?=\d{3}\b)", "\u202f", str(txt or ""))
+
+
+def _mot_fort(mot, premier=False):
+    """Vrai si le mot mérite la couleur d'accent : un CHIFFRE, un mot en CAPITALES,
+    ou un nom propre. Ce sont les éléments que l'œil accroche en premier dans un titre —
+    les mêmes que sur les carrousels de décryptage.
+    ⚠️ Le PREMIER mot d'une ligne est exclu des noms propres : une majuscule de début
+    de phrase n'est pas un nom propre, et colorer « Un » n'aurait aucun sens."""
+    m = str(mot or "").strip()
+    if not m or m.lower().strip(".,;:!?»\"'") in _MOT_BANAL:
+        return False
+    # un CHIFFRE compte dès un seul caractère : « 3 morts » mérite la couleur
+    if _MOT_CHIFFRE.search(m):
+        return True
+    if len(m) < 3:
+        return False
+    if _MOT_CAPS.match(m):
+        return True
+    return bool(_MOT_PROPRE.match(m)) and not premier
+
+
+def _rythme_ecriture(i, n, depart=0.10, fin=0.62):
+    """Progression du texte qui s'écrit, avec un RYTHME NATUREL.
+
+    Le texte s'écrivait à vitesse constante du premier au dernier instant de la vidéo :
+    il finissait pile à la fin, sans laisser une seconde pour le lire. On procède comme
+    un présentateur : un court silence, l'écriture, puis le texte reste affiché.
+
+      • `depart` : rien ne s'écrit avant — l'image s'installe d'abord ;
+      • `fin`    : le texte est complet, et le reste jusqu'au bout ;
+      • entre les deux, la vitesse ralentit légèrement à l'approche du dernier mot,
+        ce qui évite l'effet de machine à écrire mécanique."""
+    if n <= 1:
+        return 1.0
+    t = i / (n - 1)
+    if t <= depart:
+        return 0.0
+    if t >= fin:
+        return 1.0
+    u = (t - depart) / (fin - depart)
+    # décélération douce : rapide au début, posé sur les derniers mots
+    return 1.0 - (1.0 - u) ** 1.7
+
 
 def _appear(t, start, dur):
     """Progression d'apparition normalisée [0..1] avec courbe douce, depuis 'start' sur 'dur' secondes."""
@@ -8484,7 +8582,7 @@ def build_card_video(headline, source, category, raw_photo, photo_url=None, imag
             c = build_png(headline, source, category, photo_url, image_query,
                           article_url=article_url, person=person, W=W, H=H,
                           prefetched=(raw_photo, True), headline_bottom=True,
-                          reveal=i / (n - 1), ss=CARD_VIDEO_SS, as_image=True,
+                          reveal=_rythme_ecriture(i, n), ss=CARD_VIDEO_SS, as_image=True,
                           no_pill=_anim_pill, no_logo=_anim_logo)
             if c is None:
                 return None
@@ -8696,6 +8794,8 @@ def _recap_guess_cat(text):
 
 
 def build_recap_card(items, W=1080, H=1350):
+    # ⚠️ REPLI SEULEMENT. Le récap sort normalement en CARROUSEL, via carrousel_recap()
+    #    puis rendre_carrousel(). Cette carte unique ne sert que si le carrousel échoue.
     """🌙 Récap du jour, format maquette : cartes en VERRE DÉPOLI, chacune avec une VIGNETTE
     IMAGE liée à l'actu, un numéro, une barre + un badge de catégorie, et le titre.
     items = [(emoji, texte, categorie, raw_image_bytes_ou_None), ...] (3 à 6).
@@ -8841,12 +8941,26 @@ def build_recap_card(items, W=1080, H=1350):
             block_h = len(lines) * lh
             tblock = by + bh2 + int((card_h - (by - cy) - bh2 - block_h) * 0.5)
             for ln in lines:
-                d.text((tex, tblock), ln, font=body_f, fill=WHITE); tblock += lh
+                # 🎨 Mots forts COLORÉS : chiffres, capitales et noms propres prennent
+                #    la couleur d'accent, comme sur les carrousels et les tweets.
+                _cx2 = tex
+                _esp2 = d.textlength(" ", font=body_f)
+                for _i2, _m2 in enumerate([_w for _w in ln.split(" ") if _w]):
+                    d.text((_cx2, tblock), _m2, font=body_f,
+                           fill=tuple(ccol) if _mot_fort(_m2, premier=(_i2 == 0))
+                           else WHITE)
+                    _cx2 += d.textlength(_m2, font=body_f) + _esp2
+                tblock += lh
 
         # pied
         d.text((Wf // 2, Hf - int(Hf * 0.038)), "@PULSEactus", font=f(Wf * 0.020),
                fill=(236, 150, 236), anchor="mm")
         buf = _io.BytesIO()
+        # 🎨 Trame de points : même signature visuelle que le décryptage.
+        try:
+            img = _carr_trame(img.convert("RGBA"), force=9)
+        except Exception:
+            pass
         img.convert("RGB").save(buf, format="JPEG", quality=95, optimize=True, progressive=True)
         return buf.getvalue()
     except Exception as e:
@@ -8967,6 +9081,11 @@ def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
     d.text((int(W * 0.04), H - int(H * 0.062)), "Pulse", font=f(W * 0.020), fill=WHITE)
     d.text((W - int(W * 0.04), H - int(H * 0.055)), "@PULSEactus", font=f(W * 0.016, False),
            fill=DIM, anchor="rm")
+    # 🎨 Trame de points : signature visuelle commune à toutes les cartes Pulse.
+    try:
+        img = _carr_trame(img.convert("RGBA"), force=9)
+    except Exception:
+        pass
     buf = io.BytesIO(); img.convert('RGB').save(buf, format="JPEG", quality=95, optimize=True, progressive=True); return buf.getvalue()
 
 def publish_recap(conn):
@@ -8985,7 +9104,9 @@ def publish_recap(conn):
     try:
         row = conn.execute("SELECT payload FROM daily_cache WHERE key=?", (_rk,)).fetchone()
         if row:
-            _cached_items = [(e, t) for e, t in json.loads(row[0])]
+            # ⚠️ Compatibilité : un cache écrit avant l'ajout du titre ne contient
+            #    que (emoji, texte) — on complète alors par un titre vide.
+            _cached_items = [tuple(list(x) + [""])[:3] for x in json.loads(row[0])]
             print("  💾 Récap réutilisé (déjà généré aujourd'hui, 0 coût)")
     except Exception:
         pass
@@ -9013,6 +9134,12 @@ RÈGLES :
 2. 🧵 UN SUJET = UNE LIGNE, À L'ÉTAT FINAL : si un sujet revient plusieurs fois (il a évolué), fusionne-le en UNE seule ligne reflétant sa DERNIÈRE évolution. Ex : enquête ouverte → suspect interpellé → mis en examen ⇒ une seule ligne « mis en examen ». JAMAIS deux lignes sur la même histoire.
    ⚠️ MAIS NE CONFONDS JAMAIS DEUX ÉVÉNEMENTS DIFFÉRENTS : garde chaque fait avec les BONS acteurs. Ex : si l'Espagne bat la France ET que l'Argentine bat l'Angleterre, ce sont DEUX matchs distincts — n'écris SURTOUT PAS « l'Espagne bat l'Angleterre ». Chaque équipe/personne/pays avec son vrai adversaire, son vrai résultat, sa vraie affaire. Ne mélange jamais deux histoires en une seule phrase fausse.
 3. 🎯 SÉLECTION : garde les 5 infos les plus MARQUANTES de la journée (importance, impact, mémorisation), pas les 5 dernières. De la plus forte à la moins forte.
+4bis. 📰 CHAQUE ACTU = UN TITRE + UNE DESCRIPTION (comme une fiche de journal) :
+   - « r » = TITRE court, 3 à 6 mots, qui annonce le sujet. Ex : « Incendie en Gironde »,
+     « Zidane sélectionneur », « Séisme au Japon ». Pas de phrase complète ici.
+   - « t » = la phrase qui EXPLIQUE (règles ci-dessous). Elle se comprend SEULE, sans
+     relire le titre : le titre annonce, la description informe.
+   - ⛔ Ne répète pas le titre dans la description : ce serait lire deux fois la même chose.
 4. ✍️ CHAQUE LIGNE = UNE PHRASE COURTE ET COMPLÈTE (c'est LA règle la plus importante, tu t'es trompé dessus avant) :
    - MODÈLE à imiter EXACTEMENT : « Mort de Sam Neill : l'acteur de Jurassic Park s'est éteint à 78 ans. » → courte, ENTIÈRE, on comprend tout d'un coup d'œil.
    - 80 CARACTÈRES MAXIMUM, idéalement 55-70. Compte-les. Une ligne trop longue devient minuscule et illisible sur l'image.
@@ -9022,18 +9149,22 @@ RÈGLES :
 5. ✅ AVANT DE RÉPONDRE, vérifie chaque ligne : ≤ 80 caractères ET une phrase COMPLÈTE (jamais de « … » ni de fin en suspens) ? encore vraie à {now_str} ? compréhensible seule ? mérite le top 5 ? formulation naturelle ? Corrige sinon.
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"items":[{{"e":"⚖️","t":"Sujet : info essentielle"}},{{"e":"🚨","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}},{{"e":"..","t":".."}}]}}""",
+{{"items":[{{"e":"…","r":"Titre court","t":"La phrase qui explique."}},{{"e":"…","r":"…","t":"…"}},{{"e":"…","r":"…","t":"…"}},{{"e":"…","r":"…","t":"…"}},{{"e":"…","r":"…","t":"…"}}]}}""",
             max_tokens=500, task="special")
         # Filet anti-doublon : même si Claude sort 2 lignes sur le même sujet, on ne garde que la 1ʳᵉ
         # (≥2 mots saillants communs = même histoire) → « un sujet = une ligne » garanti mécaniquement.
-        raw = [(str(it.get("e", "•"))[:2], _recap_line(str(it.get("t", ""))))
+        # 📰 (emoji, texte, TITRE) : le titre est facultatif — un cache ancien ou une
+        #    réponse sans « r » reste exploitable, la slide sort alors sans titre.
+        raw = [(str(it.get("e", "•"))[:2], _recap_line(str(it.get("t", ""))),
+                re.sub(r"\s+", " ", str(it.get("r", ""))).strip()[:44])
                for it in (r.get("items") or []) if it.get("t")]
         items, seen_sigs = [], []
-        for e, t in raw:
+        for e, t, *_r in raw:
+            _titre_r = (_r[0] if _r else "")
             sw = _sig_words(t)
             if len(sw) >= 2 and any(len(sw & ps) >= 2 for ps in seen_sigs):
                 continue
-            items.append((e, t)); seen_sigs.append(sw)
+            items.append((e, t, _titre_r)); seen_sigs.append(sw)
             # 🧵 Le carrousel est publié en FIL : plus de limite à 4 images. On garde
             #    5 actus, soit 6 visuels — 4 dans l'ouverture, 2 en réponse.
             if len(items) >= 5:
@@ -9059,7 +9190,8 @@ Réponds avec ce JSON UNIQUEMENT :
         except Exception:
             rows2 = []
         out = []
-        for e, t in items:
+        for e, t, *_tr in items:
+            _titre_slide = (_tr[0] if _tr else "")
             sig = _sig_words(t)
             # ① Rapprochement EN CASCADE. Le texte du récap est REFORMULÉ par l'IA :
             #    exiger deux mots communs avec le titre d'origine ne trouvait presque
@@ -9115,7 +9247,7 @@ Réponds avec ce JSON UNIQUEMENT :
                     print(f"  🎨 Récap : illustration générée pour « {t[:40]}… »")
                 else:
                     print(f"  🖼️ Récap : aucune image pour « {t[:40]}… » → fond de catégorie")
-            out.append((e, t, cat, raw))
+            out.append((e, t, cat, raw, _titre_slide))
         return out
 
     body = f"🌙 LE RÉCAP | Ce qu'il faut retenir de ce {_date_fr()} :\n\n"
@@ -11833,7 +11965,11 @@ def chercher_image_libre(termes, mini_px=500, essais=3):
                    "&generator=search&gsrnamespace=6&gsrlimit=12"
                    f"&gsrsearch={q}&prop=imageinfo&iiprop=url|size|mime"
                    "&iiurlwidth=1200")
-            req = _ur.Request(url, headers={"User-Agent": "PulseBot/1.0 (actualites)"})
+            # ⚠️ Wikimedia EXIGE un User-Agent identifiant avec un contact, sinon 403.
+            #    Un agent générique se fait refuser silencieusement.
+            req = _ur.Request(url, headers={
+                "User-Agent": "PulseActusBot/1.0 (https://x.com/PULSEactus) Python-urllib",
+                "Accept": "application/json"})
             with _ur.urlopen(req, timeout=12) as r:
                 data = _json.loads(r.read().decode("utf-8", "ignore"))
             pages = ((data.get("query") or {}).get("pages") or {})
@@ -11848,7 +11984,8 @@ def chercher_image_libre(termes, mini_px=500, essais=3):
                 if not lien:
                     continue
                 try:
-                    rq = _ur.Request(lien, headers={"User-Agent": "PulseBot/1.0 (actualites)"})
+                    rq = _ur.Request(lien, headers={
+                        "User-Agent": "PulseActusBot/1.0 (https://x.com/PULSEactus) Python-urllib"})
                     with _ur.urlopen(rq, timeout=15) as im:
                         brut = im.read()
                     if brut and len(brut) > 12_000:
@@ -11859,6 +11996,30 @@ def chercher_image_libre(termes, mini_px=500, essais=3):
         except Exception as e:
             print(f"  ⚠️ Recherche d'image « {terme} » échouée ({str(e)[:50]})")
     return None
+
+
+_SYMBOLES_SAVIEZ = [
+    (r"\b(?:mot|expression|dit-on|origine du mot|langue|français|étymologie)\b", "«»"),
+    (r"\b(?:pourquoi|comment|raison)\b", "?"),
+    (r"\b(?:marque|société|entreprise|déposé)\b", "®"),
+    (r"\b(?:ciel|soleil|étoile|espace|planète|lune)\b", "☼"),
+    (r"\b(?:eau|mer|océan|glace|pluie)\b", "≈"),
+    (r"\b(?:corps|cœur|cerveau|santé|sang|estomac)\b", "+"),
+    (r"\b(?:animal|animaux|oiseau|chat|chien|abeille)\b", "❦"),
+    (r"\b(?:histoire|siècle|roi|guerre|ancien)\b", "§"),
+    (r"\b(?:machine|technologie|électricité|internet|ordinateur|clavier)\b", "⌁"),
+]
+
+
+def _symbole_saviez(sujet):
+    """Choisit un GRAND symbole typographique en filigrane, selon le thème.
+    Une carte sans image doit quand même accrocher l'œil : un caractère géant crée un
+    point focal et suggère le sujet, là où un fond nu ne dit rien."""
+    t = str(sujet or "").lower()
+    for motif, sym in _SYMBOLES_SAVIEZ:
+        if re.search(motif, t):
+            return sym
+    return "!"
 
 
 def build_saviez_card(texte, illustration, sujet, mots_image=None, W=1080, H=1350):
@@ -11938,17 +12099,28 @@ def build_saviez_card(texte, illustration, sujet, mots_image=None, W=1080, H=135
             #    conçue pour s'en passer, pas amputée. Le texte devient l'élément
             #    principal — grand, centré verticalement — et un motif discret occupe
             #    le fond. Une carte vide aux trois quarts est pire qu'une carte sobre.
+            # 🎨 SANS PHOTO : un grand SYMBOLE typographique porte la carte. Des cercles
+            #    pâles ne donnaient envie de rien ; un caractère géant en filigrane crée
+            #    un point d'accroche et rappelle le sujet d'un coup d'œil.
             _motif = Image.new("RGBA", (W, H), (0, 0, 0, 0))
             _dm = ImageDraw.Draw(_motif)
-            for _k in range(7):
-                _r = 150 + _k * 105
-                _dm.ellipse([W // 2 - _r, int(H * 0.42) - _r, W // 2 + _r, int(H * 0.42) + _r],
-                            outline=tuple(CARR_ACCENT) + (16,), width=3)
-            img.alpha_composite(_motif)
+            # halo lumineux derrière le symbole
+            for _k in range(9):
+                _r = 380 - _k * 34
+                _dm.ellipse([W // 2 - _r, int(H * 0.24) - _r, W // 2 + _r, int(H * 0.24) + _r],
+                            fill=tuple(CARR_ACCENT) + (5,))
+            _sym = _symbole_saviez(sujet)
+            _fs = _carr_font(320, titre=True)
+            _bb = _dm.textbbox((0, 0), _sym, font=_fs)
+            _dm.text((W // 2 - (_bb[2] - _bb[0]) // 2, int(H * 0.24) - (_bb[3] - _bb[1]) // 2 - _bb[1]),
+                     _sym, font=_fs, fill=tuple(CARR_ACCENT) + (78,))
+            img.alpha_composite(_motif.filter(ImageFilter.GaussianBlur(1)))
             d = ImageDraw.Draw(img)
-            haut = 240
-            _px, _mini = 64, 0.55        # texte nettement plus grand : il porte la carte
-        plan = _bloc_texte_adaptatif(d, [], [[(corps, False)]], 64, W - 128,
+            haut = int(H * 0.40)         # sous le symbole, qui reste bien visible
+            _px, _mini = 60, 0.55        # texte grand : il porte la carte
+        # 🎨 Mots importants COLORÉS, comme sur les carrousels : le regard accroche.
+        _segs = _carr_segments(_carr_surligne(corps))
+        plan = _bloc_texte_adaptatif(d, [], [_segs], 64, W - 128,
                                      haut_dispo=haut, bas_dispo=H - 150,
                                      px_para=_px, mini_para=_mini)
         if not brut:
