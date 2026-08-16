@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.85.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.87.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -5586,12 +5586,6 @@ def _carr_accent(categorie=None):
     return CARR_ACCENT
 
 
-def _carr_texte_sur_accent(accent):
-    """Texte sombre sur un surlignage clair, blanc sur un surlignage foncé —
-    la charte compte des couleurs très claires (jaune, vert d'eau) et d'autres soutenues."""
-    lum = 0.299 * accent[0] + 0.587 * accent[1] + 0.114 * accent[2]
-    return CARR_HL_TEXTE if lum > 140 else (255, 255, 255)
-
 
 _HL_MOTIFS = [
     # dates complètes et périodes
@@ -5710,6 +5704,38 @@ def carrousel_recap(items, date_txt="", maxi=7):
     return _carr_numerote(slides, date_txt), accents, photos
 
 
+def _point_complet(p):
+    """Vrai si le point se termine par une phrase ACHEVÉE.
+    Une idée coupée en plein milieu ne sert à rien au lecteur."""
+    t = re.sub(r"\s+", " ", str(p or "")).strip()
+    return bool(t) and t.endswith((".", "!", "?", "…", "»", ")"))
+
+
+def _nettoyer_points(points):
+    """Écarte les points tronqués, ou les referme s'ils sont récupérables.
+    ⚠️ On ne coupe JAMAIS au milieu d'une phrase : on garde la dernière phrase entière,
+    et si rien n'est exploitable, on retire le point plutôt qu'un fragment."""
+    out = []
+    for p in (points or []):
+        t = re.sub(r"\s+", " ", str(p or "")).strip()
+        if not t:
+            continue
+        if _point_complet(t):
+            out.append(t)
+            continue
+        # ⚠️ on coupe APRÈS le point, jamais après : le fragment qui suit doit
+        #    disparaître entièrement, sinon la phrase reste suspendue.
+        fins = [m.start() + 1 for m in re.finditer(r"[.!?…]", t)]
+        if fins and fins[-1] >= 30:
+            # une phrase entière existe : on s'arrête là et on jette le fragment
+            out.append(t[:fins[-1]].strip())
+        elif not fins and len(t) >= 40:
+            # aucune ponctuation finale : phrase unique, on la referme
+            out.append(t.rstrip(" ,;:—-") + ".")
+    return out
+
+
+
 def carrousel_decryptage(carousel, raw_photo=None, categorie="monde"):
     """Transforme le décryptage du jour en carrousel : couverture → une info par
     slide → appel à s'abonner. Le lavande d'origine est conservé (demande explicite)."""
@@ -5717,7 +5743,8 @@ def carrousel_decryptage(carousel, raw_photo=None, categorie="monde"):
                "category": (STYLES.get(categorie, {}) or {}).get("label", categorie),
                "titleLines": _carr_lignes_titre(carousel.get("cover_title", ""))}]
     for s in (carousel.get("slides") or []):
-        paras = [_carr_surligne(p) for p in (s.get("points") or []) if str(p).strip()]
+        # ⛔ Aucune phrase tronquée : le lecteur doit avoir l'information ENTIÈRE.
+        paras = [_carr_surligne(p) for p in _nettoyer_points(s.get("points"))]
         slides.append({"kind": "info",
                        "titleLines": _carr_lignes_titre(s.get("titre", ""), maxi=2),
                        "paras": paras})
@@ -6280,16 +6307,19 @@ def _dessiner_bloc_adaptatif(img, draw, plan, accent, couleur_para=(238, 236, 24
         haut, bas = _carr_zone_encre(draw, fp)
         for ligne in lignes:
             cx = x
-            for mot, hl in ligne:
+            for _i, (mot, hl) in enumerate(ligne):
+                # ⚠️ Une ponctuation qui suit un mot coloré ne doit pas être détachée :
+                #    « 2026 . » se lit mal. On la recolle au mot précédent.
+                if _i and re.fullmatch(r"[.,;:!?»)…]+", mot):
+                    cx -= espace
                 w = draw.textlength(mot, font=fp)
                 if hl:
-                    cal = Image.new("RGBA", img.size, (0, 0, 0, 0))
-                    ImageDraw.Draw(cal).rounded_rectangle(
-                        [cx - 8, y + haut - 3, cx + w + 8, y + bas + 3],
-                        radius=6, fill=tuple(accent) + (255,))
-                    img.alpha_composite(cal)
-                    draw = ImageDraw.Draw(img)
-                    draw.text((cx, y), mot, font=fp, fill=_carr_texte_sur_accent(accent))
+                    # 🎨 Le mot important prend la COULEUR d'accent au lieu d'être
+                    #    surligné : plus sobre, plus lisible, et le regard va droit au
+                    #    mot sans que le bloc soit haché par des rectangles.
+                    draw = _carr_ombre(img, draw, cx, y, mot, fp, decal=2, flou=4,
+                                       opacite=175)
+                    draw.text((cx, y), mot, font=fp, fill=tuple(accent))
                 else:
                     draw = _carr_ombre(img, draw, cx, y, mot, fp, decal=2, flou=4, opacite=165)
                     draw.text((cx, y), mot, font=fp, fill=couleur_para)
@@ -6381,8 +6411,10 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_p
             _plan = _bloc_texte_adaptatif(
                 d, slide.get("titleLines") if not slide.get("badge") else [],
                 [_carr_segments(p) for p in paras],
+                # 📐 Titre GRAS dominant, description en graisse normale un peu
+                #    plus grande : on lit le titre, puis l'explication.
                 M, larg, haut_dispo=int(CARR_H * 0.20) + _h_badge, bas_dispo=_bas,
-                px_titre=76, px_para=34)
+                px_titre=68, px_para=36)
             y = _plan["y"] - _h_badge
             if slide.get("badge"):
                 d, y = _carr_badge_cat(img, d, M, y, slide["badge"][0],
@@ -6727,7 +6759,13 @@ RÈGLES ABSOLUES :
 - Si l'article manque de chiffres, mets en avant les faits les plus concrets (noms, pays concernés, décisions précises) — JAMAIS de généralités.
 - 🇫🇷 FRANÇAIS IMPECCABLE : zéro mot en anglais, zéro faute. Relis-toi.
 - EXACTEMENT 4 slides de contenu. Titre court (≤ 32 caractères) + 2 à 3 points.
-- Chaque point : UNE phrase courte et factuelle (≤ 110 caractères), avec un chiffre ou un fait précis. PAS d'emoji dans les points.
+- Le TITRE de slide annonce l'idée ; les POINTS l'expliquent. Le lecteur doit
+  comprendre l'information ENTIÈRE en lisant la slide, sans rien deviner.
+- Chaque point : UNE OU DEUX phrases COMPLÈTES et factuelles (90 à 200 caractères),
+  avec un chiffre ou un fait précis. ⛔ JAMAIS de phrase tronquée : si tu manques de
+  place, dis MOINS de choses mais dis-les EN ENTIER. Une idée à moitié exposée ne
+  sert à rien au lecteur. Termine toujours par un point.
+- Ancien format (à ne plus suivre) : phrase courte ≤ 110 caractères, avec un fait précis. PAS d'emoji dans les points.
 
 EN PLUS des slides, écris le TEASER pour X ("tweet_points") : 3 puces AUTONOMES qui résument le sujet
 pour quelqu'un qui ne verra JAMAIS les slides. Chaque puce = une phrase COMPLÈTE et compréhensible SEULE
@@ -7312,6 +7350,21 @@ def _is_obituary(title, summary):
       3. les tournures 'mort de X' ne comptent que si X n'est PAS une émotion/chose abstraite.
     """
     t = (title + " " + summary).lower()
+
+    # ── 1z. UN HOMMAGE SUPPOSE UNE PERSONNALITÉ NOMMÉE ─────────────────────────
+    #    Vécu : « Une femme retrouvée morte dans la chaufferie d'un hôpital » publié
+    #    en HOMMAGE. C'est un fait divers : la victime est anonyme, il n'y a personne
+    #    à honorer. Un hommage rend hommage à QUELQU'UN, pas à un inconnu.
+    if re.search(r"\b(?:un homme|une femme|un individu|une personne|un corps|"
+                 r"un cadavre|un octogénaire|une octogénaire|un septuagénaire|"
+                 r"un retraité|une retraitée|un habitant|une habitante|un passant|"
+                 r"une passante|un jeune homme|une jeune femme|un adolescent|"
+                 r"une adolescente|un enfant|une fillette|un garçon|une mère|"
+                 r"un père|un patient|une patiente|un ouvrier|un salarié|"
+                 r"un automobiliste|un motard|un cycliste|un piéton|un randonneur|"
+                 r"un baigneur|un nageur|un touriste|un migrant|un sans-abri|"
+                 r"un détenu|un militaire|un pompier|un policier|un gendarme)\b", t):
+        return False
 
     # ── 1a. Exclusions DURES par mots entiers (bilans, expressions, négations) ──
     if re.search(r"\b(morts|tués|tues|victimes|bilan|blessés|disparus|disparues)\b", t):
@@ -10952,6 +11005,12 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     # 🛡️ GARDE SYMÉTRIQUE : le modèle peut IMPOSER « hommage » sur un sujet qui n'est
     #    pas un décès (vécu : un ENLÈVEMENT au Venezuela publié en hommage). Nos
     #    détecteurs ne servaient qu'à ACTIVER le canal, jamais à le réfuter.
+    # 🕊️ SECONDE GARDE : un hommage exige un NOM. Si aucune personnalité n'est
+    #    identifiée, il n'y a personne à honorer — c'est un fait divers.
+    if cat == "hommage" and not _extract_person_name(item.get("title", ""),
+                                                     item.get("summary", "")):
+        cat = item.get("_cat_origine") or "faitsdivers"
+        print(f"  ↩️ Aucune personnalité identifiée → actualité normale [{cat}]")
     if cat == "hommage" and not _is_obituary(item.get("title", ""), item.get("summary", "")):
         cat = item.get("_cat_origine") or "monde"
         print(f"  ↩️ Pas un décès malgré le classement du modèle → actualité normale [{cat}]")
