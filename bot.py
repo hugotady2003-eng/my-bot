@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.93.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.95.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -4768,9 +4768,22 @@ REJETTE l'obscur, l'administratif, le « déjà vu mille fois sans angle neuf »
    • 9-10 : tout le monde connaît et ça marque encore (Apollo 11, chute du Mur, 11-Septembre).
    • 7-8  : événement fort, ou anecdote vraiment surprenante que peu de gens connaissent.
    • 4-6  : intéressant mais oubliable — un simple « tiens, c'était ce jour-là ».
+            ⛔ EN FAIT UN ÉVÉNEMENT ? Demande-toi ce qui s'est PASSÉ ce jour-là. Une
+            publication scientifique, un article de revue, une théorie « décrite » ou
+            « présentée » n'est PAS un événement : personne ne s'en souvient, et le
+            lecteur ne peut pas réagir. Vécu : « il y a 14 ans, deux chercheuses
+            décrivaient un outil pour couper l'ADN » — nul. Il faut un FAIT DATÉ que
+            les gens ont vécu ou dont ils ont entendu parler.
    • 0-3  : anodin. Sortie d'un logiciel, d'une console ou d'un produit ; création d'un
             organisme ; nomination administrative ; record sportif mineur ; anniversaire
-            d'entreprise. Rien de tout cela n'intéresse un lecteur d'actualité.
+            d'entreprise ; PUBLICATION d'un article ou d'une étude ; brevet déposé ;
+            découverte « décrite » sans conséquence visible à l'époque ; congrès,
+            colloque, inauguration. Rien de tout cela n'intéresse un lecteur d'actualité.
+
+⛔ TEST FINAL, le plus important : le lecteur doit se dire « ah mais oui, c'est vrai ! »
+   ou « déjà ?! ». S'il risque de se dire « et alors ? », la note est au maximum 5.
+   ⚠️ MIEUX VAUT NE RIEN PUBLIER qu'une éphéméride tiède : ce canal est facultatif,
+   il n'y a AUCUNE obligation de sortir un fait chaque jour.
 ⛔ Si la note est INFÉRIEURE À 7, réponds {{"skip": true}} et rien d'autre. Ne rien
    publier est un choix assumé : un éphéméride banal dessert le compte.
 
@@ -9251,7 +9264,9 @@ Réponds avec ce JSON UNIQUEMENT :
         return out
 
     body = f"🌙 LE RÉCAP | Ce qu'il faut retenir de ce {_date_fr()} :\n\n"
-    body += "\n".join(f"{e} {t}" for e, t in items)
+    # ⚠️ items est un TRIPLET depuis l'ajout du titre : dépaqueter en 2 échouait
+    #    et faisait perdre tout le récap du soir (défaut vécu).
+    body += "\n".join(f"{e} {t}" for e, t, *_ in items)
     body += "\n\n(Pulse)"
     # 📱 Récap VERTICAL illustré (1080×1350) : une vignette liée à chaque actu.
     _items = _enrich(items)
@@ -9286,7 +9301,7 @@ Réponds avec ce JSON UNIQUEMENT :
     if not (_x or _fb or _ig):
         print("  🛑 Aucune plateforme n'a publié → le récap retentera au prochain run (contenu en cache)")
         return False
-    log_special(conn, "recap", [t for _, t in items][:2])
+    log_special(conn, "recap", [t for _e, t, *_ in items][:2])
     print("  🌙 Récap du soir publié")
     return True
 
@@ -9952,7 +9967,7 @@ def _meme_sujet(titre_a, titre_b, vec_a=None, vec_b=None, min_overlap=2):
     return len(_sig_words(titre_a) & _sig_words(titre_b)) >= min_overlap
 
 
-HISTOIRE_NOTE_MINI = 7    # en dessous, l'éphéméride du jour n'est pas publié
+HISTOIRE_NOTE_MINI = int(os.environ.get("HISTOIRE_NOTE_MINI", "8"))    # en dessous, l'éphéméride du jour n'est pas publié
 DOSSIER_JOURS = 14        # mémoire ÉDITORIALE : une grosse affaire se suit deux semaines
 
 def dossier_sujet(conn, title, jours=DOSSIER_JOURS, maxi=8):
@@ -10631,6 +10646,18 @@ AFFINITE_X = re.compile(
     r"réseaux sociaux|instagram|snapchat|x\.com|twitter|"
     r"intelligence artificielle|chatgpt|openai|google|apple|meta|tesla|spacex|"
     r"transfert|mercato|psg|équipe de france|ligue des champions|"
+    # 🇫🇷 SPORT FRANÇAIS au-delà du football : ce sont les disciplines où nos athlètes
+    #    gagnent, et où une victoire fait vraiment réagir. Elles n'étaient pas couvertes.
+    r"marchand|manaudou|natation|nageur|nageuse|bassin|"
+    r"judo|riner|judoka|tatami|escrime|escrimeur|fleuret|sabre|épée|"
+    r"handball|handballeur|bleus du hand|basket|nba|wembanyama|"
+    r"rugby|xv de france|top 14|tournoi des six nations|"
+    r"tennis de table|pongiste|lebrun|badminton|"
+    r"cyclisme|tour de france|maillot jaune|alaphilippe|pogacar|vingegaard|"
+    r"athlétisme|perche|duplantis|lavillenie|marathon|décathlon|mayer|"
+    r"biathlon|fourcade|jacquelin|ski|jo|jeux olympiques|olympique|"
+    r"médaille|champion du monde|champion olympique|record du monde|record de france|"
+    r"escalade|voile|vendée globe|skipper|surf|"
     r"polémique|clash|accusé|accusation|plainte|procès|condamné|"
     r"attentat|fusillade|disparition|enlèvement|féminicide|"
     r"prix|inflation|salaire|impôt|taxe|pouvoir d'achat|carburant|"
@@ -10772,6 +10799,29 @@ def _fait_majeur(titre, resume=""):
     return 0, ""
 
 
+# 🇫🇷 Une PERFORMANCE FRANÇAISE dans une discipline où nos athlètes gagnent : c'est
+#    ce qui fait le plus réagir un public français, bien au-delà du volume médiatique.
+#    Ces sujets sont souvent peu couverts — une médaille en escrime fait trois dépêches
+#    quand un match de Ligue 1 en fait trente — et la note composite les sous-évaluait.
+_EXPLOIT_FR = re.compile(
+    r"\b(?:médaille|champion(?:ne)?s? (?:du monde|olympique|d'europe)|"
+    r"record (?:du monde|de france|d'europe)|titre mondial|sacré|sacrée|"
+    r"or olympique|podium|finale|demi-finale|qualifi[ée]s?|"
+    r"remporte|s'impose|bat le record|décroche)\b", re.IGNORECASE)
+_ATHLETE_FR = re.compile(
+    r"\b(?:français|française|tricolore|bleus|bleues|xv de france|"
+    r"équipe de france|marchand|riner|lebrun|wembanyama|duplantis|"
+    r"manaudou|fourcade|alaphilippe|mayer|lavillenie)\b", re.IGNORECASE)
+
+
+def _exploit_francais(titre, resume=""):
+    """Vrai si un athlète ou une équipe FRANÇAISE réalise une performance.
+    Il faut les DEUX : une performance ET un lien français — sinon « finale » suffirait
+    à faire monter n'importe quel match étranger."""
+    t = f"{titre} {resume}"
+    return bool(_EXPLOIT_FR.search(t) and _ATHLETE_FR.search(t))
+
+
 def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None):
     """Note un ÉVÉNEMENT à partir de composantes MESURABLES.
 
@@ -10853,6 +10903,13 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None):
     if base >= 5 and AFFINITE_X.search(f"{ev.titre} {ev.resume}"):
         score += SCORE_POIDS["affinite"]
         detail.append(f"thème porteur +{SCORE_POIDS['affinite']}")
+
+    # 🇫🇷 EXPLOIT FRANÇAIS : une médaille, un record, un titre. Peu de médias suivent
+    #    l'escrime ou le tennis de table, mais une victoire tricolore y fait réagir
+    #    autant qu'un match de football — la couverture ne mesure pas cet intérêt.
+    if _exploit_francais(ev.titre, getattr(ev, "resume", "")):
+        score += 3
+        detail.append("exploit français +3")
 
     # ④ EXCLUSIVITÉ : un seul média sur un fait FRAIS, c'est peut-être une primeur
     if m == 1 and age is not None and age <= 1.5:
@@ -11413,6 +11470,7 @@ def _prompt_illustration(titre, categorie=""):
             "Évoque simplement le CONTEXTE de ce sujet : " + sujet)
 
 
+
 def _portrait_hommage(person, item, candidates, cat):
     """Photo pour un HOMMAGE : le PORTRAIT de la personne, en priorité absolue.
 
@@ -11441,10 +11499,21 @@ def _portrait_hommage(person, item, candidates, cat):
     # ① portrait Wikipédia — la source la plus sûre pour une personnalité
     if person:
         try:
-            raw = fetch_wikipedia_portrait(person)
+            # ⚠️ fetch_wikipedia_portrait renvoie une URL, PAS les octets : il faut la
+            #    télécharger. Sans cela la carte recevait une chaîne et échouait en
+            #    silence — « Traitement image: a bytes-like object is required » —,
+            #    l'hommage partait alors sans portrait (défaut vécu).
+            lien = fetch_wikipedia_portrait(person)
+            raw = fetch_img(lien) if lien else None
+            if raw and not img_dimensions_ok(raw, min_w=400, min_h=400):
+                print(f"  ⚠️ Portrait de {person} trop petit → on cherche ailleurs")
+                raw = None
             if raw:
-                print(f"  🖼️ Portrait Wikipédia trouvé pour {person}")
+                print(f"  🖼️ Portrait Wikipédia récupéré pour {person} "
+                      f"({len(raw) // 1024} ko)")
                 return raw, True
+            if lien:
+                print(f"  ⚠️ Portrait Wikipédia illisible pour {person}")
         except Exception as e:
             print(f"  ⚠️ Portrait Wikipédia indisponible ({str(e)[:50]})")
 
