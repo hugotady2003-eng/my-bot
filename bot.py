@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.95.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "1.96.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -1671,6 +1671,11 @@ def _annonce_creuse(texte):
         return False
     # une annonce est « livrée » si elle s'accompagne d'un chiffre, d'une citation
     # ou d'une énumération
+    # ✅ Une annonce suivie de « que… » LIVRE son contenu : « révèlent QUE l'actrice
+    #    est morte d'une overdose » informe réellement, contrairement à « ont révélé
+    #    les circonstances », qui promet sans rien dire.
+    if re.search(r"\b(?:que\s+|qu['\u2019])\s*\w", t, re.IGNORECASE):
+        return False
     return not (_FMT_CHIFFRE_RX.search(t) or '"' in t or "«" in t or "\n" in t)
 
 
@@ -1782,7 +1787,12 @@ _FORMATS = {
 #    « Le PDG défend son travail » sans dire comment, c'est une annonce creuse.
 #    Dès qu'un de ces verbes accompagne plusieurs données, le format LISTE s'impose.
 _FMT_ANNONCE_RX = re.compile(
-    r"\b(?:défend|defend|justifie|explique|détaille|detaille|précise|precise|"
+    # ⚠️ Vécu : « Les autorités ont RÉVÉLÉ les circonstances entourant la disparition » —
+    #    le tweet annonce une révélation sans jamais dire laquelle. Le lecteur n'apprend
+    #    rien. Ces verbes de dévoilement manquaient au motif.
+    r"\b(?:révèle|revele|révélé|revele|révèlent|revelent|livre|lève le voile|"
+    r"fait la lumière|apporte des précisions|donne des détails|communique|"
+    r"défend|defend|justifie|explique|détaille|detaille|précise|precise|"
     r"présente|presente|dévoile|devoile|annonce|répond|repond|argumente|"
     r"se défend|assure que|affirme que|fait valoir|met en avant|"
     r"revient sur|réagit|reagit|dénonce|denonce|alerte sur|"
@@ -2984,12 +2994,32 @@ def extract_video_from_page(html, base_url=""):
 
     return None, ""
 
-def fetch_article_video(article_url, max_mb=50):
+def _repli_video_libre(mots_video):
+    """Dernier recours quand l'article n'offre aucune vidéo exploitable.
+
+    ⚖️ On ne reprend JAMAIS la vidéo d'un média sans accord : c'est une revendication
+    de droits assurée, et le compte a déjà connu une suspension. Wikimedia Commons est
+    la seule banque vaste dont la licence autorise explicitement le téléchargement et
+    la réutilisation, y compris commerciale."""
+    if not mots_video:
+        return None, ""
+    brut, nom = chercher_video_libre(list(mots_video))
+    if not brut:
+        return None, ""
+    mp4 = _convertir_en_mp4(brut, nom or "video.webm")
+    if mp4:
+        print("  🎬 Vidéo libre de droits attachée (Wikimedia Commons)")
+        return mp4, "commons"
+    return None, ""
+
+
+
+def fetch_article_video(article_url, max_mb=50, mots_video=None):
     """Best-effort : visite la page de l'article, y cherche une vidéo ÉDITORIALE (jamais pub),
     et la télécharge en MP4 local prêt pour X. Retourne (chemin_local, meta) ou (None, "").
     Robuste : toute erreur réseau/HTML → (None, "") → le bot garde sa vidéo Pulse."""
     if not article_url:
-        return None, ""
+        return _repli_video_libre(mots_video)
     try:
         req = urllib.request.Request(article_url, headers=_BROWSER_HEADERS)
         with urllib.request.urlopen(req, timeout=15) as r:
@@ -2998,7 +3028,7 @@ def fetch_article_video(article_url, max_mb=50):
         html = _decode_html_body(raw, enc)
     except Exception as e:
         print(f"  ⚠️ Page article illisible pour vidéo ({e})")
-        return None, ""
+        return _repli_video_libre(mots_video)
     vurl, meta = extract_video_from_page(html, base_url=article_url)
     # 🔁 Repli AMP : la version AMP d'un article expose souvent le MP4 en clair
     #    (<amp-video src=…>) là où la page normale ne charge le player qu'en JS.
@@ -3025,12 +3055,23 @@ def fetch_article_video(article_url, max_mb=50):
             except Exception:
                 pass
     if not vurl:
-        return None, ""
+        return _repli_video_libre(mots_video)
     path = fetch_video_file(vurl, max_mb=max_mb)   # vérifie signature MP4 + plafond taille
     if path:
         print(f"  🎥 Vidéo éditoriale trouvée dans l'article → attachée")
         return path, meta
-    return None, ""
+    # 🎬 REPLI LIBRE DE DROITS : l'article n'a pas de vidéo exploitable. Plutôt que
+    #    de reprendre celle d'un média — revendication de droits, risque de
+    #    suspension —, on cherche sur Wikimedia Commons, dont la licence autorise
+    #    explicitement le téléchargement et la réutilisation.
+    if mots_video:
+        _brut, _nom = chercher_video_libre(list(mots_video))
+        if _brut:
+            _mp4 = _convertir_en_mp4(_brut, _nom or "video.webm")
+            if _mp4:
+                print("  🎬 Vidéo libre de droits attachée (Wikimedia Commons)")
+                return _mp4, meta
+    return _repli_video_libre(mots_video)
 
 def extract_photo(entry):
     """Cherche une image DANS le flux RSS lui-même (gratuit, aucune requête web,
@@ -7369,7 +7410,12 @@ _APRES_DECES = re.compile(
     r"\b(?:obsèques|funérailles|inhumation|crémation|enterrement|cérémonie|"
     r"mémorial|commémoration|veillée|recueillement|testament|succession|"
     r"héritage|posthume|rétrospective|cause du décès|autopsie|"
-    r"enquête sur la mort|dernières volontés|rend hommage|rendent hommage)\b",
+    r"enquête sur la mort|dernières volontés|rend hommage|rendent hommage|"
+    # ⚠️ Vécu : « les autorités ont révélé les circonstances entourant la disparition »
+    #    publié en HOMMAGE. Révéler les circonstances d'un décès déjà connu est une
+    #    SUITE : la personne est morte depuis des jours, Pulse l'a déjà annoncé.
+    r"circonstances|révèl(?:e|ent|é|ations?)|détails? de (?:sa|la) mort|"
+    r"rapport (?:d'autopsie|du légiste)|toxicologie|expertise médicale)\b",
     re.IGNORECASE)
 
 
@@ -7386,6 +7432,14 @@ def _suite_de_deces(titre, resume=""):
         return False
     # ⚠️ Un article qui ANNONCE le décès peut mentionner les obsèques au passage : on
     #    ne bloque que si rien n'annonce la mort elle-même.
+    # ⚠️ « disparition de X » n'annonce le décès que si rien ne signale une SUITE.
+    #    « les circonstances entourant la disparition » parle d'un décès DÉJÀ connu :
+    #    le marqueur de suite l'emporte alors sur la tournure d'annonce (défaut vécu).
+    suite_forte = re.compile(
+        r"\b(?:circonstances|révèl|dévoil|rapport d'autopsie|toxicologie|"
+        r"obsèques|funérailles|testament|posthume|expertise)\b", re.IGNORECASE)
+    if suite_forte.search(t):
+        return True
     annonce = re.compile(
         r"\b(?:est (?:mort|morte|décédé|décédée)|s'est éteint|nous a quitté|meurt|"
         r"mort de|décès de|disparition de|est mort|est morte)\b", re.IGNORECASE)
@@ -12014,6 +12068,82 @@ def _prompt_saviez(illustration, sujet):
             "AUCUN visage reconnaissable, composition centrée carrée, "
             "rendu pédagogique et élégant. Sujet à illustrer : "
             + re.sub(r"\s+", " ", str(illustration or sujet)).strip()[:300])
+
+
+# 🎬 Formats vidéo acceptés sur Wikimedia Commons. Le WebM et l'OGV doivent être
+#    reconvertis en MP4 : X n'accepte que ce conteneur.
+_VIDEO_MIMES = ("video/mp4", "video/webm", "video/ogg", "application/ogg")
+
+
+def chercher_video_libre(termes, mini_px=480, essais=3, duree_max=45):
+    """Cherche une vidéo LIBRE DE DROITS sur Wikimedia Commons.
+
+    ⚖️ C'est la seule banque à la fois vaste, gratuite et dont la licence autorise
+    explicitement le téléchargement et la réutilisation, y compris commerciale. Les
+    banques de stock généralistes sont hors-sujet pour de l'actualité, et reprendre la
+    vidéo d'un média sans accord expose à une revendication de droits — donc à une
+    nouvelle suspension du compte.
+
+    Renvoie (octets, titre_du_fichier) ou (None, None)."""
+    import json as _json, urllib.parse as _up, urllib.request as _ur
+    ENTETE = {"User-Agent": "PulseActusBot/1.0 (https://x.com/PULSEactus) Python-urllib",
+              "Accept": "application/json"}
+    for terme in [t for t in (termes or []) if t and len(str(t).strip()) >= 3][:essais]:
+        try:
+            q = _up.quote(str(terme).strip())
+            url = ("https://commons.wikimedia.org/w/api.php?action=query&format=json"
+                   "&generator=search&gsrnamespace=6&gsrlimit=14"
+                   f"&gsrsearch=filetype:video {q}&prop=imageinfo"
+                   "&iiprop=url|size|mime|mediatype|metadata")
+            with _ur.urlopen(_ur.Request(url, headers=ENTETE), timeout=14) as r:
+                data = _json.loads(r.read().decode("utf-8", "ignore"))
+            for p in ((data.get("query") or {}).get("pages") or {}).values():
+                info = (p.get("imageinfo") or [{}])[0]
+                if info.get("mime", "") not in _VIDEO_MIMES:
+                    continue
+                if min(info.get("width", 0), info.get("height", 0)) < mini_px:
+                    continue
+                lien = info.get("url")
+                if not lien:
+                    continue
+                try:
+                    with _ur.urlopen(_ur.Request(lien, headers=ENTETE), timeout=25) as v:
+                        brut = v.read(28_000_000)      # plafond : X refuse au-delà
+                    if brut and len(brut) > 60_000:
+                        print(f"  🎬 Vidéo libre trouvée sur Commons « {terme} »")
+                        return brut, str(p.get("title", ""))
+                except Exception:
+                    continue
+        except Exception as e:
+            print(f"  ⚠️ Recherche vidéo « {terme} » échouée ({str(e)[:60]})")
+    return None, None
+
+
+def _convertir_en_mp4(brut, nom):
+    """Reconvertit une vidéo Commons en MP4 : X n'accepte ni WebM ni OGV.
+    Coupe aussi à une durée raisonnable — une séquence d'archive de dix minutes
+    n'a pas sa place dans un tweet d'actualité."""
+    import subprocess, tempfile, os as _os
+    try:
+        import imageio_ffmpeg
+        ff = imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:
+        return None
+    d = tempfile.mkdtemp(prefix="pulse_vid_")
+    ext = (nom.rsplit(".", 1)[-1] if "." in nom else "webm").lower()[:5]
+    src, dst = f"{d}/src.{ext}", f"{d}/out.mp4"
+    try:
+        with open(src, "wb") as f:
+            f.write(brut)
+        subprocess.run([ff, "-y", "-loglevel", "error", "-i", src, "-t", "30",
+                        "-vf", "scale='min(1280,iw)':-2", "-r", "25",
+                        "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "veryfast",
+                        "-crf", "24", "-c:a", "aac", "-b:a", "96k", "-movflags",
+                        "+faststart", dst], check=True, timeout=180)
+        return dst if _os.path.exists(dst) and _os.path.getsize(dst) > 40_000 else None
+    except Exception as e:
+        print(f"  ⚠️ Conversion vidéo impossible ({str(e)[:60]})")
+        return None
 
 
 def chercher_image_libre(termes, mini_px=500, essais=3):
