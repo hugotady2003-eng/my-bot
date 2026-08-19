@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "1.96.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "2.0.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -1661,6 +1661,45 @@ def _ligne_a_rallonge(body):
     return False
 
 
+# 🗣️ VOIX DE FAN : marques d'appropriation qui trahissent le ton du site source.
+#    Vécu : « une fuite à prendre avec des pincettes pour notre #GTA6 adoré » — Pulse
+#    est un média qui rapporte, pas une communauté qui commente. Ces tournures n'ajoutent
+#    aucune information et diluent l'identité éditoriale.
+_VOIX_FAN = re.compile(
+    r"\b(?:notre|nos)\s+(?:\#?\w+\s+){0,2}(?:adoré|adorée|préféré|préférée|chéri|"
+    r"bien-aimé|favori|culte)\b"
+    r"|\bnotre\s+(?:jeu|série|film|équipe|champion|console)\b"
+    r"|\b(?:on|nous)\s+(?:a|avons)\s+(?:hâte|trop hâte)\b"
+    r"|\b(?:on|nous)\s+(?:adore|adorons|kiffe|attend[s]?\s+tous)\b"
+    r"|\bvivement\s+(?:qu|la sortie|le)\b"
+    r"|\b(?:tant attendu|tant attendue|mythique|légendaire|culte)\b",
+    re.IGNORECASE)
+
+
+def _voix_de_fan(texte):
+    """Vrai si le texte adopte la voix d'un fan plutôt que celle d'un média.
+    Rapporter l'enthousiasme des autres reste permis — « les joueurs s'enflamment » est
+    un fait observable. C'est le « nous » d'appropriation qui pose problème."""
+    return bool(_VOIX_FAN.search(str(texte or "")))
+
+
+def _retirer_voix_de_fan(texte):
+    """Retire les marques d'appropriation sans toucher à l'information.
+    On supprime la tournure entière plutôt que le seul adjectif : « pour notre GTA 6 »
+    amputé de « adoré » resterait une appropriation."""
+    t = str(texte or "")
+    t = re.sub(r"\s*(?:pour|avec)?\s*\b(?:notre|nos)\s+(?:\#?\w+\s+){0,2}"
+               r"(?:adoré|adorée|préféré|préférée|chéri|favori|culte)\b\s*", " ", t,
+               flags=re.IGNORECASE)
+    t = re.sub(r"\s*\b(?:tant attendu|tant attendue|mythique|légendaire)\b\s*", " ", t,
+               flags=re.IGNORECASE)
+    t = re.sub(r"\s*\b(?:on|nous)\s+(?:a|avons)\s+(?:trop\s+)?hâte\b[^.\n]*\.?", "", t,
+               flags=re.IGNORECASE)
+    t = re.sub(r"[ \t]{2,}", " ", t)
+    t = re.sub(r"\s+([.,;:!?])", r"\1", t)
+    return re.sub(r"\n{3,}", "\n\n", t).strip()
+
+
 def _annonce_creuse(texte):
     """Vrai si le tweet ANNONCE quelque chose sans le livrer.
     « Le PDG défend son travail. » promet une explication et n'en donne aucune — c'est
@@ -2115,7 +2154,11 @@ def _annonce_perimee(text, now=None, pub_ts=None, stale_h=18):
             return True
     return False
 
-def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=None, pub_ts=None, angle_neuf=None, dossier=None):
+def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=None, pub_ts=None, angle_neuf=None, dossier=None, recoupement=None):
+    # 🔍 Le recoupement entre médias s'ajoute au contexte de rédaction : le modèle sait
+    #    quels chiffres sont corroborés et lesquels ne le sont pas.
+    if recoupement:
+        summary = f"{summary}\n\n[RECOUPEMENT ENTRE MÉDIAS]\n{recoupement}"
     """gen_tweet_complet + lecture de l'article UNIQUEMENT sur sujets sensibles
     (mort, procès, accusations… où la précision juridique est vitale) + vérification factuelle.
     Sur les sujets non sensibles, le titre + résumé RSS suffisent → coût minimal."""
@@ -2174,6 +2217,12 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
                 "le présente comme une découverte. Réécris en CONTINUITÉ, avec un marqueur "
                 "de suivi dès les premiers mots (« toujours en cours », « le bilan grimpe "
                 "à », « désormais », « nouveau rebondissement »).")
+        if _voix_de_fan(txt):
+            consignes.append(
+                "VOIX DE FAN : tu emploies « notre », « on adore », ou un qualificatif "
+                "affectif (adoré, mythique, tant attendu). Pulse est un média qui "
+                "RAPPORTE : réécris le fait sans t'approprier le sujet. Tu peux décrire "
+                "l'enthousiasme des autres, jamais exprimer le tien.")
         if _date_manquante(txt):
             consignes.append(
                 "DATE MANQUANTE : tu annonces une date (« le », « du », « dès ») sans la "
@@ -2209,6 +2258,9 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
         body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
                       "", body, flags=re.IGNORECASE).strip()
         print("  🚫 Tournure teaser retirée de force")
+    if _voix_de_fan(body):
+        body = _retirer_voix_de_fan(body)
+        print("  🗣️ Voix de fan retirée du tweet")
     if _date_manquante(body):
         # ✂️ correction locale : on retire le mot qui annonçait la date absente
         body = re.sub(r"\b(le|du|dès|jusqu'au|à partir du)\s+(?=(?:à|au|en|dans|sur|pour|"
@@ -2227,6 +2279,9 @@ def gen_tweet_verified(title, summary, source, category, url=None, prev_angles=N
         body = re.sub(r"\bd[ée]couvr(ez|ir)\s+(si|la suite|pourquoi|comment|qui|ce qui|tout)\b",
                       "", body, flags=re.IGNORECASE).strip()
         print("  🚫 Tournure teaser retirée de force")
+    if _voix_de_fan(body):
+        body = _retirer_voix_de_fan(body)
+        print("  🗣️ Voix de fan retirée du tweet")
     if _date_manquante(body):
         # ✂️ correction locale : on retire le mot qui annonçait la date absente
         body = re.sub(r"\b(le|du|dès|jusqu'au|à partir du)\s+(?=(?:à|au|en|dans|sur|pour|"
@@ -2440,6 +2495,39 @@ def verify_death_wikipedia(name):
     except Exception as e:
         print(f"  ⚠️ Vérif décès Wikipedia: {e}")
     return "unknown"
+
+def fetch_parcours_wikipedia(nom):
+    """Récupère le PARCOURS d'une personnalité : ce pour quoi on la connaît.
+
+    Un hommage se réduisait à « X est décédé à Y ans » — le lecteur qui ne connaît pas
+    la personne n'apprend rien, et celui qui la connaît n'apprend rien non plus. Une
+    œuvre marquante, une fonction, une date : c'est ce qui donne sa raison d'être à
+    l'hommage.
+
+    Renvoie un dict {resume, naissance, activite} — chaque champ pouvant être vide."""
+    import json as _json, urllib.parse as _up, urllib.request as _ur
+    q = str(nom or "").strip()
+    if len(q) < 3:
+        return {}
+    try:
+        url = ("https://fr.wikipedia.org/api/rest_v1/page/summary/"
+               + _up.quote(q.replace(" ", "_")))
+        req = _ur.Request(url, headers={
+            "User-Agent": "PulseActusBot/1.0 (https://x.com/PULSEactus)",
+            "Accept": "application/json"})
+        with _ur.urlopen(req, timeout=12) as r:
+            d = _json.loads(r.read().decode("utf-8", "ignore"))
+        if d.get("type") == "disambiguation":
+            return {}                      # page d'homonymie : trop incertain
+        extrait = re.sub(r"\s+", " ", str(d.get("extract") or "")).strip()
+        # la première phrase suffit : elle dit qui est la personne
+        prem = re.split(r"(?<=[.!?])\s+", extrait)[0] if extrait else ""
+        desc = re.sub(r"\s+", " ", str(d.get("description") or "")).strip()
+        return {"resume": prem[:280], "activite": desc[:90]}
+    except Exception as e:
+        print(f"  ⚠️ Parcours Wikipédia indisponible pour {q} ({str(e)[:50]})")
+        return {}
+
 
 def fetch_wikipedia_portrait(name):
     """Récupère une photo HD d'une personnalité depuis Wikipedia FR."""
@@ -4603,6 +4691,19 @@ Tu écris en français, pour une communauté de fans passionnés.
 MISSION : ne résume pas l'article, réponds à « pourquoi cette info intéresse les fans de GTA VI ? ».
 Apporte du contexte, un rappel ou une conséquence quand c'est pertinent et VRAI.
 
+VOIX — LA RÈGLE LA PLUS IMPORTANTE :
+Tu es un MÉDIA qui rapporte, pas un fan qui commente. Tu extrais les faits de l'article
+et tu les réécris DANS TA VOIX. Ne reprends jamais le ton du site source : un blog de
+jeu vidéo écrit pour sa communauté, toi tu écris pour des lecteurs qui découvrent.
+⛔ INTERDIT — ce sont des marques d'appropriation, jamais de l'information :
+   « notre GTA 6 adoré », « notre jeu préféré », « on a hâte », « on adore »,
+   « le jeu que tous attendent », « notre attente est récompensée ».
+   Aucun « nous », « notre », « nos » désignant la communauté des joueurs.
+⛔ Aucun qualificatif affectif accolé au jeu : adoré, culte, mythique, tant attendu,
+   légendaire. Ces mots n'apportent rien et sonnent comme un fan, pas comme un média.
+✅ Tu peux rapporter l'enthousiasme DES AUTRES : « les joueurs s'enflamment »,
+   « la communauté doute ». Ce sont des faits observables, pas ton opinion.
+
 STYLE :
 - 🎮 (ou {best['emoji']}) en tête. 1ʳᵉ ligne = accroche COURTE qui donne l'info (jamais de teaser type "vous n'allez pas croire").
 - LIGNE VIDE, puis le détail : une idée par ligne, phrases courtes, JAMAIS un pavé.
@@ -4625,6 +4726,15 @@ Réponds en JSON UNIQUEMENT :
     # Garde-fou rumeur : UNIQUEMENT pour les niveaux 2-3 (jamais sur une annonce officielle !)
     if level >= 3 and not re.search(r"th[ée]orie|rumeur|sp[ée]cul|selon|non confirm|la communaut[ée]", body, re.I):
         body += "\n\n⚠️ Rumeur non confirmée."
+
+    # 🗣️ VOIX : le canal GTA 6 s'appuie sur des blogs de jeu vidéo, dont le ton est
+    #    communautaire. Sans ce contrôle, Pulse reprend leur voix et perd la sienne
+    #    (vécu : « pour notre #GTA6 adoré »). On retire l'appropriation, pas l'info.
+    if _voix_de_fan(body):
+        avant = body
+        body = _retirer_voix_de_fan(body)
+        if body != avant:
+            print("  🗣️ Voix de fan retirée : Pulse rapporte, il ne s'approprie pas")
     if "#gta6" not in body.lower():
         body = _attach_hashtag(body, "", ["GTA6"])
 
@@ -9463,6 +9573,54 @@ def _detect_france_match(candidates):
     adversaire = cnt.most_common(1)[0][0].capitalize() if cnt else "l'adversaire"
     return adversaire, match_arts
 
+def fetch_buteurs_match(match_id, token=None):
+    """Récupère les BUTEURS d'un match auprès de football-data.org.
+
+    Le suivi ne publiait qu'un score : « France 2-1 Belgique » n'apprend presque rien à
+    qui a suivi le match, et rien du tout à qui ne l'a pas vu. Les buteurs et leurs
+    minutes sont la vraie information — l'API les fournit déjà, ils n'étaient pas lus.
+
+    Renvoie une liste [(minute, joueur, équipe)] triée, ou [] si indisponible."""
+    token = token or os.environ.get("FOOTBALL_DATA_TOKEN", "").strip()
+    if not token or not match_id:
+        return []
+    import json as _json, urllib.request as _ur
+    try:
+        req = _ur.Request(f"https://api.football-data.org/v4/matches/{match_id}",
+                          headers={"X-Auth-Token": token})
+        with _ur.urlopen(req, timeout=12) as r:
+            d = _json.loads(r.read().decode("utf-8", "ignore"))
+        out = []
+        for g in (d.get("goals") or []):
+            joueur = ((g.get("scorer") or {}).get("name") or "").strip()
+            equipe = ((g.get("team") or {}).get("name") or "").strip()
+            minute = g.get("minute")
+            if joueur and minute is not None:
+                # un but contre son camp ou un penalty se signale : ce n'est pas anodin
+                t = str(g.get("type") or "").upper()
+                mention = (" csc" if "OWN" in t else
+                           " s.p." if "PENALTY" in t else "")
+                out.append((int(minute), joueur + mention, equipe))
+        return sorted(out, key=lambda x: x[0])
+    except Exception as e:
+        print(f"  ⚠️ Buteurs indisponibles ({str(e)[:60]})")
+        return []
+
+
+def resume_buteurs(buteurs, equipe_fr="France"):
+    """Met les buteurs en une ligne lisible, groupée par équipe.
+    « Mbappé 23ᵉ, Griezmann 67ᵉ » plutôt qu'une énumération brute."""
+    if not buteurs:
+        return ""
+    par_equipe = {}
+    for minute, joueur, equipe in buteurs:
+        par_equipe.setdefault(equipe or "?", []).append(f"{joueur} {minute}'")
+    # la France d'abord : c'est le point de vue du lecteur
+    ordre = sorted(par_equipe, key=lambda e: (equipe_fr.lower() not in e.lower(), e))
+    return " · ".join(f"{e} : {', '.join(j)}" for e, j in
+                      ((k, par_equipe[k]) for k in ordre))
+
+
 def fetch_france_match_live():
     """Interroge l'API football-data.org pour connaître l'état RÉEL d'un match de la France
     aujourd'hui (source fiable, pas d'ambiguïté 'analyse vs live' comme avec les articles RSS).
@@ -9512,8 +9670,12 @@ def fetch_france_match_live():
 
         base = {"status": status, "team_a": home, "team_b": away,
                 "home": france_home, "adversaire": adversaire,
-                "crest_a": crest_home, "crest_b": crest_away}
+                "crest_a": crest_home, "crest_b": crest_away,
+                "id": m.get("id")}          # 🥅 sert à demander les buteurs
         if status == "FINISHED":
+            # 🥅 Score final : on va chercher les buteurs, la seule information qui
+            #    distingue un vrai compte rendu d'un simple relevé de score.
+            base["buteurs"] = fetch_buteurs_match(m.get("id"), token)
             base.update({"phase": "final",
                          "score_a": ft.get("home", 0) or 0, "score_b": ft.get("away", 0) or 0})
             return base
@@ -9553,7 +9715,13 @@ def publish_france_live(conn, candidates):
             if phase == "final":
                 card = build_victory_card(raw, result, "", 1200, 675)
                 video = build_video("victory", result, "sport", raw, "")
-                txt = f"⚽ 🇫🇷 SCORE FINAL | {ta} {sa}-{sb} {tb}\n\n#CoupeDuMonde2026 #France"
+                # 🥅 Les BUTEURS font la différence entre un relevé de score et un vrai
+                #    compte rendu : un lecteur qui n'a pas vu le match apprend quelque chose.
+                _but = resume_buteurs(live.get("buteurs") or [],
+                                      ta if live.get("home") else tb)
+                txt = (f"⚽ SCORE FINAL | {ta} {sa}-{sb} {tb}"
+                       + (f"\n\n🥅 {_but}" if _but else "")
+                       + "\n\n#CoupeDuMonde2026 #France")
                 label = "SCORE FINAL"
             else:
                 data = {"headline": f"Mi-temps : {ta} {sa}-{sb} {tb}"}
@@ -10063,7 +10231,7 @@ def dossier_sujet(conn, title, jours=DOSSIER_JOURS, maxi=8):
             h = (_now_utc() - dt).total_seconds() / 3600
             age = (f"il y a {int(h * 60)} min" if h < 1.5 else
                    f"il y a {int(h)} h" if h < 36 else
-                   f"il y a {int(h / 24)} jours")
+                   f"hier" if h < 48 else f"il y a {int(h / 24)} jours")
         except Exception:
             age = "récemment"
         texte = re.sub(r"\s+", " ", (corps or head or "")).strip()
@@ -10876,6 +11044,95 @@ def _exploit_francais(titre, resume=""):
     return bool(_EXPLOIT_FR.search(t) and _ATHLETE_FR.search(t))
 
 
+_CHIFFRE_FAIT = re.compile(
+    r"(\d[\d\u00a0\u202f  ]*(?:[.,]\d+)?)\s*"
+    r"(%|pour cent|euros?|€|M€|milliards?|millions?|milliers?|"
+    r"morts?|décès|blessés?|victimes?|disparus?|interpellations?|interpellés?|"
+    r"hectares?|km|kilomètres?|mètres?|degrés?|°C|ans?|mois|jours?|heures?|"
+    r"personnes?|habitants?|salariés?|emplois?|pompiers?|policiers?|"
+    r"buts?|points?|médailles?|places?)\b", re.IGNORECASE)
+
+
+def _faits_chiffres(texte):
+    """Extrait les couples (valeur, unité) d'un texte, sous forme comparable.
+    « 2 500 hectares » et « 2500 hectares » doivent se reconnaître : on normalise les
+    espaces, les séparateurs de milliers et la casse."""
+    out = set()
+    for val, unite in _CHIFFRE_FAIT.findall(str(texte or "")):
+        v = re.sub(r"[\s\u00a0\u202f]", "", val).replace(",", ".").rstrip(".")
+        u = unite.lower().rstrip("s")
+        u = {"pour cent": "%", "euro": "€", "décè": "mort", "victime": "mort"}.get(u, u)
+        if v:
+            out.add((v, u))
+    return out
+
+
+def recouper_faits(ev):
+    """Compare ce que disent les DIFFÉRENTS médias d'un même événement.
+
+    Le moteur regroupait cinq articles puis n'en lisait qu'un. Or les écarts entre
+    rédactions sont une information : un chiffre donné par trois médias est solide, un
+    chiffre isolé mérite la prudence. Et l'article le plus utile n'est pas le plus long,
+    c'est celui dont les faits sont le plus corroborés.
+
+    Renvoie un dict :
+      pivot     — l'article à faire rédiger (le mieux corroboré)
+      confirmes — [(valeur, unité, nb_médias)] cités par au moins deux médias
+      isoles    — [(valeur, unité)] cités par un seul
+      medias    — nombre de médias distincts"""
+    arts = list(getattr(ev, "articles", []) or [])
+    if len(arts) < 2:
+        seul = arts[0] if arts else None
+        return {"pivot": seul, "confirmes": [], "isoles": [], "medias": len(arts)}
+
+    # un média = une voix, même s'il publie deux fois
+    par_media, faits_par_media = {}, {}
+    for a in arts:
+        src = str(a.get("source", "")).strip().lower() or f"?{id(a)}"
+        txt = f"{a.get('title', '')} {a.get('summary', '')}"
+        par_media.setdefault(src, []).append(a)
+        faits_par_media.setdefault(src, set()).update(_faits_chiffres(txt))
+
+    compte = {}
+    for faits in faits_par_media.values():
+        for f in faits:
+            compte[f] = compte.get(f, 0) + 1
+
+    confirmes = sorted([(v, u, n) for (v, u), n in compte.items() if n >= 2],
+                       key=lambda x: -x[2])
+    isoles = [(v, u) for (v, u), n in compte.items() if n == 1]
+
+    # 🎯 PIVOT : l'article dont les chiffres sont le plus repris ailleurs. À égalité,
+    #    le résumé le plus fourni — mais la corroboration prime sur la longueur.
+    def _poids(a):
+        f = _faits_chiffres(f"{a.get('title', '')} {a.get('summary', '')}")
+        corrob = sum(compte.get(x, 0) for x in f)
+        return (corrob, len(str(a.get("summary") or "")))
+
+    pivot = max(arts, key=_poids)
+    return {"pivot": pivot, "confirmes": confirmes[:6], "isoles": isoles[:6],
+            "medias": len(par_media)}
+
+
+def resume_recoupement(rec):
+    """Met le recoupement en une consigne lisible pour le rédacteur.
+    Renvoie une chaîne vide si rien d'exploitable — inutile d'alourdir le prompt."""
+    if not rec or rec.get("medias", 0) < 2:
+        return ""
+    bouts = []
+    if rec.get("confirmes"):
+        liste = ", ".join(f"{v} {u} (cité par {n} médias)" for v, u, n in rec["confirmes"])
+        bouts.append(f"CHIFFRES CONFIRMÉS par plusieurs rédactions : {liste}. "
+                     f"Tu peux les donner sans réserve.")
+    if rec.get("isoles"):
+        liste = ", ".join(f"{v} {u}" for v, u in rec["isoles"])
+        bouts.append(f"CHIFFRES DONNÉS PAR UN SEUL MÉDIA : {liste}. "
+                     f"Emploie-les avec prudence, ou écarte-les si un chiffre confirmé "
+                     f"couvre déjà le sujet. Ne les présente jamais comme établis.")
+    return "\n".join(bouts)
+
+
+
 def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None):
     """Note un ÉVÉNEMENT à partir de composantes MESURABLES.
 
@@ -11026,6 +11283,13 @@ def decider_publication(conn, ev, note_ia=None, categorie="", imprevu=None):
     """
     titre = ev.titre if hasattr(ev, "titre") else str(ev)
     resume = getattr(ev, "resume", "")
+    # 🔍 RECOUPEMENT : ce que disent les autres médias du même événement. Attaché à
+    #    l'événement pour que le rédacteur sache quels chiffres sont corroborés.
+    try:
+        if not hasattr(ev, "recoupement"):
+            ev.recoupement = recouper_faits(ev)
+    except Exception:
+        ev.recoupement = None
     score, detail = noter_evenement(ev, conn, note_ia=note_ia, categorie=categorie,
                                     imprevu=imprevu)
 
@@ -11228,6 +11492,23 @@ def detect_breaking(conn, candidates, return_all=False):
     return ordered[0] if ordered else None
 
 def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates=None):
+    # 🔍 Recoupement calculé en amont par la décision, posé sur l'article.
+    _recoup = item.get("_recoupement") or None
+    # 🕊️ HOMMAGE : le parcours de la personne donne sa raison d'être à l'hommage.
+    #    « X est décédé à Y ans » n'apprend rien ; « révélée par la série Heroes »
+    #    permet au lecteur de situer, et à celui qui la connaissait de se souvenir.
+    _parcours = ""
+    if cat == "hommage":
+        _p = _extract_person_name(item.get("title", ""), item.get("summary", ""))
+        if _p:
+            _fiche = fetch_parcours_wikipedia(_p)
+            if _fiche.get("resume"):
+                _parcours = _fiche["resume"]
+                print(f"  📖 Parcours trouvé pour {_p}")
+    if _parcours:
+        _recoup = ((_recoup or "") + "\n\n[QUI ÉTAIT CETTE PERSONNE — source Wikipédia]\n"
+                   + _parcours + "\nUtilise CE parcours pour dire en quelques mots ce qui "
+                   "faisait sa notoriété. N'invente rien au-delà.").strip()
     _angle = item.get("_angle_neuf") or ""
     """Publie vite une actu (X + Facebook + Instagram).
     urgent=True → label rouge 'Breaking'. urgent=False → label normal de la catégorie (buzz/insolite).
@@ -11250,6 +11531,9 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     #    détecteurs ne servaient qu'à ACTIVER le canal, jamais à le réfuter.
     # 🕊️ SECONDE GARDE : un hommage exige un NOM. Si aucune personnalité n'est
     #    identifiée, il n'y a personne à honorer — c'est un fait divers.
+    # 🗺️ DERNIER RECOURS VISUEL : sans photo, on situe l'événement. C'est le cas le
+    #    plus fréquent sur un fait local — une petite commune n'a pas d'image
+    #    disponible, et une carte nue n'apprend rien au lecteur.
     if cat == "hommage" and not _extract_person_name(item.get("title", ""),
                                                      item.get("summary", "")):
         cat = item.get("_cat_origine") or "faitsdivers"
@@ -11278,7 +11562,7 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
         item["title"], item["summary"], item["source"], cat, url=item.get("url"),
         prev_angles=_prev_heads, pub_ts=item.get("pub_ts"), angle_neuf=_angle,
         dossier=_dossier
-    )
+    , recoupement=_recoup)
     if item.get("_tendance"):
         # le mot qui a fait remonter le sujet passe en tête des hashtags candidats
         keywords = [item["_tendance"]] + [k for k in (keywords or [])]
@@ -11315,6 +11599,40 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     else:
         # 🚫 Aucune vraie photo → breaking publié SANS image (texte seul), pas de vidéo dégradée.
         png_bytes, vid = None, None
+        # 🗺️ Avant de renoncer : si un LIEU est identifié, on le situe. Une carte
+        #    vaut mieux qu'un tweet nu — c'est souvent la seule illustration
+        #    possible pour un fait dans une petite commune.
+        # 🧵 FRISE : sur une affaire qui dure depuis plusieurs jours, rappeler les
+        #    étapes vaut mieux qu'une photo de plus. C'est ce qu'aucune dépêche
+        #    isolée ne donne, et ce qui distingue un média d'un agrégateur.
+        if _dossier and len(_dossier) >= 3 and cat not in ("hommage", "histoire"):
+            try:
+                _fr = build_frise_dossier(_dossier, item.get("title", ""), cat)
+                if _fr:
+                    raw_photo, has_photo = _fr, True
+            except Exception as _e:
+                print(f"  ⚠️ Frise indisponible ({str(_e)[:50]})")
+        
+        # 📸 AFFAIRE SUIVIE : réutiliser la photo déjà publiée sur ce dossier. Un
+        #    même sujet illustré chaque jour par une image différente donne
+        #    l'impression de faits distincts ; la constance visuelle fait comprendre
+        #    qu'on suit une affaire.
+        if _dossier:
+            try:
+                _pd = photo_memorisee(conn, titre=item.get("title", ""))
+                if _pd:
+                    raw_photo, has_photo = _pd, True
+                    print("  📸 Photo du dossier réutilisée (affaire suivie)")
+            except Exception:
+                pass
+        _lieux = (item.get("_entites") or {}).get("lieux") or []
+        if _lieux and cat not in ("hommage", "histoire"):
+            try:
+                _cl = build_carte_lieu(_lieux[0], item.get("title", ""), cat)
+                if _cl:
+                    raw_photo, has_photo = _cl, True
+            except Exception as _e:
+                print(f"  ⚠️ Carte de lieu indisponible ({str(_e)[:50]})")
         print("  🚫 Aucune vraie photo → breaking SANS image (texte seul)")
     try:
         _xurl = post_to_twitter(tweet_final, png_bytes, vid)
@@ -12221,6 +12539,204 @@ def _symbole_saviez(sujet):
     return "!"
 
 
+def _coordonnees_lieu(nom):
+    """Trouve les coordonnées d'un lieu via Nominatim (OpenStreetMap).
+    Service public, gratuit, sans clé — mais il EXIGE un identifiant de contact et
+    tolère mal les rafales : un seul appel par carte, jamais en boucle."""
+    import json as _json, urllib.parse as _up, urllib.request as _ur
+    q = str(nom or "").strip()
+    if len(q) < 3:
+        return None
+    try:
+        url = ("https://nominatim.openstreetmap.org/search?format=json&limit=1"
+               f"&countrycodes=fr&q={_up.quote(q)}")
+        req = _ur.Request(url, headers={
+            "User-Agent": "PulseActusBot/1.0 (https://x.com/PULSEactus)",
+            "Accept-Language": "fr"})
+        with _ur.urlopen(req, timeout=12) as r:
+            d = _json.loads(r.read().decode("utf-8", "ignore"))
+        if d:
+            return (float(d[0]["lat"]), float(d[0]["lon"]),
+                    str(d[0].get("display_name", q)).split(",")[0])
+    except Exception as e:
+        print(f"  ⚠️ Localisation « {q} » impossible ({str(e)[:50]})")
+    return None
+
+
+def build_frise_dossier(dossier, titre_affaire, categorie="france", W=1080, H=1350):
+    """Carte FRISE : l'histoire d'une affaire suivie, d'un coup d'œil.
+
+    Le bot conservait quatorze jours de publications par sujet sans jamais les montrer.
+    Or c'est précisément ce qui distingue un média d'un agrégateur : sur une affaire qui
+    dure, rappeler les étapes donne au lecteur ce qu'aucune dépêche isolée ne lui offre.
+
+    `dossier` : [(âge, texte)] tel que renvoyé par dossier_sujet(), du plus ancien au
+    plus récent. Renvoie les octets JPEG, ou None si le dossier est trop mince."""
+    etapes = [(a, t) for a, t in (dossier or []) if str(t).strip()][-5:]
+    if len(etapes) < 3:
+        return None                # moins de trois étapes : une frise n'apporte rien
+    import io as _io
+    accent = _carr_accent(categorie)
+    img = Image.new("RGB", (W, H), (20, 15, 36))
+    d = ImageDraw.Draw(img)
+    for y in range(H):
+        t = y / H
+        d.line([(0, y), (W, y)],
+               fill=(int(20 + 16 * t), int(15 + 10 * t), int(36 + 24 * t)))
+    d.rectangle([0, 0, W, 8], fill=tuple(accent))
+    img = img.convert("RGBA")
+    d = ImageDraw.Draw(img)
+    _carr_entete(img, d)
+
+    # ── titre de l'affaire ──
+    haut = 230
+    d.text((64, haut), "CE QU'IL S'EST PASSÉ", font=_carr_font(26, titre=True),
+           fill=tuple(accent))
+    lignes_t = _wrap(d, str(titre_affaire)[:90], _carr_font(56, titre=True), W - 128)[:2]
+    for i2, ln in enumerate(lignes_t):
+        d.text((64, haut + 46 + i2 * 64), ln, font=_carr_font(56, titre=True),
+               fill=(255, 255, 255))
+    y = haut + 56 + len(lignes_t) * 64 + 40
+
+    # ── la frise : un axe, une pastille par étape ──
+    axe_x = 100
+    dispo = H - y - 150
+    pas = max(90, min(160, dispo // max(1, len(etapes))))
+    d.line([(axe_x, y + 18), (axe_x, y + (len(etapes) - 1) * pas + 18)],
+           fill=(78, 62, 116), width=4)
+    for i2, (age, texte) in enumerate(etapes):
+        cy = y + i2 * pas + 18
+        dernier = (i2 == len(etapes) - 1)
+        r = 15 if dernier else 10
+        # la dernière étape est mise en avant : c'est l'actualité du jour
+        d.ellipse([axe_x - r, cy - r, axe_x + r, cy + r],
+                  fill=tuple(accent) if dernier else (120, 100, 168),
+                  outline=(255, 255, 255) if dernier else None,
+                  width=3 if dernier else 0)
+        d.text((axe_x + 44, cy - 26), str(age).upper(), font=_carr_font(22, titre=True),
+               fill=tuple(accent) if dernier else (156, 148, 180))
+        f = _carr_font(30 if dernier else 27)
+        for j, ln in enumerate(_wrap(d, str(texte)[:120], f, W - axe_x - 110)[:2]):
+            d.text((axe_x + 44, cy + 4 + j * 36), ln, font=f,
+                   fill=(255, 255, 255) if dernier else (206, 200, 224))
+
+    d.text((W // 2, H - 60), "@PULSEactus", font=_carr_font(24, titre=True),
+           fill=(255, 255, 255), anchor="mm")
+    img = _carr_trame(img, force=9).convert("RGB")
+    buf = _io.BytesIO()
+    img.save(buf, format="JPEG", quality=94, optimize=True, progressive=True)
+    print(f"  🧵 Frise du dossier produite ({len(etapes)} étapes)")
+    return buf.getvalue()
+
+
+
+def build_carte_lieu(lieu, titre="", categorie="france", W=1080, H=1350):
+    """Carte de LOCALISATION : le visuel de dernier recours pour un fait local.
+
+    Une commune de huit cents habitants n'a pas de photo dans les banques d'images, et
+    l'article n'en fournit pas toujours. Plutôt qu'une carte nue, on situe l'événement :
+    c'est l'information la plus utile qu'on puisse donner quand la photo manque.
+    Le fond de carte vient d'OpenStreetMap, dont la licence autorise la réutilisation
+    avec mention — l'attribution est portée en bas de carte.
+
+    Renvoie les octets PNG, ou None si le lieu est introuvable."""
+    coord = _coordonnees_lieu(lieu)
+    if not coord:
+        return None
+    lat, lon, nom = coord
+    import math, io as _io, urllib.request as _ur
+    accent = _carr_accent(categorie)
+    img = Image.new("RGB", (W, H), (18, 14, 32))
+    d = ImageDraw.Draw(img)
+
+    # ── fond : tuiles OpenStreetMap autour du point ──
+    z = 11
+    n = 2 ** z
+    xt = (lon + 180.0) / 360.0 * n
+    yt = (1.0 - math.asinh(math.tan(math.radians(lat))) / math.pi) / 2.0 * n
+    TUILE, cols, lignes_t = 256, 5, 5
+    zone = Image.new("RGB", (TUILE * cols, TUILE * lignes_t), (26, 20, 44))
+    ok = 0
+    for dx in range(-(cols // 2), cols // 2 + 1):
+        for dy in range(-(lignes_t // 2), lignes_t // 2 + 1):
+            try:
+                u = (f"https://tile.openstreetmap.org/{z}/"
+                     f"{int(xt) + dx}/{int(yt) + dy}.png")
+                rq = _ur.Request(u, headers={
+                    "User-Agent": "PulseActusBot/1.0 (https://x.com/PULSEactus)"})
+                with _ur.urlopen(rq, timeout=8) as r:
+                    t = Image.open(_io.BytesIO(r.read())).convert("RGB")
+                zone.paste(t, ((dx + cols // 2) * TUILE, (dy + lignes_t // 2) * TUILE))
+                ok += 1
+            except Exception as _e:
+                if ok == 0 and dx == 0 and dy == 0:
+                    print(f"  ⚠️ Tuile OSM refusée ({type(_e).__name__}: {str(_e)[:60]})")
+                continue
+    if ok < 4:
+        print("  ⚠️ Fond de carte indisponible → carte de lieu abandonnée")
+        return None
+
+    # cadrage sur le point exact, puis mise à l'échelle
+    px = int((xt - int(xt) + cols // 2) * TUILE)
+    py = int((yt - int(yt) + lignes_t // 2) * TUILE)
+    demi = int(TUILE * 1.6)
+    g = max(0, px - demi), max(0, py - demi)
+    zone = zone.crop((g[0], g[1], g[0] + demi * 2, g[1] + demi * 2))
+    zone = zone.resize((W, W), Image.LANCZOS)
+
+    # assombrissement à l'identité Pulse
+    # 🎨 Teinte à l'identité Pulse, mais la carte doit rester LISIBLE : c'est elle
+    #    l'information. On assombrit peu et on relève le contraste.
+    teinte = Image.new("RGB", zone.size, (30, 20, 54))
+    zone = Image.blend(zone.convert("RGB"), teinte, 0.30)
+    zone = ImageEnhance.Contrast(zone).enhance(1.25)
+    img.paste(zone, (0, int(H * 0.14)))
+
+    # ── repère au centre ──
+    cx, cy = W // 2, int(H * 0.14) + W // 2
+    for r_, a_ in ((92, 30), (66, 46), (42, 70)):
+        halo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(halo).ellipse([cx - r_, cy - r_, cx + r_, cy + r_],
+                                     fill=tuple(accent) + (a_,))
+        img = Image.alpha_composite(img.convert("RGBA"), halo).convert("RGB")
+    d = ImageDraw.Draw(img)
+    d.ellipse([cx - 15, cy - 15, cx + 15, cy + 15], fill=tuple(accent),
+              outline=(255, 255, 255), width=4)
+
+    # ── en-tête et pied ──
+    d.rectangle([0, 0, W, 8], fill=tuple(accent))
+    # ⚠️ _carr_entete compose en RGBA : l'image doit être dans ce mode, sinon PIL
+    #    refuse la superposition (« image has wrong mode »).
+    img = img.convert("RGBA")
+    d = ImageDraw.Draw(img)
+    _carr_entete(img, d)          # ⚠️ le 3ᵉ argument est la DATE, pas la largeur
+    bas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    for i in range(int(H * 0.26)):
+        y = H - i
+        a_ = int(238 * (i / (H * 0.26)) ** 0.8)
+        ImageDraw.Draw(bas).line([(0, y), (W, y)], fill=(14, 10, 26, a_))
+    img = Image.alpha_composite(img.convert("RGBA"), bas).convert("RGB")
+    d = ImageDraw.Draw(img)
+
+    d.text((64, H - 300), nom.upper()[:26], font=_carr_font(62, titre=True),
+           fill=(255, 255, 255))
+    if titre:
+        for i, ln in enumerate(_wrap(d, str(titre)[:120], _carr_font(34), W - 128)[:2]):
+            d.text((64, H - 210 + i * 44), ln, font=_carr_font(34), fill=(226, 220, 242))
+    # ⚖️ Attribution exigée par la licence OpenStreetMap.
+    d.text((64, H - 84), "Fond de carte © OpenStreetMap", font=_carr_font(22),
+           fill=(150, 144, 172))
+    d.text((W - 64, H - 84), "@PULSEactus", font=_carr_font(22),
+           fill=(150, 144, 172), anchor="ra")
+
+    img = _carr_trame(img.convert("RGBA"), force=9).convert("RGB")
+    buf = _io.BytesIO()
+    img.save(buf, format="JPEG", quality=94, optimize=True, progressive=True)
+    print(f"  🗺️ Carte de localisation produite pour « {nom} »")
+    return buf.getvalue()
+
+
+
 def build_saviez_card(texte, illustration, sujet, mots_image=None, W=1080, H=1350):
     """Carte « LE SAVIEZ-VOUS ? » : illustration générée par l'IA en haut, texte en bas.
 
@@ -12875,6 +13391,14 @@ def _check_feeds_interne(conn):
                 if _dec == "suivre":
                     print(f"  🆕 Suivi d'événement : {_pq}")
                     _suivi_valide = True
+                # 🔍 Le recoupement enrichit la rédaction : chiffres corroborés par
+                #    plusieurs rédactions, chiffres isolés à manier avec prudence.
+                _rec = getattr(_ev, "recoupement", None)
+                if _rec and _rec.get("medias", 0) >= 2:
+                    _nc = len(_rec.get("confirmes") or [])
+                    if _nc:
+                        print(f"  🔍 {_nc} chiffre(s) confirmé(s) par plusieurs médias")
+                    hot["_recoupement"] = resume_recoupement(_rec)
             # 📈 Un sujet remonté par les TENDANCES et jugé important reçoit un bonus : nos
             #    règles de gravité sont mécaniques et sous-notent parfois un fait majeur dont
             #    le vocabulaire ne déclenche aucun mot-clé fort.
