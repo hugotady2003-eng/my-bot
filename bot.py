@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "2.0.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "2.7.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -5605,9 +5605,55 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
         print(f"  ⚠️ Vidéo décryptage échouée : {e}")
         return None
 
-TTS_MODEL = os.environ.get("TTS_MODEL", "gemini-2.5-flash-preview-tts")
+# 🎙️ Voix : le modèle 3.1 est plus naturel que le 2.5, pour le même quota de dix
+#    requêtes par jour. Les deux s'enchaînent — si l'un est fermé sur le compte,
+#    l'autre prend le relais sans que le décryptage perde sa voix.
+TTS_MODEL = os.environ.get("TTS_MODEL", "gemini-3.1-flash-tts")
+TTS_MODELES_SECOURS = os.environ.get("TTS_MODELES_SECOURS", "gemini-2.5-flash-preview-tts")
 TTS_VOICE = os.environ.get("TTS_VOICE", "Kore")
 _MUSIC_DIRS = ("music", "assets/music", ".")
+
+def _preparer_lecture(texte):
+    """Prépare un texte pour la LECTURE à voix haute.
+
+    Un texte écrit se lit mal tel quel : « 2 500 » se prononce chiffre par chiffre,
+    « % » ne se dit pas, les sigles s'écorchent. On réécrit ce qui se prononce mal,
+    sans toucher au sens — l'auditeur doit entendre une phrase, pas un formulaire."""
+    t = str(texte or "")
+    # les espaces de milliers cassent la prononciation : « 2 500 » → « 2500 »
+    t = re.sub(r"(?<=\d)[\s\u00a0\u202f](?=\d{3}\b)", "", t)
+    remplacements = [
+        (r"(\d)\s*%", r"\1 pour cent"),
+        # ⚠️ Les unités composées AVANT l'euro seul, sinon « 890 M€ » devient
+        #    « 890 M euros » : l'ordre des règles compte.
+        (r"\bMd€", " milliards d'euros"),
+        (r"\bM€", " millions d'euros"),
+        (r"(\d)\s*€", r"\1 euros"),
+        (r"(\d)\s*km/h\b", r"\1 kilomètres-heure"),
+        (r"(\d)\s*km\b", r"\1 kilomètres"),
+        (r"(\d)\s*°C\b", r"\1 degrés"),
+        (r"(\d)\s*h(\d{2})\b", r"\1 heures \2"),
+        (r"(\d)\s*h\b", r"\1 heures"),
+        (r"\bn°\s*(\d)", r"numéro \1"),
+        (r"\bM\.\s+", "Monsieur "),
+        (r"\bMme\s+", "Madame "),
+        (r"\betc\.", "et cetera"),
+        (r"\bcf\.", "voir"),
+        (r"\b1er\b", "premier"), (r"\b1re\b", "première"),
+        (r"\b(\d+)e\b", r"\1ème"),
+        # une puce ne se prononce pas : elle devient une pause
+        (r"[•▪–—]\s*", ". "),
+    ]
+    for motif, rempl in remplacements:
+        t = re.sub(motif, rempl, t)
+    # ⚠️ Les hashtags et arobases se lisent littéralement : on les retire du texte lu.
+    t = re.sub(r"[#@](\w)", r"\1", t)
+    # une source entre parenthèses en fin de texte n'a pas à être dite
+    t = re.sub(r"\s*\([^()]{2,40}\)\s*$", "", t)
+    t = re.sub(r"\s{2,}", " ", t)
+    return re.sub(r"\.{2,}", ".", t).strip()
+
+
 
 def _gemini_tts(texte, wav_out):
     """Voix de synthèse via l'API Gemini. Le service renvoie du PCM brut 16 bits / 24 kHz
@@ -5618,15 +5664,32 @@ def _gemini_tts(texte, wav_out):
         return None
     try:
         import base64 as _b64, imageio_ffmpeg as _iff, subprocess as _sp
+        # 🎙️ Chaîne de modèles : chacun a ses dix requêtes quotidiennes, et un modèle
+        #    fermé sur le compte ne doit pas priver le décryptage de sa voix.
+        _jt = _now_paris().strftime("%Y-%m-%d")
+        _mtts = next((m for m in ([TTS_MODEL] + [x.strip() for x in
+                      str(TTS_MODELES_SECOURS).split(",") if x.strip()])
+                      if _MODELE_EPUISE.get(m) != _jt), None)
+        if not _mtts:
+            return None
         url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
-               f"{TTS_MODEL}:generateContent")
+               f"{_mtts}:generateContent")
         # le modèle ne parle que si on le lui demande explicitement ("Lis…")
         d = _post_gemini(url,
                          {"contents": [{"parts": [{"text":
-                              "Lis ce texte d'un ton posé, clair et journalistique, "
-                              "sans emphase excessive, à un RYTHME SOUTENU — le débit "
-                              "d'un présentateur de journal télévisé, ni lent ni "
-                              "précipité : " + texte[:1200]}]}],
+                              "Tu es présentateur de journal télévisé français. Lis ce "
+                              "texte à voix haute.\n"
+                              "• RYTHME SOUTENU, le débit d'un JT : ni lent, ni précipité.\n"
+                              "• RESPIRE à chaque point : une courte pause, comme à "
+                              "l'antenne. Enchaîne sans pause à l'intérieur d'une phrase.\n"
+                              "• Pose légèrement la voix sur les CHIFFRES et les NOMS "
+                              "PROPRES : ce sont les mots que l'auditeur doit retenir.\n"
+                              "• Descends le ton en fin de phrase, ne le laisse pas "
+                              "remonter : une intonation montante sonne comme une "
+                              "question.\n"
+                              "• Aucune emphase théâtrale, aucune hésitation, aucun "
+                              "commentaire : tu lis, tu n'interprètes pas.\n\n"
+                              + _preparer_lecture(texte[:1200])}]}],
                           "generationConfig": {
                               "responseModalities": ["AUDIO"],
                               "speechConfig": {"voiceConfig": {
@@ -5952,6 +6015,25 @@ def carrousel_decryptage(carousel, raw_photo=None, categorie="monde"):
     return _carr_numerote(slides), [CARR_ACCENT] * n, [raw_photo] * n
 
 
+def rendre_couches_texte(slides, accents, photos, watermark="@PULSEactus", maxi=None):
+    """Rend les couches TEXTE des slides, sur fond transparent.
+
+    Sert au montage vidéo : la photo bouge dessous, ces couches restent fixes. C'est la
+    règle du motion design — un fond qui respire, un texte qui ne bouge pas. Animer la
+    carte entière fait glisser les mots et gêne la lecture."""
+    out = []
+    for i, sl in enumerate(slides[:maxi] if maxi else slides):
+        try:
+            out.append(build_carousel_png(
+                sl, watermark=watermark,
+                accent=accents[i] if i < len(accents) else CARR_ACCENT,
+                raw_photo=photos[i] if i < len(photos) else None,
+                sans_photo=True))
+        except Exception:
+            out.append(None)
+    return out
+
+
 def rendre_carrousel(slides, accents, photos, watermark="@PULSEactus", maxi=None):
     """Rend un carrousel en liste de PNG. Une couleur et une photo par slide.
     🛡️ Une slide qui échoue est simplement omise : le carrousel sort quand même."""
@@ -5984,7 +6066,639 @@ def _carr_duree_slide(slide):
     return max(3.0, min(11.0, 1.6 + mots / 2.6))
 
 
-def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=None):
+# 🎬 MONTAGE — réglages du mouvement de caméra. Un plan fixe fait « diaporama » ;
+#    un lent travelling sur l'image donne la respiration d'une vraie vidéo.
+MONTAGE_ZOOM = 1.14          # amplitude du zoom sur la durée d'un plan
+MONTAGE_FONDU = 0.45         # durée du fondu enchaîné entre deux plans, en secondes
+MONTAGE_PLAN_MIN = 2.2       # un plan plus court que cela devient illisible
+MONTAGE_PLAN_MAX = 5.5       # au-delà, l'œil décroche
+
+
+def _plan_anime(png, duree, fps, sens=0, W=1080, H=1350, texte=False):
+    """Fabrique les images d'UN plan avec un lent mouvement de caméra.
+
+    Une image fixe pendant quatre secondes se voit : c'est un diaporama. Un travelling
+    lent — zoom avant, arrière, ou latéral — donne l'impression d'un plan filmé. Le
+    mouvement doit rester DISCRET : au-delà, il attire l'attention sur lui-même.
+
+    `sens` : 0 zoom avant, 1 zoom arrière, 2 panoramique gauche, 3 panoramique droit.
+    `texte` : vrai si l'image porte du TEXTE. Un panoramique le ferait sortir du cadre,
+    et un zoom trop ample le rognerait — on se limite alors à un mouvement très doux,
+    centré, qui anime sans jamais amputer la lecture.
+    Renvoie la liste des images PIL du plan."""
+    if texte:
+        sens = 0 if sens in (2, 3) else sens
+    import io as _io          # ⚠️ io n'est pas visible dans cette portée
+    src = Image.open(_io.BytesIO(png)).convert("RGB") if isinstance(png, bytes) else png
+    n = max(2, int(duree * fps))
+    # 🔒 Sur une image porteuse de texte, l'amplitude est réduite de moitié : le
+    #    mouvement doit se sentir sans que le moindre mot sorte du cadre.
+    ampl = 1 + (MONTAGE_ZOOM - 1) * (0.45 if texte else 1.0)
+    gros = int(W * ampl), int(H * ampl)
+    grand = src.resize(gros, Image.LANCZOS)
+    marge_x, marge_y = gros[0] - W, gros[1] - H
+    # ⚠️ GÉNÉRATEUR, pas liste : sur un format long en 1080×1920, garder toutes les
+    #    images en mémoire faisait tuer le processus. On les produit une par une.
+    def _images():
+      for k in range(n):
+        t = k / max(1, n - 1)
+        # accélération douce aux extrémités : un mouvement linéaire paraît mécanique
+        e = t * t * (3 - 2 * t)
+        if sens == 0:            # zoom avant : on part large, on resserre
+            f = 1.0 - e * (1 - 1 / ampl)
+        elif sens == 1:          # zoom arrière
+            f = 1 / ampl + e * (1 - 1 / ampl)
+        else:
+            # ⚠️ Un panoramique exige une MARGE : à pleine largeur le cadre ne peut
+            #    pas glisser. On resserre donc légèrement pour dégager du jeu.
+            f = 1 / ampl
+        lw, lh = int(W * f * ampl), int(H * f * ampl)
+        lw, lh = min(lw, gros[0]), min(lh, gros[1])
+        jeu_x = gros[0] - lw
+        if sens == 2:            # panoramique : le cadre glisse latéralement
+            x = int(jeu_x * e)
+        elif sens == 3:
+            x = int(jeu_x * (1 - e))
+        else:
+            x = jeu_x // 2
+        y = (gros[1] - lh) // 2 + int(marge_y * 0.12 * (e - 0.5))
+        x = max(0, min(x, gros[0] - lw))
+        y = max(0, min(y, gros[1] - lh))
+        yield grand.crop((x, y, x + lw, y + lh)).resize((W, H), Image.LANCZOS)
+    return _images()
+
+
+def _fondu(a, b, n):
+    """Fondu enchaîné entre deux plans. Une coupe franche sur des images fixes est
+    brutale ; un fondu court donne la continuité d'un montage."""
+    return [Image.blend(a, b, (k + 1) / (n + 1)) for k in range(n)]
+
+
+def _decouper_narration(texte, mini=3, maxi=5):
+    """Découpe une narration en SEGMENTS, un par plan.
+
+    Un plan par slide donne des plans de quinze secondes : l'œil décroche. Un vrai
+    montage change d'image à chaque idée. On coupe donc aux frontières de phrases —
+    jamais au milieu, sinon la voix et l'image se désynchronisent."""
+    t = re.sub(r"\s+", " ", str(texte or "")).strip()
+    if not t:
+        return []
+    phrases = [p.strip() for p in re.split(r"(?<=[.!?…])\s+", t) if p.strip()]
+    if len(phrases) <= mini:
+        return phrases or [t]
+    # on regroupe pour tenir dans la fourchette, sans jamais couper une phrase
+    cible = max(mini, min(maxi, len(phrases)))
+    par_seg = max(1, len(phrases) // cible)
+    segs, cour = [], []
+    for p in phrases:
+        cour.append(p)
+        if len(cour) >= par_seg and len(segs) < cible - 1:
+            segs.append(" ".join(cour)); cour = []
+    if cour:
+        segs.append(" ".join(cour))
+    return segs
+
+
+def _carr_photo_seule(raw_photo, W=None, H=None):
+    """Rend la PHOTO d'une slide seule, cadrée comme dans la carte, sans aucun texte.
+
+    C'est le calque du bas du montage : lui seul bouge. Renvoie les octets PNG, ou
+    None si aucune photo n'est disponible — le plan retombe alors sur la carte
+    complète, qui sera animée avec une amplitude bridée."""
+    if not raw_photo:
+        return None
+    W, H = W or CARR_W, H or CARR_H
+    try:
+        import io as _io3
+        img = Image.new("RGBA", (W, H), (201, 199, 210, 255))
+        _carr_fond(img, raw_photo)
+        # ⚠️ PAS de voiles ici : le dégradé du bas appartient à la couche FIXE. S'il
+        #    suivait la photo, il glisserait sous le texte et le ferait vibrer.
+        img = _carr_trame(img)
+        buf = _io3.BytesIO()
+        img.convert("RGB").save(buf, format="PNG", optimize=True)
+        return buf.getvalue()
+    except Exception:
+        return None
+
+
+
+# 📱 TIKTOK — format vertical 9:16. Les critères du Creator Rewards sont stricts :
+#    durée d'au moins une minute, vidéo originale, ni Duo ni Collage ni mode photo.
+TIKTOK_W, TIKTOK_H = 1080, 1920
+TIKTOK_DUREE_MINI = 62          # marge au-dessus des 60 s exigées
+
+
+def image_a_bandeau(raw, seuil=0.055):
+    """Détecte un BANDEAU d'information incrusté dans le bas de l'image.
+
+    Les captures de plateau télé portent un large bandeau — titre, logo, défilante — qui
+    occupe le tiers inférieur. En format vertical, c'est exactement la zone que le
+    montage recadre : le bandeau devient illisible, coupé, et signe visuellement une
+    autre chaîne. Mieux vaut écarter l'image.
+
+    On ne cherche PAS à lire le bandeau : on repère sa signature géométrique — une bande
+    horizontale de couleur très uniforme, nettement plus saturée ou plus sombre que le
+    reste, sur toute la largeur. C'est déterministe, gratuit, et sans appel au modèle.
+
+    Renvoie True si un bandeau probable occupe le bas de l'image."""
+    try:
+        import io as _io8
+        import numpy as _np
+        im = Image.open(_io8.BytesIO(raw)).convert("RGB") if isinstance(raw, bytes) else raw
+        a = _np.asarray(im.resize((160, 160), Image.BILINEAR), dtype=float)
+    except Exception:
+        return False
+    # ⚠️ La signature d'un bandeau n'est ni l'uniformité — un ciel dégradé est plat —
+    #    ni la couleur. C'est la RUPTURE : une incrustation commence net, sur une seule
+    #    ligne de pixels. Une photo, même contrastée, ne présente jamais une transition
+    #    aussi franche sur toute la largeur (mesuré : 45 contre moins de 4).
+    moy = a.mean(axis=1)                      # teinte moyenne de chaque ligne
+    sauts = _np.abs(_np.diff(moy, axis=0)).mean(axis=1)
+    saut_max = float(sauts[92:126].max()) if len(sauts) > 126 else 0.0
+    # confirmation : le bas doit aussi différer nettement du haut
+    teinte_h = a[:100].reshape(-1, 3).mean(axis=0)
+    teinte_b = a[112:].reshape(-1, 3).mean(axis=0)
+    rupture = float(_np.abs(teinte_h - teinte_b).mean())
+    return saut_max >= 18.0 and rupture >= 35.0 and seuil > 0
+
+
+def _vers_vertical(png, W=None, H=None, accent=None):
+    """Recompose une slide 4:5 dans un cadre 9:16, sans rien rogner.
+
+    Un simple recadrage couperait le texte du bas — celui qui porte l'information.
+    On place donc la slide au centre, sur un fond tiré de ses propres couleurs, et on
+    occupe les bandes libres : le regard reste sur la slide, le cadre respire."""
+    import io as _io4
+    W, H = W or TIKTOK_W, H or TIKTOK_H
+    src = Image.open(_io4.BytesIO(png)).convert("RGB") if isinstance(png, bytes) else png
+    # 📐 La slide occupe toute la largeur. Elle est calée en BAS plutôt qu'au centre :
+    #    le texte se trouve dans son tiers inférieur, et sur TikTok l'interface — nom,
+    #    légende, boutons — mange justement le bas de l'écran. On remonte donc
+    #    légèrement pour que rien d'important ne passe sous les icônes.
+    ratio = W / src.width
+    slide = src.resize((W, int(src.height * ratio)), Image.LANCZOS)
+    fond = src.resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(38))
+    fond = ImageEnhance.Brightness(fond).enhance(0.42)
+    img = fond.convert("RGBA")
+    # marge basse réservée à l'interface TikTok : environ 18 % de la hauteur
+    y = max(0, min((H - slide.height) // 2, int(H * 0.80) - slide.height))
+    img.paste(slide.convert("RGBA"), (0, y))
+    # liseré d'accent au bord de la slide : la limite doit se lire
+    d = ImageDraw.Draw(img)
+    acc = tuple(accent or CARR_ACCENT)
+    d.rectangle([0, y - 3, W, y], fill=acc + (170,))
+    d.rectangle([0, y + slide.height, W, y + slide.height + 3], fill=acc + (170,))
+    buf = _io4.BytesIO()
+    img.convert("RGB").save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
+
+
+def _sous_titres(texte, W, H, accent=None, bas=0.86):
+    """Rend une bande de SOUS-TITRES sur fond transparent.
+
+    Les sous-titres incrustés augmentent la rétention — beaucoup regardent sans le son —
+    et la rétention est l'indicateur central de la valeur publicitaire d'une vidéo."""
+    import io as _io5
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    t = re.sub(r"\s+", " ", str(texte or "")).strip()
+    if not t:
+        return None
+    f = _carr_font(46)
+    lignes_st = _wrap(d, t, f, int(W * 0.86))[:3]
+    lh = 60
+    haut = int(H * bas) - len(lignes_st) * lh
+    # cartouche sombre derrière le texte : lisible sur n'importe quelle image
+    d.rounded_rectangle([int(W * 0.05), haut - 26, int(W * 0.95),
+                         haut + len(lignes_st) * lh + 14], radius=20,
+                        fill=(10, 7, 20, 208))
+    for i, ln in enumerate(lignes_st):
+        d.text((W // 2, haut + i * lh), ln, font=f, fill=(255, 255, 255), anchor="ma")
+    buf = _io5.BytesIO()
+    img.save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
+
+
+# 📌 PASTILLES — ce qui s'affiche à l'écran pendant que la voix parle.
+#    ⛔ Afficher le texte que la voix lit n'apporte RIEN : l'œil et l'oreille reçoivent
+#    la même chose, et le spectateur passe. Ce qui retient, c'est le CONTRASTE — la voix
+#    déroule la phrase, l'écran frappe avec le chiffre, le lieu, la date.
+_PUNCH_CHIFFRE = re.compile(
+    r"(\d[\d\u00a0\u202f  ]*(?:[.,]\d+)?)\s*"
+    # ⚠️ Les unités COMPOSÉES d'abord, sinon « euros » attrape la fin de « millions
+    #    d'euros » et la pastille perd son sens. L'apostrophe peut être typographique.
+    r"(millions?\s+d['\u2019]euros?|milliards?\s+d['\u2019]euros?|M€|Md€|"
+    r"%|pour cent|euros?|"
+    r"hectares?|km|kilomètres?|mètres?|degrés?|ans?|mois|jours?|heures?|minutes?|"
+    r"morts?|blessés?|victimes?|disparus?|personnes?|habitants?|salariés?|emplois?|"
+    # ⚠️ Pas de \b final : il ne s'accroche pas après « % », qui n'est pas une lettre.
+    r"pompiers?|policiers?|buts?|points?|médailles?)(?![a-zà-ÿ])", re.IGNORECASE)
+_PUNCH_DATE = re.compile(
+    r"\b(\d{1,2}\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|"
+    r"octobre|novembre|décembre)(?:\s+\d{4})?|(?:janvier|février|mars|avril|mai|juin|"
+    r"juillet|août|septembre|octobre|novembre|décembre)\s+\d{4}|\b20\d{2}\b)",
+    re.IGNORECASE)
+_PUNCH_PROPRE = re.compile(r"\b([A-ZÀ-Þ][a-zà-ÿ']{3,}(?:[- ][A-ZÀ-Þ][a-zà-ÿ']+)+)\b")
+
+
+def punchs_narration(texte, maxi=2):
+    """Extrait de la narration ce qui MÉRITE d'apparaître à l'écran.
+
+    La voix dit la phrase entière ; l'écran ne montre que le fait qui frappe. Un chiffre,
+    une date, un nom propre — jamais la phrase elle-même. C'est ce décalage qui tient le
+    spectateur : il entend une chose, il en voit une autre qui la renforce.
+
+    Renvoie une liste de chaînes COURTES, dans l'ordre d'apparition dans le texte."""
+    t = re.sub(r"\s+", " ", str(texte or "")).strip()
+    if not t:
+        return []
+    trouves = []
+    for m in _PUNCH_CHIFFRE.finditer(t):
+        val = re.sub(r"[\s\u00a0\u202f]", "\u202f", m.group(1)).strip()
+        trouves.append((m.start(), f"{val} {m.group(2)}"))
+    for m in _PUNCH_DATE.finditer(t):
+        trouves.append((m.start(), m.group(1)))
+    if len(trouves) < maxi:
+        for m in _PUNCH_PROPRE.finditer(t):
+            trouves.append((m.start(), m.group(1)))
+    # on garde l'ordre du texte, sans doublon
+    vus, out = set(), []
+    for _, val in sorted(trouves, key=lambda x: x[0]):
+        cle = re.sub(r"\W+", "", val.lower())
+        if cle and cle not in vus and len(val) <= 34:
+            vus.add(cle); out.append(val.strip())
+    return out[:maxi]
+
+
+
+# 📌 POP-UPS — ce que l'écran MONTRE pendant que la voix RACONTE.
+#    Afficher mot pour mot ce qui est lu n'apporte rien : le spectateur lit plus vite
+#    qu'il n'écoute, il a fini avant la phrase et il passe. Un bon montage montre le
+#    CHOC — un chiffre, un nom, une date — pendant que la voix déroule le contexte.
+_PUNCH_CHIFFRE = re.compile(
+    r"\b(\d[\d\u00a0\u202f  ]*(?:[.,]\d+)?)\s*"
+    r"(%|€|M€|Md€|millions?|milliards?|euros?|hectares?|km|kilomètres?|"
+    r"morts?|blessés?|victimes?|disparus?|jours?|mois|ans?|heures?|minutes?|"
+    r"personnes?|habitants?|pompiers?|policiers?|emplois?|degrés?)\b", re.IGNORECASE)
+_PUNCH_DATE = re.compile(
+    r"\b(\d{1,2}\s+(?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|"
+    r"octobre|novembre|décembre)(?:\s+\d{4})?|(?:janvier|février|mars|avril|mai|juin|"
+    r"juillet|août|septembre|octobre|novembre|décembre)\s+\d{4})\b", re.IGNORECASE)
+_PUNCH_PROPRE = re.compile(r"\b([A-ZÀ-Þ][a-zà-ÿ']{2,}(?:-[A-ZÀ-Þ][a-zà-ÿ]+)+)\b")
+
+
+def punchs_visuels(narration, maxi=2):
+    """Extrait ce que l'ÉCRAN doit montrer, à partir de ce que la voix va dire.
+
+    Règle du montage : l'image ne répète pas la parole, elle la frappe. La voix dit
+    « le chantier de rénovation représente 890 millions d'euros » ; l'écran montre
+    « 890 M€ ». Le spectateur entend le contexte et voit le choc — c'est ce qui
+    l'empêche de passer à la vidéo suivante.
+
+    Renvoie une liste de courtes chaînes, de la plus forte à la moins forte."""
+    t = re.sub(r"\s+", " ", str(narration or "")).strip()
+    if not t:
+        return []
+    out = []
+    # ① un chiffre avec son unité : le plus fort visuellement
+    for val, unite in _PUNCH_CHIFFRE.findall(t):
+        v = re.sub(r"[\s\u00a0\u202f]", " ", val).strip()
+        u = unite.strip()
+        # ⚠️ « millions » suivi de « d'euros » doit donner « M€ », pas « M » seul :
+        #    un chiffre sans unité ne veut rien dire à l'écran.
+        suite = t[t.lower().find(unite.lower()) + len(unite):][:14].lower()
+        u = {"millions": "M€" if "euro" in suite else "M",
+             "million": "M€" if "euro" in suite else "M",
+             "milliards": "Md€" if "euro" in suite else "Md",
+             "milliard": "Md€" if "euro" in suite else "Md",
+             "euros": "€", "euro": "€",
+             "kilomètres": "km", "kilomètre": "km"}.get(u.lower(), u)
+        out.append(f"{v} {u}".strip())
+        if len(out) >= maxi:
+            return out
+    # ② une date précise
+    for d in _PUNCH_DATE.findall(t):
+        out.append(str(d).upper())
+        if len(out) >= maxi:
+            return out
+    # ③ un nom propre composé — un lieu, une personne
+    for n in _PUNCH_PROPRE.findall(t):
+        if n.lower() not in ("saint", "le", "la"):
+            out.append(n.upper())
+            if len(out) >= maxi:
+                return out
+    # ④ Rien de saillant : on prend les premiers mots forts de la phrase plutôt que
+    #    de laisser l'écran vide — un plan sans accroche se fait passer.
+    if not out:
+        # un nombre écrit en toutes lettres reste un chiffre : on le remet en chiffres
+        _lettres = {"deux": "2", "trois": "3", "quatre": "4", "cinq": "5", "six": "6",
+                    "sept": "7", "huit": "8", "neuf": "9", "dix": "10", "onze": "11",
+                    "douze": "12", "quinze": "15", "vingt": "20", "trente": "30",
+                    "cinquante": "50", "cent": "100", "mille": "1000"}
+        for mot, chiffre in _lettres.items():
+            m2 = re.search(rf"\b{mot}\s+([a-zà-ÿ]+)", t, re.IGNORECASE)
+            if m2:
+                out = [f"{chiffre} {m2.group(1).upper()}"]
+                break
+        if not out:
+            mots = [m for m in re.findall(r"[A-Za-zÀ-ÿ'-]{5,}", t)
+                    if m.lower() not in _MOT_BANAL][:2]
+            out = [" ".join(mots).upper()] if mots else []
+    return out[:maxi]
+
+
+def _rendre_popup(texte, W, H, accent=None, avancement=1.0, place=0):
+    """Rend UN pop-up animé, sur fond transparent.
+
+    `avancement` : 0 → invisible, 1 → posé. L'élément grandit et se stabilise —
+    une apparition brutale se remarque, une apparition élastique se regarde.
+    `place` : 0 haut, 1 milieu-haut, 2 milieu-bas — pour ne pas les superposer."""
+    import io as _io6
+    t = str(texte or "").strip()
+    if not t:
+        return None
+    a = max(0.0, min(1.0, float(avancement)))
+    # dépassement élastique : l'élément grossit un peu trop, puis revient
+    ech = 0.6 + 0.55 * a if a < 0.75 else 1.02 - 0.02 * ((a - 0.75) / 0.25)
+    opac = min(1.0, a * 2.4)
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    acc = tuple(accent or CARR_ACCENT)
+    px = int(96 * ech)
+    f = _carr_font(max(24, px), titre=True)
+    bb = d.textbbox((0, 0), t, font=f)
+    lw, lh = bb[2] - bb[0], bb[3] - bb[1]
+    cx = W // 2
+    cy = int(H * (0.30 + 0.13 * place))
+    pad = int(30 * ech)
+    d.rounded_rectangle([cx - lw // 2 - pad, cy - lh // 2 - pad,
+                         cx + lw // 2 + pad, cy + lh // 2 + pad],
+                        radius=int(22 * ech), fill=acc + (int(238 * opac),))
+    d.text((cx, cy), t, font=f, fill=(14, 10, 26, int(255 * opac)), anchor="mm")
+    buf = _io6.BytesIO()
+    img.save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
+
+
+def build_plan_accroche(titre, punch, accent=None, W=None, H=None):
+    """Fabrique le PLAN D'ACCROCHE : les trois premières secondes.
+
+    C'est le plan qui décide de tout. Sur un fil vertical, le spectateur tranche en
+    moins de deux secondes ; s'il ne voit qu'un titre posé, il passe. On lui donne donc
+    l'information la plus frappante en très gros, seule, sur un fond net — pas de
+    décor, pas de contexte, juste le choc.
+
+    Renvoie les octets PNG du plan."""
+    import io as _io7
+    W, H = W or TIKTOK_W, H or TIKTOK_H
+    acc = tuple(accent or CARR_ACCENT)
+    img = Image.new("RGB", (W, H), (16, 12, 30))
+    d = ImageDraw.Draw(img)
+    for y in range(H):
+        t = y / H
+        d.line([(0, y), (W, y)],
+               fill=(int(16 + 30 * t), int(12 + 18 * t), int(30 + 46 * t)))
+    # halo derrière le choc : le regard n'a nulle part ailleurs où aller
+    halo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dh = ImageDraw.Draw(halo)
+    for k in range(14):
+        r = 520 - k * 34
+        dh.ellipse([W // 2 - r, int(H * 0.44) - r, W // 2 + r, int(H * 0.44) + r],
+                   fill=acc + (5,))
+    img = Image.alpha_composite(img.convert("RGBA"), halo)
+    d = ImageDraw.Draw(img)
+
+    # ① le choc, en très gros
+    p = str(punch or "").strip()[:18]
+    if p:
+        px = 190 if len(p) <= 8 else (150 if len(p) <= 12 else 116)
+        f = _carr_font(px, titre=True)
+        # ombre portée : le choc doit tenir sur n'importe quel fond
+        bb = d.textbbox((0, 0), p, font=f)
+        _x = W // 2 - (bb[2] - bb[0]) // 2
+        _y = int(H * 0.40) - (bb[3] - bb[1]) // 2 - bb[1]
+        d = _carr_ombre(img, d, _x, _y, p, f, decal=5, flou=16, opacite=210)
+        d.text((_x, _y), p, font=f, fill=acc)
+    # ② le titre, dessous, plus discret
+    t2 = re.sub(r"\s+", " ", str(titre or "")).strip()
+    if t2:
+        ft = _carr_font(52, titre=True)
+        for i2, ln in enumerate(_wrap(d, t2[:90], ft, int(W * 0.86))[:3]):
+            d.text((W // 2, int(H * 0.58) + i2 * 66), ln, font=ft,
+                   fill=(255, 255, 255), anchor="ma")
+    d.rectangle([0, 0, W, 10], fill=acc)
+    d.text((W // 2, H - 90), "@PULSEactus", font=_carr_font(28, titre=True),
+           fill=(170, 162, 194), anchor="mm")
+    img = _carr_trame(img, force=10).convert("RGB")
+    buf = _io7.BytesIO()
+    img.save(buf, format="PNG", optimize=True)
+    return buf.getvalue()
+
+
+def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde"):
+    """Produit la version TIKTOK du décryptage : 9:16, plus d'une minute, sous-titrée.
+
+    ⚖️ Critères du Creator Rewards que ce montage respecte :
+      • format vertical 9:16, ni Duo ni Collage ni mode photo ;
+      • durée d'au moins une minute — sinon la vidéo n'est pas éligible ;
+      • sous-titres incrustés, qui augmentent la rétention (indicateur central).
+    ⚠️ Ce que ce code NE PEUT PAS garantir : les seuils d'audience, et surtout
+    l'originalité exigée. TikTok démonétise le contenu entièrement automatisé — la
+    vidéo doit être relue et légendée par un humain avant publication.
+
+    Renvoie le chemin du MP4, ou None."""
+    import subprocess as _sp, tempfile as _tf, os as _os
+    try:
+        import imageio_ffmpeg as _iff
+        ff = _iff.get_ffmpeg_exe()
+    except Exception:
+        return None
+    if not pngs:
+        return None
+    W, H = TIKTOK_W, TIKTOK_H
+    acc = accents or [CARR_ACCENT] * len(pngs)
+    narr = list(narrations or [])
+
+    # ⏱️ La durée par plan est calculée pour DÉPASSER la minute : sous une minute, la
+    #    vidéo n'entre pas dans le programme, quel que soit son contenu.
+    par_plan = max(MONTAGE_PLAN_MIN, (TIKTOK_DUREE_MINI - 3.2) / max(1, len(pngs)))
+    if par_plan > MONTAGE_PLAN_MAX * 2:
+        print(f"  ⚠️ {len(pngs)} slides pour {TIKTOK_DUREE_MINI}s : plans trop longs, "
+              f"il en faudrait davantage")
+    plans, popups = [], []
+    sens = (0, 2, 1, 3)
+    # 🎯 PLAN D'ACCROCHE : les trois premières secondes décident du taux de complétion.
+    #    Sur un fil vertical, le spectateur tranche en moins de deux secondes ; s'il ne
+    #    voit qu'un titre posé, il passe. On ouvre donc sur le choc, seul et en très gros.
+    _premier_punch = ""
+    for _n in narr:
+        _pv = punchs_visuels(_n)
+        if _pv:
+            _premier_punch = _pv[0]
+            break
+    _titre_hook = re.sub(r"\s+", " ", str(narr[0] if narr else "")).strip()
+    try:
+        _hook = build_plan_accroche(_titre_hook, _premier_punch,
+                                    acc[0] if acc else None, W, H)
+        if _hook:
+            plans.append((_hook, 3.2, 0, False, True))
+            popups.append(([], None))       # le choc est déjà dans l'image
+    except Exception as _e:
+        print(f"  ⚠️ Plan d'accroche indisponible ({str(_e)[:50]})")
+    for i2, p in enumerate(pngs):
+        _a = acc[i2] if i2 < len(acc) else CARR_ACCENT
+        plans.append((_vers_vertical(p, W, H, _a), par_plan, sens[i2 % 4],
+                      False, True))
+        # 📌 Ce qui s'affiche N'EST PAS ce qui est dit : la voix déroule la
+        #    phrase, l'écran frappe avec le chiffre. Afficher le même texte
+        #    n'apporte rien — l'œil et l'oreille reçoivent la même chose.
+        popups.append((punchs_visuels(narr[i2] if i2 < len(narr) else ""), _a))
+    d = _tf.mkdtemp(prefix="pulse_tiktok_")
+    muet = monter_video_plans(plans, None, fps=25, W=W, H=H, popups=popups)
+    if not muet or not _os.path.exists(muet):
+        return None
+    final = f"{d}/tiktok.mp4"
+    # bande sonore : la même que la version X, réutilisée telle quelle
+    piste = None
+    try:
+        piste = build_soundtrack(f"{d}/son.wav", TIKTOK_DUREE_MINI + 4, category=cat)
+    except Exception as _e:
+        print(f"  ⚠️ Ambiance sonore indisponible ({str(_e)[:50]})")
+    cmd = [ff, "-y", "-loglevel", "error", "-i", muet]
+    if piste and _os.path.exists(str(piste)):
+        cmd += ["-i", str(piste), "-c:a", "aac", "-b:a", "128k", "-shortest"]
+    cmd += ["-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium",
+            "-crf", "21", "-movflags", "+faststart", final]
+    r = _sp.run(cmd, capture_output=True, timeout=900)
+    if r.returncode != 0 or not _os.path.exists(final):
+        print(f"  ⚠️ Version TikTok impossible (ffmpeg {r.returncode})")
+        return None
+    print(f"  📱 Version TikTok : 9:16, {len(pngs)} plans, "
+          f"{par_plan * len(pngs):.0f}s, sous-titrée")
+    return final
+
+
+def monter_video_plans(plans, sortie, fps=25, W=1080, H=1350, couches=None,
+                       popups=None):
+    """Assemble une suite de PLANS en une vidéo, avec fondus enchaînés.
+
+    `plans` : [(png, durée, sens_du_mouvement)]. Chaque plan est animé, et les plans
+    se succèdent par fondu — c'est ce qui distingue un montage d'un diaporama.
+
+    `couches` : liste de PNG transparents, un par plan, posés PAR-DESSUS l'image animée
+    et laissés FIXES. C'est ainsi qu'on procède en motion design : le fond respire, le
+    texte reste lisible. Animer la carte entière fait glisser les mots, ce qui gêne la
+    lecture et donne l'impression d'une image qui dérape.
+    Renvoie le chemin du fichier vidéo muet, ou None."""
+    import subprocess as _sp, tempfile as _tf, os as _os
+    try:
+        import imageio_ffmpeg as _iff
+        ff = _iff.get_ffmpeg_exe()
+    except Exception:
+        return None
+    if not plans:
+        return None
+    d = _tf.mkdtemp(prefix="pulse_montage_")
+    n_fondu = max(2, int(MONTAGE_FONDU * fps))
+    # ⚠️ On écrit chaque image sur le disque AU FUR ET À MESURE. Garder toute la vidéo
+    #    en mémoire — plusieurs centaines d'images en 1080×1350 — épuisait la machine
+    #    et faisait tuer le processus.
+    import io as _io2
+    k, precedent = 0, None
+    for idx, entree in enumerate(plans):
+        png, duree, sens = entree[0], entree[1], entree[2]
+        porte_texte = entree[3] if len(entree) > 3 else False
+        # 5ᵉ valeur : ignorer le plafond de durée (imposé par un format long)
+        _libre = entree[4] if len(entree) > 4 else False
+        duree = (max(MONTAGE_PLAN_MIN, float(duree or 3)) if _libre
+                 else max(MONTAGE_PLAN_MIN, min(MONTAGE_PLAN_MAX, float(duree or 3))))
+        # 🔒 Si une couche fixe est fournie, le FOND peut bouger librement : le texte
+        #    ne le suit pas. On lève donc la bride d'amplitude.
+        _cch = None
+        if couches and idx < len(couches) and couches[idx]:
+            try:
+                _cch = Image.open(_io2.BytesIO(couches[idx])).convert("RGBA")
+                if _cch.size != (W, H):
+                    _cch = _cch.resize((W, H), Image.LANCZOS)
+                porte_texte = False
+            except Exception:
+                _cch = None
+        # 📌 Pastilles de ce plan : chacune apparaît à son tour, pas toutes d'un coup.
+        _pp = (popups[idx] if popups and idx < len(popups) else (None, None))
+        _textes, _acc_pp = (_pp if isinstance(_pp, tuple) else (_pp, None))
+        _textes = list(_textes or [])
+        _n_img = max(2, int(duree * fps))
+        _cache_pp, _poses = {}, set()
+        premiere, derniere, saut = None, None, n_fondu if precedent is not None else 0
+        for idx2, im in enumerate(_plan_anime(png, duree, fps, sens=sens,
+                                              W=W, H=H, texte=porte_texte)):
+            if _cch is not None:
+                im = Image.alpha_composite(im.convert("RGBA"), _cch).convert("RGB")
+            # chaque pop-up entre à son moment, sur une demi-seconde
+            if _textes:
+                _rgba, _vus = None, set()
+                for _ip, _txt in enumerate(_textes):
+                    _debut = 0.22 + _ip * 0.30
+                    _av = (idx2 / _n_img - _debut) / 0.16
+                    if _av <= 0:
+                        continue
+                    _cle = (_ip, min(1.0, round(max(0.0, _av), 1)))
+                    if _cle not in _cache_pp:
+                        _cache_pp[_cle] = _rendre_popup(_txt, W, H, _acc_pp,
+                                                        avancement=_cle[1], place=_ip)
+                    if _cache_pp[_cle]:
+                        _vus.add(_ip)
+                        if _rgba is None:
+                            _rgba = im.convert("RGBA")
+                        _rgba = Image.alpha_composite(
+                            _rgba, Image.open(_io2.BytesIO(_cache_pp[_cle])))
+                if _rgba is not None:
+                    im = _rgba.convert("RGB")
+                    _poses.update(_vus)
+            if premiere is None:
+                premiere = im.copy()
+                if precedent is not None:
+                    for f_ in _fondu(precedent, premiere, n_fondu):
+                        f_.save(f"{d}/f_{k:05d}.jpg", quality=90); k += 1
+            if idx2 < saut:
+                continue               # ces images ont servi au fondu
+            im.save(f"{d}/f_{k:05d}.jpg", quality=90); k += 1
+            derniere = im
+        # 🔍 CONTRÔLE : chaque pop-up prévu doit avoir été RÉELLEMENT affiché. Un
+        #    pop-up qui n'apparaît jamais laisse un plan muet — le spectateur passe.
+        if _textes and len(_poses) < len(_textes):
+            _perdus = [t for i4, t in enumerate(_textes) if i4 not in _poses]
+            print(f"  ⚠️ Pop-up(s) non affiché(s) : {_perdus} — plan trop court ?")
+        if derniere is None:
+            continue
+        precedent = derniere.copy()
+    if k == 0:
+        return None
+    muet = f"{d}/muet.mp4"
+    # 🔍 CONTRÔLE : la numérotation des images doit être CONTINUE. ffmpeg s'arrête au
+    #    premier trou sans le signaler — la vidéo sortirait tronquée, l'air normal.
+    _attendus = set(range(k))
+    _presents = {int(f[2:7]) for f in _os.listdir(d)
+                 if f.startswith("f_") and f.endswith(".jpg")}
+    _manquants = sorted(_attendus - _presents)
+    if _manquants:
+        print(f"  ❌ {len(_manquants)} image(s) manquante(s) dans le montage "
+              f"(première : {_manquants[0]}) → montage abandonné")
+        return None
+    r = _sp.run([ff, "-y", "-loglevel", "error", "-framerate", str(fps),
+                 "-i", f"{d}/f_%05d.jpg", "-c:v", "libx264", "-pix_fmt", "yuv420p",
+                 "-preset", "medium", "-crf", "20", "-movflags", "+faststart", muet],
+                capture_output=True)
+    if r.returncode != 0 or not _os.path.exists(muet):
+        print(f"  ⚠️ Montage impossible (ffmpeg {r.returncode})")
+        return None
+    print(f"  🎞️ Montage : {len(plans)} plans, {k / fps:.1f}s")
+    return muet
+
+
+def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=None,
+                          couches_texte=None, photos=None):
     """Assemble un carrousel d'images en VIDÉO verticale, avec la voix de synthèse
     par-dessus une musique de fond (voix dominante).
 
@@ -6024,28 +6738,46 @@ def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=
                       for i in range(len(pngs))]
         total = sum(durees)
 
-        # liste de montage : une image, sa durée. La dernière est répétée — sans quoi
-        # ffmpeg tronque le plan final (particularité du démultiplexeur concat).
-        chemins = []
-        for i, p in enumerate(pngs):
-            c = os.path.join(tmpdir, f"s{i:02d}.png")
-            with open(c, "wb") as f:
-                f.write(p)
-            chemins.append(c)
-        liste = os.path.join(tmpdir, "montage.txt")
-        with open(liste, "w", encoding="utf-8") as f:
-            for c, d in zip(chemins, durees):
-                f.write(f"file '{c}'\nduration {d:.2f}\n")
-            f.write(f"file '{chemins[-1]}'\n")
-
-        muet = os.path.join(tmpdir, "muet.mp4")
-        r = _sp.run([ff, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
-                     "-i", liste, "-vf", "fps=25,format=yuv420p",
-                     "-c:v", "libx264", "-preset", "medium", "-crf", "20",
-                     "-movflags", "+faststart", muet],
-                    capture_output=True, timeout=600)
-        if r.returncode != 0 or not os.path.exists(muet):
-            print(f"  ⚠️ Montage vidéo impossible (ffmpeg {r.returncode})")
+        # 🎬 MONTAGE ANIMÉ : chaque slide devient un PLAN avec un lent mouvement de
+        #    caméra, et les plans s'enchaînent par fondu. Une suite d'images fixes se
+        #    voit immédiatement ; un travelling discret donne la respiration d'une
+        #    vraie vidéo. Les slides portent du texte : l'amplitude est bridée pour
+        #    qu'aucun mot ne sorte du cadre.
+        _sens = (0, 2, 1, 3)          # on alterne pour éviter la monotonie
+        # 🔒 DEUX COUCHES : le fond photo est animé, la couche texte reste FIXE.
+        #    Sans cela le titre et la description glissaient avec l'image — c'est
+        #    précisément ce qui rendait le mouvement gênant à la lecture.
+        # 🔒 Si les couches ne sont pas fournies, on les rend ici : le montage à deux
+        #    plans est le comportement NORMAL, pas une option.
+        _ph = photos or []
+        _fonds = [(_carr_photo_seule(_ph[i] if i < len(_ph) else None) or p)
+                  for i, p in enumerate(pngs)]
+        _couches = couches_texte or [None] * len(pngs)
+        _plans = [(f, durees[i] if i < len(durees) else 3.0, _sens[i % 4], False)
+                  for i, f in enumerate(_fonds)]
+        muet = monter_video_plans(_plans, None, fps=25, W=CARR_W, H=CARR_H,
+                                  couches=_couches)
+        if not muet or not os.path.exists(muet):
+            print("  ⚠️ Montage animé impossible → assemblage simple")
+            chemins = []
+            for i, p in enumerate(pngs):
+                c = os.path.join(tmpdir, f"s{i:02d}.png")
+                with open(c, "wb") as f:
+                    f.write(p)
+                chemins.append(c)
+            liste = os.path.join(tmpdir, "montage.txt")
+            with open(liste, "w", encoding="utf-8") as f:
+                for c, d in zip(chemins, durees):
+                    f.write(f"file '{c}'\nduration {d:.2f}\n")
+                f.write(f"file '{chemins[-1]}'\n")
+            muet = os.path.join(tmpdir, "muet.mp4")
+            r = _sp.run([ff, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
+                         "-i", liste, "-vf", "fps=25,format=yuv420p",
+                         "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+                         "-movflags", "+faststart", muet],
+                        capture_output=True, timeout=600)
+        if not muet or not os.path.exists(muet):
+            print("  ⚠️ Montage vidéo impossible")
             return None
 
         # ── ② Bande voix : chaque narration placée AU DÉBUT de sa slide ──
@@ -6526,16 +7258,34 @@ def _dessiner_bloc_adaptatif(img, draw, plan, accent, couleur_para=(238, 236, 24
     return draw, y
 
 
-def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_photo=None):
+def build_carousel_png(slide, watermark="@PULSEactus", accent=(185, 166, 230),
+                       raw_photo=None, sans_photo=False):
     """Rend UNE slide de carrousel au format du gabarit fourni (1080×1350).
     `slide` : {"kind": cover|recapCover|info|cta, ...} — voir le modèle.
     Renvoie les octets PNG, ou None."""
     try:
         import io as _io
-        img = Image.new("RGBA", (CARR_W, CARR_H), (201, 199, 210, 255))
+        # 🎬 `sans_photo` : produit la slide SANS son image de fond, sur un fond
+        #    transparent. Sert au montage vidéo — la photo bouge, le texte reste
+        #    fixe. Animer la carte entière fait glisser les mots.
+        img = Image.new("RGBA", (CARR_W, CARR_H),
+                        (0, 0, 0, 0) if sans_photo else (201, 199, 210, 255))
         kind = slide.get("kind", "info")
-        _carr_fond(img, raw_photo)
-        _carr_voiles(img, kind in ("info", "recapCover"))
+        if not sans_photo:
+            _carr_fond(img, raw_photo)
+        # 🔒 Le dégradé du bas appartient à la couche FIXE — c'est lui qui assoit le
+        #    texte, et il ne doit pas glisser avec la photo. Mais il ne doit couvrir
+        #    QUE le bas : le haut reste transparent pour laisser voir l'image animée.
+        if sans_photo:
+            _voile = Image.new("RGBA", (CARR_W, CARR_H), (0, 0, 0, 0))
+            _dv = ImageDraw.Draw(_voile)
+            for _i in range(int(CARR_H * 0.42)):
+                _y = CARR_H - _i
+                _a = int(236 * (_i / (CARR_H * 0.42)) ** 0.85)
+                _dv.line([(0, _y), (CARR_W, _y)], fill=(12, 9, 24, _a))
+            img.alpha_composite(_voile)
+        else:
+            _carr_voiles(img, kind in ("info", "recapCover"))
         d = ImageDraw.Draw(img)
 
         # en-tête : logo Pulse à gauche, date au centre (plus de compteur « k/total »)
@@ -6640,9 +7390,12 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=CARR_ACCENT, raw_p
             d.text(((CARR_W - tw) // 2, CARR_H - 44 - fw.size), t, font=fw,
                    fill=(255, 255, 255, 209))
 
-        img = _carr_trame(img)          # texture de trame sur l'ensemble du visuel
+        if not sans_photo:
+            img = _carr_trame(img)          # texture de trame sur l'ensemble du visuel
         buf = _io.BytesIO()
-        img.convert("RGB").save(buf, format="PNG", optimize=True)
+        # ⚠️ En mode sans_photo, la TRANSPARENCE doit survivre : convertir en RGB
+        #    remplirait le fond de noir et la couche serait inutilisable.
+        (img if sans_photo else img.convert("RGB")).save(buf, format="PNG", optimize=True)
         return buf.getvalue()
     except Exception as e:
         print(f"  ⚠️ Slide carrousel non rendue ({str(e)[:80]})")
@@ -11929,6 +12682,13 @@ def _meilleure_image(item, candidates, photo, person, image_query, cat):
         return raw, ok, False
 
     def _valide(raw):
+        # 📺 Un BANDEAU incrusté est écarté quelle que soit la source : en format
+        #    vertical il se retrouve coupé au recadrage, illisible, et signe
+        #    visuellement une autre chaîne. La règle par source ne suffit pas —
+        #    beaucoup de médias reprennent des captures de plateau.
+        if raw and image_a_bandeau(raw):
+            print("  📺 Bandeau d'information détecté sur l'image → écartée")
+            return None
         return raw if _image_pertinente(raw, titre, resume) is not False else None
 
     if _image_plateau_probable(src):
@@ -13095,7 +13855,9 @@ def _traiter_rendez_vous(conn):
                     _lu = _carr_texte_narration(carousel)
                     vid_thread = build_video_carrousel(
                         _pngs, _sl, voice_text=_lu, cat="monde",
-                        voice_parts=_carr_narration_slides(carousel))
+                        voice_parts=_carr_narration_slides(carousel),
+                        # 🔒 Deux couches : la photo bouge, le texte reste fixe.
+                        couches_texte=rendre_couches_texte(_sl, _ac, _ph), photos=_ph)
                     if _pngs:
                         cover_paysage = _pngs[0]      # l'aperçu devient la couverture du carrousel
             except Exception as e:
