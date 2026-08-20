@@ -1,0 +1,14 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  À AJOUTER dans .github/workflows/run-bot.yml
+#  À placer APRÈS l'étape qui lance le bot, au même niveau d'indentation
+#  que les autres « - name: ».
+# ─────────────────────────────────────────────────────────────────────────────
+
+      - name: Déposer la vidéo TikTok
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tiktok
+          path: sortie_tiktok/
+          if-no-files-found: ignore
+          retention-days: 7

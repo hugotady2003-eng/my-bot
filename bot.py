@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "2.7.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.0.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -6496,6 +6496,126 @@ def build_plan_accroche(titre, punch, accent=None, W=None, H=None):
     return buf.getvalue()
 
 
+TIKTOK_DOSSIER = os.environ.get("TIKTOK_DOSSIER", "sortie_tiktok")
+
+
+def legende_tiktok(carousel):
+    """Compose la LÉGENDE à coller sous la vidéo TikTok.
+
+    ⚠️ Elle est volontairement incomplète : TikTok exige un point de vue humain, et une
+    légende entièrement générée est précisément ce que le programme de monétisation
+    écarte. On fournit la matière — le sujet, les mots-clés — et une accroche à
+    compléter, pour que la publication reste un geste éditorial."""
+    sujet = re.sub(r"\s+", " ", str(carousel.get("cover_title") or
+                                    carousel.get("sujet") or "")).strip()
+    faits = []
+    for s in (carousel.get("slides") or [])[:3]:
+        for p in (s.get("points") or [])[:1]:
+            for pv in punchs_visuels(str(p)):
+                if pv not in faits:
+                    faits.append(pv)
+    mots = ["#actu", "#info", "#france"]
+    for m in re.findall(r"\b[A-ZÀ-Þ][a-zà-ÿ]{3,}\b", sujet)[:2]:
+        mots.append("#" + m.lower())
+    lignes = [
+        "⚠️ À COMPLÉTER AVANT PUBLICATION — TikTok exige un point de vue humain.",
+        "",
+        f"[ta phrase d'accroche ici] {sujet}",
+        "",
+    ]
+    if faits:
+        lignes.append("Les chiffres : " + " · ".join(faits[:3]))
+        lignes.append("")
+    lignes.append(" ".join(dict.fromkeys(mots)))
+    return "\n".join(lignes)
+
+
+def deposer_pour_tiktok(chemin_video, carousel):
+    """Dépose la vidéo et sa légende là où tu pourras les récupérer.
+
+    Le bot tourne sur GitHub Actions : le plus simple est d'écrire les fichiers dans un
+    dossier que le workflow publie en ARTEFACT. Un clic depuis la page du run, sans
+    identifiant à configurer — contrairement à un envoi par courriel, qui exigerait un
+    compte SMTP et ses secrets."""
+    import shutil as _sh
+    try:
+        os.makedirs(TIKTOK_DOSSIER, exist_ok=True)
+        jour = _now_paris().strftime("%Y-%m-%d")
+        dest = os.path.join(TIKTOK_DOSSIER, f"pulse-{jour}.mp4")
+        _sh.copy(chemin_video, dest)
+        txt = os.path.join(TIKTOK_DOSSIER, f"pulse-{jour}-legende.txt")
+        with open(txt, "w", encoding="utf-8") as f:
+            f.write(legende_tiktok(carousel))
+        taille = os.path.getsize(dest) / 1e6
+        print(f"  📥 Version TikTok déposée : {dest} ({taille:.1f} Mo)")
+        print(f"  📝 Légende à compléter    : {txt}")
+        return dest
+    except Exception as e:
+        print(f"  ⚠️ Dépôt TikTok impossible ({str(e)[:60]})")
+        return None
+
+
+_HOOK_INTERDIT = re.compile(
+    r"^\s*(?:bonjour|salut|hello|aujourd'hui|voici (?:les? )?(?:actualit|info|news)|"
+    r"on va (?:parler|voir|vous)|dans cette vidéo|comme (?:vous le savez|chaque jour)|"
+    r"bienvenue|petit point|le point sur)", re.IGNORECASE)
+
+
+def verifier_decryptage_tiktok(narrations, punchs, duree, W, H, n_plans):
+    """VÉRIFICATION FINALE. Renvoie la liste des défauts constatés.
+
+    C'est la règle de ce projet appliquée à la vidéo : le modèle propose, le code
+    vérifie. Une vidéo qui échoue à un seul critère n'est pas terminée — elle est
+    corrigée, puis revérifiée. Chaque contrôle porte sur quelque chose de MESURABLE ;
+    ce qui relève du jugement — le naturel de la voix, l'impression d'un montage
+    humain — ne peut pas être vérifié ici et reste à l'œil."""
+    defauts = []
+    narr = [re.sub(r"\s+", " ", str(n or "")).strip() for n in (narrations or [])]
+
+    # ── durée et format : critères d'éligibilité, non négociables ──
+    if duree < 60:
+        defauts.append(f"DURÉE {duree:.0f}s < 60s (non éligible au programme)")
+    if abs(W / max(1, H) - 9 / 16) > 0.01:
+        defauts.append(f"FORMAT {W}×{H} n'est pas du 9:16")
+
+    # ── hook : les 3 premières secondes décident du reste ──
+    if narr:
+        if _HOOK_INTERDIT.match(narr[0]):
+            defauts.append(f"HOOK FAIBLE : commence par « {narr[0][:28]}… »")
+        if not punchs or not punchs[0]:
+            defauts.append("HOOK SANS CHOC : aucun chiffre ni fait saillant à l'ouverture")
+    else:
+        defauts.append("AUCUNE NARRATION")
+
+    # ── l'écran ne doit pas répéter la voix ──
+    for i2, (n, p) in enumerate(zip(narr, punchs or [])):
+        for txt in (p or []):
+            if txt and txt.lower().strip() in n.lower():
+                if len(txt) > 24:            # un chiffre court peut coïncider
+                    defauts.append(f"ÉCRAN = VOIX au plan {i2 + 1} : « {txt[:26]} »")
+
+    # ── aucune répétition d'un plan à l'autre ──
+    for i2 in range(len(narr)):
+        for j2 in range(i2 + 1, len(narr)):
+            a, b = _sig_words(narr[i2]), _sig_words(narr[j2])
+            if a and b and len(a & b) >= max(3, int(min(len(a), len(b)) * 0.6)):
+                defauts.append(f"RÉPÉTITION entre les plans {i2 + 1} et {j2 + 1}")
+
+    # ── rythme : un changement visuel régulier, aucun temps mort ──
+    if n_plans and duree / max(1, n_plans) > 12.0:
+        defauts.append(f"PLANS TROP LONGS ({duree / n_plans:.0f}s) : l'attention décroche")
+    if n_plans < 4:
+        defauts.append(f"SEULEMENT {n_plans} plans : trop peu de changements visuels")
+
+    # ── écrit pour être dit ──
+    for i2, n in enumerate(narr):
+        if len(n) > 240:
+            defauts.append(f"PHRASE TROP LONGUE au plan {i2 + 1} ({len(n)} car.)")
+        if n.count(",") >= 4:
+            defauts.append(f"TROP DE VIRGULES au plan {i2 + 1} : illisible à voix haute")
+    return defauts
+
+
 def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde"):
     """Produit la version TIKTOK du décryptage : 9:16, plus d'une minute, sous-titrée.
 
@@ -6555,6 +6675,27 @@ def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde")
         #    n'apporte rien — l'œil et l'oreille reçoivent la même chose.
         popups.append((punchs_visuels(narr[i2] if i2 < len(narr) else ""), _a))
     d = _tf.mkdtemp(prefix="pulse_tiktok_")
+    # ✅ VÉRIFICATION FINALE, avant tout montage. Une vidéo qui échoue à un seul
+    #    critère n'est pas terminée : on ne la produit pas plutôt que de publier
+    #    quelque chose qui se fera passer — ou démonétiser.
+    _duree_tot = par_plan * len(pngs) + 3.2
+    # ⚠️ Le premier élément de `popups` est celui de l'ACCROCHE, volontairement vide :
+    #    son choc est déjà dans l'image. On vérifie donc les punchs des plans de
+    #    contenu, et on rappelle le choc de l'accroche en tête.
+    _pun_verif = [[_premier_punch]] + [p[0] for p in popups[1:]]
+    _defauts = verifier_decryptage_tiktok(narr, _pun_verif,
+                                          _duree_tot, W, H, len(plans))
+    if _defauts:
+        print(f"  🚦 Vidéo TikTok NON VALIDÉE — {len(_defauts)} défaut(s) :")
+        for _d2 in _defauts[:5]:
+            print(f"     • {_d2}")
+        # ⚠️ Les défauts de DURÉE et de FORMAT se corrigent ici ; les défauts
+        #    éditoriaux viennent du texte et exigent une régénération en amont.
+        _bloquants = [d for d in _defauts
+                      if not d.startswith(("DURÉE", "FORMAT", "PLANS TROP LONGS"))]
+        if _bloquants:
+            print("  🚫 Défauts éditoriaux → version TikTok abandonnée ce jour")
+            return None
     muet = monter_video_plans(plans, None, fps=25, W=W, H=H, popups=popups)
     if not muet or not _os.path.exists(muet):
         return None
@@ -7672,7 +7813,19 @@ Réponds avec ce JSON UNIQUEMENT :
         if not valid:
             print("  ⚠️ Décryptage : aucun sujet exploitable — on retentera au prochain passage.")
             return None
-        art, og_bytes = valid[0], None
+        # 🔍 RECOUPEMENT : trois articles sont retenus, mais un seul était rédigé.
+        #    Les écarts entre rédactions sont une information — un chiffre confirmé
+        #    par deux médias est solide, un chiffre isolé mérite la prudence. On
+        #    reconstruit les faits à partir de TOUTES les sources.
+        _ev_dec = Evenement(valid[0])
+        for _a4 in valid[1:]:
+            _ev_dec.absorber(_a4)
+        _rec_dec = recouper_faits(_ev_dec)
+        _consigne_rec = resume_recoupement(_rec_dec)
+        if _rec_dec.get("confirmes"):
+            print(f"  🔍 Décryptage : {len(_rec_dec['confirmes'])} chiffre(s) "
+                  f"confirmé(s) sur {_rec_dec['medias']} médias")
+        art, og_bytes = (_rec_dec.get("pivot") or valid[0]), None
         for cand in valid:
             # Cascade COMPLÈTE (og:image + autres images de l'article + Wikipedia), pas juste og:image.
             try:
@@ -7709,9 +7862,40 @@ RÈGLES ABSOLUES :
 - ⛔ INTERDIT les phrases vagues et creuses du type "le marché se complexifie", "de plus en plus diverse et imprévisible", "les habitudes changent", "un phénomène croissant". CHAQUE point doit apporter une info CONCRÈTE : un chiffre, un nom propre, un lieu, une date ou un fait précis.
 - Si l'article manque de chiffres, mets en avant les faits les plus concrets (noms, pays concernés, décisions précises) — JAMAIS de généralités.
 - 🇫🇷 FRANÇAIS IMPECCABLE : zéro mot en anglais, zéro faute. Relis-toi.
-- EXACTEMENT 4 slides de contenu. Titre court (≤ 32 caractères) + 2 à 3 points.
+SOURCES — tu disposes de PLUSIEURS articles sur le même fait. N'en reproduis
+aucun : reconstruis les faits à partir de l'ensemble.
+  • Un chiffre donné par plusieurs rédactions est solide : emploie-le sans réserve.
+  • Un chiffre donné par une seule est fragile : écarte-le, ou attribue-le.
+  • En cas de DIVERGENCE, retiens la source officielle — communiqué, préfecture,
+    institution, entreprise — plutôt que la reprise d'un confrère.
+  • Méfie-toi des titres sensationnalistes : si le corps de l'article ne confirme
+    pas le titre, c'est le corps qui fait foi.
+{_consigne_rec}
+
+STRUCTURE — 6 slides, calées sur le rythme d'une vidéo verticale de 60 secondes.
+Chaque slide devient un plan de 10 secondes environ, avec sa narration.
+  SLIDE 1 — LE CHOC (0-10 s). Le fait le plus frappant, seul. Un chiffre, une
+    conséquence, un fait inattendu. ⛔ JAMAIS « Bonjour », « Aujourd'hui »,
+    « Voici l'actualité », « On va parler de ». On entre dans le vif.
+  SLIDE 2 — QUE S'EST-IL PASSÉ (10-20 s). Les faits, nus et datés.
+  SLIDE 3 — POURQUOI C'EST IMPORTANT (20-32 s). Ce que ça change vraiment.
+  SLIDE 4 — QUI EST CONCERNÉ (32-42 s). Les personnes touchées, concrètement.
+  SLIDE 5 — CE QU'ON SAIT MOINS (42-54 s). Un chiffre, un précédent, un
+    élément de contexte que les autres médias ne donnent pas. C'est CE qui
+    distingue un décryptage d'un résumé : le spectateur doit APPRENDRE.
+  SLIDE 6 — ET APRÈS (54-60 s). La suite attendue, et une question ouverte
+    qui appelle une expérience vécue. Pas « qu'en pensez-vous ? », mais une
+    question à laquelle on a envie de répondre. Ne force jamais le commentaire.
+
+Titre de slide court (≤ 32 caractères) + 1 à 2 points.
 - Le TITRE de slide annonce l'idée ; les POINTS l'expliquent. Le lecteur doit
   comprendre l'information ENTIÈRE en lisant la slide, sans rien deviner.
+- ÉCRIT POUR ÊTRE DIT À VOIX HAUTE : phrases COURTES, peu de virgules, une idée par
+  phrase. Lis-toi à voix haute — si tu manques de souffle, coupe. Aucune répétition
+  d'une slide à l'autre : le spectateur remarque immédiatement qu'on tourne en rond.
+- DISTINGUE toujours ce qui est un FAIT établi, une DÉCLARATION rapportée, une
+  HYPOTHÈSE ou une RUMEUR. Ne présente jamais l'un pour l'autre.
+- AUCUNE opinion, aucune exagération, aucun superlatif non vérifiable.
 - Chaque point : UNE OU DEUX phrases COMPLÈTES et factuelles (90 à 200 caractères),
   avec un chiffre ou un fait précis. ⛔ JAMAIS de phrase tronquée : si tu manques de
   place, dis MOINS de choses mais dis-les EN ENTIER. Une idée à moitié exposée ne
@@ -13858,6 +14042,15 @@ def _traiter_rendez_vous(conn):
                         voice_parts=_carr_narration_slides(carousel),
                         # 🔒 Deux couches : la photo bouge, le texte reste fixe.
                         couches_texte=rendre_couches_texte(_sl, _ac, _ph), photos=_ph)
+                    # 📱 VERSION TIKTOK : 9:16, plus d'une minute, sous-titrée. Déposée en
+                    #    ARTEFACT du run GitHub, avec sa légende prête à coller.
+                    try:
+                        _tk = build_video_tiktok(_pngs, _carr_narration_slides(carousel),
+                                                 photos=_ph, accents=_ac, cat="monde")
+                        if _tk:
+                            deposer_pour_tiktok(_tk, carousel)
+                    except Exception as _e3:
+                        print(f"  ⚠️ Version TikTok indisponible ({str(_e3)[:60]})")
                     if _pngs:
                         cover_paysage = _pngs[0]      # l'aperçu devient la couverture du carrousel
             except Exception as e:
