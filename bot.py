@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.0.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.2.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -2798,7 +2798,11 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
     diagnostiquer un manque d'image sans deviner (page bloquée ? 0 image trouvée ? trop petites ?)."""
     HQ_W, HQ_H = 500, 320
 
-    FLOOR_W, FLOOR_H = 380, 240
+    # 📐 Plancher de définition. Les slides sont en PORTRAIT 1080×1350 : une photo de
+    #    380×240 doit être agrandie ~5,6× pour remplir → bouillie de pixels garantie.
+    #    640×360 reste atteignable par la quasi-totalité des photos de presse tout en
+    #    écartant les vignettes qui ne peuvent QUE pixelliser.
+    FLOOR_W, FLOOR_H = 640, 360
     best_raw, best_px = None, 0
     img_urls = fetch_article_images(article_url) if article_url else []
     if article_url and not img_urls:
@@ -2820,7 +2824,11 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
         px = w * h
         if px > best_px:
             best_raw, best_px = raw, px
-        if best_px >= 1280 * 720:
+        # ⛔ On ne s'arrête QU'À une définition réellement suffisante. L'ancien seuil
+        #    (1280×720) faisait retenir la première image venue : en portrait elle
+        #    devait encore être agrandie ~1,9×, d'où les pixels visibles. On continue
+        #    donc de chercher plus grand tant qu'on n'a pas du vrai Full HD.
+        if best_px >= 1920 * 1080:
             break
     if best_raw:
         return best_raw, True
@@ -5609,7 +5617,7 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
 #    requêtes par jour. Les deux s'enchaînent — si l'un est fermé sur le compte,
 #    l'autre prend le relais sans que le décryptage perde sa voix.
 TTS_MODEL = os.environ.get("TTS_MODEL", "gemini-3.1-flash-tts")
-TTS_MODELES_SECOURS = os.environ.get("TTS_MODELES_SECOURS", "gemini-2.5-flash-preview-tts")
+TTS_MODELES_SECOURS = os.environ.get("TTS_MODELES_SECOURS", "gemini-2.5-flash-preview-tts,gemini-2.5-pro-preview-tts")
 TTS_VOICE = os.environ.get("TTS_VOICE", "Kore")
 _MUSIC_DIRS = ("music", "assets/music", ".")
 
@@ -5712,6 +5720,27 @@ def _gemini_tts(texte, wav_out):
         if rr.returncode == 0 and os.path.exists(wav_out) and os.path.getsize(wav_out) > 2000:
             print(f"  🔊 Voix de synthèse générée ({TTS_VOICE})")
             return wav_out
+    except RuntimeError as e:
+        # 🔁 « modèle introuvable » (404) ou « quota épuisé » : ce modèle-là est HS pour la
+        #    journée. On le RETIRE de la rotation et on retente aussitôt avec le SUIVANT de la
+        #    chaîne. Sans ça, le même nom mort était réessayé sans fin et le décryptage sortait
+        #    toujours muet (défaut vécu : gemini-3.1-flash-tts introuvable, jamais de repli vers
+        #    gemini-2.5-flash-preview-tts).
+        try:
+            _MODELE_EPUISE[_mtts] = _now_paris().strftime("%Y-%m-%d")
+        except Exception:
+            pass
+        _low = str(e).lower()
+        if "introuvable" in _low or "quota" in _low:
+            _jt2 = _now_paris().strftime("%Y-%m-%d")
+            _reste = [m for m in ([TTS_MODEL] + [x.strip() for x in
+                       str(TTS_MODELES_SECOURS).split(",") if x.strip()])
+                      if _MODELE_EPUISE.get(m) != _jt2]
+            if _reste:
+                if "introuvable" in _low:
+                    print(f"  ⚠️ Voix : modèle « {_mtts} » introuvable → repli sur « {_reste[0]} »")
+                return _gemini_tts(texte, wav_out)
+        print(f"  ⚠️ Voix de synthèse indisponible ({str(e)[:70]}) → vidéo sans voix")
     except Exception as e:
         print(f"  ⚠️ Voix de synthèse indisponible ({str(e)[:70]}) → vidéo sans voix")
     return None
@@ -5784,6 +5813,123 @@ def _melange_voix_musique(voix_wav, musique, sortie, duree, voix_db=3.0, musique
 #  du modèle (tailles, couleurs, marges, dégradés) sont reproduites fidèlement.
 # ════════════════════════════════════════════════════════════════════════════════
 CARR_W, CARR_H = 1080, 1350
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 🎛️ HUD — éléments graphiques détourés (dossier `hud/`, comme `pills/` et `fonts/`)
+#    Chaque élément est un PNG à fond TRANSPARENT préparé une fois pour toutes. Le bot
+#    ne fait que CHOISIR et POSER : le choix est déterministe (mots-clés du contenu),
+#    donc gratuit, reproductible et testable — jamais un appel modèle de plus.
+#    🛡️ Si le dossier manque, tout est silencieusement ignoré : la slide sort comme avant.
+# ──────────────────────────────────────────────────────────────────────────────
+_HUD_DIRS  = ("hud", "assets/hud", ".")
+_HUD_CACHE = {}
+
+def _hud(nom, hauteur=None, largeur=None):
+    """Charge l'élément HUD `nom` (RGBA) à la taille voulue, ou None. Jamais d'erreur."""
+    try:
+        src = _HUD_CACHE.get(nom)
+        if src is None:
+            for d in _HUD_DIRS:
+                fp = os.path.join(d, nom + ".png")
+                if os.path.exists(fp):
+                    src = Image.open(fp).convert("RGBA")
+                    _HUD_CACHE[nom] = src
+                    break
+        if src is None:
+            return None
+        w, h = src.size
+        if hauteur:
+            return src.resize((max(1, int(hauteur * w / h)), int(hauteur)), Image.LANCZOS)
+        if largeur:
+            return src.resize((int(largeur), max(1, int(largeur * h / w))), Image.LANCZOS)
+        return src
+    except Exception:
+        return None
+
+# Thème → icône. L'ORDRE compte : le plus spécifique d'abord (un incendie parle de
+# pompiers ET de sécurité — c'est « incendie » qui doit gagner).
+_HUD_THEMES = (
+    ("incendie",      r"incendie|feux? de forêt|feux? de foret|flammes|pompier|brûl|brul"),
+    ("train",         r"\btrains?\b|sncf|tgv|\brer\b|gare[s ]|\bter\b|métro|metro|ferroviaire|rail"),
+    ("avion",         r"\bavions?\b|aéroport|aeroport|aérien|aerien|boeing|airbus|atterriss|décollage"),
+    ("voiture",       r"voitures?|automobile|autoroute|conducteur|permis de conduire|péage|peage|routier"),
+    ("sante",         r"santé|sante|hôpital|hopital|médecin|medecin|virus|épidémie|epidemie|vaccin|"
+                      r"maladie|soignant|patient|cancer|urgences"),
+    ("education",     r"école|ecole|collège|college|lycée|lycee|université|universite|étudiant|"
+                      r"etudiant|élèves?|eleves?|enseignant|professeur|baccalauréat"),
+    ("environnement", r"climat|environnement|écologi|ecologi|pollution|biodiversité|biodiversite|"
+                      r"canicule|sécheresse|secheresse|réchauffement|rechauffement|émissions? de co2"),
+    ("justice",       r"justice|procès|proces|tribunal|\bjuge\b|magistrat|parquet|condamn|"
+                      r"garde à vue|mise en examen|réquisitoire|avocat"),
+    ("securite",      r"police|gendarm|attentat|terrorist|armée|armee|militaire|\botan\b|"
+                      r"sécurité|securite|surveillance|soldat"),
+    ("institution",   r"assemblée|assemblee|\bsénat\b|\bsenat\b|gouvernement|ministre|élysée|elysee|"
+                      r"matignon|préfe|prefe|municipal|\bdécret\b|decret|motion de censure|député"),
+    ("euro",          r"€|euros?\b|budget|déficit|deficit|impôt|impot|\btaxe|salaire|inflation|"
+                      r"\bdette\b|milliards?|pouvoir d'achat|retraite"),
+    ("dollar",        r"dollars?\b|wall street|nasdaq|\bbourse\b|marchés financiers"),
+)
+
+def _hud_theme(texte):
+    """Icône thématique correspondant au CONTENU, ou None si rien ne correspond
+    clairement — mieux vaut aucune icône qu'une icône à côté du sujet."""
+    t = str(texte or "").lower()
+    for nom, rx in _HUD_THEMES:
+        if re.search(rx, t):
+            return "theme_" + nom
+    return None
+
+def _hud_panneau(texte):
+    """Motif central pour combler le GRAND VIDE d'une slide sans photo.
+
+    ⚠️ Règle éditoriale : un décor ne doit RIEN affirmer. Les panneaux graphique et
+    carte de France sont volontairement écartés — des barres arbitraires se lisent
+    comme des données, et le point sur la carte comme un lieu précis. On ne garde que
+    du décor NEUTRE : planisphère (sans repère) à l'international, sinon un anneau
+    abstrait qui structure la page sans rien prétendre."""
+    t = str(texte or "").lower()
+    if re.search(r"\bmonde\b|mondial|international|planète|planete|étranger|etranger|"
+                 r"\bonu\b|europe|états-unis|etats-unis|chine|russie|ukraine", t):
+        return "panneau_monde"
+    return "cercle_rose"
+
+def _hud_habiller(img, slide, avec_photo=False):
+    """Pose les éléments HUD sur une slide de décryptage, choisis SELON SON CONTENU.
+    Uniquement dans des zones libres de la maquette (coin haut-droit, bande centrale
+    vide). 🛡️ Totalement silencieux en cas de souci : la slide reste publiable."""
+    try:
+        kind = str(slide.get("kind", "info"))
+        txt = " ".join([" ".join(slide.get("titleLines") or []),
+                        " ".join(slide.get("paras") or []),
+                        str(slide.get("category") or "")])
+        if kind in ("cover", "info"):
+            # ① Icône thématique — coin haut-droit, zone toujours libre
+            nom = _hud_theme(txt)
+            if nom:
+                ic = _hud(nom, hauteur=104 if kind == "cover" else 86)
+                if ic:
+                    img.alpha_composite(ic, (CARR_W - 54 - ic.size[0], 44))
+            # ② Panneau central — SEULEMENT sans photo : c'est ce vide-là qui faisait
+            #    « premier plan moche ». Avec une photo, on ne recouvre rien.
+            if not avec_photo:
+                pan = _hud_panneau(txt)
+                if pan:
+                    p = _hud(pan, largeur=int(CARR_W * 0.50))
+                    if p:
+                        img.alpha_composite(p, ((CARR_W - p.size[0]) // 2, int(CARR_H * 0.26)))
+            # ③ Bandeau de rôle, sous l'en-tête (zone libre) : un repère de lecture
+            if kind == "info" and re.search(r"\d", txt):
+                b = _hud("bandeau_point_cle", hauteur=58)
+                if b:
+                    img.alpha_composite(b, (54, 150))
+        elif kind == "cta":
+            c = _hud("cta_sabonner", largeur=int(CARR_W * 0.62))
+            if c:
+                img.alpha_composite(c, ((CARR_W - c.size[0]) // 2, 150))
+    except Exception:
+        pass
+    return img
+
 CARR_ACCENT    = (185, 166, 230)      # #b9a6e6 — surlignage lavande
 CARR_HL_TEXTE  = (43, 34, 71)         # #2b2247 — texte sur surlignage
 CARR_STROKE    = (25, 20, 38)         # #191426 — contour des titres
@@ -6530,6 +6676,62 @@ def legende_tiktok(carousel):
     return "\n".join(lignes)
 
 
+def _mail_tiktok(chemin_video, legende, sujet=""):
+    """Envoie la vidéo TikTok par courriel, prête à télécharger depuis le téléphone.
+
+    📎 La pièce jointe passe si le fichier reste sous la limite Gmail (25 Mo — marge
+    prise à 20). Au-delà, on n'échoue pas : on envoie la LÉGENDE et le lien direct
+    vers l'artefact du run, téléchargeable 7 jours.
+    🛡️ Jamais bloquant : un envoi raté ne doit pas faire échouer la publication."""
+    if not (GMAIL_ADDRESS and GMAIL_APP_PASS and EMAIL_TO):
+        print("  ✉️ Envoi TikTok ignoré (identifiants Gmail absents)")
+        return False
+    try:
+        taille = os.path.getsize(chemin_video) / 1e6
+        depot = os.environ.get("GITHUB_REPOSITORY", "hugotady2003-eng/my-bot")
+        run = os.environ.get("GITHUB_RUN_ID", "")
+        lien = f"https://github.com/{depot}/actions/runs/{run}" if run else ""
+        msg = MIMEMultipart("mixed")
+        msg["Subject"] = (f"🎬 Pulse TikTok — {sujet[:60]}" if sujet
+                          else "🎬 Pulse — vidéo TikTok du jour")
+        msg["From"], msg["To"] = GMAIL_ADDRESS, EMAIL_TO
+        corps = [
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+            "  P U L S E  ·  Version TikTok du décryptage",
+            f"  {_now_paris().strftime('%d/%m/%Y · %H:%M')}",
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", "",
+            f"📦 Fichier : {os.path.basename(chemin_video)} ({taille:.1f} Mo)", "",
+        ]
+        joindre = taille <= 20
+        if not joindre:
+            corps += ["⚠️ Vidéo trop lourde pour être jointe à un mail.",
+                      "   Télécharge-la depuis l'artefact « tiktok » du run :",
+                      f"   {lien}" if lien else "   (page Actions du dépôt)", ""]
+        corps += ["─────────────────────────────────────────",
+                  "  LÉGENDE — à compléter avant publication",
+                  "─────────────────────────────────────────", "", legende or "", ""]
+        msg.attach(MIMEText("\n".join(corps), "plain", "utf-8"))
+        if joindre:
+            from email.mime.base import MIMEBase
+            from email import encoders as _enc
+            with open(chemin_video, "rb") as f:
+                part = MIMEBase("video", "mp4")
+                part.set_payload(f.read())
+            _enc.encode_base64(part)
+            part.add_header("Content-Disposition", "attachment",
+                            filename=os.path.basename(chemin_video))
+            msg.attach(part)
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=180) as srv:
+            srv.login(GMAIL_ADDRESS, GMAIL_APP_PASS)
+            srv.sendmail(GMAIL_ADDRESS, EMAIL_TO, msg.as_string())
+        print(f"  ✉️ Vidéo TikTok envoyée par mail "
+              f"({'pièce jointe' if joindre else 'lien de téléchargement'})")
+        return True
+    except Exception as e:
+        print(f"  ⚠️ Envoi mail TikTok impossible ({str(e)[:70]}) → artefact GitHub disponible")
+        return False
+
+
 def deposer_pour_tiktok(chemin_video, carousel):
     """Dépose la vidéo et sa légende là où tu pourras les récupérer.
 
@@ -6549,6 +6751,10 @@ def deposer_pour_tiktok(chemin_video, carousel):
         taille = os.path.getsize(dest) / 1e6
         print(f"  📥 Version TikTok déposée : {dest} ({taille:.1f} Mo)")
         print(f"  📝 Légende à compléter    : {txt}")
+        # ✉️ Envoi par mail : le dépôt en artefact reste le filet de sécurité, mais
+        #    l'objectif est de recevoir la vidéo directement sur le téléphone.
+        _mail_tiktok(dest, legende_tiktok(carousel),
+                     str(carousel.get("cover_title") or carousel.get("sujet") or ""))
         return dest
     except Exception as e:
         print(f"  ⚠️ Dépôt TikTok impossible ({str(e)[:60]})")
@@ -6801,10 +7007,10 @@ def monter_video_plans(plans, sortie, fps=25, W=1080, H=1350, couches=None,
                 premiere = im.copy()
                 if precedent is not None:
                     for f_ in _fondu(precedent, premiere, n_fondu):
-                        f_.save(f"{d}/f_{k:05d}.jpg", quality=90); k += 1
+                        f_.save(f"{d}/f_{k:05d}.jpg", quality=96, subsampling=0); k += 1
             if idx2 < saut:
                 continue               # ces images ont servi au fondu
-            im.save(f"{d}/f_{k:05d}.jpg", quality=90); k += 1
+            im.save(f"{d}/f_{k:05d}.jpg", quality=96, subsampling=0); k += 1
             derniere = im
         # 🔍 CONTRÔLE : chaque pop-up prévu doit avoir été RÉELLEMENT affiché. Un
         #    pop-up qui n'apparaît jamais laisse un plan muet — le spectateur passe.
@@ -6829,7 +7035,7 @@ def monter_video_plans(plans, sortie, fps=25, W=1080, H=1350, couches=None,
         return None
     r = _sp.run([ff, "-y", "-loglevel", "error", "-framerate", str(fps),
                  "-i", f"{d}/f_%05d.jpg", "-c:v", "libx264", "-pix_fmt", "yuv420p",
-                 "-preset", "medium", "-crf", "20", "-movflags", "+faststart", muet],
+                 "-preset", "medium", "-crf", "17", "-movflags", "+faststart", muet],
                 capture_output=True)
     if r.returncode != 0 or not _os.path.exists(muet):
         print(f"  ⚠️ Montage impossible (ffmpeg {r.returncode})")
@@ -7533,6 +7739,8 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=(185, 166, 230),
 
         if not sans_photo:
             img = _carr_trame(img)          # texture de trame sur l'ensemble du visuel
+        # 🎛️ Habillage HUD : posé EN DERNIER pour rester net (la trame ne le voile pas)
+        img = _hud_habiller(img, slide, avec_photo=raw_photo is not None)
         buf = _io.BytesIO()
         # ⚠️ En mode sans_photo, la TRANSPARENCE doit survivre : convertir en RGB
         #    remplirait le fond de noir et la couche serait inutilisable.
@@ -7763,6 +7971,23 @@ def recent_thread_topics(conn, days=7, limit=5):
     except Exception:
         return []
 
+def _decrypt_dedup(cover_title, slides):
+    """🛡️ Retire les slides de décryptage qui RÉPÈTENT le plan précédent (la couverture
+    comprise). Même mesure que verifier_decryptage_tiktok — chevauchement des mots
+    significatifs — mais appliquée à la SOURCE : protège X ET TikTok, pas seulement le TikTok.
+    Renvoie la liste nettoyée (parfois plus courte : mieux vaut 3 plans distincts que 5 qui
+    tournent en rond)."""
+    garde, prev = [], _sig_words(cover_title or "")
+    for i, s in enumerate(slides, start=1):
+        cur = _sig_words((s.get("titre", "") + " " + " ".join(s.get("points") or [])))
+        if prev and cur and len(prev & cur) >= max(3, int(min(len(prev), len(cur)) * 0.6)):
+            print(f"  🧹 Décryptage : le plan {i + 1} répète le plan {i} → retiré")
+            continue
+        garde.append(s)
+        prev = cur
+    return garde
+
+
 def gen_carousel(conn):
     """
     Décryptage chiffré : (1) Claude choisit LE sujet de fond du jour,
@@ -7877,7 +8102,7 @@ Chaque slide devient un plan de 10 secondes environ, avec sa narration.
   SLIDE 1 — LE CHOC (0-10 s). Le fait le plus frappant, seul. Un chiffre, une
     conséquence, un fait inattendu. ⛔ JAMAIS « Bonjour », « Aujourd'hui »,
     « Voici l'actualité », « On va parler de ». On entre dans le vif.
-  SLIDE 2 — QUE S'EST-IL PASSÉ (10-20 s). Les faits, nus et datés.
+  SLIDE 2 — QUE S'EST-IL PASSÉ (10-20 s). Le DÉROULÉ : comment et quand. ⛔ N'emploie NI les mêmes mots NI le même fait que la SLIDE 1 — la slide 1 assène le RÉSULTAT le plus frappant, la slide 2 raconte le CHEMIN qui y mène. Si tu n'as qu'un seul fait, apporte ici un DÉTAIL nouveau (lieu, chronologie, acteur en jeu), jamais une reformulation.
   SLIDE 3 — POURQUOI C'EST IMPORTANT (20-32 s). Ce que ça change vraiment.
   SLIDE 4 — QUI EST CONCERNÉ (32-42 s). Les personnes touchées, concrètement.
   SLIDE 5 — CE QU'ON SAIT MOINS (42-54 s). Un chiffre, un précédent, un
@@ -7915,6 +8140,13 @@ Réponds avec ce JSON UNIQUEMENT :
         slides = result.get("slides", [])
         slides = [s for s in slides if s.get("titre") and s.get("points")][:4]
         if len(slides) < 3:
+            return None
+        # 🛡️ Anti-répétition à la SOURCE : le décryptage tournait en rond (deux plans
+        #    d'ouverture disant le MÊME fait autrement). verifier_decryptage_tiktok le
+        #    repérait mais ne gardait QUE le TikTok — la version X partait avec la redite.
+        slides = _decrypt_dedup(result.get("cover_title") or pick.get("cover_title") or "", slides)
+        if len(slides) < 3:
+            print("  🚫 Décryptage trop répétitif (<3 plans distincts après nettoyage) → ignoré")
             return None
         _out = {
             "sujet":       pick.get("sujet", "Décryptage")[:40],
