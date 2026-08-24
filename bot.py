@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.2.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.5.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -2787,6 +2787,54 @@ def fetch_article_images(article_url, max_imgs=8):
             break
     return out
 
+def _essayer_version_hd(img_url, dim_actuelle):
+    """Tente d'obtenir la MÊME photo en plus défini.
+
+    Beaucoup de sites de presse servent leurs images via une URL paramétrée
+    (`?w=640`, `/640x360/`, `w_800`…). Demander une largeur supérieure renvoie
+    souvent l'original, bien plus net — c'est le gain de qualité le moins cher qui
+    existe : aucune autre photo à chercher, juste la bonne taille de la même.
+
+    🛡️ Prudence : on ne garde le résultat QUE s'il se décode ET qu'il est réellement
+    plus grand. Au pire on repart avec l'image d'origine, sans rien casser.
+    Renvoie (octets, (w, h)) ou (None, None)."""
+    if not img_url or not dim_actuelle or not dim_actuelle[0]:
+        return None, None
+    w0, h0 = dim_actuelle
+    if w0 >= 1600 and h0 >= 1200:
+        return None, None                      # déjà largement suffisant
+    cands, u = [], str(img_url)
+    try:
+        c = re.sub(r"([?&](?:w|width|maxwidth|resize)=)\d{2,4}", r"\g<1>1600", u, flags=re.I)
+        if c != u:
+            cands.append(c)
+        c = re.sub(r"/(\d{3,4})x(\d{3,4})/", "/1600x1200/", u)
+        if c != u:
+            cands.append(c)
+        c = re.sub(r"(?<![a-z])w_(\d{3,4})", "w_1600", u)      # Cloudinary / imgix
+        if c != u:
+            cands.append(c)
+        c = re.sub(r"-\d{3,4}x\d{3,4}(\.(?:jpe?g|png|webp))", r"\1", u, flags=re.I)
+        if c != u:
+            cands.append(c)                     # WordPress : l'original sans suffixe
+    except Exception:
+        return None, None
+    for cand in cands[:2]:                      # 2 essais maximum : on reste économe
+        raw = fetch_img(cand)
+        if not raw:
+            continue
+        try:
+            from PIL import Image as _I
+            import io as _io
+            w, h = _I.open(_io.BytesIO(raw)).size
+        except Exception:
+            continue
+        if w > w0 and h > h0:
+            print(f"  ⬆️ Photo obtenue en plus grand : {w0}×{h0} → {w}×{h}")
+            return raw, (w, h)
+    return None, None
+
+
 def get_best_image(article_url, photo_url, person, image_query, category, allow_stock=False):
     """Choisit la MEILLEURE VRAIE photo en rapport avec l'article. Ordre :
     1. Toutes les images de l'article (og:image + grandes <img>), la plus grande et nette d'abord
@@ -2803,7 +2851,11 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
     #    640×360 reste atteignable par la quasi-totalité des photos de presse tout en
     #    écartant les vignettes qui ne peuvent QUE pixelliser.
     FLOOR_W, FLOOR_H = 640, 360
-    best_raw, best_px = None, 0
+    # 🎯 On ne classe PLUS par nombre de pixels. Une 2000×900 a plus de pixels qu'une
+    #    1100×1500, mais en portrait la première doit être agrandie 1,5× quand la
+    #    seconde n'a besoin de RIEN. Le bon critère est donc l'AGRANDISSEMENT requis
+    #    pour remplir 1080×1350 ; à agrandissement égal, la plus définie gagne.
+    best_raw, best_note, best_dim, best_url = None, None, (0, 0), None
     img_urls = fetch_article_images(article_url) if article_url else []
     if article_url and not img_urls:
         print(f"  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)")
@@ -2821,16 +2873,25 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
         if w < FLOOR_W or h < FLOOR_H:
             rejected_small += 1
             continue
-        px = w * h
-        if px > best_px:
-            best_raw, best_px = raw, px
-        # ⛔ On ne s'arrête QU'À une définition réellement suffisante. L'ancien seuil
-        #    (1280×720) faisait retenir la première image venue : en portrait elle
-        #    devait encore être agrandie ~1,9×, d'où les pixels visibles. On continue
-        #    donc de chercher plus grand tant qu'on n'a pas du vrai Full HD.
-        if best_px >= 1920 * 1080:
+        agrandissement = max(1080.0 / w, 1350.0 / h)
+        note = (max(agrandissement, 1.0), -(w * h))
+        if best_note is None or note < best_note:
+            best_raw, best_note, best_dim, best_url = raw, note, (w, h), img_url
+        # ⛔ On s'arrête seulement sur une photo VRAIMENT suffisante : aucune
+        #    déformation nécessaire ET au moins du Full HD. Sinon on continue à
+        #    chercher mieux plutôt que de se contenter de la première venue.
+        if note[0] <= 1.0 and w * h >= 1920 * 1080:
             break
     if best_raw:
+        # 🔍 Dernière tentative de montée en définition, sur la SEULE image retenue :
+        #    beaucoup de sites servent la même photo en plus grand via un paramètre
+        #    d'URL. On ne garde le résultat que s'il est réellement plus défini.
+        hd, dim = _essayer_version_hd(best_url, best_dim)
+        if hd:
+            best_raw, best_dim = hd, dim
+        if best_dim[0]:
+            print(f"  🖼️ Photo retenue : {best_dim[0]}×{best_dim[1]}"
+                  f" (agrandissement ×{max(1080.0/best_dim[0], 1350.0/best_dim[1]):.2f})")
         return best_raw, True
     if img_urls and rejected_small == len(img_urls):
         print(f"  🖼️ {len(img_urls)} image(s) trouvée(s) mais toutes trop petites (<{FLOOR_W}×{FLOOR_H})")
@@ -3332,7 +3393,7 @@ def _overlay_animated_pill(video_path, category, W, H, tmpdir, until=None):
              f"[1:v]scale={pw}:{ph}:flags=lanczos,tpad=stop_mode=clone:stop_duration=120[p];"
              f"[0:v][p]overlay={x}:{y}:shortest=1{enable}",
              "-map", "0:a?", "-c:a", "copy",
-             "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+             "-c:v", "libx264", "-preset", "medium", "-crf", "17",
              "-pix_fmt", "yuv420p", "-movflags", "+faststart", out],
             capture_output=True, timeout=300)
         if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 10_000:
@@ -3379,7 +3440,7 @@ def _overlay_animated_logo(video_path, W, H, tmpdir, x, y, target_h, until=None)
              f"[1:v]scale={lw}:{lh}:flags=lanczos,tpad=stop_mode=clone:stop_duration=120[l];"
              f"[0:v][l]overlay={int(x)}:{int(y)}:shortest=1{enable}",
              "-map", "0:a?", "-c:a", "copy",
-             "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+             "-c:v", "libx264", "-preset", "medium", "-crf", "17",
              "-pix_fmt", "yuv420p", "-movflags", "+faststart", out],
             capture_output=True, timeout=300)
         if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 10_000:
@@ -3891,7 +3952,7 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
         if as_image:
             return img.convert('RGB')
         buf = io.BytesIO()
-        img.convert('RGB').save(buf, format='JPEG', quality=95, optimize=True, progressive=True)
+        img.convert('RGB').save(buf, format='JPEG', quality=96, subsampling=0, optimize=True, progressive=True)
         return buf.getvalue(), f"pulse-{category}-{now.strftime('%d%m%Y-%H%M')}.jpg"
 
     except Exception as e:
@@ -4418,7 +4479,7 @@ def post_to_instagram(caption, png_bytes=None, video_path=None):
         import io as _io
         im = Image.open(_io.BytesIO(png_bytes)).convert("RGB")
         buf = _io.BytesIO()
-        im.save(buf, format="JPEG", quality=92, optimize=True)
+        im.save(buf, format="JPEG", quality=96, subsampling=0, optimize=True)
         png_bytes = buf.getvalue()
     except Exception:
         pass  # en cas de souci, on envoie l'image telle quelle
@@ -5554,7 +5615,7 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
         proc = subprocess.Popen(
             [ffmpeg_bin, "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
              "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-             "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+             "-c:v", "libx264", "-preset", "veryfast", "-crf", "17",
              "-pix_fmt", "yuv420p", "-movflags", "+faststart", raw_mp4],
             stdin=subprocess.PIPE)
 
@@ -5601,7 +5662,7 @@ def build_decrypt_video(cover_png, slides_data, sujet="", bg_photo=None, accent=
             else:
                 _decrypt_soundtrack(wav, total_dur, sujet)
             r = subprocess.run([ffmpeg_bin, "-y", "-loglevel", "error", "-i", raw_mp4, "-i", wav,
-                                "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", out_mp4],
+                                "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out_mp4],
                                capture_output=True)
             if r.returncode != 0 or not os.path.exists(out_mp4):
                 out_mp4 = raw_mp4      # vidéo muette plutôt que pas de vidéo
@@ -6141,7 +6202,7 @@ def _nettoyer_points(points):
 
 
 
-def carrousel_decryptage(carousel, raw_photo=None, categorie="monde"):
+def carrousel_decryptage(carousel, raw_photo=None, categorie="monde", article_url=None):
     """Transforme le décryptage du jour en carrousel : couverture → une info par
     slide → appel à s'abonner. Le lavande d'origine est conservé (demande explicite)."""
     slides = [{"kind": "cover",
@@ -6158,7 +6219,11 @@ def carrousel_decryptage(carousel, raw_photo=None, categorie="monde"):
                    "ctaSub": "L'info vérifiée, sans détour",
                    "ctaBig": "Abonnez-vous"})
     n = len(slides)
-    return _carr_numerote(slides), [CARR_ACCENT] * n, [raw_photo] * n
+    # 🖼️ Une photo DIFFÉRENTE par slide quand la page de l'article en offre
+    #    plusieurs. La même image répétée six fois donnait un diaporama qui
+    #    piétine. À défaut, on recycle — jamais de slide sans image.
+    photos = photos_decryptage(article_url, raw_photo, n) if article_url else [raw_photo] * n
+    return _carr_numerote(slides), [CARR_ACCENT] * n, photos
 
 
 def rendre_couches_texte(slides, accents, photos, watermark="@PULSEactus", maxi=None):
@@ -6554,20 +6619,26 @@ def punchs_visuels(narration, maxi=2):
     return out[:maxi]
 
 
-def _rendre_popup(texte, W, H, accent=None, avancement=1.0, place=0):
+def _rendre_popup(texte, W, H, accent=None, avancement=1.0, place=0, fondu_sortie=0.0):
     """Rend UN pop-up animé, sur fond transparent.
 
     `avancement` : 0 → invisible, 1 → posé. L'élément grandit et se stabilise —
     une apparition brutale se remarque, une apparition élastique se regarde.
-    `place` : 0 haut, 1 milieu-haut, 2 milieu-bas — pour ne pas les superposer."""
+    `place` : rang du pop-up. Il est RAMENÉ sur 3 hauteurs, toutes situées AU-DESSUS
+    de la zone de texte (le voile du bas commence à 58 % de la hauteur). Sans ce
+    garde-fou, le 3ᵉ pop-up et les suivants descendaient dans le titre et tout se
+    chevauchait en fin de plan."""
     import io as _io6
     t = str(texte or "").strip()
     if not t:
         return None
     a = max(0.0, min(1.0, float(avancement)))
+    sortie = max(0.0, min(1.0, float(fondu_sortie)))   # 0 = présent, 1 = effacé
     # dépassement élastique : l'élément grossit un peu trop, puis revient
     ech = 0.6 + 0.55 * a if a < 0.75 else 1.02 - 0.02 * ((a - 0.75) / 0.25)
-    opac = min(1.0, a * 2.4)
+    opac = min(1.0, a * 2.4) * (1.0 - sortie)
+    if opac <= 0.01:
+        return None
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
     acc = tuple(accent or CARR_ACCENT)
@@ -6576,7 +6647,7 @@ def _rendre_popup(texte, W, H, accent=None, avancement=1.0, place=0):
     bb = d.textbbox((0, 0), t, font=f)
     lw, lh = bb[2] - bb[0], bb[3] - bb[1]
     cx = W // 2
-    cy = int(H * (0.30 + 0.13 * place))
+    cy = int(H * (0.24 + 0.11 * (int(place) % 3)))   # 24 %, 35 %, 46 % : au-dessus du texte
     pad = int(30 * ech)
     d.rounded_rectangle([cx - lw // 2 - pad, cy - lh // 2 - pad,
                          cx + lw // 2 + pad, cy + lh // 2 + pad],
@@ -6914,9 +6985,9 @@ def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde")
         print(f"  ⚠️ Ambiance sonore indisponible ({str(_e)[:50]})")
     cmd = [ff, "-y", "-loglevel", "error", "-i", muet]
     if piste and _os.path.exists(str(piste)):
-        cmd += ["-i", str(piste), "-c:a", "aac", "-b:a", "128k", "-shortest"]
+        cmd += ["-i", str(piste), "-c:a", "aac", "-b:a", "192k", "-shortest"]
     cmd += ["-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium",
-            "-crf", "21", "-movflags", "+faststart", final]
+            "-crf", "17", "-movflags", "+faststart", final]
     r = _sp.run(cmd, capture_output=True, timeout=900)
     if r.returncode != 0 or not _os.path.exists(final):
         print(f"  ⚠️ Version TikTok impossible (ffmpeg {r.returncode})")
@@ -6987,13 +7058,22 @@ def monter_video_plans(plans, sortie, fps=25, W=1080, H=1350, couches=None,
                 _rgba, _vus = None, set()
                 for _ip, _txt in enumerate(_textes):
                     _debut = 0.22 + _ip * 0.30
-                    _av = (idx2 / _n_img - _debut) / 0.16
+                    _t = idx2 / _n_img                       # avancement dans le plan
+                    _av = (_t - _debut) / 0.16
                     if _av <= 0:
                         continue
-                    _cle = (_ip, min(1.0, round(max(0.0, _av), 1)))
+                    # ⏳ DURÉE DE VIE : un pop-up s'efface après son temps d'écran au
+                    #    lieu de rester jusqu'au bout. Sans cela, ils étaient TOUS
+                    #    affichés en même temps en fin de plan et se chevauchaient
+                    #    avec le texte — c'est ce qui rendait la fin illisible.
+                    _sortie = max(0.0, min(1.0, (_t - (_debut + 0.30)) / 0.10))
+                    if _sortie >= 1.0:
+                        continue
+                    _cle = (_ip, min(1.0, round(max(0.0, _av), 1)), round(_sortie, 1))
                     if _cle not in _cache_pp:
                         _cache_pp[_cle] = _rendre_popup(_txt, W, H, _acc_pp,
-                                                        avancement=_cle[1], place=_ip)
+                                                        avancement=_cle[1], place=_ip,
+                                                        fondu_sortie=_cle[2])
                     if _cache_pp[_cle]:
                         _vus.add(_ip)
                         if _rgba is None:
@@ -7078,8 +7158,12 @@ def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=
                 # ⛔ AUCUN PLAFOND sur une slide narrée : la borner tronquait l'affichage
                 #    et la voix débordait sur la slide suivante — le décalage s'accumulait
                 #    ensuite jusqu'à la fin de la vidéo (défaut vécu).
-                durees.append(max(2.5, d + 0.7) if d > 0
-                              else _carr_duree_slide(slides[i] if i < len(slides) else {}))
+                # ⏱️ La slide dure le PLUS LONG des deux : le temps de lire le texte
+                #    ET le temps que la voix finisse. Se caler sur la seule voix faisait
+                #    défiler le texte trop vite ; se caler sur la seule lecture faisait
+                #    déborder la voix sur la slide suivante.
+                _lecture = _carr_duree_slide(slides[i] if i < len(slides) else {})
+                durees.append(max(_lecture, d + 0.7) if d > 0 else _lecture)
         if not durees:
             durees = [_carr_duree_slide(slides[i] if i < len(slides) else {})
                       for i in range(len(pngs))]
@@ -7120,7 +7204,7 @@ def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=
             muet = os.path.join(tmpdir, "muet.mp4")
             r = _sp.run([ff, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
                          "-i", liste, "-vf", "fps=25,format=yuv420p",
-                         "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+                         "-c:v", "libx264", "-preset", "medium", "-crf", "17",
                          "-movflags", "+faststart", muet],
                         capture_output=True, timeout=600)
         if not muet or not os.path.exists(muet):
@@ -7167,7 +7251,7 @@ def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=
 
         final = os.path.join(tmpdir, "carrousel.mp4")
         r2 = _sp.run([ff, "-y", "-loglevel", "error", "-i", muet, "-i", son,
-                      "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-shortest",
+                      "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest",
                       "-movflags", "+faststart", final],
                      capture_output=True, timeout=600)
         if r2.returncode == 0 and os.path.exists(final):
@@ -7179,6 +7263,68 @@ def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=
         return None
 
 
+def photos_decryptage(article_url, raw_photo, n=4):
+    """Réunit jusqu'à `n` photos DIFFÉRENTES pour un décryptage.
+
+    La même image sur les six slides donne un diaporama qui piétine. On repart donc
+    des autres images de l'ARTICLE lui-même — même sujet, même reportage — plutôt
+    que d'aller chercher ailleurs.
+
+    🛡️ Trois filtres, parce qu'une page d'article contient aussi des logos, des
+    bandeaux et des vignettes d'articles voisins :
+      • définition minimale (une vignette ne ferait que pixelliser) ;
+      • proportions plausibles pour une photo (on écarte bandeaux et logos) ;
+      • dédoublonnage par empreinte (la même image servie deux fois).
+    Renvoie une liste de `n` éléments : les distinctes d'abord, complétées en
+    recyclant si la page n'en offre pas assez."""
+    vues, photos = set(), []
+    if raw_photo:
+        vues.add(hashlib.md5(raw_photo).hexdigest())
+        photos.append(raw_photo)
+    # 🔗 `article_url` accepte une URL ou une LISTE d'URL : le décryptage puise dans
+    #    TOUS les articles du même fait. Une photo d'un autre média sur le même
+    #    événement est bien plus sûre qu'une image secondaire du bas de page.
+    urls = ([article_url] if isinstance(article_url, str)
+            else [u for u in (article_url or []) if u])
+    try:
+        cand_urls = []
+        for _src in urls:
+            try:
+                cand_urls.extend(fetch_article_images(_src) or [])
+            except Exception:
+                continue
+        for u in cand_urls:
+            if len(photos) >= n:
+                break
+            raw = fetch_img(u)
+            if not raw:
+                continue
+            sig = hashlib.md5(raw).hexdigest()
+            if sig in vues:
+                continue
+            try:
+                from PIL import Image as _I
+                import io as _io
+                w, h = _I.open(_io.BytesIO(raw)).size
+            except Exception:
+                continue
+            if w < 640 or h < 360:
+                continue                       # trop petite : elle pixelliserait
+            ratio = w / float(h)
+            if ratio > 2.6 or ratio < 0.45:
+                continue                       # bandeau ou logo, pas une photo
+            vues.add(sig)
+            photos.append(raw)
+    except Exception:
+        pass
+    if photos:
+        print(f"  🖼️ Décryptage : {len(photos)} photo(s) différente(s) réunie(s)"
+              + ("" if len(photos) >= n else f" (moins que les {n} visées)"))
+    if not photos:
+        return [None] * n
+    return [photos[i % len(photos)] for i in range(n)]
+
+
 def _carr_narration_slides(carousel):
     """Texte à lire POUR CHAQUE SLIDE du décryptage, dans l'ordre du carrousel.
     ⚠️ Les INTERTITRES ne sont PAS lus : ce sont des repères visuels (« Ce qui va
@@ -7187,8 +7333,12 @@ def _carr_narration_slides(carousel):
     Renvoie une liste alignée sur les slides : [couverture, info…, abonnement]."""
     parts = [str(carousel.get("cover_title") or "").strip()]
     for s in (carousel.get("slides") or []):
+        # 🎙️ `voix` = ce qui est RACONTÉ, distinct de ce qui est ÉCRIT. Entendre
+        #    mot pour mot le texte déjà à l'écran est redondant : l'oreille et
+        #    l'œil font le même travail. À défaut, on retombe sur les points.
+        dite = str(s.get("voix") or "").strip()
         pts = [str(p).strip() for p in (s.get("points") or []) if str(p).strip()]
-        parts.append(" ".join(pts))          # les points seulement, jamais le titre
+        parts.append(dite or " ".join(pts))
     parts.append("")                          # slide d'abonnement : rien à lire
     return parts
 
@@ -7628,7 +7778,7 @@ def build_carousel_png(slide, watermark="@PULSEactus", accent=(185, 166, 230),
             _dv = ImageDraw.Draw(_voile)
             for _i in range(int(CARR_H * 0.42)):
                 _y = CARR_H - _i
-                _a = int(236 * (_i / (CARR_H * 0.42)) ** 0.85)
+                _a = int(236 * (1.0 - _i / (CARR_H * 0.42)) ** 0.85)
                 _dv.line([(0, _y), (CARR_W, _y)], fill=(12, 9, 24, _a))
             img.alpha_composite(_voile)
         else:
@@ -8058,16 +8208,35 @@ Réponds avec ce JSON UNIQUEMENT :
                                            cand.get("person"), None, "actu")
             except Exception:
                 raw, real = None, False
-            if raw:
+            if raw and og_bytes is None:
                 art, og_bytes = cand, raw
-                break
+                # ⛔ Plus de `break` : les autres articles restent des sources d'images
+                #    pour le décryptage. Une photo d'un AUTRE média sur le même fait est
+                #    bien plus fiable qu'une image secondaire prise en bas de page.
         # Si aucun des 3 sujets n'a de vraie photo → couverture sur fond DA (géré à la publication),
         # jamais de stock générique hors-sujet.
 
         # ÉTAPE 2 : lire l'article complet (pour les vrais chiffres)
-        article_text = fetch_article_text(art["url"], max_chars=4000)
+        # 📚 On lit les 3 articles retenus, ÉTIQUETÉS par média. Auparavant un seul
+        #    était lu, alors que la consigne affirmait au modèle qu'il disposait de
+        #    plusieurs sources : on lui demandait de croiser ce qu'il n'avait pas.
+        _budget = 4000 if len(valid) <= 1 else 2400
+        _morceaux = []
+        for _a in valid[:3]:
+            try:
+                _t = fetch_article_text(_a["url"], max_chars=_budget)
+            except Exception:
+                _t = ""
+            if len(_t) < 250:
+                _t = f"{_a.get('title','')}. {_a.get('summary','')}"
+            if _t.strip():
+                _morceaux.append(f"[{_a.get('source','?')}] {_a.get('title','')}\n{_t}")
+        article_text = "\n\n———\n\n".join(_morceaux)
         if len(article_text) < 250:
             article_text = f"{art['title']}. {art['summary']}"  # repli si lecture impossible
+        if len(_morceaux) > 1:
+            print(f"  📚 Décryptage nourri par {len(_morceaux)} articles "
+                  f"({', '.join(a.get('source','?') for a in valid[:3])})")
 
         # ÉTAPE 3 : générer les slides chiffrées à partir de l'article
         result = _llm_json(f"""Tu es Pulse, média d'actualité française. Voici un article à décrypter en carrousel pédagogique.
@@ -8102,6 +8271,10 @@ Chaque slide devient un plan de 10 secondes environ, avec sa narration.
   SLIDE 1 — LE CHOC (0-10 s). Le fait le plus frappant, seul. Un chiffre, une
     conséquence, un fait inattendu. ⛔ JAMAIS « Bonjour », « Aujourd'hui »,
     « Voici l'actualité », « On va parler de ». On entre dans le vif.
+  ⚠️ CHAMP "voix" — ce qui sera DIT à voix haute pendant que la slide est à
+  l'écran. Il ne doit JAMAIS répéter les "points" mot pour mot : le spectateur
+  les LIT déjà. La voix apporte le CONTEXTE, la conséquence, ce que le texte
+  ne dit pas — une à deux phrases parlées, naturelles, sans jargon.
   SLIDE 2 — QUE S'EST-IL PASSÉ (10-20 s). Le DÉROULÉ : comment et quand. ⛔ N'emploie NI les mêmes mots NI le même fait que la SLIDE 1 — la slide 1 assène le RÉSULTAT le plus frappant, la slide 2 raconte le CHEMIN qui y mène. Si tu n'as qu'un seul fait, apporte ici un DÉTAIL nouveau (lieu, chronologie, acteur en jeu), jamais une reformulation.
   SLIDE 3 — POURQUOI C'EST IMPORTANT (20-32 s). Ce que ça change vraiment.
   SLIDE 4 — QUI EST CONCERNÉ (32-42 s). Les personnes touchées, concrètement.
@@ -8135,7 +8308,7 @@ Donne aussi "keywords" : 1 à 2 NOMS PROPRES centraux de CET article (entreprise
 pour le hashtag du tweet.
 
 Réponds avec ce JSON UNIQUEMENT :
-{{"cover_title":"<accroche de couverture ≤60 caractères, percutante>","tweet_points":["...","...","..."],"keywords":["..."],"slides":[{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}},{{"titre":"...","points":["...","..."]}}]}}""", max_tokens=1300, task="special")
+{{"cover_title":"<accroche de couverture ≤60 caractères, percutante>","tweet_points":["...","...","..."],"keywords":["..."],"slides":[{{"titre":"...","points":["...","..."],"voix":"..."}},{{"titre":"...","points":["...","..."],"voix":"..."}},{{"titre":"...","points":["...","..."],"voix":"..."}},{{"titre":"...","points":["...","..."],"voix":"..."}}]}}""", max_tokens=1300, task="special")
 
         slides = result.get("slides", [])
         slides = [s for s in slides if s.get("titre") and s.get("points")][:4]
@@ -8149,6 +8322,8 @@ Réponds avec ce JSON UNIQUEMENT :
             print("  🚫 Décryptage trop répétitif (<3 plans distincts après nettoyage) → ignoré")
             return None
         _out = {
+            # 🖼️ Les URL des articles du même fait : le vivier d'images du décryptage.
+            "sources_urls": [a.get("url") for a in valid[:3] if a.get("url")],
             "sujet":       pick.get("sujet", "Décryptage")[:40],
             "cover_title": (result.get("cover_title") or pick.get("cover_title") or art["title"])[:80],
             "image_query": pick.get("image_query", "news france"),
@@ -8436,7 +8611,7 @@ def build_france_match_bg(live, W=1200, H=675):
         place(crest_a, int(W * 0.27))
         place(crest_b, int(W * 0.73))
         buf = io.BytesIO()
-        bg.save(buf, "JPEG", quality=90)
+        bg.save(buf, "JPEG", quality=96, subsampling=0)
         return buf.getvalue()
     except Exception:
         return None
@@ -8690,6 +8865,11 @@ _APRES_DECES = re.compile(
     r"mémorial|commémoration|veillée|recueillement|testament|succession|"
     r"héritage|posthume|rétrospective|cause du décès|autopsie|"
     r"enquête sur la mort|dernières volontés|rend hommage|rendent hommage|"
+    # ⚠️ Vécu : « Laurent Ruquier salue la mémoire de Philippe Bouvard » publié en
+    #    HOMMAGE. Un TIERS qui salue la mémoire du défunt réagit à un décès DÉJÀ
+    #    annoncé : c'est une réaction, pas l'annonce.
+    r"salue la mémoire|saluent la mémoire|salue le souvenir|évoque la mémoire|"
+    r"réagit à|réagissent à|se souvient de|se souviennent de|dernier hommage|"
     # ⚠️ Vécu : « les autorités ont révélé les circonstances entourant la disparition »
     #    publié en HOMMAGE. Révéler les circonstances d'un décès déjà connu est une
     #    SUITE : la personne est morte depuis des jours, Pulse l'a déjà annoncé.
@@ -8717,6 +8897,18 @@ def _suite_de_deces(titre, resume=""):
     suite_forte = re.compile(
         r"\b(?:circonstances|révèl|dévoil|rapport d'autopsie|toxicologie|"
         r"obsèques|funérailles|testament|posthume|expertise)\b", re.IGNORECASE)
+    # 🕊️ HOMMAGE D'UN TIERS : « Mort de X : Y salue la mémoire d'un maître » contient
+    #    une tournure d'annonce (« Mort de »), mais l'ARTICLE porte sur la réaction de
+    #    Y. Le sujet du papier n'est pas le décès : c'est une suite. Ce marqueur doit
+    #    donc l'emporter sur l'annonce, sinon Pulse republie un hommage déjà rendu.
+    tiers = re.compile(
+        r"\b(?:salue|saluent|rend|rendent)\s+(?:un\s+|le\s+|la\s+)?"
+        r"(?:hommage|mémoire|souvenir)"
+        r"|\b(?:lui\s+)?rend(?:ent)?\s+(?:un\s+)?dernier\s+hommage"
+        r"|\bréagi(?:t|ssent)\s+(?:à|au)\b"
+        r"|\bse\s+souvien(?:t|nent)\s+de\b", re.IGNORECASE)
+    if tiers.search(t):
+        return True
     if suite_forte.search(t):
         return True
     annonce = re.compile(
@@ -9400,7 +9592,7 @@ def build_news_slideshow_video(photos, headline, category, source):
         proc = subprocess.Popen(
             [ffmpeg_bin, "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
              "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-             "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+             "-c:v", "libx264", "-preset", "veryfast", "-crf", "17",
              "-pix_fmt", "yuv420p", "-movflags", "+faststart", out_mp4],
             stdin=subprocess.PIPE)
         n = len(prepared)
@@ -9873,7 +10065,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
         out_mp4 = os.path.join(out_dir, "pulse_video.mp4")
         subprocess.run([ffmpeg_bin, "-y", "-loglevel", "error", "-framerate", str(FPS),
                         "-i", f"{out_dir}/f_%03d.png", "-c:v", "libx264", "-preset", "veryfast",
-                        "-threads", "0", "-pix_fmt", "yuv420p", "-crf", "21",
+                        "-threads", "0", "-pix_fmt", "yuv420p", "-crf", "17",
                         "-movflags", "+faststart", out_mp4], check=True, timeout=300)
         for n in range(N):   # libère le disque : on ne garde que le MP4
             try: os.remove(f"{out_dir}/f_{n:03d}.png")
@@ -9892,7 +10084,7 @@ def build_video(kind, data, category, raw_photo, source, urgent=False):
                                    sujet=str(data.get("headline", "") or data.get("name", "")))
             withsnd = os.path.join(out_dir, "pulse_video_snd.mp4")
             r = subprocess.run([ffmpeg_bin, "-y", "-loglevel", "error", "-i", out_mp4, "-i", wav,
-                                "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", withsnd],
+                                "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", withsnd],
                                capture_output=True, timeout=120)
             if r.returncode == 0 and os.path.exists(withsnd):
                 out_mp4 = withsnd
@@ -9967,7 +10159,7 @@ def build_card_video(headline, source, category, raw_photo, photo_url=None, imag
             tag = build_soundtrack(wav, write_dur + hold, category=category, sujet=str(headline or ""))
             snd = f"{tmpdir}/pulse_card_snd.mp4"
             r = subprocess.run([ff, "-y", "-loglevel", "error", "-i", out, "-i", wav,
-                                "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-shortest", snd],
+                                "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", snd],
                                capture_output=True, timeout=120)
             if r.returncode == 0 and os.path.exists(snd):
                 out = snd
@@ -10307,7 +10499,7 @@ def build_recap_card(items, W=1080, H=1350):
             img = _carr_trame(img.convert("RGBA"), force=9)
         except Exception:
             pass
-        img.convert("RGB").save(buf, format="JPEG", quality=95, optimize=True, progressive=True)
+        img.convert("RGB").save(buf, format="JPEG", quality=96, subsampling=0, optimize=True, progressive=True)
         return buf.getvalue()
     except Exception as e:
         print(f"  ⚠️ Récap illustré indisponible ({e}) → carte simple")
@@ -10432,7 +10624,7 @@ def build_list_card(title_main, items, W=1200, H=675, accent=(255, 210, 74)):
         img = _carr_trame(img.convert("RGBA"), force=9)
     except Exception:
         pass
-    buf = io.BytesIO(); img.convert('RGB').save(buf, format="JPEG", quality=95, optimize=True, progressive=True); return buf.getvalue()
+    buf = io.BytesIO(); img.convert('RGB').save(buf, format="JPEG", quality=96, subsampling=0, optimize=True, progressive=True); return buf.getvalue()
 
 def publish_recap(conn):
     """🌙 Récap du soir : les 5 infos qui ont marqué la journée (état FINAL, pas les titres du matin)."""
@@ -13800,7 +13992,7 @@ def build_frise_dossier(dossier, titre_affaire, categorie="france", W=1080, H=13
            fill=(255, 255, 255), anchor="mm")
     img = _carr_trame(img, force=9).convert("RGB")
     buf = _io.BytesIO()
-    img.save(buf, format="JPEG", quality=94, optimize=True, progressive=True)
+    img.save(buf, format="JPEG", quality=96, subsampling=0, optimize=True, progressive=True)
     print(f"  🧵 Frise du dossier produite ({len(etapes)} étapes)")
     return buf.getvalue()
 
@@ -13907,7 +14099,7 @@ def build_carte_lieu(lieu, titre="", categorie="france", W=1080, H=1350):
 
     img = _carr_trame(img.convert("RGBA"), force=9).convert("RGB")
     buf = _io.BytesIO()
-    img.save(buf, format="JPEG", quality=94, optimize=True, progressive=True)
+    img.save(buf, format="JPEG", quality=96, subsampling=0, optimize=True, progressive=True)
     print(f"  🗺️ Carte de localisation produite pour « {nom} »")
     return buf.getvalue()
 
@@ -14265,7 +14457,8 @@ def _traiter_rendez_vous(conn):
             #    L'ancienne vidéo reste le repli si le montage échoue.
             vid_thread = None
             try:
-                _sl, _ac, _ph = carrousel_decryptage(carousel, raw_photo=raw_src, categorie="monde")
+                _sl, _ac, _ph = carrousel_decryptage(carousel, raw_photo=raw_src, categorie="monde",
+                                                     article_url=(carousel.get("sources_urls") or carousel.get("url")))
                 _pngs = rendre_carrousel(_sl, _ac, _ph)
                 if _pngs:
                     _lu = _carr_texte_narration(carousel)
