@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.5.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.7.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -2617,6 +2617,35 @@ def cadrer_intelligemment(ph, W, H, biais_haut=0.38, par_ia=False):
 
     Renvoie (image_recadrée, ok) — `ok` à False signale un cadrage de dernier recours,
     ce qui permet à l'appelant de tenter une AUTRE image."""
+    # 🔍 GARDE ANTI-PIXELLISATION. Remplir un 1080×1350 avec une photo 1200×675 exige
+    #    de la DOUBLER : aucun encodage ne rattrape ça, et c'est ce qui se voyait à
+    #    l'écran. Au-delà de 1,4× d'agrandissement, on renonce à remplir le cadre :
+    #    la photo est montrée ENTIÈRE, à une taille où elle reste nette, sur un fond
+    #    flou tiré d'elle-même. Le flou, lui, masque totalement la pixellisation.
+    try:
+        _sw, _sh = ph.size
+        if max(W / _sw, H / _sh) > 1.4:
+            _ech = min(1.4, max(W / _sw, H / _sh))
+            _fond = ph.resize((max(W, int(_sw * max(W / _sw, H / _sh) + 0.5)),
+                               max(H, int(_sh * max(W / _sw, H / _sh) + 0.5))),
+                              Image.LANCZOS)
+            _fond = _fond.crop((max(0, (_fond.width - W) // 2),
+                                max(0, (_fond.height - H) // 2),
+                                max(0, (_fond.width - W) // 2) + W,
+                                max(0, (_fond.height - H) // 2) + H))
+            _fond = _fond.filter(ImageFilter.GaussianBlur(radius=max(18, W // 34)))
+            _fond = ImageEnhance.Brightness(_fond).enhance(0.72)
+            _av = ph.resize((max(1, int(_sw * _ech)), max(1, int(_sh * _ech))), Image.LANCZOS)
+            if _av.width > W or _av.height > H:
+                _r = min(W / _av.width, H / _av.height)
+                _av = _av.resize((max(1, int(_av.width * _r)), max(1, int(_av.height * _r))),
+                                 Image.LANCZOS)
+            _fond.paste(_av, ((W - _av.width) // 2, int((H - _av.height) * 0.42)))
+            print(f"  🔍 Photo {_sw}×{_sh} trop petite pour remplir : affichée entière "
+                  f"sur fond flou (plutôt qu'agrandie ×{max(W/_sw, H/_sh):.2f})")
+            return _fond.convert("RGB"), True
+    except Exception:
+        pass
     sw, sh = ph.size
     if sw <= 0 or sh <= 0:
         return ph, False
@@ -6893,7 +6922,8 @@ def verifier_decryptage_tiktok(narrations, punchs, duree, W, H, n_plans):
     return defauts
 
 
-def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde"):
+def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde",
+                       voix_slides=None):
     """Produit la version TIKTOK du décryptage : 9:16, plus d'une minute, sous-titrée.
 
     ⚖️ Critères du Creator Rewards que ce montage respecte :
@@ -6923,6 +6953,18 @@ def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde")
     if par_plan > MONTAGE_PLAN_MAX * 2:
         print(f"  ⚠️ {len(pngs)} slides pour {TIKTOK_DUREE_MINI}s : plans trop longs, "
               f"il en faudrait davantage")
+    # 🎙️ Durées calées sur la VOIX quand elle est fournie : chaque plan dure le temps
+    #    de sa narration. Une durée uniforme faisait parler la voix par-dessus le plan
+    #    suivant. `voix_slides` est aligné sur `pngs`.
+    _vx = list(voix_slides or [])
+    _durees_plan = []
+    for _i4 in range(len(pngs)):
+        _w4 = _vx[_i4] if _i4 < len(_vx) else None
+        _d4 = _duree_audio(_w4) if (_w4 and _os.path.exists(_w4)) else 0.0
+        _durees_plan.append(max(MONTAGE_PLAN_MIN, _d4 + 0.6) if _d4 > 0 else par_plan)
+    if sum(_durees_plan) + 3.2 < TIKTOK_DUREE_MINI and _durees_plan:
+        # la minute est un critère d'éligibilité : on étire le dernier plan
+        _durees_plan[-1] += TIKTOK_DUREE_MINI - (sum(_durees_plan) + 3.2)
     plans, popups = [], []
     sens = (0, 2, 1, 3)
     # 🎯 PLAN D'ACCROCHE : les trois premières secondes décident du taux de complétion.
@@ -6945,8 +6987,13 @@ def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde")
         print(f"  ⚠️ Plan d'accroche indisponible ({str(_e)[:50]})")
     for i2, p in enumerate(pngs):
         _a = acc[i2] if i2 < len(acc) else CARR_ACCENT
-        plans.append((_vers_vertical(p, W, H, _a), par_plan, sens[i2 % 4],
-                      False, True))
+        # 🔒 4ᵉ valeur = True : ce plan PORTE DU TEXTE incrusté. Sans ce drapeau, le
+        #    montage lui appliquait des panoramiques : les mots sortaient du cadre et
+        #    une partie du texte devenait illisible. Déclaré ainsi, le mouvement est
+        #    limité à un zoom doux et centré, qui n'ampute jamais la lecture.
+        plans.append((_vers_vertical(p, W, H, _a),
+                      _durees_plan[i2] if i2 < len(_durees_plan) else par_plan,
+                      sens[i2 % 4], True, True))
         # 📌 Ce qui s'affiche N'EST PAS ce qui est dit : la voix déroule la
         #    phrase, l'écran frappe avec le chiffre. Afficher le même texte
         #    n'apporte rien — l'œil et l'oreille reçoivent la même chose.
@@ -6955,7 +7002,7 @@ def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde")
     # ✅ VÉRIFICATION FINALE, avant tout montage. Une vidéo qui échoue à un seul
     #    critère n'est pas terminée : on ne la produit pas plutôt que de publier
     #    quelque chose qui se fera passer — ou démonétiser.
-    _duree_tot = par_plan * len(pngs) + 3.2
+    _duree_tot = sum(_durees_plan) + 3.2
     # ⚠️ Le premier élément de `popups` est celui de l'ACCROCHE, volontairement vide :
     #    son choc est déjà dans l'image. On vérifie donc les punchs des plans de
     #    contenu, et on rappelle le choc de l'accroche en tête.
@@ -6980,11 +7027,58 @@ def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde")
     # bande sonore : la même que la version X, réutilisée telle quelle
     piste = None
     try:
-        piste = build_soundtrack(f"{d}/son.wav", TIKTOK_DUREE_MINI + 4, category=cat)
+        piste = build_soundtrack(f"{d}/son.wav", _duree_tot + 4, category=cat)
     except Exception as _e:
         print(f"  ⚠️ Ambiance sonore indisponible ({str(_e)[:50]})")
+    # 🎙️ PISTE VOIX : chaque segment est RALLONGÉ AU SILENCE jusqu'à la durée exacte
+    #    de son plan, puis les segments sont mis bout à bout. La voix tombe alors
+    #    pile sur son plan, sans dérive qui s'accumule. Le silence de tête couvre
+    #    le plan d'accroche, qui n'est pas narré.
+    voix_tk = None
+    try:
+        if any(_vx):
+            _bouts = []
+            _sil = f"{d}/sil.wav"
+            _sp.run([ff, "-y", "-loglevel", "error", "-f", "lavfi", "-i",
+                     "anullsrc=r=24000:cl=mono", "-t", "3.2", _sil],
+                    capture_output=True, timeout=120)
+            if _os.path.exists(_sil):
+                _bouts.append(_sil)
+            for _i5 in range(len(pngs)):
+                _dur5 = _durees_plan[_i5] if _i5 < len(_durees_plan) else par_plan
+                _w5 = _vx[_i5] if _i5 < len(_vx) else None
+                _out5 = f"{d}/vx{_i5:02d}.wav"
+                if _w5 and _os.path.exists(_w5):
+                    _sp.run([ff, "-y", "-loglevel", "error", "-i", _w5, "-af",
+                             "apad", "-t", f"{_dur5:.2f}", "-ar", "24000", "-ac", "1",
+                             _out5], capture_output=True, timeout=180)
+                else:
+                    _sp.run([ff, "-y", "-loglevel", "error", "-f", "lavfi", "-i",
+                             "anullsrc=r=24000:cl=mono", "-t", f"{_dur5:.2f}",
+                             _out5], capture_output=True, timeout=120)
+                if _os.path.exists(_out5):
+                    _bouts.append(_out5)
+            if _bouts:
+                _liste = f"{d}/voix.txt"
+                with open(_liste, "w", encoding="utf-8") as _f5:
+                    for _b5 in _bouts:
+                        _f5.write(f"file '{_b5}'\n")
+                voix_tk = f"{d}/voix.wav"
+                _sp.run([ff, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
+                         "-i", _liste, "-c", "copy", voix_tk], capture_output=True, timeout=300)
+                if not _os.path.exists(voix_tk):
+                    voix_tk = None
+    except Exception as _e6:
+        print(f"  ⚠️ Voix TikTok indisponible ({str(_e6)[:50]})")
+        voix_tk = None
+    son_tk = None
+    if voix_tk or (piste and _os.path.exists(str(piste))):
+        son_tk = _melange_voix_musique(voix_tk, piste, f"{d}/mix_tk.m4a", _duree_tot)
     cmd = [ff, "-y", "-loglevel", "error", "-i", muet]
-    if piste and _os.path.exists(str(piste)):
+    if son_tk and _os.path.exists(str(son_tk)):
+        cmd += ["-i", str(son_tk), "-c:a", "aac", "-b:a", "192k", "-shortest"]
+        print(f"  🔊 TikTok : voix {'réutilisée' if voix_tk else 'absente'} + musique")
+    elif piste and _os.path.exists(str(piste)):
         cmd += ["-i", str(piste), "-c:a", "aac", "-b:a", "192k", "-shortest"]
     cmd += ["-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "medium",
             "-crf", "17", "-movflags", "+faststart", final]
@@ -6993,7 +7087,7 @@ def build_video_tiktok(pngs, narrations, photos=None, accents=None, cat="monde")
         print(f"  ⚠️ Version TikTok impossible (ffmpeg {r.returncode})")
         return None
     print(f"  📱 Version TikTok : 9:16, {len(pngs)} plans, "
-          f"{par_plan * len(pngs):.0f}s, sous-titrée")
+          f"{_duree_tot:.0f}s, sous-titrée")
     return final
 
 
@@ -7069,7 +7163,10 @@ def monter_video_plans(plans, sortie, fps=25, W=1080, H=1350, couches=None,
                     _sortie = max(0.0, min(1.0, (_t - (_debut + 0.30)) / 0.10))
                     if _sortie >= 1.0:
                         continue
-                    _cle = (_ip, min(1.0, round(max(0.0, _av), 1)), round(_sortie, 1))
+                    # 🎞️ Paliers fins (4 % au lieu de 10 %) : l'animation était mise
+                    #    en cache par gros crans, ce qui la faisait sauter à l'écran.
+                    _cle = (_ip, min(1.0, round(max(0.0, _av) / 0.04) * 0.04),
+                            round(_sortie / 0.04) * 0.04)
                     if _cle not in _cache_pp:
                         _cache_pp[_cle] = _rendre_popup(_txt, W, H, _acc_pp,
                                                         avancement=_cle[1], place=_ip,
@@ -7125,6 +7222,7 @@ def monter_video_plans(plans, sortie, fps=25, W=1080, H=1350, couches=None,
 
 
 def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=None,
+                          voix_sortie=None,
                           couches_texte=None, photos=None):
     """Assemble un carrousel d'images en VIDÉO verticale, avec la voix de synthèse
     par-dessus une musique de fond (voix dominante).
@@ -7163,7 +7261,25 @@ def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=
                 #    défiler le texte trop vite ; se caler sur la seule lecture faisait
                 #    déborder la voix sur la slide suivante.
                 _lecture = _carr_duree_slide(slides[i] if i < len(slides) else {})
-                durees.append(max(_lecture, d + 0.7) if d > 0 else _lecture)
+                # 🔒 Borne haute de sécurité : sans plafond de plan, une narration
+                #    anormalement longue produirait un plan interminable.
+                durees.append(min(16.0, max(_lecture, d + 0.7)) if d > 0 else _lecture)
+        # 💾 On RECOPIE les voix hors du dossier temporaire pour que la version
+        #    TikTok les réutilise telles quelles. Refaire la synthèse coûterait
+        #    autant d'appels TTS, or le débit est déjà limité à 3 par minute.
+        if voix_sortie is not None and voix_slides:
+            try:
+                import shutil as _sh, tempfile as _tf2
+                _gard = _tf2.mkdtemp(prefix="pulse_voix_")
+                for _i3, _w in enumerate(voix_slides):
+                    if _w and os.path.exists(_w):
+                        _dst = os.path.join(_gard, f"v{_i3:02d}.wav")
+                        _sh.copyfile(_w, _dst)
+                        voix_sortie.append(_dst)
+                    else:
+                        voix_sortie.append(None)
+            except Exception:
+                pass
         if not durees:
             durees = [_carr_duree_slide(slides[i] if i < len(slides) else {})
                       for i in range(len(pngs))]
@@ -7184,10 +7300,22 @@ def build_video_carrousel(pngs, slides, voice_text="", cat="monde", voice_parts=
         _fonds = [(_carr_photo_seule(_ph[i] if i < len(_ph) else None) or p)
                   for i, p in enumerate(pngs)]
         _couches = couches_texte or [None] * len(pngs)
-        _plans = [(f, durees[i] if i < len(durees) else 3.0, _sens[i % 4], False)
+        # 🔓 5ᵉ valeur = True : plan LIBRE, sans plafond de durée. Les plans du
+        #    décryptage sont NARRÉS — leur durée est celle de la voix. Le plafond
+        #    de 5,5 s tronquait la vidéo à 25,8 s alors que la voix courait 42 s,
+        #    et le `-shortest` du mixage coupait ensuite la narration : texte qui
+        #    défile trop vite ET voix en retard, d'une seule et même cause.
+        _plans = [(f, durees[i] if i < len(durees) else 3.0, _sens[i % 4], False, True)
                   for i, f in enumerate(_fonds)]
         muet = monter_video_plans(_plans, None, fps=25, W=CARR_W, H=CARR_H,
                                   couches=_couches)
+        if muet and os.path.exists(muet):
+            _reel = _duree_audio(muet)
+            if _reel and abs(_reel - total) > 0.6:
+                print(f"  ⚠️ Durée vidéo {_reel:.1f}s ≠ {total:.1f}s attendues "
+                      f"→ la voix serait désynchronisée")
+            else:
+                print(f"  ⏱️ Durée conforme : {_reel:.1f}s pour {total:.1f}s demandées")
         if not muet or not os.path.exists(muet):
             print("  ⚠️ Montage animé impossible → assemblage simple")
             chemins = []
@@ -8323,7 +8451,11 @@ Réponds avec ce JSON UNIQUEMENT :
             return None
         _out = {
             # 🖼️ Les URL des articles du même fait : le vivier d'images du décryptage.
-            "sources_urls": [a.get("url") for a in valid[:3] if a.get("url")],
+            # 🖼️ Le vivier d'images : TOUS les articles du même fait, pas seulement
+            #    les 3 qui nourrissent le texte. Plus de médias = plus de photos
+            #    distinctes ET toutes sur le sujet, sans aller les chercher ailleurs.
+            "sources_urls": [a.get("url") for a in (arts or [])[:6] if a.get("url")]
+                            or [a.get("url") for a in valid[:3] if a.get("url")],
             "sujet":       pick.get("sujet", "Décryptage")[:40],
             "cover_title": (result.get("cover_title") or pick.get("cover_title") or art["title"])[:80],
             "image_query": pick.get("image_query", "news france"),
@@ -14462,8 +14594,11 @@ def _traiter_rendez_vous(conn):
                 _pngs = rendre_carrousel(_sl, _ac, _ph)
                 if _pngs:
                     _lu = _carr_texte_narration(carousel)
+                    # 🎙️ Récipient : la version X y dépose les voix qu'elle synthétise,
+                    #    la version TikTok les réutilise — aucun appel TTS en double.
+                    _voix_x = []
                     vid_thread = build_video_carrousel(
-                        _pngs, _sl, voice_text=_lu, cat="monde",
+                        _pngs, _sl, voice_text=_lu, cat="monde", voix_sortie=_voix_x,
                         voice_parts=_carr_narration_slides(carousel),
                         # 🔒 Deux couches : la photo bouge, le texte reste fixe.
                         couches_texte=rendre_couches_texte(_sl, _ac, _ph), photos=_ph)
@@ -14471,7 +14606,8 @@ def _traiter_rendez_vous(conn):
                     #    ARTEFACT du run GitHub, avec sa légende prête à coller.
                     try:
                         _tk = build_video_tiktok(_pngs, _carr_narration_slides(carousel),
-                                                 photos=_ph, accents=_ac, cat="monde")
+                                                 photos=_ph, accents=_ac, cat="monde",
+                                                 voix_slides=_voix_x)
                         if _tk:
                             deposer_pour_tiktok(_tk, carousel)
                     except Exception as _e3:
