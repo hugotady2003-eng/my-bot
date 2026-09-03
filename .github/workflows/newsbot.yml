@@ -54,7 +54,7 @@ jobs:
           LLM_ANALYSE: gemini
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-       run: python bot_single_run.py
+        run: python bot_single_run.py
 
       - name: Garder le repo actif (évite la désactivation du cron)
         run: |
