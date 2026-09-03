@@ -52,7 +52,9 @@ jobs:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           LLM_ANALYSE: gemini
-        run: python bot_single_run.py
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+       run: python bot_single_run.py
 
       - name: Garder le repo actif (évite la désactivation du cron)
         run: |
