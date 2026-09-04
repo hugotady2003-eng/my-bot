@@ -18,6 +18,27 @@ body{background:var(--noir);color:var(--texte);font:400 16px/1.62 var(--c);
   -webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100vw}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+/* 📱 Sur téléphone, 22 px suffisent rarement : les cartes ont leur propre bordure
+   et le texte finissait collé au bord de l'écran. On élargit la respiration et on
+   tient compte de l'encoche sur les iPhone. */
+@media(max-width:600px){
+  .wrap{padding-left:max(18px,env(safe-area-inset-left));
+        padding-right:max(18px,env(safe-area-inset-right))}
+  .txt{padding:15px 17px 15px 15px}
+  .honn{padding:22px 20px}
+  .art-page{padding:0}
+  .dec{padding:14px 15px}
+  .bloc,.ar,.et2{padding:22px 20px}
+  .encadre{padding:16px 17px}
+  .src-box{padding:15px 17px}
+  .jauge{padding:14px 15px}
+  .chapeau-page{padding:34px 0 24px}
+}
+/* la barre de navigation aussi : le logo touchait le bord */
+@media(max-width:400px){
+  .hbar{gap:14px}
+  .logo{font-size:19px}
+}
 
 header{position:sticky;top:0;z-index:60;background:rgba(11,10,16,.9);
   backdrop-filter:blur(20px);border-bottom:1px solid var(--bord)}
@@ -118,12 +139,70 @@ footer a{color:var(--mauve)}
 footer .liens{display:flex;gap:18px;justify-content:center;margin:16px 0 18px;flex-wrap:wrap}
 footer .liens a{color:var(--gris);font-size:13.5px}
 footer .liens a:hover{color:var(--blanc)}
+
+@media(prefers-reduced-motion:reduce){
+  .et2 .n,.et2 .n::before,.et2 .n::after{animation:none}
+}
 </style><style>
 .etapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:22px}
 .et2{background:var(--carte);border:1px solid var(--bord);border-radius:18px;
-  padding:24px 26px;position:relative;transition:transform .3s,border-color .3s}
+  padding:24px 26px;position:relative;isolation:isolate;
+  transition:transform .3s,border-color .3s}
 .et2:hover{transform:translateY(-5px);border-color:rgba(194,75,255,.4)}
-.et2 .n{font:700 26px/1 var(--m);color:var(--mauve);margin-bottom:12px}
+/* ✨ Les numéros d'étape FLOTTENT dans une pastille lumineuse, chacun sur son
+   propre rythme : six pastilles synchronisées donneraient une vague mécanique.
+   Le halo pulse en décalé du flottement pour que le mouvement reste vivant. */
+.et2 .n{
+  position:relative; display:grid; place-items:center;
+  width:56px; height:56px; margin-bottom:16px;
+  font:700 22px/1 var(--m); color:#fff; border-radius:18px;
+  background:linear-gradient(140deg,var(--bleu),var(--violet) 55%,var(--mauve));
+  box-shadow:0 8px 22px rgba(123,46,255,.42), inset 0 1px 0 rgba(255,255,255,.28);
+  animation:flotN 4.6s ease-in-out infinite;
+}
+/* le halo, en calque séparé : il grandit sans déformer le chiffre */
+.et2 .n::before{
+  content:""; position:absolute; inset:-8px; border-radius:24px; z-index:-1;
+  background:radial-gradient(circle,rgba(194,75,255,.55),transparent 68%);
+  filter:blur(9px); animation:lueurN 4.6s ease-in-out infinite;
+}
+/* un éclat qui balaie la pastille */
+.et2 .n::after{
+  content:""; position:absolute; inset:0; border-radius:18px; overflow:hidden;
+  background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.45) 50%,transparent 62%);
+  background-size:280% 100%; background-position:150% 0;
+  animation:eclatN 5.6s ease-in-out infinite;
+}
+@keyframes flotN{
+  0%,100%{transform:translateY(0) rotate(0)}
+  50%    {transform:translateY(-9px) rotate(-2.5deg)}
+}
+@keyframes lueurN{
+  0%,100%{opacity:.5; transform:scale(.9)}
+  50%    {opacity:1;  transform:scale(1.12)}
+}
+@keyframes eclatN{
+  0%,62%{background-position:150% 0}
+  82%   {background-position:-60% 0}
+  100%  {background-position:-60% 0}
+}
+/* chaque pastille démarre à son propre moment : sans ce décalage, les six
+   monteraient et descendraient ensemble, ce qui fait mécanique */
+.et2:nth-child(1) .n,.et2:nth-child(1) .n::before{animation-delay:0s}
+.et2:nth-child(2) .n,.et2:nth-child(2) .n::before{animation-delay:.42s}
+.et2:nth-child(3) .n,.et2:nth-child(3) .n::before{animation-delay:.84s}
+.et2:nth-child(4) .n,.et2:nth-child(4) .n::before{animation-delay:1.26s}
+.et2:nth-child(5) .n,.et2:nth-child(5) .n::before{animation-delay:1.68s}
+.et2:nth-child(6) .n,.et2:nth-child(6) .n::before{animation-delay:2.1s}
+.et2:nth-child(2) .n::after{animation-delay:.5s}
+.et2:nth-child(3) .n::after{animation-delay:1s}
+.et2:nth-child(4) .n::after{animation-delay:1.5s}
+.et2:nth-child(5) .n::after{animation-delay:2s}
+.et2:nth-child(6) .n::after{animation-delay:2.5s}
+/* au survol de la carte, la pastille se redresse et s'illumine */
+.et2:hover .n{animation-play-state:paused; transform:translateY(-5px) scale(1.08);
+  box-shadow:0 14px 34px rgba(194,75,255,.6), inset 0 1px 0 rgba(255,255,255,.35)}
+.et2:hover .n::before{animation-play-state:paused; opacity:1; transform:scale(1.25)}
 .et2 h3{font:700 17px/1.3 var(--t);color:var(--blanc);margin-bottom:8px}
 .et2 p{font-size:14.5px;color:var(--gris)}
 .deux{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
@@ -148,58 +227,56 @@ footer .liens a:hover{color:var(--blanc)}
     <a href="journal.html">Journal des décisions</a>
     <a href="methode.html" class="on">Méthode</a>
     <a href="token.html">$PULSE</a>
+    <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
   </nav>
 </div></header>
 
 <div class="wrap chapeau-page">
-  <h1>Comment ça marche</h1>
-  <p>Six étapes, toutes les cinq minutes. Aucune n'implique un humain.</p>
+  <h1>La machine, de l'intérieur</h1>
+  <p>288 fois par jour, ce cycle se déclenche. 20 000 articles y passent.
+     Aucun humain n'y touche.</p>
 </div>
 <section class="wrap" style="padding:30px 0 10px">
   <div class="etapes">
-    <div class="et2"><div class="n">01</div><h3>Il lit</h3>
-      <p>Une cinquantaine de sources françaises, en continu. Aucune n'est privilégiée.</p></div>
-    <div class="et2"><div class="n">02</div><h3>Il regroupe</h3>
-      <p>Dix dépêches sur un même fait ne font pas dix actualités. Il reconstitue l'événement.</p></div>
-    <div class="et2"><div class="n">03</div><h3>Il recoupe</h3>
-      <p>Un chiffre confirmé par trois rédactions est solide. Un chiffre isolé est signalé.</p></div>
-    <div class="et2"><div class="n">04</div><h3>Il note</h3>
-      <p>Gravité, couverture, fraîcheur, caractère imprévu. Chaque point est affiché.</p></div>
-    <div class="et2"><div class="n">05</div><h3>Il décide</h3>
-      <p>Publier, suivre ou écarter. Avec la raison, publiée dans le journal.</p></div>
-    <div class="et2"><div class="n">06</div><h3>Il publie</h3>
-      <p>Texte vérifié, visuel produit, source citée. Puis il recommence.</p></div>
+    <div class="et2"><div class="n">01</div><h3>Il dévore</h3>
+      <p>14 400 consultations de sources par jour. Il ne rate rien, et ne privilégie personne.</p></div>
+    <div class="et2"><div class="n">02</div><h3>Il démêle</h3>
+      <p>15 dépêches sur le même incendie, ce n'est pas quinze infos. Il reconstitue l'événement réel.</p></div>
+    <div class="et2"><div class="n">03</div><h3>Il confronte</h3>
+      <p>Chiffre par chiffre, il compare ce que disent les rédactions. Les écarts, il vous les montre.</p></div>
+    <div class="et2"><div class="n">04</div><h3>Il jauge</h3>
+      <p>Gravité, ampleur, fraîcheur, effet de surprise. Chaque point du calcul est public.</p></div>
+    <div class="et2"><div class="n">05</div><h3>Il tranche</h3>
+      <p>Publier, surveiller ou recaler. Et il assume : la raison est publiée, même pour un refus.</p></div>
+    <div class="et2"><div class="n">06</div><h3>Il livre</h3>
+      <p>713 contrôles franchis, visuel créé, source citée. Cinq minutes plus tard, il recommence.</p></div>
   </div>
 </section>
 <section class="wrap" style="padding:34px 0 10px">
-  <div class="titre-sec"><h2>Ce qui change</h2></div>
+  <div class="titre-sec"><h2>Eux et nous</h2></div>
   <div class="deux">
     <div class="col v"><h3>Un média classique</h3><ul>
-      <li>Un propriétaire, des annonceurs, des intérêts</li>
-      <li>Une ligne éditoriale décidée en réunion</li>
-      <li>Des choix jamais expliqués au lecteur</li>
-      <li>Des articles modifiés en silence</li>
-      <li>Le titre écrit pour le clic</li></ul></div>
+      <li>Un propriétaire à ne pas contrarier</li>
+      <li>Une ligne décidée derrière une porte fermée</li>
+      <li>Des choix qu'on ne vous expliquera jamais</li>
+      <li>Des articles corrigés en douce, sans le dire</li>
+      <li>Des titres écrits pour le clic</li></ul></div>
     <div class="col n"><h3>Pulse</h3><ul>
-      <li>Aucun propriétaire à ménager</li>
-      <li>Des règles écrites dans le code</li>
-      <li>Chaque décision motivée publiquement</li>
-      <li>Les chiffres tracés média par média</li>
-      <li>L'information donnée, jamais appâtée</li></ul></div>
+      <li>Personne à ménager, jamais</li>
+      <li>Des règles gravées dans le code, publiques</li>
+      <li>Chaque décision motivée, refus compris</li>
+      <li>Chaque chiffre tracé, source par source</li>
+      <li>L'info livrée, jamais monnayée contre un clic</li></ul></div>
   </div>
 </section>
 <section class="wrap" style="padding:34px 0 10px">
-  <div class="titre-sec"><h2>Ce qu'il refuse</h2></div>
+  <div class="titre-sec"><h2>Nos lignes rouges</h2></div>
   <div class="etapes">
-    <div class="et2"><h3>Aucun appât</h3><p>L'information est donnée dans le texte.
-      Jamais « découvrez pourquoi ».</p></div>
-    <div class="et2"><h3>Aucune invention</h3><p>Ni chiffre, ni citation, ni date
-      qui ne figure dans la source.</p></div>
-    <div class="et2"><h3>Aucun hommage abusif</h3><p>Réservé au décès d'une
-      personnalité nommée. Jamais une victime anonyme.</p></div>
-    <div class="et2"><h3>Aucune image volée</h3><p>Photo de l'article, ou banque
-      libre de droits. Rien d'autre.</p></div>
+    <div class="et2"><h3>Zéro appât à clic</h3><p>L'information est DANS le texte. Jamais de « vous ne devinerez jamais ».</p></div>
+    <div class="et2"><h3>Zéro invention</h3><p>Pas un chiffre, pas une citation, pas une date qui ne vienne de la source.</p></div>
+    <div class="et2"><h3>Zéro récupération</h3><p>Un hommage se mérite. Jamais sur le dos d'une victime anonyme.</p></div>
+    <div class="et2"><h3>Zéro image volée</h3><p>Photo de l'article ou banque libre de droits. Jamais rien d'autre.</p></div>
   </div>
 </section>
 
@@ -209,6 +286,7 @@ footer .liens a:hover{color:var(--blanc)}
   <div class="liens">
     <a href="actu.html">Le fil</a><a href="journal.html">Journal des décisions</a>
     <a href="methode.html">Méthode</a><a href="token.html">$PULSE</a>
+    <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
     <a href="https://x.com/PULSEactus">@PULSEactus</a>
   </div>
