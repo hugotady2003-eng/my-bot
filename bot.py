@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.5.2"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.7.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -3503,6 +3503,9 @@ def _paste_rounded_shadow(bg, fg, x, y, radius=None, shadow_blur=None, shadow_al
 CARD_MARGIN = 48   # 🔒 marge de sécurité CONSTANTE (px à l'échelle finale) sur tous les bords
 _IMG_SS = 2   # super-résolution des cartes : 2× = texte/graphismes nets ("4K-like"), résiste à la compression X
 
+_PHOTO_BRUTE = {"v": None}   # dernière photo d'article téléchargée, sans habillage
+
+
 def build_png(headline_court, source, category, photo_url=None, image_query=None, article_url=None, person=None, W=1200, H=675, prefetched=None, headline_bottom=False, reveal=1.0, ss=None, as_image=False, no_pill=False, no_logo=False):
     """
     PNG DA Pulse, taille paramétrable (W×H).
@@ -3893,6 +3896,10 @@ def build_png(headline_court, source, category, photo_url=None, image_query=None
             return img.convert('RGB')
         buf = io.BytesIO()
         img.convert('RGB').save(buf, format='JPEG', quality=95, optimize=True, progressive=True)
+        # 🖼️ La photo BRUTE est mémorisée pour le site : celui-ci n'a pas besoin
+        #    de la carte composée — son titre incrusté ferait doublon avec le
+        #    titre HTML, et le format vertical est mal adapté à une page web.
+        _PHOTO_BRUTE["v"] = raw if has_real_photo else None
         return buf.getvalue(), f"pulse-{category}-{now.strftime('%d%m%Y-%H%M')}.jpg"
 
     except Exception as e:
@@ -13029,7 +13036,10 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
                          #    contenait que les cas particuliers — frise, carte de
                          #    lieu, photothèque — donc le site n'avait aucune image
                          #    sur une publication ordinaire (défaut vécu).
-                         image=(png_bytes or raw_photo), tweet_url=_xurl,
+                         # 🖼️ La photo BRUTE d'abord : le site affiche déjà le titre en
+                         #    HTML, la carte composée ferait doublon.
+                         image=(_PHOTO_BRUTE.get("v") or raw_photo or png_bytes),
+                         tweet_url=_xurl,
                              recoupement=item.get("_rec_brut"),
                              # ⚖️ Le score et son détail : sans eux, la section « pourquoi
                              #    nous l'avons publié » restait vide sur le site.
@@ -14785,6 +14795,15 @@ def _check_feeds_interne(conn):
                     #    section « pourquoi nous l'avons publié » restait vide.
                     hot["_score"], hot["_detail"] = _sc, _det
                 score = int(round(_sc))
+                # ⚖️ JOURNAL COMPLET : les trois issues sont publiées, pas seulement
+                #    les refus. Un journal qui ne montre que ce qu'on écarte prive le
+                #    lecteur du point de comparaison. Et « mis en suivi » est une
+                #    information en soi : nous surveillons, ça n'a pas assez évolué.
+                if SITE_ACTIF:
+                    journaliser_decision(
+                        getattr(_ev, "titre", "") or hot.get("title", ""),
+                        _dec, _pq, score=_sc, detail=_det,
+                        medias=getattr(_ev, "medias", None))
                 if _dec == "ecarter":
                     print(f"  ⏭️  Écarté : {_pq} → suivant")
                     # 🚫 Le refus vaut pour TOUT LE CYCLE : sans cela le sujet revenait
@@ -14792,12 +14811,6 @@ def _check_feeds_interne(conn):
                     for _a2 in getattr(_ev, "articles", []):
                         if _a2.get("title"):
                             _refuses_du_cycle.add(_a2["title"])
-                    # ⚖️ Le REFUS est publié sur le site : expliquer pourquoi un sujet
-                    #    n'a PAS été retenu est ce qu'aucun média ne fait.
-                    if SITE_ACTIF:
-                        journaliser_decision(getattr(_ev, "titre", ""), "ecarter", _pq,
-                                             score=_sc, detail=_dt,
-                                             medias=getattr(_ev, "medias", None))
                     continue
                 if _dec == "suivre":
                     print(f"  🆕 Suivi d'événement : {_pq}")
@@ -14993,8 +15006,13 @@ def _check_feeds_interne(conn):
             # ⚖️ Ce refus part au JOURNAL PUBLIC. Un seul chemin sur plusieurs
             #    était branché : le site ne recevait aucune décision.
             if SITE_ACTIF:
-                journaliser_decision(title, "ecarter",
-                                     "sujet déjà publié récemment")
+                # ⚖️ On joint le DÉTAIL : « sujet déjà publié » seul ne dit pas au
+                #    lecteur pourquoi la republication n'apporterait rien.
+                journaliser_decision(
+                    title, "ecarter",
+                    "sujet déjà publié récemment, aucun élément nouveau",
+                    detail="doublon reconnu par les mots saillants du titre — un même "
+                           "sujet ne repasse qu'avec un développement réel")
             mark_seen(conn, c["url"], title); continue
         filtered_candidates.append(c)
     candidates = filtered_candidates
