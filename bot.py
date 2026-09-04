@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.2.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.4.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -12088,6 +12088,71 @@ def _faits_chiffres(texte):
     return out
 
 
+def dossier_de_presse(ev, rec=None):
+    """Rassemble TOUT ce que le bot sait de l'événement, pour le publier.
+
+    Le moteur calcule bien plus qu'il n'affiche : quels médias ont couvert le fait,
+    lequel a été le premier, à quelle heure, ce sur quoi ils divergent. Ces éléments
+    ne coûtent rien de plus — ils sont déjà en mémoire — et c'est précisément ce
+    qu'aucun média ne publie. C'est l'essence de Pulse : montrer le travail.
+
+    Renvoie un dict prêt à écrire en base."""
+    arts = list(getattr(ev, "articles", []) or [])
+    if not arts:
+        return {}
+    rec = rec or {}
+
+    # ── qui a couvert le fait, et quand ──
+    par_media = {}
+    for a in arts:
+        src = str(a.get("source") or "?").strip()
+        ts = a.get("pub_ts") or 0
+        if src not in par_media or ts < par_media[src]["ts"]:
+            par_media[src] = {"ts": ts, "titre": str(a.get("title") or "")[:180],
+                              "url": a.get("url")}
+
+    # 🥇 LA PRIMEUR : qui a sorti l'information en premier, et avec quelle avance.
+    #    C'est une information que personne ne publie, et que seul un système qui
+    #    lit tout le monde en continu peut établir.
+    ordre = sorted(par_media.items(), key=lambda x: x[1]["ts"] or 9e18)
+    premier, avance = None, None
+    if ordre and ordre[0][1]["ts"]:
+        premier = ordre[0][0]
+        if len(ordre) > 1 and ordre[1][1]["ts"]:
+            ecart = (ordre[1][1]["ts"] - ordre[0][1]["ts"]) / 60
+            if ecart >= 1:
+                avance = (f"{int(ecart)} min" if ecart < 90
+                          else f"{ecart / 60:.1f} h".replace(".0", ""))
+
+    # ── ce sur quoi les rédactions DIVERGENT ──
+    #    Deux chiffres de même unité mais de valeur différente = une contradiction
+    #    réelle. La signaler vaut mieux que de choisir en silence.
+    divergences = []
+    par_unite = {}
+    for a in arts:
+        for v, u in _faits_chiffres(f"{a.get('title','')} {a.get('summary','')}"):
+            par_unite.setdefault(u, {}).setdefault(v, set()).add(
+                str(a.get("source") or "?"))
+    for u, vals in par_unite.items():
+        if len(vals) > 1:
+            detail = " contre ".join(
+                f"{v} ({', '.join(sorted(s)[:3])})"
+                for v, s in sorted(vals.items(), key=lambda x: -len(x[1]))[:3])
+            divergences.append(f"{u} : {detail}")
+
+    return {
+        "medias_liste": [{"nom": n, "titre": d["titre"], "url": d["url"],
+                          "heure": (datetime.fromtimestamp(d["ts"]).isoformat()
+                                    if d["ts"] else None)}
+                         for n, d in ordre],
+        "premier_media": premier,
+        "avance_primeur": avance,
+        "divergences": divergences[:4],
+        "nb_articles": len(arts),
+        "age_heures": round(getattr(ev, "age_heures", 0) or 0, 1),
+    }
+
+
 def recouper_faits(ev):
     """Compare ce que disent les DIFFÉRENTS médias d'un même événement.
 
@@ -12600,6 +12665,61 @@ def _televerser_image(brut, slug):
         return None
 
 
+def corps_pour_site(item, tweet, recoupement=None):
+    """Rédige une version LONGUE de l'article pour le site.
+
+    Un tweet est bridé à 280 caractères ; une page web ne l'est pas. Reprendre le
+    tweet tel quel revient à gâcher le seul endroit où Pulse peut développer —
+    donner le contexte, citer les chiffres avec leur source, expliquer ce qui
+    reste incertain.
+
+    Renvoie le corps rédigé, ou le tweet nettoyé si le modèle est indisponible."""
+    titre = re.sub(r"\s+", " ", str(item.get("title") or "")).strip()
+    resume = re.sub(r"\s+", " ", str(item.get("summary") or "")).strip()[:2500]
+    if not titre:
+        return str(tweet or "")
+    rec = recoupement or {}
+    faits = ""
+    if rec.get("confirmes"):
+        faits += ("CHIFFRES CONFIRMÉS (indique entre parenthèses le nombre de médias) : "
+                  + ", ".join(f"{v} {u} — {n} médias" for v, u, n in rec["confirmes"]) + "\n")
+    if rec.get("isoles"):
+        faits += ("CHIFFRES D'UNE SEULE SOURCE (signale-le explicitement au lecteur) : "
+                  + ", ".join(f"{v} {u}" for v, u in rec["isoles"]) + "\n")
+    try:
+        # ⚠️ Tout passe par _llm_json dans ce projet : on demande donc un JSON
+        #    à un seul champ plutôt que d'introduire une seconde voie d'appel.
+        r = _llm_json(
+            f"""Tu écris pour le SITE de Pulse, pas pour X. Ici tu as la place de développer.
+
+TITRE : {titre}
+CE QUE DISENT LES SOURCES : {resume}
+{faits}
+CONSIGNES :
+- 3 à 5 paragraphes, 700 à 1100 caractères au total. Un paragraphe = une idée.
+- Réponds à : que s'est-il passé, où, quand, qui est concerné, et ensuite ?
+- CHAQUE CHIFFRE important doit être accompagné de sa fiabilité, dans le texte :
+  « 2 500 hectares, un chiffre confirmé par cinq rédactions » ou
+  « 12 blessés, un bilan avancé par un seul média et non confirmé à ce stade ».
+  C'est la marque de Pulse : le lecteur sait toujours sur quoi il s'appuie.
+- N'invente RIEN : ni chiffre, ni citation, ni date absente des sources.
+- Pas de formule d'accroche, pas de teaser, pas de « on vous dit tout ».
+- Ton factuel et clair. Phrases courtes. Aucun jargon de journaliste.
+- Sépare les paragraphes par une ligne vide. Aucun titre, aucune puce.
+
+Réponds avec ce JSON UNIQUEMENT : {{"article":"le texte complet, \\n\\n entre paragraphes"}}""",
+            max_tokens=700, task="special")
+        txt = re.sub(r"\n{3,}", "\n\n", str((r or {}).get("article") or "").strip())
+        # garde-fou : un texte plus court que le tweet n'a aucun intérêt
+        if txt and len(txt) > len(str(tweet or "")) * 1.4:
+            return txt
+    except Exception as e:
+        print(f"  ⚠️ Article long indisponible ({str(e)[:50]})")
+    # repli : le tweet, débarrassé de son préfixe et de ses mots-dièse
+    t = re.sub(r"^[^|\n]{0,26}\|\s*", "", str(tweet or ""))
+    return re.sub(r"\s*#\w+", "", t).strip()
+
+
 def publier_sur_site(item, texte, cat, format_="actu", image=None,
                      tweet_url=None, score=None, detail=None, recoupement=None):
     """Publie un article sur le site Pulse.
@@ -12612,8 +12732,9 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
     if not titre:
         return None
     # l'accroche est la première ligne du tweet, sans le préfixe de catégorie
-    corps = str(texte or "").strip()
-    lignes_t = [l for l in corps.split("\n") if l.strip()]
+    # 📄 Le site reçoit une version DÉVELOPPÉE, pas le tweet recopié.
+    corps = corps_pour_site(item, texte, recoupement)
+    lignes_t = [l for l in str(texte or "").split("\n") if l.strip()]
     chapo = re.sub(r"^[^|]{0,24}\|\s*", "", lignes_t[0]).strip() if lignes_t else ""
     slug = f"{_slug(titre)}-{_now_paris().strftime('%d%m%H%M')}"
     rec = recoupement or {}
@@ -12628,6 +12749,12 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         "chiffres_ok": [f"{v} {u} ({n} médias)" for v, u, n in (rec.get("confirmes") or [])],
         "chiffres_seul": [f"{v} {u}" for v, u in (rec.get("isoles") or [])],
         "tweet_url": tweet_url,
+        # 📰 Le DOSSIER DE PRESSE : ce qu'aucun média ne publie sur son propre travail.
+        "medias_liste": (item.get("_presse") or {}).get("medias_liste") or [],
+        "premier_media": (item.get("_presse") or {}).get("premier_media"),
+        "avance_primeur": (item.get("_presse") or {}).get("avance_primeur"),
+        "divergences": (item.get("_presse") or {}).get("divergences") or [],
+        "entites": item.get("_entites") or {},
     }
     r = _supabase("articles", corps=donnees)
     if r:
@@ -12654,6 +12781,11 @@ def journaliser_decision(titre, decision, raison, score=None, detail=None, media
 
 def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates=None):
     # 🔍 Recoupement calculé en amont par la décision, posé sur l'article.
+    # ⚠️ raw_photo n'était affectée que dans des branches conditionnelles : quand
+    #    le bot publiait une VIDÉO, la variable n'existait pas et la publication
+    #    sur le site échouait (« cannot access local variable 'raw_photo' »).
+    #    Déclarée ici, elle existe sur TOUS les chemins.
+    raw_photo, has_photo = None, False
     _recoup = item.get("_recoupement") or None
     # 🕊️ HOMMAGE : le parcours de la personne donne sa raison d'être à l'hommage.
     #    « X est décédé à Y ans » n'apprend rien ; « révélée par la série Heroes »
@@ -14613,6 +14745,13 @@ def _check_feeds_interne(conn):
                         print(f"  🔍 {_nc} chiffre(s) confirmé(s) par plusieurs médias")
                     hot["_recoupement"] = resume_recoupement(_rec)
                     hot["_rec_brut"] = _rec        # 🌐 pour le site
+                    # 📰 DOSSIER DE PRESSE : tout ce que le bot sait de l'événement —
+                    #    qui l'a couvert, qui était premier, sur quoi les médias
+                    #    divergent. Déjà calculé, il ne coûte rien de plus à publier.
+                    try:
+                        hot["_presse"] = dossier_de_presse(_ev, _rec)
+                    except Exception:
+                        pass
             # 📈 Un sujet remonté par les TENDANCES et jugé important reçoit un bonus : nos
             #    règles de gravité sont mécaniques et sous-notent parfois un fait majeur dont
             #    le vocabulaire ne déclenche aucun mot-clé fort.
@@ -14785,6 +14924,11 @@ def _check_feeds_interne(conn):
         sw = _sig_words(title)
         if not c.get("followup") and len(sw) >= 2 and any(len(sw & ps) >= 2 for ps in published_sigs):
             print(f"  ♻️ Doublon d'un sujet déjà publié, écarté : {title[:50]}")
+            # ⚖️ Ce refus part au JOURNAL PUBLIC. Un seul chemin sur plusieurs
+            #    était branché : le site ne recevait aucune décision.
+            if SITE_ACTIF:
+                journaliser_decision(title, "ecarter",
+                                     "sujet déjà publié récemment")
             mark_seen(conn, c["url"], title); continue
         filtered_candidates.append(c)
     candidates = filtered_candidates
