@@ -280,65 +280,55 @@ h1,h2,h3,p,li,td,th{overflow-wrap:break-word}
   .corps p,.chapo{padding-right:2px}
 }
 </style><style>
-.rm{max-width:920px;margin:0 auto}
-.intro-rm{background:linear-gradient(165deg,rgba(30,28,50,.9),rgba(22,20,38,.9));
-  border:1px solid var(--bord);border-left:4px solid var(--violet);
-  border-radius:20px;padding:26px 30px;margin-bottom:38px}
-.intro-rm p{font-size:16px;color:var(--gris);margin-bottom:12px;line-height:1.7}
-.intro-rm p:last-child{margin-bottom:0}
-.intro-rm b{color:var(--texte)}
+.eng{max-width:900px;margin:0 auto}
+.serment{background:linear-gradient(165deg,rgba(38,28,66,.92),rgba(24,21,42,.92));
+  border:1px solid rgba(194,75,255,.34);border-left:4px solid var(--mauve);
+  border-radius:22px;padding:30px 34px;margin-bottom:38px}
+.serment .t{font:700 12px/1 var(--c);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mauve);margin-bottom:16px}
+.serment p{font-size:16.5px;color:var(--texte);margin-bottom:13px;line-height:1.72}
+.serment p:last-child{margin-bottom:0}
+.serment b{color:var(--blanc)}
+@media(max-width:600px){.serment{padding:22px 19px}.serment p{font-size:15.5px}}
 
-/* ── LA FRISE : une colonne verticale, une phase par palier ── */
-.frise{position:relative;padding-left:52px}
-.frise::before{content:"";position:absolute;left:19px;top:14px;bottom:40px;width:2px;
-  background:linear-gradient(180deg,var(--mauve),var(--violet) 40%,var(--bord))}
-@media(max-width:600px){.frise{padding-left:38px}.frise::before{left:13px}}
+/* ── Tableau des paramètres figés ── */
+.params{display:grid;gap:12px;margin-top:22px}
+.pm{background:var(--carte);border:1px solid var(--bord);border-radius:18px;
+  padding:22px 26px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;
+  transition:border-color .3s}
+.pm:hover{border-color:rgba(194,75,255,.36)}
+@media(max-width:600px){.pm{grid-template-columns:1fr;gap:14px;padding:19px 18px}}
+.pv{font:700 34px/1 var(--m);color:var(--mauve);min-width:78px;text-align:center;
+  padding:14px 12px;background:rgba(194,75,255,.09);border-radius:14px;
+  border:1px solid rgba(194,75,255,.24)}
+@media(max-width:600px){.pv{font-size:28px;padding:11px;min-width:0;
+  justify-self:start;padding-inline:20px}}
+.pm h3{font:700 17.5px/1.3 var(--t);color:var(--blanc);margin-bottom:7px}
+.pm .pd{font-size:14.5px;color:var(--gris);line-height:1.6;margin-bottom:10px}
+.pm .pq{font-size:13.5px;color:var(--faible);line-height:1.55;
+  padding-top:10px;border-top:1px solid var(--bord)}
+.pm .pq b{color:var(--orange)}
+.pm .cle{font:600 11px/1 var(--m);color:var(--faible);letter-spacing:.04em;
+  display:inline-block;margin-top:9px;padding:4px 9px;background:rgba(255,255,255,.04);
+  border:1px solid var(--bord);border-radius:6px}
 
-.ph{position:relative;margin-bottom:22px}
-.ph::before{content:"";position:absolute;left:-41px;top:26px;width:16px;height:16px;
-  border-radius:50%;background:var(--carte);border:3px solid var(--bord);z-index:2}
-@media(max-width:600px){.ph::before{left:-31px;width:13px;height:13px}}
-.ph.actif::before{border-color:var(--mauve);background:var(--mauve);
-  box-shadow:0 0 0 5px rgba(194,75,255,.18)}
-.ph.faite::before{border-color:var(--vert);background:var(--vert)}
+.regle{background:var(--carte);border:1px solid var(--bord);border-radius:18px;
+  padding:24px 28px;margin-top:14px}
+.regle h3{font:700 17px/1.3 var(--t);color:var(--blanc);margin-bottom:10px;
+  display:flex;align-items:center;gap:9px}
+.regle p{font-size:15px;color:var(--gris);line-height:1.65;margin-bottom:10px}
+.regle p:last-child{margin-bottom:0}
+.regle b{color:var(--texte)}
+@media(max-width:600px){.regle{padding:20px 18px}}
 
-.pc{background:var(--carte);border:1px solid var(--bord);border-radius:20px;
-  padding:24px 28px;transition:transform .3s,border-color .3s,box-shadow .3s}
-.pc:hover{transform:translateY(-4px);border-color:rgba(194,75,255,.4);
-  box-shadow:0 14px 36px rgba(0,0,0,.4)}
-.ph.actif .pc{border-color:rgba(194,75,255,.45);
-  background:linear-gradient(165deg,rgba(38,28,66,.9),rgba(24,21,42,.9))}
-@media(max-width:600px){.pc{padding:20px 18px}}
-
-.pt-e{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-.pn{font:700 11px/1 var(--m);letter-spacing:.14em;color:var(--mauve)}
-.pe{font:700 9.5px/1 var(--c);letter-spacing:.13em;text-transform:uppercase;
-  padding:5px 10px;border-radius:100px}
-.pe.a{color:var(--vert);background:rgba(55,227,155,.12);border:1px solid rgba(55,227,155,.3)}
-.pe.b{color:var(--mauve);background:rgba(194,75,255,.12);border:1px solid rgba(194,75,255,.32)}
-.pe.c{color:var(--faible);background:rgba(255,255,255,.04);border:1px solid var(--bord)}
-.pc h3{font:700 21px/1.24 var(--t);color:var(--blanc);letter-spacing:-.02em;margin-bottom:9px}
-@media(max-width:600px){.pc h3{font-size:18.5px}}
-.pc .obj{font-size:15px;color:var(--gris);margin-bottom:16px;line-height:1.62}
-.pc .obj b{color:var(--texte)}
-
-.jal{display:grid;gap:8px;margin-bottom:16px}
-.jl{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--gris);
-  line-height:1.55}
-.jl .cc{flex:0 0 auto;width:17px;height:17px;border-radius:6px;margin-top:2px;
-  border:1.5px solid var(--bord);display:grid;place-items:center;
-  font:700 10px/1 var(--c);color:var(--faible)}
-.jl.ok .cc{border-color:var(--vert);background:rgba(55,227,155,.15);color:var(--vert)}
-
-.risq{font-size:13.5px;color:var(--faible);padding-top:13px;
-  border-top:1px solid var(--bord);line-height:1.55}
-.risq b{color:var(--orange)}
-
-.note-fin{background:rgba(123,46,255,.07);border:1px solid rgba(123,46,255,.26);
-  border-left:3px solid var(--violet);border-radius:14px;padding:20px 24px;margin-top:34px;
-  font-size:15px;color:var(--gris);line-height:1.68}
-.note-fin b{color:var(--texte)}
-@media(max-width:600px){.note-fin{padding:17px 17px}}
+.fin{background:rgba(47,18,32,.6);border:1px solid rgba(126,36,72,.7);
+  border-left:4px solid var(--mauve);border-radius:18px;padding:26px 30px;margin-top:36px}
+.fin h3{font:700 12px/1 var(--c);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mauve);margin-bottom:14px}
+.fin p{font-size:15px;color:#EFDDE7;margin-bottom:11px;line-height:1.68}
+.fin p:last-child{margin-bottom:0}
+.fin b{color:#fff}
+@media(max-width:600px){.fin{padding:21px 18px}}
 </style></head><body><body>
 <header><div class="wrap hbar">
   <a class="logo" href="index.html"><i></i> PULSE</a>
@@ -348,110 +338,152 @@ h1,h2,h3,p,li,td,th{overflow-wrap:break-word}
     <a href="actu.html">Le fil</a>
     <a href="journal.html">Journal des décisions</a>
     <a href="methode.html">Méthode</a>
+    <a href="engagements.html" class="on">Engagements</a>
+    <a href="roadmap.html">Feuille de route</a>
     <a href="token.html">$PULSE</a>
-    <a href="engagements.html">Engagements</a>
-    <a href="roadmap.html" class="on">Feuille de route</a>
     <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
   </nav>
 </div></header><div class="wrap chapeau-page">
-  <h1>Feuille de route</h1>
-  <p>Ce que Pulse fait aujourd'hui, et où il va. Chaque phase rend la suivante
-     possible — l'ordre n'est pas indicatif, il est structurel.</p>
+  <h1>Engagements</h1>
+  <p>Les seuils qui gouvernent Pulse, rendus publics et figés. Toute modification
+     sera annoncée ici avant d'entrer en vigueur.</p>
 </div>
 
-<section class="wrap" style="padding:30px 0 40px"><div class="rm">
-  <div class="intro-rm">
-    <p><b>Une feuille de route n'est pas une promesse.</b> Les phases décrites ici
-       reposent sur ce qui fonctionne déjà : un moteur qui traite 20 160 articles
-       par jour, recoupe ses sources et publie ses refus.</p>
-    <p>Chaque phase porte son <b>point de vigilance</b> — ce qui pourrait la faire
-       échouer. Nous préférons les nommer d'avance plutôt que les découvrir en
-       chemin. Aucune date n'est annoncée : une étape est livrée quand elle tient,
-       pas quand le calendrier le voudrait.</p>
+<section class="wrap" style="padding:30px 0 20px"><div class="eng">
+
+  <div class="serment">
+    <div class="t">Pourquoi cette page existe</div>
+    <p>Pulse est un programme. <b>Il ne se corrompt pas, il exécute son code.</b>
+       Tant que ces paramètres ne changent pas, son comportement ne change pas —
+       quelles que soient les circonstances.</p>
+    <p>Mais le code, lui, peut être modifié. Une baisse du seuil de corroboration
+       publierait davantage. Un plafond relevé remplirait le fil. Ces choix se
+       justifient toujours très bien sur le moment.</p>
+    <p><b>C'est pourquoi nous les figeons publiquement.</b> Non pour nous vanter
+       d'une vertu, mais pour nous priver d'une facilité. Un engagement qu'on peut
+       rompre en silence n'en est pas un.</p>
   </div>
 
-  <div class="frise">
-    <div class="ph faite">
-      <div class="pc">
-        <div class="pt-e"><span class="pn">PHASE 00</span>
-          <span class="pe a">LIVRÉ</span></div>
-        <h3>Socle éditorial</h3>
-        <p class="obj">Construire un moteur capable de collecter, recouper et publier seul, avec des règles vérifiables en code plutôt qu'en consignes.</p>
-        <div class="jal"><div class="jl ok"><span class="cc">✓</span><span>Collecte multi-sources et déduplication sur 45 jours</span></div><div class="jl ok"><span class="cc">✓</span><span>Agrégation sémantique : articles regroupés en événements</span></div><div class="jl ok"><span class="cc">✓</span><span>Recoupement factuel et notation composite traçable</span></div><div class="jl ok"><span class="cc">✓</span><span>751 assertions de non-régression avant chaque mise en service</span></div></div>
-        <p class="risq"><b>Point de vigilance —</b> L'ajout de règles ne doit jamais fragiliser celles qui tiennent déjà. Chaque correction est verrouillée par un test permanent.</p>
+  <div class="titre-sec"><h2>Les seuils figés</h2>
+    <span>valeurs en vigueur dans le code</span></div>
+  <div class="params">
+    <div class="pm">
+      <div class="pv">2</div>
+      <div>
+        <h3>Rédactions minimum</h3>
+        <p class="pd">Un fait doit être rapporté par au moins deux rédactions indépendantes pour être publié. Dérogation pour les seules alertes vitales — séisme, attentat, catastrophe — où le délai coûterait plus que l'incertitude.</p>
+        <p class="pq"><b>Ce que ça empêche —</b> de publier une information isolée en affichant qu'on recoupe ses sources. <b>C'est le seuil le plus important de cette page.</b></p>
+        <span class="cle">MEDIAS_MINI</span>
       </div>
-    </div><div class="ph actif">
-      <div class="pc">
-        <div class="pt-e"><span class="pn">PHASE 01</span>
-          <span class="pe b">EN COURS</span></div>
-        <h3>Transparence intégrale</h3>
-        <p class="obj">Publier non seulement l'information, mais <b>le travail qui l'a produite</b> — y compris les sujets écartés et les contradictions entre rédactions.</p>
-        <div class="jal"><div class="jl ok"><span class="cc">✓</span><span>Journal public des décisions, refus compris</span></div><div class="jl ok"><span class="cc">✓</span><span>Divergences entre médias affichées sur chaque article</span></div><div class="jl ok"><span class="cc">✓</span><span>Corroboration minimale de deux rédactions imposée</span></div><div class="jl"><span class="cc"></span><span>Fiche par média : qui sort l'information en premier</span></div><div class="jl"><span class="cc"></span><span>Page publique de correction et de signalement d'erreur</span></div></div>
-        <p class="risq"><b>Point de vigilance —</b> La règle de corroboration réduit mécaniquement le volume publié. C'est un choix assumé : mieux vaut un fil plus court qu'une promesse non tenue.</p>
+    </div>
+
+    <div class="pm">
+      <div class="pv">20</div>
+      <div>
+        <h3>Plafond quotidien</h3>
+        <p class="pd">Vingt publications par jour au maximum, tous canaux confondus. Ce plafond s'applique aussi aux canaux prioritaires : rien ne le contourne.</p>
+        <p class="pq"><b>Ce que ça empêche —</b> de saturer le fil pour gonfler des statistiques. Au-delà de vingt, le lecteur décroche et la sélection perd son sens.</p>
+        <span class="cle">DAILY_POST_CAP</span>
       </div>
-    </div><div class="ph ">
-      <div class="pc">
-        <div class="pt-e"><span class="pn">PHASE 02</span>
-          <span class="pe c">À VENIR</span></div>
-        <h3>Suivi longitudinal</h3>
-        <p class="obj">Exploiter les quatorze jours de mémoire par dossier, aujourd'hui calculés mais jamais montrés au lecteur.</p>
-        <div class="jal"><div class="jl"><span class="cc"></span><span>Une page par affaire suivie, avec sa chronologie complète</span></div><div class="jl"><span class="cc"></span><span>Évolution des chiffres dans le temps : d'où vient ce bilan</span></div><div class="jl"><span class="cc"></span><span>Alerte quand une rédaction se contredit d'un jour à l'autre</span></div><div class="jl"><span class="cc"></span><span>Fil d'abonnement par dossier</span></div></div>
-        <p class="risq"><b>Point de vigilance —</b> Une affaire suivie sur plusieurs semaines exige une mémoire fiable. Un mauvais rattachement produirait une chronologie fausse, plus grave qu'une absence de chronologie.</p>
+    </div>
+
+    <div class="pm">
+      <div class="pv">16</div>
+      <div>
+        <h3>Seuil de vigilance</h3>
+        <p class="pd">Au-delà de seize publications, seules les alertes vitales passent encore. Les sujets ordinaires attendent le lendemain.</p>
+        <p class="pq"><b>Ce que ça empêche —</b> qu'une journée dense épuise le budget éditorial et laisse la soirée muette.</p>
+        <span class="cle">DAILY_POST_SOFT</span>
       </div>
-    </div><div class="ph ">
-      <div class="pc">
-        <div class="pt-e"><span class="pn">PHASE 03</span>
-          <span class="pe c">À VENIR</span></div>
-        <h3>Ouverture des données</h3>
-        <p class="obj">Mettre à disposition ce que Pulse mesure et que personne d'autre ne mesure : la cartographie du traitement médiatique français.</p>
-        <div class="jal"><div class="jl"><span class="cc"></span><span>Interface publique de consultation des données</span></div><div class="jl"><span class="cc"></span><span>Classement des rédactions par primeur et par fiabilité</span></div><div class="jl"><span class="cc"></span><span>Détection des sujets sur-couverts et des angles morts</span></div><div class="jl"><span class="cc"></span><span>Export ouvert pour la recherche et le journalisme</span></div></div>
-        <p class="risq"><b>Point de vigilance —</b> Publier un classement de médias engage juridiquement. La méthodologie devra être documentée publiquement et opposable avant toute mise en ligne.</p>
+    </div>
+
+    <div class="pm">
+      <div class="pv">15</div>
+      <div>
+        <h3>Seuil d'alerte</h3>
+        <p class="pd">Un événement doit atteindre 15 points pour être traité comme une alerte et publié sans attendre le prochain créneau.</p>
+        <p class="pq"><b>Ce que ça empêche —</b> de qualifier d'urgent ce qui ne l'est pas. Un horaire de match ou une procédure judiciaire ordinaire n'atteignent pas ce seuil.</p>
+        <span class="cle">BREAKING_SCORE</span>
       </div>
-    </div><div class="ph ">
-      <div class="pc">
-        <div class="pt-e"><span class="pn">PHASE 04</span>
-          <span class="pe c">À VENIR</span></div>
-        <h3>Extension francophone</h3>
-        <p class="obj">Valider que le modèle se transpose, sur un territoire où la langue et le cadre juridique restent proches.</p>
-        <div class="jal"><div class="jl"><span class="cc"></span><span>Belgique francophone : sources locales et fil dédié</span></div><div class="jl"><span class="cc"></span><span>Suisse romande, puis Québec</span></div><div class="jl"><span class="cc"></span><span>Détection automatique du périmètre géographique d'un fait</span></div><div class="jl"><span class="cc"></span><span>Séparation des fils par territoire, moteur commun</span></div></div>
-        <p class="risq"><b>Point de vigilance —</b> Chaque pays a ses règles sur les affaires judiciaires et la vie privée. Les garde-fous actuels sont écrits pour le droit français et devront être déclinés.</p>
+    </div>
+
+    <div class="pm">
+      <div class="pv">10</div>
+      <div>
+        <h3>Seuil de publication</h3>
+        <p class="pd">En dessous de dix points, un sujet n'est pas publié. Il peut être mis en suivi si un développement est attendu.</p>
+        <p class="pq"><b>Ce que ça empêche —</b> de publier pour publier. Un fil plus court vaut mieux qu'un fil dilué.</p>
+        <span class="cle">BUZZ_SCORE</span>
       </div>
-    </div><div class="ph ">
-      <div class="pc">
-        <div class="pt-e"><span class="pn">PHASE 05</span>
-          <span class="pe c">À VENIR</span></div>
-        <h3>Passage multilingue</h3>
-        <p class="obj">Porter le moteur sur une deuxième langue, avec ses sources propres et ses codes éditoriaux.</p>
-        <div class="jal"><div class="jl"><span class="cc"></span><span>Anglais : sources britanniques et irlandaises</span></div><div class="jl"><span class="cc"></span><span>Adaptation des règles de rédaction à chaque langue</span></div><div class="jl"><span class="cc"></span><span>Recoupement translinguistique : un même fait, deux langues</span></div><div class="jl"><span class="cc"></span><span>Espagnol, allemand, italien</span></div></div>
-        <p class="risq"><b>Point de vigilance —</b> Le recoupement repose sur des vecteurs de sens entraînés majoritairement sur l'anglais. Leur qualité varie selon les langues et devra être mesurée avant tout déploiement.</p>
-      </div>
-    </div><div class="ph ">
-      <div class="pc">
-        <div class="pt-e"><span class="pn">PHASE 06</span>
-          <span class="pe c">À VENIR</span></div>
-        <h3>Réseau international</h3>
-        <p class="obj">Un fil vérifié par pays, alimenté par un moteur unique et des règles éditoriales communes.</p>
-        <div class="jal"><div class="jl"><span class="cc"></span><span>Un territoire supplémentaire par trimestre</span></div><div class="jl"><span class="cc"></span><span>Corroboration transfrontalière sur les sujets internationaux</span></div><div class="jl"><span class="cc"></span><span>Comparaison du traitement d'un même fait selon les pays</span></div><div class="jl"><span class="cc"></span><span>Infrastructure dimensionnée pour une exécution parallèle</span></div></div>
-        <p class="risq"><b>Point de vigilance —</b> L'échelle change la nature des coûts : les paliers gratuits actuels ne suivront pas. Le modèle économique devra être établi avant, pas pendant.</p>
+    </div>
+
+    <div class="pm">
+      <div class="pv">8</div>
+      <div>
+        <h3>Seuil de l'éphéméride</h3>
+        <p class="pd">Un fait historique doit obtenir 8 sur 10 pour être publié. Une publication scientifique, un brevet, une inauguration n'atteignent pas ce seuil.</p>
+        <p class="pq"><b>Ce que ça empêche —</b> de remplir la rubrique chaque jour à tout prix. Certains jours, il ne s'est rien passé de marquant : Pulse se tait.</p>
+        <span class="cle">HISTOIRE_NOTE_MINI</span>
       </div>
     </div>
   </div>
 
-  <div class="note-fin">
-    <b>Sur le financement.</b> Pulse fonctionne aujourd'hui sur des paliers
-    gratuits. Le passage à l'échelle internationale changera cette donne, et le
-    modèle économique sera établi et publié avant tout déploiement — pas après.
-    <b>Le jeton $PULSE n'entre pas dans cette équation :</b> un média dont
-    l'infrastructure dépendrait du volume échangé sur son propre jeton perdrait
-    l'indépendance qui fait sa raison d'être.
+  <div class="titre-sec" style="margin-top:44px"><h2>Règles de fonctionnement</h2>
+    <span>indépendantes des seuils chiffrés</span></div>
+
+  <div class="regle"><h3>🔒 La ligne éditoriale reste hors du jeton</h3>
+    <p>Détenir $PULSE ne donne <b>aucune voix</b> sur les sujets traités, aucun droit
+       de proposer, d'écarter ou d'orienter une publication. Aucun mécanisme de vote
+       n'existe et il n'en sera pas créé.</p>
+    <p>Un média dont les choix dépendraient de porteurs de jetons aurait simplement
+       changé de propriétaire.</p></div>
+
+  <div class="regle"><h3>💰 Le financement est déclaré</h3>
+    <p>L'infrastructure de Pulse — modèles de langage, hébergement, base de données —
+       a un coût. Il sera couvert par les <b>frais de transaction du jeton $PULSE</b>.</p>
+    <p>Nous l'écrivons plutôt que de le taire. <b>Si les frais ne suffisent pas, Pulse
+       fonctionnera de façon réduite</b> — moins de cycles, moins de canaux — plutôt
+       que d'abaisser ses seuils pour publier davantage.</p>
+    <p>Aucun annonceur, aucun contenu sponsorisé, aucun article rémunéré. Jamais.</p></div>
+
+  <div class="regle"><h3>📋 Toute modification est annoncée</h3>
+    <p>Un seuil peut évoluer : le projet est jeune et certains réglages se révéleront
+       mal calibrés. Mais <b>aucune modification n'entrera en vigueur sans être publiée
+       ici au préalable</b>, avec sa raison.</p>
+    <p>L'historique des changements reste consultable. Un engagement qu'on peut réviser
+       en silence n'engage personne.</p></div>
+
+  <div class="regle"><h3>⚖️ Les refus restent publics</h3>
+    <p>Chaque sujet écarté est publié au <a href="journal.html" style="color:var(--mauve)">journal
+       des décisions</a> avec son motif et son score. Cette page ne sera jamais retirée
+       ni filtrée.</p></div>
+
+  <div class="regle"><h3>🔍 Les erreurs sont corrigées visiblement</h3>
+    <p>Une information erronée est corrigée, et <b>la correction est signalée sur
+       l'article</b> avec sa date. L'historique n'est pas effacé.</p>
+    <p>Pulse ne se rend pas sur place et n'interroge personne. Si toutes ses sources
+       se trompent, il se trompera aussi — et il le dit sur chaque publication.</p></div>
+
+  <div class="fin">
+    <h3>⚠️ Ce que nous ne promettons pas</h3>
+    <p><b>Nous ne promettons pas l'exactitude.</b> Pulse recoupe, mais ne vérifie pas
+       sur le terrain. Le lien vers la source figure sur chaque article : en cas de
+       doute, allez-y.</p>
+    <p><b>Nous ne promettons pas l'exhaustivité.</b> Le seuil de corroboration écarte
+       des faits réels que seule une rédaction a rapportés. C'est un choix assumé :
+       nous préférons manquer une information que d'en publier une non confirmée.</p>
+    <p><b>Nous ne promettons pas la continuité.</b> Pulse dépend de services tiers.
+       Une interruption est possible, et elle sera signalée.</p>
   </div>
+
 </div></section><footer><div class="wrap">
   <div class="fl">PULSE</div>
   <p>Le premier bot d'actualité autonome</p>
   <div class="liens">
     <a href="actu.html">Le fil</a><a href="journal.html">Journal des décisions</a>
-    <a href="methode.html">Méthode</a><a href="token.html">$PULSE</a>
+    <a href="methode.html">Méthode</a>
+    <a href="roadmap.html">Feuille de route</a><a href="token.html">$PULSE</a>
     <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
     <a href="https://x.com/PULSEactus">@PULSEactus</a>
