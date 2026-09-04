@@ -139,6 +139,30 @@ footer a{color:var(--mauve)}
 footer .liens{display:flex;gap:18px;justify-content:center;margin:16px 0 18px;flex-wrap:wrap}
 footer .liens a{color:var(--gris);font-size:13.5px}
 footer .liens a:hover{color:var(--blanc)}
+
+.dec .corps{min-width:0}
+.dx{font-size:13px;color:var(--gris);line-height:1.55;margin-top:7px;
+  padding-left:11px;border-left:2px solid var(--bord)}
+.detail{font:500 11.5px/1.5 var(--m);color:var(--faible);margin-top:8px;
+  padding-top:8px;border-top:1px solid var(--bord);overflow-wrap:anywhere}
+.sc{font:600 11px/1 var(--m);color:var(--mauve);background:rgba(194,75,255,.1);
+  border:1px solid rgba(194,75,255,.26);border-radius:6px;padding:4px 8px;white-space:nowrap}
+.md{font:600 11px/1 var(--c);color:var(--faible);background:rgba(255,255,255,.04);
+  border:1px solid var(--bord);border-radius:6px;padding:4px 8px;white-space:nowrap}
+
+/* 📄 Barre de pagination */
+.pagi{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.pg{font:600 14px/1 var(--c);color:var(--gris);background:var(--carte);
+  border:1px solid var(--bord);border-radius:11px;min-width:42px;height:42px;
+  padding:0 12px;cursor:pointer;transition:.2s}
+.pg:hover:not(:disabled):not(.pt){color:var(--blanc);border-color:#443C6B}
+.pg.on{color:#fff;background:rgba(123,46,255,.26);border-color:rgba(194,75,255,.5)}
+.pg:disabled{opacity:.32;cursor:default}
+.pg.pt{border:none;background:none;cursor:default;min-width:22px;padding:0}
+@media(max-width:600px){
+  .pg{min-width:38px;height:38px;padding:0 9px;font-size:13px}
+  .da{flex-wrap:wrap}
+}
 </style><style>
 .encadre{background:rgba(123,46,255,.07);border:1px solid rgba(123,46,255,.28);
   border-left:3px solid var(--violet);border-radius:14px;padding:18px 22px;
@@ -289,7 +313,14 @@ function fiabilite(n){
     livres : chaque sujet écarté figure ici, avec sa raison et sa note. Jugez
     vous-même si nous avons eu raison — <b>et dites-le-nous si ce n'est pas le cas.</b></div>
   <div class="res" id="resume"></div>
+  <div class="filtres" style="margin-bottom:18px">
+    <button class="f fd on" data-d="tout">Tout</button>
+    <button class="f fd" data-d="ecarter">✕ Écartés</button>
+    <button class="f fd" data-d="suivre">◷ En suivi</button>
+    <button class="f fd" data-d="publier">✓ Publiés</button>
+  </div>
   <div id="liste"><div class="charge"><div class="sp"></div>Chargement du journal…</div></div>
+  <div class="pagi" id="pagi"></div>
 </section>
 <footer><div class="wrap">
   <div class="fl">PULSE</div>
@@ -313,40 +344,142 @@ if(!b||!n)return;b.addEventListener('click',function(){
 </script><script>
 const DEC = {ecarter:["✕","ÉCARTÉ","#EF4444"], suivre:["◷","EN SUIVI","#F59E0B"],
              publier:["✓","PUBLIÉ","#37E39B"]};
-async function charger(){
-  const box = document.getElementById('liste');
+const PAR_PAGE = 25;
+let page = 0, filtre = 'tout', total = 0;
+
+/* ⚠️ Les compteurs ne comptaient QUE les décisions affichées : ils changeaient
+   à chaque chargement, ce qui donnait des chiffres incohérents. On demande
+   maintenant le total réel à la base, via un comptage exact. */
+async function compter(condition){
+  const q = condition ? `&${condition}` : '';
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/decisions?select=id${q}`, {
+    headers:{apikey:SUPABASE_ANON, Authorization:`Bearer ${SUPABASE_ANON}`,
+             Prefer:'count=exact', Range:'0-0'}});
+  return Number((r.headers.get('content-range')||'/0').split('/')[1] || 0);
+}
+
+async function resume(){
   try{
-    const d = await api('decisions?order=prise_le.desc&limit=60');
-    if(!d.length){
-      box.innerHTML = `<div class="vide"><span class="e">📋</span>
-        Aucune décision journalisée pour l'instant.<br>
-        <span style="font-size:13.5px">Le journal se remplira au premier cycle du bot.</span></div>`;
-      return;
-    }
-    const n = {ecarter:0, suivre:0, publier:0};
-    d.forEach(x=>{ n[x.decision] = (n[x.decision]||0) + 1; });
+    const [ec, su, pu] = await Promise.all([
+      compter('decision=eq.ecarter'),
+      compter('decision=eq.suivre'),
+      compter('decision=eq.publier')]);
+    total = ec + su + pu;
     document.getElementById('resume').innerHTML = `
-      <div class="rc"><div class="v" style="color:#EF4444">${n.ecarter||0}</div>
-        <div class="l">recalés</div></div>
-      <div class="rc"><div class="v" style="color:#F59E0B">${n.suivre||0}</div>
-        <div class="l">sous surveillance</div></div>
-      <div class="rc"><div class="v" style="color:#37E39B">${n.publier||0}</div>
+      <div class="rc"><div class="v" style="color:#EF4444">${ec.toLocaleString('fr-FR')}</div>
+        <div class="l">sujets écartés</div></div>
+      <div class="rc"><div class="v" style="color:#F59E0B">${su.toLocaleString('fr-FR')}</div>
+        <div class="l">mis en suivi</div></div>
+      <div class="rc"><div class="v" style="color:#37E39B">${pu.toLocaleString('fr-FR')}</div>
         <div class="l">publiés</div></div>
-      <div class="rc"><div class="v" style="color:var(--mauve)">${d.length}</div>
-        <div class="l">décisions ouvertes</div></div>`;
-    box.innerHTML = d.map(x=>{
-      const [ic,lab,col] = DEC[x.decision] || DEC.ecarter;
-      return `<div class="dec"><span class="ic" style="--c:${col}">${ic}</span>
-        <div><div class="dt">${x.titre}</div><div class="dr">${x.raison}</div></div>
-        <div class="da"><span class="et" style="--c:${col}">${lab}</span>
-          <span class="ds">${x.score!=null?'score '+x.score.toFixed(1)+' · ':''}${ecoule(x.prise_le)}</span>
-        </div></div>`;
-    }).join('');
+      <div class="rc"><div class="v" style="color:var(--mauve)">${total.toLocaleString('fr-FR')}</div>
+        <div class="l">décisions au total</div></div>`;
+  }catch(e){}
+}
+
+/* 📝 Un motif brut — « sujet déjà publié récemment » — ne dit pas grand-chose.
+   On l'explicite, et on y joint le score quand il est disponible. */
+function motif(x){
+  const r = (x.raison || '').toLowerCase();
+  let txt = x.raison || 'motif non précisé';
+  let sup = '';
+  if(r.includes('déjà publié'))
+    sup = "Ce fait a déjà fait l'objet d'une publication. Sans élément nouveau, le republier n'apporterait rien au lecteur.";
+  else if(r.includes('une seule rédaction'))
+    sup = "Une seule rédaction rapporte ce fait. Notre seuil exige deux sources indépendantes, sauf alerte vitale.";
+  else if(r.includes('pas assez') || r.includes('score'))
+    sup = "Le score composite n'atteint pas le seuil de publication, fixé à 10 points.";
+  else if(r.includes('délai') || r.includes('cadence'))
+    sup = "Un sujet proche vient d'être publié. Un délai minimum sépare deux traitements d'une même affaire.";
+  else if(r.includes('quota') || r.includes('plafond'))
+    sup = "Le plafond quotidien de 20 publications est atteint. Seules les alertes vitales passent encore.";
+  else if(r.includes('nuit'))
+    sup = "Les publications ordinaires sont suspendues la nuit. Le sujet sera réexaminé au matin.";
+  return {txt, sup};
+}
+
+function carteDec(x){
+  const [ic,lab,col] = DEC[x.decision] || DEC.ecarter;
+  const m = motif(x);
+  const sc = x.score != null
+    ? `<span class="sc">score ${x.score.toFixed(1)} / 10 requis</span>` : '';
+  const det = x.detail
+    ? `<div class="detail">${x.detail}</div>` : '';
+  const md = x.nb_medias
+    ? `<span class="md">${x.nb_medias} média${x.nb_medias>1?'s':''}</span>` : '';
+  return `<div class="dec">
+    <span class="ic" style="--c:${col}">${ic}</span>
+    <div class="corps">
+      <div class="dt">${x.titre}</div>
+      <div class="dr">${m.txt}</div>
+      ${m.sup ? `<div class="dx">${m.sup}</div>` : ''}
+      ${det}
+    </div>
+    <div class="da"><span class="et" style="--c:${col}">${lab}</span>
+      ${sc}${md}<span class="ds">${ecoule(x.prise_le)}</span></div>
+  </div>`;
+}
+
+async function charger(reset){
+  const box = document.getElementById('liste');
+  if(reset){ page = 0; box.innerHTML = '<div class="charge"><div class="sp"></div>Chargement…</div>'; }
+  try{
+    let q = `decisions?order=prise_le.desc&limit=${PAR_PAGE}&offset=${page*PAR_PAGE}`;
+    if(filtre !== 'tout') q += `&decision=eq.${filtre}`;
+    const d = await api(q);
+    if(reset) box.innerHTML = '';
+    if(!d.length && !page){
+      box.innerHTML = `<div class="vide"><span class="e">📋</span>
+        Aucune décision pour ce filtre.</div>`;
+      pagination(0); return;
+    }
+    box.insertAdjacentHTML('beforeend', d.map(carteDec).join(''));
+    pagination(d.length);
   }catch(err){
     box.innerHTML = `<div class="vide"><span class="e">⚠️</span>
       Impossible de charger le journal.<br>
       <span style="font-size:13px">${err.message}</span></div>`;
   }
 }
-charger();
+
+/* 📄 PAGINATION : la page descendait sans fin. On la découpe, avec des numéros
+   cliquables — on peut revenir à une page précise plutôt que tout recharger. */
+function pagination(recus){
+  const box = document.getElementById('pagi');
+  const nb = Math.max(1, Math.ceil(total / PAR_PAGE));
+  if(nb <= 1){ box.innerHTML = ''; return; }
+  let h = `<button class="pg" ${page===0?'disabled':''} data-p="${page-1}">‹</button>`;
+  // on n'affiche jamais plus de 7 numéros : au-delà, la barre déborde
+  const fen = [];
+  for(let i=0;i<nb;i++){
+    if(i===0 || i===nb-1 || Math.abs(i-page)<=1) fen.push(i);
+    else if(fen[fen.length-1] !== '…') fen.push('…');
+  }
+  fen.forEach(i => {
+    h += i === '…'
+      ? '<span class="pg pt">…</span>'
+      : `<button class="pg${i===page?' on':''}" data-p="${i}">${i+1}</button>`;
+  });
+  h += `<button class="pg" ${page>=nb-1?'disabled':''} data-p="${page+1}">›</button>`;
+  box.innerHTML = h;
+  box.querySelectorAll('button[data-p]').forEach(b => {
+    b.addEventListener('click', () => {
+      const p = parseInt(b.dataset.p, 10);
+      if(p < 0 || p >= nb || p === page) return;
+      page = p; charger(true);
+      document.getElementById('liste').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+}
+
+document.querySelectorAll('.fd').forEach(b => {
+  b.addEventListener('click', async () => {
+    document.querySelectorAll('.fd').forEach(x => x.classList.remove('on'));
+    b.classList.add('on'); filtre = b.dataset.d;
+    total = filtre === 'tout' ? await compter() : await compter(`decision=eq.${filtre}`);
+    charger(true);
+  });
+});
+
+resume().then(charger.bind(null, true));
 </script></body></html>
