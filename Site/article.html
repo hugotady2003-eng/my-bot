@@ -159,6 +159,16 @@ footer .liens a:hover{color:var(--blanc)}
 .cl.total .cl-n{font-weight:700;color:var(--blanc)}
 .cl.total .cl-v{color:var(--mauve);font-size:19px}
 @media(max-width:600px){.calc{padding:14px 15px}.cl-e{padding-right:0}}
+
+/* ── Icônes de catégorie, dessinées au trait ── */
+.cat{display:inline-flex;align-items:center;gap:6px}
+.cat i,.f i{display:inline-flex;width:13px;height:13px}
+.cat svg,.f svg{width:100%;height:100%;display:block}
+.f{display:inline-flex;align-items:center;gap:7px}
+.f i{width:15px;height:15px}
+.ic-cat{display:block;width:38%;max-width:52px;color:rgba(255,255,255,.9)}
+.ic-cat svg{width:100%;height:100%;stroke-width:1.4}
+.art.gros .ic-cat{width:34%;max-width:76px}
 </style><style>
 /* 🎈 Navigation FLOTTANTE : les flèches précédent/suivant ne sont plus collées
    aux bords de l'écran. Elles flottent, remontent au survol, et passent sous
@@ -310,14 +320,36 @@ async function api(chemin){
 }
 
 /* ── Habillage ───────────────────────────────────────────────────────── */
+const ICO = {
+  france: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6l7-2 7 2v14M4 20h14M8 11h2M8 15h2M12 11h2M12 15h2M11 20v-4h0" /></svg>`,
+  monde: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M3 12h16M11 4c2.2 2.2 3.3 5 3.3 8s-1.1 5.8-3.3 8c-2.2-2.2-3.3-5-3.3-8s1.1-5.8 3.3-8z"/></svg>`,
+  economie: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4.5-5 3.5 3.2L18 8"/><path d="M14 8h4v4"/><path d="M3 20h16"/></svg>`,
+  sport: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M11 4v5M11 15v5M3.5 9l4.5 3M14 12l4.5-3M6 19l2.5-4M14 15l2.5 4"/></svg>`,
+  culture: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5v9a3.5 3.5 0 007 0V5"/><path d="M3 5h4M10 5h4"/><path d="M15 9v5a3 3 0 006 0V9"/><path d="M14 9h4"/></svg>`,
+  faitsdivers: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3l8 15H3z"/><path d="M11 9v4M11 15.5v.5"/></svg>`,
+  politique: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h16M5 20V10M9 20V10M13 20V10M17 20V10"/><path d="M2 10h18L11 4z"/></svg>`,
+  sante: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2-5 3 10 2.5-5H19"/></svg>`,
+  tech: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="14" height="14" rx="2.5"/><rect x="8" y="8" width="6" height="6" rx="1"/><path d="M8 1.5v2.5M14 1.5v2.5M8 18v2.5M14 18v2.5M1.5 8H4M1.5 14H4M18 8h2.5M18 14h2.5"/></svg>`,
+  societe: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="8" r="2.6"/><circle cx="15" cy="8" r="2.2"/><path d="M2.5 18c0-2.8 2.2-4.6 5-4.6s5 1.8 5 4.6"/><path d="M13 13.8c2.4-.3 5 1.3 5 4.2"/></svg>`,
+  histoire: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M11 7v5l3.5 2.2"/></svg>`,
+  saviez: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3a6 6 0 00-3.5 10.9V16h7v-2.1A6 6 0 0011 3z"/><path d="M9 19h4M9.5 21h3"/></svg>`,
+};
 const CAT = {
-  france:["🇫🇷","FRANCE","#7B2EFF"], monde:["🌍","MONDE","#3B82F6"],
-  economie:["💶","ÉCO","#10B981"], sport:["⚽","SPORT","#F59E0B"],
-  culture:["🎭","CULTURE","#EC4899"], faitsdivers:["🚨","FAITS DIVERS","#EF4444"],
-  politique:["🏛️","POLITIQUE","#8B5CF6"], sante:["🏥","SANTÉ","#14B8A6"],
-  tech:["💻","TECH","#06B6D4"], societe:["👥","SOCIÉTÉ","#F472B6"],
+  france: ["FRANCE", "#7B2EFF"],
+  monde: ["MONDE", "#3B82F6"],
+  economie: ["ÉCONOMIE", "#10B981"],
+  sport: ["SPORT", "#F59E0B"],
+  culture: ["CULTURE", "#EC4899"],
+  faitsdivers: ["FAITS DIVERS", "#EF4444"],
+  politique: ["POLITIQUE", "#8B5CF6"],
+  sante: ["SANTÉ", "#14B8A6"],
+  tech: ["TECH", "#06B6D4"],
+  societe: ["SOCIÉTÉ", "#F472B6"],
+  histoire: ["HISTOIRE", "#A78BFA"],
+  saviez: ["LE SAVIEZ-VOUS", "#FBBF24"],
 };
 const cat = c => CAT[c] || CAT.france;
+const ico = c => ICO[c] || ICO.france;
 
 function ecoule(iso){
   const s = (Date.now() - new Date(iso)) / 1000;
@@ -466,7 +498,7 @@ async function charger(){
     if(!a){ box.innerHTML = `<div class="vide"><span class="e">🔍</span>
       Article introuvable.<br><a href="actu.html" style="color:var(--mauve)">
       Retour au fil</a></div>`; return; }
-    const [e,lab,col] = cat(a.categorie);
+    const [lab,col] = cat(a.categorie);
     const fi = fiabilite(a.nb_medias);
     const ok = (a.chiffres_ok||[]).map(x=>`<span class="ch ok">✓ ${x}</span>`).join('');
     const sl = (a.chiffres_seul||[]).map(x=>`<span class="ch seul">? ${x}</span>`).join('');
@@ -497,7 +529,7 @@ async function charger(){
     box.innerHTML = `<div class="art-page">
       <div class="fil-ar"><a href="actu.html">Le fil</a> › ${lab}</div>
       <div class="meta">
-        <span class="cat" style="--c:${col}">${e} ${lab}</span>
+        <span class="cat" style="--c:${col}"><i>${ico(a.categorie)}</i>${lab}</span>
         ${a.format==='breaking'?'<span class="urg">URGENT</span>':''}
         ${a.format==='hommage'?'<span class="hom">HOMMAGE</span>':''}
         <span class="h">${ecoule(a.publie_le)} · ${dateLongue(a.publie_le)}</span>
