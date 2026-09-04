@@ -163,6 +163,51 @@ footer .liens a:hover{color:var(--blanc)}
 .rc{background:var(--carte);border:1px solid var(--bord);border-radius:16px;padding:18px 20px}
 .rc .v{font:700 24px/1 var(--m);margin-bottom:6px}
 .rc .l{font:600 10.5px/1.4 var(--c);letter-spacing:.13em;text-transform:uppercase;color:var(--faible)}
+
+/* 📱 AUDIT DES MARGES — chaque bloc porteur de texte a été vérifié.
+   Sous 600 px, ceux qui n'avaient pas de marge propre en reçoivent une, et
+   ceux qui touchaient encore le bord sont resserrés. */
+@media(max-width:600px){
+  .avert-tete{padding:20px 18px}
+  .sign{padding:20px 18px}
+  .somm{padding:18px 18px}
+  .enc{padding:15px 16px}
+  .risque{padding:20px 18px}
+  .col{padding:20px 18px}
+  .adr{padding:13px 15px;font-size:12px}
+  .rc{padding:15px 16px}
+  .cp{padding:17px 15px}
+  .st{padding:17px 16px}
+  .w{padding:14px 18px}
+  .lb{padding:0}
+  /* les tableaux débordaient : ils défilent maintenant au lieu de pousser la page */
+  .lb-t,.tb{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .lb-t th,.lb-t td,.tb th,.tb td{padding:11px 13px;font-size:14px}
+  .lb-t td:first-child,.tb td:first-child{width:auto;min-width:150px}
+  /* le titre de section et son numéro */
+  h2.sec{font-size:21px;margin:34px 0 12px}
+  /* le fil d'Ariane et la ligne de méta ne doivent pas dépasser */
+  .fil-ar,.meta{flex-wrap:wrap}
+  /* les longs mots — adresses, identifiants — se coupent au lieu de déborder */
+  .lb p,.bloc p,.dec .dt,.dr,.txt h3,.txt p,.chapo{overflow-wrap:anywhere}
+}
+/* ⚠️ Le corps d'article et les grands titres n'étaient bornés par rien :
+   sur un écran étroit, une longue URL ou un mot composé sortait du cadre. */
+h1,h2,h3,p,li,td,th{overflow-wrap:break-word}
+
+/* ⚠️ Blocs identifiés hors conteneur .wrap : sans marge propre, leur texte
+   touchait le bord de l'écran. Vérifié bloc par bloc. */
+.chapo,.sect-h,.corps,.aveu,.note-ch,.leg-img,.fil-ar{padding-left:0;padding-right:0}
+@media(max-width:600px){
+  .lecture{padding-left:max(18px,env(safe-area-inset-left));
+           padding-right:max(18px,env(safe-area-inset-right))}
+  .cps{padding-left:0;padding-right:0}
+  .titre-sec{flex-wrap:wrap;gap:8px}
+  .titre-sec h2{font-size:21px}
+  /* le corps d'article ne doit jamais coller : il porte le plus de texte */
+  .art-page{padding-left:0;padding-right:0}
+  .corps p,.chapo{padding-right:2px}
+}
 </style><script>
 /* ═══════════════════════════════════════════════════════════════════════
    CONFIGURATION — remplace ces deux valeurs par les tiennes.
@@ -226,6 +271,7 @@ function fiabilite(n){
     <a href="actu.html">Le fil</a>
     <a href="journal.html" class="on">Journal des décisions</a>
     <a href="methode.html">Méthode</a>
+    <a href="roadmap.html">Feuille de route</a>
     <a href="token.html">$PULSE</a>
     <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
@@ -249,7 +295,8 @@ function fiabilite(n){
   <p>Le premier bot d'actualité autonome</p>
   <div class="liens">
     <a href="actu.html">Le fil</a><a href="journal.html">Journal des décisions</a>
-    <a href="methode.html">Méthode</a><a href="token.html">$PULSE</a>
+    <a href="methode.html">Méthode</a>
+    <a href="roadmap.html">Feuille de route</a><a href="token.html">$PULSE</a>
     <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
     <a href="https://x.com/PULSEactus">@PULSEactus</a>

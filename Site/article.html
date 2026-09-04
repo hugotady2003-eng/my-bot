@@ -139,6 +139,26 @@ footer a{color:var(--mauve)}
 footer .liens{display:flex;gap:18px;justify-content:center;margin:16px 0 18px;flex-wrap:wrap}
 footer .liens a{color:var(--gris);font-size:13.5px}
 footer .liens a:hover{color:var(--blanc)}
+
+/* ── Décomposition du score ── */
+.calc{margin-top:14px;background:rgba(11,10,16,.5);border:1px solid var(--bord);
+  border-radius:14px;padding:16px 18px}
+.calc-t{font:700 10.5px/1 var(--c);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faible);margin-bottom:14px}
+.cl{padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.cl:last-child{border-bottom:none}
+.cl-h{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.cl-n{font:600 14.5px/1.3 var(--c);color:var(--texte)}
+.cl-v{font:700 15px/1 var(--m);color:var(--vert);white-space:nowrap}
+.cl-v.neg{color:var(--orange)}
+.cl-v.base{color:var(--gris)}
+.cl-e{font-size:12.5px;color:var(--faible);line-height:1.5;margin-top:5px;
+  padding-right:52px}
+.cl.total{margin-top:6px;padding-top:14px;border-top:2px solid var(--bord);
+  border-bottom:none}
+.cl.total .cl-n{font-weight:700;color:var(--blanc)}
+.cl.total .cl-v{color:var(--mauve);font-size:19px}
+@media(max-width:600px){.calc{padding:14px 15px}.cl-e{padding-right:0}}
 </style><style>
 /* 🎈 Navigation FLOTTANTE : les flèches précédent/suivant ne sont plus collées
    aux bords de l'écran. Elles flottent, remontent au survol, et passent sous
@@ -224,6 +244,51 @@ footer .liens a:hover{color:var(--blanc)}
   color:var(--faible);margin-bottom:5px}
 .src-box .n{font:600 15px/1.3 var(--c);color:var(--texte)}
 .src-box a{font:600 13.5px/1 var(--c);color:var(--mauve);white-space:nowrap}
+
+/* 📱 AUDIT DES MARGES — chaque bloc porteur de texte a été vérifié.
+   Sous 600 px, ceux qui n'avaient pas de marge propre en reçoivent une, et
+   ceux qui touchaient encore le bord sont resserrés. */
+@media(max-width:600px){
+  .avert-tete{padding:20px 18px}
+  .sign{padding:20px 18px}
+  .somm{padding:18px 18px}
+  .enc{padding:15px 16px}
+  .risque{padding:20px 18px}
+  .col{padding:20px 18px}
+  .adr{padding:13px 15px;font-size:12px}
+  .rc{padding:15px 16px}
+  .cp{padding:17px 15px}
+  .st{padding:17px 16px}
+  .w{padding:14px 18px}
+  .lb{padding:0}
+  /* les tableaux débordaient : ils défilent maintenant au lieu de pousser la page */
+  .lb-t,.tb{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .lb-t th,.lb-t td,.tb th,.tb td{padding:11px 13px;font-size:14px}
+  .lb-t td:first-child,.tb td:first-child{width:auto;min-width:150px}
+  /* le titre de section et son numéro */
+  h2.sec{font-size:21px;margin:34px 0 12px}
+  /* le fil d'Ariane et la ligne de méta ne doivent pas dépasser */
+  .fil-ar,.meta{flex-wrap:wrap}
+  /* les longs mots — adresses, identifiants — se coupent au lieu de déborder */
+  .lb p,.bloc p,.dec .dt,.dr,.txt h3,.txt p,.chapo{overflow-wrap:anywhere}
+}
+/* ⚠️ Le corps d'article et les grands titres n'étaient bornés par rien :
+   sur un écran étroit, une longue URL ou un mot composé sortait du cadre. */
+h1,h2,h3,p,li,td,th{overflow-wrap:break-word}
+
+/* ⚠️ Blocs identifiés hors conteneur .wrap : sans marge propre, leur texte
+   touchait le bord de l'écran. Vérifié bloc par bloc. */
+.chapo,.sect-h,.corps,.aveu,.note-ch,.leg-img,.fil-ar{padding-left:0;padding-right:0}
+@media(max-width:600px){
+  .lecture{padding-left:max(18px,env(safe-area-inset-left));
+           padding-right:max(18px,env(safe-area-inset-right))}
+  .cps{padding-left:0;padding-right:0}
+  .titre-sec{flex-wrap:wrap;gap:8px}
+  .titre-sec h2{font-size:21px}
+  /* le corps d'article ne doit jamais coller : il porte le plus de texte */
+  .art-page{padding-left:0;padding-right:0}
+  .corps p,.chapo{padding-right:2px}
+}
 </style><script>
 /* ═══════════════════════════════════════════════════════════════════════
    CONFIGURATION — remplace ces deux valeurs par les tiennes.
@@ -287,6 +352,7 @@ function fiabilite(n){
     <a href="actu.html" class="on">Le fil</a>
     <a href="journal.html">Journal des décisions</a>
     <a href="methode.html">Méthode</a>
+    <a href="roadmap.html">Feuille de route</a>
     <a href="token.html">$PULSE</a>
     <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
@@ -303,7 +369,8 @@ function fiabilite(n){
   <p>Le premier bot d'actualité autonome</p>
   <div class="liens">
     <a href="actu.html">Le fil</a><a href="journal.html">Journal des décisions</a>
-    <a href="methode.html">Méthode</a><a href="token.html">$PULSE</a>
+    <a href="methode.html">Méthode</a>
+    <a href="roadmap.html">Feuille de route</a><a href="token.html">$PULSE</a>
     <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
     <a href="https://x.com/PULSEactus">@PULSEactus</a>
@@ -319,6 +386,68 @@ if(!b||!n)return;b.addEventListener('click',function(){
 /* La page lit le paramètre ?a=slug de l'adresse. Chaque article a donc sa
    propre adresse partageable. */
 const slug = new URLSearchParams(location.search).get('a');
+
+/* ⚖️ LE CALCUL, DÉCOMPOSÉ. Le score n'est pas un verdict opaque : chaque
+   composante est mesurée séparément et expliquée. Le lecteur peut refaire
+   l'addition et juger si les critères lui paraissent bons. */
+const EXPLIC = [
+  [/^gravité/i,      "Gravité intrinsèque du fait, notée de 0 à 10 par le moteur d'analyse."],
+  [/médias?\s*\+/i,  "Densité de couverture : plus de rédactions convergent, plus le fait est établi."],
+  [/^frais/i,        "Fraîcheur, mesurée sur l'article le plus récent de l'événement."],
+  [/imprévu/i,       "Caractère inattendu : un événement programmé pèse moins qu'une surprise."],
+  [/thème porteur/i, "Sujet qui suscite habituellement une forte réaction du lectorat."],
+  [/primeur/i,       "Information encore peu relayée au moment de la publication."],
+  [/exploit français/i, "Performance d'un athlète ou d'une équipe française."],
+  [/plancher|majeur/i,  "Nature d'événement qui impose un score minimum, quel que soit le reste."],
+  [/déjà publié|suite/i, "Ajustement lié au traitement antérieur du sujet."],
+];
+function explique(part){
+  for(const [rx, txt] of EXPLIC) if(rx.test(part)) return txt;
+  return "";
+}
+function calcul(a){
+  const n = a.nb_medias || 1;
+  let h = ligne('Rédactions ayant couvert le fait',
+                n + ' média' + (n > 1 ? 's' : '') +
+                (n >= 2 ? ' — seuil de corroboration atteint' : ''));
+  h += ligne('Publié le', dateLongue(a.publie_le));
+  if(a.score == null) return h;
+
+  /* ⚠️ Découper sur « + » cassait les composantes : « imprévu 8/10 +1 » devenait
+     deux morceaux, et « 4 médias +2 » perdait sa valeur. On sépare sur le « + »
+     qui SÉPARE deux composantes — celui précédé d'une espace et suivi d'un mot —
+     et non sur celui qui porte une valeur. */
+  const parts = (a.score_detail || '')
+    .split(/\s\+\s(?=[a-zA-ZÀ-ÿ⚡🔥\d])/)
+    .map(x => x.trim()).filter(Boolean);
+  h += `<div class="calc">
+    <div class="calc-t">Décomposition du score</div>`;
+  parts.forEach(p => {
+    /* la valeur est le dernier nombre SIGNÉ ; sans signe, la composante
+       n'ajoute rien au score (c'est une donnée de contexte) */
+    const m = p.match(/([+-]\s*\d+(?:[.,]\d+)?)\s*$/);
+    const val = m ? m[1].replace(/\s/g, '') : '';
+    /* « gravité 7 » n'a pas de signe : c'est la BASE du score, pas un bonus.
+       On affiche sa valeur sans « + » pour que l'addition reste juste à lire. */
+    let lib = m ? p.slice(0, m.index).trim() : p;
+    lib = lib.replace(/\s*\d+(?:[.,]\d+)?$/, '').trim() || lib;
+    const ex = explique(p);
+    h += `<div class="cl">
+      <div class="cl-h"><span class="cl-n">${lib}</span>
+        <span class="cl-v${val.startsWith('-') ? ' neg' : (val ? '' : ' base')}">${
+          val || (lib.match(/(\d+(?:[.,]\d+)?)/) ? lib.match(/(\d+(?:[.,]\d+)?)/)[1] : '—')
+        }</span></div>
+      ${ex ? `<div class="cl-e">${ex}</div>` : ''}
+    </div>`;
+  });
+  h += `<div class="cl total">
+      <div class="cl-h"><span class="cl-n">Score final</span>
+        <span class="cl-v">${a.score.toFixed(1)}</span></div>
+      <div class="cl-e">Seuil de publication : 10. Au-delà de 15, l'article est
+        traité comme une alerte et publié sans attendre le prochain créneau.</div>
+    </div></div>`;
+  return h;
+}
 
 function ligne(k, v, mono){
   return `<div class="tl"><span class="k">${k}</span>
@@ -354,8 +483,14 @@ async function charger(){
         </p></div>`;
     }
 
-    const corps = (a.corps||'').split('\n').filter(x=>x.trim())
-      .map(x=>`<p>${x}</p>`).join('');
+    /* ⚠️ Les mots-dièse servent à X, pas à une page web : ils y sont inutiles
+       et cassent la lecture. On les retire, ainsi que les lignes qui ne
+       contiennent QUE des mots-dièse. */
+    const corps = (a.corps||'')
+      .split('\n')
+      .map(x => x.replace(/\s*#[\wÀ-ÿ]+/g, '').trim())
+      .filter(x => x.length > 1)
+      .map(x => `<p>${x}</p>`).join('');
 
     box.innerHTML = `<div class="art-page">
       <div class="fil-ar"><a href="actu.html">Le fil</a> › ${lab}</div>
@@ -385,10 +520,7 @@ async function charger(){
         ${bloc_ch}
 
         <div class="sect-h"><div class="lt">Pourquoi nous l'avons publié</div>
-          ${ligne('Rédactions ayant couvert le fait', (a.nb_medias||1)+' média'+((a.nb_medias||1)>1?'s':''))}
-          ${a.score!=null?ligne('Score éditorial', a.score.toFixed(1), true):''}
-          ${a.score_detail?ligne('Détail du calcul', a.score_detail, true):''}
-          ${ligne('Publié le', dateLongue(a.publie_le))}
+          ${calcul(a)}
         </div>
 
         <div class="aveu">
