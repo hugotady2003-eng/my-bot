@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.4.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.5.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -12348,6 +12348,40 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None):
     return round(score, 1), detail
 
 
+# 🔒 EXIGENCE DE CORROBORATION — le cœur de la promesse de Pulse.
+#    Publier un fait rapporté par UNE SEULE rédaction, en prétendant comparer les
+#    sources, est une contradiction. Le lecteur ne peut pas nous croire sur ce point
+#    et constater l'inverse sur l'article.
+MEDIAS_MINI = int(os.environ.get("MEDIAS_MINI", "2"))
+
+# Ces natures d'événement échappent à la règle : quand une catastrophe survient,
+# le premier média à la rapporter a raison de le faire, et attendre serait absurde.
+_CORROB_EXEMPTE = re.compile(
+    r"\b(?:séisme|tremblement de terre|tsunami|éruption|attentat|explosion|"
+    r"fusillade|prise d'otages|crash|accident d'avion|déraillement|"
+    r"alerte enlèvement|évacuation|démission|décès|mort de)\b", re.IGNORECASE)
+
+
+def _corroboration_suffisante(ev, categorie=""):
+    """Vrai si l'événement est rapporté par assez de rédactions pour être publié.
+
+    Exceptions assumées :
+      • une ALERTE VITALE en cours — on ne fait pas attendre un séisme ;
+      • un HOMMAGE, dont le décès est vérifié par ailleurs auprès de Wikipédia ;
+      • les rendez-vous éditoriaux, qui ne rapportent pas un fait d'actualité."""
+    n = len(getattr(ev, "medias", None) and [1] * ev.medias or
+            {str(a.get("source") or "?").lower() for a in
+             (getattr(ev, "articles", []) or [])})
+    if n >= MEDIAS_MINI:
+        return True, n
+    if categorie in ("hommage", "histoire", "saviez", "decryptage", "recap"):
+        return True, n
+    titre = f"{getattr(ev, 'titre', '')} {getattr(ev, 'resume', '')}"
+    if _CORROB_EXEMPTE.search(titre):
+        return True, n
+    return False, n
+
+
 def decider_publication(conn, ev, note_ia=None, categorie="", imprevu=None):
     """POINT DE DÉCISION UNIQUE : faut-il publier cet événement ?
 
@@ -12367,6 +12401,16 @@ def decider_publication(conn, ev, note_ia=None, categorie="", imprevu=None):
       "suivre"   — sujet connu MAIS un fait nouveau le justifie
       "ecarter"  — rien de neuf, ou trop tôt
     """
+    # 🔒 CORROBORATION : un fait rapporté par UNE SEULE rédaction ne peut pas
+    #    être publié par un média qui affiche comparer ses sources. Ce serait
+    #    une contradiction que le lecteur constaterait immédiatement.
+    #    Exception : les alertes vitales, où attendre serait absurde.
+    _corr_ok, _n_med = _corroboration_suffisante(ev, categorie)
+    if not _corr_ok:
+        return ("ecarter",
+                "une seule rédaction rapporte ce fait, en attente de confirmation",
+                0.0, [f"{_n_med} média sur {MEDIAS_MINI} requis"])
+
     titre = ev.titre if hasattr(ev, "titre") else str(ev)
     resume = getattr(ev, "resume", "")
     # 🔍 RECOUPEMENT : ce que disent les autres médias du même événement. Attaché à
@@ -12969,7 +13013,12 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
             publier_sur_site(item, tweet_final, cat,
                              format_=("hommage" if cat == "hommage" else
                                       "breaking" if urgent else "actu"),
-                             image=raw_photo, tweet_url=_xurl,
+                             # ⚠️ C'est png_bytes qui est réellement publiée : la carte
+                         #    composée, avec titre et habillage. raw_photo ne
+                         #    contenait que les cas particuliers — frise, carte de
+                         #    lieu, photothèque — donc le site n'avait aucune image
+                         #    sur une publication ordinaire (défaut vécu).
+                         image=(png_bytes or raw_photo), tweet_url=_xurl,
                              recoupement=item.get("_rec_brut"))
         except Exception as _es:
             print(f"  ⚠️ Site indisponible ({str(_es)[:60]})")
