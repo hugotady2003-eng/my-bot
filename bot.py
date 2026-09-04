@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.5.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.5.2"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -12703,9 +12703,19 @@ def _televerser_image(brut, slug):
                                    "x-upsert": "true"})
         with _ur.urlopen(req, timeout=25):
             pass
-        return f"{SUPABASE_URL}/storage/v1/object/public/images/{nom}"
+        lien = f"{SUPABASE_URL}/storage/v1/object/public/images/{nom}"
+        print(f"  🖼️ Image déposée sur le site ({len(octets) // 1024} ko)")
+        return lien
     except Exception as ex:
-        print(f"  ⚠️ Site : image non téléversée ({str(ex)[:60]})")
+        # ⚠️ Le message d'erreur du serveur porte la VRAIE cause — bucket absent,
+        #    droits insuffisants, nom refusé. Le tronquer masquait le problème.
+        detail = ""
+        if hasattr(ex, "read"):
+            try:
+                detail = " · " + ex.read().decode("utf-8", "ignore")[:180]
+            except Exception:
+                pass
+        print(f"  ⚠️ Image NON déposée : {str(ex)[:70]}{detail}")
         return None
 
 
@@ -12786,7 +12796,8 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         "slug": slug, "titre": titre, "chapo": chapo[:400], "corps": corps,
         "categorie": cat or "france", "format": format_,
         "source_nom": item.get("source"), "source_url": item.get("url"),
-        "image_url": _televerser_image(image, slug),
+        "image_url": (_televerser_image(image, slug) if image
+                      else (print("  ⚠️ Aucune image à déposer sur le site") or None)),
         "nb_medias": int(rec.get("medias") or 1),
         "score": float(score) if score is not None else None,
         "score_detail": " + ".join(detail) if isinstance(detail, list) else detail,
@@ -13019,7 +13030,10 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
                          #    lieu, photothèque — donc le site n'avait aucune image
                          #    sur une publication ordinaire (défaut vécu).
                          image=(png_bytes or raw_photo), tweet_url=_xurl,
-                             recoupement=item.get("_rec_brut"))
+                             recoupement=item.get("_rec_brut"),
+                             # ⚖️ Le score et son détail : sans eux, la section « pourquoi
+                             #    nous l'avons publié » restait vide sur le site.
+                             score=item.get("_score"), detail=item.get("_detail"))
         except Exception as _es:
             print(f"  ⚠️ Site indisponible ({str(_es)[:60]})")
     if not posted_ok:
@@ -14767,6 +14781,9 @@ def _check_feeds_interne(conn):
                     imprevu=a.get("imprevu"))
                 if _det:
                     print(f"  🧮 Score {_sc} = {' + '.join(_det)}")
+                    # ⚖️ Le score et son détail partent au site : sans eux, la
+                    #    section « pourquoi nous l'avons publié » restait vide.
+                    hot["_score"], hot["_detail"] = _sc, _det
                 score = int(round(_sc))
                 if _dec == "ecarter":
                     print(f"  ⏭️  Écarté : {_pq} → suivant")
