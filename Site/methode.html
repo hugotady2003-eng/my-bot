@@ -143,6 +143,23 @@ footer .liens a:hover{color:var(--blanc)}
 @media(prefers-reduced-motion:reduce){
   .et2 .n,.et2 .n::before,.et2 .n::after{animation:none}
 }
+
+/* ── Chiffres sous chaque étape : la donnée technique qui crédibilise ── */
+.et2 .chif{font:600 11.5px/1.4 var(--m);color:var(--mauve);margin-bottom:10px;
+  padding-bottom:9px;border-bottom:1px solid var(--bord);letter-spacing:-.01em}
+.et2 h3{margin-bottom:8px}
+.et2 p:not(.chif){font-size:14.5px;line-height:1.6}
+.et2 b{color:var(--texte)}
+
+/* ── Tableau de métriques ── */
+.metriques{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px}
+.mt{background:var(--carte);border:1px solid var(--bord);border-radius:18px;
+  padding:22px 24px;transition:transform .3s,border-color .3s}
+.mt:hover{transform:translateY(-5px);border-color:rgba(194,75,255,.4)}
+.mv{font:700 29px/1 var(--m);color:var(--blanc);letter-spacing:-.02em;margin-bottom:9px}
+.ml{font:600 12.5px/1.35 var(--c);color:var(--texte);margin-bottom:6px}
+.md{font:500 11.5px/1.4 var(--m);color:var(--faible)}
+@media(max-width:600px){.mt{padding:18px 17px}.mv{font-size:25px}}
 </style><style>
 .etapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:22px}
 .et2{background:var(--carte);border:1px solid var(--bord);border-radius:18px;
@@ -217,6 +234,51 @@ footer .liens a:hover{color:var(--blanc)}
   font-size:15px;color:var(--gris)}
 .col.v li::before{content:"×";position:absolute;left:0;color:#7A5A6E;font-weight:800}
 .col.n li::before{content:"→";position:absolute;left:0;color:var(--mauve);font-weight:800}
+
+/* 📱 AUDIT DES MARGES — chaque bloc porteur de texte a été vérifié.
+   Sous 600 px, ceux qui n'avaient pas de marge propre en reçoivent une, et
+   ceux qui touchaient encore le bord sont resserrés. */
+@media(max-width:600px){
+  .avert-tete{padding:20px 18px}
+  .sign{padding:20px 18px}
+  .somm{padding:18px 18px}
+  .enc{padding:15px 16px}
+  .risque{padding:20px 18px}
+  .col{padding:20px 18px}
+  .adr{padding:13px 15px;font-size:12px}
+  .rc{padding:15px 16px}
+  .cp{padding:17px 15px}
+  .st{padding:17px 16px}
+  .w{padding:14px 18px}
+  .lb{padding:0}
+  /* les tableaux débordaient : ils défilent maintenant au lieu de pousser la page */
+  .lb-t,.tb{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .lb-t th,.lb-t td,.tb th,.tb td{padding:11px 13px;font-size:14px}
+  .lb-t td:first-child,.tb td:first-child{width:auto;min-width:150px}
+  /* le titre de section et son numéro */
+  h2.sec{font-size:21px;margin:34px 0 12px}
+  /* le fil d'Ariane et la ligne de méta ne doivent pas dépasser */
+  .fil-ar,.meta{flex-wrap:wrap}
+  /* les longs mots — adresses, identifiants — se coupent au lieu de déborder */
+  .lb p,.bloc p,.dec .dt,.dr,.txt h3,.txt p,.chapo{overflow-wrap:anywhere}
+}
+/* ⚠️ Le corps d'article et les grands titres n'étaient bornés par rien :
+   sur un écran étroit, une longue URL ou un mot composé sortait du cadre. */
+h1,h2,h3,p,li,td,th{overflow-wrap:break-word}
+
+/* ⚠️ Blocs identifiés hors conteneur .wrap : sans marge propre, leur texte
+   touchait le bord de l'écran. Vérifié bloc par bloc. */
+.chapo,.sect-h,.corps,.aveu,.note-ch,.leg-img,.fil-ar{padding-left:0;padding-right:0}
+@media(max-width:600px){
+  .lecture{padding-left:max(18px,env(safe-area-inset-left));
+           padding-right:max(18px,env(safe-area-inset-right))}
+  .cps{padding-left:0;padding-right:0}
+  .titre-sec{flex-wrap:wrap;gap:8px}
+  .titre-sec h2{font-size:21px}
+  /* le corps d'article ne doit jamais coller : il porte le plus de texte */
+  .art-page{padding-left:0;padding-right:0}
+  .corps p,.chapo{padding-right:2px}
+}
 </style></head><body>
 <header><div class="wrap hbar">
   <a class="logo" href="index.html"><i></i> PULSE</a>
@@ -233,50 +295,131 @@ footer .liens a:hover{color:var(--blanc)}
 </div></header>
 
 <div class="wrap chapeau-page">
-  <h1>La machine, de l'intérieur</h1>
-  <p>288 fois par jour, ce cycle se déclenche. 20 000 articles y passent.
-     Aucun humain n'y touche.</p>
+  <h1>Architecture éditoriale</h1>
+  <p>Un cycle complet toutes les 5 minutes. 288 fois par jour. Six étapes,
+     dont aucune n'implique un opérateur humain.</p>
 </div>
+
 <section class="wrap" style="padding:30px 0 10px">
+  <div class="titre-sec"><h2>Le pipeline</h2>
+    <span>de la source brute à la publication</span></div>
   <div class="etapes">
-    <div class="et2"><div class="n">01</div><h3>Il dévore</h3>
-      <p>14 400 consultations de sources par jour. Il ne rate rien, et ne privilégie personne.</p></div>
-    <div class="et2"><div class="n">02</div><h3>Il démêle</h3>
-      <p>15 dépêches sur le même incendie, ce n'est pas quinze infos. Il reconstitue l'événement réel.</p></div>
-    <div class="et2"><div class="n">03</div><h3>Il confronte</h3>
-      <p>Chiffre par chiffre, il compare ce que disent les rédactions. Les écarts, il vous les montre.</p></div>
-    <div class="et2"><div class="n">04</div><h3>Il jauge</h3>
-      <p>Gravité, ampleur, fraîcheur, effet de surprise. Chaque point du calcul est public.</p></div>
-    <div class="et2"><div class="n">05</div><h3>Il tranche</h3>
-      <p>Publier, surveiller ou recaler. Et il assume : la raison est publiée, même pour un refus.</p></div>
-    <div class="et2"><div class="n">06</div><h3>Il livre</h3>
-      <p>713 contrôles franchis, visuel créé, source citée. Cinq minutes plus tard, il recommence.</p></div>
+    <div class="et2"><div class="n">01</div>
+      <h3>Collecte</h3>
+      <p class="chif">50 flux · 14 400 requêtes/jour</p>
+      <p>Interrogation continue de flux RSS d'agences et de rédactions françaises.
+         Aucune source n'est pondérée différemment. Cache de déduplication sur
+         45 jours pour ne jamais retraiter un article déjà vu.</p></div>
+
+    <div class="et2"><div class="n">02</div>
+      <h3>Agrégation sémantique</h3>
+      <p class="chif">~70 articles → ~45 événements par cycle</p>
+      <p>Rapprochement en trois niveaux : vecteurs de sens (1 536 dimensions),
+         arbitrage par modèle de langage en zone de doute, puis comparaison des
+         entités saillantes. Quinze dépêches sur un même incendie deviennent
+         un événement unique, couvert par quinze rédactions.</p></div>
+
+    <div class="et2"><div class="n">03</div>
+      <h3>Recoupement factuel</h3>
+      <p class="chif">extraction par expression régulière · 18 unités reconnues</p>
+      <p>Chaque valeur chiffrée est extraite article par article et normalisée —
+         « 2 500 » et « 2500 » sont un même fait. Les concordances établissent la
+         fiabilité, les écarts sont conservés comme <b>divergences déclarées</b>.</p></div>
+
+    <div class="et2"><div class="n">04</div>
+      <h3>Notation composite</h3>
+      <p class="chif">7 composantes · score traçable</p>
+      <p>Gravité jugée par modèle, densité de couverture, fraîcheur mesurée sur
+         l'article le plus récent, indice d'imprévisibilité, affinité thématique,
+         primeur, historique. Chaque composante est journalisée séparément.</p></div>
+
+    <div class="et2"><div class="n">05</div>
+      <h3>Arbitrage éditorial</h3>
+      <p class="chif">seuil de corroboration : 2 rédactions minimum</p>
+      <p>Point de décision unique : publier, mettre en suivi, ou écarter.
+         <b>Un fait rapporté par une seule rédaction n'est pas publié</b>, sauf
+         alerte vitale. Mémoire d'entités sur 3 jours contre les reformulations.
+         Chaque refus est publié avec sa raison.</p></div>
+
+    <div class="et2"><div class="n">06</div>
+      <h3>Production et diffusion</h3>
+      <p class="chif">738 assertions de test · 7 contrôles rédactionnels</p>
+      <p>Rédaction sous contraintes vérifiées en code, composition du visuel,
+         cadrage par détection de visages, montage vidéo le cas échéant.
+         Publication simultanée sur les réseaux et sur ce site.</p></div>
   </div>
 </section>
+
 <section class="wrap" style="padding:34px 0 10px">
-  <div class="titre-sec"><h2>Eux et nous</h2></div>
+  <div class="titre-sec"><h2>Métriques opérationnelles</h2>
+    <span>volumétrie réelle du système</span></div>
+  <div class="metriques">
+    <div class="mt"><div class="mv">20 160</div><div class="ml">articles traités par jour</div>
+      <div class="md">70 par cycle × 288 cycles</div></div>
+    <div class="mt"><div class="mv">14 400</div><div class="ml">interrogations de sources</div>
+      <div class="md">50 flux × 288 cycles</div></div>
+    <div class="mt"><div class="mv">288</div><div class="ml">cycles complets quotidiens</div>
+      <div class="md">un toutes les 5 minutes</div></div>
+    <div class="mt"><div class="mv">7,3 M</div><div class="ml">articles analysés par an</div>
+      <div class="md">projection sur 365 jours</div></div>
+    <div class="mt"><div class="mv">738</div><div class="ml">assertions de non-régression</div>
+      <div class="md">exécutées avant chaque mise en service</div></div>
+    <div class="mt"><div class="mv">45 j</div><div class="ml">profondeur du cache</div>
+      <div class="md">aucun article retraité deux fois</div></div>
+    <div class="mt"><div class="mv">14 j</div><div class="ml">mémoire des dossiers</div>
+      <div class="md">suivi longitudinal des affaires</div></div>
+    <div class="mt"><div class="mv">0</div><div class="ml">intervention humaine</div>
+      <div class="md">de la collecte à la publication</div></div>
+  </div>
+</section>
+
+<section class="wrap" style="padding:34px 0 10px">
+  <div class="titre-sec"><h2>Contraintes rédactionnelles</h2>
+    <span>vérifiées en code, non par consigne</span></div>
+  <div class="etapes">
+    <div class="et2"><h3>Corroboration minimale</h3>
+      <p>Deux rédactions indépendantes requises. Dérogation pour les seules alertes
+         vitales — séisme, attentat, catastrophe — où le délai coûterait plus que
+         l'incertitude.</p></div>
+    <div class="et2"><h3>Intégrité factuelle</h3>
+      <p>Aucun chiffre, aucune citation, aucune date ne peut figurer dans une
+         publication sans être présent dans une source. Contrôle systématique
+         avant diffusion.</p></div>
+    <div class="et2"><h3>Interdiction de la rétention</h3>
+      <p>L'information doit figurer dans le corps du message. Toute formule
+         différant la révélation est détectée et entraîne une réécriture.</p></div>
+    <div class="et2"><h3>Qualification des hommages</h3>
+      <p>Réservés au décès d'une personnalité identifiée nommément, avec
+         recoupement biographique. Exclusion automatique des contextes criminels
+         et des victimes anonymes.</p></div>
+    <div class="et2"><h3>Conformité des visuels</h3>
+      <p>Image de l'article source ou banque sous licence libre exclusivement.
+         Détection et rejet des incrustations de plateau télévisé.</p></div>
+    <div class="et2"><h3>Traçabilité intégrale</h3>
+      <p>Chaque publication conserve ses sources, le détail de sa notation et les
+         divergences relevées. Chaque refus est publié avec son motif.</p></div>
+  </div>
+</section>
+
+<section class="wrap" style="padding:34px 0 10px">
+  <div class="titre-sec"><h2>Positionnement</h2></div>
   <div class="deux">
-    <div class="col v"><h3>Un média classique</h3><ul>
-      <li>Un propriétaire à ne pas contrarier</li>
-      <li>Une ligne décidée derrière une porte fermée</li>
-      <li>Des choix qu'on ne vous expliquera jamais</li>
-      <li>Des articles corrigés en douce, sans le dire</li>
-      <li>Des titres écrits pour le clic</li></ul></div>
+    <div class="col v"><h3>Rédaction traditionnelle</h3><ul>
+      <li>Actionnariat et annonceurs à ménager</li>
+      <li>Arbitrages éditoriaux non documentés</li>
+      <li>Corrections apportées sans historique</li>
+      <li>Sources rarement recoupées explicitement</li>
+      <li>Sujets écartés jamais rendus publics</li>
+      <li>Couverture limitée par les effectifs</li>
+    </ul></div>
     <div class="col n"><h3>Pulse</h3><ul>
-      <li>Personne à ménager, jamais</li>
-      <li>Des règles gravées dans le code, publiques</li>
-      <li>Chaque décision motivée, refus compris</li>
-      <li>Chaque chiffre tracé, source par source</li>
-      <li>L'info livrée, jamais monnayée contre un clic</li></ul></div>
-  </div>
-</section>
-<section class="wrap" style="padding:34px 0 10px">
-  <div class="titre-sec"><h2>Nos lignes rouges</h2></div>
-  <div class="etapes">
-    <div class="et2"><h3>Zéro appât à clic</h3><p>L'information est DANS le texte. Jamais de « vous ne devinerez jamais ».</p></div>
-    <div class="et2"><h3>Zéro invention</h3><p>Pas un chiffre, pas une citation, pas une date qui ne vienne de la source.</p></div>
-    <div class="et2"><h3>Zéro récupération</h3><p>Un hommage se mérite. Jamais sur le dos d'une victime anonyme.</p></div>
-    <div class="et2"><h3>Zéro image volée</h3><p>Photo de l'article ou banque libre de droits. Jamais rien d'autre.</p></div>
+      <li>Aucun intérêt économique dans les sujets traités</li>
+      <li>Règles inscrites dans le code, publiques</li>
+      <li>Chaque décision motivée et horodatée</li>
+      <li>Recoupement systématique, divergences affichées</li>
+      <li>Journal des refus accessible en permanence</li>
+      <li>20 160 articles traités quotidiennement</li>
+    </ul></div>
   </div>
 </section>
 
