@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.9.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.0.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -12917,6 +12917,58 @@ Réponds avec ce JSON UNIQUEMENT : {{"article":"le texte complet, \\n\\n entre p
     return "\n\n".join(lignes_r).strip()
 
 
+def traduire_article(titre, chapo, corps):
+    """Produit la version anglaise d'un article, à la publication.
+
+    ⚠️ Traduire ICI plutôt qu'à la lecture est un choix de principe : passer par
+    un service tiers au moment où quelqu'un lit enverrait le contenu consulté
+    chez un intermédiaire, ce qui contredirait la promesse de non-collecte
+    affichée sur le site. Traduit une fois, stocké, servi sans dépendance.
+
+    Renvoie (titre_en, chapo_en, corps_en), ou (None, None, None) si le modèle
+    est indisponible — l'article reste alors publié en français seul."""
+    titre = re.sub(r"\s+", " ", str(titre or "")).strip()
+    corps = str(corps or "").strip()
+    if not (titre and corps):
+        return None, None, None
+    try:
+        r = _llm_json(
+            f"""Traduis cet article de presse du français vers l'anglais.
+
+TITRE : {titre}
+ACCROCHE : {re.sub(r'\s+', ' ', str(chapo or '')).strip()}
+CORPS :
+{corps[:3000]}
+
+CONSIGNES :
+- Anglais journalistique naturel, pas une traduction littérale mot à mot.
+- Conserve TOUS les chiffres, dates, noms propres et unités à l'identique.
+  Convertis uniquement les formats : « 2 500 » devient « 2,500 », « 16h30 »
+  devient « 4:30 pm ».
+- Conserve la structure en paragraphes, séparés par une ligne vide.
+- Les noms d'institutions françaises restent en français, suivis d'une brève
+  explication entre parenthèses à la première occurrence si nécessaire :
+  « the Assemblée nationale (France's lower house) ».
+- N'ajoute AUCUNE information absente du texte source. Ne commente pas.
+
+Réponds avec ce JSON uniquement :
+{{"titre":"…","chapo":"…","corps":"le texte, \\n\\n entre paragraphes"}}""",
+            max_tokens=900, task="special")
+        if not r:
+            return None, None, None
+        t_en = re.sub(r"\s+", " ", str(r.get("titre") or "")).strip()
+        c_en = re.sub(r"\s+", " ", str(r.get("chapo") or "")).strip()
+        b_en = re.sub(r"\n{3,}", "\n\n", str(r.get("corps") or "").strip())
+        # garde-fou : une traduction bien plus courte que l'original est suspecte
+        if t_en and b_en and len(b_en) > len(corps) * 0.4:
+            print(f"  🌍 Traduit en anglais ({len(b_en)} car.)")
+            return t_en, c_en, b_en
+        print("  ⚠️ Traduction trop courte, écartée")
+    except Exception as e:
+        print(f"  ⚠️ Traduction indisponible ({str(e)[:50]})")
+    return None, None, None
+
+
 def publier_sur_site(item, texte, cat, format_="actu", image=None,
                      tweet_url=None, score=None, detail=None, recoupement=None):
     """Publie un article sur le site Pulse.
@@ -12954,6 +13006,11 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         "divergences": (item.get("_presse") or {}).get("divergences") or [],
         "entites": item.get("_entites") or {},
     }
+    # 🌍 Version anglaise, produite à la publication et stockée avec l'article.
+    _t_en, _c_en, _b_en = traduire_article(titre, chapo, corps)
+    if _b_en:
+        donnees.update({"titre_en": _t_en, "chapo_en": _c_en,
+                        "corps_en": _b_en, "traduit": True})
     r = _supabase("articles", corps=donnees)
     if r:
         print(f"  🌐 Publié sur le site : /a/{slug}")
@@ -15006,6 +15063,22 @@ def _check_feeds_interne(conn):
                     # ⚖️ Le score et son détail partent au site : sans eux, la
                     #    section « pourquoi nous l'avons publié » restait vide.
                     hot["_score"], hot["_detail"] = _sc, _det
+                # 🔍 RECOUPEMENT — vaut pour TOUTES les publications, pas seulement les
+                #    suites. Il était calculé dans la branche « suivre » : sur un sujet
+                #    neuf, le site ne le recevait jamais et TOUS les chiffres passaient
+                #    pour isolés (vécu : « 225 hectares » marqué source unique alors que
+                #    deux titres sur trois le portaient).
+                _rec = getattr(_ev, "recoupement", None)
+                if _rec:
+                    _nc = len(_rec.get("confirmes") or [])
+                    if _nc:
+                        print(f"  🔍 {_nc} chiffre(s) confirmé(s) par plusieurs médias")
+                    hot["_recoupement"] = resume_recoupement(_rec)
+                    hot["_rec_brut"] = _rec
+                    try:
+                        hot["_presse"] = dossier_de_presse(_ev, _rec)
+                    except Exception:
+                        pass
                 score = int(round(_sc))
                 # ⚖️ JOURNAL COMPLET : les trois issues sont publiées, pas seulement
                 #    les refus. Un journal qui ne montre que ce qu'on écarte prive le
@@ -15032,22 +15105,6 @@ def _check_feeds_interne(conn):
                 if _dec == "suivre":
                     print(f"  🆕 Suivi d'événement : {_pq}")
                     _suivi_valide = True
-                # 🔍 Le recoupement enrichit la rédaction : chiffres corroborés par
-                #    plusieurs rédactions, chiffres isolés à manier avec prudence.
-                _rec = getattr(_ev, "recoupement", None)
-                if _rec and _rec.get("medias", 0) >= 2:
-                    _nc = len(_rec.get("confirmes") or [])
-                    if _nc:
-                        print(f"  🔍 {_nc} chiffre(s) confirmé(s) par plusieurs médias")
-                    hot["_recoupement"] = resume_recoupement(_rec)
-                    hot["_rec_brut"] = _rec        # 🌐 pour le site
-                    # 📰 DOSSIER DE PRESSE : tout ce que le bot sait de l'événement —
-                    #    qui l'a couvert, qui était premier, sur quoi les médias
-                    #    divergent. Déjà calculé, il ne coûte rien de plus à publier.
-                    try:
-                        hot["_presse"] = dossier_de_presse(_ev, _rec)
-                    except Exception:
-                        pass
             # 📈 Un sujet remonté par les TENDANCES et jugé important reçoit un bonus : nos
             #    règles de gravité sont mécaniques et sous-notent parfois un fait majeur dont
             #    le vocabulaire ne déclenche aucun mot-clé fort.
