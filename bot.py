@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.8.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.9.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -124,8 +124,10 @@ MAX_PAR_PASSE = 1
 #    fraîcheur, thème porteur, primeur) au-dessus de la gravité donnée par le modèle.
 #    Aux anciens seuils (9 et 7), une gravité de 1 suffisait à franchir la barre et
 #    TOUT partait en URGENT (vécu). Ces valeurs rétablissent l'exigence d'origine.
-BREAKING_SCORE = int(os.environ.get("BREAKING_SCORE", "15"))   # seuil du libellé URGENT
-BUZZ_SCORE = int(os.environ.get("BUZZ_SCORE", "10"))          # seuil du canal chaud, label normal
+# ⚠️ Converties sur la nouvelle échelle : 15/20 devient 75/100, 10/20 → 50/100.
+#    Les comparaisons existantes restent donc valides sans être réécrites.
+BREAKING_SCORE = int(os.environ.get("BREAKING_SCORE", "70"))   # seuil du libellé URGENT
+BUZZ_SCORE = int(os.environ.get("BUZZ_SCORE", "40"))          # seuil du canal chaud, label normal
 BUZZ_GAP_MIN = 75         # espacement MINIMUM entre deux buzz non-urgents, le JOUR
 BUZZ_GAP_NIGHT_MIN = 150  # la nuit, on espace deux fois plus (cohérent avec la cadence nocturne)
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
@@ -11814,8 +11816,19 @@ class Evenement:
 
     @property
     def age_heures(self):
+        """Depuis combien de temps l'affaire dure. Utile pour un suivi."""
         t = self.premiere_apparition
         return (time.time() - t) / 3600 if t else None
+
+    @property
+    def fraicheur_heures(self):
+        """Âge de l'article le PLUS RÉCENT de l'événement.
+
+        ⚠️ À ne pas confondre avec age_heures, qui mesure la durée de l'affaire.
+        Une éclipse suivie depuis 5 jours dont la dernière dépêche a 6 minutes
+        est une actualité FRAÎCHE : la noter comme vieille de 123 h était faux."""
+        ts = [a.get("pub_ts") for a in self.articles if a.get("pub_ts")]
+        return (time.time() - max(ts)) / 3600 if ts else None
 
     @property
     def principal(self):
@@ -11879,6 +11892,60 @@ def _racines_communes(a, b):
     return len(_r(a) & _r(b))
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+#  BARÈME SUR 100
+#  L'échelle sur 20 était trop serrée : onze composantes s'y disputaient
+#  quelques points, et deux sujets très différents obtenaient la même note.
+#  Sur 100, chaque critère a la place de s'exprimer, et on peut en ajouter
+#  sans tout redéfinir.
+# ═══════════════════════════════════════════════════════════════════════════
+BAREME = {
+    # ── LE FAIT LUI-MÊME (0-40) ─────────────────────────────────────────
+    "gravite_max":      45,   # la note du modèle, ramenée de 0-10 vers 0-45
+
+    # ── LA COUVERTURE MÉDIATIQUE (0-20) ─────────────────────────────────
+    #    Un fait repris par quinze rédactions est établi ; par deux, il l'est
+    #    moins. La courbe s'aplatit : au-delà de dix médias, on n'apprend plus
+    #    grand-chose de plus.
+    "medias": {2: 4, 3: 7, 5: 11, 8: 15, 12: 18, 20: 20},
+
+    # ── LA FRAÎCHEUR (0-15) ─────────────────────────────────────────────
+    "fraicheur": {0.5: 16, 1.0: 13, 2.0: 8, 4.0: 4, 8.0: 2, 12.0: 1},
+    "peremption": -12,        # au-delà de 12 h sans développement
+
+    # ── LE CARACTÈRE IMPRÉVU (-15 à +15) ────────────────────────────────
+    #    Ce qui distingue une alerte d'un rendez-vous inscrit au calendrier.
+    "imprevu_fort":      18,  # 8/10 et plus
+    "imprevu_moyen":      4,  # 6-7/10 — départage, ne propulse pas seul
+    "programme":        -15,  # 3/10 et moins : match, salon, cérémonie
+
+    # ── L'INTÉRÊT DU LECTORAT (0-12) ────────────────────────────────────
+    "affinite":           8,
+    "exploit_francais":  10,
+    "tendance":           6,  # sujet identifié dans les tendances du jour
+
+    # ── LA PRIMEUR (0-8) ────────────────────────────────────────────────
+    "exclusivite":        5,
+    "primeur_absolue":    8,  # aucun autre média ne l'a encore relayé
+
+    # ── LA PROXIMITÉ (0-10) ─────────────────────────────────────────────
+    #    Un fait en France concerne davantage un lectorat français.
+    "national":           6,
+    "local_majeur":       4,  # grande ville ou région identifiée
+
+    # ── LES PÉNALITÉS ───────────────────────────────────────────────────
+    "deja_traite":      -30,  # par publication antérieure
+    "suite_neuve":       12,  # sauf si un développement réel le justifie
+    "source_unique":    -20,  # rappel : la corroboration est déjà bloquante
+    "titre_racoleur":    -8,  # formule d'appât dans le titre d'origine
+}
+
+# Seuils exprimés sur la même échelle
+SEUIL_PUBLICATION = int(os.environ.get("SEUIL_PUBLICATION", "40"))
+SEUIL_ALERTE      = int(os.environ.get("SEUIL_ALERTE", "70"))
+
+# ⚠️ Conservé pour compatibilité : d'anciens appels comparent encore à ces
+#    constantes. Elles sont converties vers la nouvelle échelle.
 SCORE_POIDS = {
     "medias":      {2: 1, 3: 2, 5: 3},     # nombre de médias → points
     "fraicheur":   {1.0: 2, 3.0: 1},       # âge en heures → points
@@ -12226,139 +12293,186 @@ def resume_recoupement(rec):
 
 
 
-def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None):
-    """Note un ÉVÉNEMENT à partir de composantes MESURABLES.
+# 🇫🇷 PROXIMITÉ — un fait survenu en France concerne davantage un lectorat français.
+_MARQUEURS_FR = re.compile(
+    r"\b(?:france|français|française|paris|lyon|marseille|toulouse|bordeaux|lille|"
+    r"nantes|nice|strasbourg|montpellier|rennes|préfecture|gendarmerie|assemblée "
+    r"nationale|sénat|élysée|matignon|ministre|gouvernement|smic|sécurité sociale|"
+    r"sncf|edf|insee|départements?|communes?|maire|région)\b", re.IGNORECASE)
 
-    Le score ne sort plus d'un seul chiffre décidé par le modèle : c'est une somme dont
-    chaque terme est traçable et réglable. Quand un sujet obtient 12, le journal dit
-    pourquoi — et si le résultat déplaît, on ajuste un poids, pas un prompt.
 
-    `note_ia` : la note de gravité du modèle (0-10), qui reste le socle. Les autres
-    composantes viennent de faits mesurés : combien de médias, depuis quand, déjà
-    publié ou non.
+def _est_national(texte):
+    """Vrai si le fait se rattache visiblement au territoire français."""
+    return bool(_MARQUEURS_FR.search(str(texte or "")))
+
+
+# 📣 TITRE RACOLEUR — celui qui retient l'information au lieu de la donner.
+#    Pulse s'interdit ces formules dans ses publications : il est cohérent de
+#    pénaliser une source qui en use, car le fait y est souvent mince.
+_RACOLEUR = re.compile(
+    r"(?:vous ne (?:devinerez|croirez) jamais|découvrez pourquoi|"
+    r"la raison va vous (?:surprendre|étonner)|ce qu'il s'est (?:vraiment )?passé|"
+    r"on vous dit tout|voici pourquoi|attention à|"
+    r"c'est (?:énorme|incroyable|dingue)|\bva vous (?:surprendre|choquer)\b|"
+    r"que s'est-il (?:vraiment )?passé)", re.IGNORECASE)
+
+
+def _titre_racoleur(titre):
+    """Vrai si le titre d'origine appâte au lieu d'informer."""
+    return bool(_RACOLEUR.search(str(titre or "")))
+
+
+def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None,
+                    tendance=False, national=None):
+    """Note un événement sur 100, en composantes séparées et traçables.
+
+    L'échelle sur 20 était trop serrée : onze critères s'y disputaient quelques
+    points, et deux sujets très différents finissaient à la même note. Sur 100,
+    chacun a la place de s'exprimer, et on peut en ajouter sans tout redéfinir.
+
+    Le score se lit comme une addition : chaque composante apparaît dans le
+    détail avec sa valeur, et le lecteur du site peut refaire le calcul.
+
     Renvoie (score, détail) où `détail` est la liste lisible des composantes."""
     detail = []
     score = 0.0
 
-    # ⚠️ La note du modèle est censée aller de 0 à 10, mais rien ne l'y obligeait :
-    #    une réponse à 15 passait telle quelle et gonflait le score (vécu : un
-    #    « PSG - Monaco » noté 21/10 dans le journal public). On borne.
-    base = float(note_ia if note_ia is not None else 0)
-    if base > 10 or base < 0:
-        print(f"  ⚠️ Note de gravité hors bornes ({base:.0f}) → ramenée dans 0-10")
-    base = max(0.0, min(10.0, base))
+    # ── ① LE FAIT LUI-MÊME (0-40) ──────────────────────────────────────
+    #    La note du modèle va de 0 à 10. Rien ne l'y obligeait auparavant :
+    #    une réponse à 15 gonflait le score (vécu : un match noté 21/10).
+    brut = float(note_ia if note_ia is not None else 0)
+    if brut > 10 or brut < 0:
+        print(f"  ⚠️ Note de gravité hors bornes ({brut:.0f}) → ramenée dans 0-10")
+    brut = max(0.0, min(10.0, brut))
+    base = brut * BAREME["gravite_max"] / 10.0
     score += base
-    detail.append(f"gravité {base:.0f}")
+    detail.append(f"gravité {brut:.0f}/10 → {base:.0f}")
 
-    # ⚡ IMPRÉVU : ce qui distingue une ALERTE d'une actualité ordinaire. Un événement
-    #    programmé — horaire de match, verdict à date connue, marronnier — n'est jamais
-    #    urgent, même important. Un fait que personne n'attendait ce matin l'est.
-    if imprevu is not None:
-        try:
-            imp = max(0, min(10, int(imprevu)))
-        except Exception:
-            imp = 5
-        if imp >= 9:
-            score += 3
-            detail.append(f"imprévu {imp}/10 +3")
-        elif imp >= 6:
-            score += 1
-            detail.append(f"imprévu {imp}/10 +1")
-        elif imp <= 2:
-            # 📅 Purement programmé : on retire ce que la fraîcheur et le thème auraient
-            #    pu apporter à tort. Un calendrier ne devient pas urgent parce qu'il
-            #    vient de paraître (vécu : un horaire de match publié en URGENT).
-            score -= 4
-            detail.append(f"programmé {imp}/10 -4")
-
-    # ① COUVERTURE : plusieurs médias sur un même fait = convergence, donc importance
-    m = ev.medias if hasattr(ev, "medias") else 1
-    pts = 0
-    for seuil, p in sorted(SCORE_POIDS["medias"].items()):
+    # ── ② LA COUVERTURE MÉDIATIQUE (0-20) ──────────────────────────────
+    m = int(getattr(ev, "medias", 1) or 1)
+    pts_m = 0
+    for seuil in sorted(BAREME["medias"]):
         if m >= seuil:
-            pts = p
-    if pts:
-        score += pts
-        detail.append(f"{m} médias +{pts}")
+            pts_m = BAREME["medias"][seuil]
+    if pts_m:
+        score += pts_m
+        detail.append(f"{m} médias +{pts_m}")
 
-    # ② FRAÎCHEUR : être parmi les premiers vaut mieux que d'arriver après tout le monde.
-    #    ⚠️ On mesure l'article le PLUS RÉCENT, pas le premier : sur un événement suivi
-    #    depuis plusieurs jours, l'ancienneté de la première dépêche ne dit plus rien de
-    #    l'actualité du jour (vécu : « ancien 123h -2 » sur un article vieux de 6 minutes).
-    age = None
-    try:
-        _ts = [a.get("pub_ts") for a in getattr(ev, "articles", []) if a.get("pub_ts")]
-        if _ts:
-            age = (time.time() - max(_ts)) / 3600
-    except Exception:
-        age = None
+    # ── ③ LA FRAÎCHEUR (0-15) ──────────────────────────────────────────
+    # ⚠️ On mesure la FRAÎCHEUR du dernier article, pas la durée de l'affaire.
+    #    Un événement suivi depuis 5 jours dont la dernière dépêche a 6 minutes
+    #    reste une actualité fraîche (vécu : « ancien 123h » sur une éclipse).
+    age = getattr(ev, "fraicheur_heures", None)
     if age is None:
-        age = ev.age_heures if hasattr(ev, "age_heures") else None
-    if age is not None:
-        pts = 0
-        for seuil, p in sorted(SCORE_POIDS["fraicheur"].items()):
-            if age <= seuil:
-                pts = max(pts, p)
-        if pts:
-            score += pts
-            detail.append(f"frais {age:.1f}h +{pts}")
-        elif age > 12:
-            score -= 2
-            detail.append(f"ancien {age:.0f}h -2")
+        age = getattr(ev, "age_heures", 0) or 0
+    age = float(age)
+    pts_f = 0
+    for seuil in sorted(BAREME["fraicheur"]):
+        if age <= seuil:
+            pts_f = BAREME["fraicheur"][seuil]
+            break
+    if pts_f:
+        score += pts_f
+        detail.append(f"frais {age:.1f}h +{pts_f}")
+    elif age > 12:
+        score += BAREME["peremption"]
+        detail.append(f"ancien {age:.0f}h {BAREME['peremption']}")
 
-    # ③ AFFINITÉ X : à intérêt comparable, on privilégie ce qui fait réagir
-    # ⚠️ L'affinité départage deux sujets d'intérêt COMPARABLE : elle ne doit jamais
-    #    propulser seule un sujet creux en tête (vécu : un horaire de match en URGENT
-    #    grâce au seul mot « OL »). On l'accorde donc à partir d'une gravité correcte.
-    if base >= 5 and AFFINITE_X.search(f"{ev.titre} {ev.resume}"):
-        score += SCORE_POIDS["affinite"]
-        detail.append(f"thème porteur +{SCORE_POIDS['affinite']}")
+    # ── ④ LE CARACTÈRE IMPRÉVU (-15 à +15) ─────────────────────────────
+    #    Ce qui sépare une alerte d'un rendez-vous inscrit au calendrier.
+    if imprevu is not None:
+        imp = int(imprevu)
+        if imp >= 8:
+            score += BAREME["imprevu_fort"]
+            detail.append(f"imprévu {imp}/10 +{BAREME['imprevu_fort']}")
+        elif imp >= 6:
+            score += BAREME["imprevu_moyen"]
+            detail.append(f"imprévu {imp}/10 +{BAREME['imprevu_moyen']}")
+        elif imp <= 3:
+            score += BAREME["programme"]
+            detail.append(f"programmé {imp}/10 {BAREME['programme']}")
 
-    # 🇫🇷 EXPLOIT FRANÇAIS : une médaille, un record, un titre. Peu de médias suivent
-    #    l'escrime ou le tennis de table, mais une victoire tricolore y fait réagir
-    #    autant qu'un match de football — la couverture ne mesure pas cet intérêt.
-    if _exploit_francais(ev.titre, getattr(ev, "resume", "")):
-        score += 3
-        detail.append("exploit français +3")
-
-    # ④ EXCLUSIVITÉ : un seul média sur un fait FRAIS, c'est peut-être une primeur
-    if m == 1 and age is not None and age <= 1.5:
-        score += SCORE_POIDS["exclusivite"]
-        detail.append(f"primeur +{SCORE_POIDS['exclusivite']}")
-
-    # ⑤ HISTORIQUE : déjà traité aujourd'hui → forte pénalité, sauf vrai développement
+    # ── ⑤ L'INTÉRÊT DU LECTORAT (0-12) ─────────────────────────────────
+    # ⚠️ L'affinité départage deux sujets d'intérêt COMPARABLE : elle ne doit
+    #    jamais propulser seule un sujet creux en tête (vécu : un horaire de
+    #    match passé en URGENT grâce au seul mot « OL »). D'où le seuil de
+    #    gravité, hérité de la version précédente et conservé tel quel.
+    if brut >= 5 and AFFINITE_X.search(f"{getattr(ev, 'titre', '')} "
+                                       f"{getattr(ev, 'resume', '')}"):
+        score += BAREME["affinite"]
+        detail.append(f"thème porteur +{BAREME['affinite']}")
     try:
-        n, _last, _heads = topic_history(conn, ev.titre)
+        if _exploit_francais(getattr(ev, "titre", ""), getattr(ev, "resume", "")):
+            score += BAREME["exploit_francais"]
+            detail.append(f"exploit français +{BAREME['exploit_francais']}")
     except Exception:
-        n = 0
-    if n:
-        score += SCORE_POIDS["deja_traite"]
-        detail.append(f"déjà publié {n}× {SCORE_POIDS['deja_traite']}")
+        pass
+    if tendance:
+        score += BAREME["tendance"]
+        detail.append(f"en tendance +{BAREME['tendance']}")
+
+    # ── ⑥ LA PRIMEUR (0-8) ─────────────────────────────────────────────
+    if m == 1 and age < 1.0:
+        score += BAREME["primeur_absolue"]
+        detail.append(f"primeur absolue +{BAREME['primeur_absolue']}")
+    elif m <= 2 and age < 2.0:
+        score += BAREME["exclusivite"]
+        detail.append(f"primeur +{BAREME['exclusivite']}")
+
+    # ── ⑦ LA PROXIMITÉ (0-10) ──────────────────────────────────────────
+    #    Un fait survenu en France concerne davantage un lectorat français.
+    if national is None:
+        national = _est_national(f"{getattr(ev, 'titre', '')} "
+                                 f"{getattr(ev, 'resume', '')}")
+    if national:
+        score += BAREME["national"]
+        detail.append(f"fait national +{BAREME['national']}")
+
+    # ── ⑧ LES PÉNALITÉS ────────────────────────────────────────────────
+    try:
+        n_pub, _last, _heads = topic_history(conn, ev.titre)
+    except Exception:
+        n_pub = 0
+    if n_pub:
+        malus = BAREME["deja_traite"] * n_pub
+        score += malus
+        detail.append(f"déjà publié {n_pub}× {malus}")
     else:
-        # 🏷️ Le comptage par mots n'a rien vu — mais les ENTITÉS peuvent reconnaître le
-        #    même événement sous une formulation entièrement différente, jusqu'à 3 jours
-        #    en arrière. C'est la mémoire qui survit aux reformulations.
+        # 🧠 Le comptage par mots n'a rien vu — mais les ENTITÉS reconnaissent le
+        #    même événement sous une formulation entièrement différente, jusqu'à
+        #    trois jours en arrière. C'est la mémoire qui survit aux reformulations.
         try:
             _ents = getattr(ev, "entites", None)
             if _ents:
                 _connu, _h = sujet_connu_par_entites(conn, _ents)
                 if _connu:
-                    score += SCORE_POIDS["deja_traite"]
+                    score += BAREME["deja_traite"]
                     detail.append(f"même événement qu'il y a {_h:.0f}h "
-                                  f"{SCORE_POIDS['deja_traite']}")
+                                  f"{BAREME['deja_traite']}")
         except Exception:
             pass
+    # 📣 Un titre qui retient l'information plutôt que de la donner est pénalisé :
+    #    c'est précisément ce que Pulse s'interdit dans ses propres publications.
+    if _titre_racoleur(getattr(ev, "titre", "")):
+        score += BAREME["titre_racoleur"]
+        detail.append(f"titre racoleur {BAREME['titre_racoleur']}")
 
-    # 🚨 PLANCHER : certains faits sont urgents PAR NATURE. Un ministre qui démissionne
-    #    à l'instant n'a encore ni couverture médiatique ni ancienneté — la note
-    #    composite le sous-évaluerait mécaniquement. On garantit un minimum, sans
-    #    jamais plafonner un score déjà plus élevé.
+    # ── ⑨ LE PLANCHER DES FAITS MAJEURS ────────────────────────────────
+    #    Certaines natures d'événement imposent un score minimum, quel que
+    #    soit le reste : un séisme reste un séisme même mal couvert.
+    #    Le plancher hérité était exprimé sur 20 : on le convertit.
     _pts, _lib = _fait_majeur(ev.titre, getattr(ev, "resume", ""))
-    if _pts and score < _pts:
-        detail.append(f"⚡ {_lib} → plancher {_pts}")
-        score = float(_pts)
+    if _pts:
+        _pts100 = min(100, int(_pts * 5))       # 16/20 → 80/100
+        if score < _pts100:
+            detail.append(f"⚡ {_lib} → plancher {_pts100}")
+            score = float(_pts100)
 
+    # ⚠️ Le score est BORNÉ à 100 : la somme des maxima dépasse cette valeur,
+    #    et un score à 122 serait illisible sur une échelle annoncée sur 100.
+    score = max(0.0, min(100.0, score))
     return round(score, 1), detail
+
 
 
 # 🔒 EXIGENCE DE CORROBORATION — le cœur de la promesse de Pulse.
