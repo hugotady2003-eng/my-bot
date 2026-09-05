@@ -1,4 +1,19 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">
+<!DOCTYPE html><html lang="fr"><head>
+<script>
+/* ══════════════════════════════════════════════════════════════════════
+   THÈME ET LANGUE
+   ⚠️ Le choix est mémorisé LOCALEMENT, comme le reste : rien n'est envoyé.
+   Le thème est posé avant le rendu pour éviter un éclair de fond sombre.
+   ══════════════════════════════════════════════════════════════════════ */
+(function(){
+  try{
+    const t = localStorage.getItem('pulse_theme');
+    if(t) document.documentElement.setAttribute('data-th', t);
+    const l = localStorage.getItem('pulse_lang');
+    if(l === 'en') document.documentElement.setAttribute('data-lg', 'en');
+  }catch(e){}
+})();
+</script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>Mentions légales — Pulse Actus</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +27,66 @@
   --t:"Space Grotesk",system-ui,sans-serif;--c:"Inter",system-ui,sans-serif;
   --m:"JetBrains Mono",ui-monospace,monospace;
 }
+/* ══ THÈME CLAIR ══════════════════════════════════════════════════════
+   Contrastes vérifiés : chaque couleur de texte atteint 4,5 sur son fond,
+   seuil de lisibilité. Le violet et le vert ont été assombris pour tenir
+   sur blanc — les teintes du thème sombre y étaient illisibles. */
+html[data-th="clair"]{
+  --noir:#FAFAFC;
+  --fond:#F2F1F7;
+  --carte:#FFFFFF;
+  --bord:#E2E0EC;
+  --violet:#6318E0;
+  --mauve:#9B21D6;
+  --bleu:#2E1DD6;
+  --vert:#07784C;
+  --orange:#B45309;
+  --rouge:#C81E1E;
+  --blanc:#0B0A10;
+  --texte:#1A1826;
+  --gris:#5A566E;
+  --faible:#6B6784;
+}
+html[data-th="clair"] body{background:var(--noir)}
+html[data-th="clair"] header{background:rgba(250,250,252,.92);
+  border-bottom-color:var(--bord)}
+html[data-th="clair"] .art{background:linear-gradient(168deg,#fff,#FAFAFC);
+  box-shadow:0 2px 10px rgba(20,16,40,.06),0 1px 2px rgba(20,16,40,.04)}
+html[data-th="clair"] .art:hover{box-shadow:0 14px 34px rgba(99,24,224,.13)}
+html[data-th="clair"] .v,html[data-th="clair"] .cp,html[data-th="clair"] .mt,
+html[data-th="clair"] .bloc,html[data-th="clair"] .et2,html[data-th="clair"] .dec,
+html[data-th="clair"] .pm,html[data-th="clair"] .pc,html[data-th="clair"] .rc,
+html[data-th="clair"] .sources,html[data-th="clair"] .commu,
+html[data-th="clair"] .src-box,html[data-th="clair"] .calc{
+  background:var(--carte);box-shadow:0 1px 3px rgba(20,16,40,.05)}
+html[data-th="clair"] .calc{background:#F7F6FB}
+html[data-th="clair"] .cm-f input,html[data-th="clair"] .cm-f textarea{
+  background:#F7F6FB;color:var(--texte)}
+html[data-th="clair"] .vt{background:#F7F6FB;color:var(--texte)}
+html[data-th="clair"] .js-b{background:rgba(20,16,40,.08)}
+html[data-th="clair"] footer{background:#EEEDF4;border-top-color:var(--bord)}
+html[data-th="clair"] .voile{background:linear-gradient(180deg,
+  rgba(250,250,252,.72),rgba(250,250,252,.86))}
+html[data-th="clair"] #jetonHero{filter:drop-shadow(0 20px 40px rgba(60,30,120,.22))
+  drop-shadow(0 0 26px rgba(155,33,214,.28))}
+html[data-th="clair"] .hero h1,html[data-th="clair"] .hero p.in{text-shadow:none}
+html[data-th="clair"] .fond .gr{background-image:
+  linear-gradient(rgba(99,24,224,.05) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(99,24,224,.05) 1px,transparent 1px)}
+html[data-th="clair"] .l1{background:radial-gradient(circle,rgba(46,29,214,.13),transparent 68%)}
+html[data-th="clair"] .l2{background:radial-gradient(circle,rgba(155,33,214,.12),transparent 68%)}
+html[data-th="clair"] .scene::before{background:radial-gradient(circle,
+  rgba(155,33,214,.2) 0%,rgba(46,29,214,.09) 42%,transparent 68%)}
+html[data-th="clair"] #intro{background:#FAFAFC}
+
+/* Réglages : thème et langue */
+.reglages{display:flex;gap:7px;margin-left:14px}
+@media(max-width:820px){.reglages{margin-left:auto;margin-right:10px}}
+.rg{background:none;border:1px solid var(--bord);border-radius:10px;
+  min-width:38px;height:38px;padding:0 9px;cursor:pointer;color:var(--gris);
+  font:700 12px/1 var(--c);transition:.2s;display:grid;place-items:center}
+.rg:hover{color:var(--blanc);border-color:var(--mauve)}
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
 body{background:var(--noir);color:var(--texte);font:400 16px/1.62 var(--c);
@@ -199,6 +274,10 @@ h1,h2,h3,p,li,td,th{overflow-wrap:break-word}
 </style></head><body>
 <header><div class="wrap hbar">
   <a class="logo" href="index.html"><i></i> PULSE</a>
+  <div class="reglages">
+    <button class="rg" id="bTheme" aria-label="Thème">🌙</button>
+    <button class="rg" id="bLang" aria-label="Langue">FR</button>
+  </div>
   <button class="burger" id="burger" aria-label="Menu">☰</button>
   <nav id="nav">
     <a href="index.html">Accueil</a>
@@ -289,4 +368,126 @@ h1,h2,h3,p,li,td,th{overflow-wrap:break-word}
 (function(){var b=document.getElementById('burger'),n=document.getElementById('nav');
 if(!b||!n)return;b.addEventListener('click',function(){
   var o=n.classList.toggle('ouvert');b.textContent=o?'✕':'☰';});})();
-</script></body></html>
+</script><script>
+/* ══ RÉGLAGES — thème et langue ══════════════════════════════════════
+   Le choix est mémorisé localement, comme le vote : rien n'est envoyé. */
+(function(){
+  const html = document.documentElement;
+  const bt = document.getElementById('bTheme'), bl = document.getElementById('bLang');
+
+  function majTheme(){
+    const clair = html.getAttribute('data-th') === 'clair';
+    if(bt) bt.textContent = clair ? '☀️' : '🌙';
+    if(bt) bt.setAttribute('title', clair ? 'Passer en sombre' : 'Passer en clair');
+  }
+  if(bt) bt.addEventListener('click', () => {
+    const clair = html.getAttribute('data-th') === 'clair';
+    if(clair){ html.removeAttribute('data-th'); }
+    else { html.setAttribute('data-th', 'clair'); }
+    try{ localStorage.setItem('pulse_theme', clair ? 'sombre' : 'clair'); }catch(e){}
+    majTheme();
+  });
+  majTheme();
+
+  function majLangue(){
+    const en = html.getAttribute('data-lg') === 'en';
+    if(bl) bl.textContent = en ? 'EN' : 'FR';
+    if(bl) bl.setAttribute('title', en ? 'Switch to French' : 'Passer en anglais');
+    if(typeof traduire === 'function') traduire(en ? 'en' : 'fr');
+  }
+  if(bl) bl.addEventListener('click', () => {
+    const en = html.getAttribute('data-lg') === 'en';
+    if(en){ html.removeAttribute('data-lg'); }
+    else { html.setAttribute('data-lg', 'en'); }
+    try{ localStorage.setItem('pulse_lang', en ? 'fr' : 'en'); }catch(e){}
+    majLangue();
+  });
+  majLangue();
+})();
+</script>
+<script>
+/* ══ TRADUCTION DE L'INTERFACE ═══════════════════════════════════════
+   Les articles sont traduits par le bot à la publication et stockés en base :
+   aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
+   l'interface sont commutés. */
+const T = {
+  // navigation
+  "Accueil":"Home", "Le fil":"The feed", "Journal des décisions":"Decision log",
+  "Méthode":"Method", "Engagements":"Commitments", "Feuille de route":"Roadmap",
+  "Livre blanc":"White paper", "Mentions légales":"Legal notice",
+  // catégories
+  "France":"France", "Monde":"World", "Économie":"Economy", "Sport":"Sport",
+  "Culture":"Culture", "Faits divers":"News in brief", "Politique":"Politics",
+  "Santé":"Health", "Tech":"Tech", "Société":"Society", "Histoire":"History",
+  "Le saviez-vous":"Did you know", "Urgent":"Breaking", "Hommage":"Tribute",
+  // fil et cartes
+  "Tout":"All", "Voir plus d'articles":"Load more", "voir tout le fil →":"see the full feed →",
+  "Ce qui vient de tomber":"Just in", "Chargement…":"Loading…",
+  "Chargement du fil…":"Loading the feed…",
+  "Aucun article pour ce filtre.":"No article for this filter.",
+  "mis à jour en continu":"continuously updated",
+  // fiabilité
+  "Béton":"Rock solid", "Sérieux":"Solid", "Prudence":"Handle with care",
+  "médias":"outlets", "1 seul média":"single outlet",
+  // article
+  "Cartes sur table":"Cards on the table",
+  "Pourquoi nous l'avons publié":"Why we published it",
+  "Chaque chiffre, passé au crible":"Every figure, checked",
+  "Décomposition du score — barème sur 100":"Score breakdown — out of 100",
+  "Score final":"Final score", "Publié le":"Published on",
+  "Rédactions ayant couvert le fait":"Newsrooms that covered the story",
+  "Source":"Source", "Lire →":"Read →", "Lire l'original →":"Read the original →",
+  "Publié aussi sur":"Also published on", "Voir le message →":"View the post →",
+  "Ce que vous en pensez":"What you think",
+  "Votre pseudo (facultatif)":"Your nickname (optional)",
+  "Votre commentaire…":"Your comment…", "Publier":"Post", "Envoi…":"Sending…",
+  "Aucun commentaire pour l'instant.":"No comments yet.",
+  "Commentaires indisponibles.":"Comments unavailable.",
+  "Anonyme":"Anonymous", "Retour au fil":"Back to the feed",
+  "Article introuvable.":"Article not found.",
+  "Aucun article demandé.":"No article requested.",
+  // journal
+  "Tout":"All", "✕ Écartés":"✕ Rejected", "◷ En suivi":"◷ Monitored",
+  "✓ Publiés":"✓ Published", "ÉCARTÉ":"REJECTED", "EN SUIVI":"MONITORED",
+  "PUBLIÉ":"PUBLISHED", "non évalué":"not scored",
+  "sujets écartés":"rejected", "mis en suivi":"monitored",
+  "publiés":"published", "décisions au total":"decisions in total",
+  // accueil
+  "Lire le fil":"Read the feed", "Comment ça marche":"How it works",
+  "articles analysés":"articles analysed", "événements reconstitués":"events reconstructed",
+  "tours de veille":"monitoring cycles", "intérêt à défendre":"vested interests",
+  "depuis le premier jour":"since day one",
+  "Les dernières actualités":"Latest news",
+};
+
+/* On traduit les nœuds de TEXTE uniquement : toucher au HTML casserait les
+   scripts et les attributs. Le texte français est mémorisé pour pouvoir
+   revenir en arrière sans recharger la page. */
+function traduire(lg){
+  const racine = document.body;
+  if(!racine) return;
+  const it = document.createTreeWalker(racine, NodeFilter.SHOW_TEXT, {
+    acceptNode(n){
+      const p = n.parentNode;
+      if(!p || /^(SCRIPT|STYLE|SVG|CANVAS)$/.test(p.nodeName))
+        return NodeFilter.FILTER_REJECT;
+      return n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  const noeuds = [];
+  let n; while((n = it.nextNode())) noeuds.push(n);
+  noeuds.forEach(nd => {
+    if(nd.__fr === undefined) nd.__fr = nd.nodeValue;
+    const brut = nd.__fr.trim();
+    if(lg === 'en' && T[brut]) nd.nodeValue = nd.__fr.replace(brut, T[brut]);
+    else nd.nodeValue = nd.__fr;
+  });
+  // les champs de saisie portent leur libellé dans un attribut
+  document.querySelectorAll('[placeholder]').forEach(e => {
+    if(e.__fr === undefined) e.__fr = e.placeholder;
+    e.placeholder = (lg === 'en' && T[e.__fr]) ? T[e.__fr] : e.__fr;
+  });
+  document.documentElement.lang = (lg === 'en') ? 'en' : 'fr';
+}
+</script>
+</body></html>
