@@ -578,6 +578,85 @@ function fiabilite(n){
 #skip:hover{color:#fff;border-color:rgba(194,75,255,.5)}
 body.intro-active{overflow:hidden}
 @media(prefers-reduced-motion:reduce){#intro{display:none}}
+
+/* ══ THÈME CLAIR — blocs à fond composé ═══════════════════════════════════
+   Ces éléments portaient un dégradé ou une couleur écrits en dur, donc non
+   déclinés par les variables. Repérés un par un plutôt qu'au coup par coup. */
+html[data-th="clair"] .ar,
+html[data-th="clair"] .honn,
+html[data-th="clair"] .pc,
+html[data-th="clair"] .intro-rm{
+  background:linear-gradient(165deg,#FFFFFF,#F7F6FB);
+  border-color:var(--bord);box-shadow:0 1px 3px rgba(20,16,40,.05)}
+html[data-th="clair"] .pc:hover,
+html[data-th="clair"] .ar:hover{box-shadow:0 12px 30px rgba(99,24,224,.13)}
+
+html[data-th="clair"] .serment{
+  background:linear-gradient(165deg,#F3EDFF,#FAF7FF);
+  border-color:rgba(99,24,224,.22)}
+html[data-th="clair"] .ph.actif .pc{
+  background:linear-gradient(165deg,#F5EFFF,#FBF9FF);
+  border-color:rgba(99,24,224,.28)}
+
+/* avertissements : fond rosé très clair au lieu du bordeaux sombre */
+html[data-th="clair"] .risque,
+html[data-th="clair"] .fin,
+html[data-th="clair"] .avert-tete{
+  background:#FDF2F6;border-color:#F0C8DA}
+html[data-th="clair"] .risque p,
+html[data-th="clair"] .fin p,
+html[data-th="clair"] .avert-tete p{color:#5A2A40}
+html[data-th="clair"] .risque b,
+html[data-th="clair"] .fin b,
+html[data-th="clair"] .avert-tete b{color:#3A1628}
+
+/* comparaison « eux et nous » */
+html[data-th="clair"] .col.v{background:#F4F3F8}
+html[data-th="clair"] .col.n{
+  background:linear-gradient(160deg,#F3EDFF,#FAF8FE);
+  border-color:rgba(99,24,224,.25)}
+
+/* compteurs, calcul, navigation flottante */
+html[data-th="clair"] .cp{background:#FFFFFF;box-shadow:0 1px 3px rgba(20,16,40,.05)}
+html[data-th="clair"] .calc{background:#F7F6FB;border-color:var(--bord)}
+html[data-th="clair"] .flot{background:rgba(255,255,255,.94);
+  box-shadow:0 6px 20px rgba(20,16,40,.12)}
+html[data-th="clair"] .inf{background:rgba(255,255,255,.97);
+  border-color:var(--bord);color:var(--gris)}
+html[data-th="clair"] .img-ar{background:linear-gradient(150deg,#9B21D6,#D9C6F5)}
+
+/* le menu déroulant : il restait sombre sur mobile */
+@media(max-width:820px){
+  html[data-th="clair"] nav{background:rgba(250,250,252,.98);
+    border-bottom-color:var(--bord)}
+  html[data-th="clair"] nav a{border-bottom-color:var(--bord)}
+}
+html[data-th="clair"] .burger{border-color:var(--bord);color:var(--gris)}
+
+/* barres de séparation et bordures internes, définies en blanc translucide */
+html[data-th="clair"] .pied,
+html[data-th="clair"] .cl,
+html[data-th="clair"] .cm,
+html[data-th="clair"] .src-l{border-color:rgba(20,16,40,.08)}
+html[data-th="clair"] .js-b{background:rgba(20,16,40,.09)}
+html[data-th="clair"] .rc{background:rgba(20,16,40,.03)}
+html[data-th="clair"] .vt{background:#F4F3F8}
+html[data-th="clair"] .f{background:#FFFFFF}
+html[data-th="clair"] .f.on{background:rgba(99,24,224,.12);color:var(--violet)}
+html[data-th="clair"] .pg{background:#FFFFFF}
+html[data-th="clair"] .pg.on{background:rgba(99,24,224,.14);color:var(--violet)}
+html[data-th="clair"] .encadre{background:rgba(99,24,224,.06);
+  border-color:rgba(99,24,224,.22)}
+html[data-th="clair"] .enc.violet{background:rgba(99,24,224,.06);
+  border-color:rgba(99,24,224,.22);color:var(--gris)}
+html[data-th="clair"] .enc.rouge{background:#FDF2F6;border-color:#F0C8DA;color:#5A2A40}
+html[data-th="clair"] .aveu{background:rgba(99,24,224,.05);
+  border-color:rgba(99,24,224,.2)}
+html[data-th="clair"] .adr,
+html[data-th="clair"] .somm{background:#F4F3F8}
+html[data-th="clair"] .sign{background:#FFFFFF}
+html[data-th="clair"] .cm-f input,
+html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)}
 </style>
 
 <script type="importmap">
@@ -1161,10 +1240,97 @@ compteurs(); derniers();
    aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
    l'interface sont commutés. */
 const T = {
+  "Le premier bot d'actualité autonome":"The first autonomous news bot",
+  "Contenu produit automatiquement · Sources citées sur chaque article":"Automatically produced content · Sources cited on every article",
+  "Chargement de l'article…":"Loading article…",
+  "Ce que nous ne pouvons pas garantir.":"What we cannot guarantee.",
+  "L'actualité,":"News,",
+  "sans":"without",
+  "rédaction":"a newsroom",
+  "En ligne · publie toutes les 5 minutes":"Live · publishes every 5 minutes",
+  "Pourquoi Pulse change la donne":"Why Pulse changes things",
+  "Il voit ce que vous ne verrez jamais":"It sees what you never will",
+  "Il n'a personne à ménager":"It has no one to please",
+  "Il vous dit ce qui tient debout":"It tells you what holds up",
+  "Il assume ses refus":"It owns its rejections",
+  "Il ne dort jamais":"It never sleeps",
+  "Il avoue ses limites":"It admits its limits",
+  "Architecture éditoriale":"Editorial architecture",
+  "Le pipeline":"The pipeline",
+  "Collecte":"Collection",
+  "Agrégation sémantique":"Semantic aggregation",
+  "Recoupement factuel":"Fact cross-checking",
+  "Notation composite":"Composite scoring",
+  "Arbitrage éditorial":"Editorial arbitration",
+  "Production et diffusion":"Production and publishing",
+  "Métriques opérationnelles":"Operational metrics",
+  "Contraintes rédactionnelles":"Editorial constraints",
+  "Positionnement":"Positioning",
+  "Rédaction traditionnelle":"A traditional newsroom",
+  "Corroboration minimale":"Minimum corroboration",
+  "Intégrité factuelle":"Factual integrity",
+  "Interdiction de la rétention":"No withholding",
+  "Qualification des hommages":"Tribute qualification",
+  "Conformité des visuels":"Visual compliance",
+  "Traçabilité intégrale":"Full traceability",
+  "de la source brute à la publication":"from raw source to publication",
+  "volumétrie réelle du système":"actual system throughput",
+  "vérifiées en code, non par consigne":"enforced in code, not by instruction",
+  "Engagements":"Commitments",
+  "Pourquoi cette page existe":"Why this page exists",
+  "Les seuils figés":"Frozen thresholds",
+  "Ce que ça empêche —":"What it prevents —",
+  "Règles de fonctionnement":"Operating rules",
+  "Rédactions minimum":"Minimum newsrooms",
+  "Plafond quotidien":"Daily cap",
+  "Seuil de vigilance":"Vigilance threshold",
+  "Seuil d'alerte":"Alert threshold",
+  "Seuil de publication":"Publication threshold",
+  "Seuil de l'éphéméride":"Almanac threshold",
+  "Ce que nous ne promettons pas":"What we do not promise",
+  "valeurs en vigueur dans le code":"values currently in the code",
+  "indépendantes des seuils chiffrés":"independent of numeric thresholds",
+  "Feuille de route":"Roadmap",
+  "Socle éditorial":"Editorial foundation",
+  "Transparence intégrale":"Full transparency",
+  "Suivi longitudinal":"Longitudinal tracking",
+  "Ouverture des données":"Open data",
+  "Extension francophone":"French-speaking expansion",
+  "Passage multilingue":"Going multilingual",
+  "Réseau international":"International network",
+  "LIVRÉ":"DELIVERED",
+  "EN COURS":"IN PROGRESS",
+  "À VENIR":"UPCOMING",
+  "Point de vigilance —":"Watch point —",
+  "Sommaire":"Contents",
+  "Livre blanc":"White paper",
+  "Caractéristiques":"Specifications",
+  "Résumé":"Summary",
+  "L'émetteur":"The issuer",
+  "Le projet Pulse":"The Pulse project",
+  "Caractéristiques du jeton":"Token specifications",
+  "Technologie sous-jacente":"Underlying technology",
+  "Facteurs de risque":"Risk factors",
+  "Impact environnemental":"Environmental impact",
+  "Déclaration de responsabilité":"Statement of responsibility",
+  "Avertissement sur les risques":"Risk disclosure",
+  "Mentions obligatoires — à lire avant tout":"Mandatory disclosures — read first",
+  "Attestation de l'émetteur":"Issuer's attestation",
+  "À quoi servent les frais de transaction":"What transaction fees fund",
+  "Mentions légales":"Legal notice",
+  "Éditeur":"Publisher",
+  "Contenu automatisé":"Automated content",
+  "Droits":"Rights",
+  "Données personnelles":"Personal data",
+  "Responsabilité":"Liability",
+  "Modération":"Moderation",
+  "À propos de $PULSE":"About $PULSE",
+  "y compris les refus":"including rejections",
+  "Décomposition du score":"Score breakdown",
+
   // navigation
   "Accueil":"Home", "Le fil":"The feed", "Journal des décisions":"Decision log",
   "Méthode":"Method", "Engagements":"Commitments", "Feuille de route":"Roadmap",
-  "Livre blanc":"White paper", "Mentions légales":"Legal notice",
   // catégories
   "France":"France", "Monde":"World", "Économie":"Economy", "Sport":"Sport",
   "Culture":"Culture", "Faits divers":"News in brief", "Politique":"Politics",
@@ -1197,7 +1363,6 @@ const T = {
   "Article introuvable.":"Article not found.",
   "Aucun article demandé.":"No article requested.",
   // journal
-  "Tout":"All", "✕ Écartés":"✕ Rejected", "◷ En suivi":"◷ Monitored",
   "✓ Publiés":"✓ Published", "ÉCARTÉ":"REJECTED", "EN SUIVI":"MONITORED",
   "PUBLIÉ":"PUBLISHED", "non évalué":"not scored",
   "sujets écartés":"rejected", "mis en suivi":"monitored",
