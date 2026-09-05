@@ -175,6 +175,16 @@ footer .liens a:hover{color:var(--blanc)}
 .ic-cat{display:block;width:38%;max-width:52px;color:rgba(255,255,255,.9)}
 .ic-cat svg{width:100%;height:100%;stroke-width:1.4}
 .art.gros .ic-cat{width:34%;max-width:76px}
+
+/* Jauge du score : le seuil devient visible, pas seulement chiffré */
+.jauge-sc{margin-bottom:16px}
+.js-b{position:relative;height:8px;border-radius:100px;background:rgba(255,255,255,.07);
+  overflow:visible}
+.js-r{height:100%;border-radius:100px;transition:width .8s cubic-bezier(.22,.9,.3,1)}
+.js-m{position:absolute;top:-3px;width:2px;height:14px;background:rgba(255,255,255,.32);
+  border-radius:2px}
+.js-l{display:flex;justify-content:space-between;margin-top:7px;
+  font:500 10px/1 var(--m);color:var(--faible)}
 </style><style>
 /* 🎈 Navigation FLOTTANTE : les flèches précédent/suivant ne sont plus collées
    aux bords de l'écran. Elles flottent, remontent au survol, et passent sous
@@ -430,16 +440,25 @@ const slug = new URLSearchParams(location.search).get('a');
 /* ⚖️ LE CALCUL, DÉCOMPOSÉ. Le score n'est pas un verdict opaque : chaque
    composante est mesurée séparément et expliquée. Le lecteur peut refaire
    l'addition et juger si les critères lui paraissent bons. */
+/* Le barème compte 100 points, répartis en neuf familles. Chaque composante est
+   expliquée pour que le lecteur puisse juger si le critère lui paraît légitime. */
 const EXPLIC = [
-  [/^gravité/i,      "Gravité intrinsèque du fait, notée de 0 à 10 par le moteur d'analyse."],
-  [/médias?\s*\+/i,  "Densité de couverture : plus de rédactions convergent, plus le fait est établi."],
-  [/^frais/i,        "Fraîcheur, mesurée sur l'article le plus récent de l'événement."],
-  [/imprévu/i,       "Caractère inattendu : un événement programmé pèse moins qu'une surprise."],
-  [/thème porteur/i, "Sujet qui suscite habituellement une forte réaction du lectorat."],
-  [/primeur/i,       "Information encore peu relayée au moment de la publication."],
+  [/^gravité/i,       "Gravité du fait, notée de 0 à 10 par le moteur d'analyse, puis ramenée sur 45 points. C'est le socle du score."],
+  [/médias?\s*\+/i,   "Densité de couverture. Plus de rédactions indépendantes convergent, plus le fait est établi. Jusqu'à 20 points."],
+  [/^frais/i,         "Fraîcheur, mesurée sur l'article le plus récent de l'événement — et non sur la durée de l'affaire. Jusqu'à 16 points."],
+  [/^ancien/i,        "Information dépassée : aucun développement depuis plus de douze heures."],
+  [/imprévu/i,        "Caractère inattendu. Ce qui sépare une alerte d'un rendez-vous inscrit au calendrier."],
+  [/programmé/i,      "Événement annoncé de longue date — match, salon, cérémonie. Fortement pénalisé : il n'y a rien de neuf."],
+  [/thème porteur/i,  "Sujet qui suscite habituellement une forte réaction du lectorat. N'est accordé qu'à partir d'une gravité correcte."],
   [/exploit français/i, "Performance d'un athlète ou d'une équipe française."],
-  [/plancher|majeur/i,  "Nature d'événement qui impose un score minimum, quel que soit le reste."],
-  [/déjà publié|suite/i, "Ajustement lié au traitement antérieur du sujet."],
+  [/en tendance/i,    "Sujet identifié dans les tendances du jour."],
+  [/primeur absolue/i, "Aucune autre rédaction n'a encore relayé ce fait."],
+  [/primeur/i,        "Information encore peu relayée au moment de la publication."],
+  [/national/i,       "Fait survenu en France, ou rattaché à une institution française."],
+  [/racoleur/i,       "Le titre d'origine retient l'information au lieu de la donner. Pénalisé : le fait s'avère souvent mince."],
+  [/plancher|⚡/i,     "Nature d'événement qui impose un score minimum, quel que soit le reste — un séisme reste un séisme même mal couvert."],
+  [/déjà publié|même événement/i, "Sujet déjà traité. Fortement pénalisé sans développement réel."],
+  [/^suite/i,         "Un développement nouveau justifie de reparler du sujet."],
 ];
 function explique(part){
   for(const [rx, txt] of EXPLIC) if(rx.test(part)) return txt;
@@ -447,6 +466,7 @@ function explique(part){
 }
 function calcul(a){
   const n = a.nb_medias || 1;
+  const SEUIL_PUB = 40, SEUIL_URG = 70;
   let h = ligne('Rédactions ayant couvert le fait',
                 n + ' média' + (n > 1 ? 's' : '') +
                 (n >= 2 ? ' — seuil de corroboration atteint' : ''));
@@ -460,8 +480,19 @@ function calcul(a){
   const parts = (a.score_detail || '')
     .split(/\s\+\s(?=[a-zA-ZÀ-ÿ⚡🔥\d])/)
     .map(x => x.trim()).filter(Boolean);
+  const pct = Math.max(0, Math.min(100, a.score));
+  const teinte = a.score >= SEUIL_URG ? 'var(--rouge)'
+               : a.score >= SEUIL_PUB ? 'var(--vert)' : 'var(--orange)';
   h += `<div class="calc">
-    <div class="calc-t">Décomposition du score</div>`;
+    <div class="calc-t">Décomposition du score — barème sur 100</div>
+    <div class="jauge-sc">
+      <div class="js-b"><div class="js-r" style="width:${pct}%;background:${teinte}"></div>
+        <span class="js-m" style="left:${SEUIL_PUB}%" title="seuil de publication"></span>
+        <span class="js-m" style="left:${SEUIL_URG}%" title="seuil d'alerte"></span>
+      </div>
+      <div class="js-l"><span>0</span><span>publication ${SEUIL_PUB}</span>
+        <span>alerte ${SEUIL_URG}</span><span>100</span></div>
+    </div>`;
   parts.forEach(p => {
     /* la valeur est le dernier nombre SIGNÉ ; sans signe, la composante
        n'ajoute rien au score (c'est une donnée de contexte) */
@@ -482,9 +513,11 @@ function calcul(a){
   });
   h += `<div class="cl total">
       <div class="cl-h"><span class="cl-n">Score final</span>
-        <span class="cl-v">${a.score.toFixed(1)}</span></div>
-      <div class="cl-e">Seuil de publication : 10. Au-delà de 15, l'article est
-        traité comme une alerte et publié sans attendre le prochain créneau.</div>
+        <span class="cl-v">${a.score.toFixed(0)} / 100</span></div>
+      <div class="cl-e">Seuil de publication : ${SEUIL_PUB} points. Au-delà de
+        ${SEUIL_URG}, l'article est traité comme une alerte et publié sans attendre
+        le prochain créneau. Le barème complet est détaillé sur la page
+        <a href="methode.html" style="color:var(--mauve)">Méthode</a>.</div>
     </div></div>`;
   return h;
 }

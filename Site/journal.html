@@ -146,6 +146,9 @@ footer .liens a:hover{color:var(--blanc)}
 .detail{font:500 11.5px/1.5 var(--m);color:var(--faible);margin-top:8px;
   padding-top:8px;border-top:1px solid var(--bord);overflow-wrap:anywhere}
 .sc.na{color:var(--faible);background:rgba(255,255,255,.04);border-color:var(--bord)}
+.sc.urg{color:var(--rouge);background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.3)}
+.sc.ok{color:var(--vert);background:rgba(55,227,155,.12);border-color:rgba(55,227,155,.3)}
+.sc.bas{color:var(--orange);background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.3)}
 .sc{font:600 11px/1 var(--m);color:var(--mauve);background:rgba(194,75,255,.1);
   border:1px solid rgba(194,75,255,.26);border-radius:6px;padding:4px 8px;white-space:nowrap}
 .md{font:600 11px/1 var(--c);color:var(--faible);background:rgba(255,255,255,.04);
@@ -315,7 +318,11 @@ function fiabilite(n){
     choisit de taire en dit plus long que ce qu'il publie. Alors nous ouvrons les
     livres : <b>tous</b> les arbitrages figurent ici — publiés, mis en surveillance,
     écartés — avec leur motif et leur note. Jugez vous-même si nous avons eu raison,
-    <b>et dites-le-nous si ce n'est pas le cas.</b></div>
+    <b>et dites-le-nous si ce n'est pas le cas.</b><br><br>
+    Chaque sujet est noté sur 100 selon un barème public : gravité du fait, densité
+    de couverture, fraîcheur, caractère imprévu, proximité. <b>Publication à partir
+    de 40 points, alerte à partir de 70.</b> Le détail figure sur la page
+    <a href="methode.html" style="color:var(--mauve)">Méthode</a>.</div>
   <div class="res" id="resume"></div>
   <div class="filtres" style="margin-bottom:18px">
     <button class="f fd on" data-d="tout">Tout</button>
@@ -392,9 +399,11 @@ function motif(x){
   else if(r.includes('une seule rédaction'))
     sup = "Une seule rédaction rapporte ce fait. Notre seuil exige deux sources indépendantes, sauf alerte vitale.";
   else if(r.includes('pas assez') || r.includes('score'))
-    sup = "Le score composite n'atteint pas le seuil de publication, fixé à 10 points.";
+    sup = "Le score composite n'atteint pas le seuil de publication, fixé à 40 points sur 100.";
   else if(r.includes('délai') || r.includes('cadence'))
     sup = "Un sujet proche vient d'être publié. Un délai minimum sépare deux traitements d'une même affaire.";
+  else if(r.includes('corrobor'))
+    sup = "Le seuil de corroboration exige deux rédactions indépendantes, sauf alerte vitale.";
   else if(r.includes('quota') || r.includes('plafond'))
     sup = "Le plafond quotidien de 20 publications est atteint. Seules les alertes vitales passent encore.";
   else if(r.includes('nuit'))
@@ -407,8 +416,10 @@ function carteDec(x){
   const m = motif(x);
   /* Un sujet écarté avant évaluation n'a pas de score : afficher « 0.0 / 10 »
      laisserait croire à une note très faible, ce qui est faux. */
+  /* Barème sur 100 : publication à partir de 40, alerte à partir de 70. */
   const sc = (x.score != null && x.score > 0)
-    ? `<span class="sc">score ${x.score.toFixed(1)} / 10</span>`
+    ? `<span class="sc${x.score >= 70 ? ' urg' : x.score >= 40 ? ' ok' : ' bas'}">${
+        x.score.toFixed(0)} / 100</span>`
     : (x.decision === 'ecarter' ? '<span class="sc na">non évalué</span>' : '');
   const det = x.detail
     ? `<div class="detail">${x.detail}</div>` : '';
