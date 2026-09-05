@@ -96,14 +96,14 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:8px}
 /* Même traitement que la pastille des médias : arrondie, discrète, sans
    écartement de lettres ni icône. La couleur suffit à distinguer la rubrique. */
-.cat{font:600 10.5px/1 var(--c);letter-spacing:.02em;color:var(--c);
+.cat{font:700 10px/1 var(--c);letter-spacing:.01em;color:var(--c);
   border:1px solid color-mix(in srgb,var(--c) 32%,transparent);
   background:color-mix(in srgb,var(--c) 11%,transparent);
-  padding:4px 9px;border-radius:100px;text-transform:none}
-.urg{font:600 10.5px/1 var(--c);letter-spacing:.02em;color:#fff;background:var(--rouge);
-  padding:4px 9px;border-radius:100px;animation:bat 1.8s ease-in-out infinite}
-.hom{font:600 10.5px/1 var(--c);letter-spacing:.02em;color:var(--gris);
-  border:1px solid var(--bord);padding:4px 9px;border-radius:100px}
+  padding:3px 9px;border-radius:100px;text-transform:none}
+.urg{font:700 10px/1 var(--c);letter-spacing:.01em;color:#fff;background:var(--rouge);
+  padding:3px 9px;border-radius:100px;animation:bat 1.8s ease-in-out infinite}
+.hom{font:700 10px/1 var(--c);letter-spacing:.01em;color:var(--gris);
+  border:1px solid var(--bord);padding:3px 9px;border-radius:100px}
 .h{font:500 11.5px/1 var(--c);color:var(--faible);margin-left:auto}
 .txt h3{font:700 16.5px/1.33 var(--t);color:var(--blanc);letter-spacing:-.015em;
   margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
@@ -115,7 +115,7 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .pied{display:flex;align-items:center;gap:10px;padding-top:10px;
   border-top:1px solid rgba(255,255,255,.06);font-size:11.5px}
 .src{color:var(--gris);font-weight:600}
-.fiab{margin-left:auto;font:600 10.5px/1 var(--c);padding:4px 9px;border-radius:100px}
+.fiab{margin-left:auto;font:700 10px/1 var(--c);padding:3px 9px;border-radius:100px}
 .fiab.f3{color:var(--vert);background:rgba(55,227,155,.12);border:1px solid rgba(55,227,155,.3)}
 .fiab.f2{color:var(--orange);background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3)}
 .fiab.f1{color:var(--rouge);background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3)}
@@ -247,6 +247,20 @@ footer .liens a:hover{color:var(--blanc)}
 /* 🎯 Le jeton du hero est rendu en WebGL, pas en image fixe : il garde son
    reflet métallique, son halo et le suivi de la souris après l'introduction.
    L'image reste comme repli si WebGL n'est pas disponible. */
+/* Halo en CSS, derrière le canvas. Un dégradé radial n'a pas de bord net :
+   il ne peut produire aucune arête, contrairement à un maillage rendu. */
+.scene::before{content:"";position:absolute;inset:-14%;border-radius:50%;
+  background:radial-gradient(circle,rgba(194,75,255,.3) 0%,
+    rgba(57,40,255,.13) 42%,transparent 68%);
+  filter:blur(10px);pointer-events:none;z-index:1;
+  animation:respHalo 4.6s ease-in-out infinite}
+@keyframes respHalo{0%,100%{opacity:.72;transform:scale(.97)}
+  50%{opacity:1;transform:scale(1.04)}}
+.scene.bat::after{content:"";position:absolute;inset:-14%;border-radius:50%;
+  border:2px solid rgba(194,75,255,.5);pointer-events:none;z-index:1;
+  animation:ondeHalo 1.4s ease-out forwards}
+@keyframes ondeHalo{0%{transform:scale(.72);opacity:.7}
+  100%{transform:scale(1.35);opacity:0}}
 #heroGL{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:2}
 #jetonHero{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;
   filter:drop-shadow(0 26px 48px rgba(11,10,16,.85)) drop-shadow(0 0 34px rgba(160,80,255,.45));
@@ -425,8 +439,13 @@ function fiabilite(n){
   transition:opacity .7s ease}
 #intro.parti{opacity:0;pointer-events:none}
 #scene{position:absolute;inset:0;width:100%;height:100%;display:block}
-#ecg{position:absolute;top:50%;left:0;width:100%;height:26vh;
+/* ⚠️ L'ECG était AU-DESSUS du canvas : le tracé passait sur le logo au lieu de
+   filer derrière lui. On le place sous la scène 3D — il se dessine d'abord,
+   puis le jeton apparaît par-dessus. */
+#ecg{position:absolute;top:50%;left:0;width:100%;height:26vh;z-index:1;
   transform:translateY(-50%);opacity:0;pointer-events:none}
+#scene{z-index:2}
+#flash{z-index:3}
 #trace{stroke-dasharray:1400;stroke-dashoffset:1400}
 #flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,
   rgba(220,190,255,.92),rgba(123,46,255,.3) 34%,transparent 62%);
@@ -599,7 +618,6 @@ function lancer(){
         }`
     }));
   halo.position.z = -.6;
-  scene.add(halo);
 
   // ── POST-TRAITEMENT ──
   gl.setClearColor(0x000000, 0);
@@ -744,32 +762,11 @@ function heroVivant(){
   });
   scene.add(new THREE.Points(gp, mp));
 
-  // ── halo néon ──
-  /* ⚠️ Le halo était un PLAN CARRÉ de 8×8, plus large que le canvas : ses bords
-     étaient coupés net par le cadre, et le bloom transformait cette coupure en
-     contour rectangulaire. Un CircleGeometry n'a pas de coin, et 5.2 tient dans
-     le champ de la caméra. */
-  const halo = new THREE.Mesh(new THREE.CircleGeometry(2.6, 96),
-    new THREE.ShaderMaterial({
-      uniforms:{ p:{value:1.2}, r:{value:1} },
-      transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
-      vertexShader:'varying vec2 u; void main(){u=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-      fragmentShader:`
-        varying vec2 u; uniform float p, r;
-        void main(){
-          float d = length(u-.5)*2.;
-          if(d > 1.0) discard;
-          /* Le dégradé s'éteint AVANT le bord de la géométrie : aucune
-             discontinuité, donc rien que le bloom puisse souligner. */
-          float g = smoothstep(.96, .0, d);
-          float onde = smoothstep(.05,.0,abs(d-p)) * step(.001,p) * (1.-p)
-                       * smoothstep(1., .82, d);
-          gl_FragColor = vec4(mix(vec3(.22,.15,1.), vec3(.74,.28,1.), g),
-                              (g*g*.3*r + onde*.34));
-        }`}));
-  halo.position.z = -.5;
-  scene.add(halo);
-
+  /* ⚠️ Le halo était un maillage rendu par le composeur. Quelle que soit sa
+     géométrie, le bloom lit la CIBLE de rendu entière — et le fond noir de
+     cette cible finissait par se voir au clic, sous forme de carré.
+     On le remplace par un halo CSS derrière le canvas : un dégradé radial ne
+     peut pas produire d'arête, par construction. */
   // ── le jeton, avec son reflet métallique ──
   const tex = new THREE.TextureLoader().load(LOGO);
   tex.colorSpace = THREE.SRGBColorSpace;
@@ -815,7 +812,10 @@ function heroVivant(){
       .to(jeton.scale, {x:1.04, y:1.04, duration:.13, ease:'power2.out'})
       .to(jeton.scale, {x:.985, y:.985, duration:.17, ease:'power2.inOut'})
       .to(jeton.scale, {x:1, y:1, duration:.42, ease:'elastic.out(1,.55)'});
-    gsap.fromTo(halo.material.uniforms.p, {value:0}, {value:1, duration:1.5, ease:'power2.out'});
+    // le halo CSS pulse en même temps que le jeton
+    cv.parentElement.classList.remove('bat');
+    void cv.parentElement.offsetWidth;          // force le redémarrage
+    cv.parentElement.classList.add('bat');
     gsap.fromTo(mat.uniforms.lum, {value:1},
       {value:1.14, duration:.15, yoyo:true, repeat:1});
     gsap.fromTo(bloom, {strength:.55}, {strength:.82, duration:.14, yoyo:true, repeat:1});
@@ -848,11 +848,9 @@ function heroVivant(){
       .to(jeton.position, {z:-1.15, duration:.16, ease:'power3.out'})
       .to(jeton.position, {z:.18, duration:.26, ease:'power2.out'})
       .to(jeton.position, {z:0, duration:.7, ease:'elastic.out(1, .42)'});
-    // le halo se resserre avec lui : la profondeur devient lisible
-    gsap.fromTo(halo.material.uniforms.r, {value:.55},
-      {value:1, duration:.85, ease:'power2.out'});
-    gsap.fromTo(halo.material.uniforms.p, {value:0},
-      {value:1, duration:1.1, ease:'power2.out'});
+    cv.parentElement.classList.remove('bat');
+    void cv.parentElement.offsetWidth;
+    cv.parentElement.classList.add('bat');
     gsap.fromTo(mat.uniforms.lum, {value:1.35},
       {value:1, duration:.6, ease:'power2.out'});
     gsap.fromTo(mat.uniforms.refl, {value:-0.5},
@@ -883,7 +881,6 @@ function heroVivant(){
       rx += (cx-rx)*.055; ry += (cy-ry)*.055;
       jeton.rotation.x = rx + Math.sin(t*.4)*.02;
       jeton.rotation.y = ry + Math.sin(t*.31)*.026;
-      halo.material.uniforms.r.value = .88 + .12*Math.sin(t*1.1);
       comp.render();
     }
     requestAnimationFrame(boucle);
