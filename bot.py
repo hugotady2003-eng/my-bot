@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.8.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.8.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -12240,7 +12240,13 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None):
     detail = []
     score = 0.0
 
+    # ⚠️ La note du modèle est censée aller de 0 à 10, mais rien ne l'y obligeait :
+    #    une réponse à 15 passait telle quelle et gonflait le score (vécu : un
+    #    « PSG - Monaco » noté 21/10 dans le journal public). On borne.
     base = float(note_ia if note_ia is not None else 0)
+    if base > 10 or base < 0:
+        print(f"  ⚠️ Note de gravité hors bornes ({base:.0f}) → ramenée dans 0-10")
+    base = max(0.0, min(10.0, base))
     score += base
     detail.append(f"gravité {base:.0f}")
 
@@ -12836,24 +12842,35 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
 #    relance le processus toutes les 5 minutes. L'anti-répétition doit être
 #    PERSISTÉE, comme le reste — sinon le même sujet s'inscrit indéfiniment
 #    (vécu : le même titre quatre fois dans le journal public).
+# ⚠️ Une SECONDE connexion à seen_articles.db se heurtait au verrou de la
+#    connexion principale : l'appel attendait 60 s puis échouait, et le doublon
+#    passait quand même (vécu : le même sujet deux fois dans le journal).
+#    On utilise un fichier DÉDIÉ, sans concurrence, et le mode WAL.
+_BASE_DECISIONS = "decisions_vues.db"
+
+
 def _decision_deja_vue(cle, heures=6):
     """Vrai si cette décision a déjà été journalisée récemment.
-    S'appuie sur la base persistée entre les runs, pas sur la mémoire vive."""
+
+    Persisté sur disque : le processus redémarre à chaque cycle, une mémoire
+    vive ne survivrait pas. Base séparée pour ne jamais entrer en concurrence
+    avec les écritures du moteur."""
     try:
-        c = sqlite3.connect("seen_articles.db", timeout=30, check_same_thread=False)
-        c.execute("""CREATE TABLE IF NOT EXISTS decisions_vues
+        c = sqlite3.connect(_BASE_DECISIONS, timeout=5)
+        c.execute("PRAGMA journal_mode=WAL")
+        c.execute("""CREATE TABLE IF NOT EXISTS vues
                      (cle TEXT PRIMARY KEY, vu_le REAL)""")
-        r = c.execute("SELECT vu_le FROM decisions_vues WHERE cle=?", (cle,)).fetchone()
         maintenant = time.time()
+        r = c.execute("SELECT vu_le FROM vues WHERE cle=?", (cle,)).fetchone()
         if r and maintenant - r[0] < heures * 3600:
             c.close()
             return True
-        c.execute("INSERT OR REPLACE INTO decisions_vues VALUES (?,?)", (cle, maintenant))
-        # purge des entrées de plus de 48 h : la table reste petite
-        c.execute("DELETE FROM decisions_vues WHERE vu_le < ?", (maintenant - 172800,))
+        c.execute("INSERT OR REPLACE INTO vues VALUES (?,?)", (cle, maintenant))
+        c.execute("DELETE FROM vues WHERE vu_le < ?", (maintenant - 172800,))
         c.commit(); c.close()
         return False
-    except Exception:
+    except Exception as e:
+        print(f"  ⚠️ Déduplication du journal indisponible ({str(e)[:50]})")
         return False        # en cas de doute, on journalise plutôt que de perdre
 
 
