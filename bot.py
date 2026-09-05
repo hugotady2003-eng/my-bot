@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.0.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.0.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -15059,7 +15059,12 @@ def _check_feeds_interne(conn):
                     conn, _ev, note_ia=score, categorie=a.get("category", ""),
                     imprevu=a.get("imprevu"))
                 if _det:
-                    print(f"  🧮 Score {_sc} = {' + '.join(_det)}")
+                    # « Score None » n'apprend rien : quand le sujet est écarté
+                    #    avant notation, on dit pourquoi plutôt qu'afficher None.
+                    if _sc is None:
+                        print(f"  🧮 Non évalué — {' · '.join(_det)}")
+                    else:
+                        print(f"  🧮 Score {_sc}/100 = {' + '.join(_det)}")
                     # ⚖️ Le score et son détail partent au site : sans eux, la
                     #    section « pourquoi nous l'avons publié » restait vide.
                     hot["_score"], hot["_detail"] = _sc, _det
@@ -15079,7 +15084,10 @@ def _check_feeds_interne(conn):
                         hot["_presse"] = dossier_de_presse(_ev, _rec)
                     except Exception:
                         pass
-                score = int(round(_sc))
+                # ⚠️ _sc vaut None quand le sujet est écarté AVANT évaluation
+                #    (corroboration insuffisante) : il n'a pas été noté, ce n'est
+                #    pas un score de zéro. round(None) faisait planter tout le run.
+                score = int(round(_sc)) if _sc is not None else 0
                 # ⚖️ JOURNAL COMPLET : les trois issues sont publiées, pas seulement
                 #    les refus. Un journal qui ne montre que ce qu'on écarte prive le
                 #    lecteur du point de comparaison. Et « mis en suivi » est une
