@@ -262,7 +262,8 @@ footer .liens a:hover{color:var(--blanc)}
   padding:20px 22px;text-align:center;transition:transform .3s,border-color .3s}
 .cp:hover{transform:translateY(-5px);border-color:rgba(194,75,255,.4)}
 .cp .v{font:700 26px/1 var(--m);color:var(--mauve);margin-bottom:7px}
-.cp .l{font:600 10.5px/1.4 var(--c);letter-spacing:.14em;text-transform:uppercase;color:var(--faible)}
+.cp .l{font:600 10.5px/1.4 var(--c);letter-spacing:.14em;text-transform:uppercase;color:var(--texte)}
+.cp .sl{font:500 10.5px/1.4 var(--c);color:var(--faible);margin-top:6px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 
 /* 📱 AUDIT DES MARGES — chaque bloc porteur de texte a été vérifié.
@@ -564,7 +565,7 @@ function lancer(){
       uniform float opac, refl, lum;
       void main(){
         vec4 c = texture2D(carte, u);
-        if(c.a < .01) discard;
+        if(c.a < .06) discard;
         // bande oblique qui traverse de gauche à droite
         float d = (u.x + (1.0 - u.y) * 0.45);
         float bande = smoothstep(.13, .0, abs(d - refl));
@@ -587,6 +588,7 @@ function lancer(){
         varying vec2 u; uniform float o, p;
         void main(){
           float d = length(u-.5)*2.;
+          if(d > 1.0) discard;           // le plan carré ne doit pas se voir
           float g = smoothstep(1., .0, d);
           float onde = smoothstep(.04,.0,abs(d - p)) * step(.001,p) * (1.-p);
           vec3 c = mix(vec3(.24,.16,1.), vec3(.76,.29,1.), g);
@@ -597,8 +599,11 @@ function lancer(){
   scene.add(halo);
 
   // ── POST-TRAITEMENT ──
+  gl.setClearColor(0x000000, 0);
   const comp = new EffectComposer(gl);
-  comp.addPass(new RenderPass(scene, cam));
+  const rpI = new RenderPass(scene, cam);
+  rpI.clearAlpha = 0;
+  comp.addPass(rpI);
   const bloom = new UnrealBloomPass(
     new THREE.Vector2(innerWidth, innerHeight), 0.72, 0.62, 0.22);
   comp.addPass(bloom);
@@ -746,6 +751,10 @@ function heroVivant(){
         varying vec2 u; uniform float p, r;
         void main(){
           float d = length(u-.5)*2.;
+          /* ⚠️ Le halo est porté par un plan CARRÉ : sans cette coupure nette
+             au-delà du rayon, ses coins restaient légèrement éclairés et
+             dessinaient la forme du plan. */
+          if(d > 1.0) discard;
           float g = smoothstep(1., .0, d);
           float onde = smoothstep(.05,.0,abs(d-p)) * step(.001,p) * (1.-p);
           gl_FragColor = vec4(mix(vec3(.22,.15,1.), vec3(.74,.28,1.), g),
@@ -766,7 +775,9 @@ function heroVivant(){
       varying vec2 u; uniform sampler2D carte; uniform float refl, lum;
       void main(){
         vec4 c = texture2D(carte, u);
-        if(c.a < .01) discard;
+        /* ⚠️ Seuil à .06 et non .01 : le détourage laisse un liseré très
+           légèrement opaque que le bloom transformait en contour carré. */
+        if(c.a < .06) discard;
         float d = (u.x + (1.0 - u.y) * 0.45);
         float bande = smoothstep(.13, .0, abs(d - refl));
         gl_FragColor = vec4(c.rgb * lum + vec3(.95,.82,1.) * bande * .5 * c.a, c.a);
@@ -774,8 +785,18 @@ function heroVivant(){
   const jeton = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 3.6), mat);
   scene.add(jeton);
 
-  const comp = new EffectComposer(gl);
-  comp.addPass(new RenderPass(scene, cam));
+  /* ⚠️ EffectComposer efface ses cibles en NOIR OPAQUE par défaut : le carré du
+     plan devenait visible dès que le bloom l'illuminait. Il faut une cible de
+     rendu avec canal alpha ET un effacement transparent. */
+  gl.setClearColor(0x000000, 0);
+  gl.autoClear = false;
+  const cible = new THREE.WebGLRenderTarget(
+    boite.width * gl.getPixelRatio(), boite.height * gl.getPixelRatio(),
+    {format: THREE.RGBAFormat, type: THREE.HalfFloatType, samples: 2});
+  const comp = new EffectComposer(gl, cible);
+  const rp = new RenderPass(scene, cam);
+  rp.clearAlpha = 0;                       // le fond reste transparent
+  comp.addPass(rp);
   const bloom = new UnrealBloomPass(
     new THREE.Vector2(boite.width, boite.height), 0.55, 0.6, 0.25);
   comp.addPass(bloom);
@@ -799,12 +820,39 @@ function heroVivant(){
     {value:1.7, duration:1.25, ease:'power2.inOut'}), 5000);
 
   // ── suivi de la souris, 8° au maximum ──
-  let cx=0, cy=0, rx=0, ry=0;
+  let cx=0, cy=0, rx=0, ry=0, spin=0;
   addEventListener('mousemove', e => {
     cx = ((e.clientY/innerHeight)-.5) * -0.14;
     cy = ((e.clientX/innerWidth )-.5) *  0.14;
   }, {passive:true});
   addEventListener('mouseleave', () => { cx = 0; cy = 0; });
+
+  /* 🎯 RÉACTION AU CLIC : le jeton s'enfonce puis rebondit, une onde part du
+     halo et le reflet traverse aussitôt. On rend le geste satisfaisant sans
+     déclencher une rotation complète, qui masquerait le logo. */
+  let occupe = false;
+  cv.style.cursor = 'pointer';
+  function frapper(){
+    if (occupe) return;
+    occupe = true;
+    gsap.timeline({onComplete: () => { occupe = false; }})
+      .to(jeton.scale, {x:.9, y:.9, duration:.11, ease:'power3.out'})
+      .to(jeton.scale, {x:1.09, y:1.09, duration:.19, ease:'power2.out'})
+      .to(jeton.scale, {x:1, y:1, duration:.72, ease:'elastic.out(1, .38)'});
+    // une demi-rotation sur l'axe vertical : le jeton se retourne et revient
+    gsap.timeline()
+      .to({v:0}, {v:1, duration:.85, ease:'power2.inOut',
+        onUpdate: function(){ spin = Math.sin(this.targets()[0].v * Math.PI) * 0.9; }});
+    gsap.fromTo(halo.material.uniforms.p, {value:0},
+      {value:1, duration:1.1, ease:'power2.out'});
+    gsap.fromTo(mat.uniforms.lum, {value:1.35},
+      {value:1, duration:.6, ease:'power2.out'});
+    gsap.fromTo(mat.uniforms.refl, {value:-0.5},
+      {value:1.7, duration:.9, ease:'power2.inOut'});
+    gsap.fromTo(bloom, {strength:1.1}, {strength:.55, duration:.5, ease:'power2.out'});
+  }
+  cv.addEventListener('click', frapper);
+  cv.addEventListener('touchstart', e => { frapper(); }, {passive:true});
 
   /* ⚠️ On suspend le rendu quand le hero sort de l'écran ou que l'onglet est
      caché : faire tourner une scène WebGL invisible vide la batterie. */
@@ -826,7 +874,7 @@ function heroVivant(){
       jeton.position.y = Math.sin(t*.62)*.09;
       rx += (cx-rx)*.055; ry += (cy-ry)*.055;
       jeton.rotation.x = rx + Math.sin(t*.4)*.02;
-      jeton.rotation.y = ry + Math.sin(t*.31)*.026;
+      jeton.rotation.y = ry + Math.sin(t*.31)*.026 + spin;
       halo.material.uniforms.r.value = .88 + .12*Math.sin(t*1.1);
       comp.render();
     }
@@ -893,11 +941,16 @@ function replique(){ intro.remove(); document.body.classList.remove('intro-activ
   </div>
 </div>
 <div class="cps" id="cps">
-  <div class="cp"><div class="v" data-n="20000">0</div><div class="l">articles analysés par jour</div></div>
-  <div class="cp"><div class="v" data-n="288">0</div><div class="l">tours de veille quotidiens</div></div>
-  <div class="cp"><div class="v" data-n="713">0</div><div class="l">contrôles avant publication</div></div>
-  <div class="cp"><div class="v" id="c2" data-n="0">0</div><div class="l">sujets recalés</div></div>
-  <div class="cp"><div class="v">0</div><div class="l">intérêt à défendre</div></div>
+  <div class="cp"><div class="v" id="s1">0</div><div class="l">articles analysés</div>
+    <div class="sl" id="sd">depuis le premier jour</div></div>
+  <div class="cp"><div class="v" id="s2">0</div><div class="l">événements reconstitués</div>
+    <div class="sl">dépêches regroupées par fait</div></div>
+  <div class="cp"><div class="v" id="s3">0</div><div class="l">tours de veille</div>
+    <div class="sl">cycles complets du moteur</div></div>
+  <div class="cp"><div class="v" id="c2">0</div><div class="l">sujets écartés</div>
+    <div class="sl">avec leur motif, en public</div></div>
+  <div class="cp"><div class="v">0</div><div class="l">intérêt à défendre</div>
+    <div class="sl">ni actionnaire, ni annonceur</div></div>
 </div></div></section>
 
 <section class="wrap" style="padding:20px 0 70px">
@@ -996,7 +1049,23 @@ function carte(a, gros){
 }
 /* Les compteurs viennent de la BASE, pas d'un chiffre écrit en dur : afficher
    un nombre inventé sur une page qui vante la transparence serait absurde. */
+/* 📊 Les compteurs viennent de la BASE : ce sont les chiffres réellement
+   mesurés, pas une projection. Sur un site qui vend la transparence, un
+   chiffre extrapolé serait la seule chose capable de tout démolir. */
 async function compteurs(){
+  try{
+    const [t] = await api('totaux?limit=1');
+    if(t){
+      anime(document.getElementById('s1'), Number(t.articles_lus||0), 0);
+      anime(document.getElementById('s2'), Number(t.evenements||0), 130);
+      anime(document.getElementById('s3'), Number(t.cycles||0), 260);
+      if(t.depuis){
+        const d = new Date(t.depuis).toLocaleDateString('fr-FR',
+          {day:'numeric', month:'long', year:'numeric'});
+        document.getElementById('sd').textContent = `depuis le ${d}`;
+      }
+    }
+  }catch(e){}
   try{
     const r = await fetch(`${SUPABASE_URL}/rest/v1/articles?select=id`, {
       headers:{apikey:SUPABASE_ANON, Authorization:`Bearer ${SUPABASE_ANON}`,
@@ -1007,7 +1076,7 @@ async function compteurs(){
     const n2 = Number((r2.headers.get('content-range')||'/0').split('/')[1] || 0);
     const el = document.getElementById('c2');
     el.dataset.n = n2;
-    anime(el, n2, 520);          // il compte comme les autres, une fois connu
+    anime(el, n2, 390);          // il compte comme les autres, une fois connu
   }catch(e){
     // la base est injoignable : on n'invente pas de chiffre
     const el = document.getElementById('c2');
@@ -1046,11 +1115,7 @@ function anime(el, fin, retard){
   setTimeout(() => requestAnimationFrame(pas), retard);
 }
 
-function lancerCompteurs(){
-  document.querySelectorAll('.cp .v[data-n]').forEach((el, i) => {
-    anime(el, parseInt(el.dataset.n, 10) || 0, i * 130);
-  });
-}
+function lancerCompteurs(){ compteurs(); }
 
 /* On attend que les compteurs entrent à l'écran : les animer avant que
    le visiteur les voie, c'est les gâcher. */
