@@ -185,6 +185,64 @@ footer .liens a:hover{color:var(--blanc)}
   border-radius:2px}
 .js-l{display:flex;justify-content:space-between;margin-top:7px;
   font:500 10px/1 var(--m);color:var(--faible)}
+
+/* Liste complète des sources */
+.sources{background:var(--carte);border:1px solid var(--bord);border-radius:20px;
+  padding:24px 26px;margin:26px 0}
+.src-tt{font:700 12px/1 var(--c);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mauve);margin-bottom:9px}
+.src-ex{font-size:13.5px;color:var(--faible);line-height:1.55;margin-bottom:18px}
+.src-l{padding:13px 0;border-bottom:1px solid var(--bord)}
+.src-l:last-child{border-bottom:none;padding-bottom:0}
+.src-l.premier{background:rgba(194,75,255,.05);margin:0 -12px;padding-inline:12px;
+  border-radius:12px}
+.src-n{font:700 14.5px/1.3 var(--c);color:var(--texte);margin-bottom:4px;
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.badge-1{font:700 9.5px/1 var(--c);color:var(--mauve);background:rgba(194,75,255,.13);
+  border:1px solid rgba(194,75,255,.3);border-radius:100px;padding:3px 8px}
+.src-t{font-size:13.5px;color:var(--gris);line-height:1.5;margin-bottom:6px}
+.src-a{display:flex;align-items:center;gap:12px;font-size:12.5px}
+.src-h{font:500 11.5px/1 var(--m);color:var(--faible)}
+.src-a a{font:600 12.5px/1 var(--c);color:var(--mauve)}
+@media(max-width:600px){.sources{padding:20px 18px}}
+
+/* ── Communauté ── */
+.commu{background:var(--carte);border:1px solid var(--bord);border-radius:20px;
+  padding:26px 28px;margin-top:30px}
+.cm-t{font:700 12px/1 var(--c);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mauve);margin-bottom:8px}
+.cm-x{font-size:13px;color:var(--faible);line-height:1.55;margin-bottom:20px}
+.cm-v{display:flex;align-items:center;gap:11px;margin-bottom:24px;flex-wrap:wrap}
+.vt{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);
+  border:1px solid var(--bord);border-radius:100px;padding:10px 18px;cursor:pointer;
+  color:var(--texte);font:600 14px/1 var(--c);transition:.2s}
+.vt:hover{border-color:#443C6B;transform:translateY(-2px)}
+.vt.on{background:rgba(123,46,255,.2);border-color:rgba(194,75,255,.5);cursor:default}
+.vt.on:hover{transform:none}
+.vt .e{font-size:16px}
+.vt .n{font-family:var(--m);font-weight:700}
+.cm-r{font:500 12.5px/1 var(--c);color:var(--faible)}
+.cm-f{margin-bottom:22px}
+.cm-f input,.cm-f textarea{width:100%;background:rgba(11,10,16,.5);
+  border:1px solid var(--bord);border-radius:12px;padding:11px 14px;
+  color:var(--texte);font:400 14.5px/1.5 var(--c);margin-bottom:9px;resize:vertical}
+.cm-f input:focus,.cm-f textarea:focus{outline:none;border-color:rgba(194,75,255,.45)}
+.cm-f ::placeholder{color:var(--faible)}
+.cm-b{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cm-c{font:500 11.5px/1 var(--m);color:var(--faible)}
+.btn-c{background:linear-gradient(120deg,var(--bleu),var(--violet) 55%,var(--mauve));
+  color:#fff;border:none;border-radius:11px;padding:11px 22px;cursor:pointer;
+  font:600 14px/1 var(--c);transition:.2s}
+.btn-c:hover{transform:translateY(-2px)}
+.btn-c:disabled{opacity:.5;cursor:default;transform:none}
+.cm{padding:14px 0;border-bottom:1px solid var(--bord)}
+.cm:last-child{border-bottom:none}
+.cm-h{display:flex;align-items:baseline;gap:10px;margin-bottom:5px}
+.cm-p{font:700 13.5px/1 var(--c);color:var(--texte)}
+.cm-d{font:500 11.5px/1 var(--c);color:var(--faible)}
+.cm-tx{font-size:14.5px;color:var(--gris);line-height:1.6;overflow-wrap:anywhere}
+.cm-vide{text-align:center;padding:26px;color:var(--faible);font-size:14px}
+@media(max-width:600px){.commu{padding:20px 18px}}
 </style><style>
 /* 🎈 Navigation FLOTTANTE : les flèches précédent/suivant ne sont plus collées
    aux bords de l'écran. Elles flottent, remontent au survol, et passent sous
@@ -464,6 +522,42 @@ function explique(part){
   for(const [rx, txt] of EXPLIC) if(rx.test(part)) return txt;
   return "";
 }
+/* ⚖️ TOUTES LES SOURCES, pas seulement celle qui a servi à rédiger.
+   N'afficher qu'un lien alors qu'on affirme comparer plusieurs rédactions
+   donnerait raison à qui nous accuserait de bluffer. Le moteur conserve déjà
+   la liste complète : il suffit de la publier. */
+function sources(a){
+  const liste = Array.isArray(a.medias_liste) ? a.medias_liste : [];
+  if(!liste.length){
+    // repli : au moins la source principale
+    return a.source_url
+      ? `<div class="src-box"><div class="t"><div class="l">Source</div>
+          <div class="n">${a.source_nom||'Voir l\'article'}</div></div>
+          <a href="${a.source_url}" target="_blank" rel="noopener">Lire →</a></div>`
+      : '';
+  }
+  const lignes = liste.map((m, i) => {
+    const premier = a.premier_media && m.nom === a.premier_media;
+    const h = m.heure ? new Date(m.heure).toLocaleTimeString('fr-FR',
+      {hour:'2-digit', minute:'2-digit'}) : '';
+    return `<div class="src-l${premier ? ' premier' : ''}">
+      <div class="src-n">${m.nom}${premier
+        ? `<span class="badge-1">1<sup>er</sup>${a.avance_primeur
+            ? ' · ' + a.avance_primeur + " d'avance" : ''}</span>` : ''}</div>
+      <div class="src-t">${m.titre || ''}</div>
+      <div class="src-a">${h ? '<span class="src-h">' + h + '</span>' : ''}
+        ${m.url ? `<a href="${m.url}" target="_blank" rel="noopener">Lire →</a>` : ''}</div>
+    </div>`;
+  }).join('');
+  return `<div class="sources">
+    <div class="src-tt">📰 Les ${liste.length} rédactions qui ont couvert ce fait</div>
+    <p class="src-ex">Chacune a traité l'information à sa manière. Nous les
+      publions toutes, dans leur ordre de parution — y compris celles dont nous
+      ne nous sommes pas servis pour rédiger.</p>
+    ${lignes}
+  </div>`;
+}
+
 function calcul(a){
   const n = a.nb_medias || 1;
   const SEUIL_PUB = 40, SEUIL_URG = 70;
@@ -605,13 +699,14 @@ async function charger(){
         </div>
       </div>
 
-      ${a.source_url?`<div class="src-box"><div class="t">
-        <div class="l">Source d'origine</div><div class="n">${a.source_nom||'Voir'}</div></div>
-        <a href="${a.source_url}" target="_blank" rel="noopener">Lire l'original →</a></div>`:''}
+      ${sources(a)}
       ${a.tweet_url?`<div class="src-box"><div class="t">
         <div class="l">Publié aussi sur</div><div class="n">X · @PULSEactus</div></div>
         <a href="${a.tweet_url}" target="_blank" rel="noopener">Voir le message →</a></div>`:''}
+
+      <div class="commu" id="commu"></div>
     </div>`;
+    communaute(a.id);
 
     voisins(a.publie_le);
   }catch(err){
@@ -634,5 +729,128 @@ async function voisins(date){
     document.getElementById('navpaire').innerHTML = h;
   }catch(e){}
 }
+/* ═══════════════════════════════════════════════════════════════════════
+   COMMUNAUTÉ — réactions et commentaires, sans compte ni collecte.
+   ⚠️ Aucune donnée personnelle n'est envoyée : pas d'adresse, pas de compte,
+   pas de traceur. Le navigateur mémorise LOCALEMENT ce qu'il a voté, et cette
+   information ne quitte jamais l'appareil. C'est la seule façon d'éviter le
+   double vote sans identifier qui que ce soit.
+   ═══════════════════════════════════════════════════════════════════════ */
+const VOTES = 'pulse_votes';
+
+function dejaVote(id){
+  try { return (JSON.parse(localStorage.getItem(VOTES) || '{}'))[id] || 0; }
+  catch(e){ return 0; }
+}
+function noterVote(id, v){
+  try {
+    const m = JSON.parse(localStorage.getItem(VOTES) || '{}');
+    m[id] = v;
+    localStorage.setItem(VOTES, JSON.stringify(m));
+  } catch(e){}
+}
+
+async function communaute(id){
+  const box = document.getElementById('commu');
+  if(!box || !id) return;
+  box.innerHTML = `
+    <div class="cm-t">Ce que vous en pensez</div>
+    <p class="cm-x">Pas de compte, pas d'inscription, aucune donnée collectée.
+      Votre vote reste sur votre appareil.</p>
+    <div class="cm-v">
+      <button class="vt" id="vp"><span class="e">👍</span>
+        <span class="n" id="np">—</span></button>
+      <button class="vt" id="vm"><span class="e">👎</span>
+        <span class="n" id="nm">—</span></button>
+      <span class="cm-r" id="ratio"></span>
+    </div>
+    <div class="cm-f">
+      <input id="cp" maxlength="40" placeholder="Votre pseudo (facultatif)">
+      <textarea id="ct" maxlength="1200" rows="3"
+        placeholder="Votre commentaire…"></textarea>
+      <div class="cm-b"><span class="cm-c" id="cc">0 / 1200</span>
+        <button class="btn-c" id="ce">Publier</button></div>
+    </div>
+    <div id="cl" class="cm-l"><div class="charge"><div class="sp"></div></div></div>`;
+
+  // ── réactions ──
+  async function compter(){
+    try{
+      const [r] = await api(`reactions_totaux?article_id=eq.${id}&limit=1`);
+      const h = r ? Number(r.pouces_haut) : 0, b = r ? Number(r.pouces_bas) : 0;
+      document.getElementById('np').textContent = h;
+      document.getElementById('nm').textContent = b;
+      const t = h + b;
+      document.getElementById('ratio').textContent =
+        t >= 5 ? `${Math.round(h / t * 100)} % d'accord sur ${t} avis` : '';
+    }catch(e){}
+  }
+  const v0 = dejaVote(id);
+  if(v0 ===  1) document.getElementById('vp').classList.add('on');
+  if(v0 === -1) document.getElementById('vm').classList.add('on');
+
+  async function voter(v){
+    if(dejaVote(id)) return;              // un seul vote par appareil
+    noterVote(id, v);
+    document.getElementById(v === 1 ? 'vp' : 'vm').classList.add('on');
+    try{
+      await fetch(`${SUPABASE_URL}/rest/v1/reactions`, {method:'POST',
+        headers:{apikey:SUPABASE_ANON, Authorization:`Bearer ${SUPABASE_ANON}`,
+                 'Content-Type':'application/json', Prefer:'return=minimal'},
+        body: JSON.stringify({article_id:id, vote:v})});
+    }catch(e){}
+    compter();
+  }
+  document.getElementById('vp').addEventListener('click', () => voter(1));
+  document.getElementById('vm').addEventListener('click', () => voter(-1));
+  compter();
+
+  // ── commentaires ──
+  const ct = document.getElementById('ct'), cc = document.getElementById('cc');
+  ct.addEventListener('input', () => { cc.textContent = `${ct.value.length} / 1200`; });
+
+  async function lire(){
+    const l = document.getElementById('cl');
+    try{
+      const d = await api(`commentaires?article_id=eq.${id}&masque=eq.false`
+                        + `&order=cree_le.desc&limit=60`);
+      l.innerHTML = d.length ? d.map(c => `
+        <div class="cm">
+          <div class="cm-h"><span class="cm-p">${echapper(c.pseudo || 'Anonyme')}</span>
+            <span class="cm-d">${ecoule(c.cree_le)}</span></div>
+          <div class="cm-tx">${echapper(c.texte)}</div>
+        </div>`).join('')
+        : `<div class="cm-vide">Aucun commentaire pour l'instant.</div>`;
+    }catch(e){
+      l.innerHTML = `<div class="cm-vide">Commentaires indisponibles.</div>`;
+    }
+  }
+
+  document.getElementById('ce').addEventListener('click', async () => {
+    const t = ct.value.trim(), p = document.getElementById('cp').value.trim();
+    if(t.length < 2){ ct.focus(); return; }
+    const b = document.getElementById('ce');
+    b.disabled = true; b.textContent = 'Envoi…';
+    try{
+      await fetch(`${SUPABASE_URL}/rest/v1/commentaires`, {method:'POST',
+        headers:{apikey:SUPABASE_ANON, Authorization:`Bearer ${SUPABASE_ANON}`,
+                 'Content-Type':'application/json', Prefer:'return=minimal'},
+        body: JSON.stringify({article_id:id, pseudo: p || 'Anonyme', texte:t})});
+      ct.value = ''; cc.textContent = '0 / 1200';
+      lire();
+    }catch(e){}
+    b.disabled = false; b.textContent = 'Publier';
+  });
+  lire();
+}
+
+/* ⚠️ Le texte vient d'un inconnu : on l'échappe avant de l'insérer. Sans cela,
+   un commentaire contenant du code s'exécuterait chez tous les lecteurs. */
+function echapper(t){
+  const d = document.createElement('div');
+  d.textContent = String(t || '');
+  return d.innerHTML;
+}
+
 charger();
 </script></body></html>
