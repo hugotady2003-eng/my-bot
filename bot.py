@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.9.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.9.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -12903,9 +12903,18 @@ Réponds avec ce JSON UNIQUEMENT : {{"article":"le texte complet, \\n\\n entre p
             return txt
     except Exception as e:
         print(f"  ⚠️ Article long indisponible ({str(e)[:50]})")
-    # repli : le tweet, débarrassé de son préfixe et de ses mots-dièse
+    # ⚠️ REPLI : le tweet nettoyé. Sa PREMIÈRE ligne devient le chapô de l'article,
+    #    affiché à part sur le site — la reprendre ici la ferait apparaître deux
+    #    fois de suite. On la retire du corps.
     t = re.sub(r"^[^|\n]{0,26}\|\s*", "", str(tweet or ""))
-    return re.sub(r"\s*#\w+", "", t).strip()
+    t = re.sub(r"\s*#[\w\u00C0-\u024F]+", "", t)
+    lignes_r = [x.strip() for x in t.split("\n") if x.strip()]
+    if len(lignes_r) > 1:
+        lignes_r = lignes_r[1:]          # la 1re ligne sert déjà de chapô
+    # on écarte aussi la ligne de source, déjà affichée sous l'article
+    lignes_r = [x for x in lignes_r
+                if not re.match(r"^\(?(?:via|source)\s*:", x, re.IGNORECASE)]
+    return "\n\n".join(lignes_r).strip()
 
 
 def publier_sur_site(item, texte, cat, format_="actu", image=None,
