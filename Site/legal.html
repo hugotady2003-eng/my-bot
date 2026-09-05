@@ -447,42 +447,6 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 (function(){var b=document.getElementById('burger'),n=document.getElementById('nav');
 if(!b||!n)return;b.addEventListener('click',function(){
   var o=n.classList.toggle('ouvert');b.textContent=o?'✕':'☰';});})();
-</script><script>
-/* ══ RÉGLAGES — thème et langue ══════════════════════════════════════
-   Le choix est mémorisé localement, comme le vote : rien n'est envoyé. */
-(function(){
-  const html = document.documentElement;
-  const bt = document.getElementById('bTheme'), bl = document.getElementById('bLang');
-
-  function majTheme(){
-    const clair = html.getAttribute('data-th') === 'clair';
-    if(bt) bt.textContent = clair ? '☀️' : '🌙';
-    if(bt) bt.setAttribute('title', clair ? 'Passer en sombre' : 'Passer en clair');
-  }
-  if(bt) bt.addEventListener('click', () => {
-    const clair = html.getAttribute('data-th') === 'clair';
-    if(clair){ html.removeAttribute('data-th'); }
-    else { html.setAttribute('data-th', 'clair'); }
-    try{ localStorage.setItem('pulse_theme', clair ? 'sombre' : 'clair'); }catch(e){}
-    majTheme();
-  });
-  majTheme();
-
-  function majLangue(){
-    const en = html.getAttribute('data-lg') === 'en';
-    if(bl) bl.textContent = en ? 'EN' : 'FR';
-    if(bl) bl.setAttribute('title', en ? 'Switch to French' : 'Passer en anglais');
-    if(typeof traduire === 'function') traduire(en ? 'en' : 'fr');
-  }
-  if(bl) bl.addEventListener('click', () => {
-    const en = html.getAttribute('data-lg') === 'en';
-    if(en){ html.removeAttribute('data-lg'); }
-    else { html.setAttribute('data-lg', 'en'); }
-    try{ localStorage.setItem('pulse_lang', en ? 'fr' : 'en'); }catch(e){}
-    majLangue();
-  });
-  majLangue();
-})();
 </script>
 <script>
 /* ══ TRADUCTION DE L'INTERFACE ═══════════════════════════════════════
@@ -490,6 +454,201 @@ if(!b||!n)return;b.addEventListener('click',function(){
    aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
    l'interface sont commutés. */
 const T = {
+  "Les frais prélevés sur les échanges de $PULSE financent l'infrastructure de Pulse : modèles de langage, hébergement, base de données, stockage des images.":"Fees levied on $PULSE trades fund Pulse's infrastructure: language models, hosting, database, image storage.",
+  "Nous l'écrivons plutôt que de le taire. Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite — moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"We write it rather than hide it. If fees fall short, Pulse will run in reduced mode — fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
+
+  ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed \u2014 and delivers only what matters. No owner. No advertiser. No agenda.",
+
+  ": modèles de langage, hébergement, base de données, stockage des images.":": language models, hosting, database, image storage.",
+
+  ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
+  "©️ Droits":"©️ Rights",
+  ": modèles de langage, hébergement, base de données, stockage des images.":": language models, hosting, database, image storage.",
+
+  "vert":"green",
+  "rouge":"red",
+  "Passer":"Skip",
+  "tout voir →":"see all →",
+  "tous":"all",
+  "✕ Écartés":"✕ Rejected",
+  "◷ En suivi":"◷ Monitored",
+  "📋 Éditeur":"📋 Publisher",
+  "Contact :":"Contact:",
+  "[courriel]":"[email]",
+  "Pulse":"Pulse",
+  "Solana":"Solana",
+  ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
+  ": modèles de langage, hébergement, base de données, stockage des images.":": language models, hosting, database, image storage.",
+
+  "Une intelligence qui ne dort jamais.":"An intelligence that never sleeps.",
+  "20 000 articles analysés chaque jour":"20,000 articles analysed every day",
+  ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
+  "Chargement du journal…":"Loading the log…",
+  "Chaque valeur chiffrée est extraite article par article et normalisée — « 2 500 » et « 2500 » sont un même fait. Les concordances établissent la fiabilité, les écarts sont conservés comme":"Every figure is extracted article by article and normalised — 2 500 and 2500 are one and the same. Matches establish reliability, discrepancies are kept as",
+  ", sauf alerte vitale. Mémoire d'entités sur 3 jours contre les reformulations. Chaque refus est publié avec sa raison.":", except for vital alerts. Three-day entity memory guards against rewording. Every rejection is published with its reason.",
+  "l'infrastructure de Pulse":"Pulse's infrastructure",
+  ": modèles de langage, hébergement, base de données, stockage des images.":": language models, hosting, database, image storage.",
+  "Nous l'écrivons plutôt que de le taire.":"We write it rather than hide it.",
+  "Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite":"If fees fall short, Pulse will run in reduced mode",
+  "— moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"— fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
+  "Les seuils sont figés et publiés sur la page":"Thresholds are frozen and published on the",
+  ". Aucune modification n'entrera en vigueur sans y être annoncée au préalable.":" page. No change takes effect without being announced there first.",
+  "⚠️ Avertissement sur les risques":"⚠️ Risk disclosure",
+  "La très grande majorité des jetons communautaires perdent toute valeur.":"The vast majority of community tokens lose all value.",
+  "Ce jeton est émis par Pulse Actus, qui en détient une partie et a donc un":"This token is issued by Pulse Actus, which holds a portion and therefore has a",
+  "intérêt financier direct":"direct financial interest",
+  "à sa valorisation. Cette page est une communication promotionnelle, pas un conseil en investissement.":"in its valuation. This page is a promotional communication, not investment advice.",
+  "Les crypto-actifs ne bénéficient d'aucune garantie des dépôts. Les plus-values de cession sont imposables en France. Personne ne vous contactera jamais en message privé pour vous vendre $PULSE.":"Crypto-assets carry no deposit guarantee. Capital gains are taxable in France. No one will ever contact you privately to sell you $PULSE.",
+  "[à compléter] %":"[to be filled] %",
+  "[à compléter]":"[to be filled]",
+  "@PULSEactus":"@PULSEactus",
+  "$PULSE ne finance pas Pulse et ne le pilote pas. C'est un signe de ralliement — la marque de ceux qui croient qu'une information peut circuler sans passer par les mains de quelqu'un qui a des intérêts à défendre.":"$PULSE neither funds nor steers Pulse. It is a rallying sign — the mark of those who believe news can circulate without passing through the hands of someone with interests to defend.",
+  "Le jeton communautaire de Pulse. Un signe de ralliement, rien de plus.":"Pulse's community token. A rallying sign, nothing more.",
+  "Pulse Actus":"Pulse Actus",
+  "Chargement…":"Loading…",
+  "Voir plus d'articles":"Load more",
+  "Décomposition du score — barème sur 100":"Score breakdown — out of 100",
+
+  "Éditeur, droits, données personnelles et responsabilité.":"Publisher, rights, personal data and liability.",
+  "Hébergement : Vercel Inc.":"Hosting: Vercel Inc.",
+  "Base de données : Supabase.":"Database: Supabase.",
+  "🤖 Contenu automatisé":"🤖 Automated content",
+  "Les articles de ce site sont produits automatiquement":"The articles on this site are produced automatically",
+  "par un programme, à partir de sources d'actualité publiques. Aucun journaliste n'intervient dans leur rédaction.":"by a program, from public news sources. No journalist takes part in writing them.",
+  "Chaque article cite sa source et y renvoie. En cas d'erreur, écrivez-nous : la correction est publiée et l'historique conservé.":"Every article cites and links to its source. In case of error, write to us: the correction is published and the record kept.",
+  "Les textes sont des reformulations originales, jamais des reproductions. Les images proviennent des articles source ou de banques libres de droits, créditées.":"Texts are original rewrites, never reproductions. Images come from source articles or royalty-free libraries, credited.",
+  "Vous estimez qu'un contenu porte atteinte à vos droits ? Écrivez-nous, il sera retiré sans délai le temps de l'examen.":"Believe a piece of content infringes your rights? Write to us and it will be removed immediately pending review.",
+  "🔒 Données personnelles":"🔒 Personal data",
+  "Ce site ne dépose":"This site places",
+  "aucun cookie publicitaire":"no advertising cookies",
+  "et n'utilise aucun traceur tiers. Aucune donnée personnelle n'est collectée à la simple consultation.":"and uses no third-party trackers. No personal data is collected when simply browsing.",
+  "Réactions et commentaires :":"Reactions and comments:",
+  "aucun compte, aucune inscription, aucune adresse électronique. Nous n'enregistrons ni votre adresse IP, ni aucun identifiant permettant de vous reconnaître.":"no account, no sign-up, no email address. We record neither your IP address nor any identifier that could recognise you.",
+  "Votre navigateur mémorise localement les articles sur lesquels vous avez voté, uniquement pour éviter de compter deux fois.":"Your browser locally remembers which articles you voted on, solely to avoid double counting.",
+  "Cette information ne quitte jamais votre appareil":"This information never leaves your device",
+  "et disparaît si vous videz vos données de navigation.":"and disappears if you clear your browsing data.",
+  "Le pseudonyme accompagnant un commentaire est libre et non vérifié. N'y mettez rien que vous ne souhaiteriez pas voir public.":"The nickname attached to a comment is free and unverified. Put nothing in it you would not want made public.",
+  "Conformément au RGPD, écrivez-nous pour toute demande d'accès, de rectification ou de suppression.":"Under GDPR, write to us for any access, rectification or deletion request.",
+  "💬 Modération":"💬 Moderation",
+  "Les commentaires sont publiés sans validation préalable. Ils engagent leur auteur, pas l'éditeur.":"Comments are published without prior review. They commit their author, not the publisher.",
+  "Tout propos injurieux, diffamatoire, haineux ou contraire à la loi sera retiré dès signalement. Écrivez-nous à l'adresse de contact.":"Any insulting, defamatory, hateful or unlawful content will be removed upon report. Write to our contact address.",
+  "Aucun commentaire n'est modifié : il est publié tel quel, ou masqué.":"No comment is edited: it is published as is, or hidden.",
+  "⚠️ Responsabilité":"⚠️ Liability",
+  "Les informations sont fournies à titre indicatif. Malgré le recoupement entre sources, une erreur reste possible :":"Information is provided for guidance only. Despite cross-checking between sources, errors remain possible:",
+  "vérifiez toute information importante auprès de la source d'origine":"verify any important information against the original source",
+  ", dont le lien figure sur chaque article.":", linked on every article.",
+  "🪙 À propos de $PULSE":"🪙 About $PULSE",
+  "Le jeton communautaire $PULSE":"The $PULSE community token",
+  "n'a aucun lien avec la ligne éditoriale":"has no bearing on the editorial line",
+  "de ce site. Le détenir ne donne aucun droit sur les publications ni aucune voix sur les sujets traités.":"of this site. Holding it grants no rights over publications and no say in the topics covered.",
+  "Cette séparation est volontaire : un média dont les choix dépendraient de porteurs de jetons aurait simplement changé de propriétaire.":"This separation is deliberate: an outlet whose choices depended on token holders would simply have changed owner.",
+  "Le drapeau de ceux qui pensent qu'un média peut exister sans maître.":"The flag of those who believe a news outlet can exist without a master.",
+  "La ligne éditoriale reste entièrement hors du jeton.":"The editorial line stays entirely outside the token.",
+  "C'est délibéré : un média dont les décisions dépendraient de porteurs de jetons aurait simplement changé de propriétaire.":"That is deliberate: an outlet whose decisions depended on token holders would simply have changed owner.",
+  "[à compléter] — figée":"[to be filled] — fixed",
+  "Autorité d'émission":"Mint authority",
+  "Autorité de gel":"Freeze authority",
+  "Autorité de modification":"Update authority",
+  "Révoquée":"Revoked",
+  "[à compléter] — durée de verrouillage":"[to be filled] — lock duration",
+  "Adresse du contrat — la seule officielle":"Contract address — the only official one",
+  "[à compléter après création]":"[to be filled after creation]",
+  "livre blanc réglementaire":"regulatory white paper",
+  "détaille les caractéristiques, les droits attachés et l'intégralité des facteurs de risque.":"sets out the specifications, attached rights and the full list of risk factors.",
+  "💰 À quoi servent les frais de transaction":"💰 What transaction fees fund",
+  "$PULSE est un jeton communautaire sans utilité financière ni promesse de rendement.":"$PULSE is a community token with no financial utility and no promise of return.",
+  "Il ne donne droit à aucun dividende, aucun revenu, aucune part du projet, aucune voix sur la ligne éditoriale.":"It grants no dividend, no revenue, no ownership, no say over the editorial line.",
+  "Sa valeur peut tomber à zéro à tout moment.":"Its value can fall to zero at any time.",
+  "N'engagez que ce que vous pouvez perdre entièrement.":"Commit only what you can afford to lose entirely.",
+  "Nom":"Name",
+  "Blockchain":"Blockchain",
+  "Offre totale":"Total supply",
+  "Part de l'éditeur":"Publisher's share",
+  "Liquidité":"Liquidity",
+  "Élément":"Item",
+  "Valeur":"Value",
+  "© 2026 Pulse Actus":"© 2026 Pulse Actus",
+
+  "En direct · 24 h/24 · sans interruption":"Live · 24/7 · without interruption",
+  "Une intelligence qui ne dort jamais. 20 000 articles analysés chaque jour : elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":"An intelligence that never sleeps. 20,000 articles analysed every day: it devours the news, cross-checks every claim, exposes what remains unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
+  "⚡ Découvrir le fil":"⚡ Explore the feed",
+  "🔍 Voir comment":"🔍 See how",
+  "depuis le premier jour":"since day one",
+  "dépêches regroupées par fait":"wire copy grouped by event",
+  "cycles complets du moteur":"complete engine cycles",
+  "avec leur motif, en public":"with their reason, in public",
+  "ni actionnaire, ni annonceur":"no shareholder, no advertiser",
+  "20 000 articles passent sous ses yeux chaque jour. Aucun humain, aucune rédaction au monde n'a cette vue d'ensemble. Il repère l'information là où elle apparaît, pas là où on veut bien vous la montrer.":"20,000 articles pass before it every day. No human, no newsroom on earth has that overview. It spots news where it appears, not where someone chooses to show it to you.",
+  "Pas d'actionnaire à satisfaire. Pas d'annonceur à préserver. Pas de rédacteur en chef qui décroche son téléphone. Ses règles sont gravées dans son code — et le code ne déjeune avec personne.":"No shareholder to satisfy. No advertiser to protect. No editor-in-chief picking up the phone. Its rules are carved into its code — and code has lunch with no one.",
+  "Sur chaque information, il vous montre combien de rédactions la confirment. Cinq sources concordantes ? C'est solide. Une seule ? Il vous prévient.":"On every story, it shows how many newsrooms confirm it. Five matching sources? Solid. Just one? It warns you.",
+  "Vous décidez en connaissance de cause.":"You decide with the facts in hand.",
+  "Chaque sujet écarté est publié, avec sa raison. Aucun journal au monde ne fait ça. Vous pouvez vérifier vous-même s'il a bien jugé — et lui reprocher ses erreurs.":"Every rejected story is published, with its reason. No newspaper on earth does this. You can check its judgement yourself — and call out its mistakes.",
+  "288 tours de veille par jour. Pendant que les rédactions ferment, pendant les week-ends, pendant les vacances : il continue. L'actualité ne prend pas de congés, lui non plus.":"288 monitoring cycles a day. While newsrooms close, through weekends, through holidays: it keeps going. News takes no time off, and neither does it.",
+  "Il ne se rend pas sur place. Il ne décroche pas son téléphone. Si toutes ses sources se trompent, il se trompera aussi —":"It does not go to the scene. It does not pick up the phone. If all its sources are wrong, it will be wrong too —",
+  "et il vous le dit, sur chaque article.":"and it tells you so, on every article.",
+  "Cherchez un média qui écrit ça.":"Find another outlet that writes that.",
+  "L'essentiel, filtré parmi 20 000 articles quotidiens. Chaque publication porte son niveau de fiabilité :":"The essentials, filtered from 20,000 daily articles. Every story carries its reliability level:",
+  "quand plusieurs rédactions confirment,":"when several newsrooms confirm,",
+  "quand une seule l'affirme. Vous savez toujours sur quoi vous vous appuyez.":"when only one asserts it. You always know what you are relying on.",
+  "Chaque arbitrage éditorial, horodaté : ce qui a été publié, ce qui reste sous surveillance, et surtout":"Every editorial call, timestamped: what was published, what remains under watch, and above all",
+  "ce qui a été écarté":"what was rejected",
+  "— avec la raison. Aucun média ne rend ce dernier point public.":"— with the reason. No outlet makes that last part public.",
+  "Le silence, c'est là que tout se joue.":"Silence is where everything happens.",
+  "Ce qu'un média choisit de taire en dit plus long que ce qu'il publie. Alors nous ouvrons les livres :":"What an outlet chooses to omit says more than what it publishes. So we open the books:",
+  "les arbitrages figurent ici — publiés, mis en surveillance, écartés — avec leur motif et leur note. Jugez vous-même si nous avons eu raison,":"editorial calls appear here — published, monitored, rejected — with their reason and score. Judge for yourself whether we got it right,",
+  "et dites-le-nous si ce n'est pas le cas.":"and tell us if we did not.",
+  "Chaque sujet est noté sur 100 selon un barème public : gravité du fait, densité de couverture, fraîcheur, caractère imprévu, proximité.":"Every story is scored out of 100 on a public scale: severity, breadth of coverage, freshness, unpredictability, proximity.",
+  "Publication à partir de 40 points, alerte à partir de 70.":"Published from 40 points, alert from 70.",
+  "Le détail figure sur la page":"Details on the",
+  "Un cycle complet toutes les 5 minutes. 288 fois par jour. Six étapes, dont aucune n'implique un opérateur humain.":"One full cycle every 5 minutes. 288 times a day. Six stages, none involving a human operator.",
+  "50 flux · 14 400 requêtes/jour":"50 feeds · 14,400 requests/day",
+  "Interrogation continue de flux RSS d'agences et de rédactions françaises. Aucune source n'est pondérée différemment. Cache de déduplication sur 45 jours pour ne jamais retraiter un article déjà vu.":"Continuous polling of RSS feeds from French agencies and newsrooms. No source is weighted differently. A 45-day deduplication cache ensures no article is ever processed twice.",
+  "~70 articles → ~45 événements par cycle":"~70 articles → ~45 events per cycle",
+  "Rapprochement en trois niveaux : vecteurs de sens (1 536 dimensions), arbitrage par modèle de langage en zone de doute, puis comparaison des entités saillantes. Quinze dépêches sur un même incendie deviennent un événement unique, couvert par quinze rédactions.":"Three-tier matching: semantic vectors (1,536 dimensions), language-model arbitration in borderline cases, then comparison of salient entities. Fifteen wire reports on one fire become a single event, covered by fifteen newsrooms.",
+  "extraction par expression régulière · 18 unités reconnues":"regular-expression extraction · 18 recognised units",
+  "divergences déclarées":"declared discrepancies",
+  "barème sur 100 · 9 familles de critères":"scored out of 100 · 9 criteria families",
+  "Gravité du fait sur 45 points, densité de couverture sur 20, fraîcheur sur 16, caractère imprévu de −15 à +18, puis intérêt du lectorat, primeur, proximité nationale et pénalités. Chaque composante est journalisée séparément et publiée sur l'article.":"Severity worth 45 points, coverage density 20, freshness 16, unpredictability from −15 to +18, then reader interest, scoop value, national proximity and penalties. Each component is logged separately and published on the article.",
+  "publication ≥ 40/100 · alerte ≥ 70/100 · 2 rédactions minimum":"publication ≥ 40/100 · alert ≥ 70/100 · 2 newsrooms minimum",
+  "Point de décision unique : publier, mettre en suivi, ou écarter.":"A single decision point: publish, monitor, or reject.",
+  "Un fait rapporté par une seule rédaction n'est pas publié":"A fact reported by a single newsroom is not published",
+  "738 assertions de test · 7 contrôles rédactionnels":"738 test assertions · 7 editorial checks",
+  "Rédaction sous contraintes vérifiées en code, composition du visuel, cadrage par détection de visages, montage vidéo le cas échéant. Publication simultanée sur les réseaux et sur ce site.":"Writing under code-enforced constraints, visual composition, face-detection framing, video editing where applicable. Simultaneous publication to social networks and this site.",
+  "articles traités par jour":"articles processed per day",
+  "70 par cycle × 288 cycles":"70 per cycle × 288 cycles",
+  "interrogations de sources":"source queries",
+  "50 flux × 288 cycles":"50 feeds × 288 cycles",
+  "cycles complets quotidiens":"complete daily cycles",
+  "un toutes les 5 minutes":"one every 5 minutes",
+  "articles analysés par an":"articles analysed per year",
+  "projection sur 365 jours":"projected over 365 days",
+  "assertions de non-régression":"regression assertions",
+  "exécutées avant chaque mise en service":"run before every deployment",
+  "profondeur du cache":"cache depth",
+  "aucun article retraité deux fois":"no article processed twice",
+  "mémoire des dossiers":"case memory",
+  "suivi longitudinal des affaires":"longitudinal case tracking",
+  "intervention humaine":"human interventions",
+  "de la collecte à la publication":"from collection to publication",
+  "Deux rédactions indépendantes requises. Dérogation pour les seules alertes vitales — séisme, attentat, catastrophe — où le délai coûterait plus que l'incertitude.":"Two independent newsrooms required. Waived only for vital alerts — earthquake, attack, disaster — where delay costs more than uncertainty.",
+  "Aucun chiffre, aucune citation, aucune date ne peut figurer dans une publication sans être présent dans une source. Contrôle systématique avant diffusion.":"No figure, quote or date may appear in a publication without being present in a source. Checked systematically before release.",
+  "L'information doit figurer dans le corps du message. Toute formule différant la révélation est détectée et entraîne une réécriture.":"The information must appear in the body of the message. Any phrasing that defers the reveal is detected and triggers a rewrite.",
+  "Réservés au décès d'une personnalité identifiée nommément, avec recoupement biographique. Exclusion automatique des contextes criminels et des victimes anonymes.":"Reserved for the death of a named public figure, with biographical cross-checking. Criminal contexts and anonymous victims are excluded automatically.",
+  "Image de l'article source ou banque sous licence libre exclusivement. Détection et rejet des incrustations de plateau télévisé.":"Source-article image or openly licensed library only. Broadcast studio overlays are detected and rejected.",
+  "Chaque publication conserve ses sources, le détail de sa notation et les divergences relevées. Chaque refus est publié avec son motif.":"Every publication retains its sources, its full score breakdown and any discrepancies found. Every rejection is published with its reason.",
+  "Actionnariat et annonceurs à ménager":"Shareholders and advertisers to appease",
+  "Arbitrages éditoriaux non documentés":"Undocumented editorial calls",
+  "Corrections apportées sans historique":"Corrections made without a record",
+  "Sources rarement recoupées explicitement":"Sources rarely cross-checked openly",
+  "Sujets écartés jamais rendus publics":"Rejected stories never made public",
+  "Couverture limitée par les effectifs":"Coverage limited by headcount",
+  "Aucun intérêt économique dans les sujets traités":"No financial stake in the stories covered",
+  "Règles inscrites dans le code, publiques":"Rules written into the code, public",
+  "Chaque décision motivée et horodatée":"Every decision reasoned and timestamped",
+  "Recoupement systématique, divergences affichées":"Systematic cross-checking, discrepancies shown",
+  "Journal des refus accessible en permanence":"Rejection log permanently accessible",
+  "20 160 articles traités quotidiennement":"20,160 articles processed daily",
+
   "Le premier bot d'actualité autonome":"The first autonomous news bot",
   "Contenu produit automatiquement · Sources citées sur chaque article":"Automatically produced content · Sources cited on every article",
   "Chargement de l'article…":"Loading article…",
@@ -654,5 +813,42 @@ function traduire(lg){
   });
   document.documentElement.lang = (lg === 'en') ? 'en' : 'fr';
 }
+</script>
+<script>
+/* ══ RÉGLAGES — thème et langue ══════════════════════════════════════
+   Le choix est mémorisé localement, comme le vote : rien n'est envoyé. */
+(function(){
+  const html = document.documentElement;
+  const bt = document.getElementById('bTheme'), bl = document.getElementById('bLang');
+
+  function majTheme(){
+    const clair = html.getAttribute('data-th') === 'clair';
+    if(bt) bt.textContent = clair ? '☀️' : '🌙';
+    if(bt) bt.setAttribute('title', clair ? 'Passer en sombre' : 'Passer en clair');
+  }
+  if(bt) bt.addEventListener('click', () => {
+    const clair = html.getAttribute('data-th') === 'clair';
+    if(clair){ html.removeAttribute('data-th'); }
+    else { html.setAttribute('data-th', 'clair'); }
+    try{ localStorage.setItem('pulse_theme', clair ? 'sombre' : 'clair'); }catch(e){}
+    majTheme();
+  });
+  majTheme();
+
+  function majLangue(){
+    const en = html.getAttribute('data-lg') === 'en';
+    if(bl) bl.textContent = en ? 'EN' : 'FR';
+    if(bl) bl.setAttribute('title', en ? 'Switch to French' : 'Passer en anglais');
+    if(typeof traduire === 'function') traduire(en ? 'en' : 'fr');
+  }
+  if(bl) bl.addEventListener('click', () => {
+    const en = html.getAttribute('data-lg') === 'en';
+    if(en){ html.removeAttribute('data-lg'); }
+    else { html.setAttribute('data-lg', 'en'); }
+    try{ localStorage.setItem('pulse_lang', en ? 'fr' : 'en'); }catch(e){}
+    majLangue();
+  });
+  majLangue();
+})();
 </script>
 </body></html>
