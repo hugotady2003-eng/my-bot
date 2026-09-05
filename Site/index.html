@@ -241,6 +241,14 @@ footer .liens a:hover{color:var(--blanc)}
   opacity:0;animation:emet 3s ease-out infinite}
 .onde.b{animation-delay:1s}.onde.c{animation-delay:2s}
 @keyframes emet{0%{transform:scale(.85);opacity:.65}100%{transform:scale(1.6);opacity:0}}
+/* 🎯 Le jeton du hero est rendu en WebGL, pas en image fixe : il garde son
+   reflet métallique, son halo et le suivi de la souris après l'introduction.
+   L'image reste comme repli si WebGL n'est pas disponible. */
+#heroGL{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:2}
+#jetonHero{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;
+  filter:drop-shadow(0 26px 48px rgba(11,10,16,.85)) drop-shadow(0 0 34px rgba(160,80,255,.45));
+  animation:flotte 5.4s ease-in-out infinite}
+#jetonHero.remplace{display:none}
 .piece{width:100%;height:100%;animation:surgit 1.1s cubic-bezier(.16,1.16,.3,1) both}
 @keyframes surgit{0%{opacity:0;transform:scale(.3) rotate(-24deg) translateY(60px)}
   58%{opacity:1;transform:scale(1.12) rotate(4deg) translateY(-12px)}
@@ -449,15 +457,25 @@ const intro = document.getElementById('intro');
    évite de doubler le poids de la page (350 ko économisés). */
 const heroImg = document.getElementById('jetonHero');
 if (heroImg) heroImg.src = LOGO;
-const dejaVu = sessionStorage.getItem('pulse_intro');
-
-/* L'introduction ne se rejoue pas à chaque navigation : au troisième passage
-   elle devient une gêne, pas un effet. */
-if (dejaVu) { intro.remove(); document.body.classList.remove('intro-active'); }
+/* 🔁 L'introduction se rejoue à chaque RECHARGEMENT, mais pas quand on revient
+   du fil ou d'une autre page — là elle deviendrait une gêne.
+   On lit le type de navigation plutôt que de mémoriser un passage : un
+   sessionStorage ne distingue pas « rechargé » de « navigué ». */
+function doitJouer(){
+  try{
+    const nav = performance.getEntriesByType('navigation')[0];
+    if (nav && nav.type === 'reload') return true;       // F5 ou tirer pour rafraîchir
+    if (nav && nav.type === 'back_forward') return false; // retour arrière
+  }catch(e){}
+  // arrivée depuis une autre page du site → pas d'introduction
+  if (document.referrer && document.referrer.includes(location.host)) return false;
+  return true;                                            // première visite
+}
+if (!doitJouer()) { intro.remove(); document.body.classList.remove('intro-active'); }
 else { document.body.classList.add('intro-active'); lancer(); }
 
 function fermer(){
-  sessionStorage.setItem('pulse_intro', '1');
+  if (intro.classList.contains('parti')) return;   // déjà en cours de fermeture
   intro.classList.add('parti');
   document.body.classList.remove('intro-active');
   setTimeout(() => intro.remove(), 800);
@@ -472,7 +490,7 @@ function lancer(){
 
   const scene = new THREE.Scene();
   const cam = new THREE.PerspectiveCamera(42, innerWidth/innerHeight, .1, 100);
-  cam.position.z = 6;
+  cam.position.z = 6.4;
   /* ⚠️ Le pixel ratio est plafonné à 2 : au-delà, un écran haute densité fait
      chuter la fréquence d'images sans gain visible. */
   gl.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -554,7 +572,7 @@ function lancer(){
         gl_FragColor = vec4(col, c.a * opac);
       }`
   });
-  const jeton = new THREE.Mesh(new THREE.PlaneGeometry(3.1, 3.1), matJeton);
+  const jeton = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 2.4), matJeton);
   jeton.scale.setScalar(0);
   scene.add(jeton);
 
@@ -587,19 +605,19 @@ function lancer(){
 
   // ── SÉQUENCE ──
   const tl = gsap.timeline();
-  tl.to(mp.uniforms.o, {value:1, duration:1.1, ease:'power2.out'}, 0)
-    .to('#ecg', {opacity:1, duration:.25}, .45)
-    .to('#trace', {strokeDashoffset:0, duration:.85, ease:'power2.inOut'}, .5)
-    .to('#flash', {opacity:.85, duration:.11, ease:'power2.in'}, 1.14)
-    .to('#flash', {opacity:0, duration:.5, ease:'power2.out'}, 1.25)
-    .to(matJeton.uniforms.opac, {value:1, duration:.28}, 1.18)
-    .to(jeton.scale, {x:1, y:1, z:1, duration:1.05,
-        ease:'elastic.out(0.9, 0.58)'}, 1.18)
-    .to(halo.material.uniforms.o, {value:1, duration:.9, ease:'power2.out'}, 1.22)
-    .to('#ecg', {opacity:.3, duration:.7}, 1.4);
+  tl.to(mp.uniforms.o, {value:1, duration:.8, ease:'power2.out'}, 0)
+    .to('#ecg', {opacity:1, duration:.2}, .3)
+    .to('#trace', {strokeDashoffset:0, duration:.62, ease:'power2.inOut'}, .34)
+    .to('#flash', {opacity:.7, duration:.09, ease:'power2.in'}, .82)
+    .to('#flash', {opacity:0, duration:.4, ease:'power2.out'}, .9)
+    .to(matJeton.uniforms.opac, {value:1, duration:.24}, .86)
+    .to(jeton.scale, {x:1, y:1, z:1, duration:.82,
+        ease:'elastic.out(0.95, 0.62)'}, .86)
+    .to(halo.material.uniforms.o, {value:1, duration:.7, ease:'power2.out'}, .9)
+    .to('#ecg', {opacity:.22, duration:.55}, 1.05);
   anneaux.forEach((r,i) => tl.to(r.material,
-    {opacity:.28 - i*.07, duration:.8, ease:'power2.out'}, 1.35 + i*.13));
-  tl.to('#skip', {opacity:1, duration:.5}, 2.1);
+    {opacity:.24 - i*.06, duration:.6, ease:'power2.out'}, 1.0 + i*.1));
+  tl.to('#skip', {opacity:1, duration:.4}, 1.5);
 
   // ── BATTEMENT, toutes les 2,4 s ──
   function battre(){
@@ -613,7 +631,7 @@ function lancer(){
       {value:1.16, duration:.15, yoyo:true, repeat:1, ease:'power2.out'});
     gsap.fromTo('#trace', {strokeWidth:3}, {strokeWidth:5, duration:.16, yoyo:true, repeat:1});
   }
-  setTimeout(() => { battre(); setInterval(battre, 2400); }, 2300);
+  setTimeout(battre, 1700);
 
   /* ✨ Reflet métallique toutes les 5 s. La bande part hors du cadre et y revient :
      entre deux passages, elle est invisible plutôt que figée sur un bord. */
@@ -621,7 +639,7 @@ function lancer(){
     gsap.fromTo(matJeton.uniforms.refl, {value:-0.5},
       {value:1.7, duration:1.25, ease:'power2.inOut'});
   }
-  setTimeout(() => { reflet(); setInterval(reflet, 5000); }, 2800);
+  setTimeout(reflet, 2000);
 
   // ── SOURIS : 8° au maximum ──
   let cx=0, cy=0, rx=0, ry=0;
@@ -654,9 +672,180 @@ function lancer(){
   });
 
   // fermeture automatique
-  setTimeout(fermer, 6200);
+  setTimeout(fermer, 3400);
   intro.addEventListener('click', e => { if(e.target.id !== 'skip') fermer(); });
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   LE JETON DU HERO — vivant en permanence, après l'introduction.
+   Même matériau que la scène d'intro : reflet métallique, halo, particules,
+   suivi de la souris. Rendu à l'arrêt quand il sort de l'écran, pour ne pas
+   consommer inutilement.
+   ══════════════════════════════════════════════════════════════════════ */
+function heroVivant(){
+  const cv = document.getElementById('heroGL');
+  const img = document.getElementById('jetonHero');
+  if (!cv) return;
+  let gl;
+  try { gl = new THREE.WebGLRenderer({canvas:cv, antialias:true, alpha:true}); }
+  catch(e){ return; }                    // l'image de repli reste affichée
+
+  const scene = new THREE.Scene();
+  const boite = cv.parentElement.getBoundingClientRect();
+  if (!boite.width || !boite.height) return;   // conteneur pas encore mesuré
+  const cam = new THREE.PerspectiveCamera(42, boite.width / boite.height, .1, 100);
+  cam.position.z = 5.4;
+  gl.setPixelRatio(Math.min(devicePixelRatio, 2));
+  gl.setSize(boite.width, boite.height, false);
+
+  // ── particules, derrière le jeton ──
+  const N = innerWidth < 700 ? 90 : 180;
+  const pos = new Float32Array(N*3), tail = new Float32Array(N);
+  for(let i=0;i<N;i++){
+    pos[i*3]   = (Math.random()-.5)*9;
+    pos[i*3+1] = (Math.random()-.5)*9;
+    pos[i*3+2] = (Math.random()-.5)*5 - 1.5;
+    tail[i] = Math.random()*.045 + .01;
+  }
+  const gp = new THREE.BufferGeometry();
+  gp.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  gp.setAttribute('size', new THREE.BufferAttribute(tail,1));
+  const mp = new THREE.ShaderMaterial({
+    uniforms:{ t:{value:0} }, transparent:true, depthWrite:false,
+    blending:THREE.AdditiveBlending,
+    vertexShader:`
+      attribute float size; varying float v; uniform float t;
+      void main(){
+        vec3 p = position;
+        p.y += sin(t*.4 + p.x*.6)*.18;
+        p.x += cos(t*.27 + p.y*.5)*.12;
+        v = .3 + .7*sin(t*1.4 + p.x*2.5 + p.y*1.8);
+        vec4 mv = modelViewMatrix * vec4(p,1.);
+        gl_PointSize = size * 300. / -mv.z;
+        gl_Position = projectionMatrix * mv;
+      }`,
+    fragmentShader:`
+      varying float v;
+      void main(){
+        float d = length(gl_PointCoord - .5);
+        if(d > .5) discard;
+        gl_FragColor = vec4(mix(vec3(.45,.3,1.), vec3(.8,.4,1.), v),
+                            smoothstep(.5,.0,d) * v * .5);
+      }`
+  });
+  scene.add(new THREE.Points(gp, mp));
+
+  // ── halo néon ──
+  const halo = new THREE.Mesh(new THREE.PlaneGeometry(8, 8),
+    new THREE.ShaderMaterial({
+      uniforms:{ p:{value:1.2}, r:{value:1} },
+      transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+      vertexShader:'varying vec2 u; void main(){u=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+      fragmentShader:`
+        varying vec2 u; uniform float p, r;
+        void main(){
+          float d = length(u-.5)*2.;
+          float g = smoothstep(1., .0, d);
+          float onde = smoothstep(.05,.0,abs(d-p)) * step(.001,p) * (1.-p);
+          gl_FragColor = vec4(mix(vec3(.22,.15,1.), vec3(.74,.28,1.), g),
+                              (g*g*.34*r + onde*.42));
+        }`}));
+  halo.position.z = -.5;
+  scene.add(halo);
+
+  // ── le jeton, avec son reflet métallique ──
+  const tex = new THREE.TextureLoader().load(LOGO);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = gl.capabilities.getMaxAnisotropy();
+  const mat = new THREE.ShaderMaterial({
+    uniforms:{ carte:{value:tex}, refl:{value:1.6}, lum:{value:1} },
+    transparent:true, depthWrite:false,
+    vertexShader:'varying vec2 u; void main(){u=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+    fragmentShader:`
+      varying vec2 u; uniform sampler2D carte; uniform float refl, lum;
+      void main(){
+        vec4 c = texture2D(carte, u);
+        if(c.a < .01) discard;
+        float d = (u.x + (1.0 - u.y) * 0.45);
+        float bande = smoothstep(.13, .0, abs(d - refl));
+        gl_FragColor = vec4(c.rgb * lum + vec3(.95,.82,1.) * bande * .5 * c.a, c.a);
+      }`});
+  const jeton = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 3.6), mat);
+  scene.add(jeton);
+
+  const comp = new EffectComposer(gl);
+  comp.addPass(new RenderPass(scene, cam));
+  const bloom = new UnrealBloomPass(
+    new THREE.Vector2(boite.width, boite.height), 0.55, 0.6, 0.25);
+  comp.addPass(bloom);
+  img.classList.add('remplace');
+
+  // ── battement toutes les 2,4 s ──
+  function battre(){
+    gsap.timeline()
+      .to(jeton.scale, {x:1.04, y:1.04, duration:.13, ease:'power2.out'})
+      .to(jeton.scale, {x:.985, y:.985, duration:.17, ease:'power2.inOut'})
+      .to(jeton.scale, {x:1, y:1, duration:.42, ease:'elastic.out(1,.55)'});
+    gsap.fromTo(halo.material.uniforms.p, {value:0}, {value:1, duration:1.5, ease:'power2.out'});
+    gsap.fromTo(mat.uniforms.lum, {value:1},
+      {value:1.14, duration:.15, yoyo:true, repeat:1});
+    gsap.fromTo(bloom, {strength:.55}, {strength:.82, duration:.14, yoyo:true, repeat:1});
+  }
+  setInterval(battre, 2400);
+
+  // ── reflet toutes les 5 s ──
+  setInterval(() => gsap.fromTo(mat.uniforms.refl, {value:-0.5},
+    {value:1.7, duration:1.25, ease:'power2.inOut'}), 5000);
+
+  // ── suivi de la souris, 8° au maximum ──
+  let cx=0, cy=0, rx=0, ry=0;
+  addEventListener('mousemove', e => {
+    cx = ((e.clientY/innerHeight)-.5) * -0.14;
+    cy = ((e.clientX/innerWidth )-.5) *  0.14;
+  }, {passive:true});
+  addEventListener('mouseleave', () => { cx = 0; cy = 0; });
+
+  /* ⚠️ On suspend le rendu quand le hero sort de l'écran ou que l'onglet est
+     caché : faire tourner une scène WebGL invisible vide la batterie. */
+  let visible = true, actif = true;
+  if ('IntersectionObserver' in window)
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; },
+      {threshold:.05}).observe(cv);
+  document.addEventListener('visibilitychange', () => {
+    actif = !document.hidden;
+    if (actif && visible) requestAnimationFrame(boucle);
+  });
+
+  const t0 = performance.now();
+  function boucle(now){
+    if (!actif) return;
+    if (visible){
+      const t = (now - t0)/1000;
+      mp.uniforms.t.value = t;
+      jeton.position.y = Math.sin(t*.62)*.09;
+      rx += (cx-rx)*.055; ry += (cy-ry)*.055;
+      jeton.rotation.x = rx + Math.sin(t*.4)*.02;
+      jeton.rotation.y = ry + Math.sin(t*.31)*.026;
+      halo.material.uniforms.r.value = .88 + .12*Math.sin(t*1.1);
+      comp.render();
+    }
+    requestAnimationFrame(boucle);
+  }
+  requestAnimationFrame(boucle);
+
+  addEventListener('resize', () => {
+    const b = cv.parentElement.getBoundingClientRect();
+    if (!b.width) return;
+    cam.aspect = b.width/b.height; cam.updateProjectionMatrix();
+    gl.setSize(b.width, b.height, false); comp.setSize(b.width, b.height);
+  });
+}
+/* ⚠️ Le canvas est dimensionné à l'exécution du script, mais les polices
+   distantes peuvent encore modifier la mise en page. On attend le chargement
+   complet avant de démarrer, sinon la scène est rendue à la mauvaise taille. */
+if (document.readyState === 'complete') heroVivant();
+else addEventListener('load', heroVivant, {once:true});
 
 /* Repli sans WebGL : la page s'affiche immédiatement plutôt que de rester noire. */
 function replique(){ intro.remove(); document.body.classList.remove('intro-active'); }
@@ -699,8 +888,8 @@ function replique(){ intro.remove(); document.body.classList.remove('intro-activ
   </div>
   <div class="scene"><div class="halo"></div>
     <div class="onde"></div><div class="onde b"></div><div class="onde c"></div>
-    <div class="piece"><div class="flotte">
-      <img id="jetonHero" alt="Pulse"></div></div>
+    <canvas id="heroGL"></canvas>
+    <img id="jetonHero" alt="Pulse">
   </div>
 </div>
 <div class="cps" id="cps">
