@@ -96,14 +96,16 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:8px}
 /* Même traitement que la pastille des médias : arrondie, discrète, sans
    écartement de lettres ni icône. La couleur suffit à distinguer la rubrique. */
-.cat{font:700 10px/1 var(--c);letter-spacing:.01em;color:var(--c);
-  border:1px solid color-mix(in srgb,var(--c) 32%,transparent);
-  background:color-mix(in srgb,var(--c) 11%,transparent);
-  padding:3px 9px;border-radius:100px;text-transform:none}
-.urg{font:700 10px/1 var(--c);letter-spacing:.01em;color:#fff;background:var(--rouge);
-  padding:3px 9px;border-radius:100px;animation:bat 1.8s ease-in-out infinite}
-.hom{font:700 10px/1 var(--c);letter-spacing:.01em;color:var(--gris);
-  border:1px solid var(--bord);padding:3px 9px;border-radius:100px}
+/* Strictement le même gabarit que .fiab : même graisse, même hauteur, même
+   rayon. Seule la couleur change. */
+.cat{font:700 10px/1 var(--c);letter-spacing:0;color:var(--c);
+  border:1px solid color-mix(in srgb,var(--c) 30%,transparent);
+  background:color-mix(in srgb,var(--c) 10%,transparent);
+  padding:3px 8px;border-radius:100px;text-transform:none;white-space:nowrap}
+.urg{font:700 10px/1 var(--c);letter-spacing:0;color:#fff;background:var(--rouge);
+  padding:3px 8px;border-radius:100px;animation:bat 1.8s ease-in-out infinite}
+.hom{font:700 10px/1 var(--c);letter-spacing:0;color:var(--gris);
+  border:1px solid var(--bord);padding:3px 8px;border-radius:100px}
 .h{font:500 11.5px/1 var(--c);color:var(--faible);margin-left:auto}
 .txt h3{font:700 16.5px/1.33 var(--t);color:var(--blanc);letter-spacing:-.015em;
   margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
@@ -115,7 +117,8 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .pied{display:flex;align-items:center;gap:10px;padding-top:10px;
   border-top:1px solid rgba(255,255,255,.06);font-size:11.5px}
 .src{color:var(--gris);font-weight:600}
-.fiab{margin-left:auto;font:700 10px/1 var(--c);padding:3px 9px;border-radius:100px}
+.fiab{margin-left:auto;font:700 10px/1 var(--c);padding:3px 8px;border-radius:100px;
+  white-space:nowrap}
 .fiab.f3{color:var(--vert);background:rgba(55,227,155,.12);border:1px solid rgba(55,227,155,.3)}
 .fiab.f2{color:var(--orange);background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3)}
 .fiab.f1{color:var(--rouge);background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3)}
@@ -233,18 +236,18 @@ const ICO = {
   saviez: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3a6 6 0 00-3.5 10.9V16h7v-2.1A6 6 0 0011 3z"/><path d="M9 19h4M9.5 21h3"/></svg>`,
 };
 const CAT = {
-  france: ["FRANCE", "#7B2EFF"],
-  monde: ["MONDE", "#3B82F6"],
-  economie: ["ÉCONOMIE", "#10B981"],
-  sport: ["SPORT", "#F59E0B"],
-  culture: ["CULTURE", "#EC4899"],
-  faitsdivers: ["FAITS DIVERS", "#EF4444"],
-  politique: ["POLITIQUE", "#8B5CF6"],
-  sante: ["SANTÉ", "#14B8A6"],
-  tech: ["TECH", "#06B6D4"],
-  societe: ["SOCIÉTÉ", "#F472B6"],
-  histoire: ["HISTOIRE", "#A78BFA"],
-  saviez: ["LE SAVIEZ-VOUS", "#FBBF24"],
+  france: ["France", "#7B2EFF"],
+  monde: ["Monde", "#3B82F6"],
+  economie: ["Économie", "#10B981"],
+  sport: ["Sport", "#F59E0B"],
+  culture: ["Culture", "#EC4899"],
+  faitsdivers: ["Faits divers", "#EF4444"],
+  politique: ["Politique", "#8B5CF6"],
+  sante: ["Santé", "#14B8A6"],
+  tech: ["Tech", "#06B6D4"],
+  societe: ["Société", "#F472B6"],
+  histoire: ["Histoire", "#A78BFA"],
+  saviez: ["Le saviez-vous", "#FBBF24"],
 };
 const cat = c => CAT[c] || CAT.france;
 const ico = c => ICO[c] || ICO.france;
@@ -335,8 +338,8 @@ function carte(a, gros){
       <div class="vign" style="--c:${col};${img}">${a.image_url?'':`<span class="ic-cat">${ico(a.categorie)}</span>`}</div>
       <div class="txt">
         <div class="meta"><span class="cat" style="--c:${col}">${lab}</span>
-          ${a.format==='breaking'?'<span class="urg">URGENT</span>':''}
-          ${a.format==='hommage'?'<span class="hom">HOMMAGE</span>':''}
+          ${a.format==='breaking'?'<span class="urg">Urgent</span>':''}
+          ${a.format==='hommage'?'<span class="hom">Hommage</span>':''}
           <span class="h">${ecoule(a.publie_le)}</span></div>
         <h3>${a.titre}</h3>
         <p>${a.chapo||''}</p>
