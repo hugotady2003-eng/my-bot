@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "3.7.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "3.8.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -12414,9 +12414,12 @@ def decider_publication(conn, ev, note_ia=None, categorie="", imprevu=None):
     #    Exception : les alertes vitales, où attendre serait absurde.
     _corr_ok, _n_med = _corroboration_suffisante(ev, categorie)
     if not _corr_ok:
+        # ⚠️ On renvoie None et non 0.0 : le sujet n'a pas été NOTÉ, il a été
+        #    écarté avant l'évaluation. Afficher « score 0.0 » laisserait croire
+        #    à une note très faible, ce qui est faux.
         return ("ecarter",
                 "une seule rédaction rapporte ce fait, en attente de confirmation",
-                0.0, [f"{_n_med} média sur {MEDIAS_MINI} requis"])
+                None, [f"{_n_med} média sur {MEDIAS_MINI} requis"])
 
     titre = ev.titre if hasattr(ev, "titre") else str(ev)
     resume = getattr(ev, "resume", "")
@@ -12563,6 +12566,10 @@ def regrouper_en_evenements(articles, conn=None, seuil=None):
         _gros = [e for e in evenements if e.medias >= 3]
         print(f"  🧩 {len(articles or [])} articles → {len(evenements)} événement(s)"
               + (f", dont {len(_gros)} suivi(s) par 3 médias ou plus" if _gros else ""))
+        # 📊 Le travail réel du cycle est CUMULÉ pour le site : il affichait
+        #    une projection théorique, il affichera un chiffre mesuré.
+        if SITE_ACTIF:
+            cumuler_statistiques(len(articles or []), len(evenements), len(RSS_FEEDS))
     return evenements
 
 
@@ -12825,6 +12832,60 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
     return None
 
 
+# ⚠️ Un dictionnaire en mémoire ne survit PAS entre deux cycles : GitHub Actions
+#    relance le processus toutes les 5 minutes. L'anti-répétition doit être
+#    PERSISTÉE, comme le reste — sinon le même sujet s'inscrit indéfiniment
+#    (vécu : le même titre quatre fois dans le journal public).
+def _decision_deja_vue(cle, heures=6):
+    """Vrai si cette décision a déjà été journalisée récemment.
+    S'appuie sur la base persistée entre les runs, pas sur la mémoire vive."""
+    try:
+        c = sqlite3.connect("seen_articles.db", timeout=30, check_same_thread=False)
+        c.execute("""CREATE TABLE IF NOT EXISTS decisions_vues
+                     (cle TEXT PRIMARY KEY, vu_le REAL)""")
+        r = c.execute("SELECT vu_le FROM decisions_vues WHERE cle=?", (cle,)).fetchone()
+        maintenant = time.time()
+        if r and maintenant - r[0] < heures * 3600:
+            c.close()
+            return True
+        c.execute("INSERT OR REPLACE INTO decisions_vues VALUES (?,?)", (cle, maintenant))
+        # purge des entrées de plus de 48 h : la table reste petite
+        c.execute("DELETE FROM decisions_vues WHERE vu_le < ?", (maintenant - 172800,))
+        c.commit(); c.close()
+        return False
+    except Exception:
+        return False        # en cas de doute, on journalise plutôt que de perdre
+
+
+def cumuler_statistiques(articles_lus=0, evenements=0, sources=0):
+    """Additionne le travail du cycle au compteur permanent du site.
+
+    Le site affichait des chiffres THÉORIQUES — « 20 000 articles par jour »,
+    une projection. Ici on compte ce qui a réellement été lu, cycle après cycle,
+    depuis le premier jour. Un chiffre mesuré vaut mieux qu'une extrapolation,
+    surtout sur un site qui vend la transparence."""
+    if not SITE_ACTIF or not articles_lus:
+        return
+    jour = _now_paris().strftime("%Y-%m-%d")
+    try:
+        # une ligne par jour : on additionne si elle existe déjà
+        r = _supabase(f"statistiques?jour=eq.{jour}&limit=1", methode="GET")
+        if r:
+            a = r[0]
+            _supabase(f"statistiques?jour=eq.{jour}", methode="PATCH", corps={
+                "articles_lus": (a.get("articles_lus") or 0) + articles_lus,
+                "evenements":   (a.get("evenements") or 0) + evenements,
+                "cycles":       (a.get("cycles") or 0) + 1,
+            }, entetes={"Prefer": "return=minimal"})
+        else:
+            _supabase("statistiques", corps={
+                "jour": jour, "articles_lus": articles_lus,
+                "evenements": evenements, "sources": sources, "cycles": 1,
+            }, entetes={"Prefer": "return=minimal"})
+    except Exception as e:
+        print(f"  ⚠️ Statistiques non cumulées ({str(e)[:50]})")
+
+
 def journaliser_decision(titre, decision, raison, score=None, detail=None, medias=None):
     """Publie une décision éditoriale sur le site — y compris un REFUS.
 
@@ -12832,6 +12893,12 @@ def journaliser_decision(titre, decision, raison, score=None, detail=None, media
     pourquoi un sujet n'a PAS été publié. C'est la promesse de Pulse rendue
     vérifiable."""
     if not SITE_ACTIF or not titre:
+        return
+    # ⚠️ Un sujet écarté est réexaminé à CHAQUE cycle, toutes les 5 minutes. Sans
+    #    ce garde-fou, le même refus s'inscrivait des dizaines de fois et noyait
+    #    le journal public (vécu : quatre fois le même titre d'affilée).
+    _cle = f"{re.sub(r'\W+', '', str(titre).lower())[:70]}|{decision}"
+    if _decision_deja_vue(_cle):
         return
     _supabase("decisions", corps={
         "titre": str(titre)[:300], "decision": decision, "raison": str(raison)[:300],
@@ -13044,6 +13111,11 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
                              # ⚖️ Le score et son détail : sans eux, la section « pourquoi
                              #    nous l'avons publié » restait vide sur le site.
                              score=item.get("_score"), detail=item.get("_detail"))
+            # ⚖️ Le succès est journalisé ICI, la publication étant acquise.
+            journaliser_decision(
+                item.get("title", ""), "publier", "publié",
+                score=item.get("_score"), detail=item.get("_detail"),
+                medias=(item.get("_rec_brut") or {}).get("medias"))
         except Exception as _es:
             print(f"  ⚠️ Site indisponible ({str(_es)[:60]})")
     if not posted_ok:
@@ -14799,7 +14871,12 @@ def _check_feeds_interne(conn):
                 #    les refus. Un journal qui ne montre que ce qu'on écarte prive le
                 #    lecteur du point de comparaison. Et « mis en suivi » est une
                 #    information en soi : nous surveillons, ça n'a pas assez évolué.
-                if SITE_ACTIF:
+                # ⚠️ « publier » n'est PAS journalisé ici : la décision est prise, mais
+                #    la publication peut encore échouer sur la cadence ou le quota.
+                #    Journaliser trop tôt inscrivait le MÊME sujet à chaque cycle
+                #    (vécu : quatre fois de suite dans le journal public).
+                #    Le succès est journalisé après coup, dans publish_breaking.
+                if SITE_ACTIF and _dec in ("ecarter", "suivre"):
                     journaliser_decision(
                         getattr(_ev, "titre", "") or hot.get("title", ""),
                         _dec, _pq, score=_sc, detail=_det,
