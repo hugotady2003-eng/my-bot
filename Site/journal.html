@@ -145,6 +145,7 @@ footer .liens a:hover{color:var(--blanc)}
   padding-left:11px;border-left:2px solid var(--bord)}
 .detail{font:500 11.5px/1.5 var(--m);color:var(--faible);margin-top:8px;
   padding-top:8px;border-top:1px solid var(--bord);overflow-wrap:anywhere}
+.sc.na{color:var(--faible);background:rgba(255,255,255,.04);border-color:var(--bord)}
 .sc{font:600 11px/1 var(--m);color:var(--mauve);background:rgba(194,75,255,.1);
   border:1px solid rgba(194,75,255,.26);border-radius:6px;padding:4px 8px;white-space:nowrap}
 .md{font:600 11px/1 var(--c);color:var(--faible);background:rgba(255,255,255,.04);
@@ -303,15 +304,17 @@ function fiabilite(n){
   </nav>
 </div></header>
 <div class="wrap chapeau-page">
-  <h1>Ce que nous avons refusé</h1>
-  <p>Tous les médias vous montrent ce qu'ils publient. Aucun ne vous montre ce
-     qu'il a écarté. Nous si — avec la raison, à chaque fois.</p>
+  <h1>Journal des décisions</h1>
+  <p>Chaque arbitrage éditorial, horodaté : ce qui a été publié, ce qui reste
+     sous surveillance, et surtout <b>ce qui a été écarté</b> — avec la raison.
+     Aucun média ne rend ce dernier point public.</p>
 </div>
 <section class="wrap" style="padding:30px 0 20px">
   <div class="encadre"><b>Le silence, c'est là que tout se joue.</b> Ce qu'un média
     choisit de taire en dit plus long que ce qu'il publie. Alors nous ouvrons les
-    livres : chaque sujet écarté figure ici, avec sa raison et sa note. Jugez
-    vous-même si nous avons eu raison — <b>et dites-le-nous si ce n'est pas le cas.</b></div>
+    livres : <b>tous</b> les arbitrages figurent ici — publiés, mis en surveillance,
+    écartés — avec leur motif et leur note. Jugez vous-même si nous avons eu raison,
+    <b>et dites-le-nous si ce n'est pas le cas.</b></div>
   <div class="res" id="resume"></div>
   <div class="filtres" style="margin-bottom:18px">
     <button class="f fd on" data-d="tout">Tout</button>
@@ -401,8 +404,11 @@ function motif(x){
 function carteDec(x){
   const [ic,lab,col] = DEC[x.decision] || DEC.ecarter;
   const m = motif(x);
-  const sc = x.score != null
-    ? `<span class="sc">score ${x.score.toFixed(1)} / 10 requis</span>` : '';
+  /* Un sujet écarté avant évaluation n'a pas de score : afficher « 0.0 / 10 »
+     laisserait croire à une note très faible, ce qui est faux. */
+  const sc = (x.score != null && x.score > 0)
+    ? `<span class="sc">score ${x.score.toFixed(1)} / 10</span>`
+    : (x.decision === 'ecarter' ? '<span class="sc na">non évalué</span>' : '');
   const det = x.detail
     ? `<div class="detail">${x.detail}</div>` : '';
   const md = x.nb_medias
@@ -420,14 +426,16 @@ function carteDec(x){
   </div>`;
 }
 
-async function charger(reset){
+/* ⚠️ `reset` remettait la page à 0 : cliquer sur « 2 » rechargeait la page 1.
+   On sépare les deux notions — vider l'affichage n'est pas revenir au début. */
+async function charger(vider){
   const box = document.getElementById('liste');
-  if(reset){ page = 0; box.innerHTML = '<div class="charge"><div class="sp"></div>Chargement…</div>'; }
+  if(vider){ box.innerHTML = '<div class="charge"><div class="sp"></div>Chargement…</div>'; }
   try{
     let q = `decisions?order=prise_le.desc&limit=${PAR_PAGE}&offset=${page*PAR_PAGE}`;
     if(filtre !== 'tout') q += `&decision=eq.${filtre}`;
     const d = await api(q);
-    if(reset) box.innerHTML = '';
+    if(vider) box.innerHTML = '';
     if(!d.length && !page){
       box.innerHTML = `<div class="vide"><span class="e">📋</span>
         Aucune décision pour ce filtre.</div>`;
@@ -476,6 +484,7 @@ document.querySelectorAll('.fd').forEach(b => {
   b.addEventListener('click', async () => {
     document.querySelectorAll('.fd').forEach(x => x.classList.remove('on'));
     b.classList.add('on'); filtre = b.dataset.d;
+    page = 0;      // changer de filtre ramène au début, c'est voulu
     total = filtre === 'tout' ? await compter() : await compter(`decision=eq.${filtre}`);
     charger(true);
   });

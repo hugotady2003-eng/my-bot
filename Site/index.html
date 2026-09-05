@@ -94,13 +94,16 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .art.gros .vign{font-size:46px}
 .txt{padding:16px 20px 16px 18px}
 .meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:8px}
-.cat{font:700 9.5px/1 var(--c);letter-spacing:.12em;color:var(--c);
-  border:1px solid color-mix(in srgb,var(--c) 45%,transparent);
-  background:color-mix(in srgb,var(--c) 14%,transparent);padding:4px 8px;border-radius:6px}
-.urg{font:700 9.5px/1 var(--c);letter-spacing:.12em;color:#fff;background:var(--rouge);
-  padding:4px 8px;border-radius:6px;animation:bat 1.8s ease-in-out infinite}
-.hom{font:700 9.5px/1 var(--c);letter-spacing:.12em;color:var(--gris);
-  border:1px solid var(--bord);padding:4px 8px;border-radius:6px}
+/* Même traitement que la pastille des médias : arrondie, discrète, sans
+   écartement de lettres ni icône. La couleur suffit à distinguer la rubrique. */
+.cat{font:600 10.5px/1 var(--c);letter-spacing:.02em;color:var(--c);
+  border:1px solid color-mix(in srgb,var(--c) 32%,transparent);
+  background:color-mix(in srgb,var(--c) 11%,transparent);
+  padding:4px 9px;border-radius:100px;text-transform:none}
+.urg{font:600 10.5px/1 var(--c);letter-spacing:.02em;color:#fff;background:var(--rouge);
+  padding:4px 9px;border-radius:100px;animation:bat 1.8s ease-in-out infinite}
+.hom{font:600 10.5px/1 var(--c);letter-spacing:.02em;color:var(--gris);
+  border:1px solid var(--bord);padding:4px 9px;border-radius:100px}
 .h{font:500 11.5px/1 var(--c);color:var(--faible);margin-left:auto}
 .txt h3{font:700 16.5px/1.33 var(--t);color:var(--blanc);letter-spacing:-.015em;
   margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
@@ -152,9 +155,9 @@ footer .liens a:hover{color:var(--blanc)}
 .ar b{color:var(--texte)}
 
 /* ── Icônes de catégorie, dessinées au trait ── */
-.cat{display:inline-flex;align-items:center;gap:6px}
-.cat i,.f i{display:inline-flex;width:13px;height:13px}
-.cat svg,.f svg{width:100%;height:100%;display:block}
+
+.f i{display:inline-flex;width:15px;height:15px}
+.f svg{width:100%;height:100%;display:block}
 .f{display:inline-flex;align-items:center;gap:7px}
 .f i{width:15px;height:15px}
 .ic-cat{display:block;width:38%;max-width:52px;color:rgba(255,255,255,.9)}
@@ -537,10 +540,10 @@ function lancer(){
   const nuage = new THREE.Points(gp, mp);
   scene.add(nuage);
 
-  // ── ANNEAUX HOLOGRAPHIQUES ──
+  // ── ANNEAUX HOLOGRAPHIQUES ── (resserrés pour tenir dans le cadre)
   const anneaux = [];
   for(let i=0;i<3;i++){
-    const g = new THREE.RingGeometry(1.55 + i*.42, 1.565 + i*.42, 128);
+    const g = new THREE.RingGeometry(1.35 + i*.3, 1.362 + i*.3, 128);
     const m = new THREE.MeshBasicMaterial({
       color: i===1 ? 0xC24BFF : 0x7B2EFF, transparent:true,
       opacity:0, side:THREE.DoubleSide, blending:THREE.AdditiveBlending });
@@ -579,7 +582,7 @@ function lancer(){
 
   // ── HALO ──
   const halo = new THREE.Mesh(
-    new THREE.PlaneGeometry(9, 9),
+    new THREE.CircleGeometry(3.2, 96),
     new THREE.ShaderMaterial({
       uniforms:{ o:{value:0}, p:{value:0} },
       transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
@@ -588,8 +591,8 @@ function lancer(){
         varying vec2 u; uniform float o, p;
         void main(){
           float d = length(u-.5)*2.;
-          if(d > 1.0) discard;           // le plan carré ne doit pas se voir
-          float g = smoothstep(1., .0, d);
+          if(d > 1.0) discard;
+          float g = smoothstep(.96, .0, d);   // s'éteint avant le bord
           float onde = smoothstep(.04,.0,abs(d - p)) * step(.001,p) * (1.-p);
           vec3 c = mix(vec3(.24,.16,1.), vec3(.76,.29,1.), g);
           gl_FragColor = vec4(c, (g*g*.42 + onde*.5) * o);
@@ -742,7 +745,11 @@ function heroVivant(){
   scene.add(new THREE.Points(gp, mp));
 
   // ── halo néon ──
-  const halo = new THREE.Mesh(new THREE.PlaneGeometry(8, 8),
+  /* ⚠️ Le halo était un PLAN CARRÉ de 8×8, plus large que le canvas : ses bords
+     étaient coupés net par le cadre, et le bloom transformait cette coupure en
+     contour rectangulaire. Un CircleGeometry n'a pas de coin, et 5.2 tient dans
+     le champ de la caméra. */
+  const halo = new THREE.Mesh(new THREE.CircleGeometry(2.6, 96),
     new THREE.ShaderMaterial({
       uniforms:{ p:{value:1.2}, r:{value:1} },
       transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
@@ -751,14 +758,14 @@ function heroVivant(){
         varying vec2 u; uniform float p, r;
         void main(){
           float d = length(u-.5)*2.;
-          /* ⚠️ Le halo est porté par un plan CARRÉ : sans cette coupure nette
-             au-delà du rayon, ses coins restaient légèrement éclairés et
-             dessinaient la forme du plan. */
           if(d > 1.0) discard;
-          float g = smoothstep(1., .0, d);
-          float onde = smoothstep(.05,.0,abs(d-p)) * step(.001,p) * (1.-p);
+          /* Le dégradé s'éteint AVANT le bord de la géométrie : aucune
+             discontinuité, donc rien que le bloom puisse souligner. */
+          float g = smoothstep(.96, .0, d);
+          float onde = smoothstep(.05,.0,abs(d-p)) * step(.001,p) * (1.-p)
+                       * smoothstep(1., .82, d);
           gl_FragColor = vec4(mix(vec3(.22,.15,1.), vec3(.74,.28,1.), g),
-                              (g*g*.34*r + onde*.42));
+                              (g*g*.3*r + onde*.34));
         }`}));
   halo.position.z = -.5;
   scene.add(halo);
@@ -820,29 +827,30 @@ function heroVivant(){
     {value:1.7, duration:1.25, ease:'power2.inOut'}), 5000);
 
   // ── suivi de la souris, 8° au maximum ──
-  let cx=0, cy=0, rx=0, ry=0, spin=0;
+  let cx=0, cy=0, rx=0, ry=0;
   addEventListener('mousemove', e => {
     cx = ((e.clientY/innerHeight)-.5) * -0.14;
     cy = ((e.clientX/innerWidth )-.5) *  0.14;
   }, {passive:true});
   addEventListener('mouseleave', () => { cx = 0; cy = 0; });
 
-  /* 🎯 RÉACTION AU CLIC : le jeton s'enfonce puis rebondit, une onde part du
-     halo et le reflet traverse aussitôt. On rend le geste satisfaisant sans
-     déclencher une rotation complète, qui masquerait le logo. */
+  /* 🎯 RÉACTION AU CLIC : le jeton RECULE dans la profondeur puis revient.
+     ⚠️ Pas de rotation : le logo est une texture plate sur un plan. Le faire
+     tourner sur l'axe vertical révèle qu'il n'a pas d'épaisseur, et l'illusion
+     de volume s'effondre. Un recul, lui, fonctionne sur un plan. */
   let occupe = false;
   cv.style.cursor = 'pointer';
   function frapper(){
     if (occupe) return;
     occupe = true;
+    // il s'enfonce vers le fond, puis revient au premier plan
     gsap.timeline({onComplete: () => { occupe = false; }})
-      .to(jeton.scale, {x:.9, y:.9, duration:.11, ease:'power3.out'})
-      .to(jeton.scale, {x:1.09, y:1.09, duration:.19, ease:'power2.out'})
-      .to(jeton.scale, {x:1, y:1, duration:.72, ease:'elastic.out(1, .38)'});
-    // une demi-rotation sur l'axe vertical : le jeton se retourne et revient
-    gsap.timeline()
-      .to({v:0}, {v:1, duration:.85, ease:'power2.inOut',
-        onUpdate: function(){ spin = Math.sin(this.targets()[0].v * Math.PI) * 0.9; }});
+      .to(jeton.position, {z:-1.15, duration:.16, ease:'power3.out'})
+      .to(jeton.position, {z:.18, duration:.26, ease:'power2.out'})
+      .to(jeton.position, {z:0, duration:.7, ease:'elastic.out(1, .42)'});
+    // le halo se resserre avec lui : la profondeur devient lisible
+    gsap.fromTo(halo.material.uniforms.r, {value:.55},
+      {value:1, duration:.85, ease:'power2.out'});
     gsap.fromTo(halo.material.uniforms.p, {value:0},
       {value:1, duration:1.1, ease:'power2.out'});
     gsap.fromTo(mat.uniforms.lum, {value:1.35},
@@ -871,10 +879,10 @@ function heroVivant(){
     if (visible){
       const t = (now - t0)/1000;
       mp.uniforms.t.value = t;
-      jeton.position.y = Math.sin(t*.62)*.09;
+      jeton.position.y = Math.sin(t*.62)*.09;   // z est piloté par le clic
       rx += (cx-rx)*.055; ry += (cy-ry)*.055;
       jeton.rotation.x = rx + Math.sin(t*.4)*.02;
-      jeton.rotation.y = ry + Math.sin(t*.31)*.026 + spin;
+      jeton.rotation.y = ry + Math.sin(t*.31)*.026;
       halo.material.uniforms.r.value = .88 + .12*Math.sin(t*1.1);
       comp.render();
     }
@@ -1038,7 +1046,7 @@ function carte(a, gros){
     <a href="article.html?a=${a.slug}" class="lien">
       <div class="vign" style="--c:${col};${img}">${a.image_url?'':`<span class="ic-cat">${ico(a.categorie)}</span>`}</div>
       <div class="txt">
-        <div class="meta"><span class="cat" style="--c:${col}"><i>${ico(a.categorie)}</i>${lab}</span>
+        <div class="meta"><span class="cat" style="--c:${col}">${lab}</span>
           ${a.format==='breaking'?'<span class="urg">URGENT</span>':''}
           ${a.format==='hommage'?'<span class="hom">HOMMAGE</span>':''}
           <span class="h">${ecoule(a.publie_le)}</span></div>
