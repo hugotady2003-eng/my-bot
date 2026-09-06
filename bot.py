@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.6.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.6.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -8416,6 +8416,11 @@ def _corps_article(page):
 LECTURE_PARALLELE = int(os.environ.get("LECTURE_PARALLELE", "8"))
 LECTURE_TIMEOUT   = int(os.environ.get("LECTURE_TIMEOUT", "10"))
 CORPS_TTL_HEURES  = int(os.environ.get("CORPS_TTL_HEURES", "48"))
+# ⚠️ VÉCU : « HTTP Error 429: Too Many Requests » sur trois domaines. Le verrou
+#    par domaine empêchait deux requêtes SIMULTANÉES, mais rien n'empêchait de
+#    les enchaîner sans respirer. Un 429 répété conduit à un blocage durable :
+#    on impose un intervalle minimal entre deux appels au même site.
+DELAI_MEME_DOMAINE = float(os.environ.get("DELAI_MEME_DOMAINE", "0.7"))
 
 
 def init_corps_cache(conn):
@@ -8483,20 +8488,30 @@ def lire_articles_en_masse(articles, conn=None):
     import threading as _th
     from urllib.parse import urlparse as _up
 
-    verrous, verrou_dict = {}, _th.Lock()
+    verrous, dernier, verrou_dict = {}, {}, _th.Lock()
 
-    def _verrou_domaine(u):
-        d = (_up(u).netloc or "?").lower()
+    def _domaine(u):
+        return (_up(u).netloc or "?").lower()
+
+    def _verrou_domaine(d):
         with verrou_dict:
             if d not in verrous:
                 verrous[d] = _th.Lock()
             return verrous[d]
 
     def _un(u):
+        d = _domaine(u)
         try:
-            with _verrou_domaine(u):
-                return u, fetch_article_text(u, max_chars=4000,
-                                             timeout=LECTURE_TIMEOUT)
+            with _verrou_domaine(d):
+                # on laisse respirer le site entre deux de ses pages
+                attente = DELAI_MEME_DOMAINE - (time.time() - dernier.get(d, 0))
+                if attente > 0:
+                    time.sleep(attente)
+                try:
+                    return u, fetch_article_text(u, max_chars=4000,
+                                                 timeout=LECTURE_TIMEOUT)
+                finally:
+                    dernier[d] = time.time()
         except Exception:
             return u, ""
 
@@ -16240,7 +16255,7 @@ def _check_feeds_interne(conn):
                 #    Auparavant cinq contrôles séparés, dont l'interaction n'était
                 #    jamais testée — c'est par là qu'un doublon est passé.
                 _dec, _pq, _sc, _det = decider_publication(
-                    conn, _ev, note_ia=score, categorie=_categorie_finale(a, art, conn),
+                    conn, _ev, note_ia=score, categorie=_categorie_finale(a, hot, conn),
                     imprevu=a.get("imprevu"))
                 if _det:
                     # « Score None » n'apprend rien : quand le sujet est écarté
