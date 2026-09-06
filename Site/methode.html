@@ -433,6 +433,18 @@ html[data-th="clair"] .somm{background:#F4F3F8}
 html[data-th="clair"] .sign{background:#FFFFFF}
 html[data-th="clair"] .cm-f input,
 html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)}
+
+/* ⚠️ Un style EN LIGNE « padding:Xpx 0 Ypx » écrase la gouttière latérale de la
+   feuille de style, y compris celle du mobile : le texte touchait le bord de
+   l'écran. Ces classes règlent le haut et le bas SANS toucher aux côtés. */
+.pad-a{padding-top:30px;padding-bottom:20px}
+.pad-b{padding-top:30px;padding-bottom:10px}
+.pad-c{padding-top:34px;padding-bottom:10px}
+.pad-d{padding-top:34px;padding-bottom:30px}
+.pad-e{padding-top:30px;padding-bottom:40px}
+.pad-f{padding-top:20px;padding-bottom:70px}
+.pad-g{padding-top:10px;padding-bottom:80px}
+.pad-h{padding-top:20px;padding-bottom:20px}
 </style></head><body>
 <header><div class="wrap hbar">
   <a class="logo" href="index.html"><i></i> PULSE</a>
@@ -456,18 +468,18 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 
 <div class="wrap chapeau-page">
   <h1>Architecture éditoriale</h1>
-  <p>Un cycle complet toutes les 5 minutes. 288 fois par jour. Six étapes,
-     dont aucune n'implique un opérateur humain.</p>
+  <p>Un média mondial de langue française. Un cycle complet toutes les 5 minutes,
+     288 fois par jour, six étapes — dont aucune n'implique un opérateur humain.</p>
 </div>
 
-<section class="wrap" style="padding:30px 0 10px">
+<section class="wrap pad-b">
   <div class="titre-sec"><h2>Le pipeline</h2>
     <span>de la source brute à la publication</span></div>
   <div class="etapes">
     <div class="et2"><div class="n">01</div>
       <h3>Collecte</h3>
-      <p class="chif">50 flux · 14 400 requêtes/jour</p>
-      <p>Interrogation continue de flux RSS d'agences et de rédactions françaises.
+      <p class="chif">70 flux internationaux</p>
+      <p>Interrogation continue de 70 flux d'agences et de rédactions internationales — Reuters, BBC, Al Jazeera, Bloomberg, CoinDesk, TechCrunch, NASA — et françaises.
          Aucune source n'est pondérée différemment. Cache de déduplication sur
          45 jours pour ne jamais retraiter un article déjà vu.</p></div>
 
@@ -496,7 +508,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 
     <div class="et2"><div class="n">05</div>
       <h3>Arbitrage éditorial</h3>
-      <p class="chif">publication ≥ 40/100 · alerte ≥ 70/100 · 2 rédactions minimum</p>
+      <p class="chif">publication ≥ 46/100 · alerte ≥ 77/100 · 2 rédactions minimum</p>
       <p>Point de décision unique : publier, mettre en suivi, ou écarter.
          <b>Un fait rapporté par une seule rédaction n'est pas publié</b>, sauf
          alerte vitale. Mémoire d'entités sur 3 jours contre les reformulations.
@@ -511,7 +523,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
   </div>
 </section>
 
-<section class="wrap" style="padding:34px 0 10px">
+<section class="wrap pad-c">
   <div class="titre-sec"><h2>Métriques opérationnelles</h2>
     <span>volumétrie réelle du système</span></div>
   <div class="metriques">
@@ -534,7 +546,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
   </div>
 </section>
 
-<section class="wrap" style="padding:34px 0 10px">
+<section class="wrap pad-c">
   <div class="titre-sec"><h2>Contraintes rédactionnelles</h2>
     <span>vérifiées en code, non par consigne</span></div>
   <div class="etapes">
@@ -562,7 +574,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
   </div>
 </section>
 
-<section class="wrap" style="padding:34px 0 10px">
+<section class="wrap pad-c">
   <div class="titre-sec"><h2>Positionnement</h2></div>
   <div class="deux">
     <div class="col v"><h3>Rédaction traditionnelle</h3><ul>
@@ -610,6 +622,22 @@ if(!b||!n)return;b.addEventListener('click',function(){
    aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
    l'interface sont commutés. */
 const T = {
+  "Dont brûlé chaque année":"Burned annually",
+  "50 % des frais perçus":"50% of fees collected",
+  "Infrastructure":"Infrastructure",
+  "🔥 Brûlé chaque année":"🔥 Burned annually",
+  "Part communauté":"Community share",
+  "Frais de transaction":"Transaction fee",
+  "Autorité de frais":"Fee authority",
+  "🔒 Ce qui est verrouillé, et vérifiable":"🔒 What is locked, and verifiable",
+  "⚠️ Ce qui n'est PAS révoqué":"⚠️ What is NOT revoked",
+  "Contrat de verrouillage":"Lock contract",
+  "Portefeuille de l'éditeur":"Publisher's wallet",
+  "Mécanisme déflationniste":"Deflationary mechanism",
+  "Verrouillage de la part de l'émetteur":"Lock-up of the issuer's allocation",
+  "Modalités de l'offre":"Offer terms",
+  "🪙 Ce que nous nous interdisons sur le jeton":"🪙 What we forbid ourselves on the token",
+
   "Les frais prélevés sur les échanges de $PULSE financent l'infrastructure de Pulse : modèles de langage, hébergement, base de données, stockage des images.":"Fees levied on $PULSE trades fund Pulse's infrastructure: language models, hosting, database, image storage.",
   "Nous l'écrivons plutôt que de le taire. Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite — moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"We write it rather than hide it. If fees fall short, Pulse will run in reduced mode — fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
 
@@ -754,18 +782,18 @@ const T = {
   "les arbitrages figurent ici — publiés, mis en surveillance, écartés — avec leur motif et leur note. Jugez vous-même si nous avons eu raison,":"editorial calls appear here — published, monitored, rejected — with their reason and score. Judge for yourself whether we got it right,",
   "et dites-le-nous si ce n'est pas le cas.":"and tell us if we did not.",
   "Chaque sujet est noté sur 100 selon un barème public : gravité du fait, densité de couverture, fraîcheur, caractère imprévu, proximité.":"Every story is scored out of 100 on a public scale: severity, breadth of coverage, freshness, unpredictability, proximity.",
-  "Publication à partir de 40 points, alerte à partir de 70.":"Published from 40 points, alert from 70.",
+  "Publication à partir de 46 points, alerte à partir de 77.":"Published from 40 points, alert from 70.",
   "Le détail figure sur la page":"Details on the",
   "Un cycle complet toutes les 5 minutes. 288 fois par jour. Six étapes, dont aucune n'implique un opérateur humain.":"One full cycle every 5 minutes. 288 times a day. Six stages, none involving a human operator.",
-  "50 flux · 14 400 requêtes/jour":"50 feeds · 14,400 requests/day",
-  "Interrogation continue de flux RSS d'agences et de rédactions françaises. Aucune source n'est pondérée différemment. Cache de déduplication sur 45 jours pour ne jamais retraiter un article déjà vu.":"Continuous polling of RSS feeds from French agencies and newsrooms. No source is weighted differently. A 45-day deduplication cache ensures no article is ever processed twice.",
+  "70 flux internationaux":"50 feeds · 14,400 requests/day",
+  "Interrogation continue de 70 flux d'agences et de rédactions internationales — Reuters, BBC, Al Jazeera, Bloomberg, CoinDesk, TechCrunch, NASA — et françaises. Aucune source n'est pondérée différemment. Cache de déduplication sur 45 jours pour ne jamais retraiter un article déjà vu.":"Continuous polling of RSS feeds from French agencies and newsrooms. No source is weighted differently. A 45-day deduplication cache ensures no article is ever processed twice.",
   "~70 articles → ~45 événements par cycle":"~70 articles → ~45 events per cycle",
   "Rapprochement en trois niveaux : vecteurs de sens (1 536 dimensions), arbitrage par modèle de langage en zone de doute, puis comparaison des entités saillantes. Quinze dépêches sur un même incendie deviennent un événement unique, couvert par quinze rédactions.":"Three-tier matching: semantic vectors (1,536 dimensions), language-model arbitration in borderline cases, then comparison of salient entities. Fifteen wire reports on one fire become a single event, covered by fifteen newsrooms.",
   "extraction par expression régulière · 18 unités reconnues":"regular-expression extraction · 18 recognised units",
   "divergences déclarées":"declared discrepancies",
   "barème sur 100 · 9 familles de critères":"scored out of 100 · 9 criteria families",
   "Gravité du fait sur 45 points, densité de couverture sur 20, fraîcheur sur 16, caractère imprévu de −15 à +18, puis intérêt du lectorat, primeur, proximité nationale et pénalités. Chaque composante est journalisée séparément et publiée sur l'article.":"Severity worth 45 points, coverage density 20, freshness 16, unpredictability from −15 to +18, then reader interest, scoop value, national proximity and penalties. Each component is logged separately and published on the article.",
-  "publication ≥ 40/100 · alerte ≥ 70/100 · 2 rédactions minimum":"publication ≥ 40/100 · alert ≥ 70/100 · 2 newsrooms minimum",
+  "publication ≥ 46/100 · alerte ≥ 77/100 · 2 rédactions minimum":"publication ≥ 40/100 · alert ≥ 70/100 · 2 newsrooms minimum",
   "Point de décision unique : publier, mettre en suivi, ou écarter.":"A single decision point: publish, monitor, or reject.",
   "Un fait rapporté par une seule rédaction n'est pas publié":"A fact reported by a single newsroom is not published",
   "738 assertions de test · 7 contrôles rédactionnels":"738 test assertions · 7 editorial checks",

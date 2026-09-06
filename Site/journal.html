@@ -390,6 +390,18 @@ html[data-th="clair"] .somm{background:#F4F3F8}
 html[data-th="clair"] .sign{background:#FFFFFF}
 html[data-th="clair"] .cm-f input,
 html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)}
+
+/* ⚠️ Un style EN LIGNE « padding:Xpx 0 Ypx » écrase la gouttière latérale de la
+   feuille de style, y compris celle du mobile : le texte touchait le bord de
+   l'écran. Ces classes règlent le haut et le bas SANS toucher aux côtés. */
+.pad-a{padding-top:30px;padding-bottom:20px}
+.pad-b{padding-top:30px;padding-bottom:10px}
+.pad-c{padding-top:34px;padding-bottom:10px}
+.pad-d{padding-top:34px;padding-bottom:30px}
+.pad-e{padding-top:30px;padding-bottom:40px}
+.pad-f{padding-top:20px;padding-bottom:70px}
+.pad-g{padding-top:10px;padding-bottom:80px}
+.pad-h{padding-top:20px;padding-bottom:20px}
 </style><script>
 /* ═══════════════════════════════════════════════════════════════════════
    CONFIGURATION — remplace ces deux valeurs par les tiennes.
@@ -471,7 +483,7 @@ function fiabilite(n){
      sous surveillance, et surtout <b>ce qui a été écarté</b> — avec la raison.
      Aucun média ne rend ce dernier point public.</p>
 </div>
-<section class="wrap" style="padding:30px 0 20px">
+<section class="wrap pad-a">
   <div class="encadre"><b>Le silence, c'est là que tout se joue.</b> Ce qu'un média
     choisit de taire en dit plus long que ce qu'il publie. Alors nous ouvrons les
     livres : <b>tous</b> les arbitrages figurent ici — publiés, mis en surveillance,
@@ -557,7 +569,7 @@ function motif(x){
   else if(r.includes('une seule rédaction'))
     sup = "Une seule rédaction rapporte ce fait. Notre seuil exige deux sources indépendantes, sauf alerte vitale.";
   else if(r.includes('pas assez') || r.includes('score'))
-    sup = "Le score composite n'atteint pas le seuil de publication, fixé à 40 points sur 100.";
+    sup = "Le score composite n'atteint pas le seuil de publication, fixé à 46 points sur 100.";
   else if(r.includes('délai') || r.includes('cadence'))
     sup = "Un sujet proche vient d'être publié. Un délai minimum sépare deux traitements d'une même affaire.";
   else if(r.includes('corrobor'))
@@ -576,7 +588,7 @@ function carteDec(x){
      laisserait croire à une note très faible, ce qui est faux. */
   /* Barème sur 100 : publication à partir de 40, alerte à partir de 70. */
   const sc = (x.score != null && x.score > 0)
-    ? `<span class="sc${x.score >= 70 ? ' urg' : x.score >= 40 ? ' ok' : ' bas'}">${
+    ? `<span class="sc${x.score >= 77 ? ' urg' : x.score >= 46 ? ' ok' : ' bas'}">${
         x.score.toFixed(0)} / 100</span>`
     : (x.decision === 'ecarter' ? '<span class="sc na">non évalué</span>' : '');
   const det = x.detail
@@ -668,6 +680,22 @@ resume().then(charger.bind(null, true));
    aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
    l'interface sont commutés. */
 const T = {
+  "Dont brûlé chaque année":"Burned annually",
+  "50 % des frais perçus":"50% of fees collected",
+  "Infrastructure":"Infrastructure",
+  "🔥 Brûlé chaque année":"🔥 Burned annually",
+  "Part communauté":"Community share",
+  "Frais de transaction":"Transaction fee",
+  "Autorité de frais":"Fee authority",
+  "🔒 Ce qui est verrouillé, et vérifiable":"🔒 What is locked, and verifiable",
+  "⚠️ Ce qui n'est PAS révoqué":"⚠️ What is NOT revoked",
+  "Contrat de verrouillage":"Lock contract",
+  "Portefeuille de l'éditeur":"Publisher's wallet",
+  "Mécanisme déflationniste":"Deflationary mechanism",
+  "Verrouillage de la part de l'émetteur":"Lock-up of the issuer's allocation",
+  "Modalités de l'offre":"Offer terms",
+  "🪙 Ce que nous nous interdisons sur le jeton":"🪙 What we forbid ourselves on the token",
+
   "Les frais prélevés sur les échanges de $PULSE financent l'infrastructure de Pulse : modèles de langage, hébergement, base de données, stockage des images.":"Fees levied on $PULSE trades fund Pulse's infrastructure: language models, hosting, database, image storage.",
   "Nous l'écrivons plutôt que de le taire. Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite — moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"We write it rather than hide it. If fees fall short, Pulse will run in reduced mode — fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
 
@@ -812,7 +840,7 @@ const T = {
   "les arbitrages figurent ici — publiés, mis en surveillance, écartés — avec leur motif et leur note. Jugez vous-même si nous avons eu raison,":"editorial calls appear here — published, monitored, rejected — with their reason and score. Judge for yourself whether we got it right,",
   "et dites-le-nous si ce n'est pas le cas.":"and tell us if we did not.",
   "Chaque sujet est noté sur 100 selon un barème public : gravité du fait, densité de couverture, fraîcheur, caractère imprévu, proximité.":"Every story is scored out of 100 on a public scale: severity, breadth of coverage, freshness, unpredictability, proximity.",
-  "Publication à partir de 40 points, alerte à partir de 70.":"Published from 40 points, alert from 70.",
+  "Publication à partir de 46 points, alerte à partir de 77.":"Published from 40 points, alert from 70.",
   "Le détail figure sur la page":"Details on the",
   "Un cycle complet toutes les 5 minutes. 288 fois par jour. Six étapes, dont aucune n'implique un opérateur humain.":"One full cycle every 5 minutes. 288 times a day. Six stages, none involving a human operator.",
   "50 flux · 14 400 requêtes/jour":"50 feeds · 14,400 requests/day",
@@ -823,7 +851,7 @@ const T = {
   "divergences déclarées":"declared discrepancies",
   "barème sur 100 · 9 familles de critères":"scored out of 100 · 9 criteria families",
   "Gravité du fait sur 45 points, densité de couverture sur 20, fraîcheur sur 16, caractère imprévu de −15 à +18, puis intérêt du lectorat, primeur, proximité nationale et pénalités. Chaque composante est journalisée séparément et publiée sur l'article.":"Severity worth 45 points, coverage density 20, freshness 16, unpredictability from −15 to +18, then reader interest, scoop value, national proximity and penalties. Each component is logged separately and published on the article.",
-  "publication ≥ 40/100 · alerte ≥ 70/100 · 2 rédactions minimum":"publication ≥ 40/100 · alert ≥ 70/100 · 2 newsrooms minimum",
+  "publication ≥ 46/100 · alerte ≥ 77/100 · 2 rédactions minimum":"publication ≥ 40/100 · alert ≥ 70/100 · 2 newsrooms minimum",
   "Point de décision unique : publier, mettre en suivi, ou écarter.":"A single decision point: publish, monitor, or reject.",
   "Un fait rapporté par une seule rédaction n'est pas publié":"A fact reported by a single newsroom is not published",
   "738 assertions de test · 7 contrôles rédactionnels":"738 test assertions · 7 editorial checks",

@@ -363,6 +363,18 @@ html[data-th="clair"] .somm{background:#F4F3F8}
 html[data-th="clair"] .sign{background:#FFFFFF}
 html[data-th="clair"] .cm-f input,
 html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)}
+
+/* ⚠️ Un style EN LIGNE « padding:Xpx 0 Ypx » écrase la gouttière latérale de la
+   feuille de style, y compris celle du mobile : le texte touchait le bord de
+   l'écran. Ces classes règlent le haut et le bas SANS toucher aux côtés. */
+.pad-a{padding-top:30px;padding-bottom:20px}
+.pad-b{padding-top:30px;padding-bottom:10px}
+.pad-c{padding-top:34px;padding-bottom:10px}
+.pad-d{padding-top:34px;padding-bottom:30px}
+.pad-e{padding-top:30px;padding-bottom:40px}
+.pad-f{padding-top:20px;padding-bottom:70px}
+.pad-g{padding-top:10px;padding-bottom:80px}
+.pad-h{padding-top:20px;padding-bottom:20px}
 </style><script>
 /* ═══════════════════════════════════════════════════════════════════════
    CONFIGURATION — remplace ces deux valeurs par les tiennes.
@@ -387,6 +399,15 @@ async function api(chemin){
 const ICO = {
   france: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6l7-2 7 2v14M4 20h14M8 11h2M8 15h2M12 11h2M12 15h2M11 20v-4h0" /></svg>`,
   monde: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M3 12h16M11 4c2.2 2.2 3.3 5 3.3 8s-1.1 5.8-3.3 8c-2.2-2.2-3.3-5-3.3-8s1.1-5.8 3.3-8z"/></svg>`,
+  world: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M3 12h16M11 4c2.2 2.2 3.3 5 3.3 8s-1.1 5.8-3.3 8c-2.2-2.2-3.3-5-3.3-8s1.1-5.8 3.3-8z"/></svg>`,
+  business: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="16" height="11" rx="2"/><path d="M8 8V6a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M3 13h16"/></svg>`,
+  crypto: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M8.5 8h4a2.2 2.2 0 010 4.4h-4M8.5 12.4h4.4a2.2 2.2 0 010 4.4H8.5M8.5 8v8.8M10.5 6v2M10.5 16.8v2"/></svg>`,
+  ai: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="12" height="11" rx="3"/><circle cx="9" cy="12" r="1.1"/><circle cx="13" cy="12" r="1.1"/><path d="M11 4v3M6 15H3.5M18.5 15H16"/></svg>`,
+  space: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3c3.5 2.5 5 6 5 9.5L11 19l-5-6.5C6 9 7.5 5.5 11 3z"/><circle cx="11" cy="10" r="1.8"/><path d="M8 17l-2 3M14 17l2 3"/></svg>`,
+  markets: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4.5-5 3.5 3.2L18 8"/><path d="M14 8h4v4"/><path d="M3 20h16"/></svg>`,
+  science: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6.5L4.5 17a2 2 0 001.7 3h9.6a2 2 0 001.7-3L13 9.5V3"/><path d="M8 3h6M7.5 14h7"/></svg>`,
+  gaming: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="17" height="9" rx="4"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="14.5" cy="12" r="1"/><circle cx="16.5" cy="14" r="1"/></svg>`,
+  sports: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M11 4v5M11 15v5M3.5 9l4.5 3M14 12l4.5-3M6 19l2.5-4M14 15l2.5 4"/></svg>`,
   economie: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4.5-5 3.5 3.2L18 8"/><path d="M14 8h4v4"/><path d="M3 20h16"/></svg>`,
   sport: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M11 4v5M11 15v5M3.5 9l4.5 3M14 12l4.5-3M6 19l2.5-4M14 15l2.5 4"/></svg>`,
   culture: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5v9a3.5 3.5 0 007 0V5"/><path d="M3 5h4M10 5h4"/><path d="M15 9v5a3 3 0 006 0V9"/><path d="M14 9h4"/></svg>`,
@@ -412,15 +433,27 @@ function txt(a, champ){
 const CAT = {
   france: ["France", "#7B2EFF"],
   monde: ["Monde", "#3B82F6"],
+  /* ═══ Dix catégories mondiales — alignées sur CATEGORIES dans bot.py ═══ */
+  world:    ["World", "#3B82F6"],
+  business: ["Business", "#10B981"],
+  crypto:   ["Crypto", "#F59E0B"],
+  ai:       ["AI", "#8B5CF6"],
+  tech:     ["Tech", "#06B6D4"],
+  space:    ["Space", "#6366F1"],
+  markets:  ["Markets", "#22C55E"],
+  science:  ["Science", "#14B8A6"],
+  gaming:   ["Gaming", "#EC4899"],
+  sports:   ["Sports", "#F43F5E"],
+  /* ── archive : les articles publiés avant le changement de nomenclature
+        doivent rester lisibles et colorés ── */
   economie: ["Économie", "#10B981"],
-  sport: ["Sport", "#F59E0B"],
+  sport: ["Sport", "#F43F5E"],
   culture: ["Culture", "#EC4899"],
-  faitsdivers: ["Faits divers", "#EF4444"],
-  politique: ["Politique", "#8B5CF6"],
+  faitsdivers: ["Faits divers", "#3B82F6"],
+  politique: ["Politique", "#3B82F6"],
   sante: ["Santé", "#14B8A6"],
-  tech: ["Tech", "#06B6D4"],
-  societe: ["Société", "#F472B6"],
-  histoire: ["Histoire", "#A78BFA"],
+  societe: ["Société", "#3B82F6"],
+  histoire: ["Histoire", "#3B82F6"],
   saviez: ["Le saviez-vous", "#FBBF24"],
 };
 const cat = c => CAT[c] || CAT.france;
@@ -477,7 +510,7 @@ function fiabilite(n){
      plusieurs rédactions confirment, <b style="color:var(--rouge)">rouge</b> quand
      une seule l'affirme. Vous savez toujours sur quoi vous vous appuyez.</p>
 </div>
-<section class="wrap" style="padding:30px 0 20px">
+<section class="wrap pad-a">
   <div class="filtres" id="filtres"><button class="f on" data-c="tout">Tout</button></div>
   <div id="grille" class="grille">
     <div class="charge" style="grid-column:1/-1"><div class="sp"></div>Chargement du fil…</div>
@@ -610,6 +643,22 @@ charger(true); filtres();
    aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
    l'interface sont commutés. */
 const T = {
+  "Dont brûlé chaque année":"Burned annually",
+  "50 % des frais perçus":"50% of fees collected",
+  "Infrastructure":"Infrastructure",
+  "🔥 Brûlé chaque année":"🔥 Burned annually",
+  "Part communauté":"Community share",
+  "Frais de transaction":"Transaction fee",
+  "Autorité de frais":"Fee authority",
+  "🔒 Ce qui est verrouillé, et vérifiable":"🔒 What is locked, and verifiable",
+  "⚠️ Ce qui n'est PAS révoqué":"⚠️ What is NOT revoked",
+  "Contrat de verrouillage":"Lock contract",
+  "Portefeuille de l'éditeur":"Publisher's wallet",
+  "Mécanisme déflationniste":"Deflationary mechanism",
+  "Verrouillage de la part de l'émetteur":"Lock-up of the issuer's allocation",
+  "Modalités de l'offre":"Offer terms",
+  "🪙 Ce que nous nous interdisons sur le jeton":"🪙 What we forbid ourselves on the token",
+
   "Les frais prélevés sur les échanges de $PULSE financent l'infrastructure de Pulse : modèles de langage, hébergement, base de données, stockage des images.":"Fees levied on $PULSE trades fund Pulse's infrastructure: language models, hosting, database, image storage.",
   "Nous l'écrivons plutôt que de le taire. Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite — moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"We write it rather than hide it. If fees fall short, Pulse will run in reduced mode — fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
 

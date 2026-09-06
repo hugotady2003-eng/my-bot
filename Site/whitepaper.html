@@ -395,6 +395,18 @@ html[data-th="clair"] .somm{background:#F4F3F8}
 html[data-th="clair"] .sign{background:#FFFFFF}
 html[data-th="clair"] .cm-f input,
 html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)}
+
+/* ⚠️ Un style EN LIGNE « padding:Xpx 0 Ypx » écrase la gouttière latérale de la
+   feuille de style, y compris celle du mobile : le texte touchait le bord de
+   l'écran. Ces classes règlent le haut et le bas SANS toucher aux côtés. */
+.pad-a{padding-top:30px;padding-bottom:20px}
+.pad-b{padding-top:30px;padding-bottom:10px}
+.pad-c{padding-top:34px;padding-bottom:10px}
+.pad-d{padding-top:34px;padding-bottom:30px}
+.pad-e{padding-top:30px;padding-bottom:40px}
+.pad-f{padding-top:20px;padding-bottom:70px}
+.pad-g{padding-top:10px;padding-bottom:80px}
+.pad-h{padding-top:20px;padding-bottom:20px}
 </style></head><body><body>
 <header><div class="wrap hbar">
   <a class="logo" href="index.html"><i></i> PULSE</a>
@@ -420,7 +432,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
      l'article 6 du règlement (UE) 2023/1114 dit « MiCA ».</p>
 </div>
 
-<section class="wrap" style="padding:34px 0 30px"><div class="lb">
+<section class="wrap pad-d"><div class="lb">
 
   <!-- ⚠️ MiCA impose cette mention EN PREMIÈRE PAGE, de façon visible. -->
   <div class="avert-tete">
@@ -516,16 +528,39 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
     <tr><td>Dénomination</td><td>Pulse Actus</td></tr>
     <tr><td>Symbole</td><td>PULSE</td></tr>
     <tr><td>Registre distribué</td><td>Solana</td></tr>
-    <tr><td>Norme technique</td><td>SPL Token</td></tr>
+    <tr><td>Norme technique</td><td>Token-2022, extension de frais de transfert</td></tr>
     <tr><td>Adresse du contrat</td><td class="champ">[à compléter après création]</td></tr>
-    <tr><td>Offre totale</td><td class="champ">[à compléter] — figée</td></tr>
+    <tr><td>Offre totale</td><td>1 789 000 000 — figée à l'émission</td></tr>
     <tr><td>Décimales</td><td>6</td></tr>
-    <tr><td>Part conservée par l'émetteur</td><td class="champ">[à compléter] %</td></tr>
-    <tr><td>Autorité d'émission (mint)</td><td>Révoquée — aucune création ultérieure possible</td></tr>
-    <tr><td>Autorité de gel (freeze)</td><td>Révoquée — aucun portefeuille ne peut être bloqué</td></tr>
-    <tr><td>Autorité de modification</td><td>Révoquée — caractéristiques figées</td></tr>
+    <tr><td>Part conservée par l'émetteur</td><td>10 %, verrouillée sur 10 ans</td></tr>
+    <tr><td>Frais de transfert</td><td>0,5 % par échange</td></tr>
+    <tr><td>Affectation des frais</td><td>50 % infrastructure · 50 % détruits annuellement</td></tr>
+    <tr><td>Autorité d'émission</td><td>Révoquée — aucune création ultérieure possible</td></tr>
+    <tr><td>Autorité de gel</td><td>Révoquée — aucun portefeuille ne peut être bloqué</td></tr>
+    <tr><td>Autorité de frais</td><td>Conservée — inhérente à l'extension employée</td></tr>
     <tr><td>Liquidité</td><td class="champ">[montant et durée de verrouillage]</td></tr>
   </table>
+  <h3 class="sub">Mécanisme déflationniste</h3>
+  <p>La moitié des frais perçus est <b>détruite chaque année</b>, retirée
+     définitivement de la circulation. L'autorité d'émission étant révoquée, aucun
+     jeton ne peut remplacer ceux qui disparaissent : <b>l'offre en circulation ne
+     peut que décroître.</b></p>
+  <div class="enc violet">
+    Cette destruction ne constitue ni une promesse de rendement, ni une garantie
+    d'appréciation. Une offre décroissante n'implique aucune hausse de prix : celui-ci
+    dépend exclusivement de la demande, qui peut être nulle.
+  </div>
+  <p>Chaque destruction fait l'objet d'une transaction publique, vérifiable sur tout
+     explorateur Solana. Les montants sont annoncés sur la page dédiée au jeton.</p>
+
+  <h3 class="sub">Verrouillage de la part de l'émetteur</h3>
+  <p>Les 10 % conservés par l'émetteur sont <b>immobilisés dans un contrat de
+     verrouillage public pour une durée de dix ans</b>, avec libération linéaire —
+     soit environ 1 % de l'offre totale par an.</p>
+  <p>Ce verrouillage n'est pas déclaratif : il est inscrit dans un contrat que
+     <b>l'émetteur lui-même ne peut pas contourner</b>. L'adresse du contrat est
+     publiée et vérifiable.</p>
+
   <h3 class="sub">Modalités de l'offre</h3>
   <ul>
     <li>Aucune vente privée, aucune allocation réservée, aucune levée de fonds.</li>
@@ -658,6 +693,22 @@ if(!b||!n)return;b.addEventListener('click',function(){
    aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
    l'interface sont commutés. */
 const T = {
+  "Dont brûlé chaque année":"Burned annually",
+  "50 % des frais perçus":"50% of fees collected",
+  "Infrastructure":"Infrastructure",
+  "🔥 Brûlé chaque année":"🔥 Burned annually",
+  "Part communauté":"Community share",
+  "Frais de transaction":"Transaction fee",
+  "Autorité de frais":"Fee authority",
+  "🔒 Ce qui est verrouillé, et vérifiable":"🔒 What is locked, and verifiable",
+  "⚠️ Ce qui n'est PAS révoqué":"⚠️ What is NOT revoked",
+  "Contrat de verrouillage":"Lock contract",
+  "Portefeuille de l'éditeur":"Publisher's wallet",
+  "Mécanisme déflationniste":"Deflationary mechanism",
+  "Verrouillage de la part de l'émetteur":"Lock-up of the issuer's allocation",
+  "Modalités de l'offre":"Offer terms",
+  "🪙 Ce que nous nous interdisons sur le jeton":"🪙 What we forbid ourselves on the token",
+
   "Les frais prélevés sur les échanges de $PULSE financent l'infrastructure de Pulse : modèles de langage, hébergement, base de données, stockage des images.":"Fees levied on $PULSE trades fund Pulse's infrastructure: language models, hosting, database, image storage.",
   "Nous l'écrivons plutôt que de le taire. Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite — moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"We write it rather than hide it. If fees fall short, Pulse will run in reduced mode — fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
 

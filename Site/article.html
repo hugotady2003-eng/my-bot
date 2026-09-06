@@ -97,17 +97,26 @@ a{color:inherit;text-decoration:none}
    et le texte finissait collé au bord de l'écran. On élargit la respiration et on
    tient compte de l'encoche sur les iPhone. */
 @media(max-width:600px){
-  .wrap{padding-left:max(18px,env(safe-area-inset-left));
-        padding-right:max(18px,env(safe-area-inset-right))}
-  .txt{padding:15px 17px 15px 15px}
+  /* ⚠️ Une gouttière commune, réglée en un seul endroit. Chaque bloc avait la
+     sienne : il en manquait toujours un, et le contenu touchait le bord. */
+  .wrap{padding-left:max(20px,env(safe-area-inset-left));
+        padding-right:max(20px,env(safe-area-inset-right))}
+  .txt{padding:16px 18px}
   .honn{padding:22px 20px}
   .art-page{padding:0}
-  .dec{padding:14px 15px}
+  .dec{padding:14px 16px}
   .bloc,.ar,.et2{padding:22px 20px}
-  .encadre{padding:16px 17px}
-  .src-box{padding:15px 17px}
-  .jauge{padding:14px 15px}
+  .encadre{padding:16px 18px}
+  .src-box{padding:16px 18px}
+  .jauge{padding:14px 16px}
   .chapeau-page{padding:34px 0 24px}
+  /* aucun bloc encadré ne déborde de la gouttière */
+  .cst,.commu,.sources,.aveu,.calc,.sect-h{margin-left:0;margin-right:0}
+  .cst{padding:18px 18px}
+  .aveu{padding:18px 20px 18px 22px}
+  .src-l.premier{margin:0;padding-inline:12px;border-radius:9px}
+  /* l'image ne colle plus non plus : elle suit la gouttière du texte */
+  .img-ar{border-radius:12px}
 }
 /* la barre de navigation aussi : le logo touchait le bord */
 @media(max-width:400px){
@@ -324,6 +333,11 @@ footer .liens a:hover{color:var(--blanc)}
    aux bords de l'écran. Elles flottent, remontent au survol, et passent sous
    l'article sur mobile où il n'y a pas la place sur les côtés. */
 .lecture{position:relative;max-width:1120px;margin:0 auto;padding:0 22px}
+/* ⚠️ CAUSE RÉELLE du texte collé au bord : la section portait un style EN LIGNE
+   « padding:30px 0 20px ». Un style en ligne l'emporte sur toute feuille de
+   style, y compris sur la gouttière du mobile — qui n'a donc jamais été
+   appliquée. On règle le haut et le bas SANS toucher aux côtés. */
+.lecture-art{padding-top:30px;padding-bottom:20px}
 .art-page{max-width:740px;margin:0 auto}
 .flot{position:fixed;top:50%;transform:translateY(-50%);z-index:40;
   width:56px;height:56px;border-radius:18px;display:grid;place-items:center;
@@ -392,9 +406,13 @@ footer .liens a:hover{color:var(--blanc)}
 .tl .v{color:var(--texte);font-weight:600;text-align:right}
 .tl .v.m{font-family:var(--m);font-size:12.5px;font-weight:500}
 
+/* ⚠️ Le filet d'accent à gauche mangeait la respiration : le texte semblait
+   collé au bord du cadre. On lui donne sa propre marge, et le retrait de
+   gauche est plus généreux que les trois autres. */
 .aveu{background:rgba(123,46,255,.07);border:1px solid rgba(123,46,255,.26);
-  border-left:3px solid var(--violet);border-radius:14px;padding:16px 20px;margin-top:20px;
-  font-size:14px;color:var(--gris);line-height:1.6}
+  border-left:3px solid var(--mauve);border-radius:14px;
+  padding:18px 22px 18px 24px;margin-top:20px;
+  font-size:14px;color:var(--gris);line-height:1.68}
 .aveu b{color:var(--texte)}
 
 .src-box{display:flex;align-items:center;gap:14px;background:var(--carte);
@@ -528,6 +546,54 @@ html[data-th="clair"] .somm{background:#F4F3F8}
 html[data-th="clair"] .sign{background:#FFFFFF}
 html[data-th="clair"] .cm-f input,
 html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)}
+
+/* 🃏 cartes sur table */
+.cst{margin:26px 0;padding:20px;border:1px solid var(--bord);border-radius:14px;
+     background:var(--carte)}
+.cst-tt{font-weight:700;font-size:1.02rem;margin-bottom:6px}
+.cst-ex{font-size:.86rem;color:var(--gris);margin:0 0 16px;line-height:1.55}
+.cst-bloc{margin-bottom:18px}
+.cst-bloc:last-child{margin-bottom:0}
+.cst-unite{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;
+           color:var(--gris);margin-bottom:9px}
+.cst-v{margin-bottom:11px}
+.cst-tete{display:flex;align-items:baseline;gap:9px}
+.cst-chiffre{font-weight:700;font-size:1.14rem;font-variant-numeric:tabular-nums}
+.cst-maj .cst-chiffre{color:var(--bleu)}
+.cst-nb{font-size:.78rem;color:var(--gris)}
+.cst-jauge{height:4px;border-radius:2px;background:var(--bord);margin:5px 0 4px;
+           overflow:hidden}
+.cst-jauge i{display:block;height:100%;background:var(--gris);border-radius:2px}
+.cst-maj .cst-jauge i{background:var(--bleu)}
+.cst-medias{font-size:.76rem;color:var(--gris)}
+
+/* ═══ Décomposition du score : le lecteur voit la note se construire ═══ */
+.sc-final{display:flex;align-items:baseline;gap:8px;margin:4px 0 14px}
+.sc-n{font:700 clamp(38px,9vw,54px)/1 var(--t);color:var(--blanc);
+      font-variant-numeric:tabular-nums}
+.sc-d{font-size:1rem;color:var(--gris)}
+.js-r{transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+.cl-max{display:block;font-size:.68rem;font-weight:400;color:var(--gris);
+        margin-top:1px;text-align:right}
+.cl-b{height:5px;border-radius:3px;background:var(--bord);margin:7px 0 3px;
+      overflow:hidden}
+.cl-b i{display:block;height:100%;width:0;border-radius:3px;background:var(--bleu);
+        transition:width .7s cubic-bezier(.22,1,.36,1)}
+.cl-b i.neg{background:var(--rouge)}
+.cl-cum{font-size:.7rem;color:var(--gris);text-align:right;margin-top:3px;
+        opacity:0;transition:opacity .35s}
+.cl.vu .cl-cum{opacity:1}
+/* le palier qui vient d'être compté s'éclaire brièvement, comme un gain */
+.cl{transition:background .45s,transform .45s}
+.cl.gain{background:rgba(124,92,255,.10);transform:translateX(3px)}
+/* ═══ apparition des rédactions au défilement ═══ */
+.src-l{opacity:0;transform:translateY(14px);
+       transition:opacity .5s ease,transform .5s cubic-bezier(.22,1,.36,1)}
+.src-l.vu{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .js-r,.cl-b i,.cl,.cl-cum,.src-l{transition:none!important}
+  .src-l{opacity:1;transform:none}
+}
 </style><script>
 /* ═══════════════════════════════════════════════════════════════════════
    CONFIGURATION — remplace ces deux valeurs par les tiennes.
@@ -552,6 +618,15 @@ async function api(chemin){
 const ICO = {
   france: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V6l7-2 7 2v14M4 20h14M8 11h2M8 15h2M12 11h2M12 15h2M11 20v-4h0" /></svg>`,
   monde: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M3 12h16M11 4c2.2 2.2 3.3 5 3.3 8s-1.1 5.8-3.3 8c-2.2-2.2-3.3-5-3.3-8s1.1-5.8 3.3-8z"/></svg>`,
+  world: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M3 12h16M11 4c2.2 2.2 3.3 5 3.3 8s-1.1 5.8-3.3 8c-2.2-2.2-3.3-5-3.3-8s1.1-5.8 3.3-8z"/></svg>`,
+  business: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="16" height="11" rx="2"/><path d="M8 8V6a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M3 13h16"/></svg>`,
+  crypto: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M8.5 8h4a2.2 2.2 0 010 4.4h-4M8.5 12.4h4.4a2.2 2.2 0 010 4.4H8.5M8.5 8v8.8M10.5 6v2M10.5 16.8v2"/></svg>`,
+  ai: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="12" height="11" rx="3"/><circle cx="9" cy="12" r="1.1"/><circle cx="13" cy="12" r="1.1"/><path d="M11 4v3M6 15H3.5M18.5 15H16"/></svg>`,
+  space: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3c3.5 2.5 5 6 5 9.5L11 19l-5-6.5C6 9 7.5 5.5 11 3z"/><circle cx="11" cy="10" r="1.8"/><path d="M8 17l-2 3M14 17l2 3"/></svg>`,
+  markets: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4.5-5 3.5 3.2L18 8"/><path d="M14 8h4v4"/><path d="M3 20h16"/></svg>`,
+  science: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6.5L4.5 17a2 2 0 001.7 3h9.6a2 2 0 001.7-3L13 9.5V3"/><path d="M8 3h6M7.5 14h7"/></svg>`,
+  gaming: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="17" height="9" rx="4"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="14.5" cy="12" r="1"/><circle cx="16.5" cy="14" r="1"/></svg>`,
+  sports: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M11 4v5M11 15v5M3.5 9l4.5 3M14 12l4.5-3M6 19l2.5-4M14 15l2.5 4"/></svg>`,
   economie: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4.5-5 3.5 3.2L18 8"/><path d="M14 8h4v4"/><path d="M3 20h16"/></svg>`,
   sport: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="12" r="8"/><path d="M11 4v5M11 15v5M3.5 9l4.5 3M14 12l4.5-3M6 19l2.5-4M14 15l2.5 4"/></svg>`,
   culture: `<svg viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5v9a3.5 3.5 0 007 0V5"/><path d="M3 5h4M10 5h4"/><path d="M15 9v5a3 3 0 006 0V9"/><path d="M14 9h4"/></svg>`,
@@ -577,15 +652,27 @@ function txt(a, champ){
 const CAT = {
   france: ["France", "#7B2EFF"],
   monde: ["Monde", "#3B82F6"],
+  /* ═══ Dix catégories mondiales — alignées sur CATEGORIES dans bot.py ═══ */
+  world:    ["World", "#3B82F6"],
+  business: ["Business", "#10B981"],
+  crypto:   ["Crypto", "#F59E0B"],
+  ai:       ["AI", "#8B5CF6"],
+  tech:     ["Tech", "#06B6D4"],
+  space:    ["Space", "#6366F1"],
+  markets:  ["Markets", "#22C55E"],
+  science:  ["Science", "#14B8A6"],
+  gaming:   ["Gaming", "#EC4899"],
+  sports:   ["Sports", "#F43F5E"],
+  /* ── archive : les articles publiés avant le changement de nomenclature
+        doivent rester lisibles et colorés ── */
   economie: ["Économie", "#10B981"],
-  sport: ["Sport", "#F59E0B"],
+  sport: ["Sport", "#F43F5E"],
   culture: ["Culture", "#EC4899"],
-  faitsdivers: ["Faits divers", "#EF4444"],
-  politique: ["Politique", "#8B5CF6"],
+  faitsdivers: ["Faits divers", "#3B82F6"],
+  politique: ["Politique", "#3B82F6"],
   sante: ["Santé", "#14B8A6"],
-  tech: ["Tech", "#06B6D4"],
-  societe: ["Société", "#F472B6"],
-  histoire: ["Histoire", "#A78BFA"],
+  societe: ["Société", "#3B82F6"],
+  histoire: ["Histoire", "#3B82F6"],
   saviez: ["Le saviez-vous", "#FBBF24"],
 };
 const cat = c => CAT[c] || CAT.france;
@@ -635,7 +722,7 @@ function fiabilite(n){
     <a href="legal.html">Mentions légales</a>
   </nav>
 </div></header>
-<section class="lecture" style="padding:30px 0 20px">
+<section class="lecture lecture-art">
   <div id="contenu">
     <div class="charge"><div class="sp"></div>Chargement de l'article…</div>
   </div>
@@ -728,53 +815,187 @@ function sources(a){
   </div>`;
 }
 
+/* 🃏 CARTES SUR TABLE — quand les rédactions ne donnent pas le même chiffre.
+   Chaque média publie le sien sans dire que le voisin en donne un autre.
+   Pulse montre les deux, avec le nombre de rédactions derrière chacun, et ne
+   tranche pas : le lecteur voit l'état réel de l'information. */
+function cartesSurTable(a){
+  const cartes = Array.isArray(a.cartes_sur_table) ? a.cartes_sur_table : [];
+  if(!cartes.length) return '';
+  const blocs = cartes.map(c => {
+    const total = c.valeurs.reduce((s,v) => s + (v.nb||0), 0) || 1;
+    const lignes = c.valeurs.map((v, i) => {
+      const part = Math.round((v.nb / total) * 100);
+      return `<div class="cst-v${i===0 ? ' cst-maj' : ''}">
+        <div class="cst-tete">
+          <span class="cst-chiffre">${v.valeur}</span>
+          <span class="cst-nb">${v.nb} rédaction${v.nb>1?'s':''}</span>
+        </div>
+        <div class="cst-jauge"><i style="width:${part}%"></i></div>
+        <div class="cst-medias">${(v.medias||[]).join(' · ')}</div>
+      </div>`;
+    }).join('');
+    return `<div class="cst-bloc">
+      <div class="cst-unite">${c.unite}</div>${lignes}</div>`;
+  }).join('');
+  return `<div class="cst">
+    <div class="cst-tt">Les chiffres ne concordent pas</div>
+    <p class="cst-ex">Les rédactions ne donnent pas le même chiffre sur ces
+      points. Nous ne choisissons pas à votre place : voici chaque valeur
+      avancée, et combien de rédactions la reprennent.</p>
+    ${blocs}
+  </div>`;
+}
+
+/* 🎮 L'animation du score : chaque composante s'ajoute l'une après l'autre, la
+   barre monte, le total grimpe. Une note sur 100 est une abstraction ; la voir
+   se construire palier par palier la rend lisible d'un coup d'œil.
+   Déclenchée à l'entrée dans le champ de vision, jamais au chargement : une
+   animation qu'on a manquée n'apprend rien. */
+function animerScore(racine){
+  const calc = (racine||document).querySelector('.calc');
+  if(!calc || calc.dataset.fait) return;
+  const doux = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const barre = calc.querySelector('.js-r');
+  const nombre = calc.querySelector('.sc-n');
+  const lignes = [...calc.querySelectorAll('.cl[data-i]')];
+  const cible = parseFloat(nombre?.dataset.cible || '0');
+
+  const jouer = () => {
+    calc.dataset.fait = '1';
+    if(doux){
+      if(barre) barre.style.width = barre.dataset.w + '%';
+      if(nombre) nombre.textContent = cible.toFixed(0);
+      lignes.forEach(l => {
+        l.classList.add('vu');
+        const i = l.querySelector('.cl-b i');
+        if(i) i.style.width = i.dataset.w + '%';
+      });
+      return;
+    }
+    lignes.forEach((l, k) => setTimeout(() => {
+      l.classList.add('vu','gain');
+      const i = l.querySelector('.cl-b i');
+      if(i) i.style.width = i.dataset.w + '%';
+      setTimeout(() => l.classList.remove('gain'), 480);
+    }, 180 + k * 260));
+
+    const fin = 180 + lignes.length * 260;
+    setTimeout(() => { if(barre) barre.style.width = barre.dataset.w + '%'; }, fin);
+    /* le compteur monte en même temps que la barre, avec un ralenti final */
+    setTimeout(() => {
+      if(!nombre) return;
+      const t0 = performance.now(), duree = 1100;
+      const pas = (t) => {
+        const p = Math.min(1, (t - t0) / duree);
+        const e = 1 - Math.pow(1 - p, 3);
+        nombre.textContent = Math.round(cible * e);
+        if(p < 1) requestAnimationFrame(pas);
+      };
+      requestAnimationFrame(pas);
+    }, fin);
+  };
+
+  if(!('IntersectionObserver' in window)) return jouer();
+  const obs = new IntersectionObserver((ent) => {
+    ent.forEach(e => { if(e.isIntersecting){ jouer(); obs.disconnect(); } });
+  }, {threshold:.35});
+  obs.observe(calc);
+}
+
+/* Les rédactions apparaissent à mesure qu'on descend : la liste peut être
+   longue, et l'échelonnement fait comprendre qu'il y en a plusieurs. */
+function animerSources(racine){
+  const lignes = [...(racine||document).querySelectorAll('.src-l')];
+  if(!lignes.length) return;
+  if(!('IntersectionObserver' in window))
+    return lignes.forEach(l => l.classList.add('vu'));
+  const obs = new IntersectionObserver((ent) => {
+    ent.forEach((e, k) => {
+      if(!e.isIntersecting) return;
+      const i = lignes.indexOf(e.target);
+      setTimeout(() => e.target.classList.add('vu'), Math.min(i, 6) * 70);
+      obs.unobserve(e.target);
+    });
+  }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+  lignes.forEach(l => obs.observe(l));
+}
+
 function calcul(a){
   const n = a.nb_medias || 1;
-  const SEUIL_PUB = 40, SEUIL_URG = 70;
+  const SEUIL_PUB = 46, SEUIL_URG = 77;
   let h = ligne('Rédactions ayant couvert le fait',
                 n + ' média' + (n > 1 ? 's' : '') +
                 (n >= 2 ? ' — seuil de corroboration atteint' : ''));
   h += ligne('Publié le', dateLongue(a.publie_le));
   if(a.score == null) return h;
 
-  /* ⚠️ Découper sur « + » cassait les composantes : « imprévu 8/10 +1 » devenait
-     deux morceaux, et « 4 médias +2 » perdait sa valeur. On sépare sur le « + »
-     qui SÉPARE deux composantes — celui précédé d'une espace et suivi d'un mot —
-     et non sur celui qui porte une valeur. */
+  /* 🎚️ Les plafonds viennent du bot : « +4 » ne dit rien, « 4 sur 20 » se
+     comprend. Les recopier ici créerait une seconde vérité qui se périmerait
+     au premier réglage du barème. */
+  const MAX = a.bareme_max || {};
+  const plafond = (lib) => {
+    const k = Object.keys(MAX).find(x =>
+      lib.toLowerCase().startsWith(x.toLowerCase()));
+    return k ? MAX[k] : null;
+  };
+
   const parts = (a.score_detail || '')
     .split(/\s\+\s(?=[a-zA-ZÀ-ÿ⚡🔥\d])/)
     .map(x => x.trim()).filter(Boolean);
   const pct = Math.max(0, Math.min(100, a.score));
   const teinte = a.score >= SEUIL_URG ? 'var(--rouge)'
                : a.score >= SEUIL_PUB ? 'var(--vert)' : 'var(--orange)';
-  h += `<div class="calc">
-    <div class="calc-t">Décomposition du score — barème sur 100</div>
+
+  /* Chaque composante devient une ligne animée : sa barre se remplit jusqu'à
+     sa part du maximum, et le total se cumule d'une ligne à l'autre. Le lecteur
+     voit le score SE CONSTRUIRE au lieu de lire une addition déjà faite. */
+  let cumul = 0;
+  const lignes = parts.map((p, i) => {
+    const m = p.match(/([+-]\s*\d+(?:[.,]\d+)?)\s*$/);
+    const brut = m ? m[1].replace(/\s/g, '') : '';
+    const val = brut ? parseFloat(brut.replace(',', '.')) : 0;
+    let lib = m ? p.slice(0, m.index).trim() : p;
+    lib = lib.replace(/\s*\d+(?:[.,]\d+)?$/, '').trim() || lib;
+    const max = plafond(lib);
+    cumul += val;
+    const part = max ? Math.max(0, Math.min(100, (val / max) * 100)) : 0;
+    return {lib, val, brut, max, part, cumul, ex: explique(p)};
+  });
+
+  h += `<div class="calc" data-sc="${a.score}" data-pub="${SEUIL_PUB}"
+        data-urg="${SEUIL_URG}">
+    <div class="calc-t">Comment ce score s'est construit</div>
+    <div class="sc-final">
+      <span class="sc-n" data-cible="${a.score.toFixed(0)}">0</span>
+      <span class="sc-d">/ 100</span>
+    </div>
     <div class="jauge-sc">
-      <div class="js-b"><div class="js-r" style="width:${pct}%;background:${teinte}"></div>
-        <span class="js-m" style="left:${SEUIL_PUB}%" title="seuil de publication"></span>
-        <span class="js-m" style="left:${SEUIL_URG}%" title="seuil d'alerte"></span>
+      <div class="js-b"><div class="js-r" data-w="${pct}"
+             style="width:0;background:${teinte}"></div>
+        <span class="js-m" style="left:${SEUIL_PUB}%"></span>
+        <span class="js-m" style="left:${SEUIL_URG}%"></span>
       </div>
       <div class="js-l"><span>0</span><span>publication ${SEUIL_PUB}</span>
         <span>alerte ${SEUIL_URG}</span><span>100</span></div>
     </div>`;
-  parts.forEach(p => {
-    /* la valeur est le dernier nombre SIGNÉ ; sans signe, la composante
-       n'ajoute rien au score (c'est une donnée de contexte) */
-    const m = p.match(/([+-]\s*\d+(?:[.,]\d+)?)\s*$/);
-    const val = m ? m[1].replace(/\s/g, '') : '';
-    /* « gravité 7 » n'a pas de signe : c'est la BASE du score, pas un bonus.
-       On affiche sa valeur sans « + » pour que l'addition reste juste à lire. */
-    let lib = m ? p.slice(0, m.index).trim() : p;
-    lib = lib.replace(/\s*\d+(?:[.,]\d+)?$/, '').trim() || lib;
-    const ex = explique(p);
-    h += `<div class="cl">
-      <div class="cl-h"><span class="cl-n">${lib}</span>
-        <span class="cl-v${val.startsWith('-') ? ' neg' : (val ? '' : ' base')}">${
-          val || (lib.match(/(\d+(?:[.,]\d+)?)/) ? lib.match(/(\d+(?:[.,]\d+)?)/)[1] : '—')
-        }</span></div>
-      ${ex ? `<div class="cl-e">${ex}</div>` : ''}
+
+  lignes.forEach((l, i) => {
+    const signe = l.val > 0 ? '+' : '';
+    h += `<div class="cl" data-i="${i}">
+      <div class="cl-h">
+        <span class="cl-n">${l.lib}</span>
+        <span class="cl-v${l.val < 0 ? ' neg' : (l.brut ? '' : ' base')}">${
+          l.brut ? signe + l.val : '—'
+        }${l.max ? `<span class="cl-max">sur ${l.max}</span>` : ''}</span>
+      </div>
+      ${l.max ? `<div class="cl-b"><i data-w="${l.part}"
+          class="${l.val < 0 ? 'neg' : ''}"></i></div>` : ''}
+      ${l.ex ? `<div class="cl-e">${l.ex}</div>` : ''}
+      <div class="cl-cum">total ${l.cumul > 0 ? l.cumul.toFixed(0) : 0}</div>
     </div>`;
   });
+
   h += `<div class="cl total">
       <div class="cl-h"><span class="cl-n">Score final</span>
         <span class="cl-v">${a.score.toFixed(0)} / 100</span></div>
@@ -823,6 +1044,17 @@ async function charger(){
     /* ⚠️ Les mots-dièse servent à X, pas à une page web : ils y sont inutiles
        et cassent la lecture. On les retire, ainsi que les lignes qui ne
        contiennent QUE des mots-dièse. */
+    /* ⚠️ Le chapô reprenait la première ligne du tweet : mots-dièse ET
+       préfixe de catégorie (« 🏛️ POLITIQUE | ») s'affichaient en tête
+       d'article. Ces marques servent à X, pas à une page web. */
+    const propre = (t) => String(t||'')
+      /* le préfixe « emoji LABEL | » : on n'essaie pas de reconnaître la nature du
+         symbole (₿ n'est pas un pictogramme, 🏛️ porte un sélecteur invisible),
+         on écarte simplement tout ce qui n'est pas une lettre avant le libellé */
+      .replace(/^\s*[^A-Za-zÀ-ÿ0-9]*[A-ZÀ-Ý0-9][A-ZÀ-Ý0-9\s]{1,20}\s*\|\s*/,'')
+      .replace(/\s*#[\wÀ-ÿ]+/g,'')
+      .replace(/\s{2,}/g,' ').trim();
+
     const corps = (txt(a,'corps'))
       .split('\n')
       .map(x => x.replace(/\s*#[\wÀ-ÿ]+/g, '').trim())
@@ -838,7 +1070,7 @@ async function charger(){
         <span class="h">${ecoule(a.publie_le)} · ${dateLongue(a.publie_le)}</span>
       </div>
       <h1>${txt(a,'titre')}</h1>
-      ${txt(a,'chapo')?`<p class="chapo">${txt(a,'chapo')}</p>`:''}
+      ${propre(txt(a,'chapo'))?`<p class="chapo">${propre(txt(a,'chapo'))}</p>`:''}
       ${a.image_url?`<img class="img-ar" src="${a.image_url}" alt="">
         <div class="leg-img">Photo : ${a.source_nom||'source de l\'article'}</div>`:''}
       <div class="corps">${corps}</div>
@@ -869,6 +1101,7 @@ async function charger(){
         </div>
       </div>
 
+      ${cartesSurTable(a)}
       ${sources(a)}
       ${a.tweet_url?`<div class="src-box"><div class="t">
         <div class="l">Publié aussi sur</div><div class="n">X · @PULSEactus</div></div>
@@ -877,6 +1110,9 @@ async function charger(){
       <div class="commu" id="commu"></div>
     </div>`;
     communaute(a.id);
+    /* les animations n'ont de sens qu'une fois le contenu posé dans la page */
+    animerScore(box);
+    animerSources(box);
 
     voisins(a.publie_le);
   }catch(err){
@@ -1086,6 +1322,22 @@ charger();
    aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
    l'interface sont commutés. */
 const T = {
+  "Dont brûlé chaque année":"Burned annually",
+  "50 % des frais perçus":"50% of fees collected",
+  "Infrastructure":"Infrastructure",
+  "🔥 Brûlé chaque année":"🔥 Burned annually",
+  "Part communauté":"Community share",
+  "Frais de transaction":"Transaction fee",
+  "Autorité de frais":"Fee authority",
+  "🔒 Ce qui est verrouillé, et vérifiable":"🔒 What is locked, and verifiable",
+  "⚠️ Ce qui n'est PAS révoqué":"⚠️ What is NOT revoked",
+  "Contrat de verrouillage":"Lock contract",
+  "Portefeuille de l'éditeur":"Publisher's wallet",
+  "Mécanisme déflationniste":"Deflationary mechanism",
+  "Verrouillage de la part de l'émetteur":"Lock-up of the issuer's allocation",
+  "Modalités de l'offre":"Offer terms",
+  "🪙 Ce que nous nous interdisons sur le jeton":"🪙 What we forbid ourselves on the token",
+
   "Les frais prélevés sur les échanges de $PULSE financent l'infrastructure de Pulse : modèles de langage, hébergement, base de données, stockage des images.":"Fees levied on $PULSE trades fund Pulse's infrastructure: language models, hosting, database, image storage.",
   "Nous l'écrivons plutôt que de le taire. Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite — moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"We write it rather than hide it. If fees fall short, Pulse will run in reduced mode — fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
 
@@ -1230,7 +1482,7 @@ const T = {
   "les arbitrages figurent ici — publiés, mis en surveillance, écartés — avec leur motif et leur note. Jugez vous-même si nous avons eu raison,":"editorial calls appear here — published, monitored, rejected — with their reason and score. Judge for yourself whether we got it right,",
   "et dites-le-nous si ce n'est pas le cas.":"and tell us if we did not.",
   "Chaque sujet est noté sur 100 selon un barème public : gravité du fait, densité de couverture, fraîcheur, caractère imprévu, proximité.":"Every story is scored out of 100 on a public scale: severity, breadth of coverage, freshness, unpredictability, proximity.",
-  "Publication à partir de 40 points, alerte à partir de 70.":"Published from 40 points, alert from 70.",
+  "Publication à partir de 46 points, alerte à partir de 77.":"Published from 40 points, alert from 70.",
   "Le détail figure sur la page":"Details on the",
   "Un cycle complet toutes les 5 minutes. 288 fois par jour. Six étapes, dont aucune n'implique un opérateur humain.":"One full cycle every 5 minutes. 288 times a day. Six stages, none involving a human operator.",
   "50 flux · 14 400 requêtes/jour":"50 feeds · 14,400 requests/day",
@@ -1241,7 +1493,7 @@ const T = {
   "divergences déclarées":"declared discrepancies",
   "barème sur 100 · 9 familles de critères":"scored out of 100 · 9 criteria families",
   "Gravité du fait sur 45 points, densité de couverture sur 20, fraîcheur sur 16, caractère imprévu de −15 à +18, puis intérêt du lectorat, primeur, proximité nationale et pénalités. Chaque composante est journalisée séparément et publiée sur l'article.":"Severity worth 45 points, coverage density 20, freshness 16, unpredictability from −15 to +18, then reader interest, scoop value, national proximity and penalties. Each component is logged separately and published on the article.",
-  "publication ≥ 40/100 · alerte ≥ 70/100 · 2 rédactions minimum":"publication ≥ 40/100 · alert ≥ 70/100 · 2 newsrooms minimum",
+  "publication ≥ 46/100 · alerte ≥ 77/100 · 2 rédactions minimum":"publication ≥ 40/100 · alert ≥ 70/100 · 2 newsrooms minimum",
   "Point de décision unique : publier, mettre en suivi, ou écarter.":"A single decision point: publish, monitor, or reject.",
   "Un fait rapporté par une seule rédaction n'est pas publié":"A fact reported by a single newsroom is not published",
   "738 assertions de test · 7 contrôles rédactionnels":"738 test assertions · 7 editorial checks",

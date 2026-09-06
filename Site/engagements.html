@@ -483,6 +483,18 @@ html[data-th="clair"] .somm{background:#F4F3F8}
 html[data-th="clair"] .sign{background:#FFFFFF}
 html[data-th="clair"] .cm-f input,
 html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)}
+
+/* ⚠️ Un style EN LIGNE « padding:Xpx 0 Ypx » écrase la gouttière latérale de la
+   feuille de style, y compris celle du mobile : le texte touchait le bord de
+   l'écran. Ces classes règlent le haut et le bas SANS toucher aux côtés. */
+.pad-a{padding-top:30px;padding-bottom:20px}
+.pad-b{padding-top:30px;padding-bottom:10px}
+.pad-c{padding-top:34px;padding-bottom:10px}
+.pad-d{padding-top:34px;padding-bottom:30px}
+.pad-e{padding-top:30px;padding-bottom:40px}
+.pad-f{padding-top:20px;padding-bottom:70px}
+.pad-g{padding-top:10px;padding-bottom:80px}
+.pad-h{padding-top:20px;padding-bottom:20px}
 </style></head><body><body>
 <header><div class="wrap hbar">
   <a class="logo" href="index.html"><i></i> PULSE</a>
@@ -508,7 +520,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
      sera annoncée ici avant d'entrer en vigueur.</p>
 </div>
 
-<section class="wrap" style="padding:30px 0 20px"><div class="eng">
+<section class="wrap pad-a"><div class="eng">
 
   <div class="serment">
     <div class="t">Pourquoi cette page existe</div>
@@ -557,7 +569,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
     </div>
 
     <div class="pm">
-      <div class="pv">70</div>
+      <div class="pv">77</div>
       <div>
         <h3>Seuil d'alerte</h3>
         <p class="pd">Un événement doit atteindre 15 points pour être traité comme une alerte et publié sans attendre le prochain créneau.</p>
@@ -567,7 +579,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
     </div>
 
     <div class="pm">
-      <div class="pv">40</div>
+      <div class="pv">46</div>
       <div>
         <h3>Seuil de publication</h3>
         <p class="pd">En dessous de dix points, un sujet n'est pas publié. Il peut être mis en suivi si un développement est attendu.</p>
@@ -597,9 +609,21 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
     <p>Un média dont les choix dépendraient de porteurs de jetons aurait simplement
        changé de propriétaire.</p></div>
 
+  <div class="regle"><h3>🪙 Ce que nous nous interdisons sur le jeton</h3>
+    <p><b>Le taux de frais ne dépassera jamais 0,5 %.</b> L'autorité qui permet de le
+       modifier est conservée — l'extension technique l'impose — mais toute
+       modification sera annoncée sur cette page avant d'entrer en vigueur.</p>
+    <p><b>La part de l'éditeur est verrouillée dix ans</b> dans un contrat public, avec
+       libération linéaire d'environ 1 % de l'offre par an. Ce n'est pas un engagement
+       écrit : c'est une contrainte inscrite dans le code, que l'éditeur lui-même ne
+       peut pas contourner.</p>
+    <p><b>La moitié des frais est détruite chaque année.</b> L'opération est publique
+       et son montant annoncé.</p></div>
+
   <div class="regle"><h3>💰 Le financement est déclaré</h3>
     <p>L'infrastructure de Pulse — modèles de langage, hébergement, base de données —
-       a un coût. Il sera couvert par les <b>frais de transaction du jeton $PULSE</b>.</p>
+       a un coût. Il est couvert par <b>la moitié des frais de transaction du jeton
+       $PULSE</b> — l'autre moitié étant détruite.</p>
     <p>Nous l'écrivons plutôt que de le taire. <b>Si les frais ne suffisent pas, Pulse
        fonctionnera de façon réduite</b> — moins de cycles, moins de canaux — plutôt
        que d'abaisser ses seuils pour publier davantage.</p>
@@ -660,6 +684,22 @@ if(!b||!n)return;b.addEventListener('click',function(){
    aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
    l'interface sont commutés. */
 const T = {
+  "Dont brûlé chaque année":"Burned annually",
+  "50 % des frais perçus":"50% of fees collected",
+  "Infrastructure":"Infrastructure",
+  "🔥 Brûlé chaque année":"🔥 Burned annually",
+  "Part communauté":"Community share",
+  "Frais de transaction":"Transaction fee",
+  "Autorité de frais":"Fee authority",
+  "🔒 Ce qui est verrouillé, et vérifiable":"🔒 What is locked, and verifiable",
+  "⚠️ Ce qui n'est PAS révoqué":"⚠️ What is NOT revoked",
+  "Contrat de verrouillage":"Lock contract",
+  "Portefeuille de l'éditeur":"Publisher's wallet",
+  "Mécanisme déflationniste":"Deflationary mechanism",
+  "Verrouillage de la part de l'émetteur":"Lock-up of the issuer's allocation",
+  "Modalités de l'offre":"Offer terms",
+  "🪙 Ce que nous nous interdisons sur le jeton":"🪙 What we forbid ourselves on the token",
+
   "Les frais prélevés sur les échanges de $PULSE financent l'infrastructure de Pulse : modèles de langage, hébergement, base de données, stockage des images.":"Fees levied on $PULSE trades fund Pulse's infrastructure: language models, hosting, database, image storage.",
   "Nous l'écrivons plutôt que de le taire. Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite — moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"We write it rather than hide it. If fees fall short, Pulse will run in reduced mode — fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
 
