@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.2.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.5.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -258,24 +258,26 @@ STYLES = {
     "gta6":          {"color": "#00d17a", "label": "GTA 6",         "bar": [(0,209,122),(255,64,129)],    "overlay": (10,2,16)},
 }
 
+# ⚠️ Une seule source de vérité : emoji, libellé et couleur vivent dans
+#    CATEGORIES (défini plus bas). Les anciennes clés restent acceptées pour que
+#    les articles déjà en base continuent de s'afficher.
 EMOJIS = {
-    "breaking": "🚨", "france": "🇫🇷", "monde": "🌍", "politique": "🏛️",
-    "economie": "📈", "societe": "👥", "faitsdivers": "🚓", "hommage": "🕊️", "histoire": "📜",
-    "culture": "🎭",  "sport": "🏆", "science": "🔬",
-    "sante":    "🏥", "environnement": "🌱",
-    "tech":     "💻", "ia": "🤖", "insolite": "😲", "positivity": "❤️", "gta6": "🎮",
+    # mécanismes internes — ce ne sont pas des catégories éditoriales
+    "breaking": "🚨", "hommage": "🕊️", "gta6": "🎮",
+    # anciennes catégories, conservées pour l'archive
+    "france": "🇫🇷", "monde": "🌍", "politique": "🏛️", "economie": "📈",
+    "societe": "👥", "faitsdivers": "🚓", "histoire": "📜", "culture": "🎭",
+    "sport": "🏆", "sante": "🏥", "environnement": "🌱", "ia": "🤖",
+    "insolite": "😲", "positivity": "❤️",
 }
 
 LABELS = {
-    "breaking": "URGENT", "france": "FRANCE", "monde": "MONDE",
-    "politique": "POLITIQUE", "economie": "ECO",
-    "societe": "SOCIÉTÉ", "faitsdivers": "FAITS DIVERS", "hommage": "HOMMAGE",
-    "histoire": "HISTOIRE",
-    "culture": "CULTURE", "sport": "SPORT",
-    "science": "SCIENCE", "sante": "SANTÉ",
-    "environnement": "ENVIRONNEMENT",
-    "tech": "TECH", "ia": "IA",
-    "insolite": "INSOLITE", "positivity": "POSITIF", "gta6": "GTA 6",
+    "breaking": "URGENT", "hommage": "HOMMAGE", "gta6": "GTA 6",
+    "france": "FRANCE", "monde": "MONDE", "politique": "POLITIQUE",
+    "economie": "ECO", "societe": "SOCIÉTÉ", "faitsdivers": "FAITS DIVERS",
+    "histoire": "HISTOIRE", "culture": "CULTURE", "sport": "SPORT",
+    "sante": "SANTÉ", "environnement": "ENVIRONNEMENT", "ia": "IA",
+    "insolite": "INSOLITE", "positivity": "POSITIF",
 }
 
 
@@ -283,17 +285,35 @@ LABELS = {
 #    connaît. Sans cela, une catégorie inconnue faisait échouer la publication entière
 #    (vécu : « ❌ Breaking échoué : 'meteo' »).
 _CAT_VOISINES = {
-    "meteo": "environnement", "météo": "environnement", "climat": "environnement",
-    "canicule": "environnement", "catastrophe": "faitsdivers", "accident": "faitsdivers",
-    "incendie": "faitsdivers", "justice": "societe", "police": "faitsdivers",
-    "judiciaire": "societe", "proces": "societe", "procès": "societe",
-    "international": "monde", "guerre": "monde", "geopolitique": "monde",
+    # vers les dix catégories mondiales
+    "meteo": "science", "météo": "science", "climat": "science",
+    "canicule": "science", "environnement": "science", "sante": "science",
+    "santé": "science", "medecine": "science", "médecine": "science",
+    "energie": "science", "énergie": "science", "recherche": "science",
+    "catastrophe": "world", "accident": "world", "incendie": "world",
+    "justice": "world", "police": "world", "judiciaire": "world",
+    "proces": "world", "procès": "world", "international": "world",
+    "guerre": "world", "geopolitique": "world", "géopolitique": "world",
+    "politique": "world", "societe": "world", "société": "world",
+    "faitsdivers": "world", "france": "world", "monde": "world",
+    "diplomatie": "world", "election": "world", "élection": "world",
     "technologie": "tech", "numerique": "tech", "numérique": "tech",
     "high-tech": "tech", "informatique": "tech", "internet": "tech",
-    "medias": "culture", "médias": "culture", "people": "culture", "musique": "culture",
-    "cinema": "culture", "cinéma": "culture", "education": "societe",
-    "éducation": "societe", "transport": "france", "social": "societe",
-    "finance": "economie", "bourse": "economie", "emploi": "economie",
+    "cybersecurite": "tech", "cybersécurité": "tech", "hardware": "tech",
+    "ia": "ai", "intelligence artificielle": "ai", "robot": "ai",
+    "robotique": "ai", "llm": "ai",
+    "finance": "business", "economie": "business", "économie": "business",
+    "entreprise": "business", "emploi": "business", "affaires": "business",
+    "bourse": "markets", "marches": "markets", "marchés": "markets",
+    "inflation": "markets", "banque centrale": "markets", "devises": "markets",
+    "cryptomonnaie": "crypto", "bitcoin": "crypto", "blockchain": "crypto",
+    "spatial": "space", "espace": "space", "astronomie": "space",
+    "jeuxvideo": "gaming", "jeux video": "gaming", "jeux vidéo": "gaming",
+    "cinema": "gaming", "cinéma": "gaming", "musique": "gaming",
+    "medias": "gaming", "médias": "gaming", "people": "gaming",
+    "serie": "gaming", "série": "gaming", "streaming": "gaming",
+    "esport": "gaming", "culture": "gaming", "divertissement": "gaming",
+    "sport": "sports", "football": "sports", "tennis": "sports",
 }
 
 
@@ -302,7 +322,365 @@ def _categorie_voisine(c):
     return _CAT_VOISINES.get(str(c or "").strip().lower(), "")
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+#  CATÉGORISATION v2 — dix catégories mondiales
+#
+#  ⚠️ « breaking », « hommage » et « gta6 » ne sont PAS des catégories
+#     éditoriales mais des mécanismes internes : le libellé URGENT, le ton
+#     sobre des hommages, le canal GTA 6. Ils sont conservés à part — les
+#     supprimer casserait ces trois fonctions.
+# ═══════════════════════════════════════════════════════════════════════════
+CATEGORIES = {
+    "world":    {"label": "WORLD",    "emoji": "🌍", "couleur": "#3B82F6"},
+    "business": {"label": "BUSINESS", "emoji": "💰", "couleur": "#10B981"},
+    "crypto":   {"label": "CRYPTO",   "emoji": "₿",  "couleur": "#F59E0B"},
+    "ai":       {"label": "AI",       "emoji": "🤖", "couleur": "#8B5CF6"},
+    "tech":     {"label": "TECH",     "emoji": "💻", "couleur": "#06B6D4"},
+    "space":    {"label": "SPACE",    "emoji": "🚀", "couleur": "#6366F1"},
+    "markets":  {"label": "MARKETS",  "emoji": "📈", "couleur": "#22C55E"},
+    "science":  {"label": "SCIENCE",  "emoji": "⚡", "couleur": "#14B8A6"},
+    "gaming":   {"label": "GAMING",   "emoji": "🎮", "couleur": "#EC4899"},
+    "sports":   {"label": "SPORTS",   "emoji": "⚽", "couleur": "#F43F5E"},
+}
+
+# 🗺️ Les articles DÉJÀ publiés portent les anciennes catégories. Sans cette
+#    table, le site les afficherait comme inconnues : l'archive doit rester
+#    lisible après un changement de nomenclature.
+_CAT_MIGRATION = {
+    "france": "world", "monde": "world", "politique": "world",
+    "societe": "world", "faitsdivers": "world", "insolite": "world",
+    "economie": "business", "finance": "business", "bourse": "markets",
+    "tech": "tech", "ia": "ai", "science": "science", "sante": "science",
+    "environnement": "science", "climat": "science",
+    "sport": "sports", "culture": "gaming", "histoire": "world",
+    "positivity": "world", "meteo": "science",
+}
+
+# Signaux par catégorie. Chaque entrée : (motif, poids). Un poids élevé désigne
+# un terme qui, à lui seul, caractérise fortement le domaine.
+_SIGNAUX_CAT = {
+    "crypto": [
+        (r"\b(?:bitcoin|btc|ethereum|eth|solana|blockchain|cryptomonnaie|"
+         r"crypto[- ]?monnaies?|stablecoin|altcoin|memecoin|defi|nft|"
+         r"binance|coinbase|kraken|ledger|metamask|ripple|xrp|dogecoin|"
+         r"halving|staking|minage|mineurs? de bitcoin|layer ?2|"
+         r"portefeuille (?:crypto|numérique)|token|jeton numérique)\b", 5),
+        (r"\b(?:etf bitcoin|etf ethereum|etf crypto|sec.{0,20}crypto|"
+         r"mica|régulation crypto|hack.{0,20}(?:crypto|protocole|pont))\b", 6),
+    ],
+    "ai": [
+        (r"\b(?:openai|chatgpt|anthropic|claude|deepmind|gemini|xai|grok|"
+         r"mistral ai|llama|copilot|midjourney|stable diffusion|"
+         r"intelligence artificielle|ia générative|modèle de langage|"
+         r"grand modèle|llm|agi|superintelligence|réseau de neurones|"
+         r"apprentissage automatique|machine learning)\b", 5),
+        (r"\b(?:robot|robotique|humanoïde|agent autonome|"
+         r"entraînement d'un modèle|jeu de données d'entraînement)\b", 3),
+    ],
+    "space": [
+        (r"\b(?:spacex|starship|falcon ?9|blue origin|new glenn|nasa|esa|"
+         r"arianespace|ariane ?6|roscosmos|isro|"
+         r"station spatiale|iss\b|lanceur|fusée|décollage|"
+         r"mission lunaire|alunissage|orbite|satellite[s]?|"
+         r"astronaute|cosmonaute|exploration spatiale|"
+         r"mars|lune|télescope spatial|james webb)\b", 5),
+    ],
+    "gaming": [
+        (r"\b(?:jeu vidéo|jeux vidéo|gaming|gameplay|"
+         r"playstation|ps5|xbox|nintendo|switch|steam|epic games|"
+         r"rockstar|ubisoft|activision|blizzard|electronic arts|console|"
+         r"gta ?6|call of duty|fortnite|minecraft|zelda|mario|"
+         r"esport|e-sport|console de jeu|studio de jeu)\b", 5),
+    ],
+    "tech": [
+        (r"\b(?:iphone|ipad|macbook|android|windows|smartphone|"
+         r"semi[- ]conducteur|puce[s]?|processeur|gpu|nvidia|amd|intel|"
+         r"tsmc|samsung|qualcomm|"
+         r"cyberattaque|ransomware|piratage|faille de sécurité|"
+         r"cybersécurité|logiciel|application mobile|système d'exploitation|"
+         r"réalité virtuelle|casque de réalité|objet connecté)\b", 4),
+        (r"\b(?:apple|google|microsoft|meta|amazon)\b", 2),
+    ],
+    "markets": [
+        (r"\b(?:réserve fédérale|\bfed\b|\bbce\b|banque centrale|"
+         r"taux directeurs?|inflation|désinflation|récession|"
+         r"wall street|nasdaq|s&p ?500|dow jones|cac ?40|dax|footsie|nikkei|"
+         r"indice boursier|marchés? (?:financiers?|actions|obligataires?)|"
+         r"obligation[s]? d'état|rendement obligataire|"
+         r"cours du pétrole|baril|once d'or|"
+         r"euro[- ]dollar|taux de change|devise[s]?)\b", 5),
+    ],
+    "business": [
+        (r"\b(?:résultats? (?:financiers?|trimestriels?|annuels?|records?|en hausse|en baisse)|publie ses résultats|"
+         r"chiffre d'affaires|bénéfice net|perte nette|marge opérationnelle|"
+         r"acquisition|rachat de|fusion|opa\b|"
+         r"levée de fonds|tour de table|valorisation|licenciements?|"
+         r"plan social|introduction en bourse|entrée en bourse|"
+         r"directeur général|pdg|conseil d'administration|"
+         r"faillite|redressement judiciaire|amende de)\b", 5),
+    ],
+    "science": [
+        (r"\b(?:découverte scientifique|étude publiée|revue nature|"
+         r"revue science|chercheur|laboratoire|équipe scientifique|"
+         r"essai clinique|vaccin|traitement|thérapie|cancer|"
+         r"épidémie|pandémie|virus|bactérie|génome|adn\b|"
+         r"réchauffement climatique|gaz à effet de serre|giec|cop ?\d+|"
+         r"énergie (?:solaire|éolienne|nucléaire)|réacteur|fusion nucléaire|"
+         r"biodiversité|espèce[s]? (?:menacée|découverte)|fossile|"
+         r"prix nobel)\b", 4),
+    ],
+    "sports": [
+        (r"\b(?:coupe du monde|jeux olympiques|jo de|olympiques|"
+         r"ligue des champions|champions league|"
+         r"formule ?1|\bf1\b|grand prix de|"
+         r"\bnba\b|roland[- ]garros|wimbledon|"
+         r"finale|demi[- ]finale|quart de finale|championnat du monde|"
+         r"médaille d'or|record du monde)\b", 4),
+    ],
+    "world": [
+        (r"\b(?:onu|otan|nato|union européenne|commission européenne|"
+         r"conseil de sécurité|g7|g20|sommet|"
+         r"guerre|conflit|cessez[- ]le[- ]feu|invasion|frappes?|"
+         r"missile|bombardement|offensive|trêve|"
+         r"sanctions?|embargo|traité|accord de paix|"
+         r"élections?(?: présidentielles?| législatives?| générales?)?|scrutin|"
+         r"président|premier ministre|chancelier|diplomatie|ambassadeur|"
+         r"séisme|tremblement de terre|ouragan|typhon|inondations?|"
+         r"réfugiés?|migrants?|coup d'état)\b", 4),
+    ],
+}
+def _souple(motif):
+    """Rend un motif tolérant au pluriel et au féminin.
+
+    ⚠️ VÉCU : « bitcoins », « robots », « élections », « chercheurs » n'étaient
+    pas reconnus — le motif exigeait le singulier exact. Écrire chaque variante
+    à la main est infaisable et se périme ; on assouplit la frontière de fin de
+    mot pour accepter un s, un e ou un x final, sans jamais laisser un mot
+    déborder sur un autre."""
+    return re.compile(motif.replace(r"\b)", r"(?:e?s|x)?\b)")
+                      .replace(r")\b", r")(?:e?s|x)?\b"),
+                      re.IGNORECASE)
+
+
+_SIGNAUX_CAT_C = {k: [(_souple(m), p) for m, p in v]
+                  for k, v in _SIGNAUX_CAT.items()}
+
+# ⚠️ La hiérarchie n'est PAS l'ordre de la liste : elle suit la SPÉCIFICITÉ.
+#    « OpenAI investit dans une startup » est AI, pas Business ; « Apple
+#    présente un iPhone » est Tech, pas Business. Une catégorie de domaine
+#    précis l'emporte sur une catégorie générique à égalité de signal.
+_RANG_CAT = ["crypto", "ai", "space", "gaming", "tech", "science",
+             "sports", "world", "markets", "business"]
+
+# 💰 Marqueurs indiquant que l'article PORTE sur les comptes d'une entreprise,
+#    et non sur son métier. Volontairement étroits : « investit dans », qui est
+#    une action et non un bilan, n'en fait pas partie — sinon « OpenAI investit
+#    dans une startup » basculerait en Business alors que la consigne dit AI.
+_INTENTION_FINANCIERE = re.compile(
+    r"\b(?:publie[nt]? ses résultats|résultats? (?:financiers?|trimestriels?|"
+    r"annuels?|records?|en hausse|en baisse|semestriels?)|"
+    r"chiffre d'affaires|bénéfice net|perte nette|marge opérationnelle|"
+    r"introduction en bourse|entrée en bourse|"
+    r"plan social|licencie(?:ment)?s?|faillite|redressement judiciaire)\b",
+    re.IGNORECASE)
+
+
+def categoriser(titre, resume="", corps="", ancienne=None):
+    """Attribue UNE catégorie principale à un article, avec un indice de confiance.
+
+    ⚠️ Le corps de l'article pèse dans la décision, mais MOINS que le titre :
+    un article sur un rachat d'entreprise peut citer Bitcoin en passant sans
+    parler de crypto. Le titre dit le SUJET, le corps le CONTEXTE — les
+    confondre revient à catégoriser sur un mot-clé, ce que la consigne interdit.
+
+    Renvoie (categorie, confiance 0-100, justification)."""
+    if ancienne:
+        mig = _CAT_MIGRATION.get(str(ancienne).strip().lower())
+        if mig and not (titre or resume or corps):
+            return mig, 60, "catégorie d'archive convertie"
+
+    t = str(titre or "")
+    r = str(resume or "")
+    c = str(corps or "")[:4000]
+
+    scores, preuves = {}, {}
+    for cat, motifs in _SIGNAUX_CAT_C.items():
+        total, vus = 0.0, set()
+        for rx, poids in motifs:
+            # le titre pèse le plus, le corps confirme sans dominer
+            nt = len(set(m.group(0).lower() for m in rx.finditer(t)))
+            nr = len(set(m.group(0).lower() for m in rx.finditer(r)))
+            nc = len(set(m.group(0).lower() for m in rx.finditer(c)))
+            if nt:
+                total += poids * 3.0 * min(nt, 3)
+                vus.update(m.group(0).lower() for m in rx.finditer(t))
+            if nr:
+                total += poids * 1.2 * min(nr, 3)
+            if nc:
+                # plafonné : dix occurrences n'en disent pas dix fois plus
+                total += poids * 0.5 * min(nc, 4)
+                vus.update(list(m.group(0).lower() for m in rx.finditer(c))[:3])
+        if total:
+            scores[cat] = total
+            preuves[cat] = sorted(vus)[:4]
+    if not scores:
+        return "world", 35, "aucun signal net — rattaché au fil mondial"
+
+    ordre = sorted(scores.items(),
+                   key=lambda kv: (-kv[1], _RANG_CAT.index(kv[0])))
+    gagnant, meilleur = ordre[0]
+    second = ordre[1][1] if len(ordre) > 1 else 0.0
+
+    # ⚠️ À signal comparable, la catégorie la plus SPÉCIFIQUE l'emporte : c'est
+    #    la règle « OpenAI investit → AI, pas Business ». Sans cela, le
+    #    vocabulaire financier, très présent, raflerait tous les sujets IA.
+    if second and meilleur - second <= meilleur * 0.25:
+        for cat, sc in ordre[:3]:
+            if sc >= meilleur * 0.75 and \
+                    _RANG_CAT.index(cat) < _RANG_CAT.index(gagnant):
+                gagnant, meilleur = cat, sc
+                break
+
+    # 💰 RÈGLE TESLA — « Tesla publie des résultats financiers → Business, pas
+    #    Tech ». Quand le SUJET de l'article est la santé financière d'une
+    #    entreprise, le domaine de cette entreprise ne prime plus. Sans cette
+    #    règle, « Nvidia publie des résultats records » partait en Tech parce
+    #    que Nvidia fabrique des puces — alors que l'article parle de comptes.
+    #    ⚠️ Ne s'applique QUE sur le titre : un simple rappel du chiffre
+    #    d'affaires en fin d'article ne fait pas d'un lancement produit un
+    #    sujet financier.
+    if gagnant not in ("crypto",) and _INTENTION_FINANCIERE.search(t):
+        gagnant = "business"
+        meilleur = max(meilleur, scores.get("business", 0.0))
+        preuves["business"] = (preuves.get("business") or []) + ["résultats"]
+
+    # La confiance vient de l'écart au second : un signal unique et net vaut
+    # mieux qu'un score élevé également partagé.
+    if second <= 0:
+        conf = 95 if meilleur >= 9 else 80
+    else:
+        marge = (meilleur - second) / meilleur
+        conf = int(min(97, 55 + marge * 50 + min(meilleur, 30)))
+    conf = max(30, min(99, conf))
+    just = f"{CATEGORIES[gagnant]['label']} — {', '.join(preuves.get(gagnant) or ['contexte général'])}"
+    return gagnant, conf, just
+
+
+# Les dix catégories alimentent les tables d'affichage : une seule source.
+for _c, _m in CATEGORIES.items():
+    EMOJIS.setdefault(_c, _m["emoji"])
+    LABELS.setdefault(_c, _m["label"])
+
+
+def couleur_categorie(cat):
+    """Couleur d'affichage d'une catégorie, archive comprise."""
+    c = str(cat or "").strip().lower()
+    c = c if c in CATEGORIES else _CAT_MIGRATION.get(c, "world")
+    return CATEGORIES.get(c, CATEGORIES["world"])["couleur"]
+
+
+# Seuil en deçà duquel la lecture par règles ne suffit pas et l'on demande un
+# second avis au modèle. À 70, seuls les cas réellement ambigus le déclenchent.
+CAT_CONF_MINI = int(os.environ.get("CAT_CONF_MINI", "70"))
+
+
+def _categorie_finale(analyse, article, conn=None):
+    """Catégorie retenue pour un article, décidée sur son TEXTE INTÉGRAL.
+
+    ⚠️ L'avis du modèle porte sur le titre et le résumé seuls — il ne voit pas
+    l'article. Les règles, elles, lisent le corps entier déjà téléchargé. On
+    confronte les deux : concordance, la confiance monte ; divergence, on
+    tranche par la confiance des règles.
+
+    C'est la double vérification demandée, sans un appel de modèle de plus."""
+    avis_modele = str((analyse or {}).get("category") or "").strip().lower()
+    corps = ""
+    try:
+        u = str((article or {}).get("url") or "")
+        if u and conn is not None:
+            row = conn.execute("SELECT corps FROM article_corps WHERE url=?",
+                               (u,)).fetchone()
+            corps = (row[0] if row else "") or ""
+    except Exception:
+        corps = ""
+    cat, conf, just = categoriser(str((article or {}).get("title") or ""),
+                                  str((article or {}).get("summary") or ""),
+                                  corps)
+    # l'avis du modèle, ramené aux dix catégories
+    if avis_modele and avis_modele not in CATEGORIES:
+        avis_modele = _categorie_voisine(avis_modele) or ""
+    if avis_modele == cat:
+        return cat
+    if avis_modele and conf < CAT_CONF_MINI:
+        # les règles hésitent : le modèle, qui comprend le contexte, l'emporte
+        return avis_modele
+    if not avis_modele and conf < CAT_CONF_MINI:
+        # aucun avis du modèle ET des règles peu sûres : on demande un arbitrage
+        # plutôt que de publier une catégorie hasardeuse.
+        cat = categoriser_verifie(str((article or {}).get("title") or ""),
+                                  str((article or {}).get("summary") or ""),
+                                  corps)[0]
+    return cat
+
+
+def categoriser_verifie(titre, resume="", corps="", cache_conn=None):
+    """Catégorise avec DOUBLE VÉRIFICATION, sans gaspiller le quota.
+
+    La consigne demande deux analyses indépendantes, puis une troisième en cas
+    de désaccord. Faire trois appels de modèle par article coûterait des
+    milliers d'appels par jour pour un gain nul sur les cas évidents.
+
+    Deux analyses indépendantes, donc, mais de NATURES différentes :
+      ① les règles, qui lisent le texte intégral — gratuit, déterministe ;
+      ② le modèle, appelé UNIQUEMENT si les règles hésitent.
+    Quand les deux divergent, le modèle tranche : il comprend le contexte là
+    où les règles ne voient que des termes. Quand les règles sont sûres, elles
+    se suffisent — un article intitulé « Bitcoin dépasse 200 000 $ » n'a pas
+    besoin d'un arbitrage.
+
+    Renvoie (categorie, confiance, justification)."""
+    cat, conf, just = categoriser(titre, resume, corps)
+    if conf >= CAT_CONF_MINI:
+        return cat, conf, just
+
+    # ── seconde analyse, indépendante : le modèle ──
+    try:
+        extrait = (str(corps or "")[:1200] or str(resume or "")[:600])
+        rep = _llm_json(
+            "Tu catégorises un article pour un média mondial francophone.\n"
+            f"Catégories possibles : {', '.join(CATEGORIES)}.\n"
+            "Choisis LA catégorie du SUJET PRINCIPAL, pas d'un mot présent en "
+            "passant. Un article sur les comptes d'une entreprise est business, "
+            "même si l'entreprise fait de la tech. Un article sur Bitcoin est "
+            "crypto, jamais markets.\n"
+            f"TITRE : {titre}\nEXTRAIT : {extrait}\n"
+            'Réponds en JSON strict : {"c":"<categorie>","conf":<0-100>}')
+        avis = str((rep or {}).get("c") or "").strip().lower()
+        if avis in CATEGORIES:
+            if avis == cat:
+                # les deux analyses concordent : la confiance monte
+                return cat, min(95, conf + 25), f"{just} (confirmé)"
+            # désaccord : le modèle comprend le contexte, il tranche
+            cf = int((rep or {}).get("conf") or 75)
+            return avis, max(60, min(90, cf)), \
+                f"{CATEGORIES[avis]['label']} — arbitrage du modèle"
+    except Exception as e:
+        print(f"  ⚠️ second avis de catégorie indisponible : {e}")
+    return cat, conf, just
+
+
 UNSPLASH_FALLBACK = {
+    # dix catégories mondiales
+    "world":    "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&q=95",
+    "business": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=95",
+    "crypto":   "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&q=95",
+    "ai":       "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=95",
+    "tech":     "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=95",
+    "space":    "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=1200&q=95",
+    "markets":  "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&q=95",
+    "science":  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=95",
+    "gaming":   "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=95",
+    "sports":   "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=95",
     "breaking":      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=95",
     "france":        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=95",
     "monde":         "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1200&q=95",
@@ -475,6 +853,8 @@ def init_db():
     conn.execute("DELETE FROM seen           WHERE seen_at     < datetime('now', '-45 days')")   # la base reste légère
     conn.execute("DELETE FROM topic_memory    WHERE sent_at     < datetime('now', '-2 days')")
     conn.commit()
+    # 📖 cache des corps d'articles (lecture intégrale)
+    init_corps_cache(conn)
     return conn
 
 def is_seen(conn, url):
@@ -1175,10 +1555,31 @@ score = max(A, B). Une info sans émotion mais très utile monte haut par B. Une
 6) Insolite viral (pannes nationales, bugs cocasses, records absurdes)
 Un bon fil = un mix de tout ça. Une info locale peut scorer haut UNIQUEMENT si elle est spectaculaire ou hors du commun — un fait divers local banal reste en bas, même dramatique.
 
-Catégories possibles (choisis la plus juste) :
-breaking, france, monde, politique, economie, societe, faitsdivers, histoire,
-culture (cinéma, musique, séries, célébrités, créateurs/influenceurs, YouTubeurs/streamers, jeux vidéo, gaming, esport, buzz réseaux sociaux, produits de célébrités),
-sport, science, sante, environnement, tech, ia, insolite, positivity.
+Catégories possibles — choisis LA catégorie du SUJET PRINCIPAL, jamais d'après
+un mot présent en passant :
+• world    — géopolitique, diplomatie, conflits, ONU, OTAN, élections majeures,
+             catastrophes et crises internationales
+• business — entreprises, résultats financiers, acquisitions, licenciements,
+             levées de fonds, banques
+• crypto   — Bitcoin, Ethereum, Solana, DeFi, NFT, plateformes d'échange,
+             régulation et piratages crypto, ETF Bitcoin (PRIORITÉ MAXIMALE)
+• ai       — OpenAI, Anthropic, DeepMind, xAI, modèles de langage, robots, AGI
+• tech     — Apple, Google, Nvidia, Meta, Microsoft, Samsung, matériel,
+             logiciels, cybersécurité, nouveaux produits
+• space    — SpaceX, NASA, ESA, satellites, Starship, exploration spatiale
+• markets  — bourse, indices, Fed, BCE, inflation, pétrole, devises, obligations
+• science  — découvertes, médecine, énergie, climat, recherche
+• gaming   — jeux vidéo, consoles, studios, esport
+• sports   — UNIQUEMENT Coupe du Monde, Jeux Olympiques, NBA, Formule 1,
+             Ligue des Champions. Jamais les compétitions locales.
+
+Arbitrages qui font foi :
+- « OpenAI investit dans une startup » → ai, PAS business
+- « Bitcoin dépasse 200 000 $ » → crypto, PAS markets
+- « Apple présente un iPhone » → tech, PAS business
+- « Tesla publie ses résultats financiers » → business, PAS tech
+Un article portant sur les COMPTES d'une entreprise est business, même si cette
+entreprise fait de la tech.
 
 ⚠️ CATÉGORIE "breaking" — TRÈS RESTRICTIVE : réservée aux FAITS urgents en direct (mort d'une personnalité, attentat, catastrophe naturelle, accident/crash grave, fusillade, résultat très attendu). Un rapport, une étude, une analyse, un sondage, un classement, une prévision ou un avis ne doit JAMAIS être catégorisé "breaking" — mets economie, politique, societe, etc. Le label rouge "URGENT" ne doit jamais apparaître sur ce type de contenu.
 """
@@ -1190,12 +1591,12 @@ def _normalise_analyse(a):
     (i/s/c/d/v — moins de tokens de sortie, facturés 5× l'entrée) ou en clés longues.
     🛡️ Tolérant : une réponse dans l'ancien format reste parfaitement comprise."""
     if not isinstance(a, dict):
-        return {"score": 0, "category": "france", "is_duplicate": False, "needs_video": False}
+        return {"score": 0, "category": "world", "is_duplicate": False, "needs_video": False}
     def _b(v):
         return v in (True, 1, "1", "true", "True", "oui")
     return {
         "score":        int(a.get("score", a.get("s", 0)) or 0),
-        "category":     (a.get("category") or a.get("c") or "france"),
+        "category":     (a.get("category") or a.get("c") or "world"),
         "is_duplicate": _b(a.get("is_duplicate", a.get("d", False))),
         "needs_video":  _b(a.get("needs_video", a.get("v", False))),
         # ⚡ Caractère imprévu (0-10) : ce qui distingue une alerte d'un fait programmé.
@@ -1237,7 +1638,7 @@ IMPORTANT : retourne EXACTEMENT {len(articles)} analyses dans le tableau."""
                          system=_analyse_system(), task="analyse")
     analyses = [_normalise_analyse(a) for a in result.get("analyses", [])]
     while len(analyses) < len(articles):
-        analyses.append({"score": 0, "category": "france", "is_duplicate": False, "needs_video": False})
+        analyses.append({"score": 0, "category": "world", "is_duplicate": False, "needs_video": False})
     return analyses[:len(articles)]
 
 def _smart_truncate(s, max_len=80, add_ellipsis=False):
@@ -5343,6 +5744,10 @@ _CAT_TO_MOOD = {
     "politique": "sobre", "justice": "sobre", "monde": "sobre", "economie": "sobre",
     "france": "sobre", "societe": "sobre", "environnement": "sobre", "sante": "sobre",
     "tech": "tech", "science": "tech", "gta6": "tech",
+    # dix catégories mondiales
+    "world": "sobre", "business": "sobre", "markets": "sobre",
+    "crypto": "energie", "ai": "tech", "space": "tech",
+    "gaming": "energie", "sports": "energie",
     "culture": "leger", "insolite": "leger", "positif": "leger", "people": "leger",
     "hommage": "solennel",
 }
@@ -7977,7 +8382,129 @@ def _corps_article(page):
     return " ".join(gardes).strip()
 
 
-def fetch_article_text(url, max_chars=7000):
+# ═══════════════════════════════════════════════════════════════════════════
+#  LECTURE INTÉGRALE DES ARTICLES
+#  Le titre et le résumé RSS suffisent souvent, mais pas toujours : deux
+#  dépêches sur le même fait peuvent n'avoir aucun mot commun avant leur
+#  troisième paragraphe. Lire TOUT le monde lève ce doute — à condition de le
+#  faire en parallèle, sinon 40 articles à 2 s coûtent 80 s de cycle.
+#
+#  ⚠️ Cette lecture ne consomme AUCUN quota Gemini : ce sont des téléchargements
+#     de pages, pas des appels de modèle. Le seul budget engagé est le temps.
+# ═══════════════════════════════════════════════════════════════════════════
+LECTURE_PARALLELE = int(os.environ.get("LECTURE_PARALLELE", "8"))
+LECTURE_TIMEOUT   = int(os.environ.get("LECTURE_TIMEOUT", "10"))
+CORPS_TTL_HEURES  = int(os.environ.get("CORPS_TTL_HEURES", "48"))
+
+
+def init_corps_cache(conn):
+    """Table de cache des corps d'articles.
+
+    Un article lu une fois ne doit jamais être retéléchargé : entre deux
+    cycles, les mêmes candidats reviennent tant qu'ils n'ont pas été publiés
+    ou écartés définitivement."""
+    try:
+        conn.execute("""CREATE TABLE IF NOT EXISTS article_corps (
+                            url TEXT PRIMARY KEY,
+                            corps TEXT,
+                            lu_ts REAL)""")
+        conn.commit()
+    except Exception as e:
+        print(f"  ⚠️ init_corps_cache: {e}")
+
+
+def _corps_en_cache(conn, urls):
+    """Corps déjà connus, pour n'aller chercher que le reste."""
+    if not conn or not urls:
+        return {}
+    try:
+        out, limite = {}, time.time() - CORPS_TTL_HEURES * 3600
+        for tranche in [list(urls)[i:i + 400] for i in range(0, len(urls), 400)]:
+            q = ",".join("?" * len(tranche))
+            for u, c in conn.execute(
+                    f"SELECT url, corps FROM article_corps "
+                    f"WHERE url IN ({q}) AND lu_ts > ?", (*tranche, limite)):
+                out[u] = c or ""
+        return out
+    except Exception:
+        return {}
+
+
+def lire_articles_en_masse(articles, conn=None):
+    """Télécharge le corps de TOUS les articles fournis, en parallèle.
+
+    Renvoie {url: corps}. Un article illisible (paywall, blocage, panne)
+    renvoie une chaîne vide : le regroupement retombe alors sur le titre et le
+    résumé, jamais d'erreur bloquante.
+
+    ⚠️ Les threads ne touchent QUE le réseau. L'écriture en base se fait
+    ensuite, dans le fil principal : une connexion SQLite n'est pas partageable
+    entre threads, et l'ignorer produit des corruptions difficiles à traquer.
+
+    ⚠️ Un même domaine n'est jamais interrogé par deux threads à la fois. Sans
+    cette retenue, Pulse ouvrirait huit connexions simultanées sur le même
+    journal à chaque cycle — le meilleur moyen de se faire bloquer."""
+    urls = []
+    for a in (articles or []):
+        u = str(a.get("url") or "").strip()
+        if u and u not in urls:
+            urls.append(u)
+    if not urls:
+        return {}
+
+    corps = _corps_en_cache(conn, urls)
+    a_lire = [u for u in urls if u not in corps]
+    if not a_lire:
+        print(f"  📖 {len(urls)} articles, tous en cache")
+        return corps
+
+    import concurrent.futures as _cf
+    import threading as _th
+    from urllib.parse import urlparse as _up
+
+    verrous, verrou_dict = {}, _th.Lock()
+
+    def _verrou_domaine(u):
+        d = (_up(u).netloc or "?").lower()
+        with verrou_dict:
+            if d not in verrous:
+                verrous[d] = _th.Lock()
+            return verrous[d]
+
+    def _un(u):
+        try:
+            with _verrou_domaine(u):
+                return u, fetch_article_text(u, max_chars=4000,
+                                             timeout=LECTURE_TIMEOUT)
+        except Exception:
+            return u, ""
+
+    t0 = time.time()
+    with _cf.ThreadPoolExecutor(max_workers=LECTURE_PARALLELE) as pool:
+        for u, txt in pool.map(_un, a_lire):
+            corps[u] = txt or ""
+
+    # écriture en base : fil principal uniquement
+    if conn is not None:
+        try:
+            now = time.time()
+            conn.executemany(
+                "INSERT OR REPLACE INTO article_corps (url, corps, lu_ts) "
+                "VALUES (?,?,?)",
+                [(u, corps.get(u, ""), now) for u in a_lire])
+            conn.execute("DELETE FROM article_corps WHERE lu_ts < ?",
+                         (now - CORPS_TTL_HEURES * 3600,))
+            conn.commit()
+        except Exception as e:
+            print(f"  ⚠️ cache des corps : {e}")
+
+    lus = sum(1 for u in a_lire if corps.get(u))
+    print(f"  📖 {lus}/{len(a_lire)} articles lus en {time.time()-t0:.1f}s "
+          f"({len(urls)-len(a_lire)} déjà en cache)")
+    return corps
+
+
+def fetch_article_text(url, max_chars=7000, timeout=15):
     """Récupère le CORPS d'un article, sans son habillage.
 
     Sert à deux choses : extraire les vrais chiffres pour la rédaction, et
@@ -7987,7 +8514,7 @@ def fetch_article_text(url, max_chars=7000):
     try:
         import html as _html
         req = urllib.request.Request(url, headers=_BROWSER_HEADERS)
-        with urllib.request.urlopen(req, timeout=15) as r:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
             raw_bytes = _read_capped(r, cap=1_500_000)
             enc = (r.headers.get("Content-Encoding") or "").lower()
         page = _decode_html_body(raw_bytes, enc)
@@ -11172,7 +11699,7 @@ def _sig_words(title):
     return {w for w in words if len(w) >= 4 and w not in BREAKING_STOPWORDS}
 
 
-def texte_de_comparaison(article, max_chars=600):
+def texte_de_comparaison(article, max_chars=600, corps=None):
     """Le texte sur lequel juger si deux articles parlent du même fait.
 
     ⚠️ Le titre SEUL est un signal pauvre : « Budget 2027 : le bras de fer »
@@ -11195,6 +11722,11 @@ def texte_de_comparaison(article, max_chars=600):
         resume = re.sub(r"(?i)\b(?:lire la suite|read more|continue reading|"
                         r"cet article|abonnez[- ]vous|article réservé aux abonnés)\b.*$",
                         "", resume).strip()
+    # 📖 Le CORPS de l'article, quand il a été lu, est le signal le plus riche :
+    #    deux dépêches sur le même fait y partagent forcément noms, lieux et
+    #    chiffres, même quand leurs titres n'ont pas un mot en commun.
+    if corps:
+        return f"{titre}. {resume[:200]} {corps[:2000]}"
     if not resume:
         return titre
     return f"{titre}. {resume[:max_chars]}"
@@ -11341,7 +11873,10 @@ EVT_JUGES_MAX = int(os.environ.get("EVT_JUGES_MAX", "6"))
 #    cycle et 288 cycles, le plafond reste sous le millier de pages par jour,
 #    contre ~10 000 si l'on lisait tout systématiquement — pour un gain de
 #    justesse quasi identique, l'ambiguïté étant rare.
-EVT_LECTURES_MAX = int(os.environ.get("EVT_LECTURES_MAX", "4"))
+# 📖 Lecture INTÉGRALE : tous les articles du cycle sont téléchargés et
+#    comparés sur leur texte complet. Désactivable si un incident réseau
+#    l'impose, sans rien casser (repli automatique sur titre + résumé).
+LECTURE_INTEGRALE = os.environ.get("LECTURE_INTEGRALE", "1") not in ("0", "false", "")
 # 🏷️ Extractions d'entités par cycle. Seuls les événements les mieux couverts sont
 #    concernés : les autres ne seront pas publiés, inutile de payer leur analyse.
 EVT_ENTITES_MAX = int(os.environ.get("EVT_ENTITES_MAX", "5"))
@@ -12367,13 +12902,52 @@ def _exploit_francais(titre, resume=""):
     return bool(_EXPLOIT_FR.search(t) and _ATHLETE_FR.search(t))
 
 
+# ⚠️ Le vocabulaire suit la ligne éditoriale : depuis que Pulse couvre les
+#    marchés, la crypto, l'IA et le spatial, un chiffre utile n'est plus
+#    seulement « 300 morts » ou « 2 500 hectares » mais aussi « 17 milliards de
+#    dollars », « 0,25 point de base » ou « 150 000 dollars ».
 _CHIFFRE_FAIT = re.compile(
     r"(\d[\d\u00a0\u202f  ]*(?:[.,]\d+)?)\s*"
-    r"(%|pour cent|euros?|€|M€|milliards?|millions?|milliers?|"
+    r"(%|pour cent|points? de base|"
+    r"euros?|€|dollars?|\$|livres?|yens?|M€|"
+    # ⚠️ L'ordre de grandeur seul ne suffit PAS : « 17 milliards de dollars » et
+    #    « 400 milliards de paramètres » donneraient tous deux l'unité
+    #    « milliard » et passeraient pour un désaccord sur le même fait. On
+    #    capture donc le complément.
+    r"(?:milliards?|millions?|milliers?)(?: d[e\u2019']\s*\w+)?|"
     r"morts?|décès|blessés?|victimes?|disparus?|interpellations?|interpellés?|"
     r"hectares?|km|kilomètres?|mètres?|degrés?|°C|ans?|mois|jours?|heures?|"
-    r"personnes?|habitants?|salariés?|emplois?|pompiers?|policiers?|"
-    r"buts?|points?|médailles?|places?)\b", re.IGNORECASE)
+    r"minutes?|secondes?|"
+    r"personnes?|habitants?|salariés?|emplois?|postes?|pompiers?|policiers?|"
+    r"soldats?|réfugiés?|manifestants?|"
+    r"buts?|points?|médailles?|places?|sets?|"
+    r"bitcoins?|BTC|ETH|tokens?|"
+    r"utilisateurs?|abonnés?|clients?|téléchargements?|"
+    r"paramètres?|milliards? de paramètres?|"
+    r"satellites?|fusées?|lancements?|"
+    r"actions?|titres?|parts?)\b", re.IGNORECASE)
+
+
+# ⚠️ La presse écrit très souvent les petits nombres en lettres : « trois
+#    blessés », « cinq morts ». Les ignorer revenait à manquer exactement les
+#    bilans humains, c'est-à-dire les chiffres les plus sensibles.
+_NOMBRES_LETTRES = {
+    "un": "1", "une": "1", "deux": "2", "trois": "3", "quatre": "4",
+    "cinq": "5", "six": "6", "sept": "7", "huit": "8", "neuf": "9",
+    "dix": "10", "onze": "11", "douze": "12", "treize": "13",
+    "quatorze": "14", "quinze": "15", "seize": "16", "vingt": "20",
+    "trente": "30", "quarante": "40", "cinquante": "50", "soixante": "60",
+    "cent": "100", "mille": "1000",
+}
+_RX_LETTRES = re.compile(
+    r"\b(" + "|".join(sorted(_NOMBRES_LETTRES, key=len, reverse=True)) + r")\b",
+    re.IGNORECASE)
+
+
+def _chiffrer_lettres(texte):
+    """Remplace les nombres écrits en lettres par leur valeur."""
+    return _RX_LETTRES.sub(
+        lambda m: _NOMBRES_LETTRES[m.group(1).lower()], str(texte or ""))
 
 
 def _faits_chiffres(texte):
@@ -12381,10 +12955,15 @@ def _faits_chiffres(texte):
     « 2 500 hectares » et « 2500 hectares » doivent se reconnaître : on normalise les
     espaces, les séparateurs de milliers et la casse."""
     out = set()
-    for val, unite in _CHIFFRE_FAIT.findall(str(texte or "")):
+    for val, unite in _CHIFFRE_FAIT.findall(_chiffrer_lettres(texte)):
         v = re.sub(r"[\s\u00a0\u202f]", "", val).replace(",", ".").rstrip(".")
-        u = unite.lower().rstrip("s")
-        u = {"pour cent": "%", "euro": "€", "décè": "mort", "victime": "mort"}.get(u, u)
+        u = re.sub(r"\s+", " ", unite.lower()).strip()
+        # « milliards de dollars » → « milliard de dollar » : on normalise chaque
+        # mot, pas seulement le dernier, pour que deux formulations se rejoignent.
+        u = " ".join(w.rstrip("s") if len(w) > 3 else w for w in u.split())
+        u = u.replace("d\u2019", "de ").replace("d'", "de ")
+        u = {"pour cent": "%", "euro": "€", "dollar": "$", "décè": "mort",
+             "victime": "mort", "point de base": "pdb"}.get(u, u)
         if v:
             out.add((v, u))
     return out
@@ -12429,18 +13008,21 @@ def dossier_de_presse(ev, rec=None):
     # ── ce sur quoi les rédactions DIVERGENT ──
     #    Deux chiffres de même unité mais de valeur différente = une contradiction
     #    réelle. La signaler vaut mieux que de choisir en silence.
-    divergences = []
-    par_unite = {}
-    for a in arts:
-        for v, u in _faits_chiffres(f"{a.get('title','')} {a.get('summary','')}"):
-            par_unite.setdefault(u, {}).setdefault(v, set()).add(
-                str(a.get("source") or "?"))
-    for u, vals in par_unite.items():
-        if len(vals) > 1:
-            detail = " contre ".join(
-                f"{v} ({', '.join(sorted(s)[:3])})"
-                for v, s in sorted(vals.items(), key=lambda x: -len(x[1]))[:3])
-            divergences.append(f"{u} : {detail}")
+    # ⚠️ Une SEULE source de vérité : les désaccords sont établis par
+    #    recouper_faits, qui lit le CORPS des articles. Les recalculer ici sur
+    #    le seul titre donnait un second résultat, plus pauvre et parfois
+    #    contradictoire avec celui affiché ailleurs.
+    if not rec.get("desaccords") and arts:
+        try:
+            rec = recouper_faits(ev)
+        except Exception:
+            pass
+    desaccords = rec.get("desaccords") or []
+    divergences = [
+        "{} : {}".format(d["unite"], " contre ".join(
+            f"{x['valeur']} ({', '.join(x['medias'][:3])})"
+            for x in d["valeurs"][:3]))
+        for d in desaccords]
 
     return {
         "medias_liste": [{"nom": n, "titre": d["titre"], "url": d["url"],
@@ -12449,57 +13031,103 @@ def dossier_de_presse(ev, rec=None):
                          for n, d in ordre],
         "premier_media": premier,
         "avance_primeur": avance,
+        # 🃏 « cartes sur table » : chaque valeur avancée, par qui, et combien
+        #    de rédactions la reprennent. Le site l'affiche tel quel.
+        "cartes_sur_table": desaccords,
         "divergences": divergences[:4],
         "nb_articles": len(arts),
         "age_heures": round(getattr(ev, "age_heures", 0) or 0, 1),
     }
 
 
-def recouper_faits(ev):
+def recouper_faits(ev, corps_par_url=None):
     """Compare ce que disent les DIFFÉRENTS médias d'un même événement.
 
-    Le moteur regroupait cinq articles puis n'en lisait qu'un. Or les écarts entre
-    rédactions sont une information : un chiffre donné par trois médias est solide, un
-    chiffre isolé mérite la prudence. Et l'article le plus utile n'est pas le plus long,
-    c'est celui dont les faits sont le plus corroborés.
+    Le moteur regroupait cinq articles puis n'en lisait qu'un. Or les écarts
+    entre rédactions sont une information : un chiffre donné par trois médias
+    est solide, un chiffre isolé mérite la prudence, et deux chiffres
+    DIFFÉRENTS pour la même chose méritent d'être montrés tels quels.
+
+    ⚠️ Lit le CORPS des articles quand il est disponible, pas seulement le titre
+    et le résumé : l'essentiel des chiffres est dans le texte, pas dans
+    l'accroche. C'est ce qui permet de dire « trois médias annoncent 2 500
+    hectares, un quatrième 3 000 ».
 
     Renvoie un dict :
-      pivot     — l'article à faire rédiger (le mieux corroboré)
-      confirmes — [(valeur, unité, nb_médias)] cités par au moins deux médias
-      isoles    — [(valeur, unité)] cités par un seul
-      medias    — nombre de médias distincts"""
+      pivot      — l'article à faire rédiger (le mieux corroboré)
+      confirmes  — [(valeur, unité, nb_médias)] cités par au moins deux médias
+      isoles     — [(valeur, unité)] cités par un seul
+      desaccords — [{unite, valeurs:[{valeur, medias:[…], nb}]}] : même unité,
+                   valeurs différentes — le cœur de « cartes sur table »
+      medias     — nombre de médias distincts
+    """
     arts = list(getattr(ev, "articles", []) or [])
+    corps_par_url = corps_par_url or {}
+
+    def _texte(a):
+        """Titre + résumé + corps : tout ce qu'on sait de cet article."""
+        c = corps_par_url.get(str(a.get("url") or "")) or a.get("_corps") or ""
+        return f"{a.get('title', '')} {a.get('summary', '')} {str(c)[:4000]}"
+
     if len(arts) < 2:
         seul = arts[0] if arts else None
-        return {"pivot": seul, "confirmes": [], "isoles": [], "medias": len(arts)}
+        return {"pivot": seul, "confirmes": [], "isoles": [],
+                "desaccords": [], "medias": len(arts)}
 
     # un média = une voix, même s'il publie deux fois
     par_media, faits_par_media = {}, {}
     for a in arts:
-        src = str(a.get("source", "")).strip().lower() or f"?{id(a)}"
-        txt = f"{a.get('title', '')} {a.get('summary', '')}"
+        src = str(a.get("source", "")).strip() or f"?{id(a)}"
         par_media.setdefault(src, []).append(a)
-        faits_par_media.setdefault(src, set()).update(_faits_chiffres(txt))
+        faits_par_media.setdefault(src, set()).update(_faits_chiffres(_texte(a)))
 
-    compte = {}
-    for faits in faits_par_media.values():
+    # qui dit quoi : indispensable pour nommer les médias dans « cartes sur table »
+    compte, qui = {}, {}
+    for src, faits in faits_par_media.items():
         for f in faits:
             compte[f] = compte.get(f, 0) + 1
+            qui.setdefault(f, []).append(src)
 
     confirmes = sorted([(v, u, n) for (v, u), n in compte.items() if n >= 2],
                        key=lambda x: -x[2])
     isoles = [(v, u) for (v, u), n in compte.items() if n == 1]
 
-    # 🎯 PIVOT : l'article dont les chiffres sont le plus repris ailleurs. À égalité,
-    #    le résumé le plus fourni — mais la corroboration prime sur la longueur.
+    # 🃏 LES DÉSACCORDS : même unité, valeurs différentes. C'est l'information
+    #    que personne ne publie — chaque rédaction donne son chiffre sans dire
+    #    que la voisine en donne un autre.
+    par_unite = {}
+    for (v, u), n in compte.items():
+        par_unite.setdefault(u, []).append((v, n))
+    desaccords = []
+    for u, vals in par_unite.items():
+        if len(vals) < 2:
+            continue
+        detail = sorted(
+            ({"valeur": v, "nb": n, "medias": sorted(qui.get((v, u), []))}
+             for v, n in vals),
+            key=lambda d: (-d["nb"], _num(d["valeur"])))
+        desaccords.append({"unite": u, "valeurs": detail,
+                           "total_medias": sum(d["nb"] for d in detail)})
+    # on montre d'abord les désaccords les plus documentés
+    desaccords.sort(key=lambda d: -d["total_medias"])
+
+    # 🎯 PIVOT : l'article dont les chiffres sont le plus repris ailleurs. À
+    #    égalité, le texte le plus fourni — mais la corroboration prime.
     def _poids(a):
-        f = _faits_chiffres(f"{a.get('title', '')} {a.get('summary', '')}")
-        corrob = sum(compte.get(x, 0) for x in f)
-        return (corrob, len(str(a.get("summary") or "")))
+        f = _faits_chiffres(_texte(a))
+        return (sum(compte.get(x, 0) for x in f), len(_texte(a)))
 
     pivot = max(arts, key=_poids)
-    return {"pivot": pivot, "confirmes": confirmes[:6], "isoles": isoles[:6],
-            "medias": len(par_media)}
+    return {"pivot": pivot, "confirmes": confirmes[:8], "isoles": isoles[:8],
+            "desaccords": desaccords[:6], "medias": len(par_media)}
+
+
+def _num(v):
+    """Valeur numérique d'un chiffre extrait, pour trier proprement."""
+    try:
+        return float(str(v).replace(",", "."))
+    except Exception:
+        return 0.0
 
 
 def resume_recoupement(rec):
@@ -12858,6 +13486,8 @@ def decider_publication(conn, ev, note_ia=None, categorie="", imprevu=None):
     try:
         if not hasattr(ev, "recoupement"):
             ev.recoupement = recouper_faits(ev)
+        if not hasattr(ev, "matiere"):
+            ev.matiere = matiere_premiere(ev)
     except Exception:
         ev.recoupement = None
     score, detail = noter_evenement(ev, conn, note_ia=note_ia, categorie=categorie,
@@ -12961,13 +13591,21 @@ _MOTS_BANALS = {
 }
 
 
-def _memes_faits(a, b):
-    """Deux titres parlent-ils du même événement, sans recours aux vecteurs ?
+def _memes_faits(a, b, texte_riche=False):
+    """Deux articles parlent-ils du même événement, sans recours aux vecteurs ?
 
     Deux mots communs suffisent. MAIS un seul suffit aussi s'il est DISCRIMINANT —
     « Gironde », « Zidane », « Sabena » : un nom propre long ne se retrouve pas par
     hasard dans deux actualités. Les mots courts et fréquents (Paris, loi, mort) sont
     exclus de cette règle, sinon tous les faits divers parisiens fusionneraient."""
+    # ⚠️ Deux textes partageant « situation », « point » et « annonce » ne
+    #    parlent pas du même fait : ces mots reviennent partout. On les écarte
+    #    AVANT de mesurer le recouvrement, sinon la proportion se fonde sur du
+    #    vocabulaire vide.
+    a = {m for m in a if m not in _MOTS_BANALS}
+    b = {m for m in b if m not in _MOTS_BANALS}
+    if not a or not b:
+        return False
     communs_r = _racines_communes(a, b)
     # ⚠️ VÉCU : « 2 mots communs suffisent » fusionnait « Budget 2027 : le bras
     #    de fer » avec « Budget 2027 : Bayrou temporise » — mais aussi avec des
@@ -12979,12 +13617,29 @@ def _memes_faits(a, b):
         petit = min(len(a), len(b)) or 1
         if communs_r >= max(3, petit * 0.30):
             return True
-    # Un seul mot suffit s'il est vraiment DISCRIMINANT : un nom propre long
-    # ne se retrouve pas par hasard dans deux actualités distinctes.
-    # ⚠️ Le seuil reste à 6 caractères : le porter à 8 paraissait plus prudent,
-    #    mais écartait « Gironde » (7) et « Zidane » (6) — soit exactement les
-    #    noms propres qui font le rapprochement. La précision vient du texte
-    #    enrichi et de la règle de proportion ci-dessus, pas d'ici.
+    # ⚠️ VÉCU : deux dépêches intitulées « Le point sur la situation », l'une sur
+    #    un incendie, l'autre sur des sanctions de l'ONU, ont fusionné — le seul
+    #    mot « situation » a suffi. Le raccourci ci-dessous n'existe QUE parce
+    #    qu'un titre est court et pauvre en signal. Dès qu'on dispose du texte
+    #    intégral, ce raccourci n'a plus de raison d'être : on a mieux à faire
+    #    que de parier sur un mot isolé, et la proportion ci-dessus tranche.
+    if texte_riche:
+        # ⚠️ Refuser tout net était trop brutal : deux dépêches sur le même
+        #    incendie, l'une parlant de « Landiras » et l'autre du « massif
+        #    girondin », se retrouvaient séparées — et l'on perdait justement
+        #    l'article porteur des chiffres divergents.
+        #    Sur un texte long, le bon signal n'est ni un mot isolé ni une
+        #    proportion (les textes longs partagent mécaniquement du
+        #    vocabulaire), mais le NOMBRE de termes DISCRIMINANTS communs :
+        #    noms de lieux, de personnes, termes techniques. Trois suffisent,
+        #    et le hasard ne les produit pas.
+        discriminants = {m for m in (a & b)
+                         if len(m) >= 6 and m not in _MOTS_BANALS}
+        return len(discriminants) >= 3
+    # Sur un titre seul, un mot suffit s'il est vraiment DISCRIMINANT : un nom
+    # propre long ne se retrouve pas par hasard dans deux actualités.
+    # Le seuil reste à 6 caractères : le porter à 8 écartait « Gironde » (7)
+    # et « Zidane » (6), soit exactement les noms qui font le rapprochement.
     rares = {m for m in (a & b) if len(m) >= 6 and m not in _MOTS_BANALS}
     return bool(rares)
 
@@ -13001,25 +13656,33 @@ def regrouper_en_evenements(articles, conn=None, seuil=None):
     seuil = EMBED_SEUIL if seuil is None else seuil
     evenements = []
     juges = [0]        # nombre d'arbitrages IA de ce cycle, borné par EVT_JUGES_MAX
-    lectures = [0]     # lectures d'articles entiers, bornées par EVT_LECTURES_MAX
-    _cache_corps = {}  # une même URL n'est jamais téléchargée deux fois par cycle
 
-    def _corps(article):
-        """Texte complet d'un article, lu au plus une fois par cycle."""
-        u = str(article.get("url") or "")
-        if not u:
-            return ""
-        if u in _cache_corps:
-            return _cache_corps[u]
-        if lectures[0] >= EVT_LECTURES_MAX:
-            return ""
-        lectures[0] += 1
+    # 📖 On lit TOUS les articles du cycle, en parallèle, avant de comparer quoi
+    #    que ce soit. Comparer sur le texte intégral plutôt que sur un titre
+    #    supprime la quasi-totalité des rapprochements manqués — et le coût
+    #    reste du temps réseau, jamais du quota de modèle.
+    if LECTURE_INTEGRALE:
         try:
-            txt = fetch_article_text(u, max_chars=2500)
-        except Exception:
-            txt = ""
-        _cache_corps[u] = txt
-        return txt
+            _corps_par_url = lire_articles_en_masse(articles, conn)
+        except Exception as e:
+            print(f"  ⚠️ lecture en masse indisponible : {e}")
+            _corps_par_url = {}
+    else:
+        _corps_par_url = {}
+
+    # 📎 Le corps est ATTACHÉ à chaque article : tout ce qui reçoit l'article
+    #    plus loin (recoupement, matière première, rédaction) y a accès sans
+    #    qu'on ait à faire circuler un dictionnaire de plus. Une seule source.
+    for _a in (articles or []):
+        _c = _corps_par_url.get(str(_a.get("url") or ""))
+        if _c:
+            _a["_corps"] = _c
+
+    def _txt(article):
+        """Texte de comparaison d'un article, corps inclus s'il a été lu."""
+        return texte_de_comparaison(
+            article, corps=_corps_par_url.get(str(article.get("url") or ""))
+            or article.get("_corps"))
     for art in (articles or []):
         titre = str(art.get("title") or "").strip()
         if not titre:
@@ -13027,7 +13690,7 @@ def regrouper_en_evenements(articles, conn=None, seuil=None):
         # 📰 On juge sur le titre ET le résumé du flux. Le résumé est déjà
         #    téléchargé : l'exploiter ne coûte rien et lève l'essentiel des
         #    ambiguïtés que le titre seul laissait passer.
-        texte = texte_de_comparaison(art)
+        texte = _txt(art)
         # 🧠 Les vecteurs sont la MEILLEURE façon de reconnaître un même événement :
         #    on les demande toujours, la fonction gère elle-même budget et repli.
         try:
@@ -13062,33 +13725,15 @@ def regrouper_en_evenements(articles, conn=None, seuil=None):
                 # titre seul, sinon ce repli reste aveugle là où les vecteurs
                 # ont déjà renoncé.
                 for autre_art in ev.articles:
-                    autres = _sig_words(texte_de_comparaison(autre_art))
-                    if _memes_faits(mots, autres):
+                    autres = _sig_words(_txt(autre_art))
+                    # les deux textes portent-ils un corps lu ? Si oui, on exige
+                    # un vrai recouvrement plutôt qu'un mot isolé.
+                    _riche = bool(_corps_par_url.get(str(art.get("url") or ""))) \
+                        and bool(_corps_par_url.get(str(autre_art.get("url") or "")))
+                    if _memes_faits(mots, autres, texte_riche=_riche):
                         proche = True
                         break
-            if not proche and lectures[0] < EVT_LECTURES_MAX:
-                # 📖 DERNIER RECOURS — lire les articles ENTIERS. Deux dépêches
-                #    sur le même fait partagent forcément des noms, des lieux et
-                #    des chiffres dans leur corps, même quand ni les titres ni
-                #    les résumés n'ont un mot en commun.
-                #
-                #    ⚠️ Encore faut-il une RAISON de télécharger. Sans porte
-                #    d'entrée, il faudrait lire chaque paire d'articles du cycle
-                #    — exactement le coût que l'on refuse. Deux portes, donc :
-                #      • les vecteurs hésitent (bande de doute élargie) ;
-                #      • à défaut de vecteurs, au moins une racine commune.
-                _vaut_lecture = False
-                if vec is not None and ev.vec is not None:
-                    _s = _cos(vec, ev.vec)
-                    _vaut_lecture = (seuil - 0.24) <= _s < seuil
-                elif _racines_communes(mots, _sig_words(
-                        texte_de_comparaison(ev.articles[0]))) >= 1:
-                    _vaut_lecture = True
-                if _vaut_lecture:
-                    c1, c2 = _corps(art), _corps(ev.articles[0])
-                    if c1 and c2 and _memes_faits(_sig_words(c1), _sig_words(c2)):
-                        proche = True
-                        print(f"  📖 Même événement (lecture) : « {titre[:34]}… »")
+
             if proche:
                 ev.absorber(art)
                 rattache = True
@@ -13269,7 +13914,68 @@ def _televerser_image(brut, slug):
         return None
 
 
-def corps_pour_site(item, tweet, recoupement=None):
+def _phrases(texte):
+    """Découpe un texte en phrases exploitables.
+
+    On écarte les fragments trop courts (légendes, boutons résiduels) et les
+    phrases sans verbe apparent, qui sont presque toujours de l'habillage."""
+    t = re.sub(r"\s+", " ", str(texte or "")).strip()
+    brut = re.split(r"(?<=[.!?])\s+(?=[A-ZÀ-ÜŒ«\"])", t)
+    return [p.strip() for p in brut if 45 <= len(p.strip()) <= 400]
+
+
+def _empreinte(phrase):
+    """Mots significatifs d'une phrase, pour reconnaître deux formulations
+    d'une même information."""
+    mots = re.findall(r"[0-9A-Za-zÀ-ÿ]+", phrase.lower())
+    return {m for m in mots if len(m) >= 4 and m not in BREAKING_STOPWORDS}
+
+
+def matiere_premiere(ev, corps_par_url=None, max_phrases=40):
+    """Rassemble TOUT ce que disent les articles, chaque information UNE fois.
+
+    ⚠️ C'est le cœur de la promesse : l'article de Pulse doit contenir les
+    éléments de TOUTES les rédactions, sans répéter trois fois la même chose
+    parce que trois médias l'ont écrite. Deux phrases qui partagent l'essentiel
+    de leurs mots significatifs disent la même information : on garde la plus
+    complète et on retient COMBIEN de médias la portent — cette corroboration
+    est elle-même une donnée.
+
+    Renvoie [{texte, medias, nb}], du plus corroboré au plus isolé."""
+    arts = list(getattr(ev, "articles", []) or [])
+    corps_par_url = corps_par_url or {}
+    retenues = []          # [{texte, empreinte, medias:set}]
+    for a in arts:
+        src = str(a.get("source") or "?").strip()
+        c = corps_par_url.get(str(a.get("url") or "")) or a.get("_corps") or ""
+        for ph in _phrases(f"{a.get('summary') or ''} {str(c)[:5000]}"):
+            emp = _empreinte(ph)
+            if len(emp) < 4:
+                continue
+            jumelle = None
+            for r in retenues:
+                inter = len(emp & r["empreinte"])
+                petit = min(len(emp), len(r["empreinte"])) or 1
+                # 60 % des mots significatifs en commun : c'est la même
+                # information, formulée autrement.
+                if inter / petit >= 0.60:
+                    jumelle = r
+                    break
+            if jumelle:
+                jumelle["medias"].add(src)
+                # on conserve la formulation la plus riche
+                if len(emp) > len(jumelle["empreinte"]):
+                    jumelle["texte"], jumelle["empreinte"] = ph, emp
+            else:
+                retenues.append({"texte": ph, "empreinte": emp, "medias": {src}})
+    sortie = [{"texte": r["texte"], "medias": sorted(r["medias"]),
+               "nb": len(r["medias"])} for r in retenues]
+    # le plus corroboré d'abord : c'est ce qui structure l'article
+    sortie.sort(key=lambda d: (-d["nb"], -len(d["texte"])))
+    return sortie[:max_phrases]
+
+
+def corps_pour_site(item, tweet, recoupement=None, matiere=None):
     """Rédige une version LONGUE de l'article pour le site.
 
     Un tweet est bridé à 280 caractères ; une page web ne l'est pas. Reprendre le
@@ -13290,6 +13996,22 @@ def corps_pour_site(item, tweet, recoupement=None):
     if rec.get("isoles"):
         faits += ("CHIFFRES D'UNE SEULE SOURCE (signale-le explicitement au lecteur) : "
                   + ", ".join(f"{v} {u}" for v, u in rec["isoles"]) + "\n")
+    # 🃏 Les désaccords entre rédactions : à exposer, jamais à trancher.
+    if rec.get("desaccords"):
+        faits += "LES RÉDACTIONS NE DISENT PAS LA MÊME CHOSE :\n"
+        for d in rec["desaccords"]:
+            morceaux = " / ".join(
+                f"{x['valeur']} ({x['nb']} média{'s' if x['nb'] > 1 else ''} : "
+                f"{', '.join(x['medias'][:4])})" for x in d["valeurs"])
+            faits += f"  • sur « {d['unite']} » : {morceaux}\n"
+
+    # 📚 TOUTE la matière : chaque information relevée dans l'ensemble des
+    #    articles, déjà dédoublonnée, avec le nombre de médias qui la portent.
+    materiaux = ""
+    if matiere:
+        materiaux = "\nÉLÉMENTS RELEVÉS DANS L'ENSEMBLE DES ARTICLES :\n" + "\n".join(
+            f"  [{m['nb']} média{'s' if m['nb'] > 1 else ''}] {m['texte']}"
+            for m in matiere[:30]) + "\n"
     try:
         # ⚠️ Tout passe par _llm_json dans ce projet : on demande donc un JSON
         #    à un seul champ plutôt que d'introduire une seconde voie d'appel.
@@ -13298,9 +14020,14 @@ def corps_pour_site(item, tweet, recoupement=None):
 
 TITRE : {titre}
 CE QUE DISENT LES SOURCES : {resume}
-{faits}
+{faits}{materiaux}
 CONSIGNES :
-- 3 à 5 paragraphes, 700 à 1100 caractères au total. Un paragraphe = une idée.
+- Ton article doit reprendre TOUS les éléments listés ci-dessus, sans en oublier
+  un seul et SANS jamais répéter deux fois la même information. Chaque élément
+  n'apparaît qu'une fois, à l'endroit qui convient.
+- Les éléments portés par plusieurs médias forment le corps du récit ; ceux
+  portés par un seul média sont donnés en le signalant (« selon Le Monde »).
+- 4 à 7 paragraphes, 900 à 1800 caractères. Un paragraphe = une idée.
 - Réponds à : que s'est-il passé, où, quand, qui est concerné, et ensuite ?
 - CHAQUE CHIFFRE important doit être accompagné de sa fiabilité, dans le texte :
   « 2 500 hectares, un chiffre confirmé par cinq rédactions » ou
@@ -13312,7 +14039,7 @@ CONSIGNES :
 - Sépare les paragraphes par une ligne vide. Aucun titre, aucune puce.
 
 Réponds avec ce JSON UNIQUEMENT : {{"article":"le texte complet, \\n\\n entre paragraphes"}}""",
-            max_tokens=700, task="special")
+            max_tokens=1100, task="special")
         txt = re.sub(r"\n{3,}", "\n\n", str((r or {}).get("article") or "").strip())
         # garde-fou : un texte plus court que le tweet n'a aucun intérêt
         if txt and len(txt) > len(str(tweet or "")) * 1.4:
@@ -13398,14 +14125,19 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         return None
     # l'accroche est la première ligne du tweet, sans le préfixe de catégorie
     # 📄 Le site reçoit une version DÉVELOPPÉE, pas le tweet recopié.
-    corps = corps_pour_site(item, texte, recoupement)
+    corps = corps_pour_site(item, texte, recoupement,
+                            matiere=(item or {}).get("_matiere"))
     lignes_t = [l for l in str(texte or "").split("\n") if l.strip()]
     chapo = re.sub(r"^[^|]{0,24}\|\s*", "", lignes_t[0]).strip() if lignes_t else ""
     slug = f"{_slug(titre)}-{_now_paris().strftime('%d%m%H%M')}"
     rec = recoupement or {}
     donnees = {
         "slug": slug, "titre": titre, "chapo": chapo[:400], "corps": corps,
-        "categorie": cat or "france", "format": format_,
+        "categorie": cat or "world",
+        # la couleur accompagne la catégorie : le site n'a pas à la deviner,
+        # et l'archive reste colorée même sous son ancien libellé.
+        "categorie_couleur": couleur_categorie(cat),
+        "format": format_,
         "source_nom": item.get("source"), "source_url": item.get("url"),
         "image_url": (_televerser_image(image, slug) if image
                       else (print("  ⚠️ Aucune image à déposer sur le site") or None)),
@@ -15400,7 +16132,15 @@ def _check_feeds_interne(conn):
     try:
         for _e in regrouper_en_evenements(candidates, conn):
             for _a in _e.articles:
-                _evenements_du_cycle[_a.get("title", "")] = _e
+                # ⚠️ Clé par URL d'abord : deux dépêches peuvent porter un titre
+                #    IDENTIQUE sur des faits distincts (« Le point sur la
+                #    situation »). Indexer par titre seul faisait écraser un
+                #    événement par l'autre — et le site publiait alors les
+                #    sources du MAUVAIS dossier. L'URL, elle, est unique.
+                _u = str(_a.get("url") or "")
+                if _u:
+                    _evenements_du_cycle[_u] = _e
+                _evenements_du_cycle.setdefault(_a.get("title", ""), _e)
         # 🏷️ Entités des SEULS événements les mieux couverts : ce sont les seuls
         #    susceptibles d'être publiés, et chaque extraction est un appel.
         for _e in sorted(_evenements_du_cycle.values(),
@@ -15442,7 +16182,8 @@ def _check_feeds_interne(conn):
             #    « ? médias » alors que l'information existait.
             _nm = hot.get("_echo_n")
             if not _nm:
-                _e5 = _evenements_du_cycle.get(hot.get("title", ""))
+                _e5 = (_evenements_du_cycle.get(str(hot.get("url") or ""))
+                   or _evenements_du_cycle.get(hot.get("title", "")))
                 _nm = getattr(_e5, "medias", None) if _e5 else None
             print(f"  🚨 Sujet chaud ({echo_kind}, {_nm or '?'} médias) : "
                   f"{hot['title'][:50]}")
@@ -15466,13 +16207,14 @@ def _check_feeds_interne(conn):
             #    il est sorti, s'il porte sur X, s'il a déjà été traité aujourd'hui.
             #    Le journal affiche le détail : un score se débogue, il ne se subit pas.
             _suivi_valide = False
-            _ev = _evenements_du_cycle.get(hot.get("title", ""))
+            _ev = (_evenements_du_cycle.get(str(hot.get("url") or ""))
+                   or _evenements_du_cycle.get(hot.get("title", "")))
             if _ev is not None:
                 # 🎯 DÉCISION UNIQUE : notation ET anti-doublon au même endroit.
                 #    Auparavant cinq contrôles séparés, dont l'interaction n'était
                 #    jamais testée — c'est par là qu'un doublon est passé.
                 _dec, _pq, _sc, _det = decider_publication(
-                    conn, _ev, note_ia=score, categorie=a.get("category", ""),
+                    conn, _ev, note_ia=score, categorie=_categorie_finale(a, art, conn),
                     imprevu=a.get("imprevu"))
                 if _det:
                     # « Score None » n'apprend rien : quand le sujet est écarté
@@ -15498,6 +16240,10 @@ def _check_feeds_interne(conn):
                     hot["_rec_brut"] = _rec
                     try:
                         hot["_presse"] = dossier_de_presse(_ev, _rec)
+                        # 📚 toute la matière relevée dans l'ensemble des
+                        #    articles, dédoublonnée : le site la déploie.
+                        hot["_matiere"] = getattr(_ev, "matiere", None) \
+                            or matiere_premiere(_ev)
                     except Exception:
                         pass
                 # ⚠️ _sc vaut None quand le sujet est écarté AVANT évaluation
