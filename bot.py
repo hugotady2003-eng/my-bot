@@ -1,5 +1,5 @@
 """
-Pulse NewsBot — bot d'actualité française.
+Pulse NewsBot — média mondial d'actualité, en langue française.
 Génère des tweets engageants avec image PNG, envoyés par email + posté sur X.
 """
 import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib, random
@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.0.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.2.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -126,8 +126,8 @@ MAX_PAR_PASSE = 1
 #    TOUT partait en URGENT (vécu). Ces valeurs rétablissent l'exigence d'origine.
 # ⚠️ Converties sur la nouvelle échelle : 15/20 devient 75/100, 10/20 → 50/100.
 #    Les comparaisons existantes restent donc valides sans être réécrites.
-BREAKING_SCORE = int(os.environ.get("BREAKING_SCORE", "70"))   # seuil du libellé URGENT
-BUZZ_SCORE = int(os.environ.get("BUZZ_SCORE", "40"))          # seuil du canal chaud, label normal
+BREAKING_SCORE = int(os.environ.get("BREAKING_SCORE", "77"))   # seuil du libellé URGENT
+BUZZ_SCORE = int(os.environ.get("BUZZ_SCORE", "46"))          # seuil du canal chaud, label normal
 BUZZ_GAP_MIN = 75         # espacement MINIMUM entre deux buzz non-urgents, le JOUR
 BUZZ_GAP_NIGHT_MIN = 150  # la nuit, on espace deux fois plus (cohérent avec la cadence nocturne)
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
@@ -193,6 +193,44 @@ RSS_FEEDS = [
     {"url": "https://www.actugaming.net/feed/",                        "source": "ActuGaming"},
     {"url": "https://www.millenium.org/feed",                          "source": "Millenium"},
     {"url": "https://fr.ign.com/feed.xml",                             "source": "IGN France"},
+
+    # ═══════════════════════════════════════════════════════════════════════
+    #  SOURCES INTERNATIONALES — Pulse devient un média mondial
+    #  ⚠️ Ces flux sont en ANGLAIS. Le rédacteur écrit en français à partir
+    #     d'eux : la consigne le précise explicitement.
+    # ═══════════════════════════════════════════════════════════════════════
+    # ── Presse internationale ──
+    {"url": "https://feeds.bbci.co.uk/news/world/rss.xml", "source": "BBC"},
+    {"url": "https://feeds.bbci.co.uk/news/business/rss.xml", "source": "BBC Business"},
+    {"url": "https://www.theguardian.com/world/rss", "source": "The Guardian"},
+    {"url": "https://www.aljazeera.com/xml/rss/all.xml", "source": "Al Jazeera"},
+    {"url": "https://rss.cnn.com/rss/edition_world.rss", "source": "CNN"},
+    {"url": "https://www.cnbc.com/id/100003114/device/rss/rss.html", "source": "CNBC"},
+    {"url": "https://asia.nikkei.com/rss/feed/nar", "source": "Nikkei Asia"},
+    {"url": "https://apnews.com/hub/world-news/rss", "source": "Associated Press"},
+    # ── Crypto ──
+    {"url": "https://www.coindesk.com/arc/outboundfeeds/rss/", "source": "CoinDesk"},
+    {"url": "https://cointelegraph.com/rss", "source": "Cointelegraph"},
+    {"url": "https://www.theblock.co/rss.xml", "source": "The Block"},
+    {"url": "https://decrypt.co/feed", "source": "Decrypt"},
+    {"url": "https://blockworks.co/feed", "source": "Blockworks"},
+    # ── Intelligence artificielle ──
+    {"url": "https://openai.com/news/rss.xml", "source": "OpenAI"},
+    {"url": "https://www.anthropic.com/rss.xml", "source": "Anthropic"},
+    {"url": "https://deepmind.google/blog/rss.xml", "source": "Google DeepMind"},
+    {"url": "https://huggingface.co/blog/feed.xml", "source": "Hugging Face"},
+    {"url": "https://blog.google/technology/ai/rss/", "source": "Google AI"},
+    # ── Tech ──
+    {"url": "https://techcrunch.com/feed/", "source": "TechCrunch"},
+    {"url": "https://www.theverge.com/rss/index.xml", "source": "The Verge"},
+    {"url": "https://feeds.arstechnica.com/arstechnica/index", "source": "Ars Technica"},
+    {"url": "https://www.wired.com/feed/rss", "source": "Wired"},
+    {"url": "https://9to5google.com/feed/", "source": "9to5Google"},
+    {"url": "https://9to5mac.com/feed/", "source": "9to5Mac"},
+    # ── Spatial ──
+    {"url": "https://www.nasa.gov/rss/dyn/breaking_news.rss", "source": "NASA"},
+    {"url": "https://www.esa.int/rssfeed/Our_Activities/Space_News", "source": "ESA"},
+    {"url": "https://spacenews.com/feed/", "source": "SpaceNews"},
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1057,7 +1095,20 @@ def _analyse_system():
     global _ANALYSE_SYS
     if _ANALYSE_SYS is None:
         cats = "|".join(LABELS.keys())
-        _ANALYSE_SYS = f"""Tu es l'éditeur du compte Twitter Pulse, compte d'actualité française.
+        _ANALYSE_SYS = f"""Tu es l'éditeur du compte Twitter Pulse, média MONDIAL de langue française.
+
+🌍 LIGNE ÉDITORIALE : avant tout, pose-toi cette question — « une personne
+vivant n'importe où dans le monde trouverait-elle cette information
+importante ? » Si la réponse est non, ce sujet n'a pas sa place.
+• Priorité haute : géopolitique, marchés et banques centrales, crypto,
+  intelligence artificielle, tech, spatial, catastrophes majeures.
+• Écarte : faits divers, accidents locaux, météo régionale, grèves locales,
+  politique municipale, championnats nationaux mineurs.
+• Les sources peuvent être en ANGLAIS : tu écris toujours en FRANÇAIS.
+• Un fait français n'a d'intérêt que par sa portée internationale.
+• Situe le lieu quand il n'est pas évident : « à Séoul », « au Texas ».
+• N'écris jamais « chez nous », « dans notre pays », « l'Hexagone » : le
+  lecteur peut être n'importe où dans le monde.
 
 RÈGLE DOUBLON — LIS ATTENTIVEMENT :
 - is_duplicate=true UNIQUEMENT si l'article répète essentiellement les MÊMES FAITS qu'un titre de la liste des DÉJÀ PUBLIÉS fournie ensuite (même information, rien de neuf pour le lecteur).
@@ -1497,7 +1548,20 @@ def _tweet_system(sober=False):
     if _TWEET_SYS is None:
         _TWEET_SYS = {}
     if key not in _TWEET_SYS:
-        _TWEET_SYS[key] = f"""Tu es community manager de Pulse, compte Twitter d'actualité française.
+        _TWEET_SYS[key] = f"""Tu es community manager de Pulse, média MONDIAL de langue française.
+
+🌍 LIGNE ÉDITORIALE : avant tout, pose-toi cette question — « une personne
+vivant n'importe où dans le monde trouverait-elle cette information
+importante ? » Si la réponse est non, ce sujet n'a pas sa place.
+• Priorité haute : géopolitique, marchés et banques centrales, crypto,
+  intelligence artificielle, tech, spatial, catastrophes majeures.
+• Écarte : faits divers, accidents locaux, météo régionale, grèves locales,
+  politique municipale, championnats nationaux mineurs.
+• Les sources peuvent être en ANGLAIS : tu écris toujours en FRANÇAIS.
+• Un fait français n'a d'intérêt que par sa portée internationale.
+• Situe le lieu quand il n'est pas évident : « à Séoul », « au Texas ».
+• N'écris jamais « chez nous », « dans notre pays », « l'Hexagone » : le
+  lecteur peut être n'importe où dans le monde.
 
 
 Génère QUATRE choses :
@@ -5107,7 +5171,20 @@ def gen_poll(conn):
     today = _now_paris().strftime("%d %B %Y")
 
     try:
-        result = _llm_json(f"""Tu animes Pulse, compte Twitter d'actualité française. Aujourd'hui : {today}.
+        result = _llm_json(f"""Tu animes Pulse, média MONDIAL de langue française.
+
+🌍 LIGNE ÉDITORIALE : avant tout, pose-toi cette question — « une personne
+vivant n'importe où dans le monde trouverait-elle cette information
+importante ? » Si la réponse est non, ce sujet n'a pas sa place.
+• Priorité haute : géopolitique, marchés et banques centrales, crypto,
+  intelligence artificielle, tech, spatial, catastrophes majeures.
+• Écarte : faits divers, accidents locaux, météo régionale, grèves locales,
+  politique municipale, championnats nationaux mineurs.
+• Les sources peuvent être en ANGLAIS : tu écris toujours en FRANÇAIS.
+• Un fait français n'a d'intérêt que par sa portée internationale.
+• Situe le lieu quand il n'est pas évident : « à Séoul », « au Texas ».
+• N'écris jamais « chez nous », « dans notre pays », « l'Hexagone » : le
+  lecteur peut être n'importe où dans le monde. Aujourd'hui : {today}.
 
 Articles du jour :
 {headlines_str}
@@ -7823,8 +7900,88 @@ def gather_articles_with_urls(limit_per_feed=4):
             pass
     return arts
 
+# Blocs qui entourent un article sans en faire partie. Les ramasser revenait à
+# mélanger le menu, les cookies et « À lire aussi » au corps du texte.
+_HORS_ARTICLE = re.compile(
+    r"<(?:nav|header|footer|aside|form|figure|figcaption|noscript)\b[^>]*>.*?"
+    r"</(?:nav|header|footer|aside|form|figure|figcaption|noscript)>",
+    re.DOTALL | re.IGNORECASE)
+
+# Les rédactions nomment presque toujours ces blocs de la même façon.
+_CLASSE_PARASITE = re.compile(
+    r'<(\w+)[^>]*(?:class|id)\s*=\s*["\'][^"\']*'
+    r"(?:pub|ads?|advert|sponsor|promo|newsletter|abonn|paywall|cookie|consent|"
+    r"related|lire-aussi|a-lire|sur-le-meme|recommand|partage|share|social|"
+    r"comment|commentaire|menu|nav|sidebar|widget|banner|popup|modal|teaser)"
+    r'[^"\']*["\'][^>]*>.*?</\1>',
+    re.DOTALL | re.IGNORECASE)
+
+# Phrases d'habillage qui survivent au nettoyage des balises.
+_PHRASE_PARASITE = re.compile(
+    r"(?i)^(?:partager|partagez|abonnez[- ]vous|inscrivez[- ]vous|suivez[- ]nous|"
+    r"lire aussi|à lire aussi|voir aussi|sur le même sujet|à découvrir|"
+    r"publicité|contenu sponsorisé|article réservé aux abonnés|"
+    r"tous droits réservés|©|cookies?|accepter|newsletter|"
+    r"share this|subscribe|sign up|read more|advertisement|related articles?)\b")
+
+
+def _corps_article(page):
+    """Isole le corps rédactionnel d'une page HTML.
+
+    ⚠️ Ramasser tous les <p> d'une page, c'est ramasser le menu, le bandeau
+    cookies, « À lire aussi » et les promos d'abonnement en même temps que
+    l'article. Sur une comparaison de sujets, ce bruit est commun à TOUTES les
+    pages d'un même site : deux articles sans rapport du même journal
+    paraissent alors se ressembler. Le nettoyage n'est pas cosmétique, il
+    conditionne la justesse du rapprochement.
+
+    Trois pistes, de la plus fiable à la plus large."""
+    import html as _html
+    page = re.sub(r"<(script|style|template)[^>]*>.*?</\1>", " ", page,
+                  flags=re.DOTALL | re.IGNORECASE)
+
+    # ① Le balisage sémantique : <article> désigne explicitement le contenu.
+    zone = None
+    m = re.search(r"<article\b[^>]*>(.*?)</article>", page,
+                  re.DOTALL | re.IGNORECASE)
+    if m and len(m.group(1)) > 400:
+        zone = m.group(1)
+    if zone is None:
+        m = re.search(r'<(\w+)[^>]*(?:class|id)\s*=\s*["\'][^"\']*'
+                      r'(?:article-?body|articlebody|post-?content|entry-?content|'
+                      r'story-?body|content-?body|texte-?article)'
+                      r'[^"\']*["\'][^>]*>(.*?)</\1>',
+                      page, re.DOTALL | re.IGNORECASE)
+        if m and len(m.group(2)) > 400:
+            zone = m.group(2)
+    if zone is None:
+        zone = page
+
+    # ② On retire ce qui entoure sans appartenir.
+    zone = _HORS_ARTICLE.sub(" ", zone)
+    for _ in range(3):          # les blocs parasites sont souvent imbriqués
+        zone, n = _CLASSE_PARASITE.subn(" ", zone)
+        if not n:
+            break
+
+    # ③ Paragraphe par paragraphe, en écartant l'habillage résiduel.
+    paras = re.findall(r"<p[^>]*>(.*?)</p>", zone, flags=re.DOTALL | re.IGNORECASE)
+    gardes = []
+    for p in paras:
+        t = _html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", p))).strip()
+        # une phrase d'article fait rarement moins de 40 caractères ;
+        # en dessous, c'est presque toujours une légende ou un bouton
+        if len(t) < 40 or _PHRASE_PARASITE.match(t):
+            continue
+        gardes.append(t)
+    return " ".join(gardes).strip()
+
+
 def fetch_article_text(url, max_chars=7000):
-    """Récupère le texte principal d'un article (paragraphes), pour en extraire les vrais chiffres."""
+    """Récupère le CORPS d'un article, sans son habillage.
+
+    Sert à deux choses : extraire les vrais chiffres pour la rédaction, et
+    départager deux sujets quand titre et résumé ne suffisent pas."""
     if not url:
         return ""
     try:
@@ -7834,11 +7991,18 @@ def fetch_article_text(url, max_chars=7000):
             raw_bytes = _read_capped(r, cap=1_500_000)
             enc = (r.headers.get("Content-Encoding") or "").lower()
         page = _decode_html_body(raw_bytes, enc)
-        page = re.sub(r'<(script|style)[^>]*>.*?</\1>', ' ', page, flags=re.DOTALL | re.IGNORECASE)
-        paras = re.findall(r'<p[^>]*>(.*?)</p>', page, flags=re.DOTALL | re.IGNORECASE)
-        text = " ".join(re.sub(r'<[^>]+>', '', p) for p in paras)
-        text = _html.unescape(re.sub(r'\s+', ' ', text)).strip()
-        return text[:max_chars]
+        texte = _corps_article(page)
+        if len(texte) < 200:
+            # ⚠️ Repli : sur une page au balisage inhabituel, un nettoyage trop
+            #    strict peut tout supprimer. Mieux vaut un texte imparfait que
+            #    pas de texte du tout — mais on ne descend ici qu'en dernier ressort.
+            page2 = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", page,
+                           flags=re.DOTALL | re.IGNORECASE)
+            paras = re.findall(r"<p[^>]*>(.*?)</p>", page2,
+                               flags=re.DOTALL | re.IGNORECASE)
+            brut = " ".join(re.sub(r"<[^>]+>", "", p) for p in paras)
+            texte = _html.unescape(re.sub(r"\s+", " ", brut)).strip()
+        return texte[:max_chars]
     except Exception as e:
         print(f"  ⚠️ fetch_article_text: {e}")
         return ""
@@ -7880,7 +8044,20 @@ def gen_carousel(conn):
         # ÉTAPE 1 : choisir LE sujet de fond du jour
         deja = recent_thread_topics(conn)
         deja_str = ("\n⛔ THÈMES DÉJÀ TRAITÉS cette semaine — choisis un sujet DIFFÉRENT : " + " | ".join(deja)) if deja else ""
-        pick = _llm_json(f"""Tu es Pulse, média d'actualité française. Aujourd'hui : {today}.
+        pick = _llm_json(f"""Tu es Pulse, média MONDIAL de langue française.
+
+🌍 LIGNE ÉDITORIALE : avant tout, pose-toi cette question — « une personne
+vivant n'importe où dans le monde trouverait-elle cette information
+importante ? » Si la réponse est non, ce sujet n'a pas sa place.
+• Priorité haute : géopolitique, marchés et banques centrales, crypto,
+  intelligence artificielle, tech, spatial, catastrophes majeures.
+• Écarte : faits divers, accidents locaux, météo régionale, grèves locales,
+  politique municipale, championnats nationaux mineurs.
+• Les sources peuvent être en ANGLAIS : tu écris toujours en FRANÇAIS.
+• Un fait français n'a d'intérêt que par sa portée internationale.
+• Situe le lieu quand il n'est pas évident : « à Séoul », « au Texas ».
+• N'écris jamais « chez nous », « dans notre pays », « l'Hexagone » : le
+  lecteur peut être n'importe où dans le monde. Aujourd'hui : {today}.
 
 Articles du jour (numérotés) :
 {listing}
@@ -7935,7 +8112,20 @@ Réponds avec ce JSON UNIQUEMENT :
             article_text = f"{art['title']}. {art['summary']}"  # repli si lecture impossible
 
         # ÉTAPE 3 : générer les slides chiffrées à partir de l'article
-        result = _llm_json(f"""Tu es Pulse, média d'actualité française. Voici un article à décrypter en carrousel pédagogique.
+        result = _llm_json(f"""Tu es Pulse, média MONDIAL de langue française.
+
+🌍 LIGNE ÉDITORIALE : avant tout, pose-toi cette question — « une personne
+vivant n'importe où dans le monde trouverait-elle cette information
+importante ? » Si la réponse est non, ce sujet n'a pas sa place.
+• Priorité haute : géopolitique, marchés et banques centrales, crypto,
+  intelligence artificielle, tech, spatial, catastrophes majeures.
+• Écarte : faits divers, accidents locaux, météo régionale, grèves locales,
+  politique municipale, championnats nationaux mineurs.
+• Les sources peuvent être en ANGLAIS : tu écris toujours en FRANÇAIS.
+• Un fait français n'a d'intérêt que par sa portée internationale.
+• Situe le lieu quand il n'est pas évident : « à Séoul », « au Texas ».
+• N'écris jamais « chez nous », « dans notre pays », « l'Hexagone » : le
+  lecteur peut être n'importe où dans le monde. Voici un article à décrypter en carrousel pédagogique.
 
 SUJET : {art['title']}
 ARTICLE :
@@ -10981,6 +11171,34 @@ def _sig_words(title):
     words = re.findall(r"[0-9A-Za-zÀ-ÿ]+", (title or "").lower())
     return {w for w in words if len(w) >= 4 and w not in BREAKING_STOPWORDS}
 
+
+def texte_de_comparaison(article, max_chars=600):
+    """Le texte sur lequel juger si deux articles parlent du même fait.
+
+    ⚠️ Le titre SEUL est un signal pauvre : « Budget 2027 : le bras de fer »
+    et « Budget 2027 : Bayrou temporise » partagent deux mots et fusionnaient,
+    alors que « Feu de forêt en Gironde » et « 225 hectares partis en fumée »
+    n'en partagent aucun et restaient séparés. Le résumé RSS lève ces deux
+    ambiguïtés — et il est DÉJÀ téléchargé avec le flux : l'utiliser ne coûte
+    ni une requête, ni une seconde.
+
+    Le résumé est borné : au-delà de quelques phrases, on ajoute du bruit
+    (mentions légales, « lire la suite ») plutôt que du signal."""
+    import html as _html_lib
+    titre = str(article.get("title") or article.get("titre") or "").strip()
+    resume = str(article.get("summary") or article.get("resume") or "").strip()
+    if resume:
+        # les flux livrent souvent du HTML : on ne garde que le texte
+        resume = re.sub(r"<[^>]+>", " ", resume)
+        resume = _html_lib.unescape(re.sub(r"\s+", " ", resume)).strip()
+        # les invites de fin d'extrait n'apportent rien à la comparaison
+        resume = re.sub(r"(?i)\b(?:lire la suite|read more|continue reading|"
+                        r"cet article|abonnez[- ]vous|article réservé aux abonnés)\b.*$",
+                        "", resume).strip()
+    if not resume:
+        return titre
+    return f"{titre}. {resume[:max_chars]}"
+
 # Marqueurs de contenu "mou" (rapport, étude, analyse...) qui ne sont JAMAIS un breaking
 BREAKING_EXCLUDE = (
     "rapport", "étude", "etude", "analyse", "sondage", "classement", "baromètre", "barometre",
@@ -11118,6 +11336,12 @@ EMBED_BUDGET_JOUR = int(os.environ.get("EMBED_BUDGET_JOUR", "800"))
 # 🧠 Arbitrages IA par cycle sur les rapprochements douteux. Borné : chaque arbitrage
 #    est un appel, et la zone de doute ne concerne qu'une poignée de paires par run.
 EVT_JUGES_MAX = int(os.environ.get("EVT_JUGES_MAX", "6"))
+# 📖 Lectures d'articles ENTIERS autorisées par cycle pour départager deux
+#    sujets. Volontairement bas : c'est un recours, pas une routine. À 4 par
+#    cycle et 288 cycles, le plafond reste sous le millier de pages par jour,
+#    contre ~10 000 si l'on lisait tout systématiquement — pour un gain de
+#    justesse quasi identique, l'ambiguïté étant rare.
+EVT_LECTURES_MAX = int(os.environ.get("EVT_LECTURES_MAX", "4"))
 # 🏷️ Extractions d'entités par cycle. Seuls les événements les mieux couverts sont
 #    concernés : les autres ne seront pas publiés, inutile de payer leur analyse.
 EVT_ENTITES_MAX = int(os.environ.get("EVT_ENTITES_MAX", "5"))
@@ -11920,18 +12144,22 @@ BAREME = {
     "programme":        -15,  # 3/10 et moins : match, salon, cérémonie
 
     # ── L'INTÉRÊT DU LECTORAT (0-12) ────────────────────────────────────
-    "affinite":           8,
-    "exploit_francais":  10,
+    "affinite":          10,
+    "exploit_francais":   4,  # ramené : un exploit sportif français reste local
     "tendance":           6,  # sujet identifié dans les tendances du jour
 
     # ── LA PRIMEUR (0-8) ────────────────────────────────────────────────
     "exclusivite":        5,
     "primeur_absolue":    8,  # aucun autre média ne l'a encore relayé
 
-    # ── LA PROXIMITÉ (0-10) ─────────────────────────────────────────────
-    #    Un fait en France concerne davantage un lectorat français.
-    "national":           6,
-    "local_majeur":       4,  # grande ville ou région identifiée
+    # ── LA PORTÉE (−20 à +18) ───────────────────────────────────────────
+    # ⚠️ Renversement de ligne éditoriale : Pulse n'est plus un média français
+    #    mais un média MONDIAL. Ce qui était un bonus de proximité nationale
+    #    devient un bonus de portée internationale — et un fait purement local
+    #    est désormais pénalisé, quel que soit son pays.
+    "portee_mondiale":   18,  # géopolitique, marchés, IA, crypto, spatial
+    "portee_large":      10,  # concerne plusieurs pays
+    "purement_local":   -20,  # fait divers, météo, politique municipale
 
     # ── LES PÉNALITÉS ───────────────────────────────────────────────────
     "deja_traite":      -30,  # par publication antérieure
@@ -11941,8 +12169,8 @@ BAREME = {
 }
 
 # Seuils exprimés sur la même échelle
-SEUIL_PUBLICATION = int(os.environ.get("SEUIL_PUBLICATION", "40"))
-SEUIL_ALERTE      = int(os.environ.get("SEUIL_ALERTE", "70"))
+SEUIL_PUBLICATION = int(os.environ.get("SEUIL_PUBLICATION", "46"))
+SEUIL_ALERTE      = int(os.environ.get("SEUIL_ALERTE", "77"))
 
 # ⚠️ Conservé pour compatibilité : d'anciens appels comparent encore à ces
 #    constantes. Elles sont converties vers la nouvelle échelle.
@@ -12293,17 +12521,83 @@ def resume_recoupement(rec):
 
 
 
-# 🇫🇷 PROXIMITÉ — un fait survenu en France concerne davantage un lectorat français.
-_MARQUEURS_FR = re.compile(
-    r"\b(?:france|français|française|paris|lyon|marseille|toulouse|bordeaux|lille|"
-    r"nantes|nice|strasbourg|montpellier|rennes|préfecture|gendarmerie|assemblée "
-    r"nationale|sénat|élysée|matignon|ministre|gouvernement|smic|sécurité sociale|"
-    r"sncf|edf|insee|départements?|communes?|maire|région)\b", re.IGNORECASE)
+# 🌍 PORTÉE MONDIALE — la question centrale de la ligne éditoriale :
+#    « une personne vivant n'importe où dans le monde trouverait-elle cette
+#    information importante ? » Si non, on ne publie pas.
+_PORTEE_MONDIALE = re.compile(
+    r"\b(?:"
+    # géopolitique
+    r"ONU|OTAN|NATO|Union européenne|Commission européenne|G7|G20|"
+    r"États[- ]Unis|Etats[- ]Unis|Washington|Maison[- ]Blanche|Pentagone|"
+    r"Chine|Pékin|Beijing|Russie|Moscou|Kremlin|Ukraine|Israël|Gaza|Iran|"
+    r"Taïwan|Corée du Nord|Inde|Brésil|Japon|Royaume[- ]Uni|Allemagne|"
+    r"sanctions|traité|sommet international|casque[s]? bleu[s]?|"
+    r"guerre|conflit|cessez[- ]le[- ]feu|invasion|frappes?|"
+    # économie
+    r"Réserve fédérale|Fed\b|BCE\b|banque centrale|FMI|Banque mondiale|"
+    r"Wall Street|Nasdaq|S&P|Dow Jones|CAC 40|Nikkei|inflation mondiale|"
+    r"récession|krach|marchés financiers|introduction en bourse|IPO\b|"
+    r"Fortune 500|rachat de|fusion[- ]acquisition|"
+    # crypto
+    r"Bitcoin|BTC\b|Ethereum|ETH\b|Solana|blockchain|crypto|stablecoin|"
+    r"Binance|Coinbase|Kraken|Ripple|XRP\b|BNB\b|DeFi|NFT\b|Layer ?2|"
+    r"SEC\b|MiCA|halving|ETF\b|"
+    # intelligence artificielle
+    r"OpenAI|ChatGPT|Anthropic|Claude|DeepMind|Gemini|xAI|Grok|Mistral|"
+    r"Llama|Nvidia|intelligence artificielle|IA générative|AGI\b|"
+    r"modèle de langage|superintelligence|"
+    # tech
+    r"Apple|Google|Microsoft|Amazon|Meta|Tesla|Samsung|TSMC|AMD\b|Intel|"
+    r"iPhone|Android|Windows|semi[- ]conducteur|puce[s]?|processeur[s]?|"
+    # spatial
+    r"SpaceX|Starship|Blue Origin|NASA|ESA\b|fusée|satellite|"
+    r"mission lunaire|Mars|Station spatiale|astronaute|"
+    # mondial
+    r"OMS\b|pandémie|épidémie mondiale|COP\d+|GIEC|climat mondial|"
+    r"cyberattaque|ransomware|faille de sécurité|prix Nobel|"
+    r"Coupe du Monde|Ligue des Champions|Jeux Olympiques|Formule 1|F1\b|"
+    r"NBA\b|Roland[- ]Garros|Wimbledon|Mondial"
+    r")\b", re.IGNORECASE)
+
+# ⛔ PUREMENT LOCAL — ce que Pulse ne doit quasiment plus publier.
+_PUREMENT_LOCAL = re.compile(
+    r"\b(?:"
+    r"fait divers|accident de la route|collision|carambolage|"
+    r"météo|orages? sur|vigilance orange|vigilance jaune|canicule locale|"
+    r"conseil municipal|maire de(?! Paris| Londres| New York)|mairie|"
+    r"préfecture|gendarmerie|commissariat|tribunal correctionnel|"
+    r"grève des|manifestation à|rassemblement à|"
+    r"département|commune de|village de|arrondissement|"
+    r"ligue 2|national 1|championnat régional|"
+    r"kermesse|inauguration|marché de Noël|braderie|festival local"
+    r")\b", re.IGNORECASE)
 
 
-def _est_national(texte):
-    """Vrai si le fait se rattache visiblement au territoire français."""
-    return bool(_MARQUEURS_FR.search(str(texte or "")))
+def portee_du_fait(titre, resume=""):
+    """Quelle est la portée d'un fait : mondiale, internationale, locale, ou neutre ?
+
+    ⚠️ C'est la question centrale de la ligne éditoriale de Pulse :
+    « une personne vivant n'importe où dans le monde trouverait-elle cette
+    information importante ? » Un accident de la route en Dordogne ne passe
+    pas ce test, une décision de la Fed oui.
+
+    ⚠️ Un fait qui ne mentionne AUCUN des deux signaux — ni marqueur mondial, ni
+    marqueur explicitement local — reste NEUTRE. Le classer « locale » par
+    défaut punissait à tort des faits graves et généraux (une attaque, un
+    séisme non nommément situé) qui ne citent simplement pas un pays dans leur
+    titre. Mieux vaut ne pas ajuster que de deviner à tort.
+
+    Renvoie « mondiale », « large », « locale » ou « neutre »."""
+    t = f"{titre or ''} {resume or ''}"
+    mondial = len(set(m.group(0).lower() for m in _PORTEE_MONDIALE.finditer(t)))
+    if mondial >= 2:
+        return "mondiale"
+    if mondial == 1:
+        return "large"
+    if _PUREMENT_LOCAL.search(t):
+        return "locale"
+    return "neutre"
+
 
 
 # 📣 TITRE RACOLEUR — celui qui retient l'information au lieu de la donner.
@@ -12367,8 +12661,12 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None,
         age = getattr(ev, "age_heures", 0) or 0
     age = float(age)
     pts_f = 0
+    # ⚠️ Une tolérance de quelques secondes absorbe le bruit inhérent au calcul
+    #    d'un horodatage en flottant : un événement mesuré à « 2,0000001 h »
+    #    par un simple écart d'exécution ne doit pas basculer dans le palier
+    #    suivant (vécu : le même défaut déjà rencontré sur age_heures).
     for seuil in sorted(BAREME["fraicheur"]):
-        if age <= seuil:
+        if age <= seuil + 0.001:      # ~3,6 secondes de tolérance
             pts_f = BAREME["fraicheur"][seuil]
             break
     if pts_f:
@@ -12412,21 +12710,30 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None,
         detail.append(f"en tendance +{BAREME['tendance']}")
 
     # ── ⑥ LA PRIMEUR (0-8) ─────────────────────────────────────────────
-    if m == 1 and age < 1.0:
+    # même tolérance que pour la fraîcheur : éviter qu'un écart d'exécution
+    # de quelques millisecondes fasse basculer un article pile à l'heure.
+    if m == 1 and age < 1.001:
         score += BAREME["primeur_absolue"]
         detail.append(f"primeur absolue +{BAREME['primeur_absolue']}")
-    elif m <= 2 and age < 2.0:
+    elif m <= 2 and age < 2.001:
         score += BAREME["exclusivite"]
         detail.append(f"primeur +{BAREME['exclusivite']}")
 
     # ── ⑦ LA PROXIMITÉ (0-10) ──────────────────────────────────────────
     #    Un fait survenu en France concerne davantage un lectorat français.
-    if national is None:
-        national = _est_national(f"{getattr(ev, 'titre', '')} "
-                                 f"{getattr(ev, 'resume', '')}")
-    if national:
-        score += BAREME["national"]
-        detail.append(f"fait national +{BAREME['national']}")
+    # 🌍 La portée décide : Pulse est un média mondial. Un fait purement local
+    #    est fortement pénalisé, quel que soit le pays où il se produit.
+    _p = portee_du_fait(getattr(ev, "titre", ""), getattr(ev, "resume", ""))
+    if _p == "mondiale":
+        score += BAREME["portee_mondiale"]
+        detail.append(f"portée mondiale +{BAREME['portee_mondiale']}")
+    elif _p == "large":
+        score += BAREME["portee_large"]
+        detail.append(f"portée internationale +{BAREME['portee_large']}")
+    elif _p == "locale":
+        score += BAREME["purement_local"]
+        detail.append(f"fait local {BAREME['purement_local']}")
+    # "neutre" : aucun signal net dans un sens ou l'autre, on n'ajuste pas.
 
     # ── ⑧ LES PÉNALITÉS ────────────────────────────────────────────────
     try:
@@ -12463,7 +12770,10 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None,
     #    Le plancher hérité était exprimé sur 20 : on le convertit.
     _pts, _lib = _fait_majeur(ev.titre, getattr(ev, "resume", ""))
     if _pts:
-        _pts100 = min(100, int(_pts * 5))       # 16/20 → 80/100
+        # 16/20 devient 90/100 : au-dessus de tout seuil URGENT raisonnable,
+        # jamais l'inverse. Un plancher qui ne plafonne pas au-delà du seuil
+        # d'alerte n'est plus un plancher.
+        _pts100 = min(100, int(_pts * 5.6))
         if score < _pts100:
             detail.append(f"⚡ {_lib} → plancher {_pts100}")
             score = float(_pts100)
@@ -12608,6 +12918,49 @@ def decider_publication(conn, ev, note_ia=None, categorie="", imprevu=None):
     return "ecarter", "juge indisponible, aucun fait nouveau", score, detail
 
 
+# ⚠️ VÉCU : « Céline Dion annonce son retour » et « Spider-Noir dévoile sa
+#    bande-annonce » fusionnaient. La longueur d'un mot servait de preuve qu'il
+#    est rare — mais « annonce » fait sept lettres et revient dans une actualité
+#    sur deux. Ces mots-là sont longs ET banals : ils ne prouvent rien seuls.
+_MOTS_BANALS = {
+    "annonce", "annonces", "annonce", "annoncé", "annoncée", "annoncent",
+    "declare", "déclare", "déclaré", "affirme", "estime", "explique",
+    "ministre", "ministres", "president", "président", "presidente",
+    "gouvernement", "assemblee", "assemblée", "senat", "sénat",
+    "million", "millions", "milliard", "milliards", "millier", "milliers",
+    "nouveau", "nouvelle", "nouvelles", "nouveaux", "premier", "premiere",
+    "première", "dernier", "derniere", "dernière", "prochain", "prochaine",
+    "personne", "personnes", "habitants", "victime", "victimes",
+    "journee", "journée", "matinee", "matinée", "soiree", "soirée",
+    "vendredi", "samedi", "dimanche", "lundi", "mardi", "mercredi", "jeudi",
+    "janvier", "fevrier", "février", "mars", "avril", "juin", "juillet",
+    "aout", "août", "septembre", "octobre", "novembre", "decembre", "décembre",
+    "video", "vidéo", "images", "reportage", "temoignage", "témoignage",
+    "selon", "apres", "après", "avant", "pendant", "durant",
+    "pourquoi", "comment", "combien",
+    "monde", "pays", "region", "région", "ville", "villes",
+    "affaire", "dossier", "enquete", "enquête", "proces", "procès",
+    "reunion", "réunion", "sommet", "accord", "projet", "reforme", "réforme",
+    # ⚠️ LES VERBES D'ACTUALITÉ sont le piège principal : longs, donc pris pour
+    #    discriminants, mais présents dans une dépêche sur deux. « Spider-Noir
+    #    DÉVOILE sa bande-annonce » a fusionné avec « OpenAI DÉVOILE son
+    #    modèle » pour ce seul mot. Un verbe ne désigne jamais un événement.
+    "devoile", "dévoile", "dévoilé", "dévoilent", "revele", "révèle", "révélé",
+    "presente", "présente", "présenté", "confirme", "confirmé", "dement",
+    "dément", "démenti", "lance", "lancé", "lancement", "publie", "publié",
+    "adopte", "adopté", "rejette", "rejeté", "approuve", "approuvé",
+    "critique", "denonce", "dénonce", "accuse", "accusé", "reagit", "réagit",
+    "reponse", "réponse", "riposte", "prevoit", "prévoit", "envisage",
+    "promet", "propose", "refuse", "accepte", "decide", "décide", "décidé",
+    "attaque", "defend", "défend", "soutient", "appelle", "demande",
+    "arrive", "arrivera", "devient", "obtient", "remporte", "perd",
+    "augmente", "baisse", "recule", "progresse", "atteint", "franchit",
+    "ouvre", "ferme", "quitte", "rejoint", "nomme", "nommé", "remplace",
+    "commence", "termine", "poursuit", "continue", "suspend", "reporte",
+    "annule", "annulé", "modifie", "change", "prepare", "prépare",
+}
+
+
 def _memes_faits(a, b):
     """Deux titres parlent-ils du même événement, sans recours aux vecteurs ?
 
@@ -12616,9 +12969,23 @@ def _memes_faits(a, b):
     hasard dans deux actualités. Les mots courts et fréquents (Paris, loi, mort) sont
     exclus de cette règle, sinon tous les faits divers parisiens fusionneraient."""
     communs_r = _racines_communes(a, b)
+    # ⚠️ VÉCU : « 2 mots communs suffisent » fusionnait « Budget 2027 : le bras
+    #    de fer » avec « Budget 2027 : Bayrou temporise » — mais aussi avec des
+    #    faits sans rapport partageant deux mots banals. Sur un texte enrichi du
+    #    résumé, le hasard produit bien plus de mots communs : le seuil absolu
+    #    ne tient plus. On exige donc une PROPORTION de recouvrement, ce qui
+    #    s'adapte à la longueur des deux textes au lieu de la subir.
     if communs_r >= 2:
-        return True
-    rares = {m for m in (a & b) if len(m) >= 6}
+        petit = min(len(a), len(b)) or 1
+        if communs_r >= max(3, petit * 0.30):
+            return True
+    # Un seul mot suffit s'il est vraiment DISCRIMINANT : un nom propre long
+    # ne se retrouve pas par hasard dans deux actualités distinctes.
+    # ⚠️ Le seuil reste à 6 caractères : le porter à 8 paraissait plus prudent,
+    #    mais écartait « Gironde » (7) et « Zidane » (6) — soit exactement les
+    #    noms propres qui font le rapprochement. La précision vient du texte
+    #    enrichi et de la règle de proportion ci-dessus, pas d'ici.
+    rares = {m for m in (a & b) if len(m) >= 6 and m not in _MOTS_BANALS}
     return bool(rares)
 
 
@@ -12634,17 +13001,40 @@ def regrouper_en_evenements(articles, conn=None, seuil=None):
     seuil = EMBED_SEUIL if seuil is None else seuil
     evenements = []
     juges = [0]        # nombre d'arbitrages IA de ce cycle, borné par EVT_JUGES_MAX
+    lectures = [0]     # lectures d'articles entiers, bornées par EVT_LECTURES_MAX
+    _cache_corps = {}  # une même URL n'est jamais téléchargée deux fois par cycle
+
+    def _corps(article):
+        """Texte complet d'un article, lu au plus une fois par cycle."""
+        u = str(article.get("url") or "")
+        if not u:
+            return ""
+        if u in _cache_corps:
+            return _cache_corps[u]
+        if lectures[0] >= EVT_LECTURES_MAX:
+            return ""
+        lectures[0] += 1
+        try:
+            txt = fetch_article_text(u, max_chars=2500)
+        except Exception:
+            txt = ""
+        _cache_corps[u] = txt
+        return txt
     for art in (articles or []):
         titre = str(art.get("title") or "").strip()
         if not titre:
             continue
+        # 📰 On juge sur le titre ET le résumé du flux. Le résumé est déjà
+        #    téléchargé : l'exploiter ne coûte rien et lève l'essentiel des
+        #    ambiguïtés que le titre seul laissait passer.
+        texte = texte_de_comparaison(art)
         # 🧠 Les vecteurs sont la MEILLEURE façon de reconnaître un même événement :
         #    on les demande toujours, la fonction gère elle-même budget et repli.
         try:
-            vec = _embed(titre, conn)
+            vec = _embed(texte, conn)
         except Exception:
             vec = None
-        mots = _sig_words(titre)
+        mots = _sig_words(texte)
         rattache = False
         for ev in evenements:
             # ⚠️ On compare à TOUS les articles de l'événement, pas seulement à son titre :
@@ -12668,11 +13058,37 @@ def regrouper_en_evenements(articles, conn=None, seuil=None):
                     elif verdict is False:
                         continue          # tranché : ce n'est PAS le même fait
             if not proche:
+                # même enrichissement ici : comparer titre + résumé, pas le
+                # titre seul, sinon ce repli reste aveugle là où les vecteurs
+                # ont déjà renoncé.
                 for autre_art in ev.articles:
-                    autres = _sig_words(autre_art.get("title", ""))
+                    autres = _sig_words(texte_de_comparaison(autre_art))
                     if _memes_faits(mots, autres):
                         proche = True
                         break
+            if not proche and lectures[0] < EVT_LECTURES_MAX:
+                # 📖 DERNIER RECOURS — lire les articles ENTIERS. Deux dépêches
+                #    sur le même fait partagent forcément des noms, des lieux et
+                #    des chiffres dans leur corps, même quand ni les titres ni
+                #    les résumés n'ont un mot en commun.
+                #
+                #    ⚠️ Encore faut-il une RAISON de télécharger. Sans porte
+                #    d'entrée, il faudrait lire chaque paire d'articles du cycle
+                #    — exactement le coût que l'on refuse. Deux portes, donc :
+                #      • les vecteurs hésitent (bande de doute élargie) ;
+                #      • à défaut de vecteurs, au moins une racine commune.
+                _vaut_lecture = False
+                if vec is not None and ev.vec is not None:
+                    _s = _cos(vec, ev.vec)
+                    _vaut_lecture = (seuil - 0.24) <= _s < seuil
+                elif _racines_communes(mots, _sig_words(
+                        texte_de_comparaison(ev.articles[0]))) >= 1:
+                    _vaut_lecture = True
+                if _vaut_lecture:
+                    c1, c2 = _corps(art), _corps(ev.articles[0])
+                    if c1 and c2 and _memes_faits(_sig_words(c1), _sig_words(c2)):
+                        proche = True
+                        print(f"  📖 Même événement (lecture) : « {titre[:34]}… »")
             if proche:
                 ev.absorber(art)
                 rattache = True
