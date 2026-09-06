@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.5.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.6.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -570,6 +570,27 @@ def categoriser(titre, resume="", corps="", ancienne=None):
 for _c, _m in CATEGORIES.items():
     EMOJIS.setdefault(_c, _m["emoji"])
     LABELS.setdefault(_c, _m["label"])
+
+
+def bareme_maximums():
+    """Maximum atteignable par chaque composante de la note.
+
+    Le lecteur voit « 4 points » sans savoir si c'est beaucoup. Publier le
+    plafond de chaque critère rend la note lisible : « 4 sur 20 » se comprend
+    d'un coup d'œil, « +4 » ne dit rien."""
+    return {
+        "gravité": BAREME["gravite_max"],
+        "médias": max(BAREME["medias"].values()),
+        "frais": max(BAREME["fraicheur"].values()),
+        "imprévu": BAREME["imprevu_fort"],
+        "portée": BAREME["portee_mondiale"],
+        "affinité": BAREME["affinite"],
+        "tendance": BAREME["tendance"],
+        "primeur": BAREME["primeur_absolue"],
+        "exclusivité": BAREME["exclusivite"],
+        "suite": BAREME["suite_neuve"],
+        "exploit": BAREME["exploit_francais"],
+    }
 
 
 def couleur_categorie(cat):
@@ -14137,6 +14158,11 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         # la couleur accompagne la catégorie : le site n'a pas à la deviner,
         # et l'archive reste colorée même sous son ancien libellé.
         "categorie_couleur": couleur_categorie(cat),
+        # 🎚️ Les maximums du barème accompagnent le score : sans eux, le site
+        #    affiche « +4 » sans dire « sur 20 ». Les recopier dans le HTML
+        #    créerait une seconde vérité qui se périmerait au premier
+        #    réglage — on les envoie depuis la source.
+        "bareme_max": bareme_maximums(),
         "format": format_,
         "source_nom": item.get("source"), "source_url": item.get("url"),
         "image_url": (_televerser_image(image, slug) if image
