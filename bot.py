@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.20.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.21.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -706,6 +706,41 @@ def bilan_quotas(conn=None):
         lignes.append(f"jetons Gemini : {_USAGE_GEMINI['in']:,} entrée · "
                       f"{_USAGE_GEMINI['out']:,} sortie")
     return lignes
+
+
+def chiffres_annotes(rec):
+    """Chaque chiffre du sujet, avec son degré de confirmation.
+
+    Le site en annote le texte de l'article : le lecteur voit directement, sur
+    le chiffre lui-même, s'il fait consensus. Un pavé récapitulatif en fin de
+    page disait la même chose, mais personne ne le lisait — l'information doit
+    être là où le chiffre est cité.
+
+    Renvoie {clé : {valeur, unite, nb, medias, autres, etat}} où l'état vaut
+    « confirme » (plusieurs rédactions), « seul » (une seule) ou « conteste »
+    (d'autres rédactions donnent une AUTRE valeur pour la même chose)."""
+    out = {}
+    rec = rec or {}
+    for v, u, n in (rec.get("confirmes") or []):
+        out[f"{v}|{u}"] = {"valeur": v, "unite": u, "nb": n,
+                           "medias": [], "autres": [], "etat": "confirme"}
+    for v, u in (rec.get("isoles") or []):
+        out.setdefault(f"{v}|{u}", {"valeur": v, "unite": u, "nb": 1,
+                                    "medias": [], "autres": [], "etat": "seul"})
+    # les désaccords priment : un chiffre contredit par une autre rédaction
+    # n'est pas « confirmé », même si plusieurs le reprennent.
+    for d in (rec.get("desaccords") or []):
+        vals = d.get("valeurs") or []
+        for x in vals:
+            cle = f"{x['valeur']}|{d['unite']}"
+            out[cle] = {
+                "valeur": x["valeur"], "unite": d["unite"],
+                "nb": x.get("nb", 1), "medias": x.get("medias") or [],
+                "autres": [{"valeur": y["valeur"], "nb": y.get("nb", 1),
+                            "medias": y.get("medias") or []}
+                           for y in vals if y is not x],
+                "etat": "conteste"}
+    return out
 
 
 def bareme_maximums():
@@ -15104,6 +15139,98 @@ def titre_pour_site(titre_source, tweet):
     return ligne if len(ligne) >= 20 else str(titre_source or "").strip()
 
 
+def chiffrer_le_texte(texte):
+    """Convertit les nombres écrits en lettres en chiffres, composés compris.
+
+    ⚠️ La consigne le demande au modèle, mais une consigne n'est pas une
+    garantie. Et le site met les chiffres en évidence pour montrer combien de
+    rédactions les confirment : un nombre en lettres échappe à cette mise en
+    évidence, donc l'information se perd.
+
+    Gère les composés : « deux mille » → 2000, « vingt et un » → 21,
+    « trois cents » → 300, « quatre-vingt-dix » → 90.
+
+    Ne touche QUE ce qui est suivi d'un nom commun : « les Cinq Grands » et
+    « Cinq-Mars-la-Pile » restent intacts."""
+    UNITES = {"zéro": 0, "zero": 0, "un": 1, "une": 1, "deux": 2, "trois": 3,
+              "quatre": 4, "cinq": 5, "six": 6, "sept": 7, "huit": 8,
+              "neuf": 9, "dix": 10, "onze": 11, "douze": 12, "treize": 13,
+              "quatorze": 14, "quinze": 15, "seize": 16,
+              "vingt": 20, "vingts": 20,
+              "trente": 30, "quarante": 40, "cinquante": 50, "soixante": 60}
+    ECHELLES = {"cent": 100, "cents": 100, "mille": 1000, "milles": 1000}
+    TOUS = set(UNITES) | set(ECHELLES) | {"et"}
+
+    def _valeur(mots):
+        """Valeur d'une suite de mots-nombres, ou None si la suite n'a pas de sens."""
+        # ⚠️ « quatre-vingt-dix » ne vaut pas 4+20+10 : le français compte par
+        #    vingtaines au-delà de soixante. On traite ces deux formes avant le
+        #    reste, sinon « quatre-vingt-dix » donnait 34.
+        mots = list(mots)
+        for i in range(len(mots) - 1, 0, -1):
+            if mots[i - 1] == "quatre" and mots[i] in ("vingt", "vingts"):
+                mots[i - 1:i + 1] = ["§80"]
+            elif mots[i - 1] == "soixante" and mots[i] in ("dix", "onze", "douze",
+                                                           "treize", "quatorze",
+                                                           "quinze", "seize"):
+                mots[i - 1:i + 1] = [f"§{60 + UNITES[mots[i]]}"]
+        total, courant, vu = 0, 0, False
+        for m in mots:
+            if m == "et":
+                continue
+            if m.startswith("§"):
+                courant += int(m[1:])
+                vu = True
+                continue
+            if m in UNITES:
+                courant += UNITES[m]
+                vu = True
+            elif m in ECHELLES:
+                e = ECHELLES[m]
+                if e == 100:
+                    courant = (courant or 1) * 100
+                else:
+                    total += (courant or 1) * e
+                    courant = 0
+                vu = True
+            else:
+                return None
+        return (total + courant) if vu else None
+
+    txt = str(texte or "")
+    mots_rx = "|".join(sorted(TOUS, key=len, reverse=True))
+    debut_rx = "|".join(sorted(set(UNITES) | set(ECHELLES),
+                               key=len, reverse=True))
+    # ⚠️ La suite ne peut pas COMMENCER par « et » : sinon « cinq morts ET
+    #    trois blessés » consommait « et trois », la suite était rejetée, et
+    #    « trois » n'était jamais réexaminé. « et » n'est admis qu'au milieu.
+    rx = re.compile(
+        rf"(?<![\w-])((?:{debut_rx})(?:[- ](?:{mots_rx}))*)(\s+\S+)",
+        re.IGNORECASE)
+
+    def _sur(m):
+        suite = m.group(1)
+        suivant = m.group(2).strip()
+        # ⚠️ Un mot capitalisé qui suit signale un nom propre, pas une quantité :
+        #    « les Cinq Grands » ne doit pas devenir « les 5 Grands ».
+        if not suivant[:1].islower():
+            return m.group(0)
+        mots = [x for x in re.split(r"[- ]", suite.lower()) if x]
+        # ⚠️ Une suite ne peut ni commencer ni finir par « et » : sinon
+        #    « cinq morts ET trois blessés » voyait « et trois » comme un
+        #    nombre et le « et » disparaissait du texte.
+        if not mots or mots[0] == "et" or mots[-1] == "et":
+            return m.group(0)
+        v = _valeur(mots)
+        if v is None:
+            return m.group(0)
+        # « un » seul est un article, pas un compte : « un homme » reste ainsi
+        if v == 1 and len(mots) == 1:
+            return m.group(0)
+        return f"{v}{m.group(2)}"
+
+    return rx.sub(_sur, txt)
+
 def corps_pour_site(item, tweet, recoupement=None, matiere=None):
     """Rédige une version LONGUE de l'article pour le site.
 
@@ -15116,7 +15243,7 @@ def corps_pour_site(item, tweet, recoupement=None, matiere=None):
     titre = re.sub(r"\s+", " ", str(item.get("title") or "")).strip()
     resume = re.sub(r"\s+", " ", str(item.get("summary") or "")).strip()[:2500]
     if not titre:
-        return str(tweet or "")
+        return chiffrer_le_texte(str(tweet or ""))
     rec = recoupement or {}
     faits = ""
     if rec.get("confirmes"):
@@ -15125,14 +15252,22 @@ def corps_pour_site(item, tweet, recoupement=None, matiere=None):
     if rec.get("isoles"):
         faits += ("CHIFFRES D'UNE SEULE SOURCE (signale-le explicitement au lecteur) : "
                   + ", ".join(f"{v} {u}" for v, u in rec["isoles"]) + "\n")
-    # 🃏 Les désaccords entre rédactions : à exposer, jamais à trancher.
+    # ⚠️ VÉCU : l'article citait toutes les valeurs avancées pour un même fait —
+    #    « 11 morts selon un média, 1 personne, 28 jours, 200 mètres… ». Illisible.
+    #    Le lecteur veut UN chiffre ; les versions concurrentes s'affichent en
+    #    cliquant dessus sur le site. On ne donne donc au rédacteur que la valeur
+    #    la MIEUX corroborée, et on lui interdit d'en citer d'autres.
     if rec.get("desaccords"):
-        faits += "LES RÉDACTIONS NE DISENT PAS LA MÊME CHOSE :\n"
+        faits += ("CHIFFRES CONTESTÉS — n'écris QUE la valeur indiquée ici, "
+                  "JAMAIS les autres :\n")
         for d in rec["desaccords"]:
-            morceaux = " / ".join(
-                f"{x['valeur']} ({x['nb']} média{'s' if x['nb'] > 1 else ''} : "
-                f"{', '.join(x['medias'][:4])})" for x in d["valeurs"])
-            faits += f"  • sur « {d['unite']} » : {morceaux}\n"
+            vals = d.get("valeurs") or []
+            if not vals:
+                continue
+            retenue = vals[0]          # déjà triée : la plus reprise en tête
+            faits += (f"  • {d['unite']} : écris « {retenue['valeur']} » "
+                      f"({retenue['nb']} média"
+                      f"{'s' if retenue['nb'] > 1 else ''})\n")
 
     # 📚 TOUTE la matière : chaque information relevée dans l'ensemble des
     #    articles, déjà dédoublonnée, avec le nombre de médias qui la portent.
@@ -15156,6 +15291,15 @@ CONSIGNES :
   n'apparaît qu'une fois, à l'endroit qui convient.
 - Les éléments portés par plusieurs médias forment le corps du récit ; ceux
   portés par un seul média sont donnés en le signalant (« selon Le Monde »).
+- UN SEUL CHIFFRE PAR FAIT. Ne juxtapose jamais plusieurs valeurs pour la même
+  chose (« 5 morts, ou 11 selon un autre média »). Écris la valeur indiquée et
+  rien d'autre : le lecteur voit les versions concurrentes en cliquant sur le
+  chiffre. N'écris pas non plus « selon une seule source » à côté d'un nombre,
+  cette information est déjà portée par le site.
+- ÉCRIS TOUS LES NOMBRES EN CHIFFRES, jamais en lettres : « 5 morts » et non
+  « cinq morts », « 2 500 hectares » et non « deux mille cinq cents hectares ».
+  Le lecteur doit pouvoir les repérer d'un coup d'œil, et le site les met en
+  évidence pour indiquer combien de rédactions les confirment.
 - 4 à 7 paragraphes, 900 à 1800 caractères. Un paragraphe = une idée.
 - Réponds à : que s'est-il passé, où, quand, qui est concerné, et ensuite ?
 - CHAQUE CHIFFRE important doit être accompagné de sa fiabilité, dans le texte :
@@ -15172,7 +15316,7 @@ Réponds avec ce JSON UNIQUEMENT : {{"article":"le texte complet, \\n\\n entre p
         txt = re.sub(r"\n{3,}", "\n\n", str((r or {}).get("article") or "").strip())
         # garde-fou : un texte plus court que le tweet n'a aucun intérêt
         if txt and len(txt) > len(str(tweet or "")) * 1.4:
-            return txt
+            return chiffrer_le_texte(txt)
     except Exception as e:
         print(f"  ⚠️ Article long indisponible ({str(e)[:50]})")
     # ⚠️ REPLI : le tweet nettoyé. Sa PREMIÈRE ligne devient le chapô de l'article,
@@ -15186,7 +15330,9 @@ Réponds avec ce JSON UNIQUEMENT : {{"article":"le texte complet, \\n\\n entre p
     # on écarte aussi la ligne de source, déjà affichée sous l'article
     lignes_r = [x for x in lignes_r
                 if not re.match(r"^\(?(?:via|source)\s*:", x, re.IGNORECASE)]
-    return "\n\n".join(lignes_r).strip()
+    # 🔢 Les chiffres du site sont mis en évidence : un nombre écrit en
+    #    lettres échapperait à cette mise en évidence.
+    return chiffrer_le_texte("\n\n".join(lignes_r).strip())
 
 
 def traduire_article(titre, chapo, corps):
@@ -15299,6 +15445,9 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         #    et combien la reprennent. Calculée depuis longtemps, elle n'était
         #    PAS transmise — la section restait donc vide sur le site.
         "cartes_sur_table": (item.get("_presse") or {}).get("cartes_sur_table") or [],
+        # 🔢 Chaque chiffre avec son degré de confirmation : le site les annote
+        #    directement dans le texte, au lieu d'un pavé en fin de page.
+        "chiffres": chiffres_annotes(item.get("_rec_brut")),
         "entites": item.get("_entites") or {},
     }
     # 🌍 Version anglaise, produite à la publication et stockée avec l'article.
