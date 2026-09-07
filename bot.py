@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.6.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.7.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -591,6 +591,69 @@ def bareme_maximums():
         "suite": BAREME["suite_neuve"],
         "exploit": BAREME["exploit_francais"],
     }
+
+
+# Chaque libellé du détail, rattaché à son plafond. Le motif est écrit à côté
+# du plafond : c'est la seule façon que les deux ne divergent jamais.
+_CRITERES = [
+    (r"^gravité",              "gravite_max",     "Gravité du fait"),
+    (r"médias?\b",             "medias",          "Reprise par les rédactions"),
+    (r"^frais",                "fraicheur",       "Fraîcheur de l'information"),
+    (r"^imprévu",              "imprevu_fort",    "Caractère imprévu"),
+    (r"^programmé",            "programme",       "Événement programmé"),
+    (r"^portée|^fait local",   "portee_mondiale", "Portée dans le monde"),
+    (r"^thème porteur",        "affinite",        "Thème porteur"),
+    (r"^tendance",             "tendance",        "Sujet en tendance"),
+    (r"^primeur",              "primeur_absolue", "Primeur"),
+    (r"^exclusivité",          "exclusivite",     "Exclusivité"),
+    (r"^suite",                "suite_neuve",     "Suite avec du neuf"),
+    (r"^exploit",              "exploit_francais", "Exploit français"),
+    (r"^déjà traité",          "deja_traite",     "Sujet déjà traité"),
+    (r"^source unique",        "source_unique",   "Une seule source"),
+    (r"^titre racoleur",       "titre_racoleur",  "Titre racoleur"),
+    (r"^péremption|^périmé",   "peremption",      "Information périmée"),
+]
+_CRITERES_C = [(re.compile(m, re.IGNORECASE), k, lib) for m, k, lib in _CRITERES]
+
+
+def detail_structure(detail):
+    """Transforme le détail d'une note en composantes lisibles.
+
+    ⚠️ Le site découpait la chaîne « gravité 7/10 → 32 · 5 médias +11 » en
+    JavaScript pour retrouver valeurs et plafonds. Ce genre de découpage se
+    casse au premier libellé nouveau — et il s'était cassé : « 5 médias » ne
+    correspondait à rien, donc aucune barre ne s'affichait. La décomposition
+    est faite ICI, où le barème vit.
+
+    Renvoie [{libelle, valeur, maximum, part}] — part en % du maximum."""
+    out = []
+    for brut in (detail or []):
+        txt = str(brut).strip()
+        if not txt:
+            continue
+        # la valeur est le dernier nombre de la ligne, signé ou après « → »
+        m = re.search(r"(?:→\s*|([+-])\s*)(\d+(?:[.,]\d+)?)\s*$", txt)
+        if not m:
+            continue
+        val = float(m.group(2).replace(",", "."))
+        if m.group(1) == "-":
+            val = -val
+        maxi, libelle = None, txt[:m.start()].strip(" ·→+-")
+        for rx, cle, lib in _CRITERES_C:
+            if rx.search(txt):
+                brut_max = BAREME.get(cle)
+                if isinstance(brut_max, dict):
+                    brut_max = max(brut_max.values())
+                maxi = abs(brut_max) if brut_max is not None else None
+                libelle = lib
+                break
+        part = 0.0
+        if maxi:
+            part = max(0.0, min(100.0, abs(val) / abs(maxi) * 100))
+        out.append({"libelle": libelle, "valeur": val,
+                    "maximum": maxi, "part": round(part, 1),
+                    "brut": txt})
+    return out
 
 
 def couleur_categorie(cat):
@@ -14178,6 +14241,11 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         #    créerait une seconde vérité qui se périmerait au premier
         #    réglage — on les envoie depuis la source.
         "bareme_max": bareme_maximums(),
+        # 🎚️ Décomposition prête à afficher : chaque critère avec sa valeur, son
+        #    plafond et sa part. Le site n'a plus à découper une phrase.
+        "score_parts": detail_structure(
+            detail if isinstance(detail, (list, tuple))
+            else str(detail or "").split(" · ")),
         "format": format_,
         "source_nom": item.get("source"), "source_url": item.get("url"),
         "image_url": (_televerser_image(image, slug) if image
