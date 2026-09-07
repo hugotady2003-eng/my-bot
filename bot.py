@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.13.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.13.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -108,7 +108,8 @@ GEMINI_API_KEYS = [k for k in (
 ) if k and k.strip()]
 # on retire les doublons en conservant l'ordre : la clé principale reste première
 GEMINI_API_KEYS = list(dict.fromkeys(GEMINI_API_KEYS))
-_CLE_EPUISEE = {}          # clé → jour où son quota a été constaté épuisé
+_CLE_EPUISEE = {}          # clé → jour où TOUS ses modèles ont été épuisés
+_CLE_FORCEE = {}           # clé imposée pour le prochain essai, après bascule
 
 
 def _cle_gemini_active():
@@ -1509,7 +1510,7 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
         # le créneau se réserve pour CE modèle et CETTE clé, pas pour la famille
         _attendre_creneau(famille, modele=_mod_url or None, cle=_cle_prevue)
         try:
-            _cle = _cle_gemini_active() or GEMINI_API_KEY
+            _cle = _CLE_FORCEE.pop("v", None) or _cle_gemini_active() or GEMINI_API_KEY
             r = requests.post(url, headers={"x-goog-api-key": _cle,
                                             "Content-Type": "application/json"},
                               json=payload, timeout=timeout)
@@ -1529,13 +1530,35 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
                 except Exception:
                     pass
             if _quota_epuise:
-                # 🔑 Le quota se compte par PROJET : une autre clé a le sien,
-                #    intact. On bascule et on rejoue le MÊME appel avant
-                #    d'abandonner — sinon la requête serait perdue alors qu'un
-                #    quota libre existe.
-                _marquer_cle_epuisee(_cle)
-                if _cle_gemini_active():
+                # ⚠️ VÉCU : les trois clés se sont déclarées épuisées en onze
+                #    secondes. Le quota est compté PAR MODÈLE et par projet —
+                #    or on condamnait la CLÉ ENTIÈRE au premier modèle à bout.
+                #    Un modèle d'images épuisé tuait ainsi les quotas de texte
+                #    et de vecteurs de la même clé, et le bot basculait sur
+                #    Claude alors que tout un quota gratuit restait disponible.
+                #    On ne retire donc que le COUPLE (clé, modèle).
+                _cple = (_empreinte_cle(_cle), _mod_url or famille)
+                _MODELE_EPUISE[_cple] = _now_paris().strftime("%Y-%m-%d")
+                print(f"  🚫 {_mod_url or famille} épuisé sur cette clé "
+                      f"→ clé suivante", flush=True)
+                # une clé n'est déclarée morte que si TOUS ses modèles le sont
+                _autre = next((k for k in GEMINI_API_KEYS
+                               if k != _cle
+                               and _MODELE_EPUISE.get(
+                                   (_empreinte_cle(k), _mod_url or famille))
+                               != _now_paris().strftime("%Y-%m-%d")), None)
+                if _autre:
+                    _CLE_FORCEE["v"] = _autre
                     continue
+                # aucun autre projet n'a ce modèle disponible. Si TOUS les
+                # modèles connus de cette clé sont épuisés, elle est bel et
+                # bien morte pour la journée — on l'annonce une seule fois.
+                _jr = _now_paris().strftime("%Y-%m-%d")
+                _connus = set(_embed_modeles()) | {_mod_url or famille}
+                if _connus and all(
+                        _MODELE_EPUISE.get((_empreinte_cle(_cle), _m)) == _jr
+                        for _m in _connus):
+                    _marquer_cle_epuisee(_cle)
                 # le message est laissé à l'appelant : lui seul connaît le MODÈLE concerné
                 raise RuntimeError(f"quota {famille} épuisé")
             # ⛔ 404 = le modèle n'existe pas (ou plus) sur ce compte : réessayer est
@@ -4002,6 +4025,34 @@ _PILL_GIF_MAP = {
     "histoire": "histoire.gif",     "sante": "sante.gif",           "ia": "ia.gif",
     "insolite": "insolite.gif",     "gta6": "gta-6.gif",
 }
+
+# ⚠️ VÉCU : « PNG erreur: 'markets' ». Les tables d'habillage visuel — style de
+#    carte, position de la pastille, animation — sont restées sur les ANCIENNES
+#    catégories après le passage aux dix catégories mondiales. La génération
+#    d'image échouait donc pour markets, world, business, ai, space, gaming,
+#    sports : pas de carte, donc pas d'Instagram et pas d'image sur le site.
+#    Une catégorie inconnue ne doit JAMAIS faire échouer un visuel : on la
+#    rattache à sa plus proche voisine de l'ancien jeu.
+_HABILLAGE_EQUIV = {
+    "world": "monde", "business": "economie", "markets": "economie",
+    "crypto": "economie", "ai": "ia", "tech": "tech", "space": "science",
+    "science": "science", "gaming": "culture", "sports": "sport",
+}
+
+
+def _completer_habillage():
+    """Donne à chaque nouvelle catégorie l'habillage de sa voisine."""
+    for table in (STYLES, _PILL_COORDS, _PILL_GIF_MAP):
+        for neuve, ancienne in _HABILLAGE_EQUIV.items():
+            if neuve in table:
+                continue
+            for cle in (ancienne, "monde", "france", "breaking"):
+                if cle in table:
+                    table[neuve] = table[cle]
+                    break
+
+
+_completer_habillage()
 _PILL_GIF_DIRS = ("pills", "assets/pills", "assets", ".")
 
 def _pill_gif_path(category):
@@ -12405,6 +12456,15 @@ def _embed_lot(textes, conn=None, taille=100):
                   f"→ calcul individuel", flush=True)
             return obtenus
         vecteurs = d.get("embeddings") or []
+        # ⚠️ On apparie les vecteurs aux textes PAR POSITION. Si l'API en renvoie
+        #    un nombre différent — une requête refusée dans le lot, un format qui
+        #    change — l'appariement se décale et CHAQUE texte reçoit le vecteur
+        #    d'un autre. Le regroupement rapproche alors des sujets sans rapport,
+        #    et rien ne le signale. Mieux vaut renoncer au lot que de mentir.
+        if len(vecteurs) != len(tranche):
+            print(f"  ⚠️ Lot de vecteurs incohérent ({len(vecteurs)} reçus pour "
+                  f"{len(tranche)} demandés) → calcul individuel", flush=True)
+            return obtenus
         for (cle, _), v in zip(tranche, vecteurs):
             vals = (v or {}).get("values")
             if vals:
@@ -16869,11 +16929,17 @@ def _check_feeds_interne(conn):
             # 📊 Le nombre de médias vient de l'ÉVÉNEMENT, qui les a comptés au
             #    regroupement. « _echo_n » n'était jamais posé : le journal affichait
             #    « ? médias » alors que l'information existait.
-            _nm = hot.get("_echo_n")
-            if not _nm:
-                _e5 = (_evenements_du_cycle.get(str(hot.get("url") or ""))
+            # ⚠️ VÉCU : l'en-tête annonçait « 3 médias » et la note « 39 médias »
+            #    pour le MÊME sujet. Deux comptages différents : l'écho par
+            #    mots-clés d'un côté, les rédactions réellement regroupées de
+            #    l'autre. Le lecteur du journal ne pouvait pas s'y retrouver.
+            #    La note se fonde sur l'événement : l'en-tête doit dire la même
+            #    chose, sinon l'un des deux chiffres est faux.
+            _e5 = (_evenements_du_cycle.get(str(hot.get("url") or ""))
                    or _evenements_du_cycle.get(hot.get("title", "")))
-                _nm = getattr(_e5, "medias", None) if _e5 else None
+            _nm = getattr(_e5, "medias", None) if _e5 else None
+            if not _nm:
+                _nm = hot.get("_echo_n")
             print(f"  🚨 Sujet chaud ({echo_kind}, {_nm or '?'} médias) : "
                   f"{hot['title'][:50]}")
             # Mémoire d'analyse : ne PAS re-payer Claude si cet article a déjà été analysé à un run passé.
