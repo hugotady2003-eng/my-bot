@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.17.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.20.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -671,6 +671,18 @@ def bilan_quotas(conn=None):
     jour = _now_paris().strftime("%Y-%m-%d")
     dispo = [k for k in GEMINI_API_KEYS if _CLE_EPUISEE.get(k) != jour]
     lignes.append(f"clés Gemini : {len(dispo)}/{len(GEMINI_API_KEYS)} disponible(s)")
+    # 🔁 État RÉEL des couples : ce qui reste utilisable, d'après l'API et non
+    #    d'après une estimation interne.
+    for lib, mods in (("texte", _modeles_gemini()), ("vecteurs", _embed_modeles())):
+        libres = combinaisons_gemini(mods)
+        total = len([1 for m in mods if m not in _MODELES_INEXISTANTS
+                     for _ in GEMINI_API_KEYS])
+        lignes.append(f"{lib} : {len(libres)}/{total} couple(s) clé+modèle "
+                      f"disponible(s)")
+        if libres and len(libres) < total:
+            lignes.append("   prochain : "
+                          f"clé {GEMINI_API_KEYS.index(libres[0][0]) + 1} "
+                          f"× {libres[0][1]}")
     if conn is not None:
         try:
             reste = []
@@ -1621,24 +1633,16 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
                 #    et de vecteurs de la même clé, et le bot basculait sur
                 #    Claude alors que tout un quota gratuit restait disponible.
                 #    On ne retire donc que le COUPLE (clé, modèle).
+                # ⚠️ UNE SEULE ROTATION. _post_gemini faisait la sienne, et les
+                #    appelants (_llm_json, _embed_lot) la leur : le même couple
+                #    était essayé deux fois, pour rien. Le balayage systématique
+                #    appartient aux appelants — ici on note l'épuisement du
+                #    couple et on rend la main immédiatement.
                 _cple = (_empreinte_cle(_cle), _mod_url or famille)
                 _MODELE_EPUISE[_cple] = _now_paris().strftime("%Y-%m-%d")
-                print(f"  🚫 {_mod_url or famille} épuisé sur cette clé "
-                      f"→ clé suivante", flush=True)
                 # une clé n'est déclarée morte que si TOUS ses modèles le sont
-                _autre = next((k for k in GEMINI_API_KEYS
-                               if k != _cle
-                               and _MODELE_EPUISE.get(
-                                   (_empreinte_cle(k), _mod_url or famille))
-                               != _now_paris().strftime("%Y-%m-%d")), None)
-                if _autre:
-                    _CLE_FORCEE["v"] = _autre
-                    continue
-                # aucun autre projet n'a ce modèle disponible. Si TOUS les
-                # modèles connus de cette clé sont épuisés, elle est bel et
-                # bien morte pour la journée — on l'annonce une seule fois.
                 _jr = _now_paris().strftime("%Y-%m-%d")
-                _connus = set(_embed_modeles()) | {_mod_url or famille}
+                _connus = set(_embed_modeles()) | set(_modeles_gemini())
                 if _connus and all(
                         _MODELE_EPUISE.get((_empreinte_cle(_cle), _m)) == _jr
                         for _m in _connus):
@@ -1759,21 +1763,33 @@ def _llm_json(prompt, max_tokens=600, system=None, task="analyse"):
     global _LLM_FALLBACKS
     fournisseur = {"analyse": LLM_ANALYSE, "redaction": LLM_REDACTION,
                    "special": LLM_SPECIAUX}.get(task, "claude")
-    if fournisseur == "gemini" and GEMINI_API_KEY:
+    if fournisseur == "gemini" and GEMINI_API_KEYS:
+        # 🔁 CHAQUE MODÈLE × CHAQUE CLÉ. Le quota se compte par projet ET par
+        #    modèle : épuiser un modèle sur la clé 1 ne dit rien de la clé 2.
+        #    L'ancienne boucle n'essayait qu'une clé par modèle et notait
+        #    l'épuisement sur le modèle SEUL — une clé à bout condamnait donc le
+        #    modèle pour toutes les autres, et le bot payait Claude alors que du
+        #    gratuit restait disponible.
         jour = _now_paris().strftime("%Y-%m-%d")
-        for modele in _modeles_gemini():
-            if _MODELE_EPUISE.get(modele) == jour:
-                continue                     # quota déjà constaté épuisé aujourd'hui
+        for cle, modele in combinaisons_gemini(_modeles_gemini()):
+            _CLE_FORCEE["v"] = cle
             try:
                 return _parse_json_reponse(
-                    _gemini_call(prompt, system, max_tokens, want_json=True, modele=modele))
+                    _gemini_call(prompt, system, max_tokens, want_json=True,
+                                 modele=modele))
             except Exception as e:
                 msg = str(e)
-                if "quota" in msg.lower():
-                    _MODELE_EPUISE[modele] = jour
-                    print(f"  🚫 {modele} : quota épuisé aujourd'hui → modèle suivant")
+                _rang = (GEMINI_API_KEYS.index(cle) + 1
+                         if cle in GEMINI_API_KEYS else 0)
+                if "quota" in msg.lower() or "429" in msg:
+                    _MODELE_EPUISE[(_empreinte_cle(cle), modele)] = jour
+                    print(f"  🚫 {modele} épuisé sur la clé {_rang} "
+                          f"→ couple suivant", flush=True)
+                elif "introuvable" in msg.lower() or "not found" in msg.lower():
+                    continue     # modèle absent : déjà mémorisé
                 else:
-                    print(f"  ⚠️ {modele} indisponible ({msg[:70]}) → modèle suivant")
+                    print(f"  ⚠️ {modele} (clé {_rang}) : {msg[:60]} "
+                          f"→ couple suivant", flush=True)
     _LLM_FALLBACKS += 1        # ↩️ recours RÉEL au payant : c'est cela qu'on surveille
     return claude(prompt, max_tokens=max_tokens, system=system)
 
@@ -12439,11 +12455,13 @@ def _embed(texte, conn=None, essentiel=False):
     if not _cle_gemini_active():
         return None
     c = conn or _EMBED_CONN
-    if c is not None:
-        restant = _embed_budget_restant(c)
-        if restant <= 0 or (restant <= EMBED_RESERVE and not essentiel):
-            _EMBED_CACHE[cle] = None
-            return None
+    # ⚠️ Le compteur interne ne décide plus de renoncer : c'était une SUPPOSITION
+    #    sur le quota, et elle déclarait épuisés des modèles qui ne l'étaient
+    #    pas. Seule la réponse de l'API fait foi. Le compteur reste tenu pour le
+    #    bilan, mais il ne bloque plus rien tant qu'un couple est disponible.
+    if not combinaisons_gemini(_embed_modeles()):
+        _EMBED_CACHE[cle] = None
+        return None
     try:
         # 🧠 Chaîne de modèles : chacun a ses 1 000 requêtes quotidiennes. Quand le
         #    premier est épuisé, le second est intact — sans cela, le moteur perdait
@@ -12496,6 +12514,32 @@ def _embed(texte, conn=None, essentiel=False):
     return None
 
 
+def combinaisons_gemini(modeles):
+    """Tous les couples (clé, modèle) à essayer, dans l'ordre.
+
+    ⚠️ L'ordre est : POUR CHAQUE MODÈLE, toutes les clés. Un modèle donné a un
+    quota par projet ; épuiser le modèle A sur la clé 1 n'épuise pas le modèle A
+    sur la clé 2. On ne passe au modèle suivant qu'après avoir essayé toutes les
+    clés sur celui-ci — c'est ce qui garantit qu'aucune capacité gratuite ne
+    reste inutilisée.
+
+    ⚠️ Un couple n'est écarté QUE si l'API a répondu « quota dépassé » pour lui
+    aujourd'hui, ou si le modèle n'existe pas. Jamais sur un compteur interne :
+    notre estimation du quota est une supposition, la réponse de l'API est un
+    fait. C'est en se fiant à son propre compteur que le bot déclarait épuisés
+    des modèles qui ne l'étaient pas."""
+    jour = _now_paris().strftime("%Y-%m-%d")
+    out = []
+    for m in modeles:
+        if m in _MODELES_INEXISTANTS:
+            continue
+        for k in GEMINI_API_KEYS:
+            if _MODELE_EPUISE.get((_empreinte_cle(k), m)) == jour:
+                continue
+            out.append((k, m))
+    return out
+
+
 def _embed_lot(textes, conn=None, taille=100):
     """Calcule les vecteurs de PLUSIEURS textes en un seul appel.
 
@@ -12526,33 +12570,36 @@ def _embed_lot(textes, conn=None, taille=100):
     obtenus = 0
     for debut in range(0, len(a_faire), taille):
         tranche = a_faire[debut:debut + taille]
-        # un modèle qui a encore du budget POUR CETTE TRANCHE
-        modele = None
-        for m in _embed_modeles():
-            if _MODELE_EPUISE.get((emp, m)) == jour or m in _MODELES_INEXISTANTS:
+        # 🔁 On essaie CHAQUE couple (clé, modèle) jusqu'à ce qu'un réponde.
+        d, modele, emp = None, None, None
+        for cle, m in combinaisons_gemini(_embed_modeles()):
+            url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+                   f"{m}:batchEmbedContents")
+            corps = {"requests": [
+                {"model": f"models/{m}",
+                 "content": {"parts": [{"text": txt}]},
+                 "outputDimensionality": 768} for _, txt in tranche]}
+            _CLE_FORCEE["v"] = cle          # ce couple précisément
+            try:
+                d = _post_gemini(url, corps, famille="texte", timeout=45,
+                                 essais=1)
+                modele, emp = m, _empreinte_cle(cle)
+                break
+            except Exception as e:
+                msg = str(e).lower()
+                if "quota" in msg or "429" in msg:
+                    # l'API fait foi : ce couple est à bout pour aujourd'hui
+                    _MODELE_EPUISE[(_empreinte_cle(cle), m)] = jour
+                    continue
+                if "introuvable" in msg or "not found" in msg:
+                    continue     # modèle absent : déjà mémorisé par _post_gemini
+                print(f"  ⚠️ Vecteurs ({m}) : {str(e)[:50]} → couple suivant",
+                      flush=True)
                 continue
-            if c is not None and _embed_budget_restant(c, m) < len(tranche):
-                continue
-            modele = m
-            break
-        if not modele:
-            break
-        url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
-               f"{modele}:batchEmbedContents")
-        corps = {"requests": [
-            {"model": f"models/{modele}",
-             "content": {"parts": [{"text": txt}]},
-             "outputDimensionality": 768} for _, txt in tranche]}
-        try:
-            d = _post_gemini(url, corps, famille="texte", timeout=45, essais=2)
-        except Exception as e:
-            msg = str(e).lower()
-            if "quota" in msg:
-                _MODELE_EPUISE[(emp, modele)] = jour
-                continue          # on retente la même tranche sur le suivant
-            # tout autre incident : on laisse _embed reprendre un par un
-            print(f"  ⚠️ Vecteurs groupés indisponibles ({str(e)[:60]}) "
-                  f"→ calcul individuel", flush=True)
+        if d is None:
+            _restants = len(combinaisons_gemini(_embed_modeles()))
+            print(f"  🛑 Aucun couple clé+modèle disponible pour les vecteurs "
+                  f"({_restants} restant(s))", flush=True)
             return obtenus
         vecteurs = d.get("embeddings") or []
         # ⚠️ On apparie les vecteurs aux textes PAR POSITION. Si l'API en renvoie
@@ -13729,7 +13776,10 @@ def dossier_de_presse(ev, rec=None):
     qu'aucun média ne publie. C'est l'essence de Pulse : montrer le travail.
 
     Renvoie un dict prêt à écrire en base."""
-    arts = list(getattr(ev, "articles", []) or [])
+    # ⚠️ Le dossier de presse doit lister EXACTEMENT les rédactions du sujet.
+    #    Sans ce tri, il affichait les sources hors sujet que le modèle avait
+    #    pourtant écartées de l'article — le site se contredisait lui-même.
+    arts = sujet_trie(ev) or list(getattr(ev, "articles", []) or [])[:1]
     if not arts:
         return {}
     rec = rec or {}
@@ -13828,6 +13878,8 @@ def recouper_faits(ev, corps_par_url=None):
     # les chiffres ne se recoupent qu'entre articles du MÊME sujet, sinon on
     # oppose des valeurs qui n'ont rien à voir
     arts = sujet_trie(ev, corps_par_url)
+    if arts is None:
+        arts = list(getattr(ev, "articles", []) or [])[:1]   # le pivot seul
     corps_par_url = corps_par_url or {}
 
     def _texte(a):
@@ -14581,14 +14633,32 @@ def regrouper_en_evenements(articles, conn=None, seuil=None):
                 # même enrichissement ici : comparer titre + résumé, pas le
                 # titre seul, sinon ce repli reste aveugle là où les vecteurs
                 # ont déjà renoncé.
+                # ⚠️ VÉCU, GRAVE : quota de vecteurs épuisé → le regroupement
+                #    retombait sur la seule comparaison de MOTS, et fondait 109
+                #    articles sans rapport en un seul « événement ». Les mots ne
+                #    savent pas de quoi un article parle.
+                #    Désormais : les mots PROPOSENT, le modèle DÉCIDE. Et sans
+                #    décision, on ne fusionne pas — deux événements séparés à
+                #    tort coûtent une corroboration ; un pâté de 109 articles
+                #    coûte la crédibilité.
                 for autre_art in ev.articles:
                     autres = _sig_words(_txt(autre_art))
-                    # les deux textes portent-ils un corps lu ? Si oui, on exige
-                    # un vrai recouvrement plutôt qu'un mot isolé.
                     _riche = bool(_corps_par_url.get(str(art.get("url") or ""))) \
                         and bool(_corps_par_url.get(str(autre_art.get("url") or "")))
-                    if _memes_faits(mots, autres, texte_riche=_riche):
+                    if not _memes_faits(mots, autres, texte_riche=_riche):
+                        continue
+                    # les mots proposent ; sans vecteur pour trancher, on demande
+                    if vec is not None and ev.vec is not None:
                         proche = True
+                        break
+                    if juges[0] >= EVT_JUGES_MAX:
+                        break          # plus de jugement possible : on ne fusionne pas
+                    juges[0] += 1
+                    _av = _meme_evenement_ia(titre, autre_art.get("title", ""))
+                    if _av is True:
+                        proche = True
+                        print(f"  🧠 Même événement (jugé) : « {titre[:38]}… »",
+                              flush=True)
                         break
 
             if proche:
@@ -14801,14 +14871,17 @@ def sujet_trie(ev, corps_par_url=None):
     cache = getattr(ev, "_sujet_trie", None)
     if cache is not None:
         return cache
-    arts = list(getattr(ev, "articles", []) or [])
     juge = articles_du_meme_sujet(ev, corps_par_url)
-    retenus = juge if juge is not None else arts
+    # ⚠️ PAS DE REPLI. Si le modèle n'a pas pu juger, on ne devine pas : un
+    #    article qui mélange les sujets abîme la crédibilité de Pulse plus
+    #    durablement qu'une publication manquée. L'appelant refuse de publier.
+    if juge is None:
+        return None
     try:
-        ev._sujet_trie = retenus
+        ev._sujet_trie = juge
     except Exception:
         pass
-    return retenus
+    return juge
 
 
 def articles_du_meme_sujet(ev, corps_par_url=None):
@@ -14827,10 +14900,15 @@ def articles_du_meme_sujet(ev, corps_par_url=None):
     lesquels couvrent le MÊME ÉVÉNEMENT.
 
     ⚠️ Coût : UN appel par article publié, pas un par dépêche. Une vingtaine
-    par jour. Le tri par mots reste en secours si le modèle est indisponible :
-    imparfait, mais jamais bloquant.
+    par jour.
 
-    Renvoie la liste des articles retenus."""
+    ⚠️ AUCUN REPLI. Si le modèle ne répond pas, cette fonction renvoie None et
+    rien n'est publié pour ce fait. Un tri approximatif produirait des articles
+    qui mélangent les sujets — ce qui abîme la crédibilité de Pulse bien plus
+    durablement qu'une publication manquée, et le fait reviendra au prochain
+    cycle de toute façon.
+
+    Renvoie la liste des articles retenus, ou None si le jugement a échoué."""
     arts = list(getattr(ev, "articles", []) or [])
     if len(arts) < 2:
         return arts
@@ -14867,9 +14945,9 @@ def articles_du_meme_sujet(ev, corps_par_url=None):
         gardes = {int(n) for n in (rep or {}).get("memes", [])
                   if str(n).strip().lstrip("-").isdigit()}
     except Exception as e:
-        print(f"  ⚠️ Tri du sujet par le modèle indisponible ({str(e)[:50]}) "
-              f"→ tri par mots", flush=True)
-        return None          # None = « je n'ai pas pu juger », l'appelant replie
+        print(f"  🛑 Impossible de vérifier le sujet ({str(e)[:46]}) — "
+              f"aucune publication pour ce fait", flush=True)
+        return None          # « je n'ai pas pu juger » : on ne publie pas
 
     retenus = [pivot] + [a for i, a in enumerate(autres) if (i + 1) in gardes]
     ecartes = len(arts) - len(retenus)
@@ -14897,6 +14975,8 @@ def matiere_premiere(ev, corps_par_url=None, max_phrases=40):
     #    l'article publié et le recoupement des chiffres doivent porter
     #    exactement sur le même ensemble.
     arts = sujet_trie(ev, corps_par_url)
+    if arts is None:
+        return None        # sujet non vérifiable : l'appelant ne publie pas
     corps_par_url = corps_par_url or {}
     retenues = []          # [{texte, empreinte, medias:set}]
     for a in arts:
@@ -17837,6 +17917,20 @@ def _check_feeds_interne(conn):
                 person         = item.get("person", "")
             else:
                 video = None
+                # 🧠 SUJET VÉRIFIABLE OU RIEN. Le tri des articles d'un même
+                #    fait est jugé par le modèle. S'il n'a pas pu répondre, on
+                #    ne publie pas : un article qui mélange les sujets abîme la
+                #    crédibilité de Pulse plus durablement qu'une publication
+                #    manquée. Un fait rapporté par une seule rédaction n'a rien
+                #    à trier — il n'est pas concerné.
+                _evS = (_evenements_du_cycle.get(str(item.get("url") or ""))
+                        or _evenements_du_cycle.get(item.get("title", "")))
+                if _evS is not None and len(getattr(_evS, "articles", [])) > 1 \
+                        and sujet_trie(_evS) is None:
+                    print(f"  🛑 Sujet non vérifiable (modèle indisponible) → "
+                          f"rien publié : {item['title'][:46]}", flush=True)
+                    compter("rejet__sujet non vérifiable")
+                    continue
                 _hn, _hl, _prev_heads = topic_history(conn, item["title"])
                 _dossier = dossier_sujet(conn, item["title"])
                 if _dossier:
