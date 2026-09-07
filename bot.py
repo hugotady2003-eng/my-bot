@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.14.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.16.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -180,7 +180,11 @@ BREAKING_SCORE = int(os.environ.get("BREAKING_SCORE", "77"))   # seuil du libell
 BUZZ_SCORE = int(os.environ.get("BUZZ_SCORE", "46"))
 # 🌍 Un fait sans écho international doit être REMARQUABLE pour passer : une
 #    procédure parlementaire ne l'est pas, un attentat ou un séisme l'est.
-SEUIL_LOCAL = int(os.environ.get("SEUIL_LOCAL", "66"))          # seuil du canal chaud, label normal
+SEUIL_LOCAL = int(os.environ.get("SEUIL_LOCAL", "66"))
+# ⚠️ Équivalent sur l'échelle 0-10 du modèle, pour le chemin normal : un fait
+#    sans écho international doit être REMARQUABLE. 9/10 laisse passer une
+#    catastrophe ou un drame majeur, pas une actualité fiscale nationale.
+NOTE_LOCALE_MINI = int(os.environ.get("NOTE_LOCALE_MINI", "9"))          # seuil du canal chaud, label normal
 BUZZ_GAP_MIN = 75         # espacement MINIMUM entre deux buzz non-urgents, le JOUR
 BUZZ_GAP_NIGHT_MIN = 150  # la nuit, on espace deux fois plus (cohérent avec la cadence nocturne)
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
@@ -623,6 +627,38 @@ def categoriser(titre, resume="", corps="", ancienne=None):
 for _c, _m in CATEGORIES.items():
     EMOJIS.setdefault(_c, _m["emoji"])
     LABELS.setdefault(_c, _m["label"])
+
+
+# 📊 Compteurs du cycle, remis à zéro à chaque passage. Ils servent à répondre
+#    d'un coup d'œil aux questions qu'on se pose en lisant un log : combien
+#    d'articles sont entrés, combien ont été écartés et POURQUOI, combien ont
+#    survécu jusqu'à la publication.
+_CYCLE = {}
+
+
+def compter(quoi, n=1):
+    """Incrémente un compteur du cycle."""
+    _CYCLE[quoi] = _CYCLE.get(quoi, 0) + n
+
+
+def bilan_editorial():
+    """Ce que le cycle a fait de ses articles, en une poignée de lignes."""
+    if not _CYCLE:
+        return []
+    out = []
+    _e = _CYCLE.get("articles", 0)
+    if _e:
+        out.append(f"entrées : {_e} articles → {_CYCLE.get('evenements', 0)} "
+                   f"événements ({_CYCLE.get('corrobores', 0)} corroborés)")
+    _rej = [(k[7:], v) for k, v in _CYCLE.items() if k.startswith("rejet__")]
+    if _rej:
+        out.append("écartés : " + " · ".join(
+            f"{v} {k}" for k, v in sorted(_rej, key=lambda x: -x[1])))
+    if _CYCLE.get("publies"):
+        out.append(f"publiés : {_CYCLE['publies']}")
+    elif _e:
+        out.append("publiés : aucun")
+    return out
 
 
 def bilan_quotas(conn=None):
@@ -8762,6 +8798,12 @@ def _corps_article(page):
 LECTURE_PARALLELE = int(os.environ.get("LECTURE_PARALLELE", "8"))
 LECTURE_TIMEOUT   = int(os.environ.get("LECTURE_TIMEOUT", "10"))
 CORPS_TTL_HEURES  = int(os.environ.get("CORPS_TTL_HEURES", "48"))
+# ⚠️ VÉCU : après avoir corrigé l'extraction (bandeaux cookies), les articles
+#    DÉJÀ en cache gardaient leur texte pollué pendant 48 h — et continuaient
+#    d'injecter des durées de cookies dans les articles publiés. Un cache doit
+#    porter la version de la logique qui l'a rempli : quand elle change, les
+#    entrées anciennes sont ignorées d'elles-mêmes.
+EXTRACTION_VERSION = "3"
 # ⚠️ VÉCU : « HTTP Error 429: Too Many Requests » sur trois domaines. Le verrou
 #    par domaine empêchait deux requêtes SIMULTANÉES, mais rien n'empêchait de
 #    les enchaîner sans respirer. Un 429 répété conduit à un blocage durable :
@@ -8780,6 +8822,14 @@ def init_corps_cache(conn):
                             url TEXT PRIMARY KEY,
                             corps TEXT,
                             lu_ts REAL)""")
+        # ⚠️ Ajoutée APRÈS la création : sur une base existante, la table est
+        #    déjà là sans cette colonne. La déclarer plus haut échouait en
+        #    silence, car la table n'existait pas encore au moment de l'appel.
+        try:
+            conn.execute("ALTER TABLE article_corps ADD COLUMN extraction "
+                         "TEXT DEFAULT '1'")
+        except Exception:
+            pass          # déjà présente
         conn.commit()
     except Exception as e:
         print(f"  ⚠️ init_corps_cache: {e}")
@@ -8795,7 +8845,8 @@ def _corps_en_cache(conn, urls):
             q = ",".join("?" * len(tranche))
             for u, c in conn.execute(
                     f"SELECT url, corps FROM article_corps "
-                    f"WHERE url IN ({q}) AND lu_ts > ?", (*tranche, limite)):
+                    f"WHERE url IN ({q}) AND lu_ts > ? AND extraction = ?",
+                    (*tranche, limite, EXTRACTION_VERSION)):
                 out[u] = c or ""
         return out
     except Exception:
@@ -8871,9 +8922,9 @@ def lire_articles_en_masse(articles, conn=None):
         try:
             now = time.time()
             conn.executemany(
-                "INSERT OR REPLACE INTO article_corps (url, corps, lu_ts) "
-                "VALUES (?,?,?)",
-                [(u, corps.get(u, ""), now) for u in a_lire])
+                "INSERT OR REPLACE INTO article_corps "
+                "(url, corps, lu_ts, extraction) VALUES (?,?,?,?)",
+                [(u, corps.get(u, ""), now, EXTRACTION_VERSION) for u in a_lire])
             conn.execute("DELETE FROM article_corps WHERE lu_ts < ?",
                          (now - CORPS_TTL_HEURES * 3600,))
             conn.commit()
@@ -12910,6 +12961,19 @@ PRERANK_HOT = [
 #    français, alors que la moitié des sources est anglophone. Il condamnait
 #    silencieusement le cœur de la ligne éditoriale mondiale.
 PRERANK_HOT += [
+    # ⚠️ VÉCU : « Meurtre de Loana, 10 ans, retrouvée dans une cave » a obtenu 0.
+    #    Le mot « meurtre » ne figurait dans AUCUN motif — pas plus
+    #    qu'« assassinat » ou « homicide ». Le motif existant ne connaissait que
+    #    « mort », « tué », « décès ».
+    (5, r"meurtre|assassinat|assassin[ée]|homicide|féminicide|infanticide|"
+        r"corps (?:retrouvé|sans vie)|cadavre|"
+        r"murder|manslaughter|body found"),
+    # 💛 solidarité et records caritatifs — un ZEvent qui récolte des millions
+    #    est une information, pas du divertissement.
+    (4, r"(?:récolt|collect|lev|réuni)\w*.{0,30}(?:millions?|milliards?) d'euros|"
+        r"cagnotte|collecte solidaire|record de dons|"
+        r"raises?.{0,20}(?:million|billion)|charity (?:record|stream)|"
+        r"\bzevent\b|téléthon|restos du c[œo]ur"),
     # 🚀 spatial
     (5, r"spacex|starship|falcon ?9|blue origin|new glenn|\bnasa\b|\besa\b|"
         r"arianespace|ariane ?6|alunissage|mission lunaire|station spatiale|"
@@ -13727,6 +13791,19 @@ def dossier_de_presse(ev, rec=None):
     }
 
 
+# Grandeurs qui ÉVOLUENT dans le temps : deux chiffres différents n'y sont pas
+# une contradiction, seulement deux instants. Les opposer serait une erreur de
+# lecture, pas une transparence.
+_UNITES_MOUVANTES = {
+    "$", "€", "dollar", "euro", "livre", "yen",
+    "milliard de dollar", "million de dollar", "milliard de euro",
+    "million de euro", "milliard d dollar", "million d dollar",
+    "%", "pdb", "point", "action", "titre", "part",
+    "bitcoin", "btc", "eth", "token",
+    "utilisateur", "abonné", "client", "téléchargement",
+}
+
+
 def recouper_faits(ev, corps_par_url=None):
     """Compare ce que disent les DIFFÉRENTS médias d'un même événement.
 
@@ -13788,6 +13865,19 @@ def recouper_faits(ev, corps_par_url=None):
     desaccords = []
     for u, vals in par_unite.items():
         if len(vals) < 2:
+            continue
+        # ⚠️ VÉCU : le cours d'une cryptomonnaie était présenté comme un
+        #    désaccord entre rédactions. Il ne l'est pas : un prix, un indice
+        #    ou une capitalisation CHANGE d'une heure à l'autre, et chaque
+        #    média cite celui de son heure de publication. Les afficher comme
+        #    des versions contradictoires trompe le lecteur.
+        if u in _UNITES_MOUVANTES:
+            continue
+        # ⚠️ Un écart de plusieurs ordres de grandeur ne relève pas du
+        #    désaccord mais du hors-sujet : deux chiffres qui n'ont rien à voir
+        #    se sont retrouvés sous la même unité. On ne les oppose pas.
+        _nums = sorted(_num(v) for v, _ in vals if _num(v) > 0)
+        if _nums and _nums[-1] > _nums[0] * 50:
             continue
         detail = sorted(
             ({"valeur": v, "nb": n, "medias": sorted(qui.get((v, u), []))}
@@ -14734,9 +14824,52 @@ def matiere_premiere(ev, corps_par_url=None, max_phrases=40):
             else:
                 retenues.append({"texte": ph, "empreinte": emp, "medias": {src}})
     sortie = [{"texte": r["texte"], "medias": sorted(r["medias"]),
-               "nb": len(r["medias"])} for r in retenues]
-    # le plus corroboré d'abord : c'est ce qui structure l'article
+               "nb": len(r["medias"]), "empreinte": r["empreinte"]}
+              for r in retenues]
+
+    # ⚠️ VÉCU, TRÈS GRAVE : un article sur un crash d'avion enchaînait
+    #    l'annulation d'une série, un programme de cybersécurité et les
+    #    rendements du Trésor. Même si le regroupement se trompe — et il se
+    #    trompera parfois —, l'ARTICLE doit rester sur son sujet.
+    #    On garde donc uniquement ce qui se rattache au SUJET PRINCIPAL, défini
+    #    par le titre de l'événement et les phrases les mieux corroborées.
+    #    C'est un second rempart, indépendant du regroupement.
     sortie.sort(key=lambda d: (-d["nb"], -len(d["texte"])))
+    # ⚠️ Le noyau doit venir du SUJET, pas des premières lignes venues : les
+    #    phrases intruses figuraient parmi elles et élargissaient le noyau
+    #    jusqu'à s'auto-autoriser. On le fonde sur le titre de l'événement et
+    #    sur les seules phrases que PLUSIEURS rédactions portent — une intruse
+    #    n'est, par construction, rapportée que par une seule.
+    noyau = set(_empreinte(str(getattr(ev, "titre", "") or "")))
+    corrobore = [d for d in sortie if d["nb"] >= 2]
+    for d in (corrobore or sortie[:1]):
+        noyau |= d["empreinte"]
+    noyau = {m for m in noyau if m not in _MOTS_BANALS}
+    # ⚠️ Le tri se fait ARTICLE PAR ARTICLE, pas phrase par phrase. Une phrase
+    #    de détail — « la route départementale reste fermée » — ne partage
+    #    souvent aucun mot avec le cœur du sujet, alors qu'elle en fait
+    #    pleinement partie. C'est l'ARTICLE dont elle vient qui dit si elle est
+    #    à sa place : un article étranger au sujet l'est de bout en bout.
+    if len(noyau) >= 4:
+        hors_sujet = set()
+        for a in arts:
+            src = str(a.get("source") or "?").strip()
+            c = corps_par_url.get(str(a.get("url") or "")) or a.get("_corps") or ""
+            emp = {m for m in _empreinte(f"{a.get('title', '')} {c}")
+                   if m not in _MOTS_BANALS}
+            if emp and len(emp & noyau) < 3:
+                hors_sujet.add(src)
+        if hors_sujet:
+            gardees = [d for d in sortie
+                       if not set(d["medias"]) <= hors_sujet]
+            ecartees = len(sortie) - len(gardees)
+            if ecartees:
+                print(f"  ✂️ {ecartees} élément(s) écartés — {len(hors_sujet)} "
+                      f"source(s) hors sujet : {', '.join(sorted(hors_sujet)[:4])}",
+                      flush=True)
+            sortie = gardees
+    for d in sortie:
+        d.pop("empreinte", None)
     return sortie[:max_phrases]
 
 
@@ -14978,6 +15111,7 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
     #    au risque d'annoncer un problème inexistant.
     if r is not None:
         print(f"  🌐 Publié sur le site : /a/{slug}", flush=True)
+        compter("publies")
         return slug
     # ⚠️ Un échec repartait sans un mot : le tweet passait, le site restait vide,
     #    et rien dans le log ne permettait de s'en apercevoir. Le site est un
@@ -16590,7 +16724,18 @@ def _titre_propre(titre):
     « DIRECT — »…). Ce ne sont pas de l'information : ils polluent le tweet, brouillent
     la reconnaissance des doublons et alourdissent les prompts.
     Retire jusqu'à deux préfixes empilés (« Vidéo. Reportage. Titre »)."""
+    # ⚠️ VÉCU : « des personnalit&eacute;s r&eacute;unis » s'est affiché tel quel.
+    #    Certains flux livrent leurs titres avec les entités HTML encodées, et
+    #    parfois DEUX fois (« &amp;eacute; »). Elles partaient ensuite dans le
+    #    tweet et sur le site. On décode jusqu'à ce que le texte se stabilise.
+    import html as _h
     t = (titre or "").strip()
+    for _ in range(3):
+        d = _h.unescape(t)
+        if d == t:
+            break
+        t = d
+    t = re.sub(r"\s+", " ", t).strip()
     for _ in range(2):
         nouveau = _PREFIXE_RX.sub("", t, count=1).strip()
         if nouveau == t or not nouveau:
@@ -16854,6 +16999,7 @@ def check_feeds(conn):
     if not _prendre_verrou():
         return
     _t0_cycle = time.time()
+    _CYCLE.clear()          # les compteurs valent pour CE cycle
     try:
         return _check_feeds_interne(conn)
     finally:
@@ -16864,6 +17010,8 @@ def check_feeds(conn):
         try:
             print(f"\n  ── Bilan du cycle ({time.time() - _t0_cycle:.0f} s) ──",
                   flush=True)
+            for _l in bilan_editorial():
+                print(f"     {_l}", flush=True)
             for _l in bilan_quotas(conn):
                 print(f"     {_l}", flush=True)
             if _CLAUDE_CALLS:
@@ -17025,10 +17173,15 @@ def _check_feeds_interne(conn):
             # garde-fou gratuit : un sujet "chaud" mais éditorialement banal ne paie pas Claude
             pre_score = _hot_prescore(hot["title"])
             if pre_score < 3:
-                # ⚠️ Sans le TITRE, cette ligne n'apprend rien : douze rejets
-                #    identiques dans un log ne disent pas s'ils sont justifiés.
-                print(f"  ⚪ Écarté, sujet banal ({pre_score}) : "
-                      f"{hot['title'][:58]}", flush=True)
+                # ⚠️ Un score nu n'explique rien. On dit CE QUI a joué : les
+                #    motifs qui ont pénalisé, ou l'absence totale de signal.
+                _neg = [rx.split("|")[0][:22] for w, rx in PRERANK_COLD
+                        if w < 0 and re.search(rx, hot["title"].lower())]
+                _cause = (f"pénalisé par « {', '.join(_neg[:2])} »" if _neg
+                          else "aucun signal d'actualité majeure")
+                print(f"  ⚪ Écarté ({pre_score}, {_cause}) : "
+                      f"{hot['title'][:52]}", flush=True)
+                compter("rejet__sujet banal")
                 continue
             # a-t-on DÉJÀ tweeté sur ce sujet ? (mémoire par sujet + signal d'écho)
             allowed, code, prev_heads = topic_gate(conn, hot["title"])
@@ -17371,8 +17524,35 @@ def _check_feeds_interne(conn):
                     mark_seen(conn, c["url"], c["title"])
                     print(f"  📉 {score}/10: {c['title'][:55]}")
                     continue
+                # 🌍 LIGNE ÉDITORIALE MONDIALE — ce contrôle manquait ICI.
+                #    La portée et le seuil des faits locaux ne s'appliquaient
+                #    qu'au canal « sujet chaud ». Le chemin normal, qui publie
+                #    l'essentiel du fil, sélectionnait sur la seule note du
+                #    modèle : d'où des sujets purement nationaux publiés par un
+                #    média qui se veut mondial.
+                _p = portee_du_fait(c.get("title", ""), c.get("summary", ""))
+                # ⚠️ « neutre » signifie qu'on n'a PAS pu établir de résonance
+                #    internationale. Pour un média mondial, cette absence vaut
+                #    refus : la question de la ligne éditoriale est « une
+                #    personne vivant n'importe où trouverait-elle cela
+                #    important ? », et sans signal la réponse est non. Seule une
+                #    note exceptionnelle passe outre — un drame majeur reste une
+                #    actualité mondiale même sans marqueur explicite.
+                if _p in ("locale", "neutre") and score < NOTE_LOCALE_MINI:
+                    mark_seen(conn, c["url"], c["title"])
+                    print(f"  🌍 {score}/10 sans portée internationale : "
+                          f"{c['title'][:50]}", flush=True)
+                    compter("rejet__sans portée internationale")
+                    continue
+                # la catégorie du modèle peut être un ancien libellé
+                _cat = str(a.get("category") or "").strip().lower()
+                if _cat and _cat not in CATEGORIES:
+                    _cat = _categorie_voisine(_cat) or "world"
+                    a["category"] = _cat
                 scored.append({**c, "analysis": a, "score": score})
-                print(f"  ✅ {score}/10 [{a.get('category')}]: {c['title'][:55]}")
+                compter("retenus")
+                print(f"  ✅ {score}/10 [{_cat or a.get('category')}]"
+                      f" {_p}: {c['title'][:48]}")
         except Exception as e:
             print(f"  ❌ Batch analyse: {e}")
 
