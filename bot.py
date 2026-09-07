@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.9.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.9.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -14600,6 +14600,10 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         "premier_media": (item.get("_presse") or {}).get("premier_media"),
         "avance_primeur": (item.get("_presse") or {}).get("avance_primeur"),
         "divergences": (item.get("_presse") or {}).get("divergences") or [],
+        # 🃏 « Cartes sur table » : chaque valeur avancée, par quelles rédactions
+        #    et combien la reprennent. Calculée depuis longtemps, elle n'était
+        #    PAS transmise — la section restait donc vide sur le site.
+        "cartes_sur_table": (item.get("_presse") or {}).get("cartes_sur_table") or [],
         "entites": item.get("_entites") or {},
     }
     # 🌍 Version anglaise, produite à la publication et stockée avec l'article.
@@ -14608,9 +14612,21 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         donnees.update({"titre_en": _t_en, "chapo_en": _c_en,
                         "corps_en": _b_en, "traduit": True})
     r = _supabase("articles", corps=donnees)
-    if r:
-        print(f"  🌐 Publié sur le site : /a/{slug}")
+    # ⚠️ « None » signifie que l'appel a ÉCHOUÉ. Une liste vide signifie qu'il a
+    #    réussi sans rien renvoyer — ce que « if r: » confondait avec un échec,
+    #    au risque d'annoncer un problème inexistant.
+    if r is not None:
+        print(f"  🌐 Publié sur le site : /a/{slug}", flush=True)
         return slug
+    # ⚠️ Un échec repartait sans un mot : le tweet passait, le site restait vide,
+    #    et rien dans le log ne permettait de s'en apercevoir. Le site est un
+    #    miroir — son échec ne doit pas bloquer la publication, mais il doit
+    #    SE VOIR.
+    print(f"  ❌ Site NON mis à jour pour « {titre[:44]} » — "
+          f"l'article existe sur X mais pas sur le site", flush=True)
+    if not SUPABASE_URL or not SUPABASE_KEY:
+        print("     cause : SUPABASE_URL ou SUPABASE_SERVICE_KEY absent "
+              "des secrets GitHub", flush=True)
     return None
 
 
