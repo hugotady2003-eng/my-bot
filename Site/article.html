@@ -567,25 +567,47 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 .cst-maj .cst-jauge i{background:var(--bleu)}
 .cst-medias{font-size:.76rem;color:var(--gris)}
 
-/* ═══ Décomposition du score : le lecteur voit la note se construire ═══ */
-.sc-final{display:flex;align-items:baseline;gap:8px;margin:4px 0 14px}
-.sc-n{font:700 clamp(38px,9vw,54px)/1 var(--t);color:var(--blanc);
+/* ═══ Décomposition du score ═══
+   Une barre par critère, remplie jusqu'à la part obtenue : 5 sur 10 s'arrête
+   au milieu. Elles se remplissent l'une après l'autre, la finale en dernier. */
+.crits{margin:16px 0 4px}
+.cr{margin-bottom:15px}
+.cr-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.cr-n{font-size:.9rem;color:var(--texte)}
+.cr-v{font:700 .95rem var(--t);color:var(--blanc);white-space:nowrap;
       font-variant-numeric:tabular-nums}
-.sc-d{font-size:1rem;color:var(--gris)}
-.js-r{transition:width 1.1s cubic-bezier(.22,1,.36,1)}
-.cl-max{display:block;font-size:.68rem;font-weight:400;color:var(--gris);
-        margin-top:1px;text-align:right}
-.cl-b{height:5px;border-radius:3px;background:var(--bord);margin:7px 0 3px;
+.cr-v.neg{color:var(--rouge)}
+.cr-sur{font-weight:400;font-size:.78rem;color:var(--gris);margin-left:1px}
+.cr-b{height:7px;border-radius:4px;background:var(--bord);margin-top:7px;
       overflow:hidden}
-.cl-b i{display:block;height:100%;width:0;border-radius:3px;background:var(--bleu);
-        transition:width .7s cubic-bezier(.22,1,.36,1)}
-.cl-b i.neg{background:var(--rouge)}
-.cl-cum{font-size:.7rem;color:var(--gris);text-align:right;margin-top:3px;
-        opacity:0;transition:opacity .35s}
-.cl.vu .cl-cum{opacity:1}
-/* le palier qui vient d'être compté s'éclaire brièvement, comme un gain */
-.cl{transition:background .45s,transform .45s}
-.cl.gain{background:rgba(124,92,255,.10);transform:translateX(3px)}
+.cr-b i{display:block;height:100%;width:0;border-radius:4px;
+        background:linear-gradient(90deg,var(--bleu),var(--mauve));
+        transition:width .62s cubic-bezier(.16,1,.3,1)}
+.cr-b i.neg{background:var(--rouge)}
+/* le critère en cours de remplissage s'éclaire brièvement */
+.cr{transition:opacity .3s}
+.cr:not(.vu){opacity:.42}
+.cr.actif .cr-v{transform:scale(1.14);transition:transform .3s}
+
+.fin{margin-top:26px;padding-top:20px;border-top:1px solid var(--bord)}
+.fin-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.fin-l{font-size:.95rem;color:var(--texte);font-weight:600}
+.fin-v{display:flex;align-items:baseline;gap:6px}
+.fin-n{font:700 clamp(30px,7.5vw,42px)/1 var(--t);color:var(--blanc);
+       font-variant-numeric:tabular-nums}
+.fin-d{font-size:.85rem;color:var(--gris)}
+.fin-b{position:relative;height:11px;border-radius:6px;background:var(--bord);
+       margin-top:12px;overflow:visible}
+.fin-b i{display:block;height:100%;width:0;border-radius:6px;
+         transition:width 1.15s cubic-bezier(.16,1,.3,1)}
+.fin-m{position:absolute;top:-3px;width:2px;height:17px;background:var(--gris);
+       opacity:.55}
+.fin-m em{position:absolute;top:20px;left:50%;transform:translateX(-50%);
+          font-size:.62rem;font-style:normal;color:var(--gris);white-space:nowrap}
+.calc-e{margin-top:34px;font-size:.82rem;color:var(--gris);line-height:1.62}
+.calc-e a{color:var(--mauve)}
+@media(max-width:380px){.fin-m em{font-size:.56rem}}
+
 /* ═══ apparition des rédactions au défilement ═══ */
 .src-l{opacity:0;transform:translateY(14px);
        transition:opacity .5s ease,transform .5s cubic-bezier(.22,1,.36,1)}
@@ -856,40 +878,42 @@ function animerScore(racine){
   const calc = (racine||document).querySelector('.calc');
   if(!calc || calc.dataset.fait) return;
   const doux = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const barre = calc.querySelector('.js-r');
-  const nombre = calc.querySelector('.sc-n');
-  const lignes = [...calc.querySelectorAll('.cl[data-i]')];
-  const cible = parseFloat(nombre?.dataset.cible || '0');
+  const crits = [...calc.querySelectorAll('.cr')];
+  const finB = calc.querySelector('.fin-b i');
+  const finN = calc.querySelector('.fin-n');
+  const cible = parseFloat(finN?.dataset.cible || '0');
+
+  /* Chaque barre se remplit à son tour. Le score final n'apparaît qu'APRÈS,
+     une fois tous les critères posés : le lecteur voit d'où vient la note
+     avant de la lire. */
+  const remplir = (el) => {
+    const i = el.querySelector('.cr-b i');
+    if(i) i.style.width = (i.dataset.w || 0) + '%';
+  };
 
   const jouer = () => {
     calc.dataset.fait = '1';
     if(doux){
-      if(barre) barre.style.width = barre.dataset.w + '%';
-      if(nombre) nombre.textContent = cible.toFixed(0);
-      lignes.forEach(l => {
-        l.classList.add('vu');
-        const i = l.querySelector('.cl-b i');
-        if(i) i.style.width = i.dataset.w + '%';
-      });
+      crits.forEach(c => { c.classList.add('vu'); remplir(c); });
+      if(finB) finB.style.width = finB.dataset.w + '%';
+      if(finN) finN.textContent = cible.toFixed(0);
       return;
     }
-    lignes.forEach((l, k) => setTimeout(() => {
-      l.classList.add('vu','gain');
-      const i = l.querySelector('.cl-b i');
-      if(i) i.style.width = i.dataset.w + '%';
-      setTimeout(() => l.classList.remove('gain'), 480);
-    }, 180 + k * 260));
+    const PAS = 420;                     /* le temps de suivre chaque barre */
+    crits.forEach((c, k) => setTimeout(() => {
+      c.classList.add('vu','actif');
+      remplir(c);
+      setTimeout(() => c.classList.remove('actif'), 320);
+    }, 200 + k * PAS));
 
-    const fin = 180 + lignes.length * 260;
-    setTimeout(() => { if(barre) barre.style.width = barre.dataset.w + '%'; }, fin);
-    /* le compteur monte en même temps que la barre, avec un ralenti final */
+    const fin = 200 + crits.length * PAS + 160;
     setTimeout(() => {
-      if(!nombre) return;
-      const t0 = performance.now(), duree = 1100;
+      if(finB) finB.style.width = finB.dataset.w + '%';
+      if(!finN) return;
+      const t0 = performance.now(), duree = 1150;
       const pas = (t) => {
         const p = Math.min(1, (t - t0) / duree);
-        const e = 1 - Math.pow(1 - p, 3);
-        nombre.textContent = Math.round(cible * e);
+        finN.textContent = Math.round(cible * (1 - Math.pow(1 - p, 3)));
         if(p < 1) requestAnimationFrame(pas);
       };
       requestAnimationFrame(pas);
@@ -899,7 +923,7 @@ function animerScore(racine){
   if(!('IntersectionObserver' in window)) return jouer();
   const obs = new IntersectionObserver((ent) => {
     ent.forEach(e => { if(e.isIntersecting){ jouer(); obs.disconnect(); } });
-  }, {threshold:.35});
+  }, {threshold:.3});
   obs.observe(calc);
 }
 
@@ -930,80 +954,58 @@ function calcul(a){
   h += ligne('Publié le', dateLongue(a.publie_le));
   if(a.score == null) return h;
 
-  /* 🎚️ Les plafonds viennent du bot : « +4 » ne dit rien, « 4 sur 20 » se
-     comprend. Les recopier ici créerait une seconde vérité qui se périmerait
-     au premier réglage du barème. */
-  const MAX = a.bareme_max || {};
-  const plafond = (lib) => {
-    const k = Object.keys(MAX).find(x =>
-      lib.toLowerCase().startsWith(x.toLowerCase()));
-    return k ? MAX[k] : null;
-  };
-
-  const parts = (a.score_detail || '')
-    .split(/\s\+\s(?=[a-zA-ZÀ-ÿ⚡🔥\d])/)
-    .map(x => x.trim()).filter(Boolean);
+  /* La décomposition arrive prête du bot : libellé, valeur, plafond, part.
+     Découper la phrase ici en JavaScript se cassait au premier libellé
+     nouveau — et s'était cassé : « 5 médias » ne correspondait à rien. */
+  let parts = Array.isArray(a.score_parts) ? a.score_parts : [];
+  if(!parts.length && a.score_detail){
+    parts = String(a.score_detail).split(' · ').map(p => ({
+      libelle:p.replace(/\s*[+-]?\s*\d+(?:[.,]\d+)?\s*$/,'').trim(),
+      valeur:null, maximum:null, part:0
+    }));
+  }
   const pct = Math.max(0, Math.min(100, a.score));
   const teinte = a.score >= SEUIL_URG ? 'var(--rouge)'
                : a.score >= SEUIL_PUB ? 'var(--vert)' : 'var(--orange)';
 
-  /* Chaque composante devient une ligne animée : sa barre se remplit jusqu'à
-     sa part du maximum, et le total se cumule d'une ligne à l'autre. Le lecteur
-     voit le score SE CONSTRUIRE au lieu de lire une addition déjà faite. */
-  let cumul = 0;
-  const lignes = parts.map((p, i) => {
-    const m = p.match(/([+-]\s*\d+(?:[.,]\d+)?)\s*$/);
-    const brut = m ? m[1].replace(/\s/g, '') : '';
-    const val = brut ? parseFloat(brut.replace(',', '.')) : 0;
-    let lib = m ? p.slice(0, m.index).trim() : p;
-    lib = lib.replace(/\s*\d+(?:[.,]\d+)?$/, '').trim() || lib;
-    const max = plafond(lib);
-    cumul += val;
-    const part = max ? Math.max(0, Math.min(100, (val / max) * 100)) : 0;
-    return {lib, val, brut, max, part, cumul, ex: explique(p)};
-  });
-
-  h += `<div class="calc" data-sc="${a.score}" data-pub="${SEUIL_PUB}"
-        data-urg="${SEUIL_URG}">
+  h += `<div class="calc" data-sc="${a.score}">
     <div class="calc-t">Comment ce score s'est construit</div>
-    <div class="sc-final">
-      <span class="sc-n" data-cible="${a.score.toFixed(0)}">0</span>
-      <span class="sc-d">/ 100</span>
-    </div>
-    <div class="jauge-sc">
-      <div class="js-b"><div class="js-r" data-w="${pct}"
-             style="width:0;background:${teinte}"></div>
-        <span class="js-m" style="left:${SEUIL_PUB}%"></span>
-        <span class="js-m" style="left:${SEUIL_URG}%"></span>
-      </div>
-      <div class="js-l"><span>0</span><span>publication ${SEUIL_PUB}</span>
-        <span>alerte ${SEUIL_URG}</span><span>100</span></div>
-    </div>`;
+    <div class="crits">`;
 
-  lignes.forEach((l, i) => {
-    const signe = l.val > 0 ? '+' : '';
-    h += `<div class="cl" data-i="${i}">
-      <div class="cl-h">
-        <span class="cl-n">${l.lib}</span>
-        <span class="cl-v${l.val < 0 ? ' neg' : (l.brut ? '' : ' base')}">${
-          l.brut ? signe + l.val : '—'
-        }${l.max ? `<span class="cl-max">sur ${l.max}</span>` : ''}</span>
+  /* Une barre par critère. Elle se remplit jusqu'à la part obtenue : 5 sur 10
+     s'arrête au milieu. Elles se remplissent l'une après l'autre, puis la
+     barre finale seulement à la fin. */
+  parts.forEach((p, i) => {
+    const neg = (p.valeur || 0) < 0;
+    const chiffre = p.valeur == null ? ''
+      : (p.maximum ? `${neg?'−':''}${Math.abs(p.valeur)}<span class="cr-sur">/${p.maximum}</span>`
+                   : `${p.valeur > 0 ? '+' : '−'}${Math.abs(p.valeur)}`);
+    h += `<div class="cr" data-i="${i}">
+      <div class="cr-h">
+        <span class="cr-n">${p.libelle}</span>
+        <span class="cr-v${neg ? ' neg' : ''}">${chiffre}</span>
       </div>
-      ${l.max ? `<div class="cl-b"><i data-w="${l.part}"
-          class="${l.val < 0 ? 'neg' : ''}"></i></div>` : ''}
-      ${l.ex ? `<div class="cl-e">${l.ex}</div>` : ''}
-      <div class="cl-cum">total ${l.cumul > 0 ? l.cumul.toFixed(0) : 0}</div>
+      <div class="cr-b"><i class="${neg ? 'neg' : ''}" data-w="${p.part || 0}"></i></div>
     </div>`;
   });
 
-  h += `<div class="cl total">
-      <div class="cl-h"><span class="cl-n">Score final</span>
-        <span class="cl-v">${a.score.toFixed(0)} / 100</span></div>
-      <div class="cl-e">Seuil de publication : ${SEUIL_PUB} points. Au-delà de
-        ${SEUIL_URG}, l'article est traité comme une alerte et publié sans attendre
-        le prochain créneau. Le barème complet est détaillé sur la page
-        <a href="methode.html" style="color:var(--mauve)">Méthode</a>.</div>
-    </div></div>`;
+  h += `</div>
+    <div class="fin">
+      <div class="fin-h">
+        <span class="fin-l">Score final</span>
+        <span class="fin-v"><b class="fin-n" data-cible="${a.score.toFixed(0)}">0</b><span class="fin-d">/ 100</span></span>
+      </div>
+      <div class="fin-b">
+        <i data-w="${pct}" style="background:${teinte}"></i>
+        <span class="fin-m" style="left:${SEUIL_PUB}%"><em>publication</em></span>
+        <span class="fin-m" style="left:${SEUIL_URG}%"><em>alerte</em></span>
+      </div>
+    </div>
+    <div class="calc-e">Seuil de publication : ${SEUIL_PUB} points sur 100.
+      Au-delà de ${SEUIL_URG}, l'article est traité comme une alerte et publié
+      sans attendre le prochain créneau. Le barème complet est détaillé sur la
+      page <a href="methode.html">Méthode</a>.</div>
+  </div>`;
   return h;
 }
 
