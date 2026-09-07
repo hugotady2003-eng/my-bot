@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.16.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.17.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -13825,7 +13825,9 @@ def recouper_faits(ev, corps_par_url=None):
                    valeurs différentes — le cœur de « cartes sur table »
       medias     — nombre de médias distincts
     """
-    arts = list(getattr(ev, "articles", []) or [])
+    # les chiffres ne se recoupent qu'entre articles du MÊME sujet, sinon on
+    # oppose des valeurs qui n'ont rien à voir
+    arts = sujet_trie(ev, corps_par_url)
     corps_par_url = corps_par_url or {}
 
     def _texte(a):
@@ -14790,6 +14792,95 @@ def _empreinte(phrase):
     return {m for m in mots if len(m) >= 4 and m not in BREAKING_STOPWORDS}
 
 
+def sujet_trie(ev, corps_par_url=None):
+    """Articles de l'événement réellement consacrés au même fait.
+
+    Le jugement du modèle est demandé UNE FOIS et conservé sur l'événement :
+    l'article publié, les chiffres recoupés et le dossier de presse doivent
+    tous porter sur le même ensemble, sinon le site se contredit lui-même."""
+    cache = getattr(ev, "_sujet_trie", None)
+    if cache is not None:
+        return cache
+    arts = list(getattr(ev, "articles", []) or [])
+    juge = articles_du_meme_sujet(ev, corps_par_url)
+    retenus = juge if juge is not None else arts
+    try:
+        ev._sujet_trie = retenus
+    except Exception:
+        pass
+    return retenus
+
+
+def articles_du_meme_sujet(ev, corps_par_url=None):
+    """Demande au modèle QUELS articles traitent réellement du même fait.
+
+    ⚠️ POURQUOI CE CHANGEMENT. Jusqu'ici, le tri reposait sur des mots communs.
+    C'est structurellement insuffisant : un article parle d'un SUJET, pas d'une
+    liste de termes. Deux dépêches sur le même fait peuvent n'avoir aucun mot en
+    commun ; deux sujets étrangers peuvent en partager dix. Résultat vécu : un
+    article sur des inondations au Népal enchaînait le Groenland, la
+    présidentielle française, le Ballon d'Or, GTA 6 et des promotions
+    d'aspirateurs.
+
+    Un modèle de langage, lui, comprend de quoi un texte parle. On lui donne le
+    sujet de référence — l'article pivot — et la liste des autres, et il dit
+    lesquels couvrent le MÊME ÉVÉNEMENT.
+
+    ⚠️ Coût : UN appel par article publié, pas un par dépêche. Une vingtaine
+    par jour. Le tri par mots reste en secours si le modèle est indisponible :
+    imparfait, mais jamais bloquant.
+
+    Renvoie la liste des articles retenus."""
+    arts = list(getattr(ev, "articles", []) or [])
+    if len(arts) < 2:
+        return arts
+    corps_par_url = corps_par_url or {}
+
+    def _extrait(a, n=420):
+        c = corps_par_url.get(str(a.get("url") or "")) or a.get("_corps") or ""
+        return re.sub(r"\s+", " ", f"{a.get('summary') or ''} {c}").strip()[:n]
+
+    titre_ev = str(getattr(ev, "titre", "") or "")
+    pivot = next((a for a in arts
+                  if str(a.get("title") or "").strip() == titre_ev.strip()),
+                 arts[0])
+    autres = [a for a in arts if a is not pivot]
+    if not autres:
+        return arts
+
+    liste = "\n".join(
+        f"{i + 1}. [{a.get('source', '?')}] {str(a.get('title') or '')[:110]}\n"
+        f"   {_extrait(a)}"
+        for i, a in enumerate(autres))
+    try:
+        rep = _llm_json(
+            "Tu vérifies qu'un dossier de presse ne mélange pas plusieurs "
+            "sujets.\n\n"
+            f"SUJET DE RÉFÉRENCE :\n{titre_ev}\n{_extrait(pivot, 600)}\n\n"
+            f"AUTRES ARTICLES :\n{liste}\n\n"
+            "Quels articles traitent du MÊME ÉVÉNEMENT que le sujet de "
+            "référence ? Un article qui parle d'un autre fait, même du même "
+            "pays, du même jour ou du même domaine, ne compte PAS. Un angle "
+            "différent sur le même événement compte.\n"
+            'Réponds en JSON strict : {"memes":[numéros]}',
+            max_tokens=200, task="analyse")
+        gardes = {int(n) for n in (rep or {}).get("memes", [])
+                  if str(n).strip().lstrip("-").isdigit()}
+    except Exception as e:
+        print(f"  ⚠️ Tri du sujet par le modèle indisponible ({str(e)[:50]}) "
+              f"→ tri par mots", flush=True)
+        return None          # None = « je n'ai pas pu juger », l'appelant replie
+
+    retenus = [pivot] + [a for i, a in enumerate(autres) if (i + 1) in gardes]
+    ecartes = len(arts) - len(retenus)
+    if ecartes:
+        noms = sorted({str(a.get("source") or "?") for a in autres
+                       if a not in retenus})
+        print(f"  🧠 {ecartes} article(s) sur un autre sujet, écartés du "
+              f"dossier : {', '.join(noms[:5])}", flush=True)
+    return retenus
+
+
 def matiere_premiere(ev, corps_par_url=None, max_phrases=40):
     """Rassemble TOUT ce que disent les articles, chaque information UNE fois.
 
@@ -14801,7 +14892,11 @@ def matiere_premiere(ev, corps_par_url=None, max_phrases=40):
     est elle-même une donnée.
 
     Renvoie [{texte, medias, nb}], du plus corroboré au plus isolé."""
-    arts = list(getattr(ev, "articles", []) or [])
+    # 🧠 Le tri du sujet se fait par COMPRÉHENSION, pas par mots communs. On le
+    #    demande une seule fois et on garde le résultat sur l'événement :
+    #    l'article publié et le recoupement des chiffres doivent porter
+    #    exactement sur le même ensemble.
+    arts = sujet_trie(ev, corps_par_url)
     corps_par_url = corps_par_url or {}
     retenues = []          # [{texte, empreinte, medias:set}]
     for a in arts:
