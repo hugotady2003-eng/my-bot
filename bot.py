@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.9.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.11.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -176,7 +176,10 @@ MAX_PAR_PASSE = 1
 # ⚠️ Converties sur la nouvelle échelle : 15/20 devient 75/100, 10/20 → 50/100.
 #    Les comparaisons existantes restent donc valides sans être réécrites.
 BREAKING_SCORE = int(os.environ.get("BREAKING_SCORE", "77"))   # seuil du libellé URGENT
-BUZZ_SCORE = int(os.environ.get("BUZZ_SCORE", "46"))          # seuil du canal chaud, label normal
+BUZZ_SCORE = int(os.environ.get("BUZZ_SCORE", "46"))
+# 🌍 Un fait sans écho international doit être REMARQUABLE pour passer : une
+#    procédure parlementaire ne l'est pas, un attentat ou un séisme l'est.
+SEUIL_LOCAL = int(os.environ.get("SEUIL_LOCAL", "66"))          # seuil du canal chaud, label normal
 BUZZ_GAP_MIN = 75         # espacement MINIMUM entre deux buzz non-urgents, le JOUR
 BUZZ_GAP_NIGHT_MIN = 150  # la nuit, on espace deux fois plus (cohérent avec la cadence nocturne)
 BREAKING_SOURCES = 3      # nb de sources distinctes couvrant le même sujet pour déclencher le breaking
@@ -1948,10 +1951,9 @@ def _split_long_lead(body, max_lead=90):
     return body   # pas de frontière propre trouvée → on laisse tel quel
 
 # ── GARDE-FOU HASHTAG (source unique) ────────────────────────────────────────
-# Règle éditoriale : 1 hashtag minimum, qui doit être LE SUJET (nom propre) et se lire
-# NATURELLEMENT dans la phrase — jamais un bloc raccroché en fin de tweet, jamais un mot
-# générique (#Disparition, #Justice, #France...). On pose donc le « # » sur un mot DÉJÀ
-# présent dans le texte. Le repli (ajout en fin) ne sert que si aucun candidat n'y figure.
+# Règle éditoriale : 1 hashtag minimum, qui doit être LE SUJET (nom propre).
+# ⚠️ Il est posé EN FIN DE MESSAGE, pas inséré dans une phrase : « à
+#    l'#AssembléeNationale » se lit mal et fait amateur.
 _GENERIC_TAGS = {
     "actualite", "actualité", "info", "infos", "news", "breaking", "urgent", "alerte",
     "france", "justice", "bourse", "tech", "politique", "economie", "économie", "sport",
@@ -1977,7 +1979,13 @@ def _hashtag_candidates(person, keywords):
 
 TRENDS_SOURCES = [s.strip() for s in os.environ.get(
     "TRENDS_URL",
-    "https://trends24.in/france/,https://getdaytrends.com/france/").split(",") if s.strip()]
+    # 🌍 Pulse est un média MONDIAL : ce sont les tendances de la planète qui
+    #    l'intéressent, pas celles d'un seul pays. La France reste en dernier
+    #    recours, pour ne pas se retrouver sans aucune tendance si les sources
+    #    mondiales sont indisponibles.
+    "https://trends24.in/,https://getdaytrends.com/,"
+    "https://trends24.in/united-states/,https://trends24.in/france/"
+).split(",") if s.strip()]
 TRENDS_URL   = TRENDS_SOURCES[0] if TRENDS_SOURCES else ""
 TRENDS_TTL   = 3600            # une heure : les tendances bougent lentement
 _TRENDS_CACHE = {"t": 0.0, "v": []}
@@ -2101,38 +2109,32 @@ def _hashtags_pertinents(body, keywords=None, person=None, pays=None, maxi=3):
 _ACCENTS = {"a": "àâä", "e": "éèêë", "i": "îï", "o": "ôö", "u": "ùûü", "c": "ç"}
 
 def _poser_hashtags(body, tags, maxi=3):
-    """Intègre les hashtags DANS LA PHRASE, en préfixant d'un dièse un mot DÉJÀ PRÉSENT.
-    ⚠️ Aucun mot n'est ajouté, aucune tournure modifiée : « en Gironde » devient
-    « en #Gironde ». C'est la seule façon d'intégrer un hashtag sans risquer de casser
-    la formulation.
-    Un candidat absent du texte est ignoré. Si AUCUN ne peut être intégré, on en pose
-    au plus deux en fin de corps, avant la source."""
+    """Place les hashtags EN FIN DE MESSAGE, jamais au milieu d'une phrase.
+
+    ⚠️ VÉCU : la version précédente préfixait d'un dièse un mot déjà présent
+    dans le texte. Le résultat se lisait mal : « une proposition de #loi
+    intégrale », « à l'#AssembléeNationale ». Un dièse au milieu d'une phrase
+    coupe la lecture et donne un air d'amateur — sans rien apporter, puisque
+    la recherche fonctionne aussi bien avec des hashtags groupés à la fin.
+
+    Ils sont donc posés en dernière ligne, après la source, dans l'ordre reçu."""
     if not tags:
         return body
-    txt = str(body or "")
-    # la source finale « (Le Monde) » est une zone protégée : jamais de dièse dedans
-    msrc = re.search(r"\n*\([^()]{1,60}\)\s*$", txt)
-    core, tail = (txt[:msrc.start()], txt[msrc.start():]) if msrc else (txt, "")
-    poses, restants = 0, []
-    for tag in tags:
-        if poses >= maxi:
-            restants.append(tag); continue
-        mot = tag.lstrip("#")
-        # tolérant aux accents : on cherche le mot tel qu'il apparaît réellement
-        motif = "".join(
-            f"[{c}{c.upper()}{_ACCENTS.get(c, '')}]" if c.isalpha() else re.escape(c)
-            for c in mot.lower())
-        m = re.search(rf"(?<![#\w'’])({motif})(?!\w)", core)
-        if m and m.start() > 0:              # jamais sur le tout premier mot du tweet
-            core = core[:m.start()] + "#" + m.group(1) + core[m.end():]
-            poses += 1
-        else:
-            restants.append(tag)
-    if poses == 0 and restants:              # aucun intégrable → repli en fin de corps
-        core = core.rstrip() + " " + " ".join(restants[:2])
-        if tail and not tail.startswith("\n"):
-            tail = "\n\n" + tail.lstrip()
-    return core + tail
+    txt = str(body or "").rstrip()
+    propres, vus = [], set()
+    for tag in tags[:maxi]:
+        t = "#" + re.sub(r"[^0-9A-Za-zÀ-ÿ]", "", str(tag).lstrip("#"))
+        if len(t) > 2 and t.lower() not in vus:
+            vus.add(t.lower())
+            propres.append(t)
+    if not propres:
+        return txt
+    # ceux déjà présents dans le texte ne sont pas répétés
+    propres = [t for t in propres
+               if not re.search(rf"(?<![\w]){re.escape(t)}(?!\w)", txt, re.I)]
+    if not propres:
+        return txt
+    return txt + "\n\n" + " ".join(propres)
 
 
 def _attach_hashtag(body, person, keywords):
@@ -2312,7 +2314,7 @@ RÈGLES STRICTES pour body — FIL D'ACTU COURT (façon CerfiaFR) :
 - 1 à 2 hashtags INTÉGRÉS DANS LES PHRASES (3 max si vraiment justifié) : colle "#" sur un mot DÉJÀ présent.
 - 🎯 CHOIX DU HASHTAG — vise le SUJET, jamais le décor. Le hashtag principal = LE nom propre central de l'actu (entreprise, personne, club, événement, jeu vidéo). Test : "cette actu parle de quoi en UN mot ?" → c'est CE mot qui prend le #. Ex : actu sur l'entrée en Bourse de SpaceX → #SpaceX (PAS #Bourse ni #TimesSquare) ; actu sur Mbappé → #Mbappé (pas #football) ; match des Bleus → #CoupeDuMonde2026 ; sortie de GTA 6 → #GTA6.
 - ⛔ Pas de hashtag décoratif ou périphérique : lieux secondaires, mots génériques (#Bourse, #France, #Justice, #Tech) sont INTERDITS sauf s'ils sont précisément LE sujet de l'actu.
-- ⛔ INTÉGRATION PROPRE — ne casse JAMAIS le texte : ne DUPLIQUE pas un mot ("à Mexico #Mexico" = INTERDIT), ne mets pas de "#" au milieu d'un mot, n'ajoute pas de mot juste pour caser un hashtag, et NE mets PAS de bloc de hashtags à la fin. Le hashtag doit se lire naturellement dans la phrase.
+- ⛔ HASHTAGS EN FIN DE MESSAGE, jamais au milieu d'une phrase. Écris tes phrases SANS aucun dièse dedans : « une proposition de #loi intégrale » ou « à l'#AssembléeNationale » se lisent mal et font amateur. Les hashtags sont ajoutés automatiquement sur la dernière ligne, après la source — ne t'en occupe pas.
 - LONGUEUR — LA CONCISION D'ABORD : si le fait tient en UNE phrase claire, écris UNE phrase puis la source, et arrête-toi. C'est le format le plus fréquent (voir FORMAT DE RÉFÉRENCE). N'ajoute JAMAIS une deuxième phrase pour meubler.
 - Si — et seulement si — le sujet l'exige vraiment (contexte indispensable, plusieurs éléments distincts), développe : accroche COURTE puis LIGNE VIDE, puis le détail, puis LIGNE VIDE, puis la source. Structure : Phrase1 courte.\\n\\nPhrase2.\\n\\n(Source). ⛔ Dans ce cas, JAMAIS deux longues phrases avant le 1er saut de ligne — l'accroche tient sur UNE ligne à l'écran.
 - Exemple d'un rendu DÉVELOPPÉ (à réserver aux sujets qui le justifient) :
@@ -13241,25 +13243,49 @@ def sujet_connu_par_entites(conn, entites, jours=3):
 #    reçoivent un plancher, parce que leur importance ne dépend pas du nombre de
 #    médias qui en parlent déjà.
 FAITS_MAJEURS = [
-    # (motif, points de plancher, libellé pour le journal)
-    (r"\b(?:attentat|attaque terroriste|prise d'otages?|fusillade de masse)\b", 16,
+    # ⚠️ DEUX DÉFAUTS CORRIGÉS ICI, tous deux vécus :
+    #    ① L'ORDRE DES MOTS était imposé. « crash … avion … morts » ne
+    #       reconnaissait pas « Cinq morts dans le crash d'un avion » — or les
+    #       titres réels commencent presque toujours par le bilan. Les motifs
+    #       utilisent désormais des conditions INDÉPENDANTES DE L'ORDRE.
+    #    ② Ils étaient en FRANÇAIS SEUL. Depuis l'ouverture aux sources
+    #       internationales, « Five dead after Amazon cargo plane crashes » ne
+    #       déclenchait aucun plancher : le crash a marqué 55/100 au lieu du
+    #       plancher, et n'a jamais été publié.
+    (r"\b(?:attentat|attaque terroriste|prise d'otages?|fusillade de masse|"
+     r"terror attack|terrorist attack|mass shooting|hostage crisis)\b", 16,
      "attentat"),
-    (r"\b(?:démission(?:ne|né)?|démissionner|remanie|limog[ée]|destitu[ée]|"
-     r"révoqu[ée]|censur[ée])\b.{0,60}\b(?:ministre|président|premier ministre|"
-     r"gouvernement|chef de l'État|maire de Paris|patron)\b", 16, "démission politique"),
-    (r"\b(?:ministre|président|premier ministre|gouvernement|chef de l'État)\b.{0,60}"
-     r"\b(?:démission(?:ne|né)?|démissionner|limog[ée]|destitu[ée]|révoqu[ée]|"
-     r"censur[ée])\b", 16, "démission politique"),
-    (r"\b(?:dissolution de l'Assemblée|motion de censure adoptée|"
-     r"état d'urgence|coup d'État|putsch)\b", 16, "crise institutionnelle"),
-    (r"\b(?:séisme|tremblement de terre)\b.{0,40}\b(?:magnitude\s*[6-9]|"
-     r"\d{2,}\s*morts?)\b", 16, "catastrophe majeure"),
-    (r"\b(?:crash|accident)\b.{0,40}\b(?:avion|aérien|train)\b.{0,40}\bmorts?\b", 16,
-     "catastrophe majeure"),
-    (r"\bguerre\b.{0,30}\b(?:déclarée|déclaration)\b|\bmobilisation générale\b", 16,
-     "guerre"),
-    (r"\b(?:mort|décès|assassinat)\b.{0,40}\b(?:président|chef de l'État|pape|"
-     r"souverain|roi|reine)\b", 16, "décès d'un chef d'État"),
+
+    (r"(?=.*\b(?:démission(?:ne|né)?|démissionner|remanie|limog[ée]|destitu[ée]|"
+     r"révoqu[ée]|censur[ée]|resigns?|resigned|ousted|impeach(?:ed|ment)?|"
+     r"steps? down|sacked)\b)"
+     r"(?=.*\b(?:ministre|président|présidente|premier ministre|gouvernement|"
+     r"chef de l'État|chancelier|minister|president|prime minister|"
+     r"government|chancellor)\b)", 16, "démission politique"),
+
+    (r"\b(?:dissolution de l'Assemblée|motion de censure adoptée|état d'urgence|"
+     r"coup d'État|putsch|state of emergency|coup\b|martial law|"
+     r"no[- ]confidence vote)\b", 16, "crise institutionnelle"),
+
+    (r"(?=.*\b(?:séisme|tremblement de terre|earthquake|quake)\b)"
+     r"(?=.*(?:magnitude\s*[6-9]|\d{2,}\s*(?:morts?|dead|killed|victims?)))",
+     16, "catastrophe majeure"),
+
+    # crash aérien ou ferroviaire avec des victimes, quel que soit l'ordre
+    (r"(?=.*\b(?:crash|accident|crashes|crashed|derailment|derails?)\b)"
+     r"(?=.*\b(?:avion|aérien|train|hélicoptère|plane|aircraft|jet|"
+     r"helicopter|flight)\b)"
+     r"(?=.*\b(?:morts?|décès|victimes?|tués?|dead|killed|fatalities|"
+     r"casualties)\b)", 16, "catastrophe majeure"),
+
+    (r"\bguerre\b.{0,30}\b(?:déclarée|déclaration)\b|\bmobilisation générale\b|"
+     r"\bdeclares? war\b|\bgeneral mobilisation\b", 16, "guerre"),
+
+    (r"(?=.*\b(?:mort|décès|assassinat|assassiné|dies?|died|death|"
+     r"assassinated|killed)\b)"
+     r"(?=.*\b(?:président|présidente|chef de l'État|pape|souverain|roi|reine|"
+     r"president|pope|king|queen|monarch|head of state)\b)", 16,
+     "décès d'un chef d'État"),
 ]
 _FAITS_MAJEURS_RX = [(re.compile(m, re.IGNORECASE), pts, lib)
                      for m, pts, lib in FAITS_MAJEURS]
@@ -13592,6 +13618,19 @@ _PUREMENT_LOCAL = re.compile(
     r"grève des|manifestation à|rassemblement à|"
     r"département|commune de|village de|arrondissement|"
     r"ligue 2|national 1|championnat régional|"
+    # ⚠️ VÉCU : « une loi arrive en commission à l'Assemblée nationale » a été
+    #    publié en URGENT par un média qui se veut MONDIAL. La vie
+    #    parlementaire d'un pays — navette, commission, amendement — n'intéresse
+    #    pas un lecteur de Séoul ou de São Paulo, sauf portée internationale
+    #    (traité, sanctions), auquel cas les marqueurs mondiaux prennent le
+    #    dessus. Vaut pour TOUS les pays, pas seulement la France.
+    r"assemblée nationale|sénat français|commission des lois|"
+    r"députés?|sénateurs?|parlementaires?|hémicycle|"
+    r"proposition de loi|projet de loi|amendement|navette parlementaire|"
+    r"première lecture|seconde lecture|quinquennat|législature|"
+    r"conseil des ministres|conseil constitutionnel|"
+    r"bundestag|douma|diète|cortes|knesset|"
+    r"house of commons|house of representatives|"
     r"kermesse|inauguration|marché de Noël|braderie|festival local"
     r")\b", re.IGNORECASE)
 
@@ -13763,6 +13802,13 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None,
     elif _p == "locale":
         score += BAREME["purement_local"]
         detail.append(f"fait local {BAREME['purement_local']}")
+        # ⚠️ Le malus seul ne suffisait pas : « une loi arrive en commission »
+        #    retombait à 53, encore au-dessus du seuil de publication. Pour un
+        #    média MONDIAL, un fait local doit franchir une barre nettement plus
+        #    haute — mais pas infranchissable : un attentat ou un séisme reste
+        #    une actualité mondiale même s'il se produit quelque part en
+        #    particulier, et leur gravité les porte bien au-delà.
+        _portee_locale = True
     # "neutre" : aucun signal net dans un sens ou l'autre, on n'ajuste pas.
 
     # ── ⑧ LES PÉNALITÉS ────────────────────────────────────────────────
@@ -13810,6 +13856,11 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None,
 
     # ⚠️ Le score est BORNÉ à 100 : la somme des maxima dépasse cette valeur,
     #    et un score à 122 serait illisible sur une échelle annoncée sur 100.
+    # 🌍 Barre relevée pour les faits sans écho international : ils doivent être
+    #    remarquables, pas seulement corrects.
+    if locals().get("_portee_locale") and score < SEUIL_LOCAL:
+        detail.append(f"sous la barre des faits locaux ({SEUIL_LOCAL})")
+        score = min(score, SEUIL_PUBLICATION - 1)
     score = max(0.0, min(100.0, score))
     return round(score, 1), detail
 
@@ -15265,12 +15316,31 @@ def _rechercher_actu_tendance(mot, heures=TREND_FRAICHEUR_H, maxi=4):
     import time as _t
     from urllib.parse import quote_plus
     terme = str(mot).lstrip("#").strip()
-    url = (f"https://news.google.com/rss/search?q={quote_plus(terme)}"
-           f"+when:1d&hl=fr&gl=FR&ceid=FR:fr")
-    try:
-        flux = feedparser.parse(url)
-    except Exception as e:
-        print(f"  ⚠️ Recherche « {terme} » impossible ({str(e)[:50]})")
+    # 🌍 Deux passages. Le français d'abord — Pulse écrit en français, et une
+    #    source francophone évite une traduction de plus. Puis, SI RIEN n'est
+    #    trouvé, un passage international : depuis que Pulse lit les tendances
+    #    du MONDE, un sujet anglophone n'a souvent aucune reprise en français,
+    #    et la tendance était alors perdue faute d'article à lui associer.
+    adresses = [
+        f"https://news.google.com/rss/search?q={quote_plus(terme)}"
+        f"+when:1d&hl=fr&gl=FR&ceid=FR:fr",
+        f"https://news.google.com/rss/search?q={quote_plus(terme)}"
+        f"+when:1d&hl=en-US&gl=US&ceid=US:en",
+    ]
+    flux = None
+    for _i, url in enumerate(adresses):
+        try:
+            flux = feedparser.parse(url)
+        except Exception as e:
+            print(f"  ⚠️ Recherche « {terme} » impossible ({str(e)[:50]})")
+            flux = None
+            continue
+        if getattr(flux, "entries", None):
+            if _i:
+                print(f"  🌍 « {terme} » : aucune reprise en français, "
+                      f"source internationale retenue", flush=True)
+            break
+    if flux is None or not getattr(flux, "entries", None):
         return []
     maintenant = _t.time()
     out = []
