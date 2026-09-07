@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.11.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.13.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -8555,18 +8555,36 @@ def gather_articles_with_urls(limit_per_feed=4):
 # Blocs qui entourent un article sans en faire partie. Les ramasser revenait à
 # mélanger le menu, les cookies et « À lire aussi » au corps du texte.
 _HORS_ARTICLE = re.compile(
-    r"<(?:nav|header|footer|aside|form|figure|figcaption|noscript)\b[^>]*>.*?"
-    r"</(?:nav|header|footer|aside|form|figure|figcaption|noscript)>",
+    r"<(?:nav|header|footer|aside|form|figure|figcaption|noscript|table|dialog)\b[^>]*>.*?"
+    r"</(?:nav|header|footer|aside|form|figure|figcaption|noscript|table|dialog)>",
     re.DOTALL | re.IGNORECASE)
 
 # Les rédactions nomment presque toujours ces blocs de la même façon.
 _CLASSE_PARASITE = re.compile(
     r'<(\w+)[^>]*(?:class|id)\s*=\s*["\'][^"\']*'
     r"(?:pub|ads?|advert|sponsor|promo|newsletter|abonn|paywall|cookie|consent|"
+    r"tarteaucitron|didomi|onetrust|cookiebot|axeptio|quantcast|sourcepoint|"
+    r"klaro|orejime|gdpr|rgpd|privacy|"
     r"related|lire-aussi|a-lire|sur-le-meme|recommand|partage|share|social|"
     r"comment|commentaire|menu|nav|sidebar|widget|banner|popup|modal|teaser)"
     r'[^"\']*["\'][^>]*>.*?</\1>',
     re.DOTALL | re.IGNORECASE)
+
+# ⚠️ VÉCU : un article publié annonçait « 1 seconde (3 médias), 24 heures
+#    (2 médias), 1 an, 10 ans, 30 ans » comme des faits recoupés. C'étaient des
+#    DURÉES DE COOKIES. Le bandeau venait de « tarteaucitron », une bibliothèque
+#    absente de ma liste de classes. Courir après les noms de bibliothèques est
+#    perdu d'avance : on reconnaît ces blocs à ce qu'ils DISENT.
+#    Ce nettoyage sert deux fois : il évite d'inventer des chiffres, et il
+#    empêche deux articles sans rapport de se ressembler par leur habillage.
+_PHRASE_COOKIE = re.compile(
+    r"(?i)\b(?:cookies?|traceurs?|consentement|durée de conservation|"
+    r"durée de vie|finalité|partenaires? publicitaires?|"
+    r"données de navigation|votre navigateur|paramétrer vos choix|"
+    r"accepter et fermer|tout accepter|tout refuser|gérer mes choix|"
+    r"politique de confidentialité|mentions légales|conditions générales|"
+    r"privacy policy|manage preferences|accept all|reject all|"
+    r"we use cookies|third[- ]party)\b")
 
 # Phrases d'habillage qui survivent au nettoyage des balises.
 _PHRASE_PARASITE = re.compile(
@@ -8624,6 +8642,9 @@ def _corps_article(page):
         # une phrase d'article fait rarement moins de 40 caractères ;
         # en dessous, c'est presque toujours une légende ou un bouton
         if len(t) < 40 or _PHRASE_PARASITE.match(t):
+            continue
+        # une phrase qui parle de cookies ou de vie privée n'est pas l'article
+        if _PHRASE_COOKIE.search(t):
             continue
         gardes.append(t)
     return " ".join(gardes).strip()
@@ -12162,10 +12183,60 @@ def _empreinte_cle(cle=None):
     return hashlib.sha256(k.encode("utf-8")).hexdigest()[:8]
 
 
+_MODELES_DU_COMPTE = {"vus": False, "embed": [], "texte": []}
+
+
+def _decouvrir_modeles():
+    """Demande à l'API la liste des modèles RÉELLEMENT disponibles.
+
+    ⚠️ J'ai deviné deux fois des noms de modèles, et deux fois ils n'existaient
+    pas : « gemini-embedding-002 » puis « text-embedding-004 ». Chaque erreur a
+    coûté des centaines d'appels perdus et du temps de cycle. Deviner ne marche
+    pas — les catalogues changent, et varient selon le compte.
+
+    L'API expose sa propre liste. On la lit UNE FOIS par run et on s'y tient.
+    En cas d'échec, on retombe sur les noms configurés : jamais de blocage."""
+    if _MODELES_DU_COMPTE["vus"]:
+        return _MODELES_DU_COMPTE
+    _MODELES_DU_COMPTE["vus"] = True
+    cle = _cle_gemini_active()
+    if not cle:
+        return _MODELES_DU_COMPTE
+    try:
+        r = requests.get(
+            "https://generativelanguage.googleapis.com/v1beta/models",
+            headers={"x-goog-api-key": cle}, timeout=20)
+        if getattr(r, "status_code", 500) != 200:
+            return _MODELES_DU_COMPTE
+        for m in (r.json().get("models") or []):
+            nom = str(m.get("name") or "").replace("models/", "")
+            actions = m.get("supportedGenerationMethods") or []
+            if "embedContent" in actions:
+                _MODELES_DU_COMPTE["embed"].append(nom)
+            elif "generateContent" in actions:
+                _MODELES_DU_COMPTE["texte"].append(nom)
+        if _MODELES_DU_COMPTE["embed"]:
+            print(f"  📋 Modèles de vecteurs du compte : "
+                  f"{', '.join(_MODELES_DU_COMPTE['embed'])}", flush=True)
+    except Exception as e:
+        print(f"  ⚠️ Liste des modèles indisponible ({str(e)[:50]})", flush=True)
+    return _MODELES_DU_COMPTE
+
+
 def _embed_modeles():
-    """Modèles de vecteurs disponibles, dans l'ordre de préférence."""
-    return [m for m in ([EMBED_MODEL] + [x.strip() for x in
-            str(EMBED_MODELES_SECOURS).split(",")]) if m]
+    """Modèles de vecteurs disponibles, dans l'ordre de préférence.
+
+    La liste RÉELLE du compte prime sur celle qu'on a configurée : elle ne peut
+    pas contenir de nom inventé. Les modèles configurés qui existent vraiment
+    passent devant, le reste du catalogue suit."""
+    configures = [m for m in ([EMBED_MODEL] + [x.strip() for x in
+                  str(EMBED_MODELES_SECOURS).split(",")]) if m]
+    reels = _decouvrir_modeles()["embed"]
+    if not reels:
+        return [m for m in configures if m not in _MODELES_INEXISTANTS]
+    ordre = [m for m in configures if m in reels]
+    ordre += [m for m in reels if m not in ordre]
+    return [m for m in ordre if m not in _MODELES_INEXISTANTS]
 
 
 def _embed_budget_restant(conn, modele=None):
@@ -12978,13 +13049,37 @@ class Evenement:
 
     @property
     def fraicheur_heures(self):
-        """Âge de l'article le PLUS RÉCENT de l'événement.
+        """Depuis combien de temps l'ÉVÉNEMENT s'est produit.
 
-        ⚠️ À ne pas confondre avec age_heures, qui mesure la durée de l'affaire.
-        Une éclipse suivie depuis 5 jours dont la dernière dépêche a 6 minutes
-        est une actualité FRAÎCHE : la noter comme vieille de 123 h était faux."""
+        ⚠️ DÉFAUT VÉCU : on prenait l'article le PLUS RÉCENT. Une affaire vieille
+        de trois jours redevenait donc « fraîche, 0 h » dès qu'une rédaction
+        republiait un suivi — et décrochait les 16 points de fraîcheur. C'est
+        l'inverse de ce que la note doit mesurer : c'est le FAIT qui est frais
+        ou non, pas la dernière dépêche qui en parle.
+
+        On prend la MÉDIANE des dates de publication. Quand plusieurs rédactions
+        couvrent un même fait, elles le font dans un intervalle resserré : la
+        médiane tombe au cœur de cette grappe. Elle résiste à un article isolé
+        publié bien plus tôt ou bien plus tard, là où une moyenne se laisserait
+        tirer par lui."""
+        ts = sorted(a.get("pub_ts") for a in self.articles if a.get("pub_ts"))
+        if not ts:
+            return None
+        n = len(ts)
+        mediane = ts[n // 2] if n % 2 else (ts[n // 2 - 1] + ts[n // 2]) / 2
+        return (time.time() - mediane) / 3600
+
+    @property
+    def dates_concordantes(self):
+        """Les rédactions datent-elles le fait de la même façon ?
+
+        Un écart large entre la première et la dernière dépêche signale qu'on
+        a mêlé le fait lui-même à des articles de contexte plus anciens. La
+        note n'en tient pas compte directement, mais le journal le montre."""
         ts = [a.get("pub_ts") for a in self.articles if a.get("pub_ts")]
-        return (time.time() - max(ts)) / 3600 if ts else None
+        if len(ts) < 2:
+            return True
+        return (max(ts) - min(ts)) <= 12 * 3600
 
     @property
     def principal(self):
@@ -14112,9 +14207,19 @@ def _memes_faits(a, b, texte_riche=False):
         #    vocabulaire), mais le NOMBRE de termes DISCRIMINANTS communs :
         #    noms de lieux, de personnes, termes techniques. Trois suffisent,
         #    et le hasard ne les produit pas.
-        discriminants = {m for m in (a & b)
-                         if len(m) >= 6 and m not in _MOTS_BANALS}
-        return len(discriminants) >= 3
+        # ⚠️ VÉCU, GRAVE : 43 articles sans rapport fondus en un seul événement.
+        #    Trois termes communs suffisaient — or deux textes de 2 000
+        #    caractères en partagent trois par pur hasard. Le corps confirme un
+        #    rapprochement, il ne doit JAMAIS le créer à lui seul.
+        #    On exige donc DEUX conditions : assez de termes communs ET une
+        #    proportion réelle du plus court des deux vocabulaires.
+        da = {m for m in a if len(m) >= 6 and m not in _MOTS_BANALS}
+        db = {m for m in b if len(m) >= 6 and m not in _MOTS_BANALS}
+        communs = da & db
+        if len(communs) < 4:
+            return False
+        petit = min(len(da), len(db)) or 1
+        return len(communs) / petit >= 0.22
     # Sur un titre seul, un mot suffit s'il est vraiment DISCRIMINANT : un nom
     # propre long ne se retrouve pas par hasard dans deux actualités.
     # Le seuil reste à 6 caractères : le porter à 8 écartait « Gironde » (7)
@@ -14464,6 +14569,36 @@ def matiere_premiere(ev, corps_par_url=None, max_phrases=40):
     return sortie[:max_phrases]
 
 
+def titre_pour_site(titre_source, tweet):
+    """Titre FRANÇAIS de l'article publié sur le site.
+
+    ⚠️ VÉCU : « Five dead after Amazon cargo plane crashes at Miami airport »
+    s'affichait tel quel sur un site en français. Le titre venait du flux RSS ;
+    depuis l'ouverture aux sources anglophones, une dépêche sur deux arrivait
+    donc en anglais.
+
+    Le tweet, lui, est TOUJOURS écrit en français et porte le fait principal :
+    sa première ligne, débarrassée du préfixe de catégorie et des hashtags,
+    fait un titre juste. On ne garde le titre d'origine que s'il est déjà en
+    français et que le tweet ne donne rien d'exploitable."""
+    ligne = ""
+    for l in str(tweet or "").split("\n"):
+        l = l.strip()
+        if l:
+            ligne = l
+            break
+    # « 🚨 URGENT | » et les hashtags appartiennent au format de X, pas au site
+    ligne = re.sub(r"^\s*[^A-Za-zÀ-ÿ0-9]*[A-ZÀ-Ý0-9][A-ZÀ-Ý0-9\s]{1,20}\s*\|\s*",
+                   "", ligne)
+    ligne = re.sub(r"\s*#[\wÀ-ÿ]+", "", ligne)
+    ligne = re.sub(r"\s+", " ", ligne).strip(" —–-·")
+    # une accroche trop longue n'est plus un titre : on coupe à la ponctuation
+    if len(ligne) > 110:
+        coupe = re.split(r"(?<=[.!?])\s", ligne)[0]
+        ligne = coupe if 20 <= len(coupe) <= 110 else ligne[:107].rsplit(" ", 1)[0] + "…"
+    return ligne if len(ligne) >= 20 else str(titre_source or "").strip()
+
+
 def corps_pour_site(item, tweet, recoupement=None, matiere=None):
     """Rédige une version LONGUE de l'article pour le site.
 
@@ -14609,7 +14744,11 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
     il ne doit rien retarder ni rien bloquer."""
     if not SITE_ACTIF:
         return None
-    titre = re.sub(r"\s+", " ", str(item.get("title") or "")).strip()
+    # 🇫🇷 Le site est en français : le titre aussi, même quand la source
+    #    ne l'est pas. « Five dead after Amazon cargo plane crashes » ne doit
+    #    pas s'afficher tel quel sur une page francophone.
+    titre = titre_pour_site(
+        re.sub(r"\s+", " ", str(item.get("title") or "")).strip(), texte)
     if not titre:
         return None
     # l'accroche est la première ligne du tweet, sans le préfixe de catégorie
