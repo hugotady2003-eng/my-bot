@@ -78,12 +78,50 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.7.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.8.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
 HASHTAGS_ACTIFS = os.environ.get("HASHTAGS", "1").strip() not in ("0", "false", "non")
 GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY",    "")
+# 🔑 PLUSIEURS CLÉS. Le quota gratuit de Gemini se compte PAR PROJET : une clé
+#    issue d'un second projet dispose de son propre millier de requêtes, intact.
+#    Quand la première est épuisée pour la journée, on bascule sur la suivante
+#    au lieu de retomber sur le repli payant.
+#    ⚠️ Aucune clé n'est écrite dans le code : elles viennent des variables
+#       d'environnement, donc des secrets GitHub.
+GEMINI_API_KEYS = [k for k in (
+    [GEMINI_API_KEY]
+    + [os.environ.get(f"GEMINI_API_KEY_{i}", "") for i in range(2, 6)]
+    + [x.strip() for x in os.environ.get("GEMINI_API_KEYS", "").split(",")]
+) if k and k.strip()]
+# on retire les doublons en conservant l'ordre : la clé principale reste première
+GEMINI_API_KEYS = list(dict.fromkeys(GEMINI_API_KEYS))
+_CLE_EPUISEE = {}          # clé → jour où son quota a été constaté épuisé
+
+
+def _cle_gemini_active():
+    """Première clé dont le quota n'est pas épuisé aujourd'hui.
+
+    Renvoie None si toutes le sont : l'appelant bascule alors sur Claude."""
+    jour = _now_paris().strftime("%Y-%m-%d")
+    for k in GEMINI_API_KEYS:
+        if _CLE_EPUISEE.get(k) != jour:
+            return k
+    return None
+
+
+def _marquer_cle_epuisee(cle):
+    """Retire une clé pour la journée et annonce le report sur la suivante."""
+    if not cle:
+        return
+    _CLE_EPUISEE[cle] = _now_paris().strftime("%Y-%m-%d")
+    reste = sum(1 for k in GEMINI_API_KEYS
+                if _CLE_EPUISEE.get(k) != _CLE_EPUISEE[cle])
+    rang = GEMINI_API_KEYS.index(cle) + 1 if cle in GEMINI_API_KEYS else 0
+    print(f"  🔑 Clé Gemini {rang} épuisée pour aujourd'hui — "
+          + (f"report sur la suivante ({reste} restante(s))" if reste
+             else "plus aucune clé disponible, repli sur Claude"))
 GEMINI_MODEL      = os.environ.get("GEMINI_MODEL",      "gemini-3.5-flash-lite")
 # 🪜 Modèles de secours, du plus généreux au plus rare. Chacun a son PROPRE quota
 #    journalier : 500 requêtes pour les Flash Lite, 20 pour les Flash. Les enchaîner
@@ -917,6 +955,11 @@ def init_db():
     conn.execute("DELETE FROM deces_annonces WHERE annonce_le < datetime('now', '-120 days')")
     conn.execute("""CREATE TABLE IF NOT EXISTS embed_log (
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+    # 🧠 On note QUEL modèle a servi : le quota gratuit se compte par modèle, et
+    #    un compteur global empêchait d'atteindre le second (défaut vécu).
+    _ensure_column("embed_log", "modele", "modele TEXT DEFAULT ''")
+    # 🔑 empreinte de la clé — jamais la clé elle-même : le dépôt est public
+    _ensure_column("embed_log", "cle", "cle TEXT DEFAULT ''")
     conn.execute("DELETE FROM embed_log WHERE created_at < datetime('now', '-2 days')")
     conn.execute("""CREATE TABLE IF NOT EXISTS recap_srcs (
         title TEXT, url TEXT, category TEXT,
@@ -1357,7 +1400,8 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
     for essai in range(essais):
         _attendre_creneau(famille)
         try:
-            r = requests.post(url, headers={"x-goog-api-key": GEMINI_API_KEY,
+            _cle = _cle_gemini_active() or GEMINI_API_KEY
+            r = requests.post(url, headers={"x-goog-api-key": _cle,
                                             "Content-Type": "application/json"},
                               json=payload, timeout=timeout)
             code = getattr(r, "status_code", 200)
@@ -1376,6 +1420,13 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
                 except Exception:
                     pass
             if _quota_epuise:
+                # 🔑 Le quota se compte par PROJET : une autre clé a le sien,
+                #    intact. On bascule et on rejoue le MÊME appel avant
+                #    d'abandonner — sinon la requête serait perdue alors qu'un
+                #    quota libre existe.
+                _marquer_cle_epuisee(_cle)
+                if _cle_gemini_active():
+                    continue
                 # le message est laissé à l'appelant : lui seul connaît le MODÈLE concerné
                 raise RuntimeError(f"quota {famille} épuisé")
             # ⛔ 404 = le modèle n'existe pas (ou plus) sur ce compte : réessayer est
@@ -11984,14 +12035,52 @@ _EMBED_CACHE = {}         # titre → vecteur, pour ne jamais payer deux fois da
 _EMBED_CONN  = None       # base ouverte, pour compter la consommation du jour
 
 
-def _embed_budget_restant(conn):
-    """Nombre d'embeddings encore autorisés aujourd'hui. Tolérant : en cas de souci,
-    on renvoie 0 (repli mots-clés) plutôt que de risquer d'épuiser le quota."""
+def _empreinte_cle(cle=None):
+    """Repère court et non réversible d'une clé, pour compter sa consommation.
+
+    ⚠️ La clé elle-même n'est JAMAIS écrite en base : le dépôt est public et la
+    base est jointe au cache du workflow."""
+    import hashlib
+    k = cle or _cle_gemini_active() or GEMINI_API_KEY or "-"
+    return hashlib.sha256(k.encode("utf-8")).hexdigest()[:8]
+
+
+def _embed_modeles():
+    """Modèles de vecteurs disponibles, dans l'ordre de préférence."""
+    return [m for m in ([EMBED_MODEL] + [x.strip() for x in
+            str(EMBED_MODELES_SECOURS).split(",")]) if m]
+
+
+def _embed_budget_restant(conn, modele=None):
+    """Vecteurs encore autorisés aujourd'hui.
+
+    ⚠️ DÉFAUT VÉCU : ce compteur était GLOBAL. Le budget de 800 était atteint
+    avant que le premier modèle n'épuise ses 1 000 requêtes — le second modèle,
+    dont le quota est distinct et intact, n'était donc JAMAIS sollicité. Sa
+    configuration existait mais ne servait à rien.
+
+    Le quota se compte par modèle : le budget aussi. Sans `modele`, on renvoie
+    le total encore disponible tous modèles confondus."""
+    # ⚠️ Le quota se compte par PROJET ET par modèle. Compter seulement par
+    #    modèle rendait la seconde clé inutile pour les vecteurs : son quota est
+    #    neuf, mais le compteur du modèle était déjà au plafond.
+    emp = _empreinte_cle()
     try:
-        n = conn.execute(
-            "SELECT COUNT(*) FROM embed_log WHERE date(created_at) = date('now')"
-        ).fetchone()[0]
-        return max(0, EMBED_BUDGET_JOUR - n)
+        if modele:
+            n = conn.execute(
+                "SELECT COUNT(*) FROM embed_log WHERE date(created_at) = date('now') "
+                "AND modele = ? AND cle = ?", (modele, emp)).fetchone()[0]
+            return max(0, EMBED_BUDGET_JOUR - n)
+        total = 0
+        jour = _now_paris().strftime("%Y-%m-%d")
+        for m in _embed_modeles():
+            if _MODELE_EPUISE.get((emp, m)) == jour:
+                continue
+            n = conn.execute(
+                "SELECT COUNT(*) FROM embed_log WHERE date(created_at) = date('now') "
+                "AND modele = ? AND cle = ?", (m, emp)).fetchone()[0]
+            total += max(0, EMBED_BUDGET_JOUR - n)
+        return total
     except Exception:
         return 0
 
@@ -12017,9 +12106,16 @@ def _embed(texte, conn=None, essentiel=False):
         #    premier est épuisé, le second est intact — sans cela, le moteur perdait
         #    sa meilleure façon de reconnaître un même événement en milieu de journée.
         _jour = _now_paris().strftime("%Y-%m-%d")
-        _mod_e = next((m for m in ([EMBED_MODEL] + [x.strip() for x in
-                       str(EMBED_MODELES_SECOURS).split(",") if x.strip()])
-                       if _MODELE_EPUISE.get(m) != _jour), None)
+        # premier modèle qui n'est ni épuisé ni au bout de SON budget
+        _emp = _empreinte_cle()
+        _mod_e = None
+        for m in _embed_modeles():
+            if _MODELE_EPUISE.get((_emp, m)) == _jour:
+                continue
+            if c is not None and _embed_budget_restant(c, m) <= 0:
+                continue
+            _mod_e = m
+            break
         if not _mod_e:
             return None
         url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
@@ -12035,7 +12131,8 @@ def _embed(texte, conn=None, essentiel=False):
             pass
         if c is not None:
             try:
-                c.execute("INSERT INTO embed_log (created_at) VALUES (CURRENT_TIMESTAMP)")
+                c.execute("INSERT INTO embed_log (created_at, modele, cle) "
+                          "VALUES (CURRENT_TIMESTAMP, ?, ?)", (_mod_e, _emp))
                 c.commit()
             except Exception:
                 pass
@@ -12046,8 +12143,9 @@ def _embed(texte, conn=None, essentiel=False):
     except Exception as e:
         # ⚠️ Le régulateur lève « quota <famille> épuisé » : on mémorise le MODÈLE
         #    concerné et on relance une fois sur le suivant, dont le quota est intact.
-        if "quota" in str(e).lower() and _mod_e and _MODELE_EPUISE.get(_mod_e) != _jour:
-            _MODELE_EPUISE[_mod_e] = _jour
+        if ("quota" in str(e).lower() and _mod_e
+                and _MODELE_EPUISE.get((_emp, _mod_e)) != _jour):
+            _MODELE_EPUISE[(_emp, _mod_e)] = _jour
             print(f"  🚫 {_mod_e} : quota de vecteurs épuisé → modèle suivant")
             return _embed(texte, conn, essentiel)
         print(f"  ⚠️ Embedding indisponible ({str(e)[:70]}) → comparaison par mots-clés")
