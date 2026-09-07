@@ -6,6 +6,17 @@ import feedparser, anthropic, sqlite3, hashlib, json, time, os, smtplib, random
 import requests   # déjà présent dans requirements.txt (inchangé) — sert aux API REST
 import unicodedata
 import socket
+import sys as _sys
+
+# ⚠️ Sur GitHub Actions, la sortie de Python est TAMPONNÉE : tout s'affiche d'un
+#    bloc à la fin du run. Impossible de voir où le bot en est, ni de dater ce
+#    qui prend du temps — un cycle de treize minutes apparaissait comme une
+#    seule pause opaque. On force l'écriture au fil de l'eau.
+try:
+    _sys.stdout.reconfigure(line_buffering=True)
+    _sys.stderr.reconfigure(line_buffering=True)
+except Exception:
+    pass
 socket.setdefaulttimeout(12)   # aucun flux RSS/site mort ne peut geler un run
 import urllib.request, urllib.parse, urllib.error, re
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
@@ -78,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.8.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.9.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -608,6 +619,41 @@ def categoriser(titre, resume="", corps="", ancienne=None):
 for _c, _m in CATEGORIES.items():
     EMOJIS.setdefault(_c, _m["emoji"])
     LABELS.setdefault(_c, _m["label"])
+
+
+def bilan_quotas(conn=None):
+    """Résumé lisible de ce qui a été consommé et de ce qui reste.
+
+    Sans ce bilan, il faut lire trois cents lignes pour savoir si le bot a
+    tenu sur le gratuit ou basculé sur le payant, et combien de vecteurs
+    restent pour la journée."""
+    lignes = []
+    jour = _now_paris().strftime("%Y-%m-%d")
+    dispo = [k for k in GEMINI_API_KEYS if _CLE_EPUISEE.get(k) != jour]
+    lignes.append(f"clés Gemini : {len(dispo)}/{len(GEMINI_API_KEYS)} disponible(s)")
+    if conn is not None:
+        try:
+            reste = []
+            for m in _embed_modeles():
+                if m in _MODELES_INEXISTANTS:
+                    continue
+                # nom court mais NON ambigu : deux modèles distincts ne
+                # doivent pas s'afficher sous le même libellé
+                court = m.replace("gemini-embedding-", "gemini ") \
+                         .replace("text-embedding-", "text ") \
+                         .replace("embedding-", "legacy ")
+                reste.append(f"{court} {_embed_budget_restant(conn, m)}")
+            if reste:
+                lignes.append("vecteurs restants : " + " · ".join(reste))
+        except Exception:
+            pass
+    if _MODELES_INEXISTANTS:
+        lignes.append("modèles écartés (inexistants) : "
+                      + ", ".join(sorted(_MODELES_INEXISTANTS)))
+    if any(_USAGE_GEMINI.values()):
+        lignes.append(f"jetons Gemini : {_USAGE_GEMINI['in']:,} entrée · "
+                      f"{_USAGE_GEMINI['out']:,} sortie")
+    return lignes
 
 
 def bareme_maximums():
@@ -1369,20 +1415,58 @@ def _parse_json_reponse(raw):
 #    en quelques secondes. Sans régulation, les derniers sont refusés (429) et la vidéo
 #    sort sans voix — ou la carte sans image.
 _RATE_LIMITS = {"tts": 3, "image": 5, "texte": 12, "vision": 12}
+
+# ⚠️ DÉFAUT MESURÉ : un compteur UNIQUE de 12/min pour toute la famille « texte ».
+#    Or Gemini limite PAR MODÈLE : Flash-Lite accepte 15 requêtes/minute, Flash
+#    10. Avec trois modèles, la capacité réelle est d'une quarantaine par minute
+#    — on s'imposait 12. Résultat en production : 46 pauses, 10,5 minutes
+#    d'attente sur un cycle de 13 minutes, pour des créneaux qui étaient libres.
+#    Les limites s'appliquent par PROJET : deux clés de projets différents ont
+#    donc chacune leur compteur.
+_RPM_MODELE = {
+    "flash-lite": 15,          # le plus généreux du palier gratuit
+    "flash":      10,
+    "embedding":  30,          # les vecteurs ont leur propre structure, large
+    "defaut":     10,
+}
 _RATE_HIST = {}
 
-def _attendre_creneau(famille="texte"):
-    """Attend, si nécessaire, qu'un créneau se libère pour cette famille de modèles.
-    Simple et sans dépendance : on garde l'horodatage des appels de la dernière minute."""
+
+def _rpm_du_modele(modele):
+    """Requêtes par minute admises pour ce modèle, d'après son nom."""
+    m = str(modele or "").lower()
+    if "embedding" in m:
+        return _RPM_MODELE["embedding"]
+    if "flash-lite" in m or "flash_lite" in m:
+        return _RPM_MODELE["flash-lite"]
+    if "flash" in m:
+        return _RPM_MODELE["flash"]
+    return _RPM_MODELE["defaut"]
+
+
+def _attendre_creneau(famille="texte", modele=None, cle=None):
+    """Attend qu'un créneau se libère POUR CE MODÈLE.
+
+    Le compteur est propre au couple (clé, modèle) : deux modèles différents ne
+    se volent pas leurs créneaux, et une seconde clé — donc un second projet —
+    repart avec les siens."""
     import time as _t
-    limite = _RATE_LIMITS.get(famille, 12)
-    hist = _RATE_HIST.setdefault(famille, [])
+    if modele:
+        limite = _rpm_du_modele(modele)
+        repere = f"{_empreinte_cle(cle)}:{modele}"
+        etiquette = modele
+    else:
+        limite = _RATE_LIMITS.get(famille, 12)
+        repere = famille
+        etiquette = famille
+    hist = _RATE_HIST.setdefault(repere, [])
     maintenant = _t.time()
     hist[:] = [h for h in hist if maintenant - h < 60]
     if len(hist) >= limite:
         pause = 61 - (maintenant - hist[0])
         if pause > 0:
-            print(f"  ⏱️ Débit {famille} atteint ({limite}/min) → pause de {pause:.0f} s")
+            print(f"  ⏱️ {etiquette} : {limite} requêtes/min atteintes "
+                  f"→ pause {pause:.0f} s", flush=True)
             _t.sleep(min(pause, 65))
             maintenant = _t.time()
             hist[:] = [h for h in hist if maintenant - h < 60]
@@ -1418,7 +1502,9 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
         raise RuntimeError(f"modèle introuvable ({_mod_url}, déjà constaté)")
     derniere = None
     for essai in range(essais):
-        _attendre_creneau(famille)
+        _cle_prevue = _cle_gemini_active() or GEMINI_API_KEY
+        # le créneau se réserve pour CE modèle et CETTE clé, pas pour la famille
+        _attendre_creneau(famille, modele=_mod_url or None, cle=_cle_prevue)
         try:
             _cle = _cle_gemini_active() or GEMINI_API_KEY
             r = requests.post(url, headers={"x-goog-api-key": _cle,
@@ -12119,11 +12205,16 @@ def _embed(texte, conn=None, essentiel=False):
     `essentiel=True` pour les usages qu'on ne veut jamais perdre (mémoriser un sujet publié) :
     ceux-là puisent dans la réserve. Renvoie None si indisponible ou hors budget — la
     comparaison par mots-clés reprend alors la main, sans rien casser."""
-    if not texte or not GEMINI_API_KEY:
+    if not texte:
         return None
+    # ⚠️ Le cache d'abord : un vecteur DÉJÀ calculé ne demande ni clé, ni budget.
+    #    L'ordre inverse rendait le calcul groupé inutile — les vecteurs étaient
+    #    en mémoire, mais _embed refusait de les rendre faute de clé active.
     cle = texte.strip().lower()[:300]
     if cle in _EMBED_CACHE:
         return _EMBED_CACHE[cle]
+    if not _cle_gemini_active():
+        return None
     c = conn or _EMBED_CONN
     if c is not None:
         restant = _embed_budget_restant(c)
@@ -12180,6 +12271,84 @@ def _embed(texte, conn=None, essentiel=False):
         print(f"  ⚠️ Embedding indisponible ({str(e)[:70]}) → comparaison par mots-clés")
     _EMBED_CACHE[cle] = None
     return None
+
+
+def _embed_lot(textes, conn=None, taille=100):
+    """Calcule les vecteurs de PLUSIEURS textes en un seul appel.
+
+    ⚠️ DÉFAUT MESURÉ : le bot demandait un vecteur par article, un appel à la
+    fois. Avec 131 articles par cycle et un régulateur à 12 requêtes/minute,
+    cela représentait dix minutes d'attente sur un cycle de treize. L'API
+    accepte jusqu'à 100 textes par requête : deux appels suffisent là où il en
+    fallait cent trente.
+
+    Remplit le cache commun ; `_embed` sert ensuite sans rien redemander.
+    Tolérant : si l'appel groupé échoue, on ne casse rien — `_embed` reprendra
+    texte par texte, plus lentement mais sûrement."""
+    if not textes or not _cle_gemini_active():
+        return 0
+    c = conn or _EMBED_CONN
+    a_faire = []
+    for t in textes:
+        if not t:
+            continue
+        cle = str(t).strip().lower()[:300]
+        if cle not in _EMBED_CACHE and cle not in [x[0] for x in a_faire]:
+            a_faire.append((cle, str(t)[:2000]))
+    if not a_faire:
+        return 0
+
+    jour = _now_paris().strftime("%Y-%m-%d")
+    emp = _empreinte_cle()
+    obtenus = 0
+    for debut in range(0, len(a_faire), taille):
+        tranche = a_faire[debut:debut + taille]
+        # un modèle qui a encore du budget POUR CETTE TRANCHE
+        modele = None
+        for m in _embed_modeles():
+            if _MODELE_EPUISE.get((emp, m)) == jour or m in _MODELES_INEXISTANTS:
+                continue
+            if c is not None and _embed_budget_restant(c, m) < len(tranche):
+                continue
+            modele = m
+            break
+        if not modele:
+            break
+        url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+               f"{modele}:batchEmbedContents")
+        corps = {"requests": [
+            {"model": f"models/{modele}",
+             "content": {"parts": [{"text": txt}]},
+             "outputDimensionality": 768} for _, txt in tranche]}
+        try:
+            d = _post_gemini(url, corps, famille="texte", timeout=45, essais=2)
+        except Exception as e:
+            msg = str(e).lower()
+            if "quota" in msg:
+                _MODELE_EPUISE[(emp, modele)] = jour
+                continue          # on retente la même tranche sur le suivant
+            # tout autre incident : on laisse _embed reprendre un par un
+            print(f"  ⚠️ Vecteurs groupés indisponibles ({str(e)[:60]}) "
+                  f"→ calcul individuel", flush=True)
+            return obtenus
+        vecteurs = d.get("embeddings") or []
+        for (cle, _), v in zip(tranche, vecteurs):
+            vals = (v or {}).get("values")
+            if vals:
+                _EMBED_CACHE[cle] = vals
+                obtenus += 1
+        if c is not None and vecteurs:
+            try:
+                c.executemany("INSERT INTO embed_log (created_at, modele, cle) "
+                              "VALUES (CURRENT_TIMESTAMP, ?, ?)",
+                              [(modele, emp)] * len(vecteurs))
+                c.commit()
+            except Exception:
+                pass
+    if obtenus:
+        print(f"  🧠 {obtenus} vecteurs calculés en "
+              f"{(len(a_faire) + taille - 1) // taille} appel(s)", flush=True)
+    return obtenus
 
 
 def _cos(a, b):
@@ -13936,6 +14105,16 @@ def regrouper_en_evenements(articles, conn=None, seuil=None):
         _c = _corps_par_url.get(str(_a.get("url") or ""))
         if _c:
             _a["_corps"] = _c
+
+    # 🧠 Tous les vecteurs du cycle en deux appels au lieu de cent trente : on
+    #    les demande EN UNE FOIS avant de comparer quoi que ce soit. _embed
+    #    servira ensuite depuis le cache, sans requête.
+    try:
+        _embed_lot([texte_de_comparaison(
+            a, corps=_corps_par_url.get(str(a.get("url") or ""))
+            or a.get("_corps")) for a in (articles or [])], conn)
+    except Exception as e:
+        print(f"  ⚠️ Vecteurs groupés : {e}", flush=True)
 
     def _txt(article):
         """Texte de comparaison d'un article, corps inclus s'il a été lu."""
@@ -16278,10 +16457,26 @@ def check_feeds(conn):
     # 🔒 un seul run à la fois : deux runs simultanés publiaient le même tweet
     if not _prendre_verrou():
         return
+    _t0_cycle = time.time()
     try:
         return _check_feeds_interne(conn)
     finally:
         _rendre_verrou()
+        # 📊 Bilan de fin de cycle : durée, quotas restants, repli payant.
+        #    Sans lui, il faut relire trois cents lignes pour savoir si le run
+        #    a tenu sur le gratuit et combien de vecteurs restent aujourd'hui.
+        try:
+            print(f"\n  ── Bilan du cycle ({time.time() - _t0_cycle:.0f} s) ──",
+                  flush=True)
+            for _l in bilan_quotas(conn):
+                print(f"     {_l}", flush=True)
+            if _CLAUDE_CALLS:
+                print(f"     ⚠️ {_CLAUDE_CALLS} appel(s) payés chez Claude "
+                      f"(le gratuit n'a pas suffi)", flush=True)
+            else:
+                print("     ✅ aucun appel payant", flush=True)
+        except Exception:
+            pass
 
 
 def _check_feeds_interne(conn):
