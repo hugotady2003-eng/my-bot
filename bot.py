@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.16.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.16.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -14776,7 +14776,11 @@ def _phrases(texte):
     phrases sans verbe apparent, qui sont presque toujours de l'habillage."""
     t = re.sub(r"\s+", " ", str(texte or "")).strip()
     brut = re.split(r"(?<=[.!?])\s+(?=[A-ZÀ-ÜŒ«\"])", t)
-    return [p.strip() for p in brut if 45 <= len(p.strip()) <= 400]
+    # ⚠️ Le plancher était à 45 caractères : « Le ZEvent 2026 s'est achevé après
+    #    dix ans. » en fait 42 et disparaissait, alors qu'elle porte le fait
+    #    principal. Les phrases d'habillage (menus, boutons, légendes) sont
+    #    bien plus courtes — 34 caractères les écartent encore toutes.
+    return [p.strip() for p in brut if 35 <= len(p.strip()) <= 400]
 
 
 def _empreinte(phrase):
@@ -14805,7 +14809,12 @@ def matiere_premiere(ev, corps_par_url=None, max_phrases=40):
         c = corps_par_url.get(str(a.get("url") or "")) or a.get("_corps") or ""
         for ph in _phrases(f"{a.get('summary') or ''} {str(c)[:5000]}"):
             emp = _empreinte(ph)
-            if len(emp) < 4:
+            # ⚠️ Le minimum était de 4 mots significatifs : « Le ZEvent 2026
+            #    s'est achevé après dix ans » n'en compte que trois (zevent,
+            #    2026, achevé) et disparaissait — alors qu'elle porte le fait
+            #    lui-même. Les phrases d'habillage sont déjà écartées par leur
+            #    longueur et par le filtre de contenu ; trois suffit ici.
+            if len(emp) < 3:
                 continue
             jumelle = None
             for r in retenues:
@@ -14835,15 +14844,27 @@ def matiere_premiere(ev, corps_par_url=None, max_phrases=40):
     #    par le titre de l'événement et les phrases les mieux corroborées.
     #    C'est un second rempart, indépendant du regroupement.
     sortie.sort(key=lambda d: (-d["nb"], -len(d["texte"])))
-    # ⚠️ Le noyau doit venir du SUJET, pas des premières lignes venues : les
-    #    phrases intruses figuraient parmi elles et élargissaient le noyau
-    #    jusqu'à s'auto-autoriser. On le fonde sur le titre de l'événement et
-    #    sur les seules phrases que PLUSIEURS rédactions portent — une intruse
-    #    n'est, par construction, rapportée que par une seule.
-    noyau = set(_empreinte(str(getattr(ev, "titre", "") or "")))
-    corrobore = [d for d in sortie if d["nb"] >= 2]
-    for d in (corrobore or sortie[:1]):
-        noyau |= d["empreinte"]
+    # ⚠️ VÉCU : un article sur le ZEvent enchaînait sur l'abandon de la
+    #    projection de Mercator par l'ONU. Le noyau se construisait sur le titre
+    #    PLUS la phrase la plus longue — laquelle appartenait à l'intrus. Le
+    #    noyau contenait donc les deux sujets et s'auto-autorisait.
+    #
+    #    Le sujet d'un article, c'est celui de l'ARTICLE PIVOT : celui dont le
+    #    titre a été retenu pour l'événement. Lui seul définit le noyau. Les
+    #    phrases corroborées par plusieurs rédactions l'élargissent, car elles
+    #    ne peuvent pas venir d'un intrus isolé — mais jamais une phrase seule.
+    titre_ev = str(getattr(ev, "titre", "") or "")
+    pivot = next((a for a in arts
+                  if str(a.get("title") or "").strip() == titre_ev.strip()),
+                 arts[0] if arts else None)
+    noyau = set(_empreinte(titre_ev))
+    if pivot is not None:
+        c_pivot = (corps_par_url.get(str(pivot.get("url") or ""))
+                   or pivot.get("_corps") or "")
+        noyau |= _empreinte(f"{pivot.get('summary') or ''} {str(c_pivot)[:3000]}")
+    for d in sortie:
+        if d["nb"] >= 2:
+            noyau |= d["empreinte"]
     noyau = {m for m in noyau if m not in _MOTS_BANALS}
     # ⚠️ Le tri se fait ARTICLE PAR ARTICLE, pas phrase par phrase. Une phrase
     #    de détail — « la route départementale reste fermée » — ne partage
@@ -14857,7 +14878,12 @@ def matiere_premiere(ev, corps_par_url=None, max_phrases=40):
             c = corps_par_url.get(str(a.get("url") or "")) or a.get("_corps") or ""
             emp = {m for m in _empreinte(f"{a.get('title', '')} {c}")
                    if m not in _MOTS_BANALS}
-            if emp and len(emp & noyau) < 3:
+            # ⚠️ Deux termes communs suffisent. À trois, on écartait des
+            #    sources légitimes : « 1 200 pompiers luttent contre l'incendie
+            #    de Landiras » ne partage que « incendie » et « landiras » avec
+            #    le noyau, et c'est pourtant le même feu. Un intrus, lui, n'en
+            #    partage aucun — l'écart entre les deux est net.
+            if emp and len(emp & noyau) < 2:
                 hors_sujet.add(src)
         if hors_sujet:
             gardees = [d for d in sortie
