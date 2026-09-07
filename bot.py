@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.13.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.14.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -1104,10 +1104,58 @@ def recent_keywords(conn, hours=2):
         (f"-{hours} hours",)
     ).fetchall()]
 
+# ⚠️ VÉCU : le blocage de 2 h portait sur « police », « loi », « violences »,
+#    « russie », « inflation », « taux », « crash ». Pour un média MONDIAL, ce
+#    sont exactement les sujets qui comptent : bloquer « inflation » deux heures
+#    revient à s'interdire toute actualité de banque centrale, et « russie »
+#    toute la géopolitique. Le blocage doit viser un SUJET précis, pas un
+#    domaine entier.
+#    Les vrais garde-fous anti-répétition restent ailleurs : une URL n'est jamais
+#    republiée (45 jours), et un même événement est reconnu par le regroupement.
+_MOTS_TROP_LARGES = {
+    "police", "gendarmerie", "justice", "tribunal", "loi", "lois", "decret",
+    "assemblee", "senat", "parlement", "gouvernement", "ministre", "president",
+    "violences", "violence", "manifestants", "manifestation", "greve",
+    "crash", "accident", "incendie", "seisme", "attentat", "guerre", "conflit",
+    "inflation", "taux", "bourse", "marches", "economie", "croissance",
+    "bce", "fed", "banque", "budget", "impots", "retraites",
+    "russie", "ukraine", "chine", "etats-unis", "france", "europe", "monde",
+    "sante", "climat", "energie", "petrole", "nucleaire",
+    "football", "sport", "match", "victoire", "defaite",
+    "elections", "election", "vote", "scrutin", "sondage",
+    "entreprise", "societe", "groupe", "marque", "produit",
+    "intelligence", "artificielle", "technologie", "internet",
+}
+
+
+def _mots_cles_bloquants(keywords):
+    """Ne retient que les mots-clés assez PRÉCIS pour bloquer un sujet 2 h.
+
+    Un nom propre ou un terme rare désigne un fait ; un mot de domaine en
+    désigne des centaines. Bloquer le second revient à se censurer."""
+    out = []
+    for kw in (keywords or []):
+        # on retire les accents pour comparer sur une base stable
+        k = "".join(c for c in unicodedata.normalize("NFD", str(kw))
+                    if unicodedata.category(c) != "Mn").lower().strip()
+        k = re.sub(r"[^a-z0-9 -]", "", k)
+        if len(k) < 4 or k in _MOTS_TROP_LARGES or k in _MOTS_BANALS:
+            continue
+        if k in BREAKING_STOPWORDS:
+            continue
+        out.append(k)
+    return out
+
+
 def log_keywords(conn, keywords):
     """Enregistre les mots-clés majeurs d'un tweet qui vient d'être publié."""
     now = _now_utc().strftime("%Y-%m-%d %H:%M:%S")
-    for kw in keywords:
+    ecartes = [k for k in (keywords or [])
+               if k and k not in _mots_cles_bloquants([k])]
+    if ecartes:
+        print(f"  🔓 Trop larges pour bloquer un sujet : {', '.join(ecartes[:8])}",
+              flush=True)
+    for kw in _mots_cles_bloquants(keywords):
         kw = kw.lower().strip()
         if kw:
             conn.execute(
@@ -12855,6 +12903,54 @@ PRERANK_HOT = [
     # ── 🏆 GRANDS RENDEZ-VOUS CULTURELS ──
     (2, r"césars?\b|oscars?\b|palme d'or|prix goncourt|eurovision|jeux olympiques|\bjo 20\d\d\b"),
 ]
+# ⚠️ VÉCU : « SpaceX réussit l'atterrissage de Starship » obtenait 0 et « la BCE
+#    envisage une hausse des taux » −3, tous deux sous le seuil de 3 : ils
+#    étaient écartés AVANT toute évaluation. Le pré-filtre ne connaissait que
+#    l'actualité française — PSG, Squeezie, SNCF, Matignon — et uniquement en
+#    français, alors que la moitié des sources est anglophone. Il condamnait
+#    silencieusement le cœur de la ligne éditoriale mondiale.
+PRERANK_HOT += [
+    # 🚀 spatial
+    (5, r"spacex|starship|falcon ?9|blue origin|new glenn|\bnasa\b|\besa\b|"
+        r"arianespace|ariane ?6|alunissage|mission lunaire|station spatiale|"
+        r"lancement (?:réussi|raté)|décollage|rocket launch|moon landing"),
+    # ₿ crypto
+    (5, r"bitcoin|\bbtc\b|ethereum|\beth\b|solana|cryptomonnaie|stablecoin|"
+        r"binance|coinbase|\bdefi\b|halving|\betf\b.{0,20}(?:bitcoin|crypto)|"
+        r"piratage.{0,20}(?:crypto|protocole)|crypto (?:hack|crash|rally)"),
+    # 🤖 intelligence artificielle (complète la ligne existante)
+    (4, r"\bagi\b|superintelligence|modèle de langage|large language model|"
+        r"mistral ai|deepmind|copilot|\bllm\b|robot humanoïde"),
+    # 📈 marchés et banques centrales
+    (5, r"réserve fédérale|\bfed\b|\bbce\b|banque centrale|taux directeurs?|"
+        r"wall street|nasdaq|s&p ?500|dow jones|krach|récession|"
+        r"rate (?:cut|hike)|interest rates?|central bank"),
+    # 🌍 géopolitique
+    (5, r"\bonu\b|\botan\b|\bnato\b|conseil de sécurité|\bg7\b|\bg20\b|"
+        r"sanctions? (?:contre|internationales?)|cessez[- ]le[- ]feu|"
+        r"united nations|security council|peace deal|summit"),
+    # 💰 entreprises
+    (4, r"résultats? records?|chiffre d'affaires record|plan social|"
+        r"licenciements? massifs?|introduction en bourse|\bipo\b|"
+        r"rachat de .{0,30}(?:milliards?|millions?)|faillite|"
+        r"mass layoffs|record profit|bankruptcy"),
+    # 💻 technologie
+    (4, r"semi[- ]conducteurs?|cyberattaque|ransomware|faille (?:critique|zero[- ]day)|"
+        r"fuite de données|piratage massif|data breach|cyberattack"),
+    # 🎮 jeu vidéo
+    (4, r"\bgta ?6\b|playstation|nintendo|xbox|rockstar games|"
+        r"sortie mondiale|record de ventes"),
+    # 🇬🇧 équivalents anglais des signaux déjà couverts en français
+    (5, r"\bdead\b|\bkilled\b|death toll|fatalities|shooting|explosion|"
+        r"terror attack|hostage|missing"),
+    (4, r"\bresigns?\b|steps? down|impeach|indicted|convicted|sentenced|"
+        r"arrested|charged with"),
+    (4, r"\bwar\b|airstrikes?|bombing|missile|invasion|offensive|ceasefire"),
+    (4, r"earthquake|tsunami|hurricane|typhoon|wildfire|flooding|"
+        r"state of emergency|evacuated"),
+    (3, r"\bban(?:s|ned|ning)?\b|sanctions?|blocked|suspended|recall(?:ed)?"),
+]
+
 PRERANK_COLD = [
     (-4, r"app store|bundle|abonnement|partenariat|trimestriel|levée de fonds|lève des fonds|acquisition|\bapi\b|mise à jour|fonctionnalité|s'associe"),
     (-4, r"vue de l'étranger|revue de presse|édito|tribune|chronique|portrait|ce qu'il faut retenir|récap|décryptage"),
@@ -12910,12 +13006,27 @@ def echo_bonus(n_sources):
     if n_sources == 2: return 1      # confirmé par un second média
     return 0                         # source unique → ni bonus, ni pénalité
 
+# ⚠️ « La BCE ENVISAGE une hausse des taux » est une information majeure : le
+#    conditionnel d'une banque centrale ou d'un régulateur n'est pas une
+#    spéculation de journaliste, c'est l'annonce elle-même. Les malus de
+#    prudence (« pourrait », « envisage ») ne s'appliquent pas dans ce cas.
+_INSTITUTION_QUI_DECIDE = re.compile(
+    r"\b(?:bce|fed|réserve fédérale|banque centrale|banque de france|"
+    r"commission européenne|parlement européen|onu|otan|"
+    r"gouvernement|ministère|autorité|régulateur|"
+    r"central bank|federal reserve|regulator|commission)\b", re.IGNORECASE)
+
+
 def _hot_prescore(title):
     """Pré-score GRATUIT d'un sujet chaud (aucun appel Claude).
     Source de vérité unique : utilisé pour décider si un sujet mérite d'être analysé."""
     low = (title or "").lower()
-    return sum(w for w, rx in PRERANK_HOT if re.search(rx, low)) + \
-           sum(w for w, rx in PRERANK_COLD if re.search(rx, low))
+    chaud = sum(w for w, rx in PRERANK_HOT if re.search(rx, low))
+    froid = sum(w for w, rx in PRERANK_COLD if re.search(rx, low))
+    if froid < 0 and _INSTITUTION_QUI_DECIDE.search(low):
+        # une institution qui décide : on n'annule pas, on tempère de moitié
+        froid = int(froid / 2)
+    return chaud + froid
 
 
 def prerank_candidates(cands, keep, wildcard=PRERANK_WILDCARD):
@@ -16914,7 +17025,10 @@ def _check_feeds_interne(conn):
             # garde-fou gratuit : un sujet "chaud" mais éditorialement banal ne paie pas Claude
             pre_score = _hot_prescore(hot["title"])
             if pre_score < 3:
-                print(f"  ⚪ Sujet chaud mais banal (pré-classement {pre_score}) → suivant")
+                # ⚠️ Sans le TITRE, cette ligne n'apprend rien : douze rejets
+                #    identiques dans un log ne disent pas s'ils sont justifiés.
+                print(f"  ⚪ Écarté, sujet banal ({pre_score}) : "
+                      f"{hot['title'][:58]}", flush=True)
                 continue
             # a-t-on DÉJÀ tweeté sur ce sujet ? (mémoire par sujet + signal d'écho)
             allowed, code, prev_heads = topic_gate(conn, hot["title"])
