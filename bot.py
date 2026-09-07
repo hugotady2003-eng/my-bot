@@ -78,7 +78,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.8.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.8.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -1389,6 +1389,20 @@ def _attendre_creneau(famille="texte"):
     hist.append(maintenant)
 
 
+# ⛔ Modèles dont l'API a répondu « introuvable ». Un nom erroné est une erreur
+#    DÉFINITIVE : le réessayer ne le fera pas apparaître. Sans cette mémoire, un
+#    seul mauvais nom a coûté 134 appels en un cycle — et chacun consommait un
+#    créneau du régulateur de débit, provoquant 23 pauses d'une minute. Le run
+#    est passé de deux à quatorze minutes. Un nom faux doit coûter UN appel.
+_MODELES_INEXISTANTS = set()
+
+
+def _modele_de_url(url):
+    """Nom du modèle contenu dans une adresse d'appel Gemini."""
+    m = re.search(r"/models/([^:/?]+)", str(url or ""))
+    return m.group(1) if m else ""
+
+
 def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
     """Appel POST vers Gemini, régulé et tolérant au 429.
     Un refus pour dépassement de débit n'est pas une panne : on attend et on réessaie.
@@ -1396,6 +1410,12 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
     d'appel qui change se traduit par un « 400 Bad Request » indéchiffrable et le bot
     bascule silencieusement sur le repli payant (défaut vécu)."""
     import time as _t
+    # ⛔ Un modèle déjà déclaré introuvable n'est pas rappelé : on n'attend même
+    #    pas de créneau de débit pour lui, sinon l'erreur coûte plus cher que
+    #    l'appel utile qu'elle remplace.
+    _mod_url = _modele_de_url(url)
+    if _mod_url and _mod_url in _MODELES_INEXISTANTS:
+        raise RuntimeError(f"modèle introuvable ({_mod_url}, déjà constaté)")
     derniere = None
     for essai in range(essais):
         _attendre_creneau(famille)
@@ -1436,6 +1456,10 @@ def _post_gemini(url, payload, famille="texte", timeout=60, essais=3):
                     _m404 = ((r.json().get("error") or {}).get("message") or "")[:300]
                 except Exception:
                     _m404 = ""
+                if _mod_url and _mod_url not in _MODELES_INEXISTANTS:
+                    _MODELES_INEXISTANTS.add(_mod_url)
+                    print(f"  ⛔ {_mod_url} n'existe pas sur ce compte — "
+                          f"écarté pour la suite du run")
                 raise RuntimeError(f"modèle introuvable ({_m404})")
             if code in (429, 500, 502, 503, 504) and essai + 1 < essais:
                 pause = 20 if code == 429 else 8
@@ -12005,7 +12029,12 @@ EMBED_MODEL = os.environ.get("EMBED_MODEL", "gemini-embedding-001")
 # 🧠 Second modèle de vecteurs : ses 1 000 requêtes quotidiennes sont inutilisées. Les
 #    enchaîner double la capacité de comparaison par le SENS, qui est le meilleur
 #    mécanisme du moteur pour reconnaître un même événement.
-EMBED_MODELES_SECOURS = os.environ.get("EMBED_MODELES_SECOURS", "gemini-embedding-002")
+# ⚠️ « gemini-embedding-002 » N'EXISTE PAS : je l'avais ajouté sans vérifier, et
+#    le bot l'a appelé 134 fois en un cycle. Les modèles réellement disponibles
+#    sur l'API Gemini sont gemini-embedding-001, text-embedding-004 et
+#    embedding-001. Chacun a son propre quota quotidien.
+EMBED_MODELES_SECOURS = os.environ.get("EMBED_MODELES_SECOURS",
+                                       "text-embedding-004,embedding-001")
 EMBED_SEUIL = 0.82        # au-delà, deux titres parlent du MÊME sujet (calibré prudemment)
 # 🛡️ Le palier gratuit plafonne à ~1 000 requêtes/jour, TOUTES tâches confondues. Le bot
 #    tourne 288 fois par jour : sans borne, les embeddings épuiseraient le quota à eux seuls
@@ -13485,6 +13514,13 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None,
     if age is None:
         age = getattr(ev, "age_heures", 0) or 0
     age = float(age)
+    # ⚠️ VÉCU : « frais -3.5h ». Certains flux datent leurs articles dans le
+    #    FUTUR (fuseau mal déclaré, publication programmée). Un âge négatif
+    #    décrochait le maximum de fraîcheur — une dépêche datée de demain
+    #    passait pour la plus fraîche de toutes. On ramène à zéro : un article
+    #    ne peut pas être plus frais que l'instant présent.
+    if age < 0:
+        age = 0.0
     pts_f = 0
     # ⚠️ Une tolérance de quelques secondes absorbe le bruit inhérent au calcul
     #    d'un horodatage en flottant : un événement mesuré à « 2,0000001 h »
@@ -13785,6 +13821,32 @@ _MOTS_BANALS = {
     "ouvre", "ferme", "quitte", "rejoint", "nomme", "nommé", "remplace",
     "commence", "termine", "poursuit", "continue", "suspend", "reporte",
     "annule", "annulé", "modifie", "change", "prepare", "prépare",
+    # ⚠️ VÉCU : depuis l'ouverture aux sources internationales, la moitié des
+    #    articles est en ANGLAIS. Ces listes n'étaient qu'en français : deux
+    #    dépêches anglaises sans rapport partageaient « government », « people »,
+    #    « report », « support » — tous longs, donc pris pour discriminants.
+    #    Résultat mesuré en production : 130 articles fondus en 12 événements,
+    #    dont un à 48 rédactions. Le dossier de presse devenait faux.
+    "government", "president", "minister", "official", "officials", "authority",
+    "country", "countries", "national", "international", "global", "world",
+    "people", "public", "citizens", "residents", "population",
+    "report", "reports", "reported", "statement", "announced", "announcement",
+    "according", "spokesman", "spokesperson", "sources", "source",
+    "support", "supported", "measures", "policy", "policies", "plan", "plans",
+    "million", "billion", "percent", "thousand", "number", "numbers",
+    "company", "companies", "business", "market", "markets", "industry",
+    "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
+    "january", "february", "march", "april", "august", "september",
+    "october", "november", "december", "yesterday", "today", "tomorrow",
+    "morning", "evening", "weekend", "week", "month", "year", "years",
+    "first", "second", "third", "latest", "recent", "current", "former",
+    "would", "could", "should", "there", "their", "which", "where", "while",
+    "after", "before", "during", "between", "against", "through", "without",
+    "about", "because", "however", "including", "following", "expected",
+    "said", "says", "told", "asked", "added", "called", "made", "took",
+    "released", "published", "confirmed", "declined", "continue", "continued",
+    "comment", "comments", "interview", "briefing", "conference", "meeting",
+    "decision", "decisions", "agreement", "talks", "negotiations",
 }
 
 
