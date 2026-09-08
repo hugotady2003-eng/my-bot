@@ -121,7 +121,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.27.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.28.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -350,23 +350,19 @@ STYLES = {
 # ⚠️ Une seule source de vérité : emoji, libellé et couleur vivent dans
 #    CATEGORIES (défini plus bas). Les anciennes clés restent acceptées pour que
 #    les articles déjà en base continuent de s'afficher.
+# ⚠️ VÉCU : « 🚓🇫🇷 FAITS DIVERS | » publié sur X. Les anciennes catégories
+#    étaient conservées « pour l'archive » — mais tant qu'elles figurent ici,
+#    le modèle peut les renvoyer et le bot les affiche. Une catégorie qui
+#    n'existe plus ne doit plus avoir ni emoji ni libellé : elle devient alors
+#    impossible à publier, et _CAT_VOISINES la convertit vers l'une des dix.
+#    L'archive du site, elle, se lit côté web où la conversion suffit.
 EMOJIS = {
     # mécanismes internes — ce ne sont pas des catégories éditoriales
     "breaking": "🚨", "hommage": "🕊️", "gta6": "🎮",
-    # anciennes catégories, conservées pour l'archive
-    "france": "🇫🇷", "monde": "🌍", "politique": "🏛️", "economie": "📈",
-    "societe": "👥", "faitsdivers": "🚓", "histoire": "📜", "culture": "🎭",
-    "sport": "🏆", "sante": "🏥", "environnement": "🌱", "ia": "🤖",
-    "insolite": "😲", "positivity": "❤️",
 }
 
 LABELS = {
     "breaking": "URGENT", "hommage": "HOMMAGE", "gta6": "GTA 6",
-    "france": "FRANCE", "monde": "MONDE", "politique": "POLITIQUE",
-    "economie": "ECO", "societe": "SOCIÉTÉ", "faitsdivers": "FAITS DIVERS",
-    "histoire": "HISTOIRE", "culture": "CULTURE", "sport": "SPORT",
-    "sante": "SANTÉ", "environnement": "ENVIRONNEMENT", "ia": "IA",
-    "insolite": "INSOLITE", "positivity": "POSITIF",
 }
 
 
@@ -403,6 +399,10 @@ _CAT_VOISINES = {
     "serie": "gaming", "série": "gaming", "streaming": "gaming",
     "esport": "gaming", "culture": "gaming", "divertissement": "gaming",
     "sport": "sports", "football": "sports", "tennis": "sports",
+    # ⚠️ Derniers libellés historiques : sans conversion, ils ne mènent nulle
+    #    part et le bot retomberait sur un repli générique.
+    "insolite": "world", "positivity": "world", "histoire": "world",
+    "breaking_fr": "world", "buzz": "gaming", "hommage_suite": "world",
 }
 
 
@@ -1384,7 +1384,7 @@ def remember_recap_src(conn, title, url, category):
         return
     try:
         conn.execute("INSERT INTO recap_srcs (title, url, category) VALUES (?,?,?)",
-                     (title or "", url, (category or "france")))
+                     (title or "", url, (category or "world")))
         conn.commit()
     except Exception:
         pass
@@ -3033,7 +3033,7 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
     today = _now_paris().strftime("%d %B %Y")
     # ⚠️ Le modèle invente parfois une catégorie absente de la table (vécu : « meteo »,
     #    qui faisait échouer toute la publication). On se rabat plutôt que de tout perdre.
-    label = LABELS.get(category) or LABELS.get(_categorie_voisine(category)) or LABELS["france"]
+    label = LABELS.get(category) or LABELS.get(_categorie_voisine(category)) or LABELS["world"]
     video_str = ""
     # 📖 L'article est transmis ENTIER (jusqu'à 6 000 caractères). Il était auparavant
     #    tronqué à 1 200 : le fait le plus important pouvait se trouver au-delà, et le
@@ -3080,7 +3080,7 @@ def gen_tweet_complet(title, summary, source, category, video_url=None, article_
   Ne mentionne AUCUNE date précise : les articles mélangent souvent la date d'hospitalisation
   et celle du décès, ce qui conduit à des erreurs. Indique UNIQUEMENT l'âge s'il est connu
   ("à 75 ans"). Ne déduis, ne devine, n'infère jamais une date de décès."""
-    elif category in ("breaking", "faitsdivers"):
+    elif category in ("breaking", "world"):
         style_instr = """STYLE FLASH :
 - 1 phrase factuelle et dense : les faits bruts (qui, quoi, où) + le chiffre clé
 - Zéro analyse, zéro remplissage"""
@@ -3441,7 +3441,7 @@ def build_full_tweet(body, category, country=""):
     emoji = EMOJIS[category]
     # ⚠️ Le modèle invente parfois une catégorie absente de la table (vécu : « meteo »,
     #    qui faisait échouer toute la publication). On se rabat plutôt que de tout perdre.
-    label = LABELS.get(category) or LABELS.get(_categorie_voisine(category)) or LABELS["france"]
+    label = LABELS.get(category) or LABELS.get(_categorie_voisine(category)) or LABELS["world"]
     flag = _flag_emoji(country)
     # En-tête : "emoji [drapeau] LABEL | ..." — le drapeau situe le pays, le LABEL (catégorie) est conservé.
     # Emojis COLLÉS puis espace avant le libellé : « 🍅🇫🇷 FLASH | … » (format de référence)
@@ -3994,7 +3994,7 @@ def get_best_image(article_url, photo_url, person, image_query, category, allow_
 
     # 4. Stock UNIQUEMENT si explicitement autorisé ET hors sport
     #    (une photo stock "sport" est presque toujours hors-sujet : triathlon sur un sujet foot...)
-    if allow_stock and image_query and category != "sport":
+    if allow_stock and image_query and category != "sports":
         u = search_unsplash(image_query, category)
         raw = fetch_img(u)
         if raw and img_dimensions_ok(raw, min_w=800, min_h=400):
@@ -4452,8 +4452,15 @@ _completer_habillage()
 _PILL_GIF_DIRS = ("pills", "assets/pills", "assets", ".")
 
 def _pill_gif_path(category):
-    """Chemin du GIF de la catégorie, ou None. Jamais d'erreur."""
-    try:
+    """Chemin du GIF de la catégorie, ou None.
+
+    ⚠️ RETIRÉ : ces pastilles étaient dessinées pour les ANCIENNES catégories
+    (France, Faits divers, Société…). Les fichiers n'existent pas pour les dix
+    nouvelles, et en fabriquer serait du travail pour un habillage que le bot
+    sait déjà dessiner lui-même. On renvoie None : la carte est composée sans
+    pastille importée, ce qui est le comportement de repli déjà prévu."""
+    return None
+    try:                                              # conservé, inatteignable
         name = _PILL_GIF_MAP.get((category or "").lower())
         if not name:
             return None
@@ -4561,6 +4568,10 @@ def _category_pill(category, target_h):
     ② repli sur la planche historique pulse_pills.png ;
     ③ sinon None → le bot dessine sa propre pastille. Tolérant : jamais d'erreur."""
     global _PILL_SHEET, _PILL_SHEET_TRIED
+    # ⚠️ RETIRÉ pour la même raison : les visuels de pastille correspondaient
+    #    aux anciennes catégories. Sans eux, le bot dessine sa propre pastille
+    #    à partir de STYLES — cohérente avec les dix catégories actuelles.
+    return None
     # ① PNG individuel (même nommage que les GIF animés : une seule table de vérité)
     try:
         name = _PILL_GIF_MAP.get((category or "").lower())
@@ -14347,6 +14358,15 @@ _PORTEE_MONDIALE = re.compile(
     r"États[- ]Unis|Etats[- ]Unis|Washington|Maison[- ]Blanche|Pentagone|"
     r"Chine|Pékin|Beijing|Russie|Moscou|Kremlin|Ukraine|Israël|Gaza|Iran|"
     r"Taïwan|Corée du Nord|Inde|Brésil|Japon|Royaume[- ]Uni|Allemagne|"
+    # ⚠️ Les DIRIGEANTS qui pèsent au-delà de leurs frontières. « Macron reçoit
+    #    Zelensky » n'a aucun marqueur géographique et passait pour neutre,
+    #    donc écarté — alors que c'est de la diplomatie internationale.
+    r"Trump|Poutine|Zelensky|Macron|Xi Jinping|Modi|Netanyahou|Netanyahu|"
+    r"Erdogan|Lula|Milei|Meloni|Merz|Starmer|Orban|Kim Jong[- ]un|"
+    r"von der Leyen|Guterres|Powell|Lagarde|Musk|Bezos|Zuckerberg|Altman|"
+    r"chef d'État|dirigeants? (?:européens?|mondiaux?)|"
+    r"sommet (?:bilatéral|européen|franco-\w+)|visite d'État|"
+    r"élysée|maison[- ]blanche|kremlin|downing street|"
     r"sanctions|traité|sommet international|casque[s]? bleu[s]?|"
     r"guerre|conflit|cessez[- ]le[- ]feu|invasion|frappes?|"
     # économie
@@ -15861,6 +15881,25 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         donnees.update({"titre_en": _t_en, "chapo_en": _c_en,
                         "corps_en": _b_en, "traduit": True})
     r = _supabase("articles", corps=donnees)
+    # ⚠️ VÉCU : le tweet part, le site reste vide. Supabase REJETTE L'INSERTION
+    #    ENTIÈRE dès qu'une colonne est inconnue — il suffit qu'un fichier SQL
+    #    n'ait pas été exécuté pour perdre l'article. Un enrichissement absent
+    #    ne doit jamais coûter la publication elle-même : on réessaie sans les
+    #    champs facultatifs, et on dit lesquels manquent.
+    if r is None:
+        _facultatifs = ["faits", "chiffres", "score_parts", "bareme_max",
+                        "cartes_sur_table", "categorie_couleur", "divergences",
+                        "medias_liste", "premier_media", "avance_primeur",
+                        "entites", "titre_en", "chapo_en", "corps_en", "traduit"]
+        _reduit = {k: v for k, v in donnees.items() if k not in _facultatifs}
+        r = _supabase("articles", corps=_reduit)
+        if r is not None:
+            _absentes = [k for k in _facultatifs if k in donnees]
+            print(f"  ⚠️ Article publié SANS ses enrichissements — une colonne "
+                  f"manque dans Supabase. Exécute les fichiers SQL livrés "
+                  f"(colonnes concernées : {', '.join(_absentes[:6])}…)",
+                  flush=True)
+            compter("site_degrade")
     # ⚠️ « None » signifie que l'appel a ÉCHOUÉ. Une liste vide signifie qu'il a
     #    réussi sans rien renvoyer — ce que « if r: » confondait avec un échec,
     #    au risque d'annoncer un problème inexistant.
@@ -16045,10 +16084,10 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     #    disponible, et une carte nue n'apprend rien au lecteur.
     if cat == "hommage" and not _extract_person_name(item.get("title", ""),
                                                      item.get("summary", "")):
-        cat = item.get("_cat_origine") or "faitsdivers"
+        cat = item.get("_cat_origine") or "world"
         print(f"  ↩️ Aucune personnalité identifiée → actualité normale [{cat}]")
     if cat == "hommage" and not _is_obituary(item.get("title", ""), item.get("summary", "")):
-        cat = item.get("_cat_origine") or "monde"
+        cat = item.get("_cat_origine") or "world"
         print(f"  ↩️ Pas un décès malgré le classement du modèle → actualité normale [{cat}]")
     # 🕊️ VÉRIFICATION FINALE PAR LE MODÈLE. Les motifs ci-dessus sont un
     #    pré-tri gratuit ; ils ne peuvent pas juger un texte. « Mort de
@@ -16076,7 +16115,7 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
                   flush=True)
             compter("rejet__hommage refusé")
     if cat == "hommage" and _suite_de_deces(item.get("title", ""), item.get("summary", "")):
-        cat = item.get("_cat_origine") or "culture"
+        cat = item.get("_cat_origine") or "gaming"
         print(f"  ↩️ Suites d'un décès (obsèques, hommage tiers…) → actualité normale [{cat}]")
     _bn, _bl, _prev_heads = topic_history(conn, item.get("title", ""))
     _dossier = dossier_sujet(conn, item.get("title", ""))     # mémoire éditoriale 14 jours
@@ -18194,7 +18233,7 @@ def _check_feeds_interne(conn):
                         print(f"  🚰 Buzz déjà publié il y a moins de {BUZZ_GAP_MIN} min → on espace")
                         continue
                     try:
-                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True, candidates=candidates) is not None:
+                        if publish_breaking(conn, hot, a.get("category", "world"), urgent=False, bump_cadence=True, candidates=candidates) is not None:
                             print(f"  ➕ Suivi publié (info complémentaire) : {hot['title'][:50]}")
                             return
                         continue          # abandonné → sujet suivant
@@ -18248,7 +18287,7 @@ def _check_feeds_interne(conn):
                         print(f"  🚰 Buzz déjà publié il y a moins de {BUZZ_GAP_MIN} min → on espace")
                         continue
                     try:
-                        if publish_breaking(conn, hot, a.get("category", "france"), urgent=False, bump_cadence=True, candidates=candidates) is not None:
+                        if publish_breaking(conn, hot, a.get("category", "world"), urgent=False, bump_cadence=True, candidates=candidates) is not None:
                             print(f"  ⚡ Sujet chaud publié (dans le rythme) : {hot['title'][:55]}")
                             return
                         continue          # abandonné → sujet suivant
@@ -18436,7 +18475,7 @@ def _check_feeds_interne(conn):
     # 🚨 Garde-fou : un rapport / étude / analyse / sondage ne doit JAMAIS porter le label "breaking/URGENT"
     for item in scored:
         if item["analysis"].get("category") == "breaking" and _is_soft_news(item["title"]):
-            item["analysis"]["category"] = "france"
+            item["analysis"]["category"] = "world"
             print(f"  ⬇️ 'breaking' déclassé (contenu non urgent) : {item['title'][:50]}")
 
     # 📣 ÉCHO MÉDIATIQUE — le signal d'importance le plus fiable : combien de médias en parlent ?
@@ -18460,7 +18499,7 @@ def _check_feeds_interne(conn):
     #    Anti-spam : seulement si aucun post sport depuis 2h (+ blocage mots-clés 12h sur le même match).
     if not sport_cooldown_active(conn):
         for item in scored:
-            if item["analysis"].get("category") == "sport" and _is_live_sport(item):
+            if item["analysis"].get("category") == "sports" and _is_live_sport(item):
                 item["score"] = min(10, item["score"] + 2)
 
     # ⏱️ PRIORITÉ À LA FRAÎCHEUR : à intérêt comparable, la plus RÉCENTE passe devant.
@@ -18576,7 +18615,7 @@ def _check_feeds_interne(conn):
                     elif already_obit:
                         cat = "hommage"           # Wikipedia incertain → on garde la décision mots-clés
                     if cat == "hommage" and _suite_de_deces(title_s, summary_s):
-                        cat = a.get("category") or "culture"
+                        cat = a.get("category") or "gaming"
                         print(f"  ↩️ Suites d'un décès → actualité normale [{cat}]")
                 elif already_obit:
                     cat = "hommage"
