@@ -116,7 +116,7 @@ a{color:inherit;text-decoration:none}
   .aveu{padding:17px 18px 17px 26px}
   .src-l.premier{margin:0;padding-inline:12px;border-radius:9px}
   /* l'image ne colle plus non plus : elle suit la gouttière du texte */
-  .img-ar{border-radius:12px}
+  .img-ar{border-radius:12px;object-position:50% 26%}
 }
 /* la barre de navigation aussi : le logo touchait le bord */
 @media(max-width:400px){
@@ -381,8 +381,17 @@ footer .liens a:hover{color:var(--blanc)}
 .art-page h1{font:700 clamp(28px,4.2vw,40px)/1.16 var(--t);color:var(--blanc);
   letter-spacing:-.028em;margin:12px 0 16px}
 .chapo{font-size:19px;color:var(--gris);margin-bottom:26px;line-height:1.6}
+/* ⚠️ VÉCU : la tête de la personne était coupée. « object-fit:cover » rogne
+   depuis le CENTRE de l'image — or sur un portrait de presse, le visage occupe
+   le tiers haut. On remonte le point d'ancrage. */
 .img-ar{width:100%;aspect-ratio:16/9;border-radius:20px;margin-bottom:10px;
-  object-fit:cover;display:block;background:linear-gradient(150deg,#7B2EFF,#241A3D)}
+  object-fit:cover;object-position:50% 28%;display:block;
+  background:linear-gradient(150deg,#7B2EFF,#241A3D)}
+/* ⚠️ Une image PLUS HAUTE QUE LARGE est un portrait : la rogner en 16/9 coupe
+   forcément le visage, quel que soit l'ancrage. On l'affiche entière, centrée
+   sur un fond assorti — mieux vaut deux bandes qu'un visage tronqué. */
+.img-ar.portrait{aspect-ratio:auto;max-height:70vh;object-fit:contain;
+  background:rgba(123,46,255,.08)}
 .leg-img{font-size:12px;color:var(--faible);margin-bottom:26px;text-align:right}
 .corps p{font-size:17px;color:var(--texte);margin-bottom:17px;line-height:1.74}
 
@@ -695,6 +704,29 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 .fa-ok{border-color:color-mix(in srgb,var(--vert) 55%,transparent)}
 .fa-moy{border-color:color-mix(in srgb,var(--orange) 55%,transparent)}
 .fa-seul{border-color:color-mix(in srgb,var(--rouge) 55%,transparent)}
+
+/* ⭐ confiance dans les médias */
+.av{display:flex;align-items:center;gap:9px;margin-top:7px;flex-wrap:wrap}
+.av-t{display:flex;gap:3px}
+.av-b{background:none;border:1px solid transparent;border-radius:8px;
+      font-size:15px;line-height:1;padding:3px 5px;cursor:pointer;
+      filter:grayscale(1);opacity:.5;transition:all .18s}
+.av-b:hover{opacity:.85;filter:grayscale(.3)}
+.av-b.choisi{filter:none;opacity:1;transform:scale(1.12)}
+.av-content.choisi{background:color-mix(in srgb,var(--vert) 18%,transparent);
+                   border-color:color-mix(in srgb,var(--vert) 40%,transparent)}
+.av-mitige.choisi{background:color-mix(in srgb,var(--orange) 18%,transparent);
+                  border-color:color-mix(in srgb,var(--orange) 40%,transparent)}
+.av-mecontent.choisi{background:color-mix(in srgb,var(--rouge) 18%,transparent);
+                     border-color:color-mix(in srgb,var(--rouge) 40%,transparent)}
+.av-c{display:inline-flex;gap:3px;align-items:center}
+.av-c i{width:7px;height:7px;border-radius:50%;display:block;
+        border:1px solid var(--bord);background:transparent}
+.av-c i.on{border-color:transparent}
+.av-ok i.on{background:var(--vert)}
+.av-moy i.on{background:var(--orange)}
+.av-bas i.on{background:var(--rouge)}
+.av-n{font-size:.7rem;color:var(--gris)}
 </style><script>
 /* ═══════════════════════════════════════════════════════════════════════
    CONFIGURATION — remplace ces deux valeurs par les tiennes.
@@ -899,6 +931,7 @@ function sources(a){
     const h = m.heure ? new Date(m.heure).toLocaleTimeString('fr-FR',
       {hour:'2-digit', minute:'2-digit'}) : '';
     return `<div class="src-l${premier ? ' premier' : ''}">
+      <div class="src-avis" data-media="${encodeURIComponent(m.nom)}"></div>
       <div class="src-n">${m.nom}${premier
         ? `<span class="badge-1">1<sup>er</sup>${a.avance_primeur
             ? ' · ' + a.avance_primeur + " d'avance" : ''}</span>` : ''}</div>
@@ -1208,6 +1241,89 @@ function ouvrirFait(el, a){
   }, {passive:true, once:true});
 }
 
+/* ⭐ CONFIANCE DANS LES MÉDIAS
+   Chaque rédaction citée peut être notée par les lecteurs : content, mitigé,
+   mécontent. La moyenne s'affiche en cinq cercles remplis, colorés selon le
+   niveau. La note porte sur le MÉDIA, pas sur l'article : c'est une confiance
+   qui se construit dans la durée, article après article.
+   Aucun compte, aucune donnée personnelle — le même jeton anonyme que les
+   réactions, gardé sur l'appareil, et modifiable à tout moment. */
+const AVIS_VALEURS = {content: 5, mitige: 3, mecontent: 1};
+const AVIS_LOCAL = {};        /* ce que CE lecteur a voté, par média */
+
+function AVIS_LOCAL_INIT(){
+  try{
+    Object.assign(AVIS_LOCAL, JSON.parse(localStorage.getItem('pulse_avis') || '{}'));
+  }catch(e){}
+}
+
+function cerclesAvis(moy, n){
+  /* cinq cercles : on remplit au prorata de la moyenne sur 5 */
+  const pleins = Math.round((moy || 0));
+  const cls = moy >= 3.8 ? 'av-ok' : (moy >= 2.4 ? 'av-moy' : 'av-bas');
+  let h = `<span class="av-c ${cls}" title="${n} avis">`;
+  for(let i = 1; i <= 5; i++) h += `<i class="${i <= pleins ? 'on' : ''}"></i>`;
+  h += '</span>';
+  return h;
+}
+
+function blocAvis(media, stats){
+  const n = (stats && stats.n) || 0;
+  const moy = n ? (stats.total / n) : 0;
+  const mien = AVIS_LOCAL[media] || '';
+  const b = (k, emoji, lib) =>
+    `<button type="button" class="av-b av-${k}${mien === k ? ' choisi' : ''}"
+       data-av="${encodeURIComponent(media)}" data-avk="${k}"
+       aria-label="${lib}">${emoji}</button>`;
+  return `<div class="av">
+    <div class="av-t">${b('content','🙂','Confiance')}${b('mitige','😐','Mitigé')}${b('mecontent','🙁','Méfiance')}</div>
+    ${cerclesAvis(moy, n)}
+    <span class="av-n">${n ? n + ' avis' : 'aucun avis'}</span>
+  </div>`;
+}
+
+async function chargerAvis(medias){
+  /* une seule requête pour tous les médias de l'article */
+  try{
+    const l = medias.map(m => `"${m}"`).join(',');
+    const r = await api(`avis_medias?media=in.(${encodeURIComponent(l)})&select=media,valeur`);
+    const par = {};
+    (r || []).forEach(x => {
+      par[x.media] = par[x.media] || {n: 0, total: 0};
+      par[x.media].n++; par[x.media].total += (x.valeur || 0);
+    });
+    return par;
+  }catch(e){ return {}; }
+}
+
+async function voterAvis(btn){
+  const media = decodeURIComponent(btn.dataset.av || '');
+  const k = btn.dataset.avk;
+  if(!media || !AVIS_VALEURS[k]) return;
+  const dejaLe = AVIS_LOCAL[media];
+  AVIS_LOCAL[media] = (dejaLe === k) ? '' : k;   /* re-cliquer retire son avis */
+  try{ localStorage.setItem('pulse_avis', JSON.stringify(AVIS_LOCAL)); }catch(e){}
+  /* retour visuel immédiat : le réseau ne doit pas faire attendre */
+  btn.parentElement.querySelectorAll('.av-b').forEach(x => x.classList.remove('choisi'));
+  if(AVIS_LOCAL[media]) btn.classList.add('choisi');
+  try{
+    const J = jeton();
+    await fetch(`${SUPABASE_URL}/rest/v1/avis_medias?media=eq.${
+      encodeURIComponent(media)}&jeton=eq.${J}`, {
+      method: 'DELETE',
+      headers: {apikey: SUPABASE_ANON, Authorization: `Bearer ${SUPABASE_ANON}`}
+    });
+    if(AVIS_LOCAL[media]){
+      await fetch(`${SUPABASE_URL}/rest/v1/avis_medias`, {
+        method: 'POST',
+        headers: {apikey: SUPABASE_ANON, Authorization: `Bearer ${SUPABASE_ANON}`,
+                  'Content-Type': 'application/json'},
+        body: JSON.stringify({media, jeton: J, valeur: AVIS_VALEURS[AVIS_LOCAL[media]]})
+      });
+    }
+  }catch(e){ console.warn('avis', e); }
+}
+
 function calcul(a){
   const n = a.nb_medias || 1;
   const SEUIL_PUB = 46, SEUIL_URG = 77;
@@ -1383,7 +1499,31 @@ async function charger(){
        texte reste lisible même si rien ne s'anime. */
     /* 🔢 un seul écouteur pour tous les chiffres : ils sont nombreux et
        recréés à chaque rendu, en poser un par bouton serait fragile. */
+    /* ⚠️ Une image plus haute que large est un portrait : la rogner en 16/9
+       coupe forcément le visage. On la laisse entière dans ce cas. */
+    box.querySelectorAll('.img-ar').forEach(img => {
+      const verifier = () => {
+        if(img.naturalHeight > img.naturalWidth * 0.95) img.classList.add('portrait');
+      };
+      if(img.complete && img.naturalWidth) verifier();
+      else img.addEventListener('load', verifier, {once:true});
+    });
+    /* ⭐ La notation des médias arrive APRÈS le rendu : elle demande une
+       requête, et l'article ne doit pas attendre pour s'afficher. */
+    (async () => {
+      try{ AVIS_LOCAL_INIT(); }catch(e){}
+      const blocs = [...box.querySelectorAll('.src-avis')];
+      if(!blocs.length) return;
+      const noms = blocs.map(b => decodeURIComponent(b.dataset.media));
+      const stats = await chargerAvis(noms);
+      blocs.forEach(b => {
+        const nom = decodeURIComponent(b.dataset.media);
+        b.innerHTML = blocAvis(nom, stats[nom]);
+      });
+    })();
     box.addEventListener('click', (e) => {
+      const av = e.target.closest && e.target.closest('.av-b');
+      if(av) return voterAvis(av);
       const b = e.target.closest && e.target.closest('.ch');
       if(b) return ouvrirChiffre(b, a);
       const f = e.target.closest && e.target.closest('.fa');
