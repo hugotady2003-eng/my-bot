@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.21.1"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.23.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -658,6 +658,20 @@ def bilan_editorial():
         out.append(f"publiés : {_CYCLE['publies']}")
     elif _e:
         out.append("publiés : aucun")
+    # 🏠 État des DEUX plafonds : X est bridé par son coût, le site ne l'est pas.
+    try:
+        _c = _META_CONN
+        if _c is not None:
+            _x = posts_today(_c)
+            _si = articles_site_aujourdhui(_c)
+            out.append(f"plafonds : X {_x}/{DAILY_POST_CAP} · "
+                       f"site {_si}/{SITE_POST_CAP}"
+                       + ("  ← site seul actif" if _SITE_SEUL.get("v") else ""))
+    except Exception:
+        pass
+    for _k, _v in sorted(_CYCLE.items()):
+        if _k.startswith("chiffres_"):
+            out.append(f"chiffres {_k[9:]} : {_v}")
     return out
 
 
@@ -708,7 +722,116 @@ def bilan_quotas(conn=None):
     return lignes
 
 
-def chiffres_annotes(rec):
+# 🏷️ Ce que les rédactions DISENT elles-mêmes autour d'un chiffre. Ces mentions
+#    sont explicites : les relever ne demande aucune interprétation, et elles
+#    expliquent à elles seules la plupart des écarts entre médias.
+_MARQUEURS_CHIFFRE = [
+    (r"bilan (?:encore )?(?:provisoire|prov\.|partiel|non définitif)|"
+     r"provisional (?:toll|figure)|preliminary (?:toll|figure|count)",
+     "bilan provisoire"),
+    (r"\bau moins\b|\bat least\b|\bplus de\b(?!\s*la moitié)",
+     "plancher, le total peut être plus élevé"),
+    (r"\benviron\b|\bquelque\b|\bprès de\b|\bapproximativement\b|"
+     r"\baround\b|\broughly\b|\bapproximately\b|\bsome\b\s*\d",
+     "estimation approximative"),
+    (r"s'alourdit|ne cesse de (?:monter|croître)|pourrait (?:encore )?"
+     r"(?:s'alourdir|augmenter)|rising|climbing|expected to rise",
+     "bilan qui s'alourdit"),
+    (r"toujours en cours|se poursuit|progresse encore|non maîtrisé|"
+     r"pas encore maîtrisé|still (?:burning|ongoing|spreading|active)|"
+     r"not (?:yet )?contained",
+     "événement toujours en cours"),
+    (r"selon (?:une |les )?premi[èe]res? (?:estimations?|éléments)|"
+     r"dans un premier temps|initial(?:ly)? (?:estimate|report)",
+     "première estimation"),
+    (r"portés? disparus?|\bmissing\b|recherches? en cours|search ongoing",
+     "des personnes sont encore recherchées"),
+    (r"bilan (?:définitif|final|consolidé)|final (?:toll|count)",
+     "bilan définitif"),
+    (r"selon (?:la préfecture|les autorités|la police|le gouvernement|"
+     r"le ministère)|according to (?:authorities|police|officials)",
+     "chiffre officiel"),
+    (r"selon (?:des )?(?:témoins|habitants|sources? locales?)|"
+     r"according to (?:witnesses|residents|local sources)",
+     "source non officielle"),
+    (r"revu[e]? (?:à la hausse|à la baisse)|corrigé|rectifié|revised",
+     "chiffre revu depuis"),
+]
+_MARQUEURS_CHIFFRE_C = [(re.compile(m, re.IGNORECASE), lib)
+                        for m, lib in _MARQUEURS_CHIFFRE]
+
+# ⏱️ Grandeurs qui BOUGENT par nature : deux médias ne se contredisent pas, ils
+#    parlent de deux instants. Le lecteur doit le savoir, sinon il croit à une
+#    erreur de l'un des deux.
+_NATURE_MOUVANTE = [
+    (r"\b(?:incendie|feu de forêt|brasier|wildfire|blaze)\b",
+     "hectare|hectares|km|kilomètre",
+     "incendie en cours — la surface brûlée augmente d'heure en heure"),
+    (r"\b(?:bitcoin|ethereum|crypto|cours|bourse|action|indice|nasdaq|"
+     r"cac ?40|wall street)\b",
+     r"\$|€|dollar|euro|%",
+     "cours de marché — la valeur change en continu"),
+    (r"\b(?:séisme|tremblement de terre|earthquake|attentat|explosion|"
+     r"crash|inondation|typhon|ouragan)\b",
+     "mort|morts|blessé|blessés|victime|disparu",
+     "bilan humain — il évolue tant que les secours travaillent"),
+    (r"\b(?:manifestation|cortège|rassemblement|grève|protest|rally)\b",
+     "personne|personnes|manifestant",
+     "comptage de foule — organisateurs et autorités divergent souvent"),
+    (r"\b(?:élection|scrutin|dépouillement|vote|election|ballot)\b",
+     "%|voix|siège|bulletin",
+     "dépouillement en cours — les chiffres se précisent"),
+    (r"\b(?:épidémie|pandémie|virus|contamination|outbreak)\b",
+     "cas|contamination|mort|morts",
+     "épidémie en cours — les chiffres sont cumulés au fil des jours"),
+]
+# ⚠️ Le « s » du pluriel : « dollar » ne reconnaissait pas « dollars », et le
+#    cours du bitcoin n'était donc jamais expliqué.
+_NATURE_MOUVANTE_C = [(re.compile(a, re.IGNORECASE),
+                       re.compile(rf"(?:{b})s?\b", re.IGNORECASE), lib)
+                      for a, b, lib in _NATURE_MOUVANTE]
+
+
+def contexte_du_chiffre(valeur, unite, textes, sujet=""):
+    """Pourquoi ce chiffre peut différer d'un média à l'autre.
+
+    ⚠️ Un écart entre rédactions n'est pas toujours une contradiction. « 2 500
+    hectares » chez l'un et « 2 300 » chez l'autre, sur un incendie en cours,
+    ce sont deux relevés à deux heures différentes — pas une erreur. Le dire
+    évite au lecteur de conclure qu'une rédaction se trompe.
+
+    Deux sources, dans cet ordre : ce que les médias écrivent EUX-MÊMES autour
+    du chiffre (« bilan provisoire », « au moins »), puis la nature de
+    l'événement (incendie, cours de bourse, dépouillement…).
+
+    Renvoie une liste de mentions courtes, sans doublon."""
+    out = []
+    # ① les phrases qui entourent CE chiffre précisément
+    v = re.escape(str(valeur))
+    autour = ""
+    for t in (textes or []):
+        for m in re.finditer(rf"[^.!?]{{0,160}}\b{v}[\s\u00a0\u202f]*"
+                             rf"[^.!?]{{0,160}}", str(t)):
+            autour += " " + m.group(0)
+    for rx, lib in _MARQUEURS_CHIFFRE_C:
+        if rx.search(autour) and lib not in out:
+            out.append(lib)
+    # ② la nature de l'événement, si l'unité s'y prête
+    plein = f"{sujet} " + " ".join(str(t) for t in (textes or []))[:3000]
+    # ⚠️ Un bilan DÉFINITIF n'évolue plus : annoncer qu'il « évolue tant que les
+    #    secours travaillent » à côté contredirait la rédaction elle-même.
+    fige = any(x in out for x in ("bilan définitif",))
+    for rx_sujet, rx_unite, lib in _NATURE_MOUVANTE_C:
+        if fige and ("évolue" in lib or "augmente" in lib
+                     or "se précisent" in lib or "en continu" in lib):
+            continue
+        if rx_sujet.search(plein) and rx_unite.search(str(unite or "")) \
+                and lib not in out:
+            out.append(lib)
+    return out[:3]
+
+
+def chiffres_annotes(rec, textes=None, sujet=""):
     """Chaque chiffre du sujet, avec son degré de confirmation.
 
     Le site en annote le texte de l'article : le lecteur voit directement, sur
@@ -721,16 +844,29 @@ def chiffres_annotes(rec):
     (d'autres rédactions donnent une AUTRE valeur pour la même chose)."""
     out = {}
     rec = rec or {}
+    _trace = []
+
+    def _ctx(v, u):
+        try:
+            return contexte_du_chiffre(v, u, textes, sujet)
+        except Exception:
+            return []
+
     for v, u, n in (rec.get("confirmes") or []):
         out[f"{v}|{u}"] = {"valeur": v, "unite": u, "nb": n,
-                           "medias": [], "autres": [], "etat": "confirme"}
+                           "medias": [], "autres": [], "etat": "confirme",
+                           "contexte": _ctx(v, u)}
     for v, u in (rec.get("isoles") or []):
         out.setdefault(f"{v}|{u}", {"valeur": v, "unite": u, "nb": 1,
-                                    "medias": [], "autres": [], "etat": "seul"})
+                                    "medias": [], "autres": [], "etat": "seul",
+                                    "contexte": _ctx(v, u)})
     # les désaccords priment : un chiffre contredit par une autre rédaction
     # n'est pas « confirmé », même si plusieurs le reprennent.
     for d in (rec.get("desaccords") or []):
         vals = d.get("valeurs") or []
+        _trace.append(
+            f"{d['unite']} : "
+            + " vs ".join(f"{x['valeur']}({x.get('nb', 1)})" for x in vals))
         for x in vals:
             cle = f"{x['valeur']}|{d['unite']}"
             out[cle] = {
@@ -739,7 +875,26 @@ def chiffres_annotes(rec):
                 "autres": [{"valeur": y["valeur"], "nb": y.get("nb", 1),
                             "medias": y.get("medias") or []}
                            for y in vals if y is not x],
-                "etat": "conteste"}
+                "etat": "conteste",
+                "contexte": _ctx(x["valeur"], d["unite"])}
+    # 📊 On journalise CE QUI A ÉTÉ DÉCIDÉ sur chaque chiffre : sans cela, on ne
+    #    peut ni vérifier une annotation douteuse, ni comprendre pourquoi une
+    #    explication manque.
+    if out:
+        _conf = sum(1 for c in out.values() if c["etat"] == "confirme")
+        _cont = sum(1 for c in out.values() if c["etat"] == "conteste")
+        _seul = sum(1 for c in out.values() if c["etat"] == "seul")
+        print(f"  🔢 {len(out)} chiffre(s) : {_conf} confirmé(s) · "
+              f"{_cont} contesté(s) · {_seul} isolé(s)", flush=True)
+        compter("chiffres_annotés", len(out))
+        compter("chiffres_expliqués",
+                sum(1 for c in out.values() if c["contexte"]))
+        for _c in list(out.values())[:8]:
+            _ex = (" — " + " / ".join(_c["contexte"])) if _c["contexte"] else ""
+            print(f"      {_c['valeur']} {_c['unite']} "
+                  f"[{_c['etat']}, {_c['nb']} média(s)]{_ex}", flush=True)
+        if _trace:
+            print(f"      écarts : {' · '.join(_trace[:4])}", flush=True)
     return out
 
 
@@ -1035,6 +1190,9 @@ def init_db():
     _ensure_column("topic_echo_alert", "sources_at_alert", "sources_at_alert INTEGER DEFAULT 0")
     _ensure_column("topic_echo_alert", "alerted_at", "alerted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     _ensure_column("post_log", "category", "category TEXT")
+    # 🏠 Le site a son propre plafond : il faut donc compter SES publications
+    #    séparément de celles de X.
+    _ensure_column("post_log", "site_ok", "site_ok INTEGER DEFAULT 0")
     _ensure_column("post_log", "posted_at", "posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     conn.execute("""CREATE TABLE IF NOT EXISTS daily_cache (
         key TEXT PRIMARY KEY, payload TEXT,
@@ -1303,7 +1461,11 @@ def _touch_publish_time():
 # 📉 Plafonds RESSERRÉS : le compte publiait 34 tweets par jour — 24 actualités plus
 #    une dizaine de canaux bonus qui échappent au compteur. Mieux vaut la qualité que
 #    la quantité : moins de tweets, mais chacun mérite sa place dans le fil.
-DAILY_POST_CAP = int(os.environ.get("DAILY_POST_CAP", "20"))    # plafond FERME (seule une alerte vitale passe au-delà)
+DAILY_POST_CAP = int(os.environ.get("DAILY_POST_CAP", "20"))
+# 🏠 LE SITE EST LA MAISON DE PULSE. X est bridé par son coût : le site, non.
+#    Quand le plafond de X est atteint, on continue à publier SUR LE SITE seul
+#    plutôt que de perdre l'information. Un article sans tweet reste un article.
+SITE_POST_CAP = int(os.environ.get("SITE_POST_CAP", "24"))    # plafond FERME (seule une alerte vitale passe au-delà)
 DAILY_POST_SOFT = int(os.environ.get("DAILY_POST_SOFT", "16"))  # au-delà, on ne garde QUE le très chaud
 
 # ── Mémoire par sujet : un gros sujet qui ÉVOLUE peut ressortir dans la journée ──
@@ -15387,6 +15549,24 @@ Réponds avec ce JSON uniquement :
     return None, None, None
 
 
+# 🏠 Quand X est plein, le cycle continue pour le site seul.
+_SITE_SEUL = {"v": False}
+
+
+def articles_site_aujourdhui(conn):
+    """Combien d'articles ont été publiés SUR LE SITE aujourd'hui.
+
+    Compté à part de X : les deux plafonds sont indépendants, puisque leurs
+    contraintes le sont — X coûte, le site non."""
+    try:
+        r = conn.execute(
+            "SELECT COUNT(*) FROM post_log WHERE date(sent_at) = date('now') "
+            "AND site_ok = 1").fetchone()
+        return int(r[0]) if r else 0
+    except Exception:
+        return 0
+
+
 def publier_sur_site(item, texte, cat, format_="actu", image=None,
                      tweet_url=None, score=None, detail=None, recoupement=None):
     """Publie un article sur le site Pulse.
@@ -15447,7 +15627,15 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         "cartes_sur_table": (item.get("_presse") or {}).get("cartes_sur_table") or [],
         # 🔢 Chaque chiffre avec son degré de confirmation : le site les annote
         #    directement dans le texte, au lieu d'un pavé en fin de page.
-        "chiffres": chiffres_annotes(item.get("_rec_brut")),
+        # 🔢 Le contexte se lit dans le TEXTE des articles : « bilan provisoire »,
+        #    « toujours pas maîtrisé », « selon la préfecture ». Sans ces textes,
+        #    on ne pourrait qu'annoter la valeur, pas l'expliquer.
+        "chiffres": chiffres_annotes(
+            item.get("_rec_brut"),
+            textes=[f"{_a.get('title', '')} {_a.get('summary', '')} "
+                    f"{str(_a.get('_corps') or '')[:2500]}"
+                    for _a in ((item.get("_ev_articles") or [])[:8])],
+            sujet=str(item.get("title") or "")),
         "entites": item.get("_entites") or {},
     }
     # 🌍 Version anglaise, produite à la publication et stockée avec l'article.
@@ -15462,6 +15650,14 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
     if r is not None:
         print(f"  🌐 Publié sur le site : /a/{slug}", flush=True)
         compter("publies")
+        try:
+            _c = _META_CONN
+            if _c is not None:
+                _c.execute("UPDATE post_log SET site_ok = 1 WHERE id = ("
+                           "SELECT id FROM post_log ORDER BY id DESC LIMIT 1)")
+                _c.commit()
+        except Exception:
+            pass
         return slug
     # ⚠️ Un échec repartait sans un mot : le tweet passait, le site restait vide,
     #    et rien dans le log ne permettait de s'en apercevoir. Le site est un
@@ -15710,20 +15906,30 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
             except Exception as _e:
                 print(f"  ⚠️ Carte de lieu indisponible ({str(_e)[:50]})")
         print("  🚫 Aucune vraie photo → breaking SANS image (texte seul)")
-    try:
-        _xurl = post_to_twitter(tweet_final, png_bytes, vid)
-    except Exception as e:
-        _xurl = None
-        print(f"  ❌ X isolé : {e}")
-    try:
-        post_stat_followup(conn, item, _xurl)   # 📊 2ᵉ tweet graphique si thème éco (isolé)
-    except Exception as e:
-        print(f"  ⚠️ Data card isolée : {e}")
+    # 🏠 MODE SITE SEUL : le plafond de X est atteint, celui du site non. On ne
+    #    poste sur aucun réseau, mais l'article paraît quand même — c'est la
+    #    maison de Pulse, elle n'a pas à subir la limite d'un réseau social.
+    _site_seul = bool(_SITE_SEUL.get("v"))
+    _xurl = None
+    if _site_seul:
+        print("  🏠 Publication SITE SEUL (X, Facebook et Instagram sautés)",
+              flush=True)
+    else:
+        try:
+            _xurl = post_to_twitter(tweet_final, png_bytes, vid)
+        except Exception as e:
+            _xurl = None
+            print(f"  ❌ X isolé : {e}")
+        try:
+            post_stat_followup(conn, item, _xurl)   # 📊 2ᵉ tweet graphique si thème éco (isolé)
+        except Exception as e:
+            print(f"  ⚠️ Data card isolée : {e}")
     _fb_id = None
-    try:
-        _fb_id = post_to_facebook(tweet_final, png_bytes, vid)
-    except Exception as e:
-        print(f"  ❌ Facebook isolé : {e}")
+    if not _site_seul:
+        try:
+            _fb_id = post_to_facebook(tweet_final, png_bytes, vid)
+        except Exception as e:
+            print(f"  ❌ Facebook isolé : {e}")
     png_ig, _ig_id = None, None
     if has_real:
         png_ig, _ = build_png(headline_court, item["source"], label_cat, photo, image_query,
@@ -15743,11 +15949,15 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     # 🛡️ RÈGLE ABSOLUE : si AUCUNE plateforme n'a publié (X + FB + IG tous en échec), le sujet
     #    n'est PAS consommé — ni marqué vu, ni mémorisé, ni compté. Il repassera au run suivant.
     posted_ok = (_xurl is not None) or (_fb_id is not None) or (_ig_id is not None)
+    # ⚠️ En mode site seul, aucun réseau n'a répondu — c'est normal. Le succès
+    #    se mesure alors sur le SITE, sinon le sujet serait perdu à tort.
+    if _site_seul:
+        posted_ok = True
 
     # 🌐 SITE PULSE : chaque publication alimente aussi le site. Placé APRÈS
     #    l'envoi sur les réseaux — le site est un miroir, il ne doit rien
     #    retarder. Une panne du site ne fait pas échouer un tweet.
-    if posted_ok and SITE_ACTIF:
+    if (posted_ok or _site_seul) and SITE_ACTIF:
         try:
             publier_sur_site(item, tweet_final, cat,
                              format_=("hommage" if cat == "hommage" else
@@ -17350,6 +17560,9 @@ def check_feeds(conn):
         return
     _t0_cycle = time.time()
     _CYCLE.clear()          # les compteurs valent pour CE cycle
+    # ⚠️ Sans remise à zéro, le mode « site seul » d'un cycle resterait actif au
+    #    suivant : plus rien ne partirait jamais sur X.
+    _SITE_SEUL["v"] = False
     try:
         return _check_feeds_interne(conn)
     finally:
@@ -17616,6 +17829,8 @@ def _check_feeds_interne(conn):
                         #    articles, dédoublonnée : le site la déploie.
                         hot["_matiere"] = getattr(_ev, "matiere", None) \
                             or matiere_premiere(_ev)
+                        # les textes du sujet servent à EXPLIQUER les chiffres
+                        hot["_ev_articles"] = sujet_trie(_ev) or []
                     except Exception:
                         pass
                 # ⚠️ _sc vaut None quand le sujet est écarté AVANT évaluation
@@ -17762,8 +17977,21 @@ def _check_feeds_interne(conn):
     # ── PUBLICATION NORMALE (rythme selon l'heure) ──
     # Plafond GLOBAL : au-delà du seuil souple (20), on garde la place au chaud (breaking/France live).
     if nb_today >= DAILY_POST_CAP:
-        print(f"  🛑 Plafond quotidien ferme atteint ({nb_today}/{DAILY_POST_CAP}) — stop publications.")
-        return
+        # 🏠 Le plafond de X est atteint, PAS celui du site. On bascule en
+        #    publication « site seul » : l'information est conservée, elle ne
+        #    part simplement pas sur X. Perdre un article parce que le quota
+        #    d'un réseau social est plein serait absurde pour un média dont le
+        #    site est la maison.
+        _nb_site = articles_site_aujourdhui(conn)
+        if _nb_site >= SITE_POST_CAP:
+            print(f"  🛑 Plafonds atteints — X {nb_today}/{DAILY_POST_CAP} · "
+                  f"site {_nb_site}/{SITE_POST_CAP} : stop publications.",
+                  flush=True)
+            compter("rejet__plafond quotidien")
+            return
+        print(f"  🏠 X plein ({nb_today}/{DAILY_POST_CAP}) → publication SITE "
+              f"SEUL ({_nb_site}/{SITE_POST_CAP})", flush=True)
+        _SITE_SEUL["v"] = True
     if nb_today >= DAILY_POST_SOFT:
         print(f"  🛑 Seuil souple atteint ({nb_today}/{DAILY_POST_SOFT}) — on garde la place au chaud (breaking/France live).")
         return
