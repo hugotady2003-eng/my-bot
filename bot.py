@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.24.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.25.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -12772,11 +12772,14 @@ def _embed(texte, conn=None, essentiel=False):
 def combinaisons_gemini(modeles):
     """Tous les couples (clé, modèle) à essayer, dans l'ordre.
 
-    ⚠️ L'ordre est : POUR CHAQUE MODÈLE, toutes les clés. Un modèle donné a un
-    quota par projet ; épuiser le modèle A sur la clé 1 n'épuise pas le modèle A
-    sur la clé 2. On ne passe au modèle suivant qu'après avoir essayé toutes les
-    clés sur celui-ci — c'est ce qui garantit qu'aucune capacité gratuite ne
-    reste inutilisée.
+    ⚠️ L'ordre est : POUR CHAQUE CLÉ, tous ses modèles. Épuiser le modèle A sur
+    la clé 1 n'épuise ni le modèle B de la clé 1, ni le modèle A de la clé 2 —
+    les quotas sont indépendants sur les deux axes.
+
+    L'ordre inverse (modèle par modèle) laissait le second modèle quasiment
+    inutilisé : le premier ne s'épuisait jamais sur les cinq clés dans la même
+    journée, donc on n'y arrivait pas. En parcourant clé par clé, les deux
+    modèles d'une même clé servent avant de passer à la suivante.
 
     ⚠️ Un couple n'est écarté QUE si l'API a répondu « quota dépassé » pour lui
     aujourd'hui, ou si le modèle n'existe pas. Jamais sur un compteur interne :
@@ -12785,10 +12788,10 @@ def combinaisons_gemini(modeles):
     des modèles qui ne l'étaient pas."""
     jour = _now_paris().strftime("%Y-%m-%d")
     out = []
-    for m in modeles:
-        if m in _MODELES_INEXISTANTS:
-            continue
-        for k in GEMINI_API_KEYS:
+    for k in GEMINI_API_KEYS:
+        for m in modeles:
+            if m in _MODELES_INEXISTANTS:
+                continue
             if _MODELE_EPUISE.get((_empreinte_cle(k), m)) == jour:
                 continue
             out.append((k, m))
@@ -17783,8 +17786,35 @@ def _check_feeds_interne(conn):
     #    de notation, et non plus une simple information de journal.
     _evenements_du_cycle = {}
     _refuses_du_cycle = set()      # titres écartés par la décision unique, tous chemins
+
+    # ⚠️ DÉFAUT MESURÉ : le regroupement — donc les vecteurs, donc le quota —
+    #    tournait à CHAQUE cycle, même quand la cadence interdisait de publier.
+    #    116 vecteurs par passage, 288 passages : 33 000 par jour pour un quota
+    #    de quelques milliers. On ne dépense plus rien tant qu'aucune
+    #    publication n'est possible.
+    #    ⚠️ Un vrai sujet chaud, lui, contourne la cadence : on le laisse
+    #    toujours passer, sinon on manquerait un attentat pour économiser.
+    # la cadence était calculée trois cents lignes plus bas : on la remonte,
+    # puisque c'est elle qui décide si l'analyse vaut la peine d'être payée
+    _cadence_ok_tot = (not _is_night()) and should_publish_now(conn)
+    _peut_publier = (nb_today < DAILY_POST_CAP
+                     or articles_site_aujourdhui(conn) < SITE_POST_CAP)
+    _chaud_en_vue = any(
+        _is_urgent_alert(_c.get("title", ""), _c.get("summary", ""))
+        or _hot_prescore(_c.get("title", "")) >= 5
+        for _c in candidates[:60])
+    if not _peut_publier or (not _cadence_ok_tot and not _chaud_en_vue):
+        _pq = ("plafonds atteints" if not _peut_publier
+               else "cadence pas prête, aucun sujet chaud")
+        print(f"  💤 Analyse repoussée ({_pq}) — aucun vecteur consommé",
+              flush=True)
+        compter("rejet__analyse repoussée")
+        _evenements_du_cycle = {}
+        candidates_analysables = []
+    else:
+        candidates_analysables = candidates
     try:
-        for _e in regrouper_en_evenements(candidates, conn):
+        for _e in regrouper_en_evenements(candidates_analysables, conn):
             for _a in _e.articles:
                 # ⚠️ Clé par URL d'abord : deux dépêches peuvent porter un titre
                 #    IDENTIQUE sur des faits distincts (« Le point sur la
