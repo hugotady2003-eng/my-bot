@@ -89,7 +89,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.23.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.24.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -9950,6 +9950,64 @@ def _suite_de_deces(titre, resume=""):
 
 
 
+def hommage_verifie_ia(titre, resume, corps="", personne=""):
+    """Demande au modèle si ce texte justifie VRAIMENT un hommage.
+
+    ⚠️ VÉCU, GRAVE : « Mort de Lyhanna : la fillette avait été bâillonnée et
+    ligotée » — le meurtre d'une enfant — a été publié en HOMMAGE. Aucun motif
+    d'exclusion ne couvrait « bâillonnée », et aucune liste ne les couvrira
+    jamais tous : un texte se comprend, il ne se reconnaît pas à ses mots.
+
+    Trois conditions, toutes nécessaires :
+      • le décès est CONFIRMÉ, pas supposé ni craint ;
+      • il est RÉCENT — on vérifie la date du DÉCÈS mentionnée dans l'article,
+        jamais celle de l'article : un anniversaire de mort ou un procès
+        rouvert des années après ne sont pas des hommages ;
+      • la personne est une PERSONNALITÉ publique, et sa mort n'est pas un
+        crime, un fait divers ou un accident — on n'honore pas une victime,
+        on informe.
+
+    Renvoie True, False, ou None si le jugement n'a pas pu se faire — auquel
+    cas l'appelant NE PUBLIE PAS d'hommage : mieux vaut une actualité normale
+    qu'un hommage déplacé."""
+    extrait = re.sub(r"\s+", " ", f"{resume} {corps}").strip()[:2200]
+    try:
+        r = _llm_json(
+            "Tu vérifies qu'un article justifie un HOMMAGE — un message sobre "
+            "saluant la mémoire d'une personnalité qui vient de mourir.\n\n"
+            f"TITRE : {titre}\n"
+            + (f"PERSONNE CITÉE : {personne}\n" if personne else "")
+            + f"ARTICLE : {extrait}\n\n"
+            "Réponds NON si l'une de ces conditions manque :\n"
+            "• le décès est confirmé (ni supposé, ni craint, ni annoncé comme "
+            "possible) ;\n"
+            "• la personne est une PERSONNALITÉ publique connue — pas un "
+            "anonyme, pas une victime de fait divers ;\n"
+            "• sa mort n'est PAS un meurtre, un assassinat, un attentat, un "
+            "accident, un suicide ni une affaire judiciaire. On n'honore pas "
+            "une victime : on informe.\n"
+            "• le décès vient de se produire. Cherche la DATE DU DÉCÈS dans "
+            "l'article — pas la date de l'article. Un anniversaire de mort, un "
+            "procès rouvert, une rétrospective ou une exhumation des années "
+            "après ne sont PAS des hommages.\n\n"
+            'Réponds en JSON strict : {"hommage":true|false,'
+            '"motif":"<10 mots max>","date_deces":"<ce que dit l\'article, ou vide>"}',
+            max_tokens=160, task="analyse")
+        if not isinstance(r, dict) or "hommage" not in r:
+            return None
+        ok = bool(r.get("hommage"))
+        motif = str(r.get("motif") or "")[:60]
+        quand = str(r.get("date_deces") or "")[:40]
+        print(f"  🕊️ Hommage {'validé' if ok else 'REFUSÉ'} par le modèle"
+              + (f" — {motif}" if motif else "")
+              + (f" · décès : {quand}" if quand else ""), flush=True)
+        return ok
+    except Exception as e:
+        print(f"  🛑 Hommage non vérifiable ({str(e)[:44]}) — "
+              f"traité en actualité normale", flush=True)
+        return None
+
+
 def _is_obituary(title, summary):
     """Vrai UNIQUEMENT si l'article ANNONCE le décès d'une PERSONNE (personnalité).
     Approche robuste (pas une simple liste de mots) :
@@ -15813,6 +15871,31 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     if cat == "hommage" and not _is_obituary(item.get("title", ""), item.get("summary", "")):
         cat = item.get("_cat_origine") or "monde"
         print(f"  ↩️ Pas un décès malgré le classement du modèle → actualité normale [{cat}]")
+    # 🕊️ VÉRIFICATION FINALE PAR LE MODÈLE. Les motifs ci-dessus sont un
+    #    pré-tri gratuit ; ils ne peuvent pas juger un texte. « Mort de
+    #    Lyhanna : la fillette avait été bâillonnée » les a tous franchis.
+    #    Le modèle lit l'article entier et vérifie les trois conditions :
+    #    décès confirmé, personnalité publique, mort récente et non criminelle.
+    #    ⚠️ Sans jugement possible, on NE publie PAS d'hommage — un hommage
+    #    déplacé se voit et se retient, une actualité normale non.
+    if cat == "hommage":
+        _corps_h = ""
+        try:
+            _u = str(item.get("url") or "")
+            if _u and _META_CONN is not None:
+                _r = _META_CONN.execute(
+                    "SELECT corps FROM article_corps WHERE url=?", (_u,)).fetchone()
+                _corps_h = (_r[0] if _r else "") or ""
+        except Exception:
+            _corps_h = ""
+        _avis = hommage_verifie_ia(
+            item.get("title", ""), item.get("summary", ""), _corps_h,
+            _extract_person_name(item.get("title", ""), item.get("summary", "")) or "")
+        if _avis is not True:
+            cat = item.get("_cat_origine") or "world"
+            print(f"  ↩️ Hommage non confirmé → actualité normale [{cat}]",
+                  flush=True)
+            compter("rejet__hommage refusé")
     if cat == "hommage" and _suite_de_deces(item.get("title", ""), item.get("summary", "")):
         cat = item.get("_cat_origine") or "culture"
         print(f"  ↩️ Suites d'un décès (obsèques, hommage tiers…) → actualité normale [{cat}]")
