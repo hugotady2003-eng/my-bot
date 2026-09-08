@@ -687,6 +687,14 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
       background:color-mix(in srgb,var(--mauve) 14%,transparent);
       color:var(--texte);border:1px solid color-mix(in srgb,var(--mauve) 26%,transparent)}
 .ch-n{margin-top:8px;font-size:.74rem;color:var(--gris);font-style:italic}
+
+/* 📝 faits annotés : un soulignement discret, jamais une phrase en plus */
+.fa{cursor:pointer;border-bottom:1px dotted;padding-bottom:1px;
+    transition:background .15s}
+.fa:hover{background:rgba(255,255,255,.05)}
+.fa-ok{border-color:color-mix(in srgb,var(--vert) 55%,transparent)}
+.fa-moy{border-color:color-mix(in srgb,var(--orange) 55%,transparent)}
+.fa-seul{border-color:color-mix(in srgb,var(--rouge) 55%,transparent)}
 </style><script>
 /* ═══════════════════════════════════════════════════════════════════════
    CONFIGURATION — remplace ces deux valeurs par les tiennes.
@@ -1129,6 +1137,77 @@ function ouvrirChiffre(btn, a){
   }, {passive:true, once:true});
 }
 
+/* 📝 LES FAITS DANS LE TEXTE
+   Même principe que pour les chiffres : au lieu d'écrire « un élément rapporté
+   par 2 médias » au milieu d'une phrase, on souligne discrètement la phrase et
+   le détail s'ouvre au clic. L'information est là, sans alourdir la lecture. */
+function annoterFaits(html, a){
+  const faits = Array.isArray(a && a.faits) ? a.faits : [];
+  if(!faits.length) return html;
+
+  /* on apparie sur les mots significatifs : le rédacteur reformule, le texte
+     de l'article n'est jamais identique à celui de la source */
+  const cle = (t) => (String(t).toLowerCase().match(/[0-9a-zà-ÿ]{4,}/g) || []);
+  const index = faits.map(f => ({f, mots: new Set(cle(f.texte))}));
+
+  return html.replace(/>([^<]+)</g, (tout, texte) => {
+    const phrases = texte.split(/(?<=[.!?])\s+/);
+    const sortie = phrases.map(ph => {
+      if(ph.trim().length < 30) return ph;
+      const m = new Set(cle(ph));
+      if(m.size < 4) return ph;
+      let best = null, score = 0;
+      index.forEach(({f, mots}) => {
+        let n = 0; m.forEach(x => { if(mots.has(x)) n++; });
+        const r = n / Math.min(m.size, mots.size);
+        if(r > score){ score = r; best = f; }
+      });
+      /* on n'annote que si la correspondance est franche */
+      if(!best || score < 0.5) return ph;
+      const nb = best.nb || 1;
+      const niv = nb >= 3 ? 'ok' : (nb === 2 ? 'moy' : 'seul');
+      return `<span class="fa fa-${niv}" data-fa="${
+        encodeURIComponent(best.texte.slice(0,60))}">${ph}</span>`;
+    });
+    return '>' + sortie.join(' ') + '<';
+  });
+}
+
+function ouvrirFait(el, a){
+  document.querySelectorAll('.ch-pop').forEach(p => p.remove());
+  const ref = decodeURIComponent(el.dataset.fa || '');
+  const f = (a.faits || []).find(x => x.texte.slice(0,60) === ref);
+  if(!f) return;
+  const nb = f.nb || 1;
+  let corps = `<div class="ch-l">${nb} rédaction${nb>1?'s':''} ${
+    nb>1?'rapportent':'rapporte'} cette information</div>`;
+  if((f.medias||[]).length) corps += `<div class="ch-m">${f.medias.join(' · ')}</div>`;
+  corps += nb > 1
+    ? '<div class="ch-a">Information recoupée</div>'
+    : '<div class="ch-a">Une seule source : à prendre avec prudence.</div>';
+  const pop = document.createElement('div');
+  pop.className = 'ch-pop';
+  pop.innerHTML = corps;
+  document.body.appendChild(pop);
+  const r = el.getBoundingClientRect(), l = pop.getBoundingClientRect(), mg = 10;
+  let x = Math.max(mg, Math.min(r.left, window.innerWidth - l.width - mg));
+  const sous = r.bottom + l.height + mg < window.innerHeight;
+  pop.style.left = x + 'px';
+  pop.style.top = (sous ? r.bottom + 8 : r.top - l.height - 8) + 'px';
+  pop.classList.add(sous ? 'sous' : 'sur');
+  pop.style.setProperty('--fx', Math.max(14, Math.min(r.left + 20 - x, l.width - 14)) + 'px');
+  requestAnimationFrame(() => pop.classList.add('vu'));
+  const fermer = () => { pop.classList.remove('vu'); setTimeout(() => pop.remove(), 190); };
+  setTimeout(() => document.addEventListener('click', function f2(e){
+    if(!pop.contains(e.target) && !el.contains(e.target)){
+      fermer(); document.removeEventListener('click', f2);
+    }
+  }), 0);
+  window.addEventListener('scroll', function s(){
+    fermer(); window.removeEventListener('scroll', s);
+  }, {passive:true, once:true});
+}
+
 function calcul(a){
   const n = a.nb_medias || 1;
   const SEUIL_PUB = 46, SEUIL_URG = 77;
@@ -1259,7 +1338,7 @@ async function charger(){
       ${propre(txt(a,'chapo'))?`<p class="chapo">${propre(txt(a,'chapo'))}</p>`:''}
       ${a.image_url?`<img class="img-ar" src="${a.image_url}" alt="">
         <div class="leg-img">Photo : ${a.source_nom||'source de l\'article'}</div>`:''}
-      <div class="corps">${annoterChiffres(corps, a)}</div>
+      <div class="corps">${annoterChiffres(annoterFaits(corps, a), a)}</div>
 
       <div class="honn">
         <h3>⚖️ Cartes sur table</h3>
@@ -1306,7 +1385,9 @@ async function charger(){
        recréés à chaque rendu, en poser un par bouton serait fragile. */
     box.addEventListener('click', (e) => {
       const b = e.target.closest && e.target.closest('.ch');
-      if(b) ouvrirChiffre(b, a);
+      if(b) return ouvrirChiffre(b, a);
+      const f = e.target.closest && e.target.closest('.fa');
+      if(f) ouvrirFait(f, a);
     });
     try{ animerScore(box); }catch(e){ console.warn('animation du score', e); }
     try{ animerSources(box); }catch(e){ console.warn('animation des sources', e); }
@@ -1519,6 +1600,80 @@ charger();
    aucun service tiers n'intervient à la lecture. Ici, seuls les libellés de
    l'interface sont commutés. */
 const T = {
+  /* ⚠️ AJOUTS : tout ce qui restait en français à la lecture d'un article en
+     anglais. Relevé écran par écran — fenêtres des chiffres, cartes sur table,
+     décomposition du score, dossier de presse. */
+  // ── fenêtres des chiffres et des faits ──
+  "rédaction cite ce chiffre":"newsroom cites this figure",
+  "rédactions citent ce chiffre":"newsrooms cite this figure",
+  "rédaction rapporte cette information":"newsroom reports this",
+  "rédactions rapportent cette information":"newsrooms report this",
+  "Une seule source : à prendre avec prudence.":"Single source — treat with caution.",
+  "Aucune rédaction n'avance un autre chiffre.":"No newsroom gives a different figure.",
+  "Autres valeurs citées":"Other figures reported",
+  "Information recoupée":"Cross-checked",
+  "Ces écarts s'expliquent : voir ci-dessus.":"These gaps are explained above.",
+  "rédaction":"newsroom",
+  "rédactions":"newsrooms",
+  // ── mentions de contexte d'un chiffre ──
+  "bilan provisoire":"provisional toll",
+  "bilan définitif":"final toll",
+  "plancher, le total peut être plus élevé":"floor — the total may be higher",
+  "estimation approximative":"rough estimate",
+  "bilan qui s'alourdit":"rising toll",
+  "événement toujours en cours":"event still unfolding",
+  "première estimation":"initial estimate",
+  "des personnes sont encore recherchées":"people are still missing",
+  "chiffre officiel":"official figure",
+  "source non officielle":"unofficial source",
+  "chiffre revu depuis":"figure revised since",
+  "incendie en cours — la surface brûlée augmente d'heure en heure":"fire still burning — the burned area grows by the hour",
+  "cours de marché — la valeur change en continu":"market price — changes continuously",
+  "bilan humain — il évolue tant que les secours travaillent":"human toll — it changes while rescuers work",
+  "comptage de foule — organisateurs et autorités divergent souvent":"crowd count — organisers and authorities often differ",
+  "dépouillement en cours — les chiffres se précisent":"count under way — figures are firming up",
+  "épidémie en cours — les chiffres sont cumulés au fil des jours":"ongoing outbreak — figures accumulate day by day",
+  // ── cartes sur table ──
+  "⚖️ Cartes sur table":"⚖️ Cards on the table",
+  "Cartes sur table":"Cards on the table",
+  "Les chiffres ne concordent pas":"The figures don't match",
+  "Voilà exactement sur quoi repose cet article. Aucun média ne vous montre ça. Jugez par vous-même.":"Here is exactly what this article rests on. No other outlet shows you this. Judge for yourself.",
+  "Chaque chiffre, passé au crible":"Every figure, examined",
+  "Sérieux":"Solid",
+  "Solide":"Strong",
+  "Fragile":"Thin",
+  "médias":"outlets",
+  "média":"outlet",
+  "Chiffre retrouvé à l'identique dans plusieurs articles indépendants. La concordance rend l'erreur peu probable.":"Figure found identically in several independent articles. Such agreement makes an error unlikely.",
+  "Chiffre présent dans un seul article. Il n'est pas faux pour autant, mais rien ne le confirme — nous le signalons plutôt que de le présenter comme acquis.":"Figure found in a single article. Not necessarily wrong, but nothing confirms it — we flag it rather than present it as settled.",
+  // ── décomposition du score ──
+  "Pourquoi nous l'avons publié":"Why we published it",
+  "Comment ce score s'est construit":"How this score was built",
+  "Gravité du fait":"Seriousness of the event",
+  "Reprise par les rédactions":"Picked up by newsrooms",
+  "Fraîcheur de l'information":"Freshness",
+  "Caractère imprévu":"Unexpectedness",
+  "Portée dans le monde":"Global reach",
+  "Thème porteur":"Trending theme",
+  "Sujet en tendance":"Trending topic",
+  "Primeur":"Scoop",
+  "Exclusivité":"Exclusive",
+  "Suite avec du neuf":"Follow-up with new facts",
+  "Événement programmé":"Scheduled event",
+  "Sujet déjà traité":"Already covered",
+  "Une seule source":"Single source",
+  "Titre racoleur":"Clickbait headline",
+  "Information périmée":"Stale information",
+  "Score final":"Final score",
+  "publication":"publication",
+  "alerte":"alert",
+  "sur":"of",
+  // ── dossier de presse ──
+  "seuil de corroboration atteint":"corroboration threshold met",
+  "d'avance":"ahead",
+  "1er":"1st",
+  "Chacune a traité l'information à sa manière. Nous les publions toutes, dans leur ordre de parution — y compris celles dont nous ne nous sommes pas servis pour rédiger.":"Each covered the story its own way. We list them all, in order of publication — including those we did not use to write this piece.",
+
   "Dont brûlé chaque année":"Burned annually",
   "50 % des frais perçus":"50% of fees collected",
   "Infrastructure":"Infrastructure",
@@ -1542,9 +1697,7 @@ const T = {
 
   ": modèles de langage, hébergement, base de données, stockage des images.":": language models, hosting, database, image storage.",
 
-  ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
   "©️ Droits":"©️ Rights",
-  ": modèles de langage, hébergement, base de données, stockage des images.":": language models, hosting, database, image storage.",
 
   "vert":"green",
   "rouge":"red",
@@ -1558,17 +1711,13 @@ const T = {
   "[courriel]":"[email]",
   "Pulse":"Pulse",
   "Solana":"Solana",
-  ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
-  ": modèles de langage, hébergement, base de données, stockage des images.":": language models, hosting, database, image storage.",
 
   "Une intelligence qui ne dort jamais.":"An intelligence that never sleeps.",
   "20 000 articles analysés chaque jour":"20,000 articles analysed every day",
-  ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
   "Chargement du journal…":"Loading the log…",
   "Chaque valeur chiffrée est extraite article par article et normalisée — « 2 500 » et « 2500 » sont un même fait. Les concordances établissent la fiabilité, les écarts sont conservés comme":"Every figure is extracted article by article and normalised — 2 500 and 2500 are one and the same. Matches establish reliability, discrepancies are kept as",
   ", sauf alerte vitale. Mémoire d'entités sur 3 jours contre les reformulations. Chaque refus est publié avec sa raison.":", except for vital alerts. Three-day entity memory guards against rewording. Every rejection is published with its reason.",
   "l'infrastructure de Pulse":"Pulse's infrastructure",
-  ": modèles de langage, hébergement, base de données, stockage des images.":": language models, hosting, database, image storage.",
   "Nous l'écrivons plutôt que de le taire.":"We write it rather than hide it.",
   "Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite":"If fees fall short, Pulse will run in reduced mode",
   "— moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"— fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
@@ -1736,7 +1885,6 @@ const T = {
   "Ce que nous ne pouvons pas garantir.":"What we cannot guarantee.",
   "L'actualité,":"News,",
   "sans":"without",
-  "rédaction":"a newsroom",
   "En ligne · publie toutes les 5 minutes":"Live · publishes every 5 minutes",
   "Pourquoi Pulse change la donne":"Why Pulse changes things",
   "Il voit ce que vous ne verrez jamais":"It sees what you never will",
@@ -1834,13 +1982,7 @@ const T = {
   "mis à jour en continu":"continuously updated",
   // fiabilité
   "Béton":"Rock solid", "Sérieux":"Solid", "Prudence":"Handle with care",
-  "médias":"outlets", "1 seul média":"single outlet",
   // article
-  "Cartes sur table":"Cards on the table",
-  "Pourquoi nous l'avons publié":"Why we published it",
-  "Chaque chiffre, passé au crible":"Every figure, checked",
-  "Décomposition du score — barème sur 100":"Score breakdown — out of 100",
-  "Score final":"Final score", "Publié le":"Published on",
   "Rédactions ayant couvert le fait":"Newsrooms that covered the story",
   "Source":"Source", "Lire →":"Read →", "Lire l'original →":"Read the original →",
   "Publié aussi sur":"Also published on", "Voir le message →":"View the post →",
@@ -1861,7 +2003,6 @@ const T = {
   "Lire le fil":"Read the feed", "Comment ça marche":"How it works",
   "articles analysés":"articles analysed", "événements reconstitués":"events reconstructed",
   "tours de veille":"monitoring cycles", "intérêt à défendre":"vested interests",
-  "depuis le premier jour":"since day one",
   "Les dernières actualités":"Latest news",
 };
 
