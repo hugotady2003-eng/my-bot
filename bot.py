@@ -17,6 +17,38 @@ try:
     _sys.stderr.reconfigure(line_buffering=True)
 except Exception:
     pass
+
+
+# 📓 On conserve tout ce qui s'affiche pendant le cycle. Quand une publication a
+#    lieu, ce journal est déposé dans le dépôt GitHub : il devient consultable
+#    a posteriori, ce qui permet de diagnostiquer un cas précis longtemps après
+#    — un log qui défile dans une fenêtre d'exécution est perdu dès la fin.
+_JOURNAL_RUN = []
+
+
+class _Tee:
+    """Écrit à l'écran ET dans le journal du cycle."""
+
+    def __init__(self, flux):
+        self._f = flux
+
+    def write(self, t):
+        try:
+            _JOURNAL_RUN.append(t)
+            if len(_JOURNAL_RUN) > 20000:      # garde-fou mémoire
+                del _JOURNAL_RUN[:5000]
+        except Exception:
+            pass
+        return self._f.write(t)
+
+    def flush(self):
+        return self._f.flush()
+
+    def __getattr__(self, n):
+        return getattr(self._f, n)
+
+
+_sys.stdout = _Tee(_sys.stdout)
 socket.setdefaulttimeout(12)   # aucun flux RSS/site mort ne peut geler un run
 import urllib.request, urllib.parse, urllib.error, re
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
@@ -89,7 +121,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.25.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.27.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -641,6 +673,53 @@ def compter(quoi, n=1):
     _CYCLE[quoi] = _CYCLE.get(quoi, 0) + n
 
 
+def deposer_journal_github():
+    """Dépose le journal du cycle dans le dépôt, sous logs/.
+
+    ⚠️ POURQUOI GITHUB plutôt qu'un envoi par courriel : le dépôt est public,
+    donc le journal devient consultable par une simple adresse. Un log qui
+    défile dans une fenêtre d'exécution disparaît à la fin du run ; celui-ci
+    reste, et permet de diagnostiquer un cas précis des jours plus tard.
+
+    ⚠️ UNIQUEMENT quand un article a été publié. Déposer les 288 cycles
+    quotidiens noierait les vrais cas dans le bruit et alourdirait le dépôt
+    pour rien.
+
+    Le jeton vient de l'environnement d'exécution (GITHUB_TOKEN, fourni
+    automatiquement par GitHub Actions) : rien à configurer, aucune clé dans
+    le code."""
+    if not _CYCLE.get("publies"):
+        return False
+    jeton = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or ""
+    depot = os.environ.get("GITHUB_REPOSITORY", "hugotady2003-eng/my-bot")
+    if not jeton:
+        print("  ⚠️ Journal non déposé : aucun jeton GitHub dans "
+              "l'environnement", flush=True)
+        return False
+    import base64 as _b64
+    horo = _now_paris().strftime("%Y-%m-%d_%Hh%M")
+    chemin = f"logs/{horo}.txt"
+    contenu = "".join(_JOURNAL_RUN)[-400_000:]      # les 400 derniers Ko
+    corps = {
+        "message": f"journal du cycle {horo} ({_CYCLE.get('publies')} publié·s)",
+        "content": _b64.b64encode(contenu.encode("utf-8")).decode("ascii"),
+    }
+    try:
+        r = requests.put(
+            f"https://api.github.com/repos/{depot}/contents/{chemin}",
+            headers={"Authorization": f"Bearer {jeton}",
+                     "Accept": "application/vnd.github+json"},
+            json=corps, timeout=25)
+        if getattr(r, "status_code", 500) in (200, 201):
+            print(f"  📓 Journal déposé : {chemin}", flush=True)
+            return True
+        print(f"  ⚠️ Journal non déposé ({r.status_code}) — "
+              f"le jeton a-t-il le droit d'écriture ?", flush=True)
+    except Exception as e:
+        print(f"  ⚠️ Journal non déposé : {str(e)[:60]}", flush=True)
+    return False
+
+
 def bilan_editorial():
     """Ce que le cycle a fait de ses articles, en une poignée de lignes."""
     if not _CYCLE:
@@ -829,6 +908,26 @@ def contexte_du_chiffre(valeur, unite, textes, sujet=""):
                 and lib not in out:
             out.append(lib)
     return out[:3]
+
+
+def faits_annotes(matiere):
+    """Chaque affirmation de l'article, avec le nombre de rédactions qui la portent.
+
+    ⚠️ VÉCU : l'article écrivait « …, un élément rapporté par 2 médias » en
+    toutes lettres. C'est une information utile, mais elle alourdit la phrase
+    et double ce que le site sait déjà afficher. On applique donc aux FAITS le
+    traitement des chiffres : le site souligne la phrase selon sa
+    corroboration, et le détail s'ouvre au clic.
+
+    Renvoie [{texte, nb, medias}] — le site apparie sur le texte."""
+    out = []
+    for m in (matiere or []):
+        t = str(m.get("texte") or "").strip()
+        if len(t) < 30:
+            continue
+        out.append({"texte": t, "nb": int(m.get("nb") or 1),
+                    "medias": list(m.get("medias") or [])})
+    return out[:30]
 
 
 def chiffres_annotes(rec, textes=None, sujet=""):
@@ -15362,6 +15461,52 @@ def titre_pour_site(titre_source, tweet):
     return ligne if len(ligne) >= 20 else str(titre_source or "").strip()
 
 
+# ⛔ Tournures qui doublent ce que le site montre déjà, ou qui renvoient le
+#    lecteur ailleurs. Le modèle a pour consigne de les éviter — une consigne
+#    n'étant pas une garantie, on les retire aussi du texte produit.
+_TOURNURES_A_RETIRER = [
+    # « …, un chiffre avancé par un seul média » / « rapporté par 2 médias »
+    # ⚠️ Le nom introducteur est facultatif : « …, avancé par un seul média »
+    #    s'écrit aussi bien que « …, un chiffre avancé par un seul média ».
+    #    Exiger le nom laissait passer la moitié des cas.
+    r",?\s*(?:(?:un|une|cet?te?)\s+(?:chiffre|élément|information|donnée|"
+    r"fait|détail|point|bilan)\s+)?"
+    r"(?:avancé|rapporté|confirmé|cité|mentionné|relevé|évoqué|indiqué|"
+    r"corroboré|recoupé)e?s?\s+par\s+"
+    r"(?:un\s+seul|une\s+seule|\d+|plusieurs|deux|trois|quatre|cinq|six|"
+    r"sept|huit|neuf|dix)\s*(?:média|source|rédaction)s?\b[^.]*",
+    r",?\s*(?:selon|d'après)\s+(?:un\s+seul|une\s+seule)\s+"
+    r"(?:média|source|rédaction)\b[^.]*",
+    r",?\s*(?:et\s+)?non\s+confirmée?\s+à\s+ce\s+stade\b",
+    r",?\s*(?:information|chiffre)\s+(?:non\s+)?(?:encore\s+)?"
+    r"confirmée?\s+par\s+\w+\s+(?:média|source)s?\b",
+    # renvois vers un autre média
+    r"[^.!?]*\b(?:plus d'informations?|plus de détails|à (?:lire|suivre|"
+    r"retrouver)|retrouvez|suivez)\b[^.!?]*\b(?:sur|chez|dans)\s+"
+    r"(?:BFM\w*|TF1|France ?\d|Le Monde|Le Figaro|Libération|CNN|BBC|"
+    r"Reuters|AFP|[A-Z][\wÉÈÀ-]{2,})\b[^.!?]*[.!?]",
+]
+_TOURNURES_RX = [re.compile(m, re.IGNORECASE) for m in _TOURNURES_A_RETIRER]
+
+
+def nettoyer_tournures(texte):
+    """Retire les mentions que le site affiche déjà, et les renvois concurrents.
+
+    ⚠️ VÉCU : « L'artiste s'est éteint à l'âge de 85 ans, un chiffre avancé par
+    un seul média et non confirmé à ce stade. » puis « Plus d'informations à
+    venir sur BFM. » — la première phrase double la fenêtre du chiffre, la
+    seconde envoie le lecteur chez un concurrent depuis notre propre page."""
+    t = str(texte or "")
+    for rx in _TOURNURES_RX:
+        t = rx.sub("", t)
+    t = re.sub(r"\s+([.,;:!?])", r"\1", t)
+    t = re.sub(r"\.{2,}", ".", t)
+    t = re.sub(r"[ \t]{2,}", " ", t)
+    t = re.sub(r"\n{3,}", "\n\n", t)
+    # une phrase vidée de sa substance ne doit pas laisser un blanc
+    return "\n\n".join(p.strip() for p in t.split("\n\n") if p.strip())
+
+
 def chiffrer_le_texte(texte):
     """Convertit les nombres écrits en lettres en chiffres, composés compris.
 
@@ -15466,7 +15611,7 @@ def corps_pour_site(item, tweet, recoupement=None, matiere=None):
     titre = re.sub(r"\s+", " ", str(item.get("title") or "")).strip()
     resume = re.sub(r"\s+", " ", str(item.get("summary") or "")).strip()[:2500]
     if not titre:
-        return chiffrer_le_texte(str(tweet or ""))
+        return chiffrer_le_texte(nettoyer_tournures(str(tweet or "")))
     rec = recoupement or {}
     faits = ""
     if rec.get("confirmes"):
@@ -15516,9 +15661,17 @@ CONSIGNES :
   portés par un seul média sont donnés en le signalant (« selon Le Monde »).
 - UN SEUL CHIFFRE PAR FAIT. Ne juxtapose jamais plusieurs valeurs pour la même
   chose (« 5 morts, ou 11 selon un autre média »). Écris la valeur indiquée et
-  rien d'autre : le lecteur voit les versions concurrentes en cliquant sur le
-  chiffre. N'écris pas non plus « selon une seule source » à côté d'un nombre,
-  cette information est déjà portée par le site.
+  rien d'autre.
+- ⛔ N'ÉCRIS JAMAIS COMBIEN DE MÉDIAS RAPPORTENT UNE INFORMATION. Ni « un
+  chiffre avancé par un seul média », ni « un élément rapporté par 2 médias »,
+  ni « non confirmé à ce stade ». Le site le montre déjà : chaque chiffre et
+  chaque fait s'y colorent selon leur degré de confirmation, et le lecteur voit
+  le détail en cliquant. Le répéter en toutes lettres alourdit la phrase et
+  double une information déjà présente.
+- ⛔ NE RENVOIE JAMAIS VERS UN AUTRE MÉDIA. Pas de « plus d'informations à venir
+  sur BFM », pas de « à lire sur Le Monde ». Nous sommes chez nous : la source
+  est créditée en bas de l'article, cela suffit. Envoyer le lecteur ailleurs
+  depuis notre propre page n'a aucun sens.
 - ÉCRIS TOUS LES NOMBRES EN CHIFFRES, jamais en lettres : « 5 morts » et non
   « cinq morts », « 2 500 hectares » et non « deux mille cinq cents hectares ».
   Le lecteur doit pouvoir les repérer d'un coup d'œil, et le site les met en
@@ -15539,7 +15692,7 @@ Réponds avec ce JSON UNIQUEMENT : {{"article":"le texte complet, \\n\\n entre p
         txt = re.sub(r"\n{3,}", "\n\n", str((r or {}).get("article") or "").strip())
         # garde-fou : un texte plus court que le tweet n'a aucun intérêt
         if txt and len(txt) > len(str(tweet or "")) * 1.4:
-            return chiffrer_le_texte(txt)
+            return chiffrer_le_texte(nettoyer_tournures(txt))
     except Exception as e:
         print(f"  ⚠️ Article long indisponible ({str(e)[:50]})")
     # ⚠️ REPLI : le tweet nettoyé. Sa PREMIÈRE ligne devient le chapô de l'article,
@@ -15555,7 +15708,7 @@ Réponds avec ce JSON UNIQUEMENT : {{"article":"le texte complet, \\n\\n entre p
                 if not re.match(r"^\(?(?:via|source)\s*:", x, re.IGNORECASE)]
     # 🔢 Les chiffres du site sont mis en évidence : un nombre écrit en
     #    lettres échapperait à cette mise en évidence.
-    return chiffrer_le_texte("\n\n".join(lignes_r).strip())
+    return chiffrer_le_texte(nettoyer_tournures("\n\n".join(lignes_r).strip()))
 
 
 def traduire_article(titre, chapo, corps):
@@ -15691,6 +15844,9 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         # 🔢 Le contexte se lit dans le TEXTE des articles : « bilan provisoire »,
         #    « toujours pas maîtrisé », « selon la préfecture ». Sans ces textes,
         #    on ne pourrait qu'annoter la valeur, pas l'expliquer.
+        # 📝 Les FAITS aussi portent leur degré de corroboration : le site les
+        #    souligne au lieu de l'écrire en toutes lettres dans la phrase.
+        "faits": faits_annotes(item.get("_matiere")),
         "chiffres": chiffres_annotes(
             item.get("_rec_brut"),
             textes=[f"{_a.get('title', '')} {_a.get('summary', '')} "
@@ -15710,6 +15866,26 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
     #    au risque d'annoncer un problème inexistant.
     if r is not None:
         print(f"  🌐 Publié sur le site : /a/{slug}", flush=True)
+        # 📓 Le TEXTE publié entre dans le journal : sans lui, on voit qu'un
+        #    article est sorti mais pas ce qu'il disait — donc impossible de
+        #    juger la rédaction après coup.
+        print("  ┌─ ARTICLE PUBLIÉ SUR LE SITE " + "─" * 30, flush=True)
+        print(f"  │ TITRE : {titre}", flush=True)
+        print(f"  │ CHAPÔ : {str(chapo)[:200]}", flush=True)
+        for _l in str(corps).split("\n"):
+            if _l.strip():
+                print(f"  │ {_l[:150]}", flush=True)
+        _ch = donnees.get("chiffres") or {}
+        if _ch:
+            print(f"  │ CHIFFRES ANNOTÉS : "
+                  + " · ".join(f"{c['valeur']} {c['unite']}"
+                               f"({c['nb']}m,{c['etat']})"
+                               for c in list(_ch.values())[:8]), flush=True)
+        _fa = donnees.get("faits") or []
+        if _fa:
+            print(f"  │ FAITS ANNOTÉS : {len(_fa)} "
+                  + " · ".join(f"{f['nb']}m" for f in _fa[:10]), flush=True)
+        print("  └" + "─" * 58, flush=True)
         compter("publies")
         try:
             _c = _META_CONN
@@ -16002,6 +16178,10 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
               flush=True)
     else:
         try:
+            print("  ┌─ TWEET ENVOYÉ SUR X " + "─" * 36, flush=True)
+            for _l in str(tweet_final).split("\n"):
+                print(f"  │ {_l[:150]}", flush=True)
+            print("  └" + "─" * 58, flush=True)
             _xurl = post_to_twitter(tweet_final, png_bytes, vid)
         except Exception as e:
             _xurl = None
@@ -17668,6 +17848,12 @@ def check_feeds(conn):
                       f"(le gratuit n'a pas suffi)", flush=True)
             else:
                 print("     ✅ aucun appel payant", flush=True)
+        except Exception:
+            pass
+        # 📓 Le journal n'est déposé que si un article est sorti : c'est le
+        #    seul cas où il apprend quelque chose.
+        try:
+            deposer_journal_github()
         except Exception:
             pass
 
