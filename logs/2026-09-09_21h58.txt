@@ -1,0 +1,99 @@
+
+[21:55] 🔍 Check Pulse — version 4.32.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : iPhone Duo, #AppleEvent, #ØªØ­Øª_Ø§ÙØ¶ØºØ·_Ø§Ø­Ù Ø¯_ÙÙÙ Ù, Raphinha, #Ø§ÙÙØµØ±_Ø§Ø¨ÙØ§
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #IPhoneDuo, #Ancelotti, #Siri
+  🕐 21h (Paris) — rythme journée (117-240 min · 15 publié(s), 1 restant(s) sur 3.0 h) : 117-240 min
+  ⏸️  Dernière publi il y a 63 min — attente.
+  📖 6/6 articles lus en 1.5s (95 déjà en cache)
+  📄 19/101 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · The Block · OpenAI · Ouest-France · Sciences et Avenir · CoinDesk
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧩 101 articles → 101 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : L’avion de Zelensky échappe de peu à une collision
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Consensys to split into MetaMask and institutional b
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "A 8h46, j’ai vu un avion viser la tour nord" : le 1
+  🚨 Sujet chaud (breaking, 1 médias) : TBT9 : Shana Loustau balance sur ses nuits compliq
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mario Kart World : les circuits Super Mario Kart d'o
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Crypto, Banks Take Clarity Act Lobbying Fight to Sen
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Get ready for the game with new football features in
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Apple : L’iPhone Duo, le premier smartphone pliable 
+  🚨 Sujet chaud (breaking, 1 médias) : La liste du Brésil de Carlo Ancelotti pour la proc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : C’est la douche froide : le nouveau Siri d’Apple par
+  ⚽ API football-data : 12 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 101 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : jubillar, toulouse
+  ♻️ Doublon d'un sujet déjà publié, écarté : Ligue des champions : avec trois buts d'avance, le
+  ♻️ Doublon d'un sujet déjà publié, écarté : "On m'a demandé de sortir" : une employée de la to
+  ♻️ Doublon d'un sujet déjà publié, écarté : Apple : L’iPhone Duo, le premier smartphone pliabl
+  ⏭️ Éphéméride trop banal (intérêt 7/10) → on ne publie pas.
+  → Rien à publier.
+
+  ── Bilan du cycle (174 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 15/20 · site 0/24
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   🚫 quota
+        11. clé 4 × gemini-embedding-2           🚫 quota
+        12. clé 5 × gemini-embedding-001         🚫 quota
+        13. clé 5 × gemini-embedding-2-preview   🚫 quota
+        14. clé 5 × gemini-embedding-2           🚫 quota
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 1 × gemini-3-flash               ⛔ inexistant
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 2 × gemini-3.6-flash             🚫 quota
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 737
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,684 entrée · 235 sortie
+     ✅ aucun appel payant
