@@ -1,0 +1,85 @@
+
+[18:40] 🔍 Check Pulse — version 4.32.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  📈 50 tendances lues sur trends24.in : ã«ã¼ãã£, ãã³ãã¤, Switch2, å¦æªã¦ã©ãã, ãã«ãã³
+  🌍 « å¦æªã¦ã©ãã » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Kirby
+  🕐 18h (Paris) — rythme journée (78-162 min · 13 publié(s), 3 restant(s) sur 6.0 h) : 78-162 min
+  ⏸️  Dernière publi il y a 15 min — attente.
+  📖 4/4 articles lus en 0.4s (97 déjà en cache)
+  📄 14/101 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · OpenAI · SpaceNews · Libération
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧩 101 articles → 101 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "A 8h46, j’ai vu un avion viser la tour nord" : le 1
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les remakes des Resident Evil 2, 3 et 4 sortiront du
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Hunter Biden’s laptop controversy gets a memecoin af
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion, l'icône de mode qui donne des leçons de
+  🚨 Sujet chaud (breaking, 1 médias) : Kirby, Metroid, Monster Hunter… le résumé des anno
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mitsubishi Heavy tech makes hydrogen from natural ga
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Trade groups seek to block Illinois crypto tax befor
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Get ready for the game with new football features in
+  🚨 Sujet chaud (breaking, 1 médias) : Un homme tué à l’arme blanche dans un appartement 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚽ API football-data : 12 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 101 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : allemagne, taxe, crypto, apple, iphone, pliable
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (68 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 13/20 · site 0/24
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × gemini-embedding-2-preview   🚫 quota
+        15. clé 5 × gemini-embedding-2           🚫 quota
+        16. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        20. clé 1 × gemini-3.6-flash             🚫 quota
+        21. clé 1 × gemini-3-flash               ⛔ inexistant
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+        30. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 65 · gemini 2-preview 0 · gemini 2 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,672 entrée · 137 sortie
+     ✅ aucun appel payant
