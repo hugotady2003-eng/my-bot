@@ -121,7 +121,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.28.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "4.32.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -688,7 +688,14 @@ def deposer_journal_github():
     Le jeton vient de l'environnement d'exécution (GITHUB_TOKEN, fourni
     automatiquement par GitHub Actions) : rien à configurer, aucune clé dans
     le code."""
-    if not _CYCLE.get("publies"):
+    # ⚠️ DÉFAUT DE CONCEPTION CORRIGÉ : le journal n'était déposé que si le
+    #    SITE avait publié. Or le cas le plus utile à diagnostiquer est
+    #    justement celui où le site échoue alors que le tweet est parti — et
+    #    dans ce cas, aucun journal n'était conservé. On dépose dès qu'il
+    #    s'est passé quelque chose : une publication, ou un incident.
+    _motifs = ("publies", "tweets", "site_degrade", "rejet__hommage refusé",
+               "sans_corps", "rejet__sujet non vérifiable")
+    if not any(_CYCLE.get(_m) for _m in _motifs):
         return False
     jeton = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or ""
     depot = os.environ.get("GITHUB_REPOSITORY", "hugotady2003-eng/my-bot")
@@ -701,7 +708,10 @@ def deposer_journal_github():
     chemin = f"logs/{horo}.txt"
     contenu = "".join(_JOURNAL_RUN)[-400_000:]      # les 400 derniers Ko
     corps = {
-        "message": f"journal du cycle {horo} ({_CYCLE.get('publies')} publié·s)",
+        "message": (f"cycle {horo} — {_CYCLE.get('publies', 0)} publié·s"
+                    + (", site dégradé" if _CYCLE.get("site_degrade") else "")
+                    + (f", {_CYCLE['sans_corps']} sans corps"
+                       if _CYCLE.get("sans_corps") else "")),
         "content": _b64.b64encode(contenu.encode("utf-8")).decode("ascii"),
     }
     try:
@@ -910,8 +920,173 @@ def contexte_du_chiffre(valeur, unite, textes, sujet=""):
     return out[:3]
 
 
-def faits_annotes(matiere):
+def relire_article(texte, sujet=""):
+    """Relit l'article produit et corrige ce qui n'a pas de sens.
+
+    ⚠️ POURQUOI. L'article est écrit à partir de plusieurs rédactions qui ne
+    disent pas toutes la même chose. Un modèle peut alors produire une phrase
+    qui se contredit, un enchaînement bancal, une répétition, ou une
+    affirmation qui ne découle de rien.
+
+    On ne réécrit PAS l'article : on demande au modèle de le relire et de ne
+    corriger que ce qui cloche. S'il n'a rien à redire, on garde l'original.
+
+    ⚠️ Si la relecture échoue ou renvoie un texte manifestement dégradé —
+    beaucoup plus court, ou vide —, on garde l'original : une relecture ratée
+    ne doit jamais coûter l'article."""
+    t = str(texte or "").strip()
+    if len(t) < 200:
+        return texte
+    try:
+        rep = _llm_json(
+            f"SUJET : {sujet}\n\nARTICLE À RELIRE :\n{t[:4000]}\n\n"
+            "Relis cet article comme un secrétaire de rédaction. Corrige "
+            "UNIQUEMENT ce qui ne va pas :\n"
+            "• une phrase qui se contredit ou contredit une autre ;\n"
+            "• un enchaînement incohérent, une idée qui sort de nulle part ;\n"
+            "• une répétition, une information donnée deux fois ;\n"
+            "• une phrase incompréhensible ou mal construite ;\n"
+            "• un fait présenté comme certain alors que le texte dit ailleurs "
+            "qu'il ne l'est pas.\n\n"
+            "NE réécris PAS ce qui va bien. Ne raccourcis pas. N'ajoute aucune "
+            "information. Garde les paragraphes et les chiffres tels quels.\n"
+            'JSON strict : {"ok":true|false,"corrige":"<le texte complet, '
+            'corrigé si besoin>","note":"<ce que tu as corrigé, 12 mots max>"}',
+            max_tokens=2200, task="analyse")
+        if not isinstance(rep, dict):
+            return texte
+        corrige = str(rep.get("corrige") or "").strip()
+        if rep.get("ok") and not corrige:
+            return texte                      # rien à redire
+        # ⚠️ Un texte amputé n'est pas une correction. Mais retirer une phrase
+        #    contradictoire réduit légitimement le texte — à 75 % le garde-fou
+        #    refusait la correction même quand elle était bonne. À 55 %, il ne
+        #    bloque plus que les vraies mutilations.
+        if len(corrige) < len(t) * 0.55:
+            print(f"  ⚠️ Relecture écartée (texte réduit de "
+                  f"{100 - int(100 * len(corrige) / max(1, len(t)))}%)",
+                  flush=True)
+            return texte
+        if corrige != t:
+            print(f"  ✅ Relecture : {rep.get('note') or 'ajustements'}",
+                  flush=True)
+            compter("relectures")
+        return corrige
+    except Exception as e:
+        print(f"  ⚠️ Relecture indisponible ({str(e)[:40]}) — texte conservé",
+              flush=True)
+        return texte
+
+
+def analyser_affirmations(ev, corps_par_url=None, sujet=""):
+    """Regroupe les affirmations des rédactions et repère ce qui les sépare.
+
+    ⚠️ PROLONGEMENT DU TRAITEMENT DES CHIFFRES. Le modèle sait déjà dire si
+    « 13 morts » et « 14 morts » mesurent la même chose. Il sait donc aussi
+    dire quelles AFFIRMATIONS se recoupent, lesquelles se contredisent, et
+    laquelle une seule rédaction avance.
+
+    Trois choses en sortent, chacune utile au lecteur :
+      • les affirmations PARTAGÉES — le socle de l'article ;
+      • les affirmations DIVERGENTES — deux rédactions parlent du même point
+        mais n'en disent pas la même chose, avec le motif de l'écart ;
+      • les EXCLUSIVITÉS — un seul média avance un élément que les autres
+        taisent. C'est une information, pas un défaut : on la garde, en la
+        signalant.
+
+    ⚠️ UN SEUL APPEL par article.
+
+    Renvoie [{texte, medias, nb, divergences:[{texte, medias}], motif,
+    exclusif}]."""
+    arts = sujet_trie(ev, corps_par_url)
+    if not arts or len(arts) < 2:
+        return []
+    corps_par_url = corps_par_url or {}
+
+    blocs = []
+    for a in arts[:8]:
+        c = (corps_par_url.get(str(a.get("url") or ""))
+             or a.get("_corps") or a.get("summary") or "")
+        c = re.sub(r"\s+", " ", str(c)).strip()[:1400]
+        if c:
+            blocs.append(f"[{a.get('source', '?')}] {c}")
+    if len(blocs) < 2:
+        return []
+
+    try:
+        rep = _llm_json(
+            f"SUJET : {sujet}\n\n"
+            "Voici comment plusieurs rédactions couvrent le même fait.\n\n"
+            + "\n\n".join(blocs) + "\n\n"
+            "Dresse la liste des AFFIRMATIONS importantes. Pour chacune :\n"
+            "• \"texte\" : l'affirmation, reformulée en une phrase claire et "
+            "neutre, en français.\n"
+            "• \"medias\" : les rédactions qui la portent.\n"
+            "• \"divergences\" : si d'autres rédactions parlent DU MÊME POINT "
+            "mais disent autre chose, donne leur version et leur nom. "
+            "Uniquement si c'est bien le même point — un angle différent sur "
+            "un autre aspect n'est pas une divergence.\n"
+            "• \"motif\" : en moins de 12 mots, pourquoi elles divergent "
+            "(information plus récente, source officielle contre témoignage, "
+            "prudence de l'une, périmètre différent, enquête en cours…). "
+            "Vide s'il n'y a pas de divergence.\n"
+            "• \"exclusif\" : true si UNE SEULE rédaction avance ce point et "
+            "que les autres n'en parlent pas du tout.\n\n"
+            "Classe du plus important au moins important. 10 au maximum.\n"
+            'JSON strict : {"affirmations":[{"texte":"...","medias":["..."],'
+            '"divergences":[{"texte":"...","medias":["..."]}],"motif":"",'
+            '"exclusif":false}]}',
+            max_tokens=1400, task="analyse")
+        out = []
+        for x in ((rep or {}).get("affirmations") or []):
+            t = str(x.get("texte") or "").strip()
+            if len(t) < 25:
+                continue
+            med = [str(m) for m in (x.get("medias") or []) if m][:8]
+            div = []
+            for d in (x.get("divergences") or []):
+                dt = str(d.get("texte") or "").strip()
+                if len(dt) >= 15:
+                    div.append({"texte": dt[:220],
+                                "medias": [str(m) for m
+                                           in (d.get("medias") or [])][:6]})
+            out.append({
+                "texte": t[:300], "medias": med, "nb": max(1, len(med)),
+                "divergences": div[:3],
+                "motif": str(x.get("motif") or "")[:70],
+                # ⚠️ Une affirmation qui a des DIVERGENCES n'est pas exclusive :
+                #    d'autres rédactions en parlent, elles en disent seulement
+                #    autre chose. Confondre les deux ferait passer un désaccord
+                #    pour une exclusivité.
+                "exclusif": (not div) and (bool(x.get("exclusif"))
+                                           or len(med) <= 1),
+            })
+        if out:
+            _part = sum(1 for o in out if o["nb"] >= 2)
+            _div = sum(1 for o in out if o["divergences"])
+            _exc = sum(1 for o in out if o["exclusif"])
+            print(f"  🧩 {len(out)} affirmation(s) : {_part} partagée(s) · "
+                  f"{_div} divergente(s) · {_exc} exclusive(s)", flush=True)
+            for o in out[:8]:
+                _m = f"[{o['nb']}m]" + (" ⚡exclusif" if o["exclusif"] else "")
+                print(f"      {_m} {o['texte'][:78]}", flush=True)
+                for d in o["divergences"]:
+                    print(f"         ↳ {', '.join(d['medias'])} : "
+                          f"{d['texte'][:64]}", flush=True)
+                if o["motif"]:
+                    print(f"         motif : {o['motif']}", flush=True)
+        return out[:10]
+    except Exception as e:
+        print(f"  ⚠️ Affirmations non analysables ({str(e)[:44]})", flush=True)
+        return []
+
+
+def faits_annotes(matiere, affirmations=None):
     """Chaque affirmation de l'article, avec le nombre de rédactions qui la portent.
+
+    Les affirmations ANALYSÉES par le modèle priment sur la matière brute :
+    elles portent en plus les divergences et leur motif, ce que le découpage
+    en phrases ne peut pas fournir.
 
     ⚠️ VÉCU : l'article écrivait « …, un élément rapporté par 2 médias » en
     toutes lettres. C'est une information utile, mais elle alourdit la phrase
@@ -920,17 +1095,131 @@ def faits_annotes(matiere):
     corroboration, et le détail s'ouvre au clic.
 
     Renvoie [{texte, nb, medias}] — le site apparie sur le texte."""
+    if affirmations:
+        return [{"texte": a["texte"], "nb": a["nb"],
+                 "medias": a["medias"],
+                 "divergences": a.get("divergences") or [],
+                 "motif": a.get("motif") or "",
+                 "exclusif": bool(a.get("exclusif"))}
+                for a in affirmations][:12]
     out = []
     for m in (matiere or []):
         t = str(m.get("texte") or "").strip()
         if len(t) < 30:
             continue
         out.append({"texte": t, "nb": int(m.get("nb") or 1),
-                    "medias": list(m.get("medias") or [])})
+                    "medias": list(m.get("medias") or []),
+                    "divergences": [], "motif": "", "exclusif":
+                    int(m.get("nb") or 1) <= 1})
     return out[:30]
 
 
-def chiffres_annotes(rec, textes=None, sujet=""):
+def verifier_divergences_ia(rec, arts, corps_par_url=None, sujet=""):
+    """Vérifie que des chiffres qui divergent mesurent BIEN la même chose.
+
+    ⚠️ POURQUOI. « 2 médias disent 13 morts, 1 dit 14 » n'a de sens que si le
+    troisième parle bien de MORTS. S'il parlait de blessés, ou d'un autre
+    épisode, opposer les deux chiffres induit le lecteur en erreur — on lui
+    présente une contradiction qui n'existe pas.
+
+    L'unité extraite ne suffit pas à le garantir : « 14 » suivi de « blessés »
+    dans une phrase parlant aussi de morts peut être mal rattaché, et deux
+    bilans peuvent porter sur deux moments ou deux lieux différents.
+
+    On donne donc au modèle, pour chaque écart, LA PHRASE de chaque rédaction,
+    et on lui demande deux choses :
+      • ces chiffres mesurent-ils la même chose, au même endroit, au même
+        moment ? Sinon, ce n'est pas un désaccord et on ne l'affiche pas.
+      • l'événement est-il TOUJOURS EN COURS ? C'est l'explication la plus
+        fréquente d'un écart légitime, et elle rassure le lecteur au lieu de
+        le laisser croire qu'une rédaction se trompe.
+
+    ⚠️ UN SEUL APPEL par article, quel que soit le nombre d'écarts.
+
+    Renvoie {unite: {"comparable": bool, "motif": str, "en_cours": bool}}."""
+    desac = (rec or {}).get("desaccords") or []
+    if not desac:
+        return {}
+    corps_par_url = corps_par_url or {}
+
+    def _phrase(valeur, media):
+        """La phrase où CETTE rédaction avance CE chiffre."""
+        for a in (arts or []):
+            if str(a.get("source") or "") != media:
+                continue
+            t = (corps_par_url.get(str(a.get("url") or ""))
+                 or a.get("_corps") or "")
+            t = f"{a.get('title', '')} {a.get('summary', '')} {t}"
+            m = re.search(rf"[^.!?]{{0,130}}\b{re.escape(str(valeur))}\b"
+                          rf"[^.!?]{{0,130}}[.!?]", t)
+            if m:
+                return re.sub(r"\s+", " ", m.group(0)).strip()[:220]
+        return ""
+
+    blocs = []
+    for i, d in enumerate(desac, 1):
+        lignes = []
+        for x in (d.get("valeurs") or []):
+            for md in (x.get("medias") or [])[:2]:
+                ph = _phrase(x["valeur"], md)
+                if ph:
+                    lignes.append(f"   [{md}] {x['valeur']} → « {ph} »")
+        if lignes:
+            blocs.append(f"{i}. Unité « {d['unite']} »\n" + "\n".join(lignes[:5]))
+    if not blocs:
+        return {}
+
+    try:
+        rep = _llm_json(
+            f"SUJET : {sujet}\n\n"
+            "Des rédactions avancent des chiffres différents. Pour chaque cas, "
+            "dis si ces chiffres mesurent VRAIMENT la même chose.\n\n"
+            + "\n\n".join(blocs) + "\n\n"
+            "Pour chaque numéro :\n"
+            "• \"comparable\" : true seulement si les chiffres portent sur la "
+            "MÊME grandeur, au même endroit, au même moment. Si l'un compte les "
+            "morts et l'autre les blessés, ou s'ils parlent d'épisodes "
+            "distincts, mets false — ce n'est pas un désaccord.\n"
+            "• \"en_cours\" : true si l'événement se poursuit au moment où ces "
+            "articles sont écrits (secours en action, incendie non maîtrisé, "
+            "dépouillement en cours, marché ouvert, bilan encore provisoire).\n"
+            "• \"motif\" : en moins de 12 mots, POURQUOI les chiffres diffèrent "
+            "(bilan qui s'alourdit, comptages à deux heures différentes, "
+            "sources officielle et locale, périmètres différents…).\n\n"
+            'Réponds en JSON strict : {"cas":[{"n":1,"comparable":true,'
+            '"en_cours":true,"motif":"..."}]}',
+            max_tokens=420, task="analyse")
+        out = {}
+        for c in ((rep or {}).get("cas") or []):
+            try:
+                i = int(c.get("n", 0)) - 1
+            except Exception:
+                continue
+            if 0 <= i < len(desac):
+                out[desac[i]["unite"]] = {
+                    "comparable": bool(c.get("comparable", True)),
+                    "en_cours": bool(c.get("en_cours")),
+                    "motif": str(c.get("motif") or "")[:70],
+                }
+        _ecartes = [u for u, v in out.items() if not v["comparable"]]
+        if _ecartes:
+            print(f"  🔍 Écart(s) NON comparable(s), retiré(s) : "
+                  f"{', '.join(_ecartes)}", flush=True)
+        for u, v in out.items():
+            if v["comparable"]:
+                print(f"  🔍 « {u} » : écart réel"
+                      + (f" — {v['motif']}" if v["motif"] else "")
+                      + (" · événement en cours" if v["en_cours"] else ""),
+                      flush=True)
+        return out
+    except Exception as e:
+        print(f"  ⚠️ Écarts non vérifiables ({str(e)[:44]}) — "
+              f"non présentés au lecteur", flush=True)
+        return {u["unite"]: {"comparable": False, "en_cours": False, "motif": ""}
+                for u in desac}
+
+
+def chiffres_annotes(rec, textes=None, sujet="", verdicts=None):
     """Chaque chiffre du sujet, avec son degré de confirmation.
 
     Le site en annote le texte de l'article : le lecteur voit directement, sur
@@ -961,7 +1250,22 @@ def chiffres_annotes(rec, textes=None, sujet=""):
                                     "contexte": _ctx(v, u)})
     # les désaccords priment : un chiffre contredit par une autre rédaction
     # n'est pas « confirmé », même si plusieurs le reprennent.
+    verdicts = verdicts or {}
     for d in (rec.get("desaccords") or []):
+        # ⚠️ Un écart dont le modèle n'a PAS confirmé qu'il porte sur la même
+        #    grandeur n'est pas un désaccord : le montrer inventerait une
+        #    contradiction. On garde alors la valeur la mieux reprise, seule.
+        _v = verdicts.get(d.get("unite"))
+        if _v is not None and not _v.get("comparable"):
+            _vals = d.get("valeurs") or []
+            if _vals:
+                _x = _vals[0]
+                out[f"{_x['valeur']}|{d['unite']}"] = {
+                    "valeur": _x["valeur"], "unite": d["unite"],
+                    "nb": _x.get("nb", 1), "medias": _x.get("medias") or [],
+                    "autres": [], "etat": "confirme" if _x.get("nb", 1) > 1
+                    else "seul", "contexte": _ctx(_x["valeur"], d["unite"])}
+            continue
         vals = d.get("valeurs") or []
         _trace.append(
             f"{d['unite']} : "
@@ -975,10 +1279,27 @@ def chiffres_annotes(rec, textes=None, sujet=""):
                             "medias": y.get("medias") or []}
                            for y in vals if y is not x],
                 "etat": "conteste",
-                "contexte": _ctx(x["valeur"], d["unite"])}
+                # 🏷️ Le motif donné par le modèle passe devant les mentions
+                #    relevées dans le texte : il explique CET écart précis.
+                # 🏷️ Le motif donné par le modèle explique CET écart précis :
+                #    il rend inutiles les mentions génériques relevées dans le
+                #    texte. En empiler cinq noie l'explication au lieu de la
+                #    donner — on garde le motif, l'état en cours, et rien de plus.
+                "contexte": ([_v["motif"]] if _v and _v.get("motif") else [])
+                + (["événement toujours en cours"]
+                   if _v and _v.get("en_cours") else [])
+                or _ctx(x["valeur"], d["unite"])}
     # 📊 On journalise CE QUI A ÉTÉ DÉCIDÉ sur chaque chiffre : sans cela, on ne
     #    peut ni vérifier une annotation douteuse, ni comprendre pourquoi une
     #    explication manque.
+    # 📄 Sur quoi le recoupement a-t-il porté ? Un chiffre « isolé » alors que
+    #    les corps n'ont pas été lus n'est pas une information fiable.
+    if textes is not None:
+        _vides = sum(1 for t in textes if len(str(t).strip()) < 200)
+        if _vides:
+            print(f"  ⚠️ {_vides}/{len(textes)} article(s) sans texte "
+                  f"exploitable — un chiffre peut sembler isolé à tort",
+                  flush=True)
     if out:
         _conf = sum(1 for c in out.values() if c["etat"] == "confirme")
         _cont = sum(1 for c in out.values() if c["etat"] == "conteste")
@@ -2070,11 +2391,18 @@ def _llm_json(prompt, max_tokens=600, system=None, task="analyse"):
         for cle, modele in combinaisons_gemini(_modeles_gemini()):
             _CLE_FORCEE["v"] = cle
             try:
-                return _parse_json_reponse(
+                _r = _parse_json_reponse(
                     _gemini_call(prompt, system, max_tokens, want_json=True,
                                  modele=modele))
+                tracer_essai(cle, modele, "ok")
+                return _r
             except Exception as e:
                 msg = str(e)
+                tracer_essai(cle, modele,
+                             "quota" if ("quota" in msg.lower() or "429" in msg)
+                             else ("absent" if "not found" in msg.lower()
+                                   or "introuvable" in msg.lower()
+                                   else msg[:22]))
                 _rang = (GEMINI_API_KEYS.index(cle) + 1
                          if cle in GEMINI_API_KEYS else 0)
                 if "quota" in msg.lower() or "429" in msg:
@@ -6214,6 +6542,10 @@ def gather_all_headlines(resume_max=80):
             for entry in feed.entries[:5]:
                 title = _titre_propre(entry.get("title", ""))
                 summ  = _strip_html(entry.get("summary", entry.get("description", "")))
+                # 📄 Beaucoup de flux livrent l'article ENTIER : c'est du texte
+                #    déjà téléchargé, qui évite une requête et ne peut pas être
+                #    bloqué par le site.
+                _corps_flux = corps_depuis_flux(entry)
                 if title:
                     summ = re.sub(r"<[^>]+>", "", summ)  # nettoie le HTML
                     if resume_max > 0:
@@ -8999,10 +9331,14 @@ def gather_articles_with_urls(limit_per_feed=4):
                             pub_ts = time.mktime(val); break
                         except Exception:
                             pass
+                # 📄 Le flux livre souvent l'article entier : texte gratuit,
+                #    déjà téléchargé, insensible aux blocages du site.
+                _corps_flux = corps_depuis_flux(entry)
                 arts.append({
                     "title":   title,
                     "summary": summ[:200],
                     "url":     entry.get("link", ""),
+                    "_corps":  _corps_flux or None,
                     "source":  fi["source"],
                     "pub_ts":  pub_ts,
                 })
@@ -9051,6 +9387,44 @@ _PHRASE_PARASITE = re.compile(
     r"publicité|contenu sponsorisé|article réservé aux abonnés|"
     r"tous droits réservés|©|cookies?|accepter|newsletter|"
     r"share this|subscribe|sign up|read more|advertisement|related articles?)\b")
+
+
+def corps_depuis_flux(entry):
+    """Texte complet livré par le flux RSS lui-même, s'il y en a un.
+
+    ⚠️ VÉCU : « 85 ans » figurait dans deux articles mais n'était crédité qu'à
+    un seul média — le corps de l'autre n'avait pas pu être téléchargé (site
+    protégé). Or beaucoup de flux publient l'article ENTIER dans le champ
+    « content:encoded », que le bot ignorait : il ne lisait que « summary »,
+    souvent réduit à deux lignes.
+
+    C'est du texte gratuit, déjà téléchargé avec le flux, sans requête
+    supplémentaire ni risque de blocage. On le prend avant d'aller chercher
+    la page."""
+    try:
+        blocs = getattr(entry, "content", None)
+        if blocs is None and hasattr(entry, "get"):
+            blocs = entry.get("content")
+        blocs = blocs or []
+        if isinstance(blocs, dict):
+            blocs = [blocs]
+        textes = []
+        for b in blocs:
+            v = (b.get("value") if isinstance(b, dict) else str(b)) or ""
+            if v:
+                textes.append(v)
+        for champ in ("content_encoded", "fulltext", "articleBody"):
+            v = entry.get(champ) if hasattr(entry, "get") else None
+            if v:
+                textes.append(str(v))
+        if not textes:
+            return ""
+        brut = max(textes, key=len)
+        propre = _corps_article(brut) if "<" in brut else _strip_html(brut)
+        # un résumé de deux lignes n'est pas un corps : on ne s'en contente pas
+        return propre if len(propre) >= 400 else ""
+    except Exception:
+        return ""
 
 
 def _corps_article(page):
@@ -9199,6 +9573,14 @@ def lire_articles_en_masse(articles, conn=None):
         return {}
 
     corps = _corps_en_cache(conn, urls)
+    # ⚠️ Un article dont le FLUX a déjà livré le corps n'a pas à être
+    #    retéléchargé : une requête en moins, et un blocage évité sur les sites
+    #    qui refusent les robots. C'est aussi ce qui a manqué pour voir que
+    #    « 85 ans » figurait bien dans les deux articles.
+    for _a in (articles or []):
+        _u = str(_a.get("url") or "").strip()
+        if _u and _a.get("_corps") and _u not in corps:
+            corps[_u] = _a["_corps"]
     a_lire = [u for u in urls if u not in corps]
     if not a_lire:
         print(f"  📖 {len(urls)} articles, tous en cache")
@@ -12879,6 +13261,45 @@ def _embed(texte, conn=None, essentiel=False):
     return None
 
 
+# 📋 Trace de CE QUE LE BOT ESSAIE, dans l'ordre. Sans elle, on ne peut ni
+#    vérifier que la rotation suit l'ordre voulu, ni comprendre pourquoi un
+#    modèle n'est jamais sollicité.
+_ESSAIS_GEMINI = []
+
+
+def tracer_essai(cle, modele, resultat):
+    """Note un essai (clé, modèle) et son issue."""
+    try:
+        rang = GEMINI_API_KEYS.index(cle) + 1 if cle in GEMINI_API_KEYS else 0
+    except Exception:
+        rang = 0
+    _ESSAIS_GEMINI.append((rang, modele, resultat))
+
+
+def bilan_essais():
+    """Ce que le bot a essayé, dans l'ordre, et ce que ça a donné."""
+    if not _ESSAIS_GEMINI:
+        return []
+    out = ["ordre d'essai des couples clé+modèle :"]
+    for i, (rang, mod, res) in enumerate(_ESSAIS_GEMINI[:40], 1):
+        marque = {"ok": "✅", "quota": "🚫 quota", "absent": "⛔ inexistant"}.get(
+            res, f"⚠️ {res}")
+        out.append(f"   {i:>2}. clé {rang} × {mod:<28} {marque}")
+    if len(_ESSAIS_GEMINI) > 40:
+        out.append(f"   … et {len(_ESSAIS_GEMINI) - 40} autres")
+    # ce qui n'a JAMAIS été essayé mérite d'être signalé
+    essayes = {(r, m) for r, m, _ in _ESSAIS_GEMINI}
+    jamais = []
+    for i, k in enumerate(GEMINI_API_KEYS, 1):
+        for m in set(_modeles_gemini()) | set(_embed_modeles()):
+            if (i, m) not in essayes:
+                jamais.append(f"clé {i} × {m}")
+    if jamais:
+        out.append(f"jamais essayé ce cycle : {' · '.join(jamais[:8])}"
+                   + (f" (+{len(jamais) - 8})" if len(jamais) > 8 else ""))
+    return out
+
+
 def combinaisons_gemini(modeles):
     """Tous les couples (clé, modèle) à essayer, dans l'ordre.
 
@@ -12952,9 +13373,14 @@ def _embed_lot(textes, conn=None, taille=100):
                 d = _post_gemini(url, corps, famille="texte", timeout=45,
                                  essais=1)
                 modele, emp = m, _empreinte_cle(cle)
+                tracer_essai(cle, m, "ok")
                 break
             except Exception as e:
                 msg = str(e).lower()
+                tracer_essai(cle, m,
+                             "quota" if ("quota" in msg or "429" in msg)
+                             else ("absent" if "not found" in msg
+                                   or "introuvable" in msg else msg[:22]))
                 if "quota" in msg or "429" in msg:
                     # l'API fait foi : ce couple est à bout pour aujourd'hui
                     _MODELE_EPUISE[(_empreinte_cle(cle), m)] = jour
@@ -14949,10 +15375,30 @@ def regrouper_en_evenements(articles, conn=None, seuil=None):
     # 📎 Le corps est ATTACHÉ à chaque article : tout ce qui reçoit l'article
     #    plus loin (recoupement, matière première, rédaction) y a accès sans
     #    qu'on ait à faire circuler un dictionnaire de plus. Une seule source.
+    _sans_corps = []
     for _a in (articles or []):
         _c = _corps_par_url.get(str(_a.get("url") or ""))
         if _c:
             _a["_corps"] = _c
+        else:
+            _sans_corps.append(str(_a.get("source") or "?"))
+    # ⚠️ VÉCU : « 85 ans » présent dans DEUX articles était annoncé comme cité
+    #    par un seul média. Cause : le corps de l'un n'avait pas pu être lu
+    #    (site protégé), et le recoupement se rabattait sur le titre — où le
+    #    chiffre ne figurait pas. Un corps manquant dégrade TOUT en silence :
+    #    recoupement, chiffres, faits. On le dit, sinon c'est indétectable.
+    if _sans_corps:
+        from collections import Counter as _Cnt
+        _top = " · ".join(n for n, _ in _Cnt(_sans_corps).most_common(6))
+        print(f"  📄 {len(_sans_corps)}/{len(articles or [])} article(s) sans "
+              f"corps lisible → recoupement sur titre et résumé seuls : {_top}",
+              flush=True)
+        compter("sans_corps", len(_sans_corps))
+    # ⚠️ VÉCU : « 85 ans » présent dans DEUX articles était annoncé comme cité
+    #    par un seul média. Cause : le corps de l'un n'avait pas pu être lu
+    #    (site protégé), et le recoupement se rabattait sur le titre — où le
+    #    chiffre ne figurait pas. Un corps manquant dégrade TOUT en silence :
+    #    recoupement, chiffres, faits. On le dit, sinon c'est indétectable.
 
     # 🧠 Tous les vecteurs du cycle en deux appels au lieu de cent trente : on
     #    les demande EN UNE FOIS avant de comparer quoi que ce soit. _embed
@@ -15619,7 +16065,8 @@ def chiffrer_le_texte(texte):
 
     return rx.sub(_sur, txt)
 
-def corps_pour_site(item, tweet, recoupement=None, matiere=None):
+def corps_pour_site(item, tweet, recoupement=None, matiere=None,
+                    affirmations=None):
     """Rédige une version LONGUE de l'article pour le site.
 
     Un tweet est bridé à 280 caractères ; une page web ne l'est pas. Reprendre le
@@ -15634,6 +16081,24 @@ def corps_pour_site(item, tweet, recoupement=None, matiere=None):
         return chiffrer_le_texte(nettoyer_tournures(str(tweet or "")))
     rec = recoupement or {}
     faits = ""
+    # 🧩 Ce que chaque rédaction porte, et surtout ce qu'UNE SEULE avance :
+    #    c'est de l'information, elle doit entrer dans l'article, pas être tue.
+    if affirmations:
+        faits += "CE QUE DISENT LES RÉDACTIONS :\n"
+        for _a in affirmations:
+            _q = (f"{_a['nb']} médias" if _a["nb"] > 1
+                  else f"seul {', '.join(_a['medias']) or 'un média'}")
+            faits += f"  • [{_q}] {_a['texte']}\n"
+            for _d in (_a.get("divergences") or []):
+                faits += (f"      mais {', '.join(_d['medias'])} dit : "
+                          f"{_d['texte']}\n")
+            if _a.get("motif"):
+                faits += f"      (écart : {_a['motif']})\n"
+        faits += ("\nLes éléments partagés forment le socle. Ceux avancés par "
+                  "une seule rédaction sont à INCLURE aussi — c'est de "
+                  "l'information — sans les présenter comme acquis. N'écris "
+                  "PAS combien de rédactions portent quoi : le site l'affiche "
+                  "déjà, et le répéter alourdit la phrase.\n\n")
     if rec.get("confirmes"):
         faits += ("CHIFFRES CONFIRMÉS (indique entre parenthèses le nombre de médias) : "
                   + ", ".join(f"{v} {u} — {n} médias" for v, u, n in rec["confirmes"]) + "\n")
@@ -15818,8 +16283,15 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         return None
     # l'accroche est la première ligne du tweet, sans le préfixe de catégorie
     # 📄 Le site reçoit une version DÉVELOPPÉE, pas le tweet recopié.
+    _affs = (item or {}).get("_affirmations") or []
     corps = corps_pour_site(item, texte, recoupement,
-                            matiere=(item or {}).get("_matiere"))
+                            matiere=(item or {}).get("_matiere"),
+                            affirmations=_affs)
+    # ✅ RELECTURE DE COHÉRENCE : l'article vient d'être écrit à partir de
+    #    sources multiples, parfois contradictoires. Un texte qui se contredit
+    #    ou qui affirme une chose puis son contraire abîme plus la crédibilité
+    #    qu'un article court. On le fait relire avant publication.
+    corps = relire_article(corps, str(item.get("title") or ""))
     lignes_t = [l for l in str(texte or "").split("\n") if l.strip()]
     chapo = re.sub(r"^[^|]{0,24}\|\s*", "", lignes_t[0]).strip() if lignes_t else ""
     slug = f"{_slug(titre)}-{_now_paris().strftime('%d%m%H%M')}"
@@ -15866,9 +16338,12 @@ def publier_sur_site(item, texte, cat, format_="actu", image=None,
         #    on ne pourrait qu'annoter la valeur, pas l'expliquer.
         # 📝 Les FAITS aussi portent leur degré de corroboration : le site les
         #    souligne au lieu de l'écrire en toutes lettres dans la phrase.
-        "faits": faits_annotes(item.get("_matiere")),
+        "faits": faits_annotes(item.get("_matiere"), _affs),
         "chiffres": chiffres_annotes(
             item.get("_rec_brut"),
+            verdicts=verifier_divergences_ia(
+                item.get("_rec_brut"), item.get("_ev_articles") or [],
+                sujet=str(item.get("title") or "")),
             textes=[f"{_a.get('title', '')} {_a.get('summary', '')} "
                     f"{str(_a.get('_corps') or '')[:2500]}"
                     for _a in ((item.get("_ev_articles") or [])[:8])],
@@ -16217,6 +16692,7 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
               flush=True)
     else:
         try:
+            compter("tweets")
             print("  ┌─ TWEET ENVOYÉ SUR X " + "─" * 36, flush=True)
             for _l in str(tweet_final).split("\n"):
                 print(f"  │ {_l[:150]}", flush=True)
@@ -17865,6 +18341,7 @@ def check_feeds(conn):
         return
     _t0_cycle = time.time()
     _CYCLE.clear()          # les compteurs valent pour CE cycle
+    _ESSAIS_GEMINI.clear()  # la trace vaut pour CE cycle
     # ⚠️ Sans remise à zéro, le mode « site seul » d'un cycle resterait actif au
     #    suivant : plus rien ne partirait jamais sur X.
     _SITE_SEUL["v"] = False
@@ -17879,6 +18356,8 @@ def check_feeds(conn):
             print(f"\n  ── Bilan du cycle ({time.time() - _t0_cycle:.0f} s) ──",
                   flush=True)
             for _l in bilan_editorial():
+                print(f"     {_l}", flush=True)
+            for _l in bilan_essais():
                 print(f"     {_l}", flush=True)
             for _l in bilan_quotas(conn):
                 print(f"     {_l}", flush=True)
@@ -17915,6 +18394,10 @@ def _check_feeds_interne(conn):
                 url   = entry.get("link", "")
                 title = _titre_propre(entry.get("title", ""))
                 summ  = _strip_html(entry.get("summary", entry.get("description", "")))
+                # 📄 Beaucoup de flux livrent l'article ENTIER : c'est du texte
+                #    déjà téléchargé, qui évite une requête et ne peut pas être
+                #    bloqué par le site.
+                _corps_flux = corps_depuis_flux(entry)
                 # Date de publication (epoch) — nécessaire pour le suivi live des matchs France
                 # (sans ça, _detect_france_match rejette TOUT par prudence : aucune date = pas de live)
                 pub_ts = None
@@ -18169,6 +18652,9 @@ def _check_feeds_interne(conn):
                             or matiere_premiere(_ev)
                         # les textes du sujet servent à EXPLIQUER les chiffres
                         hot["_ev_articles"] = sujet_trie(_ev) or []
+                        # 🧩 Qui dit quoi, et qui dit autre chose
+                        hot["_affirmations"] = analyser_affirmations(
+                            _ev, sujet=str(hot.get("title") or ""))
                     except Exception:
                         pass
                 # ⚠️ _sc vaut None quand le sujet est écarté AVANT évaluation
