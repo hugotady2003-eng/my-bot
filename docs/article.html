@@ -1,5 +1,64 @@
 <!DOCTYPE html><html lang="fr"><head>
 <script>
+/* ══ RENSEIGNE TON IDENTIFIANT ADSENSE ICI ══
+   Laisse vide tant que ton compte n'est pas approuvé : aucune
+   requête ne partira, et le site restera parfaitement rapide.
+   Format : "ca-pub-XXXXXXXXXXXXXXXX" */
+window.PUB_ID = "";
+</script>
+
+<script>
+/* ⚠️ La publicité s'insère APRÈS le troisième paragraphe. Plus haut, elle
+   coupe le lecteur avant qu'il soit entré dans l'article ; plus bas, elle
+   n'est jamais vue. Un article trop court n'en reçoit aucune. */
+function inserer_pub(html){
+  if(!PUB_ID) return html;
+  const bouts = String(html).split('</p>');
+  if(bouts.length < 5) return html;
+  bouts.splice(3, 0, '</p><div class="pub pub-bloc" data-slot="" data-format="rectangle"></div>');
+  return bouts.join('</p>').replace('</p></p>', '</p>');
+}
+
+/* ══ PUBLICITÉ ══
+   ⚠️ Le script Google n'est chargé QUE si un identifiant est renseigné. Sans
+      lui, aucune requête n'est faite : le site reste rapide et fonctionne
+      parfaitement, simplement sans annonces. C'est ce qui permet de le mettre
+      en ligne avant d'avoir un compte approuvé.
+   ⚠️ AdSense demande une audience réelle et du contenu original avant
+      d'accepter un site. Les emplacements sont prêts ; l'approbation, elle,
+      ne se code pas. */
+const PUB_ID = window.PUB_ID || '';        /* ca-pub-XXXXXXXXXXXXXXXX */
+
+function chargerPub(){
+  if(!PUB_ID) return;
+  const s = document.createElement('script');
+  s.async = true;
+  s.crossOrigin = 'anonymous';
+  s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB_ID;
+  document.head.appendChild(s);
+}
+
+function poserPub(el, slot, format){
+  if(!PUB_ID || !el) return;
+  const ins = document.createElement('ins');
+  ins.className = 'adsbygoogle';
+  ins.style.display = 'block';
+  ins.setAttribute('data-ad-client', PUB_ID);
+  if(slot) ins.setAttribute('data-ad-slot', slot);
+  ins.setAttribute('data-ad-format', format || 'auto');
+  ins.setAttribute('data-full-width-responsive', 'true');
+  el.appendChild(ins);
+  try{ (window.adsbygoogle = window.adsbygoogle || []).push({}); }
+  catch(e){ console.warn('pub', e); }
+}
+
+function activerPubs(){
+  if(!PUB_ID) return;
+  chargerPub();
+  document.querySelectorAll('.pub').forEach(el =>
+    poserPub(el, el.dataset.slot, el.dataset.format));
+}
+
 /* ══════════════════════════════════════════════════════════════════════
    THÈME ET LANGUE
    ⚠️ Le choix est mémorisé LOCALEMENT, comme le reste : rien n'est envoyé.
@@ -20,10 +79,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --noir:#0B0A10;--fond:#12111C;--carte:#191826;--bord:#26243A;
-  --violet:#7B2EFF;--mauve:#C24BFF;--bleu:#3928FF;
-  --vert:#37E39B;--orange:#F59E0B;--rouge:#EF4444;
-  --blanc:#FFF;--texte:#E8E6F0;--gris:#A8A4BD;--faible:#7F7B96;
+  --noir:#0D0C12;--fond:#141320;--carte:#1C1B29;--bord:#2A2840;
+  --violet:#8B5CF6;--mauve:#B57BFF;--bleu:#5B4BF5;
+  --vert:#30D158;--orange:#FF9F0A;--rouge:#FF453A;
+  --blanc:#FFF;--texte:#E6E4EE;--gris:#9E9AB4;--faible:#7F7B96;
   --t:"Space Grotesk",system-ui,sans-serif;--c:"Inter",system-ui,sans-serif;
   --m:"JetBrains Mono",ui-monospace,monospace;
 }
@@ -36,12 +95,12 @@ html[data-th="clair"]{
   --fond:#F2F1F7;
   --carte:#FFFFFF;
   --bord:#E2E0EC;
-  --violet:#6318E0;
-  --mauve:#9B21D6;
+  --violet:#7C3AED;
+  --mauve:#9333EA;
   --bleu:#2E1DD6;
-  --vert:#07784C;
+  --vert:#248A3D;
   --orange:#B45309;
-  --rouge:#C81E1E;
+  --rouge:#D70015;
   --blanc:#0B0A10;
   --texte:#1A1826;
   --gris:#5A566E;
@@ -67,8 +126,6 @@ html[data-th="clair"] .js-b{background:rgba(20,16,40,.08)}
 html[data-th="clair"] footer{background:#EEEDF4;border-top-color:var(--bord)}
 html[data-th="clair"] .voile{background:linear-gradient(180deg,
   rgba(250,250,252,.72),rgba(250,250,252,.86))}
-html[data-th="clair"] #jetonHero{filter:drop-shadow(0 20px 40px rgba(60,30,120,.22))
-  drop-shadow(0 0 26px rgba(155,33,214,.28))}
 html[data-th="clair"] .hero h1,html[data-th="clair"] .hero p.in{text-shadow:none}
 html[data-th="clair"] .fond .gr{background-image:
   linear-gradient(rgba(99,24,224,.05) 1px,transparent 1px),
@@ -82,9 +139,9 @@ html[data-th="clair"] #intro{background:#FAFAFC}
 /* Réglages : thème et langue */
 .reglages{display:flex;gap:7px;margin-left:14px}
 @media(max-width:820px){.reglages{margin-left:auto;margin-right:10px}}
-.rg{background:none;border:1px solid var(--bord);border-radius:10px;
+.rg{background:none;border:1px solid var(--bord);border-radius:16px;
   min-width:38px;height:38px;padding:0 9px;cursor:pointer;color:var(--gris);
-  font:700 12px/1 var(--c);transition:.2s;display:grid;place-items:center}
+  font:700 12px/1 var(--c);transition:.3s cubic-bezier(.32,.72,0,1);display:grid;place-items:center}
 .rg:hover{color:var(--blanc);border-color:var(--mauve)}
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -114,9 +171,9 @@ a{color:inherit;text-decoration:none}
   .cst,.commu,.sources,.aveu,.calc,.sect-h{margin-left:0;margin-right:0}
   .cst{padding:18px 18px}
   .aveu{padding:17px 18px 17px 26px}
-  .src-l.premier{margin:0;padding-inline:12px;border-radius:9px}
+  .src-l.premier{margin:0;padding-inline:12px;border-radius:15px}
   /* l'image ne colle plus non plus : elle suit la gouttière du texte */
-  .img-ar{border-radius:12px;object-position:50% 26%}
+  .img-ar{border-radius:18px;object-position:50% 26%}
 }
 /* la barre de navigation aussi : le logo touchait le bord */
 @media(max-width:400px){
@@ -134,11 +191,11 @@ header{position:sticky;top:0;z-index:60;background:rgba(11,10,16,.9);
 @keyframes bat{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(55,227,155,.55)}
   50%{opacity:.6;box-shadow:0 0 0 8px rgba(55,227,155,0)}}
 nav{display:flex;gap:6px;margin-left:auto;font:500 14.5px/1 var(--c)}
-nav a{color:var(--gris);padding:9px 14px;border-radius:10px;transition:.2s}
+nav a{color:var(--gris);padding:9px 14px;border-radius:16px;transition:.3s cubic-bezier(.32,.72,0,1)}
 nav a:hover{color:var(--blanc);background:rgba(255,255,255,.05)}
 nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .burger{display:none;margin-left:auto;background:none;border:1px solid var(--bord);
-  border-radius:10px;width:40px;height:40px;cursor:pointer;color:var(--texte);
+  border-radius:16px;width:40px;height:40px;cursor:pointer;color:var(--texte);
   align-items:center;justify-content:center;font-size:17px}
 @media(max-width:820px){
   nav{position:fixed;inset:66px 0 auto;flex-direction:column;gap:0;margin:0;
@@ -161,18 +218,18 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:14px}
 @media(max-width:520px){.grille{grid-template-columns:1fr}}
 .art{background:linear-gradient(168deg,rgba(30,28,46,.96),rgba(22,21,34,.96));
-  border:1px solid rgba(255,255,255,.07);border-radius:22px;
-  box-shadow:0 4px 18px rgba(0,0,0,.34),0 1px 2px rgba(0,0,0,.4);
-  transition:transform .34s cubic-bezier(.22,.9,.3,1),box-shadow .34s,border-color .3s}
+  border:1px solid rgba(255,255,255,.07);border-radius:26px;
+  box-shadow:0 6px 32px rgba(0,0,0,.33),0 1px 2px rgba(0,0,0,.4);
+  transition:transform .34s cubic-bezier(.22,.9,.3,1),box-shadow .34s,border-color .4s cubic-bezier(.32,.72,0,1)}
 .art:hover{transform:translateY(-6px) scale(1.008);
-  box-shadow:0 18px 44px rgba(0,0,0,.5),0 0 0 1px rgba(123,46,255,.24);
+  box-shadow:0 20px 58px rgba(0,0,0,.4),0 0 0 1px rgba(123,46,255,.24);
   border-color:rgba(194,75,255,.3)}
 .art .lien{display:grid;grid-template-columns:96px 1fr;align-items:stretch}
 .art.gros{grid-column:1/-1}
 .art.gros .lien{grid-template-columns:190px 1fr}
 @media(max-width:520px){.art.gros .lien{grid-template-columns:96px 1fr}}
 .vign{display:grid;place-items:center;font-size:30px;margin:14px 0 14px 14px;
-  border-radius:16px;overflow:hidden;background-size:cover;background-position:center;
+  border-radius:22px;overflow:hidden;background-size:cover;background-position:center;
   background-image:linear-gradient(150deg,color-mix(in srgb,var(--c) 78%,transparent),
     color-mix(in srgb,var(--c) 26%,#12111C))}
 .art.gros .vign{font-size:46px}
@@ -218,7 +275,7 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 
 .filtres{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
 .f{font:600 13px/1 var(--c);color:var(--gris);background:var(--carte);
-  border:1px solid var(--bord);border-radius:100px;padding:9px 16px;cursor:pointer;transition:.2s}
+  border:1px solid var(--bord);border-radius:100px;padding:9px 16px;cursor:pointer;transition:.3s cubic-bezier(.32,.72,0,1)}
 .f:hover{color:var(--blanc);border-color:#443C6B}
 .f.on{color:#fff;background:rgba(123,46,255,.24);border-color:rgba(194,75,255,.5)}
 
@@ -241,7 +298,7 @@ footer .liens a:hover{color:var(--blanc)}
 
 /* ── Décomposition du score ── */
 .calc{margin-top:14px;background:rgba(11,10,16,.5);border:1px solid var(--bord);
-  border-radius:14px;padding:16px 18px}
+  border-radius:20px;padding:16px 18px}
 .calc-t{font:700 10.5px/1 var(--c);letter-spacing:.16em;text-transform:uppercase;
   color:var(--faible);margin-bottom:14px}
 .cl{padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05)}
@@ -273,14 +330,14 @@ footer .liens a:hover{color:var(--blanc)}
 .jauge-sc{margin-bottom:16px}
 .js-b{position:relative;height:8px;border-radius:100px;background:rgba(255,255,255,.07);
   overflow:visible}
-.js-r{height:100%;border-radius:100px;transition:width .8s cubic-bezier(.22,.9,.3,1)}
+.js-r{height:100%;border-radius:100px;transition:width .4s cubic-bezier(.32,.72,0,1) cubic-bezier(.22,.9,.3,1)}
 .js-m{position:absolute;top:-3px;width:2px;height:14px;background:rgba(255,255,255,.32);
   border-radius:2px}
 .js-l{display:flex;justify-content:space-between;margin-top:7px;
   font:500 10px/1 var(--m);color:var(--faible)}
 
 /* Liste complète des sources */
-.sources{background:var(--carte);border:1px solid var(--bord);border-radius:20px;
+.sources{background:var(--carte);border:1px solid var(--bord);border-radius:26px;
   padding:24px 26px;margin:26px 0}
 /* ⚠️ « line-height:1 » écrasait les lignes l'une sur l'autre dès que le titre
    passait sur deux lignes — sur téléphone, « fait » touchait le mot du dessus.
@@ -292,7 +349,7 @@ footer .liens a:hover{color:var(--blanc)}
 .src-l{padding:13px 0;border-bottom:1px solid var(--bord)}
 .src-l:last-child{border-bottom:none;padding-bottom:0}
 .src-l.premier{background:rgba(194,75,255,.05);margin:0 -12px;padding-inline:12px;
-  border-radius:12px}
+  border-radius:18px}
 .src-n{font:700 14.5px/1.3 var(--c);color:var(--texte);margin-bottom:4px;
   display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .badge-1{font:700 9.5px/1 var(--c);color:var(--mauve);background:rgba(194,75,255,.13);
@@ -304,7 +361,7 @@ footer .liens a:hover{color:var(--blanc)}
 @media(max-width:600px){.sources{padding:20px 18px}}
 
 /* ── Communauté ── */
-.commu{background:var(--carte);border:1px solid var(--bord);border-radius:20px;
+.commu{background:var(--carte);border:1px solid var(--bord);border-radius:26px;
   padding:26px 28px;margin-top:30px}
 .cm-t{font:700 12px/1 var(--c);letter-spacing:.16em;text-transform:uppercase;
   color:var(--mauve);margin-bottom:8px}
@@ -312,7 +369,7 @@ footer .liens a:hover{color:var(--blanc)}
 .cm-v{display:flex;align-items:center;gap:11px;margin-bottom:24px;flex-wrap:wrap}
 .vt{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);
   border:1px solid var(--bord);border-radius:100px;padding:10px 18px;cursor:pointer;
-  color:var(--texte);font:600 14px/1 var(--c);transition:.2s}
+  color:var(--texte);font:600 14px/1 var(--c);transition:.3s cubic-bezier(.32,.72,0,1)}
 .vt:hover{border-color:#443C6B;transform:translateY(-2px)}
 .vt.up.on{background:rgba(55,227,155,.16);border-color:rgba(55,227,155,.45);color:var(--vert)}
 .vt.down.on{background:rgba(239,68,68,.16);border-color:rgba(239,68,68,.45);color:var(--rouge)}
@@ -322,15 +379,15 @@ footer .liens a:hover{color:var(--blanc)}
 .cm-r{font:500 12.5px/1 var(--c);color:var(--faible)}
 .cm-f{margin-bottom:22px}
 .cm-f input,.cm-f textarea{width:100%;background:rgba(11,10,16,.5);
-  border:1px solid var(--bord);border-radius:12px;padding:11px 14px;
+  border:1px solid var(--bord);border-radius:18px;padding:11px 14px;
   color:var(--texte);font:400 14.5px/1.5 var(--c);margin-bottom:9px;resize:vertical}
 .cm-f input:focus,.cm-f textarea:focus{outline:none;border-color:rgba(194,75,255,.45)}
 .cm-f ::placeholder{color:var(--faible)}
 .cm-b{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .cm-c{font:500 11.5px/1 var(--m);color:var(--faible)}
 .btn-c{background:linear-gradient(120deg,var(--bleu),var(--violet) 55%,var(--mauve));
-  color:#fff;border:none;border-radius:11px;padding:11px 22px;cursor:pointer;
-  font:600 14px/1 var(--c);transition:.2s}
+  color:#fff;border:none;border-radius:17px;padding:11px 22px;cursor:pointer;
+  font:600 14px/1 var(--c);transition:.3s cubic-bezier(.32,.72,0,1)}
 .btn-c:hover{transform:translateY(-2px)}
 .btn-c:disabled{opacity:.5;cursor:default;transform:none}
 .cm{padding:14px 0;border-bottom:1px solid var(--bord)}
@@ -353,16 +410,16 @@ footer .liens a:hover{color:var(--blanc)}
 .lecture-art{padding-top:30px;padding-bottom:20px}
 .art-page{max-width:740px;margin:0 auto}
 .flot{position:fixed;top:50%;transform:translateY(-50%);z-index:40;
-  width:56px;height:56px;border-radius:18px;display:grid;place-items:center;
+  width:56px;height:56px;border-radius:24px;display:grid;place-items:center;
   background:rgba(25,24,38,.9);border:1px solid var(--bord);backdrop-filter:blur(16px);
-  box-shadow:0 8px 26px rgba(0,0,0,.45);color:var(--gris);font-size:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,.44);color:var(--gris);font-size:20px;
   transition:transform .28s cubic-bezier(.22,.9,.3,1),border-color .25s,color .25s}
 .flot:hover{transform:translateY(-50%) scale(1.09);border-color:rgba(194,75,255,.55);
   color:var(--blanc);box-shadow:0 14px 38px rgba(123,46,255,.35)}
 .flot.prec{left:max(20px,calc(50vw - 640px))}
 .flot.suiv{right:max(20px,calc(50vw - 640px))}
 .flot .inf{position:absolute;top:110%;left:50%;transform:translateX(-50%);
-  background:rgba(25,24,38,.96);border:1px solid var(--bord);border-radius:12px;
+  background:rgba(25,24,38,.96);border:1px solid var(--bord);border-radius:18px;
   padding:9px 13px;font:500 12px/1.4 var(--c);color:var(--gris);width:190px;
   opacity:0;pointer-events:none;transition:opacity .25s;text-align:center}
 .flot:hover .inf{opacity:1}
@@ -384,7 +441,7 @@ footer .liens a:hover{color:var(--blanc)}
 /* ⚠️ VÉCU : la tête de la personne était coupée. « object-fit:cover » rogne
    depuis le CENTRE de l'image — or sur un portrait de presse, le visage occupe
    le tiers haut. On remonte le point d'ancrage. */
-.img-ar{width:100%;aspect-ratio:16/9;border-radius:20px;margin-bottom:10px;
+.img-ar{width:100%;aspect-ratio:16/9;border-radius:26px;margin-bottom:10px;
   object-fit:cover;object-position:50% 28%;display:block;
   background:linear-gradient(150deg,#7B2EFF,#241A3D)}
 /* ⚠️ Une image PLUS HAUTE QUE LARGE est un portrait : la rogner en 16/9 coupe
@@ -397,11 +454,11 @@ footer .liens a:hover{color:var(--blanc)}
 
 /* ⚖️ LA TRANSPARENCE — développée. Le lecteur doit pouvoir juger LUI-MÊME. */
 .honn{background:linear-gradient(165deg,rgba(30,28,50,.9),rgba(22,20,38,.9));
-  border:1px solid var(--bord);border-radius:22px;padding:26px 28px;margin:32px 0}
+  border:1px solid var(--bord);border-radius:26px;padding:26px 28px;margin:32px 0}
 .honn h3{font:700 12px/1 var(--c);letter-spacing:.18em;text-transform:uppercase;
   color:var(--mauve);margin-bottom:6px}
 .honn .sst{font-size:13.5px;color:var(--faible);margin-bottom:20px}
-.jauge{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;
+.jauge{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:22px;
   margin-bottom:18px}
 .jauge.f3{background:rgba(55,227,155,.09);border:1px solid rgba(55,227,155,.28)}
 .jauge.f2{background:rgba(245,158,11,.09);border:1px solid rgba(245,158,11,.28)}
@@ -410,13 +467,13 @@ footer .liens a:hover{color:var(--blanc)}
 .jauge .niv{font:700 16px/1.2 var(--t);margin-bottom:4px}
 .jauge.f3 .niv{color:var(--vert)}.jauge.f2 .niv{color:var(--orange)}
 .jauge.f1 .niv{color:var(--rouge)}
-.jauge .ex{font-size:14px;color:var(--gris);line-height:1.55}
+.jauge .ex{font-size:14px;color:var(--gris);line-height:1.65}
 
 .sect-h{margin-top:22px}
 .sect-h .lt{font:700 11px/1 var(--c);letter-spacing:.16em;text-transform:uppercase;
   color:var(--faible);margin-bottom:11px}
 .chg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.ch{font:600 12px/1 var(--m);padding:7px 11px;border-radius:8px}
+.ch{font:600 12px/1 var(--m);padding:7px 11px;border-radius:14px}
 .ch.ok{color:var(--vert);background:rgba(55,227,155,.1);border:1px solid rgba(55,227,155,.28)}
 .ch.seul{color:var(--orange);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.28)}
 .note-ch{font-size:12.5px;color:var(--faible);line-height:1.55;margin-top:9px}
@@ -435,13 +492,13 @@ footer .liens a:hover{color:var(--blanc)}
   /* ⚠️ Le filet d'accent occupe déjà 3 px : sans un retrait franc, le texte
      paraît collé au bord du cadre. On lui donne nettement plus d'air à
      gauche qu'aux autres côtés. */
-  border-left:3px solid var(--mauve);border-radius:14px;
+  border-left:3px solid var(--mauve);border-radius:20px;
   padding:18px 22px 18px 30px;margin-top:20px;
   font-size:14px;color:var(--gris);line-height:1.68}
 .aveu b{color:var(--texte)}
 
 .src-box{display:flex;align-items:center;gap:14px;background:var(--carte);
-  border:1px solid var(--bord);border-radius:16px;padding:17px 21px;margin:12px 0}
+  border:1px solid var(--bord);border-radius:22px;padding:17px 21px;margin:12px 0}
 .src-box .t{flex:1;min-width:0}
 .src-box .l{font:600 10.5px/1 var(--c);letter-spacing:.15em;text-transform:uppercase;
   color:var(--faible);margin-bottom:5px}
@@ -577,10 +634,10 @@ html[data-th="clair"] .cm-f input,
 html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)}
 
 /* 🃏 cartes sur table */
-.cst{margin:26px 0;padding:20px;border:1px solid var(--bord);border-radius:14px;
+.cst{margin:26px 0;padding:20px;border:1px solid var(--bord);border-radius:20px;
      background:var(--carte)}
 .cst-tt{font-weight:700;font-size:1.02rem;margin-bottom:6px}
-.cst-ex{font-size:.86rem;color:var(--gris);margin:0 0 16px;line-height:1.55}
+.cst-ex{font-size:.86rem;color:var(--gris);margin:0 0 16px;line-height:1.65}
 .cst-bloc{margin-bottom:18px}
 .cst-bloc:last-child{margin-bottom:0}
 .cst-unite{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;
@@ -607,16 +664,16 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
       font-variant-numeric:tabular-nums}
 .cr-v.neg{color:var(--rouge)}
 .cr-sur{font-weight:400;font-size:.78rem;color:var(--gris);margin-left:1px}
-.cr-b{height:7px;border-radius:4px;background:var(--bord);margin-top:7px;
+.cr-b{height:7px;border-radius:10px;background:var(--bord);margin-top:7px;
       overflow:hidden}
-.cr-b i{display:block;height:100%;width:0;border-radius:4px;
+.cr-b i{display:block;height:100%;width:0;border-radius:10px;
         background:linear-gradient(90deg,var(--bleu),var(--mauve));
         transition:width .62s cubic-bezier(.16,1,.3,1)}
 .cr-b i.neg{background:var(--rouge)}
 /* le critère en cours de remplissage s'éclaire brièvement */
-.cr{transition:opacity .3s}
+.cr{transition:opacity .4s cubic-bezier(.32,.72,0,1)}
 .cr:not(.vu){opacity:.42}
-.cr.actif .cr-v{transform:scale(1.14);transition:transform .3s}
+.cr.actif .cr-v{transform:scale(1.14);transition:transform .4s cubic-bezier(.32,.72,0,1)}
 
 .fin{margin-top:26px;padding-top:20px;border-top:1px solid var(--bord)}
 .fin-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
@@ -625,9 +682,9 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 .fin-n{font:700 clamp(30px,7.5vw,42px)/1 var(--t);color:var(--blanc);
        font-variant-numeric:tabular-nums}
 .fin-d{font-size:.85rem;color:var(--gris)}
-.fin-b{position:relative;height:11px;border-radius:6px;background:var(--bord);
+.fin-b{position:relative;height:11px;border-radius:12px;background:var(--bord);
        margin-top:12px;overflow:visible}
-.fin-b i{display:block;height:100%;width:0;border-radius:6px;
+.fin-b i{display:block;height:100%;width:0;border-radius:12px;
          transition:width 1.15s cubic-bezier(.16,1,.3,1)}
 .fin-m{position:absolute;top:-3px;width:2px;height:17px;background:var(--gris);
        opacity:.55}
@@ -639,7 +696,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 
 /* ═══ apparition des rédactions au défilement ═══ */
 .src-l{opacity:0;transform:translateY(14px);
-       transition:opacity .5s ease,transform .5s cubic-bezier(.22,1,.36,1)}
+       transition:opacity .4s cubic-bezier(.32,.72,0,1),transform .5s cubic-bezier(.22,1,.36,1)}
 .src-l.vu{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
   .js-r,.cl-b i,.cl,.cl-cum,.src-l{transition:none!important}
@@ -660,9 +717,9 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 
 /* la fenêtre FLOTTE au-dessus du texte : elle ne repousse rien */
 .ch-pop{position:fixed;z-index:1200;width:min(320px,calc(100vw - 20px));
-        padding:14px 16px;border-radius:14px;background:var(--carte);
+        padding:14px 16px;border-radius:20px;background:var(--carte);
         border:1px solid var(--bord);font-size:14px;line-height:1.55;
-        box-shadow:0 14px 40px rgba(0,0,0,.45);
+        box-shadow:0 16px 54px rgba(0,0,0,.44);
         opacity:0;transform:translateY(6px) scale(.96);
         transition:opacity .19s ease,transform .19s cubic-bezier(.2,1.2,.3,1)}
 .ch-pop.vu{opacity:1;transform:none}
@@ -708,7 +765,7 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 /* ⭐ confiance dans les médias */
 .av{display:flex;align-items:center;gap:9px;margin-top:7px;flex-wrap:wrap}
 .av-t{display:flex;gap:3px}
-.av-b{background:none;border:1px solid transparent;border-radius:8px;
+.av-b{background:none;border:1px solid transparent;border-radius:14px;
       font-size:15px;line-height:1;padding:3px 5px;cursor:pointer;
       filter:grayscale(1);opacity:.5;transition:all .18s}
 .av-b:hover{opacity:.85;filter:grayscale(.3)}
@@ -727,6 +784,38 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 .av-moy i.on{background:var(--orange)}
 .av-bas i.on{background:var(--rouge)}
 .av-n{font-size:.7rem;color:var(--gris)}
+
+/* ══ EMPLACEMENTS PUBLICITAIRES ══
+   ⚠️ La réserve d'espace est faite en CSS, AVANT que l'annonce charge. Sans
+      hauteur minimale, le contenu saute quand la publicité arrive — c'est la
+      première cause d'abandon d'un article sur téléphone, et Google le
+      sanctionne dans son classement.
+   ⚠️ Sur PC, les colonnes latérales n'existent QUE si la fenêtre est assez
+      large. En dessous de 1280 px, elles disparaissent : mieux vaut aucune
+      publicité qu'une publicité qui écrase le texte. */
+.pub{display:block;overflow:hidden;text-align:center}
+.pub::before{content:"Publicité";display:block;font:500 10px/1 var(--c);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faible);
+  opacity:.55;margin-bottom:7px}
+
+/* colonne latérale, PC uniquement */
+.pub-cote{position:sticky;top:96px;width:300px;min-height:600px}
+.cotes{display:none}
+@media(min-width:1280px){
+  .cotes{display:block;position:fixed;top:0;bottom:0;width:300px;
+    padding-top:96px;pointer-events:none}
+  .cotes>*{pointer-events:auto}
+  .cote-g{left:max(12px,calc(50vw - 700px))}
+  .cote-d{right:max(12px,calc(50vw - 700px))}
+}
+
+/* bloc carré, dans la lecture — surtout téléphone */
+.pub-bloc{margin:34px auto;max-width:336px;min-height:280px}
+@media(min-width:1280px){.pub-bloc{display:none}}
+
+/* ⚠️ En impression et pour les lecteurs qui bloquent, rien ne doit rester :
+      un cadre vide étiqueté « Publicité » fait plus mauvais effet qu'un blanc. */
+@media print{.pub,.cotes{display:none}}
 </style><script>
 /* ═══════════════════════════════════════════════════════════════════════
    CONFIGURATION — remplace ces deux valeurs par les tiennes.
@@ -836,6 +925,10 @@ function fiabilite(n){
     exp:"Un seul média affirme cela. Ce n'est pas forcément faux — une exclusivité, ça existe — mais personne ne le confirme encore. Nous préférons vous le dire plutôt que de faire comme si de rien n'était."};
 }
 </script></head><body>
+<!-- ⚠️ Hors du flux du texte : elles ne peuvent donc jamais décaler l'article.
+     Invisibles en dessous de 1280 px de large. -->
+<aside class="cotes cote-g"><div class="pub pub-cote" data-slot="" data-format="vertical"></div></aside>
+<aside class="cotes cote-d"><div class="pub pub-cote" data-slot="" data-format="vertical"></div></aside>
 <header><div class="wrap hbar">
   <a class="logo" href="index.html"><i></i> PULSE</a>
   <div class="reglages">
@@ -850,8 +943,6 @@ function fiabilite(n){
     <a href="methode.html">Méthode</a>
     <a href="engagements.html">Engagements</a>
     <a href="roadmap.html">Feuille de route</a>
-    <a href="token.html">$PULSE</a>
-    <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
   </nav>
 </div></header>
@@ -868,8 +959,7 @@ function fiabilite(n){
     <a href="actu.html">Le fil</a><a href="journal.html">Journal des décisions</a>
     <a href="methode.html">Méthode</a>
     <a href="engagements.html">Engagements</a>
-    <a href="engagements.html">Engagements</a><a href="roadmap.html">Feuille de route</a><a href="token.html">$PULSE</a>
-    <a href="whitepaper.html">Livre blanc</a>
+    <a href="engagements.html">Engagements</a><a href="roadmap.html">Feuille de route</a>
     <a href="legal.html">Mentions légales</a>
     <a href="https://x.com/PULSEactus">@PULSEactus</a>
   </div>
@@ -953,33 +1043,6 @@ function sources(a){
    Chaque média publie le sien sans dire que le voisin en donne un autre.
    Pulse montre les deux, avec le nombre de rédactions derrière chacun, et ne
    tranche pas : le lecteur voit l'état réel de l'information. */
-function cartesSurTable(a){
-  const cartes = Array.isArray(a.cartes_sur_table) ? a.cartes_sur_table : [];
-  if(!cartes.length) return '';
-  const blocs = cartes.map(c => {
-    const total = c.valeurs.reduce((s,v) => s + (v.nb||0), 0) || 1;
-    const lignes = c.valeurs.map((v, i) => {
-      const part = Math.round((v.nb / total) * 100);
-      return `<div class="cst-v${i===0 ? ' cst-maj' : ''}">
-        <div class="cst-tete">
-          <span class="cst-chiffre">${v.valeur}</span>
-          <span class="cst-nb">${v.nb} rédaction${v.nb>1?'s':''}</span>
-        </div>
-        <div class="cst-jauge"><i style="width:${part}%"></i></div>
-        <div class="cst-medias">${(v.medias||[]).join(' · ')}</div>
-      </div>`;
-    }).join('');
-    return `<div class="cst-bloc">
-      <div class="cst-unite">${c.unite}</div>${lignes}</div>`;
-  }).join('');
-  return `<div class="cst">
-    <div class="cst-tt">Les chiffres ne concordent pas</div>
-    <p class="cst-ex">Les rédactions ne donnent pas le même chiffre sur ces
-      points. Nous ne choisissons pas à votre place : voici chaque valeur
-      avancée, et combien de rédactions la reprennent.</p>
-    ${blocs}
-  </div>`;
-}
 
 /* 🎮 L'animation du score : chaque composante s'ajoute l'une après l'autre, la
    barre monte, le total grimpe. Une note sur 100 est une abstraction ; la voir
@@ -1065,181 +1128,14 @@ function animerSources(racine){
    le lecteur voit combien de rédactions le reprennent, et quelles autres
    valeurs circulent. L'information est là où le chiffre est lu — un pavé
    récapitulatif en fin de page disait la même chose, mais personne n'y allait. */
-function annoterChiffres(html, a){
-  const src = a && a.chiffres;
-  if(!src || !Object.keys(src).length) return html;
-
-  /* on indexe par VALEUR normalisée : le texte écrit « 2 500 », la base
-     « 2500 ». Les espaces fines et insécables comptent pour rien. */
-  const parVal = {};
-  Object.values(src).forEach(c => {
-    const k = String(c.valeur).replace(/[\s\u00a0\u202f]/g,'').replace(',','.');
-    /* à valeur égale, on garde l'entrée la plus informative */
-    if(!parVal[k] || (c.autres||[]).length > (parVal[k].autres||[]).length) parVal[k] = c;
-  });
-
-  /* on ne touche jamais à l'intérieur d'une balise */
-  return html.replace(/>([^<]+)</g, (tout, texte) =>
-    /* ⚠️ Le motif ne doit pas avaler l'espace qui SUIT le nombre : « 2 500 »
-       emportait le blanc et collait le bouton au mot suivant. Les séparateurs
-       de milliers sont acceptés à l'intérieur, jamais en fin. */
-    '>' + texte.replace(/\b\d+(?:[\s\u00a0\u202f]\d{3})*(?:[.,]\d+)?\b/g, (n) => {
-      const k = n.replace(/[\s\u00a0\u202f]/g,'').replace(',','.');
-      const c = parVal[k];
-      if(!c) return n;
-      /* ⚠️ La couleur dit UNE chose et une seule : combien de rédactions
-         portent ce chiffre. 1 = rouge, 2 = orange, 3 et plus = vert.
-         L'ancienne logique mêlait « confirmé » et « contesté », deux notions
-         différentes sous les mêmes couleurs — illisible. */
-      const nb = c.nb || 1;
-      const niv = nb >= 3 ? 'ok' : (nb === 2 ? 'moy' : 'seul');
-      return `<button type="button" class="ch ch-${niv}" data-ch="${k}">${n}</button>`;
-    }) + '<');
-}
 
 /* le détail s'ouvre au clic, sous le chiffre */
-function ouvrirChiffre(btn, a){
-  document.querySelectorAll('.ch-pop').forEach(p => p.remove());
-  if(btn.dataset.ouvert){ delete btn.dataset.ouvert; return; }
-  const c = Object.values(a.chiffres || {}).find(x =>
-    String(x.valeur).replace(/[\s\u00a0\u202f]/g,'').replace(',','.') === btn.dataset.ch);
-  if(!c) return;
-  const nb = c.nb || 1;
-  let corps = `<div class="ch-t">${c.valeur}${c.unite ? ' ' + c.unite : ''}</div>`;
-  corps += `<div class="ch-l">${nb} rédaction${nb>1?'s':''} ${nb>1?'citent':'cite'} ce chiffre</div>`;
-  if((c.medias||[]).length) corps += `<div class="ch-m">${c.medias.join(' · ')}</div>`;
-  /* 🏷️ Pourquoi les chiffres diffèrent. Sans cette explication, un lecteur
-     conclut qu'une rédaction se trompe — alors que « 2500 » et « 2300 » sur un
-     incendie en cours sont deux relevés à deux heures différentes. */
-  if((c.contexte||[]).length){
-    corps += '<div class="ch-c">' + c.contexte.map(x =>
-      `<span class="ch-p">${x}</span>`).join('') + '</div>';
-  }
-  if((c.autres||[]).length){
-    corps += '<div class="ch-a">Autres valeurs citées</div>';
-    c.autres.forEach(x => {
-      corps += `<div class="ch-r"><b>${x.valeur}</b>
-        <span>${x.nb} rédaction${x.nb>1?'s':''}</span>
-        <em>${(x.medias||[]).join(' · ')}</em></div>`;
-    });
-  } else if(nb > 1){
-    corps += '<div class="ch-a">Aucune rédaction n\'avance un autre chiffre.</div>';
-  } else {
-    corps += '<div class="ch-a">Une seule source : à prendre avec prudence.</div>';
-  }
-  /* quand les valeurs divergent ET qu'on sait pourquoi, on le dit clairement */
-  if((c.autres||[]).length && (c.contexte||[]).length){
-    corps += '<div class="ch-n">Ces écarts s\'expliquent : voir ci-dessus.</div>';
-  }
-  /* ⚠️ La fenêtre se posait DANS le flux et repoussait le texte : le
-     paragraphe sautait sous les yeux du lecteur à chaque clic. Elle flotte
-     désormais au-dessus, ancrée sur le chiffre. */
-  const pop = document.createElement('div');
-  pop.className = 'ch-pop';
-  pop.innerHTML = corps;
-  document.body.appendChild(pop);
-
-  const r = btn.getBoundingClientRect();
-  const l = pop.getBoundingClientRect();
-  const marge = 10;
-  /* on garde la fenêtre dans l'écran, quel que soit l'endroit du chiffre */
-  let x = r.left + r.width / 2 - l.width / 2;
-  x = Math.max(marge, Math.min(x, window.innerWidth - l.width - marge));
-  /* au-dessus si la place manque en dessous */
-  const dessous = r.bottom + l.height + marge < window.innerHeight;
-  const y = dessous ? r.bottom + 8 : r.top - l.height - 8;
-  pop.style.left = x + 'px';
-  pop.style.top = y + 'px';
-  pop.classList.add(dessous ? 'sous' : 'sur');
-  /* la flèche pointe le chiffre */
-  const fx = Math.max(14, Math.min(r.left + r.width / 2 - x, l.width - 14));
-  pop.style.setProperty('--fx', fx + 'px');
-  requestAnimationFrame(() => pop.classList.add('vu'));
-
-  const fermer = () => {
-    pop.classList.remove('vu');
-    setTimeout(() => pop.remove(), 190);   /* on laisse l'animation finir */
-  };
-  setTimeout(() => document.addEventListener('click', function f(e){
-    if(!pop.contains(e.target) && e.target !== btn){
-      fermer(); document.removeEventListener('click', f);
-    }
-  }), 0);
-  window.addEventListener('scroll', function s(){
-    fermer(); window.removeEventListener('scroll', s);
-  }, {passive:true, once:true});
-}
 
 /* 📝 LES FAITS DANS LE TEXTE
    Même principe que pour les chiffres : au lieu d'écrire « un élément rapporté
    par 2 médias » au milieu d'une phrase, on souligne discrètement la phrase et
    le détail s'ouvre au clic. L'information est là, sans alourdir la lecture. */
-function annoterFaits(html, a){
-  const faits = Array.isArray(a && a.faits) ? a.faits : [];
-  if(!faits.length) return html;
 
-  /* on apparie sur les mots significatifs : le rédacteur reformule, le texte
-     de l'article n'est jamais identique à celui de la source */
-  const cle = (t) => (String(t).toLowerCase().match(/[0-9a-zà-ÿ]{4,}/g) || []);
-  const index = faits.map(f => ({f, mots: new Set(cle(f.texte))}));
-
-  return html.replace(/>([^<]+)</g, (tout, texte) => {
-    const phrases = texte.split(/(?<=[.!?])\s+/);
-    const sortie = phrases.map(ph => {
-      if(ph.trim().length < 30) return ph;
-      const m = new Set(cle(ph));
-      if(m.size < 4) return ph;
-      let best = null, score = 0;
-      index.forEach(({f, mots}) => {
-        let n = 0; m.forEach(x => { if(mots.has(x)) n++; });
-        const r = n / Math.min(m.size, mots.size);
-        if(r > score){ score = r; best = f; }
-      });
-      /* on n'annote que si la correspondance est franche */
-      if(!best || score < 0.5) return ph;
-      const nb = best.nb || 1;
-      const niv = nb >= 3 ? 'ok' : (nb === 2 ? 'moy' : 'seul');
-      return `<span class="fa fa-${niv}" data-fa="${
-        encodeURIComponent(best.texte.slice(0,60))}">${ph}</span>`;
-    });
-    return '>' + sortie.join(' ') + '<';
-  });
-}
-
-function ouvrirFait(el, a){
-  document.querySelectorAll('.ch-pop').forEach(p => p.remove());
-  const ref = decodeURIComponent(el.dataset.fa || '');
-  const f = (a.faits || []).find(x => x.texte.slice(0,60) === ref);
-  if(!f) return;
-  const nb = f.nb || 1;
-  let corps = `<div class="ch-l">${nb} rédaction${nb>1?'s':''} ${
-    nb>1?'rapportent':'rapporte'} cette information</div>`;
-  if((f.medias||[]).length) corps += `<div class="ch-m">${f.medias.join(' · ')}</div>`;
-  corps += nb > 1
-    ? '<div class="ch-a">Information recoupée</div>'
-    : '<div class="ch-a">Une seule source : à prendre avec prudence.</div>';
-  const pop = document.createElement('div');
-  pop.className = 'ch-pop';
-  pop.innerHTML = corps;
-  document.body.appendChild(pop);
-  const r = el.getBoundingClientRect(), l = pop.getBoundingClientRect(), mg = 10;
-  let x = Math.max(mg, Math.min(r.left, window.innerWidth - l.width - mg));
-  const sous = r.bottom + l.height + mg < window.innerHeight;
-  pop.style.left = x + 'px';
-  pop.style.top = (sous ? r.bottom + 8 : r.top - l.height - 8) + 'px';
-  pop.classList.add(sous ? 'sous' : 'sur');
-  pop.style.setProperty('--fx', Math.max(14, Math.min(r.left + 20 - x, l.width - 14)) + 'px');
-  requestAnimationFrame(() => pop.classList.add('vu'));
-  const fermer = () => { pop.classList.remove('vu'); setTimeout(() => pop.remove(), 190); };
-  setTimeout(() => document.addEventListener('click', function f2(e){
-    if(!pop.contains(e.target) && !el.contains(e.target)){
-      fermer(); document.removeEventListener('click', f2);
-    }
-  }), 0);
-  window.addEventListener('scroll', function s(){
-    fermer(); window.removeEventListener('scroll', s);
-  }, {passive:true, once:true});
-}
 
 /* ⭐ CONFIANCE DANS LES MÉDIAS
    Chaque rédaction citée peut être notée par les lecteurs : content, mitigé,
@@ -1454,7 +1350,7 @@ async function charger(){
       ${propre(txt(a,'chapo'))?`<p class="chapo">${propre(txt(a,'chapo'))}</p>`:''}
       ${a.image_url?`<img class="img-ar" src="${a.image_url}" alt="">
         <div class="leg-img">Photo : ${a.source_nom||'source de l\'article'}</div>`:''}
-      <div class="corps">${annoterChiffres(annoterFaits(corps, a), a)}</div>
+      <div class="corps">${inserer_pub(corps)}</div>
 
       <div class="honn">
         <h3>⚖️ Cartes sur table</h3>
@@ -1470,7 +1366,6 @@ async function charger(){
         ${bloc_ch}
 
         <div class="sect-h"><div class="lt">Pourquoi nous l'avons publié</div>
-          ${calcul(a)}
         </div>
 
         <div class="aveu">
@@ -1484,7 +1379,6 @@ async function charger(){
 
       <!-- Le pavé « cartes sur table » a été retiré : les chiffres sont
            désormais annotés DANS le texte, à l'endroit où on les lit. -->
-      ${sources(a)}
       ${a.tweet_url?`<div class="src-box"><div class="t">
         <div class="l">Publié aussi sur</div><div class="n">X · @PULSEactus</div></div>
         <a href="${a.tweet_url}" target="_blank" rel="noopener">Voir le message →</a></div>`:''}
@@ -1524,12 +1418,9 @@ async function charger(){
     box.addEventListener('click', (e) => {
       const av = e.target.closest && e.target.closest('.av-b');
       if(av) return voterAvis(av);
-      const b = e.target.closest && e.target.closest('.ch');
-      if(b) return ouvrirChiffre(b, a);
-      const f = e.target.closest && e.target.closest('.fa');
-      if(f) ouvrirFait(f, a);
     });
     try{ animerScore(box); }catch(e){ console.warn('animation du score', e); }
+    try{ activerPubs(); }catch(e){ console.warn('pub', e); }
     try{ animerSources(box); }catch(e){ console.warn('animation des sources', e); }
 
     voisins(a.publie_le);
@@ -1922,7 +1813,7 @@ const T = {
   "Révoquée":"Revoked",
   "[à compléter] — durée de verrouillage":"[to be filled] — lock duration",
   "Adresse du contrat — la seule officielle":"Contract address — the only official one",
-  "[à compléter après création]":"[to be filled after creation]",
+  "4ZkS91nXeZXnCCifsF9PCKiwyojbbe7veKzH6hCCpump":"4ZkS91nXeZXnCCifsF9PCKiwyojbbe7veKzH6hCCpump",
   "livre blanc réglementaire":"regulatory white paper",
   "détaille les caractéristiques, les droits attachés et l'intégralité des facteurs de risque.":"sets out the specifications, attached rights and the full list of risk factors.",
   "💰 À quoi servent les frais de transaction":"💰 What transaction fees fund",

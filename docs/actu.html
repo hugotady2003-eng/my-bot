@@ -1,5 +1,53 @@
 <!DOCTYPE html><html lang="fr"><head>
 <script>
+/* ══ RENSEIGNE TON IDENTIFIANT ADSENSE ICI ══
+   Laisse vide tant que ton compte n'est pas approuvé : aucune
+   requête ne partira, et le site restera parfaitement rapide.
+   Format : "ca-pub-XXXXXXXXXXXXXXXX" */
+window.PUB_ID = "";
+</script>
+
+<script>
+/* ══ PUBLICITÉ ══
+   ⚠️ Le script Google n'est chargé QUE si un identifiant est renseigné. Sans
+      lui, aucune requête n'est faite : le site reste rapide et fonctionne
+      parfaitement, simplement sans annonces. C'est ce qui permet de le mettre
+      en ligne avant d'avoir un compte approuvé.
+   ⚠️ AdSense demande une audience réelle et du contenu original avant
+      d'accepter un site. Les emplacements sont prêts ; l'approbation, elle,
+      ne se code pas. */
+const PUB_ID = window.PUB_ID || '';        /* ca-pub-XXXXXXXXXXXXXXXX */
+
+function chargerPub(){
+  if(!PUB_ID) return;
+  const s = document.createElement('script');
+  s.async = true;
+  s.crossOrigin = 'anonymous';
+  s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB_ID;
+  document.head.appendChild(s);
+}
+
+function poserPub(el, slot, format){
+  if(!PUB_ID || !el) return;
+  const ins = document.createElement('ins');
+  ins.className = 'adsbygoogle';
+  ins.style.display = 'block';
+  ins.setAttribute('data-ad-client', PUB_ID);
+  if(slot) ins.setAttribute('data-ad-slot', slot);
+  ins.setAttribute('data-ad-format', format || 'auto');
+  ins.setAttribute('data-full-width-responsive', 'true');
+  el.appendChild(ins);
+  try{ (window.adsbygoogle = window.adsbygoogle || []).push({}); }
+  catch(e){ console.warn('pub', e); }
+}
+
+function activerPubs(){
+  if(!PUB_ID) return;
+  chargerPub();
+  document.querySelectorAll('.pub').forEach(el =>
+    poserPub(el, el.dataset.slot, el.dataset.format));
+}
+
 /* ══════════════════════════════════════════════════════════════════════
    THÈME ET LANGUE
    ⚠️ Le choix est mémorisé LOCALEMENT, comme le reste : rien n'est envoyé.
@@ -20,10 +68,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --noir:#0B0A10;--fond:#12111C;--carte:#191826;--bord:#26243A;
-  --violet:#7B2EFF;--mauve:#C24BFF;--bleu:#3928FF;
-  --vert:#37E39B;--orange:#F59E0B;--rouge:#EF4444;
-  --blanc:#FFF;--texte:#E8E6F0;--gris:#A8A4BD;--faible:#7F7B96;
+  --noir:#0D0C12;--fond:#141320;--carte:#1C1B29;--bord:#2A2840;
+  --violet:#8B5CF6;--mauve:#B57BFF;--bleu:#5B4BF5;
+  --vert:#30D158;--orange:#FF9F0A;--rouge:#FF453A;
+  --blanc:#FFF;--texte:#E6E4EE;--gris:#9E9AB4;--faible:#7F7B96;
   --t:"Space Grotesk",system-ui,sans-serif;--c:"Inter",system-ui,sans-serif;
   --m:"JetBrains Mono",ui-monospace,monospace;
 }
@@ -36,12 +84,12 @@ html[data-th="clair"]{
   --fond:#F2F1F7;
   --carte:#FFFFFF;
   --bord:#E2E0EC;
-  --violet:#6318E0;
-  --mauve:#9B21D6;
+  --violet:#7C3AED;
+  --mauve:#9333EA;
   --bleu:#2E1DD6;
-  --vert:#07784C;
+  --vert:#248A3D;
   --orange:#B45309;
-  --rouge:#C81E1E;
+  --rouge:#D70015;
   --blanc:#0B0A10;
   --texte:#1A1826;
   --gris:#5A566E;
@@ -67,8 +115,6 @@ html[data-th="clair"] .js-b{background:rgba(20,16,40,.08)}
 html[data-th="clair"] footer{background:#EEEDF4;border-top-color:var(--bord)}
 html[data-th="clair"] .voile{background:linear-gradient(180deg,
   rgba(250,250,252,.72),rgba(250,250,252,.86))}
-html[data-th="clair"] #jetonHero{filter:drop-shadow(0 20px 40px rgba(60,30,120,.22))
-  drop-shadow(0 0 26px rgba(155,33,214,.28))}
 html[data-th="clair"] .hero h1,html[data-th="clair"] .hero p.in{text-shadow:none}
 html[data-th="clair"] .fond .gr{background-image:
   linear-gradient(rgba(99,24,224,.05) 1px,transparent 1px),
@@ -82,9 +128,9 @@ html[data-th="clair"] #intro{background:#FAFAFC}
 /* Réglages : thème et langue */
 .reglages{display:flex;gap:7px;margin-left:14px}
 @media(max-width:820px){.reglages{margin-left:auto;margin-right:10px}}
-.rg{background:none;border:1px solid var(--bord);border-radius:10px;
+.rg{background:none;border:1px solid var(--bord);border-radius:16px;
   min-width:38px;height:38px;padding:0 9px;cursor:pointer;color:var(--gris);
-  font:700 12px/1 var(--c);transition:.2s;display:grid;place-items:center}
+  font:700 12px/1 var(--c);transition:.3s cubic-bezier(.32,.72,0,1);display:grid;place-items:center}
 .rg:hover{color:var(--blanc);border-color:var(--mauve)}
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -125,11 +171,11 @@ header{position:sticky;top:0;z-index:60;background:rgba(11,10,16,.9);
 @keyframes bat{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(55,227,155,.55)}
   50%{opacity:.6;box-shadow:0 0 0 8px rgba(55,227,155,0)}}
 nav{display:flex;gap:6px;margin-left:auto;font:500 14.5px/1 var(--c)}
-nav a{color:var(--gris);padding:9px 14px;border-radius:10px;transition:.2s}
+nav a{color:var(--gris);padding:9px 14px;border-radius:16px;transition:.3s cubic-bezier(.32,.72,0,1)}
 nav a:hover{color:var(--blanc);background:rgba(255,255,255,.05)}
 nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .burger{display:none;margin-left:auto;background:none;border:1px solid var(--bord);
-  border-radius:10px;width:40px;height:40px;cursor:pointer;color:var(--texte);
+  border-radius:16px;width:40px;height:40px;cursor:pointer;color:var(--texte);
   align-items:center;justify-content:center;font-size:17px}
 @media(max-width:820px){
   nav{position:fixed;inset:66px 0 auto;flex-direction:column;gap:0;margin:0;
@@ -152,18 +198,18 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:14px}
 @media(max-width:520px){.grille{grid-template-columns:1fr}}
 .art{background:linear-gradient(168deg,rgba(30,28,46,.96),rgba(22,21,34,.96));
-  border:1px solid rgba(255,255,255,.07);border-radius:22px;
-  box-shadow:0 4px 18px rgba(0,0,0,.34),0 1px 2px rgba(0,0,0,.4);
-  transition:transform .34s cubic-bezier(.22,.9,.3,1),box-shadow .34s,border-color .3s}
+  border:1px solid rgba(255,255,255,.07);border-radius:26px;
+  box-shadow:0 6px 32px rgba(0,0,0,.33),0 1px 2px rgba(0,0,0,.4);
+  transition:transform .34s cubic-bezier(.22,.9,.3,1),box-shadow .34s,border-color .4s cubic-bezier(.32,.72,0,1)}
 .art:hover{transform:translateY(-6px) scale(1.008);
-  box-shadow:0 18px 44px rgba(0,0,0,.5),0 0 0 1px rgba(123,46,255,.24);
+  box-shadow:0 20px 58px rgba(0,0,0,.4),0 0 0 1px rgba(123,46,255,.24);
   border-color:rgba(194,75,255,.3)}
 .art .lien{display:grid;grid-template-columns:96px 1fr;align-items:stretch}
 .art.gros{grid-column:1/-1}
 .art.gros .lien{grid-template-columns:190px 1fr}
 @media(max-width:520px){.art.gros .lien{grid-template-columns:96px 1fr}}
 .vign{display:grid;place-items:center;font-size:30px;margin:14px 0 14px 14px;
-  border-radius:16px;overflow:hidden;background-size:cover;background-position:center;
+  border-radius:22px;overflow:hidden;background-size:cover;background-position:center;
   background-image:linear-gradient(150deg,color-mix(in srgb,var(--c) 78%,transparent),
     color-mix(in srgb,var(--c) 26%,#12111C))}
 .art.gros .vign{font-size:46px}
@@ -209,7 +255,7 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 
 .filtres{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
 .f{font:600 13px/1 var(--c);color:var(--gris);background:var(--carte);
-  border:1px solid var(--bord);border-radius:100px;padding:9px 16px;cursor:pointer;transition:.2s}
+  border:1px solid var(--bord);border-radius:100px;padding:9px 16px;cursor:pointer;transition:.3s cubic-bezier(.32,.72,0,1)}
 .f:hover{color:var(--blanc);border-color:#443C6B}
 .f.on{color:#fff;background:rgba(123,46,255,.24);border-color:rgba(194,75,255,.5)}
 
@@ -384,6 +430,38 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 .pad-f{padding-top:20px;padding-bottom:70px}
 .pad-g{padding-top:10px;padding-bottom:80px}
 .pad-h{padding-top:20px;padding-bottom:20px}
+
+/* ══ EMPLACEMENTS PUBLICITAIRES ══
+   ⚠️ La réserve d'espace est faite en CSS, AVANT que l'annonce charge. Sans
+      hauteur minimale, le contenu saute quand la publicité arrive — c'est la
+      première cause d'abandon d'un article sur téléphone, et Google le
+      sanctionne dans son classement.
+   ⚠️ Sur PC, les colonnes latérales n'existent QUE si la fenêtre est assez
+      large. En dessous de 1280 px, elles disparaissent : mieux vaut aucune
+      publicité qu'une publicité qui écrase le texte. */
+.pub{display:block;overflow:hidden;text-align:center}
+.pub::before{content:"Publicité";display:block;font:500 10px/1 var(--c);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faible);
+  opacity:.55;margin-bottom:7px}
+
+/* colonne latérale, PC uniquement */
+.pub-cote{position:sticky;top:96px;width:300px;min-height:600px}
+.cotes{display:none}
+@media(min-width:1280px){
+  .cotes{display:block;position:fixed;top:0;bottom:0;width:300px;
+    padding-top:96px;pointer-events:none}
+  .cotes>*{pointer-events:auto}
+  .cote-g{left:max(12px,calc(50vw - 700px))}
+  .cote-d{right:max(12px,calc(50vw - 700px))}
+}
+
+/* bloc carré, dans la lecture — surtout téléphone */
+.pub-bloc{margin:34px auto;max-width:336px;min-height:280px}
+@media(min-width:1280px){.pub-bloc{display:none}}
+
+/* ⚠️ En impression et pour les lecteurs qui bloquent, rien ne doit rester :
+      un cadre vide étiqueté « Publicité » fait plus mauvais effet qu'un blanc. */
+@media print{.pub,.cotes{display:none}}
 </style><script>
 /* ═══════════════════════════════════════════════════════════════════════
    CONFIGURATION — remplace ces deux valeurs par les tiennes.
@@ -507,8 +585,6 @@ function fiabilite(n){
     <a href="methode.html">Méthode</a>
     <a href="engagements.html">Engagements</a>
     <a href="roadmap.html">Feuille de route</a>
-    <a href="token.html">$PULSE</a>
-    <a href="whitepaper.html">Livre blanc</a>
     <a href="legal.html">Mentions légales</a>
   </nav>
 </div></header>
@@ -535,8 +611,7 @@ function fiabilite(n){
     <a href="actu.html">Le fil</a><a href="journal.html">Journal des décisions</a>
     <a href="methode.html">Méthode</a>
     <a href="engagements.html">Engagements</a>
-    <a href="engagements.html">Engagements</a><a href="roadmap.html">Feuille de route</a><a href="token.html">$PULSE</a>
-    <a href="whitepaper.html">Livre blanc</a>
+    <a href="engagements.html">Engagements</a><a href="roadmap.html">Feuille de route</a>
     <a href="legal.html">Mentions légales</a>
     <a href="https://x.com/PULSEactus">@PULSEactus</a>
   </div>
@@ -766,7 +841,7 @@ const T = {
   "Révoquée":"Revoked",
   "[à compléter] — durée de verrouillage":"[to be filled] — lock duration",
   "Adresse du contrat — la seule officielle":"Contract address — the only official one",
-  "[à compléter après création]":"[to be filled after creation]",
+  "4ZkS91nXeZXnCCifsF9PCKiwyojbbe7veKzH6hCCpump":"4ZkS91nXeZXnCCifsF9PCKiwyojbbe7veKzH6hCCpump",
   "livre blanc réglementaire":"regulatory white paper",
   "détaille les caractéristiques, les droits attachés et l'intégralité des facteurs de risque.":"sets out the specifications, attached rights and the full list of risk factors.",
   "💰 À quoi servent les frais de transaction":"💰 What transaction fees fund",
