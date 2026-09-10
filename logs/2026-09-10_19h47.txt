@@ -1,0 +1,97 @@
+
+[19:45] 🔍 Check Pulse — version 4.32.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 3 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #FBvROM, Charlie Kirk, #ããããã ãã¡èªçæ¥, #ÙÙ_Ø§ÙØ±, DOGE
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Wolverine, #HarryStyles, #Insomniac
+  🕐 19h (Paris) — rythme quota atteint (16) — seules les alertes passent : 150-240 min
+  ⏸️  Dernière publi il y a 18 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 12/13 articles lus en 2.0s (108 déjà en cache)
+  📄 15/122 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · IGN France · SpaceNews · Positivr
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧩 122 articles → 122 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Test de Marvel’s Wolverine, un jeu tristement basiqu
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Philippe Diallo sur le retrait du soutien de la FFF 
+  🚨 Sujet chaud (breaking, 1 médias) : Canicule : le coût réel d’un été record pour l’éco
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Gran Turismo 8 : tout ce que l’on sait à ce jour (da
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "C'est un sujet complexe, elle s'en est expliquée": 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Gaz : le prix de référence va à nouveau augmenter de
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L’iPhone Duo vous fait de l’œil mais coûte trop cher
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Maltraitance animale : Refuges saturés, trafics en l
+  🚨 Sujet chaud (breaking, 1 médias) : Corps de femme calciné retrouvé près de Toulouse :
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Un bouclier, une arme, ou les deux à la fois": la "
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Professeur Layton et l'Étrange Village va avoir droi
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Ovation de «Naza» à la Mostra : un documentaire fo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Soupçonné d’avoir tué sa femme près de Toulouse, l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Obsèques de Jean-Paul Rappeneau : Gérard Depardieu a
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Harry Styles annonce son retour à Paris en 2027 avec
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🛑 Seuil souple atteint (16/16) — on garde la place au chaud (breaking/France live).
+
+  ── Bilan du cycle (85 s) ──
+     écartés : 12 sujet banal
+     plafonds : X 16/20 · site 0/24
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × gemini-embedding-2-preview   🚫 quota
+        15. clé 5 × gemini-embedding-2           🚫 quota
+        16. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 1 × gemini-3-flash               ⛔ inexistant
+        21. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.1-flash-lite        ✅
+        25. clé 2 × gemini-3.1-flash-lite        ✅
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.1-flash-lite        ✅
+        28. clé 2 × gemini-3.1-flash-lite        ✅
+        29. clé 2 × gemini-3.1-flash-lite        ✅
+        30. clé 2 × gemini-3.1-flash-lite        ✅
+        31. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 443 · gemini 2-preview 0 · gemini 2 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,687 entrée · 225 sortie
+     ✅ aucun appel payant
