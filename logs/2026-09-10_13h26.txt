@@ -1,0 +1,74 @@
+
+[13:25] 🔍 Check Pulse — version 4.32.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #STARã¹ã¿ã¼, #ã¹ã¿ã¼ã®ã¹ãããã©ã¤ããæµ´ã³ã¦, #è¶ RIZIN5, #ä¸­å³¶ã¯ãã£ã¯ã·ã§ã³ã©ãã§ã, é»ã¿ã­ã·ã¼ã
+  🌍 « Bharat RE Summit » : aucune reprise en français, source internationale retenue
+  🕐 13h (Paris) — rythme journée (71-148 min · 10 publié(s), 6 restant(s) sur 11.0 h) : 71-148 min
+  ⏸️  Dernière publi il y a 14 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  📖 5/7 articles lus en 0.7s (93 déjà en cache)
+  📄 16/100 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · OpenAI · Libération · Ouest-France · IGN France · CoinDesk
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 100 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 100 articles → 34 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Patrick Bruel porte plainte pour violation du secret
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dix pour cent : Le film Netflix est-il à la hauteur 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Contraception : 1,6 million de femmes vont recevoir 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Star Trek a 60 ans, et ses fans ont déjà cumulé 8,5 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "C'est du déni climatique" : lors d'un débat préside
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Codes Spin a Fem (Septembre 2026)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "C'est quand même un taf de malade": opéré du cœur, 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Naruto : après des années d’attente, l’anime s’apprê
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ce fichier de seulement 174 Ko va prolonger la sécur
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Les refuges frôlent la rupture" : plus de 9.500 ani
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : APPEL À TÉMOINS. "Il s’est arrêté 100 mètres plus lo
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : 500 000 entreprises doivent être transmises dans les
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 100 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : marseille, marche, lucia sisic, miss autriche, deces, asile, immigration
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (60 s) ──
+     écartés : 12 sujet banal
+     plafonds : X 10/20 · site 0/24
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × gemini-embedding-2-preview   ✅
+        15. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 516 · gemini 2-preview 0 · gemini 2 799
+     jetons Gemini : 3,189 entrée · 185 sortie
+     ✅ aucun appel payant
