@@ -121,7 +121,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "4.32.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "5.0.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -1885,7 +1885,19 @@ DAILY_POST_CAP = int(os.environ.get("DAILY_POST_CAP", "20"))
 # 🏠 LE SITE EST LA MAISON DE PULSE. X est bridé par son coût : le site, non.
 #    Quand le plafond de X est atteint, on continue à publier SUR LE SITE seul
 #    plutôt que de perdre l'information. Un article sans tweet reste un article.
-SITE_POST_CAP = int(os.environ.get("SITE_POST_CAP", "24"))    # plafond FERME (seule une alerte vitale passe au-delà)
+# ⚠️ VÉCU : « je ne vois pas la différence ». Normal — la CADENCE de X (90 à
+#    150 minutes entre deux tweets) s'appliquait AVANT la publication, quel que
+#    soit le canal. Le site attendait donc X pour publier, et 24 au lieu de 20
+#    n'était jamais atteint.
+#    Le site est gratuit : il n'a aucune raison d'attendre. Il publie tout ce
+#    qui franchit la barre éditoriale ; X ne reçoit QUE le meilleur.
+SITE_POST_CAP = int(os.environ.get("SITE_POST_CAP", "60"))
+# Score à partir duquel un sujet mérite AUSSI un tweet. Au-dessus, X ; en
+# dessous, le site seul.
+SEUIL_TWEET = int(os.environ.get("SEUIL_TWEET", "62"))
+# Le site n'attend pas : quelques minutes suffisent à ne pas tout publier
+# dans la même seconde.
+CADENCE_SITE_MIN = int(os.environ.get("CADENCE_SITE_MIN", "8"))    # plafond FERME (seule une alerte vitale passe au-delà)
 DAILY_POST_SOFT = int(os.environ.get("DAILY_POST_SOFT", "16"))  # au-delà, on ne garde QUE le très chaud
 
 # ── Mémoire par sujet : un gros sujet qui ÉVOLUE peut ressortir dans la journée ──
@@ -13802,6 +13814,27 @@ PRERANK_HOT = [
 #    français, alors que la moitié des sources est anglophone. Il condamnait
 #    silencieusement le cœur de la ligne éditoriale mondiale.
 PRERANK_HOT += [
+    # 🎯 LIGNE ÉDITORIALE RESSERRÉE : la tech, la finance et les nouveaux
+    #    produits passent devant le reste. Ce sont les sujets du site, ceux
+    #    qui ramènent des lecteurs qui reviennent — pas les faits divers ni
+    #    la politique intérieure d'un pays.
+    (7, r"\b(?:iphone|ipad|macbook|apple watch|vision pro|airpods|"
+        r"puce m\d|apple silicon|ios ?\d\d|macos)\b|"
+        r"\bapple\b.{0,40}\b(?:lance|dévoile|présente|annonce|sortie)"),
+    (6, r"\b(?:galaxy s\d\d|pixel \d|snapdragon|exynos|ryzen|core ultra|"
+        r"rtx ?\d{4}|blackwell|hopper|instinct mi\d{3})\b"),
+    (6, r"\b(?:levée de fonds|tour de table|série [abc]\b|valorisation|"
+        r"introduction en bourse|rachat|acquisition|fusion)\b.{0,40}"
+        r"(?:milliard|million)|"
+        r"\braises?\b.{0,25}\b(?:billion|million)\b"),
+    (6, r"\b(?:résultats trimestriels|bénéfice net|chiffre d'affaires|"
+        r"prévisions? (?:relevée?s?|abaissée?s?)|guidance|"
+        r"earnings|revenue|profit warning)\b"),
+    (5, r"\b(?:modèle de langage|gpt-?\d|claude \d|gemini \d|llama \d|"
+        r"mistral|open ?source|agent autonome|robotaxi|conduite autonome|"
+        r"ordinateur quantique|qubit)\b"),
+    (5, r"\b(?:centre de données|data ?cent(?:er|re)|capacité de calcul|"
+        r"pénurie de puces|export controls?|contrôle à l'export)\b"),
     # ⚠️ VÉCU : « Meurtre de Loana, 10 ans, retrouvée dans une cave » a obtenu 0.
     #    Le mot « meurtre » ne figurait dans AUCUN motif — pas plus
     #    qu'« assassinat » ou « homicide ». Le motif existant ne connaissait que
@@ -13857,7 +13890,29 @@ PRERANK_HOT += [
 ]
 
 PRERANK_COLD = [
-    (-4, r"app store|bundle|abonnement|partenariat|trimestriel|levée de fonds|lève des fonds|acquisition|\bapi\b|mise à jour|fonctionnalité|s'associe"),
+    # ⚠️ Hors ligne éditoriale : ces sujets peuvent être importants, ils ne
+    #    sont simplement pas ceux de ce site. Les publier dilue l'audience
+    #    qu'on cherche à construire.
+    (-6, r"\b(?:fait divers|agression|cambriolage|rixe|garde à vue|"
+         r"comparution|prud'hommes)\b|"
+         # ⚠️ « procès aux assises » s'écrit aussi bien que « procès d'assises » :
+         #    exiger la préposition laissait passer la moitié des cas.
+         r"\b(?:procès|verdict|réquisitoire|plaidoirie)\b.{0,30}"
+         r"\b(?:assises|correctionnel|tribunal)\b|"
+         r"\bcour d'assises\b"),
+    (-5, r"\b(?:météo|canicule|orages?|neige|vigilance orange|"
+         r"circulation|bouchons|grève des transports)\b"),
+    (-5, r"\b(?:téléréalité|people|couple|rupture|mariage|paparazzi|"
+         r"miss france|koh-lanta|star academy)\b"),
+    (-4, r"\b(?:horoscope|astrologie|recette|jardinage|bricolage|"
+         r"régime|perte de poids)\b"),
+    # ⚠️ CE MOTIF DATAIT D'UNE AUTRE LIGNE ÉDITORIALE. « trimestriel »,
+    #    « levée de fonds » et « acquisition » y étaient pénalisés comme des
+    #    sujets mous — ils sont devenus le cœur du site. Ils passent dans les
+    #    motifs valorisés ; ne restent ici que les vraies annonces creuses.
+    (-4, r"app store|bundle|abonnement|partenariat|\bapi\b|"
+         r"mise à jour|nouvelle fonctionnalité|s'associe|"
+         r"disponible dès aujourd'hui|désormais accessible"),
     (-4, r"vue de l'étranger|revue de presse|édito|tribune|chronique|portrait|ce qu'il faut retenir|récap|décryptage"),
     (-3, r"étude|rapport|sondage|classement|baromètre"),
     (-3, r"pourrait|devrait|envisage|prévoit|à l'horizon|d'ici 20\d\d"),
@@ -16252,6 +16307,26 @@ Réponds avec ce JSON uniquement :
 _SITE_SEUL = {"v": False}
 
 
+def site_peut_publier(conn):
+    """Le site a-t-il assez attendu depuis son dernier article ?
+
+    ⚠️ Sa cadence est INDÉPENDANTE de celle de X. Un site gratuit n'a aucune
+    raison d'espacer ses publications de deux heures : quelques minutes
+    suffisent à ne pas tout déverser d'un coup."""
+    try:
+        r = conn.execute(
+            "SELECT sent_at FROM post_log WHERE site_ok = 1 "
+            "ORDER BY id DESC LIMIT 1").fetchone()
+        if not r or not r[0]:
+            return True
+        from datetime import datetime as _dt
+        dernier = _dt.strptime(str(r[0])[:19], "%Y-%m-%d %H:%M:%S")
+        ecoule = (_now_utc().replace(tzinfo=None) - dernier).total_seconds() / 60
+        return ecoule >= CADENCE_SITE_MIN
+    except Exception:
+        return True
+
+
 def articles_site_aujourdhui(conn):
     """Combien d'articles ont été publiés SUR LE SITE aujourd'hui.
 
@@ -16685,6 +16760,16 @@ def publish_breaking(conn, item, cat, urgent=True, bump_cadence=None, candidates
     # 🏠 MODE SITE SEUL : le plafond de X est atteint, celui du site non. On ne
     #    poste sur aucun réseau, mais l'article paraît quand même — c'est la
     #    maison de Pulse, elle n'a pas à subir la limite d'un réseau social.
+    # 🏠 LE SITE PREND TOUT, X PREND LE MEILLEUR.
+    #    Un sujet qui franchit la barre éditoriale mérite un article ; il ne
+    #    mérite un tweet que s'il est nettement au-dessus. C'est ce qui creuse
+    #    l'écart de volume entre les deux canaux — le site est gratuit, X non.
+    _note_sujet = int((item or {}).get("_score100") or 0)
+    if not _site_seul and _note_sujet and _note_sujet < SEUIL_TWEET \
+            and not urgent:
+        _SITE_SEUL["v"] = True
+        print(f"  🏠 {_note_sujet}/100 — sous le seuil de tweet "
+              f"({SEUIL_TWEET}) : article SITE SEUL", flush=True)
     _site_seul = bool(_SITE_SEUL.get("v"))
     _xurl = None
     if _site_seul:
@@ -18505,8 +18590,15 @@ def _check_feeds_interne(conn):
     # la cadence était calculée trois cents lignes plus bas : on la remonte,
     # puisque c'est elle qui décide si l'analyse vaut la peine d'être payée
     _cadence_ok_tot = (not _is_night()) and should_publish_now(conn)
+    # 🏠 LA CADENCE DU SITE EST LA SIENNE. Elle ne dépend pas de X : quelques
+    #    minutes entre deux articles suffisent, contre une à deux heures entre
+    #    deux tweets. C'est ce qui permet au site de publier bien davantage.
+    _nb_site_jour = articles_site_aujourdhui(conn)
+    _cadence_site = (not _is_night()) and site_peut_publier(conn)
     _peut_publier = (nb_today < DAILY_POST_CAP
-                     or articles_site_aujourdhui(conn) < SITE_POST_CAP)
+                     or _nb_site_jour < SITE_POST_CAP)
+    # l'analyse vaut la peine dès que l'UN des deux canaux peut recevoir
+    _cadence_ok_tot = _cadence_ok_tot or _cadence_site
     _chaud_en_vue = any(
         _is_urgent_alert(_c.get("title", ""), _c.get("summary", ""))
         or _hot_prescore(_c.get("title", "")) >= 5
@@ -18622,6 +18714,8 @@ def _check_feeds_interne(conn):
                 _dec, _pq, _sc, _det = decider_publication(
                     conn, _ev, note_ia=score, categorie=_categorie_finale(a, hot, conn),
                     imprevu=a.get("imprevu"))
+                # la note sur 100 sert à trancher entre « site seul » et « site + X »
+                hot["_score100"] = _sc
                 if _det:
                     # « Score None » n'apprend rien : quand le sujet est écarté
                     #    avant notation, on dit pourquoi plutôt qu'afficher None.
