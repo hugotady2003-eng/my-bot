@@ -1,0 +1,80 @@
+
+[09:25] 🔍 Check Pulse — version 4.32.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : Drake Maye, #MyFriend_MarkLee, Kojima, Sony, #100DaysOfDKS
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Kojima, #Sony, #Samsung
+  🕐 9h (Paris) — rythme journée (48-101 min · 4 publié(s), 12 restant(s) sur 15.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 13 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/3 articles lus en 0.4s (103 déjà en cache)
+  📄 15/108 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · OpenAI · Sciences et Avenir · SpaceNews · IGN France
+  🧠 106 vecteurs calculés en 2 appel(s)
+  🧩 108 articles → 27 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Pilules contraceptives à base de désogestrel : "Il n
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "On veut mettre le singe sur l'épaule des autres" : 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Août 2026 a été le mois le plus chaud jamais enregis
+  🚨 Sujet chaud (breaking, 37 médias) : PlayStation annule un projet avec Hideo Kojima, qu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 62 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Mac, ActuGaming, Al Jazeera, Ars Technica
+  🧮 Score 88.0/100 = gravité 8/10 → 36 + 37 médias +20 + frais 2.9h +4 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  📈 Hashtag(s) en tendance : #Playstation, #Kojima, #Xbox
+  👁️ Image écartée : C'est un mème humoristique
+  🖼️🤝 Image récupérée chez un média jumeau (Frandroid) — même sujet
+  👁️ Image écartée : Image trompeuse et obsolète
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ┌─ TWEET ENVOYÉ SUR X ────────────────────────────────────
+  │ 🚨 URGENT | Sony ANNULE le développement du jeu Physint, qui sera finalement financé et édité par Xbox.
+  │ 
+  │ (Numerama) 🎮
+  │ 
+  │ #Playstation #Kojima #Xbox
+  └──────────────────────────────────────────────────────────
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2097949910129938511
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ✅ Relecture : Suppression de la phrase isolée "Par ailleurs."
+  🖼️ Image déposée sur le site (97 ko)
+  🌍 Traduit en anglais (719 car.)
+  🌐 Publié sur le site : /a/sony-annule-le-developpement-du-jeu-physint-qui-sera-finalement-finance-10090927
+  ┌─ ARTICLE PUBLIÉ SUR LE SITE ──────────────────────────────
+  │ TITRE : Sony ANNULE le développement du jeu Physint, qui sera finalement financé et édité par Xbox.
+  │ CHAPÔ : Sony ANNULE le développement du jeu Physint, qui sera finalement financé et édité par Xbox.
+  │ Coup de tonnerre dans le jeu vidéo. Sony a décidé de ne pas donner suite au projet Physint, développé par Kojima Productions. Le jeu sera finalement f
+  │ Cette décision marque un tournant inattendu dans l'industrie, alors que la relation entre le célèbre créateur Hideo Kojima et le constructeur PlayStat
+  │ Face à ce revirement de situation, le studio a trouvé un nouveau partenaire de poids en la personne de Microsoft, prêt à accueillir et à financer ce p
+  │ Cette transition vers Xbox ouvre un nouveau chapitre pour l'avenir de la production et pour les joueurs qui attendaient cette création sur les console
+  │ FAITS ANNOTÉS : 2 1m · 1m
+  └──────────────────────────────────────────────────────────
+  🚨 BREAKING publié immédiatement (contourne la cadence) : PlayStation annule un projet avec Hideo Kojima, qui se 
+
+  ── Bilan du cycle (86 s) ──
+     écartés : 3 sujet banal
+     publiés : 1
+     plafonds : X 5/20 · site 0/24
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   ✅
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 1 × gemini-embedding-2           🚫 quota
+         5. clé 2 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 736 · gemini 2-preview 293 · gemini 2 799
+     jetons Gemini : 18,724 entrée · 928 sortie
+     ✅ aucun appel payant
