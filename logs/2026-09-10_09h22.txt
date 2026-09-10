@@ -1,0 +1,73 @@
+
+[09:21] 🔍 Check Pulse — version 4.32.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : Drake Maye, #MyFriend_MarkLee, Kojima, Sony, #100DaysOfDKS
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Kojima, #Samsung, #IPhone
+  🕐 9h (Paris) — rythme journée (48-101 min · 4 publié(s), 12 restant(s) sur 15.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 9 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/8 articles lus en 1.0s (96 déjà en cache)
+  📄 15/106 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · OpenAI · Sciences et Avenir · SpaceNews · IGN France
+  🧠 104 vecteurs calculés en 2 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧩 106 articles → 34 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Pilules contraceptives à base de désogestrel : "Il n
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "On veut mettre le singe sur l'épaule des autres" : 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Août 2026 a été le mois le plus chaud jamais enregis
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚨 Sujet chaud (breaking, 37 médias) : PlayStation annule un projet avec Hideo Kojima, qu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 62 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Mac, ActuGaming, Al Jazeera, Ars Technica
+  🧮 Score 60.0/100 = gravité 8/10 → 36 + 37 médias +20 + frais 3.3h +4
+  🚰 Buzz déjà publié il y a moins de 75 min → on espace
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Londres plongée en pleine «tapestry-mania» avec l’ex
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Périscolaire à Paris : des enquêtes ouvertes après d
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚨 Sujet chaud (breaking, 6 médias) : VIDÉO Plus de 130 personnes étaient à bord : cinq 
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : BFMTV, Gamekult, Libération, Midi Libre, Public
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 0.2h +16 + imprévu 7/10 +4
+  🚰 Buzz déjà publié il y a moins de 75 min → on espace
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Si Link ressemble à une marionnette dans le remake d
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "On marche sur la tête", Linda Hardy s’en prend à Br
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Hungryroot Coupon Codes: 30% Off This September 2026
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Galaxy Z Fold 8 : pourquoi les coins de l’écran s’en
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 106 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : trezor, bitbox, crypto, krach, jeton, trump, argent
+  ♻️ Doublon d'un sujet déjà publié, écarté : Prix des carburants : le cours du baril de pétrole
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (105 s) ──
+     écartés : 9 sujet banal
+     plafonds : X 4/20 · site 0/24
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   ✅
+         3. clé 1 × gemini-embedding-2-preview   ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 740 · gemini 2-preview 393 · gemini 2 799
+     jetons Gemini : 15,971 entrée · 163 sortie
+     ✅ aucun appel payant
