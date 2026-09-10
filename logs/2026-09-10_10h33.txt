@@ -1,0 +1,83 @@
+
+[10:31] 🔍 Check Pulse — version 4.32.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 3 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  ⏭️  Même fait reformulé (jugé par le modèle) → pas de republication
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏭️  Même fait reformulé (jugé par le modèle) → pas de republication
+  ⏭️  Même fait reformulé (jugé par le modèle) → pas de republication
+  📈 50 tendances lues sur trends24.in : ãã¤ãã¢, Sony, Kojima, Drake Maye, Xbox
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #IPhone, #Samsung, #Apple
+  🕐 10h (Paris) — rythme journée (54-113 min · 6 publié(s), 10 restant(s) sur 14.0 h) : 54-113 min
+  ⏸️  Dernière publi il y a 15 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/13 articles lus en 1.6s (95 déjà en cache)
+  📄 16/109 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · OpenAI · Libération · CoinDesk · SpaceNews
+  🧠 108 vecteurs calculés en 2 appel(s)
+  ⏱️ texte : API indisponible (500) → nouvelle tentative dans 8 s
+  🧩 109 articles → 34 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Contraception : 1,6 million de femmes vont recevoir 
+  🚨 Sujet chaud (breaking, 40 médias) : Trump promet 5 000 dollars aux Américains, les mar
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Août 2026 a été le mois le plus chaud jamais enregis
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Portée disparue : date et heure de sortie épisode 3
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Violences dans le périscolaire à Paris : des « inves
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Si Link ressemble à une marionnette dans le remake d
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ile-de-France: "dysfonctionnements graves" en psychi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Hungryroot Coupon Codes: 30% Off This September 2026
+  🚨 Sujet chaud (breaking, 1 médias) : L’audio, angle mort du travail hybride ?
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (-9, pénalisé par « horoscope, on a test ») : Prise en main de l’iPhone Duo: la recette peaufinée 
+  ⚪ Écarté (-4, pénalisé par « app store ») : Lunettes connectées, abonnement IA et bonus de repri
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 109 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : trump, argent, playstation, kojima, xbox, perdriau, saint-etienne, sextape
+  ♻️ Doublon d'un sujet déjà publié, écarté : A l’Assemblée nationale, les réserves de LFI sur l
+  ♻️ Doublon d'un sujet déjà publié, écarté : Prise en main de l’iPhone Duo: la recette peaufiné
+  ♻️ Doublon d'un sujet déjà publié, écarté : Propos racistes de policiers à Carcassonne : « C’e
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (122 s) ──
+     écartés : 9 sujet banal
+     plafonds : X 6/20 · site 0/24
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-embedding-001         🚫 quota
+         5. clé 1 × gemini-embedding-2-preview   🚫 quota
+         6. clé 1 × gemini-embedding-2           🚫 quota
+         7. clé 2 × gemini-embedding-001         🚫 quota
+         8. clé 2 × gemini-embedding-2-preview   ✅
+         9. clé 2 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-2           🚫 quota
+        11. clé 3 × gemini-embedding-001         ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 650 · gemini 2-preview 0 · gemini 2 799
+     jetons Gemini : 8,239 entrée · 178 sortie
+     ✅ aucun appel payant
