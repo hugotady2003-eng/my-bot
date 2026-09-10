@@ -1,0 +1,95 @@
+
+[16:21] 🔍 Check Pulse — version 4.32.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #ã©ã¹ããã¼ã, ãã¦ãããã¯, #ã¬ã³ã¡ã³, ã©ã¤ãã«, #è¶ RIZIN5
+  🌍 « FatimaSanaShaikh » : aucune reprise en français, source internationale retenue
+  🕐 16h (Paris) — rythme journée (104-216 min · 13 publié(s), 3 restant(s) sur 8.0 h) : 104-216 min
+  ⏸️  Dernière publi il y a 39 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/10 articles lus en 3.9s (107 déjà en cache)
+  📄 20/119 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · CoinDesk · OpenAI · Ouest-France · SpaceNews
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 Même événement (jugé) : « Le prix de référence du gaz va de nouv… »
+  🧩 119 articles → 118 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Louise et Gabriel toujours en tête des prénoms les p
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Preview Final Fantasy VII Revelation sur PC
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : French Football Federation withdraws support for FIF
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Construction d’un pare-feu au Cap Ferret : enquête o
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Nasdaq Invests $100M in Kraken Parent Payward at $
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le prix de référence du gaz va de nouveau augmenter 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Les refuges frôlent la rupture" : plus de 9.500 ani
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sommet de l’Espace : « 330 satellites de télécommuni
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "C'est quand même un taf de malade": opéré du cœur, 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Est-ce que The Blood of Dawnwalker a un New Game Plu
+  🚨 Sujet chaud (breaking, 1 médias) : Crypto researchers cut Bitcoin and Ethereum quantu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Haute-Garonne : une professeure menacée d’être décap
+  🚨 Sujet chaud (breaking, 1 médias) : Attentats du 11-Septembre : le maire de New York a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 119 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : arrets, maladie, decrets, cnews, sanctions
+  ♻️ Doublon d'un sujet déjà publié, écarté : EN DIRECT, guerre en Ukraine : Kiev revendique des
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (130 s) ──
+     écartés : 10 sujet banal
+     plafonds : X 13/20 · site 0/24
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × gemini-embedding-2-preview   🚫 quota
+        15. clé 5 × gemini-embedding-2           🚫 quota
+        16. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 1 × gemini-3-flash               ⛔ inexistant
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 490 · gemini 2-preview 0 · gemini 2 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,415 entrée · 143 sortie
+     ✅ aucun appel payant
