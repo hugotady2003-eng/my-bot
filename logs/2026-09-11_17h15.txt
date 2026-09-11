@@ -1,0 +1,151 @@
+
+[17:12] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ã¿ã¤ã¿ããã¯, #Tã·ã£ããä¹¾ãã¾ã§, æ£®æ¬ã¬ãªãã, #NeverForget, #ã¿ã¤ã ã¬ã¹ãã³
+  🌍 « NeverForget » : aucune reprise en français, source internationale retenue
+  🌍 « PERTHSANTA RALPH LAUREN » : aucune reprise en français, source internationale retenue
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 17h (Paris) — rythme journée (45-94 min · 10 publié(s), 6 restant(s) sur 7.0 h) : 45-94 min
+  🎲 70 min (proba 51%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 1.3s (83 déjà en cache)
+  📄 12/91 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · The Block · SpaceNews
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧩 91 articles → 91 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EU Regulator Says Prediction Markets Are 'Rife With 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Maroc, Arabie saoudite : le football féminin, symbol
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Cela revient à reverser de l’argent public à des m
+  🚨 Sujet chaud (breaking, 1 médias) : Professeur Raoult vs Le Gang des Cerises : quel es
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 41.0/100 = gravité 4/10 → 18 + frais 1.2h +8 + primeur +5 + portée internationale +10
+  → Sujet chaud pas assez fort (score 41) → suivant
+  ⚪ Écarté (-6, pénalisé par « comment , \b(pourquoi ») : Après l’Odyssée de Nolan, voici l’Odyssey G4 27″ de 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La princesse Astrid, sœur de Harald V de Norvège, me
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dyson suspend temporairement la commercialisation de
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sony aurait abandonné Physint par crainte de voir so
+  🚨 Sujet chaud (breaking, 1 médias) : US inflation holds steady as diesel prices pass $6
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 6/10 → 27 + frais 0.9h +13 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (187 → 156 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Il discute avec l'intelligence artificielle et lui
+  🧮 Score 100.0/100 = gravité 9/10 → 40 + frais 0.1h +16 + imprévu 9/10 +18 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 8 s
+  ✂️ Tweet resserré localement (233 → 197 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 91 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : On en sait plus sur les raisons qui ont poussé Pla
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Il discute avec l'intelligence artificielle et lui
+  ♻️ 7/10 [world] (déjà analysé, cache) : Hong Kong's Tiananmen activists sentenced to up to
+  ♻️ 6/10 [markets] (déjà analysé, cache) : US inflation holds steady as diesel prices pass $6
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : ‘Return the bitcoin’: Blockstream refuses ransom d
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Scammers target hundreds of thousands of crypto ow
+  🎯 Pré-classement : 63 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 7/10 [ai] mondiale: Aux États-Unis, ChatGPT invente un faux témoigna
+  📉 4/10: Microsoft Copilot joins CarPlay, leaving Gemini as the 
+  ✅ 6/10 [markets] large: Here’s the inflation breakdown for August 2026 —
+  ✅ 7/10 [markets] mondiale: L’inflation américaine ferme la porte à Trump : 
+  🌍 8/10 sans portée internationale : 11-Septembre: des proches de victimes accusent l'A
+  ✅ 6/10 [markets] large: Carburants : « Ce n’est pas le scénario que nous
+  📉 5/10: ‘Majority do not welcome him’: Trump heads to Ireland a
+  🌍 6/10 sans portée internationale : Équipe de France. Enzo Le Fée pré-convoqué par Zin
+  ✅ 7/10 [crypto] mondiale: Blockstream Refuses Ransom for Return of $47M in
+  📉 3/10: Hull City’s Sorba Thomas unharmed as car overturned in 
+  📉 4/10: Anime reaction YouTubers are at war with copyright enfo
+  📉 3/10: Sahara occidental : en Espagne, ce projet de loi qui ri
+  📉 2/10: Il jure après avoir évité de justesse de percuter un pi
+  ⏩ Doublon: Le "Clarity Act" de retour au sénat américain
+  ⏩ Doublon: Claude users found ways around safeguards for bioweapon
+  📉 5/10: ClickFix attacks infecting PCs and Macs are going viral
+  📉 4/10: ‘Lenovo Googlebook 15’ specs leak in full with ‘Google 
+  📉 3/10: Lanterns : la théorie des Yellow Lanterns gagne vraimen
+  📉 2/10: Marine Tondelier : "Quand on ne sait pas qui est Pompid
+  🌍 8/10 sans portée internationale : À un jour de son concert, Céline Dion chamboule to
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.1h — Il discute avec l'intelligence artificielle 
+     8/10 · 2 média(s) · 1.0h — Blockstream Refuses Ransom for Return of $47
+     7/10 · 1 média(s) · 0.0h — Aux États-Unis, ChatGPT invente un faux témo
+     7/10 · 1 média(s) · 0.3h — L’inflation américaine ferme la porte à Trum
+     6/10 · 1 média(s) · 0.1h — Here’s the inflation breakdown for August 20
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [breaking]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (319 → 282 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2098430198442074190
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  🔓 Trop larges pour bloquer un sujet : attentat, fbi
+  ✅ Publié [breaking]: Il discute avec l'intelligence artificielle et lui dema
+  🔒 Mots-clés bloqués 2h: lille, attentat, fbi
+
+  ── Bilan du cycle (156 s) ──
+     écartés : 7 sujet banal · 3 sans portée internationale
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   🚫 quota
+        11. clé 4 × gemini-embedding-2           🚫 quota
+        12. clé 5 × gemini-embedding-001         🚫 quota
+        13. clé 5 × gemini-embedding-2-preview   🚫 quota
+        14. clé 5 × gemini-embedding-2           🚫 quota
+        15. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        18. clé 1 × gemini-3.6-flash             🚫 quota
+        19. clé 1 × gemini-3-flash               ⛔ inexistant
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+        30. clé 2 × gemini-3.5-flash-lite        ✅
+        31. clé 2 × gemini-3.5-flash-lite        ✅
+        32. clé 2 × gemini-3.5-flash-lite        ✅
+        33. clé 2 × gemini-3.5-flash-lite        ✅
+        34. clé 2 × gemini-3.5-flash-lite        ✅
+        35. clé 2 × gemini-3.5-flash-lite        ✅
+        36. clé 2 × gemini-3.5-flash-lite        ✅
+        37. clé 2 × gemini-3.5-flash-lite        ✅
+        38. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 780
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 49,902 entrée · 1,500 sortie
+     ✅ aucun appel payant
