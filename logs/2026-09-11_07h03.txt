@@ -1,0 +1,150 @@
+
+[07:01] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Rams, 49ers, Stafford, Niners, Flamengo
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 7.4 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 7.4 h (DAZN)
+  ⏭️  « 49ers » écarté : Simple promotion sportive sans événement majeur.
+  🔎 « Niners » : 1 article(s) frais, le plus récent il y a 8.2 h (RDS)
+  ⏭️  « Niners » écarté : trop secondaire (2/10)
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 1.9 h (L'Équipe)
+  ⏭️  « Flamengo » écarté : trop secondaire (2/10)
+  🔎 « Purdy » : 1 article(s) frais, le plus récent il y a 14.2 h (UEFA.com)
+  ⏭️  « Purdy » écarté : Comparaison automatique sans événement sportif marquant.
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 693 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/12 articles lus en 1.0s (111 déjà en cache)
+  📄 18/124 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · The Block · OpenAI
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 124 articles → 124 événement(s)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 21 s
+  🚨 Sujet chaud (breaking, 1 médias) : "Après le 11-Septembre je suis arrivée à Toulouse,
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  🕒 Sujet chaud mais article ancien (22h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : China dips back into oil market as Hormuz hostilitie
+  ⚪ Écarté (-2, pénalisé par « comment  ») : "L'Américain typique n'y pense pas" : vingt-cinq ans
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : États-Unis : JD Vance qualifie les démocrates de « p
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 124 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : « On s’est battus comme des lions »: Florian Thauv
+  ♻️ Doublon d'un sujet déjà publié, écarté : États-Unis : les commémorations du 11-Septembre à 
+  ♻️ Doublon d'un sujet déjà publié, écarté : iPhone Duo, 18 Pro, Watch 12 : voici les 12 foncti
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Canicule : le coût réel d’un été record pour l’éco
+  ♻️ 8/10 [world] (déjà analysé, cache) : Yemen's Houthis reportedly seize strategic Red Sea
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Oil, gas and borrowing costs surge as fears over M
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Senate Republicans Release Revised Clarity Act Ahe
+  🎯 Pré-classement : 93 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 7/10 [ai] mondiale: Anthropic publie 161 pages sur les détournements
+  ✅ 8/10 [business] large: Bessent says 'a large bank' will be sanctioned o
+  📉 5/10: 25 ans du 11-Septembre : malgré le repli d’Al-Qaida, le
+  📉 5/10: En conclusion de la convention républicaine, J. D. Vanc
+  📉 4/10: Introducing ChatGPT for Financial Services
+  ⏩ Doublon: Are interest rates on the way up again?
+  📉 3/10: Durée Marvel’s Wolverine : Combien de temps pour finir 
+  📉 4/10: DeepSeek's New Model Nearly Matches GPT-6 Astra on Desi
+  📉 4/10: Introduction en Bourse d’Anthropic : ce chiffre qui va 
+  📉 3/10: iPhone Duo vs Galaxy Z Fold8 : lequel choisir ?
+  ✅ 8/10 [world] large: Au Yémen, les houthistes remportent une victoire
+  📉 4/10: "L'Américain typique n'y pense pas" : vingt-cinq ans ap
+  📉 4/10: "J’ai assisté à son agonie sans savoir quoi faire, pers
+  📉 3/10: Yellowjackets va enfin combler son angle mort avant son
+  ✅ 7/10 [ai] mondiale: Chinese AI labs secretly used millions of Claude
+  ✅ 7/10 [crypto] large: AI Agents Just Slashed the Cost of a Quantum Att
+  📉 3/10: Web pratique : pour naviguer avec l’IA utilisez la Smar
+  📉 2/10: Il détourne un avion, récupère sa rançon et disparaît :
+  🌍 7/10 sans portée internationale : Méningiome : qu’est-ce que cette tumeur au cerveau
+  📉 2/10: Test de la tasse de café en entretien : découvrez le pi
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 2 média(s) · 0.2h — Anthropic publie 161 pages sur les détournem
+     9/10 · 1 média(s) · 0.6h — Bessent says 'a large bank' will be sanction
+     10/10 · 2 média(s) · 7.7h — Senate Republicans Release Revised Clarity A
+     9/10 · 2 média(s) · 4.1h — Chinese AI labs secretly used millions of Cl
+     9/10 · 1 média(s) · 10.8h — Yemen's Houthis reportedly seize strategic R
+  ✂️ Éphéméride resserré (184 → 127 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (265 → 118 car.)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2098276186812027060
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  🔓 Trop larges pour bloquer un sujet : ia
+  ✅ Publié [ai]: Anthropic publie 161 pages sur les détournements de Cla
+  🔒 Mots-clés bloqués 2h: anthropic, claude, ia
+
+  ── Bilan du cycle (124 s) ──
+     écartés : 3 sujet banal · 1 sans portée internationale
+     plafonds : X 1/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-2-preview   🚫 quota
+        25. clé 3 × gemini-embedding-2           🚫 quota
+        26. clé 4 × gemini-embedding-001         🚫 quota
+        27. clé 4 × gemini-embedding-2-preview   🚫 quota
+        28. clé 4 × gemini-embedding-2           🚫 quota
+        29. clé 5 × gemini-embedding-001         🚫 quota
+        30. clé 5 × gemini-embedding-2-preview   🚫 quota
+        31. clé 5 × gemini-embedding-2           🚫 quota
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+        38. clé 3 × gemini-3.1-flash-lite        ✅
+        39. clé 3 × gemini-3.1-flash-lite        ✅
+        40. clé 3 × gemini-3.1-flash-lite        ✅
+        … et 5 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 23,047 entrée · 1,608 sortie
+     ✅ aucun appel payant
