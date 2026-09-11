@@ -1,0 +1,66 @@
+
+[11:05] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #æèç¥­ã®æãåº, #TheRomanticTourBKK, èãæåç¥­, #SiagaPeduliSesama, HayÄ±rlÄ± Cumalar
+  🕐 11h (Paris) — rythme journée (46-95 min · 5 publié(s), 11 restant(s) sur 13.0 h) : 46-95 min
+  ⏸️  Dernière publi il y a 19 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 1.1s (80 déjà en cache)
+  📄 11/91 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · The Block · Cointelegraph · SpaceNews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 90 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « "Il n’existe pas de thérapie pour une … »
+  🧩 91 articles → 31 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les concerts de Céline Dion, l’occasion pour les pol
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il y a plein d'histoires méconnues" : vingt-cinq an
+  🕒 Sujet chaud mais article ancien (16h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il n’existe pas de thérapie pour une société" : Jef
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Ce n'est pas une revanche": la fille de Didier Raou
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : Climat : le PIB français pourrait reculer de 3,6 % e
+  🕒 Sujet chaud mais article ancien (17h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Naoki Hamaguchi explique pourquoi Final Fantasy VII 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sam Bankman-Fried asks Supreme Court to overturn fra
+  🚨 Sujet chaud (breaking, 1 médias) : Samsung Galaxy S26 FE Review: Same as Before, but 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 91 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : cargo, femicide, vendee
+  ♻️ Doublon d'un sujet déjà publié, écarté : Le gouvernement table sur un rebond de la croissan
+  ♻️ Doublon d'un sujet déjà publié, écarté : Une voiture percute deux piétons devant un restaur
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (45 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 741 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 3,306 entrée · 210 sortie
+     ✅ aucun appel payant
