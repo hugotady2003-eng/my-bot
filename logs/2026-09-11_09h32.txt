@@ -1,0 +1,61 @@
+
+[09:31] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Rams, #SiagaPeduliSesama, #NHCFoodsLiberiaExpansion, Bantuan Penanggulangan Bencana, #æèç¥­ã®æãåº
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 1.4 h (L'Équipe)
+  ⏭️  « Rams » écarté : trop secondaire (3/10)
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 37 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.7s (94 déjà en cache)
+  📄 13/101 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block · CoinDesk · SpaceNews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 99 vecteurs calculés en 1 appel(s)
+  🧩 101 articles → 29 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚨 Sujet chaud (breaking, 2 médias) : Call of Duty: Modern Warfare 4 invente une arme qu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 38.5/100 = gravité 3/10 → 14 + 2 médias +4 + frais 0.4h +16 + primeur +5
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 6 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] Activision propose un bonus de précommande exclusif à la version Xbox pour Cal
+      [2m] Le bonus consiste en un skin d'arme vert translucide pour le fusil M4, inspiré
+      [2m] Ce skin ne sera visible que par les joueurs sur Xbox Series X|S malgré la prés
+      [2m] La sortie de Call of Duty: Modern Warfare 4 est prévue pour le 23 octobre 2026
+      [2m] Cette divergence de visuel en jeu selon la plateforme dans une expérience cros
+      [2m] L'information a été officialisée dans un communiqué publié le mercredi 9 septe
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 101 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : sanctions, iran, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : Hausse des prix des carburants : Fabien Roussel ap
+  ♻️ Doublon d'un sujet déjà publié, écarté : Galaxy Buds On : une fuite dévoile les premiers éc
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (48 s) ──
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-001 · clé 2 × gemini-3.6-flash (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 13/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2
+     vecteurs restants : gemini 001 751 · gemini 2-preview 221 · gemini 2 800
+     jetons Gemini : 5,035 entrée · 735 sortie
+     ✅ aucun appel payant
