@@ -1,0 +1,52 @@
+
+[09:05] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Rams, 49ers, ãã¸ã¿ã«åº, #NHCFoodsLiberiaExpansion, #KengNamping1STFM_INJAPAN
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 1.0 h (L'Équipe)
+  ⏭️  « Rams » écarté : trop secondaire (3/10)
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 1.0 h (L'Équipe)
+  ⏭️  « 49ers » écarté : trop secondaire (3/10)
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 12 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/11 articles lus en 1.5s (83 déjà en cache)
+  📄 12/95 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France · The Block · CoinDesk · SpaceNews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 94 vecteurs calculés en 1 appel(s)
+  🧩 95 articles → 29 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "On la prend très au sérieux" : Ségolène Royal peut-
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 95 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : sanctions, iran, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : Augmentation du prix des carburants: "Cette augmen
+  ♻️ Doublon d'un sujet déjà publié, écarté : Le procès pour corruption de Rachida Dati et Carlo
+  ♻️ Doublon d'un sujet déjà publié, écarté : Chinese AI labs secretly used millions of Claude e
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (112 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-001 · clé 2 × gemini-3.1-flash-lite (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 752 · gemini 2-preview 706 · gemini 2 800
+     jetons Gemini : 4,040 entrée · 271 sortie
+     ✅ aucun appel payant
