@@ -1,0 +1,87 @@
+
+[11:11] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #MPYatriParivahan, #æ¯é±éæã¯ãã¤ãã¶, #æèç¥­ã®æãåº, ããã¹ã¿, #TheRomanticTourBKK
+  🔎 « Emma Bonino » : 1 article(s) frais, le plus récent il y a 0.9 h (Le Monde.fr)
+  ✅ « Emma Bonino » retenu : Décès d'une grande figure politique européenne. (8/10) (+2 au score)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #EmmaBonino
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 11h (Paris) — rythme journée (46-95 min · 5 publié(s), 11 restant(s) sur 13.0 h) : 46-95 min
+  ⏸️  Dernière publi il y a 24 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/10 articles lus en 1.6s (82 déjà en cache)
+  📄 11/93 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · The Block · Cointelegraph · SpaceNews
+  🧠 92 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « "Il n’existe pas de thérapie pour une … »
+  🧩 93 articles → 35 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : À cause de Céline Dion, ce club de rugby du top 14 d
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il y a plein d'histoires méconnues" : vingt-cinq an
+  🕒 Sujet chaud mais article ancien (16h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il n’existe pas de thérapie pour une société" : Jef
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Ce n'est pas une revanche": la fille de Didier Raou
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : Climat : le PIB français pourrait reculer de 3,6 % e
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Naoki Hamaguchi explique pourquoi Final Fantasy VII 
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sam Bankman-Fried asks Supreme Court to overturn fra
+  🚨 Sujet chaud (breaking, 1 médias) : Samsung Galaxy S26 FE Review: Same as Before, but 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  🚨 Sujet chaud (breaking, 26 médias) : Pourquoi on a lâché l’affaire avec The Walking Dea
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 32 article(s) sur un autre sujet, écartés du dossier : 9to5Google, ActuGaming, Ars Technica, BBC, BFM People
+  🧮 Score 59.5/100 = gravité 3/10 → 14 + 26 médias +20 + frais 1.5h +8 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, ? médias) : Emma Bonino, grande figure humaniste de la politiq
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 9 → 11 (+2)
+  → Sujet chaud pas assez fort (score 11) → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 93 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : cargo, femicide, vendee
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine : 5 morts, encore 19 personnes h
+  ♻️ Doublon d'un sujet déjà publié, écarté : BFMTV : accusée de complaisance avec l’extrême-dro
+  ⚠️ Wikipedia: The read operation timed out
+  → Rien à publier.
+
+  ── Bilan du cycle (60 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 1 × gemini-embedding-2           🚫 quota
+         6. clé 2 × gemini-embedding-001         🚫 quota
+         7. clé 2 × gemini-embedding-2-preview   🚫 quota
+         8. clé 2 × gemini-embedding-2           🚫 quota
+         9. clé 3 × gemini-embedding-001         🚫 quota
+        10. clé 3 × gemini-embedding-2-preview   ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 739 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 18,806 entrée · 927 sortie
+     ✅ aucun appel payant
