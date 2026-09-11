@@ -1,0 +1,60 @@
+
+[10:01] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  ⏭️  Le Saviez-vous : « Origine de l'expression poser un lapin » n'explique pas vraiment → on ne publie pas
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : Rams, #SiagaPeduliSesama, #NHCFoodsLiberiaExpansion, Bantuan Penanggulangan Bencana, #æèç¥­ã®æãåº
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 1.9 h (L'Équipe)
+  ⏭️  « Rams » écarté : trop secondaire (3/10)
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  ⏸️  Dernière publi il y a 8 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/12 articles lus en 2.4s (74 déjà en cache)
+  📄 11/87 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · The Block · CoinDesk · SpaceNews
+  🧠 86 vecteurs calculés en 1 appel(s)
+  🧩 87 articles → 22 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 34 médias) : Tom Hanks, narrateur de la Seconde Guerre mondiale
+  🧠 57 article(s) sur un autre sujet, écartés du dossier : 9to5Google, ActuGaming, Al Jazeera, Ars Technica, BBC Business
+  🧮 Score 18.0/100 = gravité 2/10 → 9 + 34 médias +20 + frais 4.0h +4 + programmé 1/10 -15
+  → Sujet chaud pas assez fort (score 18) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : SBF asks Supreme Court to overturn conviction, $11B 
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 87 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : sanctions, iran, crypto, cargo
+  ♻️ Doublon d'un sujet déjà publié, écarté : Accident de car en Suisse: au moins cinq morts et 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Ligue 1. « Déçu et triste » : Jérôme Alonzo critiq
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (47 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 1 × gemini-embedding-2           🚫 quota
+         6. clé 2 × gemini-embedding-001         🚫 quota
+         7. clé 2 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash (+26)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 743 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 15,090 entrée · 428 sortie
+     ✅ aucun appel payant
