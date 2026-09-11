@@ -1,0 +1,48 @@
+
+[15:10] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #ããã¹ã, æ£®æ¬ã¬ãªãã, PERTHSANTA RALPH LAUREN, #maisonKEEPSxTle, #ãã±ã¢ã³orããã
+  🕐 15h (Paris) — rythme journée (50-104 min · 9 publié(s), 7 restant(s) sur 9.0 h) : 50-104 min
+  ⏸️  Dernière publi il y a 2 min — attente.
+  📖 5/5 articles lus en 2.0s (66 déjà en cache)
+  📄 11/71 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France · IGN France · CoinDesk · The Block
+  🧠 70 vecteurs calculés en 1 appel(s)
+  🧩 71 articles → 25 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Concerts de Céline Dion: il est encore possible de t
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Audi vous paie pour que vous rachetiez votre voiture
+  🚨 Sujet chaud (breaking, 1 médias) : US inflation holds steady as diesel prices pass $6
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EU Regulator Says Prediction Markets Are 'Rife With 
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Stade Toulousain : "On sait où on en est, on n'a pas
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 71 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : israel, hezbollah, liban, bitcoin, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : Attentats du 11-septembre: les commémorations débu
+  ✂️ Éphéméride resserré (184 → 127 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (54 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 9/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2-preview (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 143 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 2,226 entrée · 208 sortie
+     ✅ aucun appel payant
