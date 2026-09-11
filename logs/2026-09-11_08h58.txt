@@ -1,0 +1,91 @@
+
+[08:55] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : Rams, 49ers, ãã¸ã¿ã«åº, #NHCFoodsLiberiaExpansion, #KengNamping1STFM_INJAPAN
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 0.8 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 0.8 h (L'Équipe)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « 49ers » écarté : trop secondaire (3/10)
+  🕐 8h (Paris) — rythme journée (48-99 min · 3 publié(s), 13 restant(s) sur 16.0 h) : 48-99 min
+  ⏸️  Dernière publi il y a 2 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/5 articles lus en 1.9s (86 déjà en cache)
+  📄 12/92 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France · The Block · CoinDesk · SpaceNews
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 92 articles → 92 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "On la prend très au sérieux" : Ségolène Royal peut-
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 92 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : anthropic, claude, sanctions, iran, crypto
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (143 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 1 × gemini-embedding-2-preview   🚫 quota
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 2 × gemini-embedding-2           🚫 quota
+        22. clé 3 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-2-preview   🚫 quota
+        24. clé 3 × gemini-embedding-2           🚫 quota
+        25. clé 4 × gemini-embedding-001         🚫 quota
+        26. clé 4 × gemini-embedding-2-preview   🚫 quota
+        27. clé 4 × gemini-embedding-2           🚫 quota
+        28. clé 5 × gemini-embedding-001         🚫 quota
+        29. clé 5 × gemini-embedding-2-preview   🚫 quota
+        30. clé 5 × gemini-embedding-2           🚫 quota
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 752 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,425 entrée · 375 sortie
+     ✅ aucun appel payant
