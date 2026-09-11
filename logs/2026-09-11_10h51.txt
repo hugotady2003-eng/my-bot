@@ -1,0 +1,56 @@
+
+[10:50] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #æèç¥­ã®æãåº, #TheRomanticTourBKK, èãæåç¥­, #SiagaPeduliSesama, HayÄ±rlÄ± Cumalar
+  🕐 10h (Paris) — rythme journée (49-103 min · 5 publié(s), 11 restant(s) sur 14.0 h) : 49-103 min
+  ⏸️  Dernière publi il y a 4 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/11 articles lus en 1.6s (74 déjà en cache)
+  📄 8/86 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · The Block · Ouest-France · SpaceNews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 85 vecteurs calculés en 1 appel(s)
+  🧩 86 articles → 29 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les concerts de Céline Dion, l’occasion pour les pol
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il y a plein d'histoires méconnues" : vingt-cinq an
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : En cas d’inaction climatique le PIB français pourrai
+  🕒 Sujet chaud mais article ancien (17h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Naoki Hamaguchi explique pourquoi Final Fantasy VII 
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 86 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : crypto, cargo, femicide, vendee
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Je fais le serment au plus grand président des Ét
+  ♻️ Doublon d'un sujet déjà publié, écarté : Bernard Arnault éjecté du top 10 des fortunes mond
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (48 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 742 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 3,201 entrée · 212 sortie
+     ✅ aucun appel payant
