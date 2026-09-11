@@ -1,0 +1,83 @@
+
+[20:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : $CHUMP, namjoon, #HappyBirthdayRM, #à¸à¸µà¹à¸à¸µà¹à¸à¹à¸­à¸à¸­à¸à¸±à¸¡à¹à¸, #NeverForget
+  🌍 « $CHUMP » : aucune reprise en français, source internationale retenue
+  🌍 « namjoon » : aucune reprise en français, source internationale retenue
+  🌍 « NeverForget » : aucune reprise en français, source internationale retenue
+  🕐 20h (Paris) — rythme journée (52-108 min · 13 publié(s), 3 restant(s) sur 4.0 h) : 52-108 min
+  ⏸️  Dernière publi il y a 42 min — attente.
+  📖 5/5 articles lus en 0.8s (85 déjà en cache)
+  📄 10/91 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · The Block · Libération · SpaceNews
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧩 91 articles → 91 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Après une série de tests voyageurs, le nouveau TGV
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 34.5/100 = gravité 3/10 → 14 + frais 0.6h +13 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 34) → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Pourquoi Netflix est sous le feu des critiques aux É
+  ⚪ Écarté (-5, pénalisé par « pourrait, comment  ») : Comment l’IA pourrait vraiment tous nous tuer (et po
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Céline Dion : "Je vais l’attendre jusqu’à 2 h du mat
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Gilets jaunes : la mobilisation du 17 octobre lancée
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La princesse Astrid, sœur de Harald V de Norvège, me
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Encadrement des loyers : 12 grandes villes française
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un prêtre qui dirigeait un groupe scolaire à Lyon vi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sony aurait abandonné Physint par crainte de voir so
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 91 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : bitcoin, crypto, energies, iran
+  ♻️ Doublon d'un sujet déjà publié, écarté : Aux Etats-Unis, la forte inflation grève le pouvoi
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (87 s) ──
+     écartés : 8 sujet banal
+     plafonds : X 13/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   🚫 quota
+        11. clé 4 × gemini-embedding-2           🚫 quota
+        12. clé 5 × gemini-embedding-001         🚫 quota
+        13. clé 5 × gemini-embedding-2-preview   🚫 quota
+        14. clé 5 × gemini-embedding-2           🚫 quota
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 1 × gemini-3-flash               ⛔ inexistant
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 775
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,646 entrée · 249 sortie
+     ✅ aucun appel payant
