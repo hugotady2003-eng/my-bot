@@ -1,0 +1,56 @@
+
+[23:51] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #Ø±ÙØªØ§ÙØ§_Ø³Ø¨ÙØ±Øª_Ù Ø¹_ÙÙÙØ¯, #CalvinKleinSS27xLINGLING, LINGLING APAC FACE OF CK, TerÃ¶rsÃ¼z BÃ¶lge, #Ø§ÙØ§ÙÙÙ_Ø§ÙØ­Ø²Ù
+  🔎 « Mamdani » : 1 article(s) frais, le plus récent il y a 6.4 h (Libération)
+  ⏭️  « Mamdani » écarté : trop secondaire (3/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #SaudiArabia, #NewYork
+  🕐 23h (Paris) — rythme quota atteint (16) — seules les alertes passent : 150-240 min
+  ⏸️  Dernière publi il y a 33 min — attente.
+  📖 2/2 articles lus en 0.3s (65 déjà en cache)
+  📄 9/68 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · Libération · Cointelegraph · The Block
+  🧠 67 vecteurs calculés en 1 appel(s)
+  🧩 68 articles → 29 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Déraillement d'un train à Cléon en Seine-Maritime, 4
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Diva accessible, star résiliente... Pourquoi tout le
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Saudi Arabia says East-West pipeline hit by drones
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 13 (char 12) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧮 Score 64.0/100 = gravité 8/10 → 36 + frais 0.4h +16 + imprévu 6/10 +4 + primeur absolue +8
+  🛑 Seuil atteint (16/16) — seule une alerte vitale passerait → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Khosla Ventures is opening a New York office this fa
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🛑 Seuil souple atteint (16/16) — on garde la place au chaud (breaking/France live).
+
+  ── Bilan du cycle (54 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 16/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 2 × gemini-embedding-001         ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        10. clé 1 × gemini-3-flash               ⛔ inexistant
+        11. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-embedding-001 (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 13/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.6-flash
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 775
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,408 entrée · 154 sortie
+     ✅ aucun appel payant
