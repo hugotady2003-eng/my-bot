@@ -1,0 +1,59 @@
+
+[23:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #Ø±ÙØªØ§ÙØ§_Ø³Ø¨ÙØ±Øª_Ù Ø¹_ÙÙÙØ¯, #CalvinKleinSS27xLINGLING, LINGLING APAC FACE OF CK, TerÃ¶rsÃ¼z BÃ¶lge, #Ø§ÙØ§ÙÙÙ_Ø§ÙØ­Ø²Ù
+  🔎 « Mamdani » : 1 article(s) frais, le plus récent il y a 6.3 h (Libération)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Mamdani » écarté : trop secondaire (3/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Rennes, #NewYork
+  🕐 23h (Paris) — rythme quota atteint (16) — seules les alertes passent : 150-240 min
+  ⏸️  Dernière publi il y a 23 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.1s (64 déjà en cache)
+  📄 9/66 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · Libération · Cointelegraph · The Block
+  🧠 65 vecteurs calculés en 1 appel(s)
+  🧩 66 articles → 26 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Déraillement d'un train à Cléon en Seine-Maritime, 4
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Diva accessible, star résiliente... Pourquoi tout le
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Rennes 1-0 OM : "Avec qui on va rivaliser" Genesio
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 37.5/100 = gravité 3/10 → 14 + frais 0.3h +16 + primeur absolue +8
+  🛑 Seuil atteint (16/16) — seule une alerte vitale passerait → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Khosla Ventures is opening a New York office this fa
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🛑 Seuil souple atteint (16/16) — on garde la place au chaud (breaking/France live).
+
+  ── Bilan du cycle (49 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 16/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 1 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-001         ✅
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite (+22)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 775
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 630 entrée · 111 sortie
+     ✅ aucun appel payant
