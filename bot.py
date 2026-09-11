@@ -121,7 +121,7 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 # (quota dépassé, panne, réponse illisible) — une publication n'est jamais perdue.
 # Sans clé Gemini, tout retombe sur Claude : le comportement d'origine est préservé.
 # Pour repasser une tâche sur Claude : LLM_ANALYSE / LLM_REDACTION / LLM_SPECIAUX = claude
-PULSE_VERSION = "5.0.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
+PULSE_VERSION = "5.1.0"   # affiché à chaque cycle : permet de vérifier d'un coup d'œil
                            # que le bot.py en ligne est bien le dernier livré.
 # ✳️ Hashtags : la charte Pulse en impose un, mais AUCUN des tweets de référence n'en porte.
 #    Réglage laissé ouvert : HASHTAGS=0 dans le workflow pour coller aux exemples.
@@ -15138,7 +15138,14 @@ def noter_evenement(ev, conn, note_ia=None, categorie="", imprevu=None,
 #    Publier un fait rapporté par UNE SEULE rédaction, en prétendant comparer les
 #    sources, est une contradiction. Le lecteur ne peut pas nous croire sur ce point
 #    et constater l'inverse sur l'article.
-MEDIAS_MINI = int(os.environ.get("MEDIAS_MINI", "2"))
+# ⚠️ RÈGLE LEVÉE. Elle existait parce que le site AFFICHAIT la comparaison des
+#    sources : publier un fait rapporté par une seule rédaction aurait été une
+#    contradiction visible. Cet affichage a été retiré — Pulse écrit ses propres
+#    articles, comme n'importe quel média, et un média publie une information
+#    d'une seule source tous les jours.
+#    ⚠️ VÉCU : sans vecteurs, 118 articles donnaient 117 événements d'un seul
+#    média chacun, et PLUS RIEN ne se publiait. La règle bloquait tout.
+MEDIAS_MINI = int(os.environ.get("MEDIAS_MINI", "1"))
 
 # Ces natures d'événement échappent à la règle : quand une catastrophe survient,
 # le premier média à la rapporter a raison de le faire, et attendre serait absurde.
