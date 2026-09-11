@@ -1,0 +1,100 @@
+
+[17:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ã¿ã¤ã¿ããã¯, #Tã·ã£ããä¹¾ãã¾ã§, æ£®æ¬ã¬ãªãã, #NeverForget, #Ø³Ø§Ø¹Ù_Ø§Ø³ØªØ¬Ø§Ø¨Ù
+  🌍 « NeverForget » : aucune reprise en français, source internationale retenue
+  🌍 « PERTHSANTA RALPH LAUREN » : aucune reprise en français, source internationale retenue
+  🌍 « LENAMIU PLS LOVE PREMIERE » : aucune reprise en français, source internationale retenue
+  🕐 17h (Paris) — rythme journée (54-113 min · 11 publié(s), 5 restant(s) sur 7.0 h) : 54-113 min
+  ⏸️  Dernière publi il y a 21 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.3s (84 déjà en cache)
+  📄 12/88 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · CoinDesk · The Block · SpaceNews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧩 88 articles → 88 événement(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Pourquoi Netflix est sous le feu des critiques aux É
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Maroc, Arabie saoudite : le football féminin, symbol
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : A New York, Zohran Mamdani s’inspire de Paris et ann
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les Houthis contrôlent désormais toute la côte yémén
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Cela revient à reverser de l’argent public à des m
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Changement d’heure : pourquoi le passage à l’heure d
+  ⚪ Écarté (-8, pénalisé par « horoscope, \b(pourquoi ») : French Days : Cdiscount dégaine d’ultimes remises te
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les cartes Pokémon pourraient devenir une “monnaie m
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La princesse Astrid, sœur de Harald V de Norvège, me
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dyson suspend temporairement la commercialisation de
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sony aurait abandonné Physint par crainte de voir so
+  🚨 Sujet chaud (breaking, 1 médias) : US inflation holds steady as diesel prices pass $6
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 50.0/100 = gravité 6/10 → 27 + frais 1.3h +8 + thème porteur +10 + primeur +5
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (200 → 156 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il est grand temps que ces fournisseurs mettent de 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Pèlerinage de puissance The Blood of Dawnwalker : où
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 88 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : lille
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre au Moyen-Orient : pourquoi le Yémen est une
+  ✂️ Éphéméride resserré (184 → 127 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (264 s) ──
+     écartés : 13 sujet banal
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × gemini-embedding-2-preview   🚫 quota
+        15. clé 5 × gemini-embedding-2           🚫 quota
+        16. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 1 × gemini-3-flash               ⛔ inexistant
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 2 × gemini-3.1-flash-lite        ✅
+        30. clé 2 × gemini-3.1-flash-lite        ✅
+        31. clé 2 × gemini-3.1-flash-lite        ✅
+        32. clé 2 × gemini-3.1-flash-lite        ✅
+        33. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 778
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 15,586 entrée · 523 sortie
+     ✅ aucun appel payant
