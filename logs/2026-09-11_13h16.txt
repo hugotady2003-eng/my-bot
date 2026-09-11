@@ -1,0 +1,61 @@
+
+[13:15] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #ããã¹ã, #maisonKEEPSxTle, #ãã±ã¢ã³orããã, War Trakcil, #æ¯é±éæã¯ãã¤ãã¶
+  🕐 13h (Paris) — rythme journée (47-99 min · 7 publié(s), 9 restant(s) sur 11.0 h) : 47-99 min
+  ⏸️  Dernière publi il y a 19 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/7 articles lus en 1.4s (70 déjà en cache)
+  📄 9/80 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · The Block · Libération · SpaceNews
+  🧠 77 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 80 articles → 36 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Concerts de Céline Dion: il est encore possible de t
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Yémen : les Etats-Unis jouent les équilibristes face
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il n’existe pas de thérapie pour une société" : Jef
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Carrefour brade de 350 € cette table d’arcade Pac-Ma
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Accusé de viol, le maire de Concarneau annonce qu’il
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 80 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : emma, bonino, italie, 11-septembre, attentats, houthis, yemen
+  ♻️ Doublon d'un sujet déjà publié, écarté : Je n’avais pas l’intention de passer à l’Apple Wat
+  ✂️ Éphéméride resserré (184 → 127 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (50 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 7/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 273 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 2,755 entrée · 205 sortie
+     ✅ aucun appel payant
