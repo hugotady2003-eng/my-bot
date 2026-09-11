@@ -1,0 +1,55 @@
+
+[09:16] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Rams, 49ers, ãã¸ã¿ã«åº, #NHCFoodsLiberiaExpansion, #KengNamping1STFM_INJAPAN
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 1.1 h (L'Équipe)
+  ⏭️  « Rams » écarté : trop secondaire (3/10)
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 1.1 h (L'Équipe)
+  ⏭️  « 49ers » écarté : trop secondaire (3/10)
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 22 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/9 articles lus en 1.4s (86 déjà en cache)
+  📄 12/97 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France · The Block · CoinDesk · SpaceNews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 95 vecteurs calculés en 1 appel(s)
+  🧩 97 articles → 36 événement(s), dont 6 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 11 médias) : Call of Duty: Modern Warfare 4 invente une arme qu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 10 article(s) sur un autre sujet, écartés du dossier : Ars Technica, BFM People, Frandroid, Google DeepMind, L'Express
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🧮 Score 16.5/100 = gravité 3/10 → 14 + 11 médias +15 + frais 1.8h +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 16) → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 97 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : sanctions, iran, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : La réintégration de Rachida Dati dans la magistrat
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (64 s) ──
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-2.5-flash-lite (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 13/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2
+     vecteurs restants : gemini 001 751 · gemini 2-preview 520 · gemini 2 800
+     jetons Gemini : 5,569 entrée · 246 sortie
+     ✅ aucun appel payant
