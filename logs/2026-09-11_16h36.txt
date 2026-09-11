@@ -1,0 +1,83 @@
+
+[16:31] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : ã¿ã¤ã¿ããã¯, #Tã·ã£ããä¹¾ãã¾ã§, æ£®æ¬ã¬ãªãã, #NeverForget, #ã¿ã¤ã ã¬ã¹ãã³
+  🌍 « NeverForget » : aucune reprise en français, source internationale retenue
+  🕐 16h (Paris) — rythme journée (52-108 min · 10 publié(s), 6 restant(s) sur 8.0 h) : 52-108 min
+  ⏸️  Dernière publi il y a 28 min — attente.
+  📖 11/11 articles lus en 3.5s (72 déjà en cache)
+  📄 11/84 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · CoinDesk · The Block · SpaceNews
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 84 articles → 84 événement(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EU Regulator Says Prediction Markets Are 'Rife With 
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Professeur Raoult vs Le Gang des Cerises : quel es
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Fnac et Darty font le plein de bonnes affaires avant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La princesse Astrid, sœur de Harald V de Norvège, me
+  🚨 Sujet chaud (breaking, 1 médias) : US inflation holds steady as diesel prices pass $6
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : ‘Return the bitcoin’: Blockstream refuses ransom d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Stade Toulousain : "On sait où on en est, on n'a pas
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 84 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : bitcoin, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : Carcassonne : Jordan Bardella dénonce des propos "
+  ♻️ Doublon d'un sujet déjà publié, écarté : Croissance en baisse, déficit en hausse, inflation
+  ♻️ Doublon d'un sujet déjà publié, écarté : Budget 2027 : Bercy promet « la stabilité fiscale 
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ✂️ Éphéméride resserré (184 → 127 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (313 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 10/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   🚫 quota
+        11. clé 4 × gemini-embedding-2           🚫 quota
+        12. clé 5 × gemini-embedding-001         🚫 quota
+        13. clé 5 × gemini-embedding-2-preview   🚫 quota
+        14. clé 5 × gemini-embedding-2           🚫 quota
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.1-flash-lite        ✅
+        24. clé 1 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3-flash (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 783
+     jetons Gemini : 3,545 entrée · 321 sortie
+     ✅ aucun appel payant
