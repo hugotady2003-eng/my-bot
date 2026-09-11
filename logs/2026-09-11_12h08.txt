@@ -1,0 +1,66 @@
+
+[12:05] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #MPYatriParivahan, #æ¯é±éæã¯ãã¤ãã¶, #æèç¥­ã®æãåº, ããã¹ã¿, #TheRomanticTourBKK
+  🔎 « Emma Bonino » : 1 article(s) frais, le plus récent il y a 1.9 h (Le Monde.fr)
+  ✅ « Emma Bonino » retenu : Deces d une grande figure politique europeenne. (8/10) (+2 au score)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #EmmaBonino
+  🕐 12h (Paris) — rythme journée (46-97 min · 6 publié(s), 10 restant(s) sur 12.0 h) : 46-97 min
+  ⏸️  Dernière publi il y a 13 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 14/19 articles lus en 1.9s (49 déjà en cache)
+  📄 11/70 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · Cointelegraph · The Block · SpaceNews
+  🧠 68 vecteurs calculés en 1 appel(s)
+  🧩 70 articles → 23 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Yémen : les Etats-Unis jouent les équilibristes face
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : En cas d’inaction, le changement climatique pourrait
+  🚨 Sujet chaud (breaking, 25 médias) : "Des gens sortis de nulle part": le tacle à Emmanu
+  🧠 37 article(s) sur un autre sujet, écartés du dossier : ActuGaming, BFM People, BFMTV, Begeek, Challenges
+  🧮 Score 37.0/100 = gravité 2/10 → 9 + 25 médias +20 + frais 0.5h +13 + programmé 1/10 -15 + portée internationale +10
+  → Sujet chaud pas assez fort (score 37) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion a racheté une sandwicherie à Montréal, "
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il n’existe pas de thérapie pour une société" : Jef
+  ⚪ Écarté (-2, pénalisé par « comment  ») : "Elle fait pâle figure à côté de ses voisins" : pour
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Carrefour brade de 350 € cette table d’arcade Pac-Ma
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⏭️  Sujet chaud déjà traité (trop tôt, anti-spam) → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 70 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : femicide, vendee, emma, bonino, italie, 11-septembre, attentats
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine : au moins deux morts et huit bl
+  ♻️ Doublon d'un sujet déjà publié, écarté : Économie : le gouvernement français abaisse sa pré
+  ♻️ Doublon d'un sujet déjà publié, écarté : Face au phénomène iPhone Duo, Samsung affiche sa c
+  ♻️ Doublon d'un sujet déjà publié, écarté : Apple Watch Series 12 : une évolution qui ne passe
+  ♻️ Doublon d'un sujet déjà publié, écarté : Apple addresses iPhone Duo copycats
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (141 s) ──
+     écartés : 6 sujet banal
+     plafonds : X 6/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-2-preview (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 594 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 12,118 entrée · 249 sortie
+     ✅ aucun appel payant
