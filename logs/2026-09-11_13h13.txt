@@ -1,0 +1,79 @@
+
+[13:11] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #ããã¹ã, #maisonKEEPSxTle, #ãã±ã¢ã³orããã, War Trakcil, #æ¯é±éæã¯ãã¤ãã¶
+  🕐 13h (Paris) — rythme journée (47-99 min · 7 publié(s), 9 restant(s) sur 11.0 h) : 47-99 min
+  ⏸️  Dernière publi il y a 14 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/10 articles lus en 4.8s (65 déjà en cache)
+  📄 8/77 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · The Block · Libération · SpaceNews
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « "Elle fait pâle figure à côté de ses v… »
+  🧩 77 articles → 35 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 15 médias) : Emmanuel Macron assistera-t-il au concert de Célin
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 19 article(s) sur un autre sujet, écartés du dossier : BFM People, Begeek, Challenges, Frandroid, Gamekult
+  🧮 Score 89.0/100 = gravité 2/10 → 9 + 15 médias +18 + frais 0.8h +13 + portée mondiale +18 + ⚡ crise institutionnelle → plancher 89
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Céline Dion (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il n’existe pas de thérapie pour une société" : Jef
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Carrefour brade de 350 € cette table d’arcade Pac-Ma
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 77 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : emma, bonino, italie, 11-septembre, attentats, houthis, yemen
+  ♻️ Doublon d'un sujet déjà publié, écarté : RDC: au moins 24 personnes, dont de nombreux enfan
+  ♻️ Doublon d'un sujet déjà publié, écarté : Croissance en berne: Jordan Bardella, président du
+  ✂️ Éphéméride resserré (184 → 127 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (121 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 7/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-2.5-flash-lite (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 276 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 17,734 entrée · 469 sortie
+     ✅ aucun appel payant
