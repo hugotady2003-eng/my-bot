@@ -1,0 +1,62 @@
+
+[10:10] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Rams, #SiagaPeduliSesama, #NHCFoodsLiberiaExpansion, Bantuan Penanggulangan Bencana, #æèç¥­ã®æãåº
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 2.0 h (L'Équipe)
+  ⏭️  « Rams » écarté : trop secondaire (3/10)
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  ⏸️  Dernière publi il y a 18 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 12/14 articles lus en 1.3s (78 déjà en cache)
+  📄 12/92 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block · CoinDesk · SpaceNews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 92 vecteurs calculés en 1 appel(s)
+  🧩 92 articles → 26 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 29 médias) : Tom Hanks, narrateur de la Seconde Guerre mondiale
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 41 article(s) sur un autre sujet, écartés du dossier : 9to5Google, ActuGaming, Ars Technica, BBC Business, BFM People
+  🧮 Score 31.0/100 = gravité 2/10 → 9 + 29 médias +20 + frais 4.4h +2
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 31) → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Pourquoi la version physique de Final Fantasy VII Re
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : SBF asks Supreme Court to overturn conviction, $11B 
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 92 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : crypto, cargo
+  ♻️ Doublon d'un sujet déjà publié, écarté : Vidéo choc à Carcassonne : "C’est totalement faux"
+  ♻️ Doublon d'un sujet déjà publié, écarté : iPhone 18 Pro : Apple mise presque tout sur la pho
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (60 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 1 × gemini-embedding-2           🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.6-flash (+26)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 743 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 9,992 entrée · 716 sortie
+     ✅ aucun appel payant
