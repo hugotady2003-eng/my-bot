@@ -1,0 +1,55 @@
+
+[10:35] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #æèç¥­ã®æãåº, #TheRomanticTourBKK, èãæåç¥­, #SiagaPeduliSesama, HayÄ±rlÄ± Cumalar
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  ⏸️  Dernière publi il y a 43 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/9 articles lus en 2.0s (86 déjà en cache)
+  📄 12/96 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block · CoinDesk · SpaceNews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 95 vecteurs calculés en 1 appel(s)
+  🧩 96 articles → 31 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les concerts de Céline Dion, l’occasion pour les pol
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il y a plein d'histoires méconnues" : vingt-cinq an
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Pourquoi la version physique de Final Fantasy VII Re
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 96 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : crypto, cargo
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Vous êtes les pires": Donald Trump s'en prend de 
+  ♻️ Doublon d'un sujet déjà publié, écarté : INFO OUEST-FRANCE. Pour la première fois, des cas 
+  ♻️ Doublon d'un sujet déjà publié, écarté : VRAI OU FAUX. Présidentielle 2027 : Raphaël Glucks
+  ♻️ Doublon d'un sujet déjà publié, écarté : John Ternus and Greg Joswiak reveal why now is the
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (76 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3-flash (+26)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 743 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 3,036 entrée · 197 sortie
+     ✅ aucun appel payant
