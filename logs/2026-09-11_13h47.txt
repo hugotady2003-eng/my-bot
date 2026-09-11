@@ -1,0 +1,85 @@
+
+[13:46] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #ããã¹ã, #maisonKEEPSxTle, #ãã±ã¢ã³orããã, War Trakcil, #æ¯é±éæã¯ãã¤ãã¶
+  🕐 13h (Paris) — rythme journée (47-99 min · 7 publié(s), 9 restant(s) sur 11.0 h) : 47-99 min
+  🎲 49 min (proba 4%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/6 articles lus en 0.9s (80 déjà en cache)
+  📄 12/88 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block · CoinDesk · SpaceNews
+  🧠 86 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « "Elle fait pâle figure à côté de ses v… »
+  🧠 Même événement (jugé) : « « Les incertitudes économiques n’ont j… »
+  🧩 88 articles → 31 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Yémen : les Etats-Unis jouent les équilibristes face
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Concerts de Céline Dion à Paris : à La Défense, on n
+  🕒 Sujet chaud mais article ancien (16h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les Houthis du Yémen s’emparent de l’île clé de Mayy
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il n’existe pas de thérapie pour une société" : Jef
+  ⚪ Écarté (2, pénalisé par « comment  ») : Sénatoriales 2026 : les candidatures se terminent ce
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Audi vous paie pour que vous rachetiez votre voiture
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Pas-de-Calais : le tatoueur jugé pour viols qui a 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BBC, Libération
+  🧮 Score 36.5/100 = gravité 3/10 → 14 + 3 médias +7 + frais 0.2h +16
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 20 médias) : Chasse : la saison débute dimanche dans un climat 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 26 article(s) sur un autre sujet, écartés du dossier : ActuGaming, BFM People, Begeek, France Bleu, Frandroid
+  🧮 Score 37.0/100 = gravité 2/10 → 9 + 20 médias +20 + frais 1.6h +8
+  → Sujet chaud pas assez fort (score 37) → suivant
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : Brosse à dents Dyson : rupture de stock ou retrait d
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 88 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : 11-septembre, attentats, houthis, yemen
+  ♻️ Doublon d'un sujet déjà publié, écarté : « Les incertitudes économiques n’ont jamais été au
+  ♻️ Doublon d'un sujet déjà publié, écarté : UniCredit seeks infrastructure partner for crypto 
+  ✂️ Éphéméride resserré (184 → 127 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (59 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 7/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × gemini-embedding-2-preview   ✅
+        15. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.1-flash-lite        ✅
+        24. clé 1 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 251 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 7,321 entrée · 247 sortie
+     ✅ aucun appel payant
