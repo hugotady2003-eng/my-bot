@@ -1,0 +1,66 @@
+
+[01:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #CalvinKleinSS27xLINGLING, LINGLING APAC FACE OF CK, hwasa, #å¿ã«é¿ããã«ãå ¨è©±ç¡æ, #Ø±ÙØªØ§ÙØ§_Ø³Ø¨ÙØ±Øª_Ù Ø¹_ÙÙÙØ¯
+  🔎 « Mamdani » : 1 article(s) frais, le plus récent il y a 8.0 h (Libération)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Mamdani » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #NewYork
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.2s (73 déjà en cache)
+  📄 11/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · Cointelegraph · The Block
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧩 76 articles → 32 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ce que l'on sait du déraillement d'un train en Seine
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Diva accessible, star résiliente... Pourquoi tout le
+  🚨 Sujet chaud (breaking, 1 médias) : Prix, taxes, carburant... le retour des Gilets jau
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Khosla Ventures is opening a New York office this fa
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 76 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Cambriolage de Donnarumma : le commanditaire Ilyas
+  → Rien à publier.
+
+  ── Bilan du cycle (60 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 1 × gemini-embedding-2-preview   🚫 quota
+        10. clé 1 × gemini-embedding-2           🚫 quota
+        11. clé 2 × gemini-embedding-001         🚫 quota
+        12. clé 2 × gemini-embedding-2-preview   🚫 quota
+        13. clé 2 × gemini-embedding-2           🚫 quota
+        14. clé 3 × gemini-embedding-001         🚫 quota
+        15. clé 3 × gemini-embedding-2-preview   🚫 quota
+        16. clé 3 × gemini-embedding-2           🚫 quota
+        17. clé 4 × gemini-embedding-001         ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 775
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,012 entrée · 139 sortie
+     ✅ aucun appel payant
