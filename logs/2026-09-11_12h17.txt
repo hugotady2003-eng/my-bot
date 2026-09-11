@@ -1,0 +1,54 @@
+
+[12:15] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #æ¯é±éæã¯ãã¤ãã¶, #æèç¥­ã®æãåº, ããã¹ã¿, #ã¬ã³ãã 00Fåæ¦, #ÙÙÙ _Ø§ÙØ¬Ù Ø¹Ù
+  🕐 12h (Paris) — rythme journée (46-97 min · 6 publié(s), 10 restant(s) sur 12.0 h) : 46-97 min
+  ⏸️  Dernière publi il y a 23 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 1.4s (63 déjà en cache)
+  📄 12/74 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block · CoinDesk · Cointelegraph
+  🧠 73 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Le détroit de Bab el-Mandeb, verrou de… »
+  🧩 74 articles → 30 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Yémen : les Etats-Unis jouent les équilibristes face
+  🚨 Sujet chaud (breaking, 1 médias) : Féminicide près de Toulouse: le mari de la victime
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion a racheté une sandwicherie à Montréal, "
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il n’existe pas de thérapie pour une société" : Jef
+  ⚪ Écarté (-2, pénalisé par « comment  ») : "Elle fait pâle figure à côté de ses voisins" : pour
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Carrefour brade de 350 € cette table d’arcade Pac-Ma
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 74 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : femicide, vendee, emma, bonino, italie, 11-septembre, attentats
+  ♻️ Doublon d'un sujet déjà publié, écarté : Suisse : Cinq morts, 40 blessés… Que sait-on de l’
+  ♻️ Doublon d'un sujet déjà publié, écarté : À Zagreb, des robotaxis roulent sans personne à bo
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (83 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 6/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2-preview · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-2 (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 449 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 2,526 entrée · 136 sortie
+     ✅ aucun appel payant
