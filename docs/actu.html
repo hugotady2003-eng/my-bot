@@ -1,12 +1,6 @@
 <!DOCTYPE html><html lang="fr"><head>
-<script>
-/* ══ RENSEIGNE TON IDENTIFIANT ADSENSE ICI ══
-   Laisse vide tant que ton compte n'est pas approuvé : aucune
-   requête ne partira, et le site restera parfaitement rapide.
-   Format : "ca-pub-XXXXXXXXXXXXXXXX" */
-window.PUB_ID = "";
-</script>
-
+<!-- ⚠️ L'identifiant AdSense se règle dans pub.js, un seul endroit -->
+<script src="pub.js"></script>
 <script>
 /* ══ PUBLICITÉ ══
    ⚠️ Le script Google n'est chargé QUE si un identifiant est renseigné. Sans
@@ -18,8 +12,13 @@ window.PUB_ID = "";
       ne se code pas. */
 const PUB_ID = window.PUB_ID || '';        /* ca-pub-XXXXXXXXXXXXXXXX */
 
+let _pubChargee = false;
 function chargerPub(){
-  if(!PUB_ID) return;
+  /* ⚠️ Le rendu peut appeler activerPubs plusieurs fois. Sans ce verrou, le
+     script de Google est inséré autant de fois, ce qui double les requêtes
+     et fait apparaître des annonces en trop. */
+  if(!PUB_ID || _pubChargee) return;
+  _pubChargee = true;
   const s = document.createElement('script');
   s.async = true;
   s.crossOrigin = 'anonymous';
@@ -28,7 +27,8 @@ function chargerPub(){
 }
 
 function poserPub(el, slot, format){
-  if(!PUB_ID || !el) return;
+  /* un emplacement déjà rempli ne doit pas l'être une seconde fois */
+  if(!PUB_ID || !el || el.querySelector('ins.adsbygoogle')) return;
   const ins = document.createElement('ins');
   ins.className = 'adsbygoogle';
   ins.style.display = 'block';
@@ -44,8 +44,12 @@ function poserPub(el, slot, format){
 function activerPubs(){
   if(!PUB_ID) return;
   chargerPub();
-  document.querySelectorAll('.pub').forEach(el =>
-    poserPub(el, el.dataset.slot, el.dataset.format));
+  const slots = window.PUB_SLOTS || {};
+  document.querySelectorAll('.pub').forEach(el => {
+    const genre = el.classList.contains('pub-cote') ? 'cote' : 'bloc';
+    poserPub(el, el.dataset.slot || slots[genre] || '',
+             el.dataset.format);
+  });
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -581,10 +585,7 @@ function fiabilite(n){
   <nav id="nav">
     <a href="index.html">Accueil</a>
     <a href="actu.html" class="on">Le fil</a>
-    <a href="journal.html">Journal des décisions</a>
-    <a href="methode.html">Méthode</a>
-    <a href="engagements.html">Engagements</a>
-    <a href="roadmap.html">Feuille de route</a>
+    <a href="journal.html">Le journal</a>
     <a href="legal.html">Mentions légales</a>
   </nav>
 </div></header>
@@ -606,16 +607,13 @@ function fiabilite(n){
 </section>
 <footer><div class="wrap">
   <div class="fl">PULSE</div>
-  <p>Le premier bot d'actualité autonome</p>
+  <p>Tech · Finance · Innovation</p>
   <div class="liens">
-    <a href="actu.html">Le fil</a><a href="journal.html">Journal des décisions</a>
-    <a href="methode.html">Méthode</a>
-    <a href="engagements.html">Engagements</a>
-    <a href="engagements.html">Engagements</a><a href="roadmap.html">Feuille de route</a>
+    <a href="actu.html">Le fil</a><a href="journal.html">Le journal</a>
     <a href="legal.html">Mentions légales</a>
     <a href="https://x.com/PULSEactus">@PULSEactus</a>
   </div>
-  <p>Contenu produit automatiquement · Sources citées sur chaque article</p>
+  <p>Tech · Finance · Innovation</p>
   <p style="margin-top:12px">© 2026 Pulse Actus</p>
 </div></footer>
 <script>
@@ -741,9 +739,6 @@ const T = {
   "Mécanisme déflationniste":"Deflationary mechanism",
   "Verrouillage de la part de l'émetteur":"Lock-up of the issuer's allocation",
   "Modalités de l'offre":"Offer terms",
-  "🪙 Ce que nous nous interdisons sur le jeton":"🪙 What we forbid ourselves on the token",
-
-  "Les frais prélevés sur les échanges de $PULSE financent l'infrastructure de Pulse : modèles de langage, hébergement, base de données, stockage des images.":"Fees levied on $PULSE trades fund Pulse's infrastructure: language models, hosting, database, image storage.",
   "Nous l'écrivons plutôt que de le taire. Si les frais ne suffisent pas, Pulse fonctionnera de façon réduite — moins de cycles, moins de canaux — plutôt que d'abaisser ses seuils éditoriaux pour publier davantage.":"We write it rather than hide it. If fees fall short, Pulse will run in reduced mode — fewer cycles, fewer channels — rather than lowering its editorial thresholds to publish more.",
 
   ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed \u2014 and delivers only what matters. No owner. No advertiser. No agenda.",
@@ -769,7 +764,7 @@ const T = {
   ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
   ": modèles de langage, hébergement, base de données, stockage des images.":": language models, hosting, database, image storage.",
 
-  "Une intelligence qui ne dort jamais.":"An intelligence that never sleeps.",
+  "L'actualité tech et finance, en continu.":"An intelligence that never sleeps.",
   "20 000 articles analysés chaque jour":"20,000 articles analysed every day",
   ": elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":": it devours the news, cross-checks every claim, exposes what is unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
   "Chargement du journal…":"Loading the log…",
@@ -783,16 +778,11 @@ const T = {
   "Les seuils sont figés et publiés sur la page":"Thresholds are frozen and published on the",
   ". Aucune modification n'entrera en vigueur sans y être annoncée au préalable.":" page. No change takes effect without being announced there first.",
   "⚠️ Avertissement sur les risques":"⚠️ Risk disclosure",
-  "La très grande majorité des jetons communautaires perdent toute valeur.":"The vast majority of community tokens lose all value.",
-  "Ce jeton est émis par Pulse Actus, qui en détient une partie et a donc un":"This token is issued by Pulse Actus, which holds a portion and therefore has a",
   "intérêt financier direct":"direct financial interest",
   "à sa valorisation. Cette page est une communication promotionnelle, pas un conseil en investissement.":"in its valuation. This page is a promotional communication, not investment advice.",
-  "Les crypto-actifs ne bénéficient d'aucune garantie des dépôts. Les plus-values de cession sont imposables en France. Personne ne vous contactera jamais en message privé pour vous vendre $PULSE.":"Crypto-assets carry no deposit guarantee. Capital gains are taxable in France. No one will ever contact you privately to sell you $PULSE.",
   "[à compléter] %":"[to be filled] %",
   "[à compléter]":"[to be filled]",
   "@PULSEactus":"@PULSEactus",
-  "$PULSE ne finance pas Pulse et ne le pilote pas. C'est un signe de ralliement — la marque de ceux qui croient qu'une information peut circuler sans passer par les mains de quelqu'un qui a des intérêts à défendre.":"$PULSE neither funds nor steers Pulse. It is a rallying sign — the mark of those who believe news can circulate without passing through the hands of someone with interests to defend.",
-  "Le jeton communautaire de Pulse. Un signe de ralliement, rien de plus.":"Pulse's community token. A rallying sign, nothing more.",
   "Pulse Actus":"Pulse Actus",
   "Chargement…":"Loading…",
   "Voir plus d'articles":"Load more",
@@ -826,14 +816,9 @@ const T = {
   "Les informations sont fournies à titre indicatif. Malgré le recoupement entre sources, une erreur reste possible :":"Information is provided for guidance only. Despite cross-checking between sources, errors remain possible:",
   "vérifiez toute information importante auprès de la source d'origine":"verify any important information against the original source",
   ", dont le lien figure sur chaque article.":", linked on every article.",
-  "🪙 À propos de $PULSE":"🪙 About $PULSE",
-  "Le jeton communautaire $PULSE":"The $PULSE community token",
   "n'a aucun lien avec la ligne éditoriale":"has no bearing on the editorial line",
   "de ce site. Le détenir ne donne aucun droit sur les publications ni aucune voix sur les sujets traités.":"of this site. Holding it grants no rights over publications and no say in the topics covered.",
-  "Cette séparation est volontaire : un média dont les choix dépendraient de porteurs de jetons aurait simplement changé de propriétaire.":"This separation is deliberate: an outlet whose choices depended on token holders would simply have changed owner.",
   "Le drapeau de ceux qui pensent qu'un média peut exister sans maître.":"The flag of those who believe a news outlet can exist without a master.",
-  "La ligne éditoriale reste entièrement hors du jeton.":"The editorial line stays entirely outside the token.",
-  "C'est délibéré : un média dont les décisions dépendraient de porteurs de jetons aurait simplement changé de propriétaire.":"That is deliberate: an outlet whose decisions depended on token holders would simply have changed owner.",
   "[à compléter] — figée":"[to be filled] — fixed",
   "Autorité d'émission":"Mint authority",
   "Autorité de gel":"Freeze authority",
@@ -845,7 +830,6 @@ const T = {
   "livre blanc réglementaire":"regulatory white paper",
   "détaille les caractéristiques, les droits attachés et l'intégralité des facteurs de risque.":"sets out the specifications, attached rights and the full list of risk factors.",
   "💰 À quoi servent les frais de transaction":"💰 What transaction fees fund",
-  "$PULSE est un jeton communautaire sans utilité financière ni promesse de rendement.":"$PULSE is a community token with no financial utility and no promise of return.",
   "Il ne donne droit à aucun dividende, aucun revenu, aucune part du projet, aucune voix sur la ligne éditoriale.":"It grants no dividend, no revenue, no ownership, no say over the editorial line.",
   "Sa valeur peut tomber à zéro à tout moment.":"Its value can fall to zero at any time.",
   "N'engagez que ce que vous pouvez perdre entièrement.":"Commit only what you can afford to lose entirely.",
@@ -859,7 +843,7 @@ const T = {
   "© 2026 Pulse Actus":"© 2026 Pulse Actus",
 
   "En direct · 24 h/24 · sans interruption":"Live · 24/7 · without interruption",
-  "Une intelligence qui ne dort jamais. 20 000 articles analysés chaque jour : elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":"An intelligence that never sleeps. 20,000 articles analysed every day: it devours the news, cross-checks every claim, exposes what remains unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
+  "L'actualité tech et finance, en continu. 20 000 articles analysés chaque jour : elle dévore l'actualité, recoupe chaque information, démasque ce qui n'est pas confirmé — et ne vous livre que ce qui compte. Sans propriétaire. Sans annonceur. Sans agenda.":"An intelligence that never sleeps. 20,000 articles analysed every day: it devours the news, cross-checks every claim, exposes what remains unconfirmed — and delivers only what matters. No owner. No advertiser. No agenda.",
   "⚡ Découvrir le fil":"⚡ Explore the feed",
   "🔍 Voir comment":"🔍 See how",
   "depuis le premier jour":"since day one",
@@ -938,8 +922,8 @@ const T = {
   "Journal des refus accessible en permanence":"Rejection log permanently accessible",
   "20 160 articles traités quotidiennement":"20,160 articles processed daily",
 
-  "Le premier bot d'actualité autonome":"The first autonomous news bot",
-  "Contenu produit automatiquement · Sources citées sur chaque article":"Automatically produced content · Sources cited on every article",
+  "Tech · Finance · Innovation":"The first autonomous news bot",
+  "Tech · Finance · Innovation":"Automatically produced content · Sources cited on every article",
   "Chargement de l'article…":"Loading article…",
   "Ce que nous ne pouvons pas garantir.":"What we cannot guarantee.",
   "L'actualité,":"News,",
@@ -1006,7 +990,6 @@ const T = {
   "Résumé":"Summary",
   "L'émetteur":"The issuer",
   "Le projet Pulse":"The Pulse project",
-  "Caractéristiques du jeton":"Token specifications",
   "Technologie sous-jacente":"Underlying technology",
   "Facteurs de risque":"Risk factors",
   "Impact environnemental":"Environmental impact",
@@ -1022,12 +1005,11 @@ const T = {
   "Données personnelles":"Personal data",
   "Responsabilité":"Liability",
   "Modération":"Moderation",
-  "À propos de $PULSE":"About $PULSE",
   "y compris les refus":"including rejections",
   "Décomposition du score":"Score breakdown",
 
   // navigation
-  "Accueil":"Home", "Le fil":"The feed", "Journal des décisions":"Decision log",
+  "Accueil":"Home", "Le fil":"The feed", "Le journal":"Decision log",
   "Méthode":"Method", "Engagements":"Commitments", "Feuille de route":"Roadmap",
   // catégories
   "France":"France", "Monde":"World", "Économie":"Economy", "Sport":"Sport",

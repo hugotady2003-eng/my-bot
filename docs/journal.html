@@ -66,7 +66,7 @@ function activerPubs(){
   }catch(e){}
 })();
 </script><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>Mentions légales — Pulse Actus</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Le journal — Pulse Actus</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -219,9 +219,16 @@ nav a.on{color:var(--blanc);background:rgba(123,46,255,.18)}
 .art.gros .vign{font-size:46px}
 .txt{padding:16px 20px 16px 18px}
 .meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:8px}
-.cat{font:700 9.5px/1 var(--c);letter-spacing:.12em;color:var(--c);
-  border:1px solid color-mix(in srgb,var(--c) 45%,transparent);
-  background:color-mix(in srgb,var(--c) 14%,transparent);padding:4px 8px;border-radius:12px}
+/* ⚠️ Même correction que sur les autres pages : « --c » désigne la POLICE du
+   site, et la capsule recevait « --c » en style local pour sa COULEUR. La
+   déclaration « font: … var(--c) » devenait invalide et le navigateur
+   l'ignorait entièrement — d'où un texte ni gras ni dimensionné. */
+.cat{font-weight:800;font-size:11.5px;line-height:14px;font-family:var(--c);
+  letter-spacing:.02em;color:var(--cc);
+  border:1px solid color-mix(in srgb,var(--cc) 32%,transparent);
+  background:color-mix(in srgb,var(--cc) 12%,transparent);
+  padding:0 10px;height:18px;display:inline-flex;align-items:center;
+  border-radius:100px;text-transform:none;white-space:nowrap}
 .urg{font:700 9.5px/1 var(--c);letter-spacing:.12em;color:#fff;background:var(--rouge);
   padding:4px 8px;border-radius:12px;animation:bat 1.8s ease-in-out infinite}
 .hom{font:700 9.5px/1 var(--c);letter-spacing:.12em;color:var(--gris);
@@ -264,18 +271,58 @@ footer a{color:var(--mauve)}
 footer .liens{display:flex;gap:18px;justify-content:center;margin:16px 0 18px;flex-wrap:wrap}
 footer .liens a{color:var(--gris);font-size:13.5px}
 footer .liens a:hover{color:var(--blanc)}
+
+.dec .corps{min-width:0}
+.dx{font-size:13px;color:var(--gris);line-height:1.55;margin-top:7px;
+  padding-left:11px;border-left:2px solid var(--bord)}
+.detail{font:500 11.5px/1.5 var(--m);color:var(--faible);margin-top:8px;
+  padding-top:8px;border-top:1px solid var(--bord);overflow-wrap:anywhere}
+.sc.na{color:var(--faible);background:rgba(255,255,255,.04);border-color:var(--bord)}
+.sc.urg{color:var(--rouge);background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.3)}
+.sc.ok{color:var(--vert);background:rgba(55,227,155,.12);border-color:rgba(55,227,155,.3)}
+.sc.bas{color:var(--orange);background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.3)}
+.sc{font:600 11px/1 var(--m);color:var(--mauve);background:rgba(194,75,255,.1);
+  border:1px solid rgba(194,75,255,.26);border-radius:12px;padding:4px 8px;white-space:nowrap}
+.md{font:600 11px/1 var(--c);color:var(--faible);background:rgba(255,255,255,.04);
+  border:1px solid var(--bord);border-radius:12px;padding:4px 8px;white-space:nowrap}
+
+/* 📄 Barre de pagination */
+.pagi{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.pg{font:600 14px/1 var(--c);color:var(--gris);background:var(--carte);
+  border:1px solid var(--bord);border-radius:17px;min-width:42px;height:42px;
+  padding:0 12px;cursor:pointer;transition:.3s cubic-bezier(.32,.72,0,1)}
+.pg:hover:not(:disabled):not(.pt){color:var(--blanc);border-color:#443C6B}
+.pg.on{color:#fff;background:rgba(123,46,255,.26);border-color:rgba(194,75,255,.5)}
+.pg:disabled{opacity:.32;cursor:default}
+.pg.pt{border:none;background:none;cursor:default;min-width:22px;padding:0}
+@media(max-width:600px){
+  .pg{min-width:38px;height:38px;padding:0 9px;font-size:13px}
+  .da{flex-wrap:wrap}
+}
 </style><style>
-.lg{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;margin-top:22px}
-.bloc{background:var(--carte);border:1px solid var(--bord);border-radius:24px;
-  padding:26px 28px;transition:border-color .4s cubic-bezier(.32,.72,0,1)}
-.bloc:hover{border-color:#443C6B}
-.bloc h3{font:700 16.5px/1.3 var(--t);color:var(--blanc);margin-bottom:12px;
-  display:flex;align-items:center;gap:9px}
-.bloc p,.bloc li{font-size:14.5px;color:var(--gris);margin-bottom:10px}
-.bloc ul{list-style:none}
-.bloc li{padding-left:18px;position:relative}
-.bloc li::before{content:"·";position:absolute;left:5px;color:var(--mauve);font-weight:700}
-.bloc b{color:var(--texte)}
+.encadre{background:rgba(123,46,255,.07);border:1px solid rgba(123,46,255,.28);
+  border-left:3px solid var(--violet);border-radius:20px;padding:18px 22px;
+  margin-bottom:24px;font-size:15px;color:var(--gris)}
+.encadre b{color:var(--blanc)}
+.dec{display:grid;grid-template-columns:auto 1fr auto;gap:15px;align-items:center;
+  background:var(--carte);border:1px solid var(--bord);border-radius:22px;
+  padding:15px 18px;margin-bottom:10px;transition:border-color .4s cubic-bezier(.32,.72,0,1)}
+.dec:hover{border-color:#443C6B}
+@media(max-width:660px){.dec{grid-template-columns:auto 1fr}
+  .da{grid-column:2;flex-direction:row!important;align-items:center!important;gap:10px!important}}
+.dec .ic{width:32px;height:32px;border-radius:15px;display:grid;place-items:center;
+  font:700 15px/1 var(--c);color:var(--c);
+  background:color-mix(in srgb,var(--c) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
+.dt{font:600 15px/1.35 var(--c);color:var(--texte);margin-bottom:3px}
+.dr{font-size:13.5px;color:var(--faible)}
+.da{text-align:right;display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+.et{font:700 10.5px/1 var(--c);letter-spacing:.12em;color:var(--c)}
+.ds{font:500 11.5px/1 var(--m);color:var(--faible)}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.rc{background:var(--carte);border:1px solid var(--bord);border-radius:22px;padding:18px 20px}
+.rc .v{font:700 24px/1 var(--m);margin-bottom:6px}
+.rc .l{font:600 10.5px/1.4 var(--c);letter-spacing:.13em;text-transform:uppercase;color:var(--faible)}
 
 /* 📱 AUDIT DES MARGES — chaque bloc porteur de texte a été vérifié.
    Sous 600 px, ceux qui n'avaient pas de marge propre en reçoivent une, et
@@ -444,7 +491,62 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 /* ⚠️ En impression et pour les lecteurs qui bloquent, rien ne doit rester :
       un cadre vide étiqueté « Publicité » fait plus mauvais effet qu'un blanc. */
 @media print{.pub,.cotes{display:none}}
-</style></head><body>
+</style><script>
+/* ═══════════════════════════════════════════════════════════════════════
+   CONFIGURATION — remplace ces deux valeurs par les tiennes.
+   Supabase → Settings → API
+   ⚠️ Utilise la clé « anon public », JAMAIS la « service_role ».
+      La clé anon est publique par conception : les règles du schéma la
+      bornent à la lecture seule.
+   ═══════════════════════════════════════════════════════════════════════ */
+const SUPABASE_URL = "https://rctgvbimubcwdjcwfprz.supabase.co";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjdGd2YmltdWJjd2RqY3dmcHJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0NTQzMDgsImV4cCI6MjEwNDAzMDMwOH0.q4Zg1C4WGMDVJHOg_9CE3176k0ZNr_uLCRxzDVmciGk";
+
+/* ── Appel à la base ─────────────────────────────────────────────────── */
+async function api(chemin){
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${chemin}`, {
+    headers:{ apikey:SUPABASE_ANON, Authorization:`Bearer ${SUPABASE_ANON}` }
+  });
+  if(!r.ok) throw new Error(`${r.status} ${await r.text()}`);
+  return r.json();
+}
+
+/* ── Habillage ───────────────────────────────────────────────────────── */
+const CAT = {
+  france:["France","#7B2EFF"], monde:["Monde","#3B82F6"],
+  economie:["Économie","#10B981"], sport:["Sport","#F59E0B"],
+  culture:["Culture","#EC4899"], faitsdivers:["Faits divers","#EF4444"],
+  politique:["Politique","#8B5CF6"], sante:["Santé","#14B8A6"],
+  tech:["Tech","#06B6D4"], societe:["Société","#F472B6"],
+  histoire:["Histoire","#A78BFA"], saviez:["Le saviez-vous","#FBBF24"],
+};
+const cat = c => CAT[c] || CAT.france;
+
+function ecoule(iso){
+  const s = (Date.now() - new Date(iso)) / 1000;
+  if(s < 90) return "à l'instant";
+  if(s < 5400) return `il y a ${Math.round(s/60)} min`;
+  if(s < 129600) return `il y a ${Math.round(s/3600)} h`;
+  return `il y a ${Math.round(s/86400)} j`;
+}
+function dateLongue(iso){
+  return new Date(iso).toLocaleDateString('fr-FR',
+    {day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+}
+
+/* ⚖️ NIVEAU DE FIABILITÉ — le cœur de la promesse de Pulse.
+   Il ne s'agit pas de dire « c'est vrai » mais « voilà sur quoi ça repose ».
+   Le lecteur juge lui-même, avec l'information sous les yeux. */
+function fiabilite(n){
+  n = n || 1;
+  if(n >= 4) return {cl:"f3", txt:`✓ ${n} médias`, niv:"Béton",
+    exp:`${n} rédactions indépendantes rapportent ce fait. Quand autant de journalistes convergent sans se concerter, l'erreur devient très improbable. Vous pouvez y aller.`};
+  if(n >= 2) return {cl:"f2", txt:`◐ ${n} médias`, niv:"Sérieux",
+    exp:`${n} rédactions rapportent ce fait. C'est un vrai recoupement — deux sources indépendantes qui disent la même chose, ce n'est pas rien. Mais gardez un œil ouvert.`};
+  return {cl:"f1", txt:"⚠ 1 seul média", niv:"Prudence",
+    exp:"Un seul média affirme cela. Ce n'est pas forcément faux — une exclusivité, ça existe — mais personne ne le confirme encore. Nous préférons vous le dire plutôt que de faire comme si de rien n'était."};
+}
+</script></head><body>
 <header><div class="wrap hbar">
   <a class="logo" href="index.html"><i></i> PULSE</a>
   <div class="reglages">
@@ -455,62 +557,35 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
   <nav id="nav">
     <a href="index.html">Accueil</a>
     <a href="actu.html">Le fil</a>
-    <a href="journal.html">Le journal</a>
-    <a href="legal.html" class="on">Mentions légales</a>
+    <a href="journal.html" class="on">Le journal</a>
+    <a href="legal.html">Mentions légales</a>
   </nav>
 </div></header>
-
 <div class="wrap chapeau-page">
-  <h1>Mentions légales</h1>
-  <p>Éditeur, droits, données personnelles et responsabilité.</p>
+  <h1>Le journal</h1>
+  <p>Chaque arbitrage éditorial, horodaté : ce qui a été publié, ce qui reste
+     sous surveillance, et surtout <b>ce qui a été écarté</b> — avec la raison.
+     Aucun média ne rend ce dernier point public.</p>
 </div>
-<section class="wrap pad-b"><div class="lg">
-  <div class="bloc"><h3>📋 Éditeur</h3>
-    <p>Pulse Actus<br>Contact : <span class="champ">[courriel]</span></p>
-    <p>Hébergement : Vercel Inc.<br>Base de données : Supabase.</p></div>
-
-  <div class="bloc"><h3>🤖 Contenu automatisé</h3>
-    <p><b>Les articles de ce site sont produits automatiquement</b> par un programme,
-       à partir de sources d'actualité publiques. Aucun journaliste n'intervient dans
-       leur rédaction.</p>
-    <p>Chaque article cite sa source et y renvoie. En cas d'erreur, écrivez-nous : la
-       correction est publiée et l'historique conservé.</p></div>
-
-  <div class="bloc"><h3>©️ Droits</h3>
-    <p>Les textes sont des reformulations originales, jamais des reproductions. Les
-       images proviennent des articles source ou de banques libres de droits, créditées.</p>
-    <p>Vous estimez qu'un contenu porte atteinte à vos droits ? Écrivez-nous, il sera
-       retiré sans délai le temps de l'examen.</p></div>
-
-  <div class="bloc"><h3>🔒 Données personnelles</h3>
-    <p>Ce site ne dépose <b>aucun cookie publicitaire</b> et n'utilise aucun traceur
-       tiers. Aucune donnée personnelle n'est collectée à la simple consultation.</p>
-    <p><b>Réactions et commentaires :</b> aucun compte, aucune inscription, aucune
-       adresse électronique. Nous n'enregistrons ni votre adresse IP, ni aucun
-       identifiant permettant de vous reconnaître.</p>
-    <p>Votre navigateur mémorise localement les articles sur lesquels vous avez
-       voté, uniquement pour éviter de compter deux fois. <b>Cette information ne
-       quitte jamais votre appareil</b> et disparaît si vous videz vos données de
-       navigation.</p>
-    <p>Le pseudonyme accompagnant un commentaire est libre et non vérifié. N'y
-       mettez rien que vous ne souhaiteriez pas voir public.</p>
-    <p>Conformément au RGPD, écrivez-nous pour toute demande d'accès, de rectification
-       ou de suppression.</p></div>
-
-  <div class="bloc"><h3>💬 Modération</h3>
-    <p>Les commentaires sont publiés sans validation préalable. Ils engagent leur
-       auteur, pas l'éditeur.</p>
-    <p>Tout propos injurieux, diffamatoire, haineux ou contraire à la loi sera
-       retiré dès signalement. Écrivez-nous à l'adresse de contact.</p>
-    <p>Aucun commentaire n'est modifié : il est publié tel quel, ou masqué.</p></div>
-
-  <div class="bloc"><h3>⚠️ Responsabilité</h3>
-    <p>Les informations sont fournies à titre indicatif. Malgré le recoupement entre
-       sources, une erreur reste possible : <b>vérifiez toute information importante
-       auprès de la source d'origine</b>, dont le lien figure sur chaque article.</p></div>
-
-  </section>
-
+<section class="wrap pad-a">
+  <div class="encadre"><b>Le silence, c'est là que tout se joue.</b> Ce qu'un média
+    choisit de taire en dit plus long que ce qu'il publie. Alors nous ouvrons les
+    livres : <b>tous</b> les arbitrages figurent ici — publiés, mis en surveillance,
+    écartés — avec leur motif et leur note. Jugez vous-même si nous avons eu raison,
+    <b>et dites-le-nous si ce n'est pas le cas.</b><br><br>
+    Chaque sujet est noté sur 100 selon un barème public : gravité du fait, densité
+    de couverture, fraîcheur, caractère imprévu, proximité. <b>Publication à partir
+    de 40 points, alerte à partir de 70.</b> Le détail figure sur la page.</div>
+  <div class="res" id="resume"></div>
+  <div class="filtres" style="margin-bottom:18px">
+    <button class="f fd on" data-d="tout">Tout</button>
+    <button class="f fd" data-d="ecarter">✕ Écartés</button>
+    <button class="f fd" data-d="suivre">◷ En suivi</button>
+    <button class="f fd" data-d="publier">✓ Publiés</button>
+  </div>
+  <div id="liste"><div class="charge"><div class="sp"></div>Chargement du journal…</div></div>
+  <div class="pagi" id="pagi"></div>
+</section>
 <footer><div class="wrap">
   <div class="fl">PULSE</div>
   <p>Tech · Finance · Innovation</p>
@@ -526,6 +601,157 @@ html[data-th="clair"] .cm-f textarea{background:#F7F6FB;border-color:var(--bord)
 (function(){var b=document.getElementById('burger'),n=document.getElementById('nav');
 if(!b||!n)return;b.addEventListener('click',function(){
   var o=n.classList.toggle('ouvert');b.textContent=o?'✕':'☰';});})();
+</script><script>
+const DEC = {ecarter:["✕","ÉCARTÉ","#EF4444"], suivre:["◷","EN SUIVI","#F59E0B"],
+             publier:["✓","PUBLIÉ","#37E39B"]};
+const PAR_PAGE = 25;
+let page = 0, filtre = 'tout', total = 0;
+
+/* ⚠️ Les compteurs ne comptaient QUE les décisions affichées : ils changeaient
+   à chaque chargement, ce qui donnait des chiffres incohérents. On demande
+   maintenant le total réel à la base, via un comptage exact. */
+async function compter(condition){
+  const q = condition ? `&${condition}` : '';
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/decisions?select=id${q}`, {
+    headers:{apikey:SUPABASE_ANON, Authorization:`Bearer ${SUPABASE_ANON}`,
+             Prefer:'count=exact', Range:'0-0'}});
+  return Number((r.headers.get('content-range')||'/0').split('/')[1] || 0);
+}
+
+async function resume(){
+  try{
+    const [ec, su, pu] = await Promise.all([
+      compter('decision=eq.ecarter'),
+      compter('decision=eq.suivre'),
+      compter('decision=eq.publier')]);
+    total = ec + su + pu;
+    document.getElementById('resume').innerHTML = `
+      <div class="rc"><div class="v" style="color:#EF4444">${ec.toLocaleString('fr-FR')}</div>
+        <div class="l">sujets écartés</div></div>
+      <div class="rc"><div class="v" style="color:#F59E0B">${su.toLocaleString('fr-FR')}</div>
+        <div class="l">mis en suivi</div></div>
+      <div class="rc"><div class="v" style="color:#37E39B">${pu.toLocaleString('fr-FR')}</div>
+        <div class="l">publiés</div></div>
+      <div class="rc"><div class="v" style="color:var(--mauve)">${total.toLocaleString('fr-FR')}</div>
+        <div class="l">décisions au total</div></div>`;
+  }catch(e){}
+}
+
+/* 📝 Un motif brut — « sujet déjà publié récemment » — ne dit pas grand-chose.
+   On l'explicite, et on y joint le score quand il est disponible. */
+function motif(x){
+  const r = (x.raison || '').toLowerCase();
+  let txt = x.raison || 'motif non précisé';
+  let sup = '';
+  if(r.includes('déjà publié'))
+    sup = "Ce fait a déjà fait l'objet d'une publication. Sans élément nouveau, le republier n'apporterait rien au lecteur.";
+  else if(r.includes('une seule rédaction'))
+    sup = "Une seule rédaction rapporte ce fait. Notre seuil exige deux sources indépendantes, sauf alerte vitale.";
+  else if(r.includes('pas assez') || r.includes('score'))
+    sup = "Le score composite n'atteint pas le seuil de publication, fixé à 46 points sur 100.";
+  else if(r.includes('délai') || r.includes('cadence'))
+    sup = "Un sujet proche vient d'être publié. Un délai minimum sépare deux traitements d'une même affaire.";
+  else if(r.includes('corrobor'))
+    sup = "Le seuil de corroboration exige deux rédactions indépendantes, sauf alerte vitale.";
+  else if(r.includes('quota') || r.includes('plafond'))
+    sup = "Le plafond quotidien de 20 publications est atteint. Seules les alertes vitales passent encore.";
+  else if(r.includes('nuit'))
+    sup = "Les publications ordinaires sont suspendues la nuit. Le sujet sera réexaminé au matin.";
+  return {txt, sup};
+}
+
+function carteDec(x){
+  const [ic,lab,col] = DEC[x.decision] || DEC.ecarter;
+  const m = motif(x);
+  /* Un sujet écarté avant évaluation n'a pas de score : afficher « 0.0 / 10 »
+     laisserait croire à une note très faible, ce qui est faux. */
+  /* Barème sur 100 : publication à partir de 40, alerte à partir de 70. */
+  const sc = (x.score != null && x.score > 0)
+    ? `<span class="sc${x.score >= 77 ? ' urg' : x.score >= 46 ? ' ok' : ' bas'}">${
+        x.score.toFixed(0)} / 100</span>`
+    : (x.decision === 'ecarter' ? '<span class="sc na">non évalué</span>' : '');
+  const det = x.detail
+    ? `<div class="detail">${x.detail}</div>` : '';
+  const md = x.nb_medias
+    ? `<span class="md">${x.nb_medias} média${x.nb_medias>1?'s':''}</span>` : '';
+  return `<div class="dec">
+    <span class="ic" style="--cc:${col}">${ic}</span>
+    <div class="corps">
+      <div class="dt">${x.titre}</div>
+      <div class="dr">${m.txt}</div>
+      ${m.sup ? `<div class="dx">${m.sup}</div>` : ''}
+      ${det}
+    </div>
+    <div class="da"><span class="et" style="--cc:${col}">${lab}</span>
+      ${sc}${md}<span class="ds">${ecoule(x.prise_le)}</span></div>
+  </div>`;
+}
+
+/* ⚠️ `reset` remettait la page à 0 : cliquer sur « 2 » rechargeait la page 1.
+   On sépare les deux notions — vider l'affichage n'est pas revenir au début. */
+async function charger(vider){
+  const box = document.getElementById('liste');
+  if(vider){ box.innerHTML = '<div class="charge"><div class="sp"></div>Chargement…</div>'; }
+  try{
+    let q = `decisions?order=prise_le.desc&limit=${PAR_PAGE}&offset=${page*PAR_PAGE}`;
+    if(filtre !== 'tout') q += `&decision=eq.${filtre}`;
+    const d = await api(q);
+    if(vider) box.innerHTML = '';
+    if(!d.length && !page){
+      box.innerHTML = `<div class="vide"><span class="e">📋</span>
+        Aucune décision pour ce filtre.</div>`;
+      pagination(0); return;
+    }
+    box.insertAdjacentHTML('beforeend', d.map(carteDec).join(''));
+    pagination(d.length);
+  }catch(err){
+    box.innerHTML = `<div class="vide"><span class="e">⚠️</span>
+      Impossible de charger le journal.<br>
+      <span style="font-size:13px">${err.message}</span></div>`;
+  }
+}
+
+/* 📄 PAGINATION : la page descendait sans fin. On la découpe, avec des numéros
+   cliquables — on peut revenir à une page précise plutôt que tout recharger. */
+function pagination(recus){
+  const box = document.getElementById('pagi');
+  const nb = Math.max(1, Math.ceil(total / PAR_PAGE));
+  if(nb <= 1){ box.innerHTML = ''; return; }
+  let h = `<button class="pg" ${page===0?'disabled':''} data-p="${page-1}">‹</button>`;
+  // on n'affiche jamais plus de 7 numéros : au-delà, la barre déborde
+  const fen = [];
+  for(let i=0;i<nb;i++){
+    if(i===0 || i===nb-1 || Math.abs(i-page)<=1) fen.push(i);
+    else if(fen[fen.length-1] !== '…') fen.push('…');
+  }
+  fen.forEach(i => {
+    h += i === '…'
+      ? '<span class="pg pt">…</span>'
+      : `<button class="pg${i===page?' on':''}" data-p="${i}">${i+1}</button>`;
+  });
+  h += `<button class="pg" ${page>=nb-1?'disabled':''} data-p="${page+1}">›</button>`;
+  box.innerHTML = h;
+  box.querySelectorAll('button[data-p]').forEach(b => {
+    b.addEventListener('click', () => {
+      const p = parseInt(b.dataset.p, 10);
+      if(p < 0 || p >= nb || p === page) return;
+      page = p; charger(true);
+      document.getElementById('liste').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+}
+
+document.querySelectorAll('.fd').forEach(b => {
+  b.addEventListener('click', async () => {
+    document.querySelectorAll('.fd').forEach(x => x.classList.remove('on'));
+    b.classList.add('on'); filtre = b.dataset.d;
+    page = 0;      // changer de filtre ramène au début, c'est voulu
+    total = filtre === 'tout' ? await compter() : await compter(`decision=eq.${filtre}`);
+    charger(true);
+  });
+});
+
+resume().then(charger.bind(null, true));
 </script>
 <script>
 /* ══ TRADUCTION DE L'INTERFACE ═══════════════════════════════════════
@@ -679,7 +905,7 @@ const T = {
   "les arbitrages figurent ici — publiés, mis en surveillance, écartés — avec leur motif et leur note. Jugez vous-même si nous avons eu raison,":"editorial calls appear here — published, monitored, rejected — with their reason and score. Judge for yourself whether we got it right,",
   "et dites-le-nous si ce n'est pas le cas.":"and tell us if we did not.",
   "Chaque sujet est noté sur 100 selon un barème public : gravité du fait, densité de couverture, fraîcheur, caractère imprévu, proximité.":"Every story is scored out of 100 on a public scale: severity, breadth of coverage, freshness, unpredictability, proximity.",
-  "Publication à partir de 40 points, alerte à partir de 70.":"Published from 40 points, alert from 70.",
+  "Publication à partir de 46 points, alerte à partir de 77.":"Published from 40 points, alert from 70.",
   "Le détail figure sur la page":"Details on the",
   "Un cycle complet toutes les 5 minutes. 288 fois par jour. Six étapes, dont aucune n'implique un opérateur humain.":"One full cycle every 5 minutes. 288 times a day. Six stages, none involving a human operator.",
   "50 flux · 14 400 requêtes/jour":"50 feeds · 14,400 requests/day",
@@ -690,7 +916,7 @@ const T = {
   "divergences déclarées":"declared discrepancies",
   "barème sur 100 · 9 familles de critères":"scored out of 100 · 9 criteria families",
   "Gravité du fait sur 45 points, densité de couverture sur 20, fraîcheur sur 16, caractère imprévu de −15 à +18, puis intérêt du lectorat, primeur, proximité nationale et pénalités. Chaque composante est journalisée séparément et publiée sur l'article.":"Severity worth 45 points, coverage density 20, freshness 16, unpredictability from −15 to +18, then reader interest, scoop value, national proximity and penalties. Each component is logged separately and published on the article.",
-  "publication ≥ 40/100 · alerte ≥ 70/100 · 2 rédactions minimum":"publication ≥ 40/100 · alert ≥ 70/100 · 2 newsrooms minimum",
+  "publication ≥ 46/100 · alerte ≥ 77/100 · 2 rédactions minimum":"publication ≥ 40/100 · alert ≥ 70/100 · 2 newsrooms minimum",
   "Point de décision unique : publier, mettre en suivi, ou écarter.":"A single decision point: publish, monitor, or reject.",
   "Un fait rapporté par une seule rédaction n'est pas publié":"A fact reported by a single newsroom is not published",
   "738 assertions de test · 7 contrôles rédactionnels":"738 test assertions · 7 editorial checks",
