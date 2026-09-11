@@ -1,0 +1,94 @@
+
+[03:55] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Rams, 49ers, Stafford, Mike Evans, Niners
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 4.3 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 4.3 h (DAZN)
+  ⏭️  « 49ers » écarté : Simple promotion sportive sans événement majeur.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Wolverine, #CharlieKirk
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/2 articles lus en 1.0s (112 déjà en cache)
+  📄 16/115 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · Libération · Ouest-France · CoinDesk · The Block · OpenAI
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 115 articles → 115 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La Cnil annonce un contrôle au sein du fisc après le
+  🕒 Sujet chaud mais article ancien (18h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : New Clarity Act text tweaks DeFi, credit union pro
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Attentats du 11-Septembre : 25 ans après, New York
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Unveiling of Charlie Kirk statue sparks chaos in Tim
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 115 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (66 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-2-preview   🚫 quota
+        22. clé 3 × gemini-embedding-2           🚫 quota
+        23. clé 4 × gemini-embedding-001         🚫 quota
+        24. clé 4 × gemini-embedding-2-preview   🚫 quota
+        25. clé 4 × gemini-embedding-2           🚫 quota
+        26. clé 5 × gemini-embedding-001         🚫 quota
+        27. clé 5 × gemini-embedding-2-preview   🚫 quota
+        28. clé 5 × gemini-embedding-2           🚫 quota
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,436 entrée · 245 sortie
+     ✅ aucun appel payant
