@@ -1,0 +1,51 @@
+
+[23:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #Ø±ÙØªØ§ÙØ§_Ø³Ø¨ÙØ±Øª_Ù Ø¹_ÙÙÙØ¯, #CalvinKleinSS27xLINGLING, LINGLING APAC FACE OF CK, TerÃ¶rsÃ¼z BÃ¶lge, #Ø§ÙØ§ÙÙÙ_Ø§ÙØ­Ø²Ù
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Rennes, #SaudiArabia, #NewYork
+  🕐 23h (Paris) — rythme quota atteint (16) — seules les alertes passent : 150-240 min
+  ⏸️  Dernière publi il y a 38 min — attente.
+  📖 3/3 articles lus en 2.5s (68 déjà en cache)
+  📄 9/72 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · Libération · Cointelegraph · The Block
+  🧠 71 vecteurs calculés en 1 appel(s)
+  🧩 72 articles → 32 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Déraillement d'un train à Cléon en Seine-Maritime, 4
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Diva accessible, star résiliente... Pourquoi tout le
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Rennes 1-0 OM : "Avec qui on va rivaliser" Genesio
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 34.5/100 = gravité 3/10 → 14 + frais 0.5h +13 + primeur absolue +8
+  🛑 Seuil atteint (16/16) — seule une alerte vitale passerait → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Saudi Arabia says East-West pipeline hit by drones
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 8/10 → 36 + frais 0.4h +16 + primeur absolue +8
+  🛑 Seuil atteint (16/16) — seule une alerte vitale passerait → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Khosla Ventures is opening a New York office this fa
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🛑 Seuil souple atteint (16/16) — on garde la place au chaud (breaking/France live).
+
+  ── Bilan du cycle (46 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 16/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 775
+     jetons Gemini : 207 entrée · 71 sortie
+     ✅ aucun appel payant
