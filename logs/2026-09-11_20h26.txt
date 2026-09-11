@@ -1,0 +1,61 @@
+
+[20:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : $CHUMP, namjoon, #HappyBirthdayRM, #à¸à¸µà¹à¸à¸µà¹à¸à¹à¸­à¸à¸­à¸à¸±à¸¡à¹à¸, #NeverForget
+  🌍 « $CHUMP » : aucune reprise en français, source internationale retenue
+  🌍 « namjoon » : aucune reprise en français, source internationale retenue
+  🌍 « NeverForget » : aucune reprise en français, source internationale retenue
+  🕐 20h (Paris) — rythme journée (78-162 min · 14 publié(s), 2 restant(s) sur 4.0 h) : 78-162 min
+  ⏸️  Dernière publi il y a 4 min — attente.
+  📖 1/1 articles lus en 0.1s (73 déjà en cache)
+  📄 8/75 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · CoinDesk · Libération · Ouest-France · The Block · SpaceNews
+  🧠 74 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 Même événement (jugé) : « Céline Dion : "Je vais l’attendre jusq… »
+  🧩 75 articles → 36 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Pourquoi Netflix est sous le feu des critiques aux É
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Plus de 5.000 fans de Céline Dion rassemblés à Paris
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La princesse Astrid, sœur de Harald V de Norvège, me
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Encadrement des loyers : 12 grandes villes française
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sony aurait abandonné Physint par crainte de voir so
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 75 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : bitcoin, crypto, energies, iran, apple, iphone, pliable
+  ✂️ Éphéméride resserré (195 → 195 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (45 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 14/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         ✅
+         4. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         5. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         6. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 1 × gemini-3-flash               ⛔ inexistant
+         9. clé 2 × gemini-3.5-flash-lite        ✅
+        10. clé 2 × gemini-3.5-flash-lite        ✅
+        11. clé 2 × gemini-3.5-flash-lite        ✅
+        12. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 775
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,538 entrée · 181 sortie
+     ✅ aucun appel payant
