@@ -1,0 +1,82 @@
+
+[09:40] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Rams, #SiagaPeduliSesama, #NHCFoodsLiberiaExpansion, Bantuan Penanggulangan Bencana, #æèç¥­ã®æãåº
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 1.5 h (lequipe.fr)
+  ⏭️  « Rams » écarté : trop secondaire (3/10)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  🎲 47 min (proba 5%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/6 articles lus en 1.5s (93 déjà en cache)
+  📄 11/101 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block · CoinDesk · SpaceNews
+  🧠 99 vecteurs calculés en 1 appel(s)
+  🧩 101 articles → 42 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚨 Sujet chaud (breaking, 2 médias) : Call of Duty: Modern Warfare 4 invente une arme qu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 3/10 → 14 + 2 médias +4 + frais 0.6h +13 + primeur +5
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] Activision propose un bonus de précommande exclusif à la version Xbox pour Cal
+      [2m] Le bonus consiste en un skin d'arme vert translucide pour le fusil M4, inspiré
+      [2m] Ce skin ne sera visible que par les joueurs sur Xbox Series X|S et n'aura aucu
+      [2m] La sortie de Call of Duty: Modern Warfare 4 est prévue pour le 23 octobre 2026
+      [2m] Le jeu intègrera une expérience cross-play avec un visuel en jeu divergeant se
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 31 médias) : Incendie d’un cargo en Chine : 25 morts dans le na
+  🧠 40 article(s) sur un autre sujet, écartés du dossier : 9to5Google, ActuGaming, Ars Technica, BBC Business, BFM People
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🧮 Score 57.5/100 = gravité 7/10 → 32 + 31 médias +20 + frais 6.4h +2 + imprévu 6/10 +4
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+  ⚖️ Correction factuelle forcée appliquée
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 101 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : sanctions, iran, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : Un changement de "stratégie fondamentale": pourquo
+  ♻️ Doublon d'un sujet déjà publié, écarté : Croissance : « La France pas en danger mais dans u
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ✂️ Éphéméride resserré (184 → 127 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (97 s) ──
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-001 (+28)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 750 · gemini 2-preview 24 · gemini 2 800
+     jetons Gemini : 29,776 entrée · 1,356 sortie
+     ✅ aucun appel payant
