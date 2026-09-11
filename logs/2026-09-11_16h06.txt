@@ -1,0 +1,60 @@
+
+[16:05] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : ã¿ã¤ã¿ããã¯, æ£®æ¬ã¬ãªãã, PERTHSANTA RALPH LAUREN, #NeverForget, åå ä¸æã®çªç¶æ­»
+  🌍 « NeverForget » : aucune reprise en français, source internationale retenue
+  🕐 16h (Paris) — rythme journée (52-108 min · 10 publié(s), 6 restant(s) sur 8.0 h) : 52-108 min
+  ⏸️  Dernière publi il y a 3 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 0.9s (62 déjà en cache)
+  📄 9/71 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · Ouest-France · Libération · CoinDesk · The Block · SpaceNews
+  🧠 70 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « J'ai découvert une belle dose de Rogue… »
+  🧩 71 articles → 37 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Fabien Roussel, candidat PCF à la présidentielle: "J
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Samsung says ‘Tim Cook’ bought a Galaxy Fold
+  🚨 Sujet chaud (breaking, 1 médias) : Professeur Raoult vs Le Gang des Cerises : quel es
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Fnac et Darty font le plein de bonnes affaires avant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La princesse Astrid, sœur de Harald V de Norvège, me
+  🚨 Sujet chaud (breaking, 1 médias) : US inflation holds steady as diesel prices pass $6
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EU Regulator Says Prediction Markets Are 'Rife With 
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : Rupture de stock ou défaut de fabrication ? La bross
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Stade Toulousain : "On sait où on en est, on n'a pas
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 71 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : bitcoin, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : Apple : John Ternus rejoue la stratégie de Steve J
+  ✂️ Éphéméride resserré (184 → 127 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (54 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 10/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+         5. clé 1 × gemini-3.1-flash-lite        ✅
+         6. clé 1 × gemini-3.1-flash-lite        ✅
+         7. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-001 (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 799
+     jetons Gemini : 6,451 entrée · 256 sortie
+     ✅ aucun appel payant
