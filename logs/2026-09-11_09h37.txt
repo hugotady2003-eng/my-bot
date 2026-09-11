@@ -1,0 +1,56 @@
+
+[09:35] 🔍 Check Pulse — version 5.0.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Rams, #SiagaPeduliSesama, #NHCFoodsLiberiaExpansion, Bantuan Penanggulangan Bencana, #æèç¥­ã®æãåº
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 1.5 h (L'Équipe)
+  ⏭️  « Rams » écarté : trop secondaire (3/10)
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 42 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/4 articles lus en 0.5s (94 déjà en cache)
+  📄 12/100 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France · The Block · CoinDesk · SpaceNews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 98 vecteurs calculés en 1 appel(s)
+  🧩 100 articles → 41 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚨 Sujet chaud (breaking, 1 médias) : Call of Duty: Modern Warfare 4 invente une arme qu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Non évalué — 1 média sur 2 requis
+  ⏭️  Écarté : une seule rédaction rapporte ce fait, en attente de confirmation → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Roman Abreu et retour de Jean-Michel Aulas, 
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 100 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : sanctions, iran, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : Anthropic bloque des opérations de surveillance ut
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ✂️ Éphéméride resserré (188 → 122 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (129 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2 · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 13/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2
+     vecteurs restants : gemini 001 751 · gemini 2-preview 123 · gemini 2 800
+     jetons Gemini : 3,650 entrée · 242 sortie
+     ✅ aucun appel payant
