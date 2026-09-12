@@ -1,0 +1,79 @@
+
+[19:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #MrFanboyEP3, #YouManiacSeriesEP3, MR FANBOY CHAPTER 3, #MchoiceMintAwards2026, #Ø§ÙÙÙØ§Ù_Ø§ÙØªØ¹Ø§ÙÙ
+  🔎 « Hull City » : 1 article(s) frais, le plus récent il y a 3.1 h (Eurosport)
+  ⏭️  « Hull City » écarté : Match futur sans enjeu majeur en France
+  🔎 « Wirtz » : 1 article(s) frais, le plus récent il y a 8.6 h (Tribuna.com)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Wirtz » écarté : Simple commentaire d'entraîneur sans fait nouveau majeur.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Fulham, #Dario
+  🕐 19h (Paris) — rythme journée (48-101 min · 12 publié(s), 4 restant(s) sur 5.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 28 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/6 articles lus en 0.3s (38 déjà en cache)
+  📄 7/44 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir
+  🧠 44 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « BRICS joint declaration calls for 'max… »
+  🧩 44 articles → 22 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : A Nogent-sur-Marne, Bruno Retailleau bat en brèche l
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Chelsea draw with Hull, Liverpool held by Fulham and
+  🚨 Sujet chaud (breaking, 3 médias) : Anthropic CEO says it’s time to pump the brakes on
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Konbini, The Verge
+  🧮 Score 61.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.7h +13 + portée internationale +10
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  📈 Hashtag(s) en tendance : #Dario
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Dario
+  ✂️ Tweet resserré localement (161 → 116 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 44 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : trump, environnement, reform, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : Revolut Leaks Passports, Bitcoin Transaction Histo
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (99 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 12/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-embedding-001         🚫 quota
+         5. clé 1 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-001         🚫 quota
+         7. clé 2 × gemini-embedding-2-preview   🚫 quota
+         8. clé 2 × gemini-embedding-2           🚫 quota
+         9. clé 3 × gemini-embedding-001         🚫 quota
+        10. clé 3 × gemini-embedding-2-preview   🚫 quota
+        11. clé 3 × gemini-embedding-2           🚫 quota
+        12. clé 4 × gemini-embedding-001         ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite (+21)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 721
+     jetons Gemini : 17,184 entrée · 524 sortie
+     ✅ aucun appel payant
