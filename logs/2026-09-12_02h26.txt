@@ -1,0 +1,62 @@
+
+[02:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : hwasa, #å¿ã«é¿ããã«ãå ¨è©±ç¡æ, #CalvinKleinSS27xLINGLING, LINGLING APAC FACE OF CK, #ãµã¿ãã©
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #NewYork
+  📖 75 articles, tous en cache
+  📄 12/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · CoinDesk · OpenAI · Ouest-France · Cointelegraph
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧩 76 articles → 33 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ce que l'on sait du déraillement d'un train en Seine
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Diva accessible, star résiliente... Pourquoi tout le
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Khosla Ventures is opening a New York office this fa
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 76 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         ✅
+        14. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 1 × gemini-3-flash               ⛔ inexistant
+        19. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 566 entrée · 58 sortie
+     ✅ aucun appel payant
