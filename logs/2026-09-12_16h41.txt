@@ -1,0 +1,51 @@
+
+[16:41] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, #YouManiacSeriesEP3, ã´ã¡ã¬ãµ, #åãã©åç½, #BLEACH_anime
+  🕐 16h (Paris) — rythme journée (52-108 min · 10 publié(s), 6 restant(s) sur 8.0 h) : 52-108 min
+  ⏸️  Dernière publi il y a 4 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 0.8s (30 déjà en cache)
+  📄 7/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France · CoinDesk · OpenAI
+  🧠 38 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « BRICS summit begins in India; Iran-UAE… »
+  🧩 38 articles → 18 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 38 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : celine, dion, concert, basket, allemagne
+  ♻️ Doublon d'un sujet déjà publié, écarté : Marine Le Pen affirme qu'elle préfère un budget "i
+  ♻️ Doublon d'un sujet déjà publié, écarté : Macabre découverte au bord du canal à Toulouse : d
+  ♻️ Doublon d'un sujet déjà publié, écarté : Revolut confirms customer data breach through fake
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     plafonds : X 10/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 736
+     jetons Gemini : 2,602 entrée · 206 sortie
+     ✅ aucun appel payant
