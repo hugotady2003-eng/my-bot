@@ -1,0 +1,78 @@
+
+[23:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #Ø§ÙÙØµØ±_Ø§ÙØ®ÙÙØ¬, Mateer, Michigan, Oklahoma, Sunderland
+  🌍 « Mateer » : aucune reprise en français, source internationale retenue
+  🔎 « Mateer » : 1 article(s) frais, le plus récent il y a 0.7 h (CBS Sports)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Mateer » écarté : Sport universitaire américain mineur pour la France
+  🔎 « Michigan » : 1 article(s) frais, le plus récent il y a 13.8 h (RueDesJoueurs)
+  ⏭️  « Michigan » écarté : Simple pronostic sportif sans actualité majeure.
+  🔎 « Oklahoma » : 1 article(s) frais, le plus récent il y a 14.4 h (Disney Plus)
+  ⏭️  « Oklahoma » écarté : Match sportif sans enjeu majeur pour la France
+  🔎 « Sunderland » : 1 article(s) frais, le plus récent il y a 2.9 h (Eurosport)
+  ⏭️  « Sunderland » écarté : Match sportif international sans enjeu marquant.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Dario
+  🕐 23h (Paris) — rythme quota atteint (16) — seules les alertes passent : 150-240 min
+  ⏸️  Dernière publi il y a 9 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  📖 0/2 articles lus en 0.9s (10 déjà en cache)
+  📄 3/12 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Ouest-France
+  🧠 12 vecteurs calculés en 1 appel(s)
+  🧩 12 articles → 9 événement(s)
+  🚨 Sujet chaud (breaking, 2 médias) : Yvelines : une femme enceinte et un enfant meurent
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : L'Express
+  🧮 Score 44.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 3.3h +4
+  🛑 Seuil atteint (16/16) — seule une alerte vitale passerait → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Anthropic CEO says it’s time to pump the brakes on
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 43.5/100 = gravité 7/10 → 32 + frais 4.8h +2 + portée internationale +10
+  🛑 Seuil atteint (16/16) — seule une alerte vitale passerait → suivant
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  🛑 Seuil souple atteint (16/16) — on garde la place au chaud (breaking/France live).
+
+  ── Bilan du cycle (51 s) ──
+     plafonds : X 16/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 2 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 1 × gemini-embedding-2           🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-2           🚫 quota
+        16. clé 3 × gemini-embedding-001         🚫 quota
+        17. clé 3 × gemini-embedding-2-preview   🚫 quota
+        18. clé 3 × gemini-embedding-2           🚫 quota
+        19. clé 4 × gemini-embedding-001         🚫 quota
+        20. clé 4 × gemini-embedding-2-preview   ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 721
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,328 entrée · 219 sortie
+     ✅ aucun appel payant
