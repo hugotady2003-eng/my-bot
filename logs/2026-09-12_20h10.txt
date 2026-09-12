@@ -1,0 +1,98 @@
+
+[20:07] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #Ø§ÙÙÙØ§Ù_Ø§ÙØªØ¹Ø§ÙÙ, #MrFanboyEP3, MR FANBOY CHAPTER 3, #28thMatimunBD, TLE TURNS 28th
+  🌍 « MchoiceMintAwards2026 » : aucune reprise en français, source internationale retenue
+  🔎 « Hull City » : 1 article(s) frais, le plus récent il y a 4.1 h (Eurosport)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Hull City » écarté : Article daté du futur, aucune actualité réelle.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Dario
+  🕐 20h (Paris) — rythme journée (52-108 min · 13 publié(s), 3 restant(s) sur 4.0 h) : 52-108 min
+  ⏸️  Dernière publi il y a 25 min — attente.
+  📖 33 articles, tous en cache
+  📄 5/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France
+  🧠 33 vecteurs calculés en 1 appel(s)
+  🧩 33 articles → 14 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Anthropic's Amodei proposes plan to 'slow the pace
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.1h +8 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 3 column 17 (char 93) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ✂️ Tweet resserré localement (218 → 164 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 4 médias) : Anthropic CEO says it’s time to pump the brakes on
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : Libération, Nikkei Asia, The Verge
+  🧮 Score 56.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 1.8h +8 + portée internationale +10
+  🕒 Âge de l'article : 1.8h (frais ✅)
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 3 column 18 (char 82) → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 3 column 18 (char 83) → couple suivant
+  📈 Hashtag(s) en tendance : #Dario
+  ✂️ Tweet resserré localement (208 → 164 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 33 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : reform, crypto, train, normandie, sncf
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (132 s) ──
+     plafonds : X 13/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   🚫 quota
+         7. clé 2 × gemini-embedding-2           🚫 quota
+         8. clé 3 × gemini-embedding-001         🚫 quota
+         9. clé 3 × gemini-embedding-2-preview   🚫 quota
+        10. clé 3 × gemini-embedding-2           🚫 quota
+        11. clé 4 × gemini-embedding-001         🚫 quota
+        12. clé 4 × gemini-embedding-2-preview   ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        18. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        19. clé 1 × gemini-3-flash               ⛔ inexistant
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 1 × gemini-3.6-flash             ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 13/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.6-flash
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 721
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 51,921 entrée · 700 sortie
+     ✅ aucun appel payant
