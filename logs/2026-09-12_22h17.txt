@@ -1,0 +1,73 @@
+
+[22:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #Ø§ÙÙØµØ±_Ø§ÙØ®ÙÙØ¬, #Ø§ÙÙÙØ§Ù_Ø§ÙØªØ¹Ø§ÙÙ, #MrFanboyEP3, MR FANBOY CHAPTER 3, Spurs
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Blizzard, #StarCraft, #Dario
+  🕐 22h (Paris) — rythme journée (78-162 min · 15 publié(s), 1 restant(s) sur 2.0 h) : 78-162 min
+  ⏸️  Dernière publi il y a 8 min — attente.
+  📖 1/1 articles lus en 0.1s (19 déjà en cache)
+  📄 3/20 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · IGN France
+  🧠 20 vecteurs calculés en 1 appel(s)
+  🧩 20 articles → 11 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Blizzard dévoile une nouvelle campagne Warcraft 3 à 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : StarCraft returns in 2030 as an open-world shooter
+  🚨 Sujet chaud (breaking, 1 médias) : Anthropic CEO says it’s time to pump the brakes on
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 3.9h +4 + portée internationale +10
+  🕒 Âge de l'article : 3.9h (frais ✅)
+  📈 Hashtag(s) en tendance : #Dario
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (215 → 150 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 20 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : anthropic, heroes, storm, blizzard
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (95 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 15/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   ✅
+        11. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 1 × gemini-3.6-flash             🚫 quota
+        15. clé 1 × gemini-3-flash               ⛔ inexistant
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 721
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 14,027 entrée · 266 sortie
+     ✅ aucun appel payant
