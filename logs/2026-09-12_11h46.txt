@@ -1,0 +1,49 @@
+
+[11:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : ã¸ã§ãã³ã, ããã»ã¼, #4ElementsInfiniteBonds, #MchoiceMintAwards2026, 4E OUR INFINITE MOMENTS
+  🌍 « Madhuri » : aucune reprise en français, source internationale retenue
+  🔎 « Madhuri » : 1 article(s) frais, le plus récent il y a 6.3 h (The Indian Express)
+  ⏭️  « Madhuri » écarté : Faits divers local et anecdotique en Inde
+  🕐 11h (Paris) — rythme journée (46-95 min · 5 publié(s), 11 restant(s) sur 13.0 h) : 46-95 min
+  ⏸️  Dernière publi il y a 29 min — attente.
+  📖 3/3 articles lus en 1.0s (50 déjà en cache)
+  📄 5/53 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · The Block · OpenAI
+  🧠 53 vecteurs calculés en 1 appel(s)
+  🧩 53 articles → 31 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Pilates, Danse… La préparation physique très soutenu
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une quarantaine de blessés, la piste d'un acte malve
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La mairie RN de Carcassonne fait murer un squat à la
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion en concert à Paris : "Ma mère nous révei
+  ⚪ Écarté (-4, pénalisé par « horoscope ») : En attendant le remake, le meilleur goodies de Zelda
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un si grand soleil : résumé et explication de l'épis
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 53 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : franchises, medicales, genetique
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (54 s) ──
+     écartés : 6 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 1 × gemini-embedding-2           🚫 quota
+         5. clé 2 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 784
+     jetons Gemini : 2,884 entrée · 134 sortie
+     ✅ aucun appel payant
