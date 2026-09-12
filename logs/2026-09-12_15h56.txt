@@ -1,0 +1,54 @@
+
+[15:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, #åãã©åç½, #YouManiacSeriesEP3, ã´ã¡ã¬ãµ, #åç¥äºåçªçµ
+  🕐 15h (Paris) — rythme journée (50-104 min · 9 publié(s), 7 restant(s) sur 9.0 h) : 50-104 min
+  ⏸️  Dernière publi il y a 15 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.6s (36 déjà en cache)
+  📄 7/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · CoinDesk · OpenAI
+  🧠 38 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « BRICS summit begins in India; Iran-UAE… »
+  🧩 38 articles → 20 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : WTT Champions Macao. Alexis Lebrun chute en quart 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 41.5/100 = gravité 3/10 → 14 + frais 0.3h +16 + exploit français +4 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 38 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : otan, arctique, celine, dion, concert
+  ♻️ Doublon d'un sujet déjà publié, écarté : Éric Ciotti : le maire de Nice annonce que tout ma
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (52 s) ──
+     plafonds : X 9/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 757
+     jetons Gemini : 2,642 entrée · 201 sortie
+     ✅ aucun appel payant
