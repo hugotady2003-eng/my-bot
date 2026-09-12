@@ -1,0 +1,60 @@
+
+[09:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #ã¢ãã³ãã¥ãªã³ã®è±ªéãµãã¼, #4ElementsInfiniteBonds, #NuNew2ndConcert, #NamtanFilmFancon, ã¹ãã©ã¤
+  🌍 « NamtanFilmFancon » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #LadyGaga
+  🕐 9h (Paris) — rythme journée (41-86 min · 2 publié(s), 14 restant(s) sur 15.0 h) : 41-86 min
+  🎲 63 min (proba 50%) → on attend.
+  📖 4/4 articles lus en 0.4s (71 déjà en cache)
+  📄 11/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · Libération · Cointelegraph · The Block
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧩 76 articles → 38 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion à Paris: des fans déjà présents au Royal
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Déraillement d'un TER en Seine-Maritime : "Je pensai
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La chanteuse Lady Gaga a eu son premier enfant, selo
+  🚨 Sujet chaud (breaking, 1 médias) : Corée du Nord : nouveaux tirs de missiles balistiq
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.0/100 = gravité 8/10 → 36 + frais 0.6h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (191 → 148 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (Numerama Pop) — même sujet
+  👁️ Image écartée : Aucun lien avec l'actualité
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 76 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : suede, otan, defense
+  ♻️ Doublon d'un sujet déjà publié, écarté : Moyen-Orient : les Houthis contrôlent le détroit d
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (75 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 2/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-001 (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 562 · gemini 2-preview 800 · gemini 2 800
+     jetons Gemini : 15,852 entrée · 336 sortie
+     ✅ aucun appel payant
