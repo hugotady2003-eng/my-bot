@@ -1,0 +1,53 @@
+
+[13:16] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #åç¥äºåçªçµ, #MchoiceMintAwards2026, #YouManiacSeriesEP3, #GenshinSpecialProgram, Madhuri
+  🌍 « Madhuri » : aucune reprise en français, source internationale retenue
+  🔎 « Madhuri » : 1 article(s) frais, le plus récent il y a 1.1 h (timesofindia.indiatimes.com)
+  ⏭️  « Madhuri » écarté : Simple declaration people sans interet general en France.
+  🕐 13h (Paris) — rythme journée (42-89 min · 6 publié(s), 10 restant(s) sur 11.0 h) : 42-89 min
+  🎲 59 min (proba 38%) → on attend.
+  📖 3/3 articles lus en 0.7s (57 déjà en cache)
+  📄 7/60 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · The Block · OpenAI
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 60 vecteurs calculés en 1 appel(s)
+  🧩 60 articles → 25 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Valentin Grimaud, essayiste : « La venue de Céline D
+  ⚪ Écarté (-2, pénalisé par « comment  ») : 58 % des demandes d’indemnisation de vol sont refusé
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Déraillement d'un train en Seine-Maritime: la piste 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Acte malveillant privilégié, 44 blessés : ce que l'o
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Acte malveillant, victime grave hors de danger, état
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 60 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : genetique, revolut, bitcoin, passeports
+  ♻️ Doublon d'un sujet déjà publié, écarté : Analyse Apple iPhone Duo : ses qualités photo ne p
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (58 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 6/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 1 × gemini-embedding-2           🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2 (+26)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 762
+     jetons Gemini : 3,383 entrée · 115 sortie
+     ✅ aucun appel payant
