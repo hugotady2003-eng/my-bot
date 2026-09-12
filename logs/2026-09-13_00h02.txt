@@ -1,0 +1,66 @@
+
+[00:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Sunderland, #Ø§ÙÙØµØ±_Ø§ÙØ®ÙÙØ¬, Raya, Saka, Oregon
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #StarCraft, #Blizzard, #Ireland
+  📖 20 articles, tous en cache
+  📄 6/21 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 20 vecteurs calculés en 1 appel(s)
+  🧩 21 articles → 9 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Diablo V, StarCraft revient , WoW Forever… : les 5 a
+  🚨 Sujet chaud (breaking, 3 médias) : Trump's comments on a united Ireland may have targ
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : CoinDesk, The Verge
+  🧮 Score 79.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.7h +13 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 80) mais nuit → il attendra le matin
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 21 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : heroes, storm, blizzard, allemagne
+  ♻️ Doublon d'un sujet déjà publié, écarté : Budget 2027 : Roland Lescure évoque un « effort » 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Concert de Céline Dion : découvrez la liste des mo
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump's comments on a united Ireland may have targ
+  ♻️ Doublon d'un sujet déjà publié, écarté : Sam Altman says OpenAI going public in 2026 would 
+  → Rien à publier.
+
+  ── Bilan du cycle (36 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         ✅
+        14. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 1 × gemini-3-flash               ⛔ inexistant
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.5-flash-lite (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 721
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 681 entrée · 68 sortie
+     ✅ aucun appel payant
