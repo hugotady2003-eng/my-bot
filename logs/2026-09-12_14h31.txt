@@ -1,0 +1,45 @@
+
+[14:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, #åç¥äºåçªçµ, SolCex Stocks, #YouManiacSeriesEP3, #REMYxTFORainy
+  🕐 14h (Paris) — rythme journée (48-101 min · 8 publié(s), 8 restant(s) sur 10.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 5 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.4s (40 déjà en cache)
+  📄 5/45 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · OpenAI
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 45 vecteurs calculés en 1 appel(s)
+  🧩 45 articles → 25 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion quitte son hôtel avant son premier conce
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Acte malveillant privilégié, 44 blessés : ce que l'o
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 45 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : geneve, otan, arctique
+  ♻️ Doublon d'un sujet déjà publié, écarté : France - Allemagne. Après 73 ans d’attente les Ble
+  ♻️ Doublon d'un sujet déjà publié, écarté : Miss France 2027 : découvrez la pétillante Emma Ni
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (39 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 8/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-2 (+26)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 762
+     jetons Gemini : 2,422 entrée · 44 sortie
+     ✅ aucun appel payant
