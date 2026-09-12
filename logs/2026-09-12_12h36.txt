@@ -1,0 +1,49 @@
+
+[12:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, Madhuri, #MaharajKaKhauf, #4ElementsInfiniteBonds, #SideM11th_day1
+  🌍 « Madhuri » : aucune reprise en français, source internationale retenue
+  🔎 « Madhuri » : 1 article(s) frais, le plus récent il y a 0.4 h (The Times of India)
+  ⏭️  « Madhuri » écarté : Simple declaration d'une actrice indienne sans interet.
+  🌍 « Anant Ambani » : aucune reprise en français, source internationale retenue
+  🔎 « Anant Ambani » : 1 article(s) frais, le plus récent il y a 8.7 h (ET Now)
+  ⏭️  « Anant Ambani » écarté : Sujet indien sans impact direct en France.
+  🕐 12h (Paris) — rythme journée (46-97 min · 6 publié(s), 10 restant(s) sur 12.0 h) : 46-97 min
+  ⏸️  Dernière publi il y a 19 min — attente.
+  📖 4/4 articles lus en 1.3s (38 déjà en cache)
+  📄 5/42 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · The Block · OpenAI
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 42 vecteurs calculés en 1 appel(s)
+  🧩 42 articles → 27 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une quarantaine de blessés, la piste d'un acte malve
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Acte malveillant privilégié, 44 blessés : ce que l'o
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 42 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : genetique, revolut, bitcoin, passeports
+  ♻️ Doublon d'un sujet déjà publié, écarté : Après le blocage d'Ormuz, Bab-el-Mandeb : "Nous no
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (37 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 6/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 1 × gemini-embedding-2           🚫 quota
+         6. clé 2 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 762
+     jetons Gemini : 3,043 entrée · 142 sortie
+     ✅ aucun appel payant
