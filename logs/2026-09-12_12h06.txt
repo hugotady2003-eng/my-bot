@@ -1,0 +1,56 @@
+
+[12:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : ã¸ã§ãã³ã, ããã»ã¼, #4ElementsInfiniteBonds, #MchoiceMintAwards2026, 4E OUR INFINITE MOMENTS
+  🌍 « Madhuri » : aucune reprise en français, source internationale retenue
+  🔎 « Madhuri » : 1 article(s) frais, le plus récent il y a 6.6 h (The Indian Express)
+  ⏭️  « Madhuri » écarté : Faits divers animalier local en Inde sans intérêt français
+  🕐 12h (Paris) — rythme journée (42-88 min · 5 publié(s), 11 restant(s) sur 12.0 h) : 42-88 min
+  🎲 49 min (proba 16%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 12/16 articles lus en 3.0s (48 déjà en cache)
+  📄 10/64 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · The Block · OpenAI
+  🧠 64 vecteurs calculés en 1 appel(s)
+  🧩 64 articles → 26 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : LIGNE ROUGE: Céline Dion, ses retrouvailles avec la 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une quarantaine de blessés, la piste d'un acte malve
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La mairie RN de Carcassonne fait murer un squat à la
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Il n’a eu que le temps de "tendre les bras" : un pom
+  ⚪ Écarté (-4, pénalisé par « horoscope ») : En attendant le remake, le meilleur goodies de Zelda
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 64 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : franchises, medicales, genetique
+  ♻️ Doublon d'un sujet déjà publié, écarté : L’Arabie saoudite, isolée face à l’Iran et aux reb
+  ♻️ Doublon d'un sujet déjà publié, écarté : Budget 2027 : retraites indexées sur l’inflation o
+  ♻️ Doublon d'un sujet déjà publié, écarté : "On respire des fumées toxiques à travers une cago
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (44 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 1 × gemini-embedding-2           🚫 quota
+         5. clé 2 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.6-flash (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 773
+     jetons Gemini : 3,056 entrée · 198 sortie
+     ✅ aucun appel payant
