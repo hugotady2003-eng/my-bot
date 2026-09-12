@@ -1,0 +1,51 @@
+
+[10:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS CNEWS: The read operation timed out
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : ã¸ã§ãã³ã, #4ElementsInfiniteBonds, #NamtanFilmFancon, 4E OUR INFINITE MOMENTS, #ã¢ãã³ãã¥ãªã³ã®è±ªéãµãã¼
+  🌍 « NamtanFilmFancon » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #LadyGaga
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  ⏸️  Dernière publi il y a 2 min — attente.
+  📖 1/1 articles lus en 0.1s (57 déjà en cache)
+  📄 9/59 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France · CoinDesk · Cointelegraph · The Block
+  🧠 58 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧩 59 articles → 28 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Durée du show, choix des chansons, scène monumentale
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Déraillement d'un train en Seine-Maritime: la piste 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Lady Gaga et Michael Polansky parents de leur premie
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Liban : le président Joseph Aoun en visite près d’un
+  ⚪ Écarté (-4, pénalisé par « horoscope ») : En attendant le remake, le meilleur goodies de Zelda
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Déraillement d'un TER en Normandie : bilan, enquête,
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 59 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : bleues, basketball, allemagne, franchises, medicales
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (167 s) ──
+     écartés : 6 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2 (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 663 · gemini 2 800
+     jetons Gemini : 3,120 entrée · 177 sortie
+     ✅ aucun appel payant
