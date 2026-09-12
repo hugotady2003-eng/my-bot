@@ -1,0 +1,69 @@
+
+[18:46] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, #YouManiacSeriesEP3, #SixTONESANN, #MrFanboyEP3, Hull
+  🔎 « Hull » : 1 article(s) frais, le plus récent il y a 2.8 h (Eurosport)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Hull » écarté : Date future, match fictif ou erreur source.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Dario
+  🕐 18h (Paris) — rythme journée (58-121 min · 12 publié(s), 4 restant(s) sur 6.0 h) : 58-121 min
+  ⏸️  Dernière publi il y a 9 min — attente.
+  📖 1/1 articles lus en 0.6s (39 déjà en cache)
+  📄 5/40 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France
+  🧠 40 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « BRICS joint declaration calls for 'max… »
+  🧩 40 articles → 24 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle: "Le peuple de France souffre", martè
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : A Nogent-sur-Marne, Bruno Retailleau bat en brèche l
+  🚨 Sujet chaud (breaking, 1 médias) : Anthropic CEO says it’s time to pump the brakes on
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + frais 0.4h +16 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  📈 Hashtag(s) en tendance : #Dario
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Dario
+  ✂️ Tweet resserré localement (161 → 116 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 40 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : trump, environnement, reform, crypto
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (63 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 12/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   🚫 quota
+         7. clé 2 × gemini-embedding-2           🚫 quota
+         8. clé 3 × gemini-embedding-001         🚫 quota
+         9. clé 3 × gemini-embedding-2-preview   🚫 quota
+        10. clé 3 × gemini-embedding-2           🚫 quota
+        11. clé 4 × gemini-embedding-001         ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite (+21)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 721
+     jetons Gemini : 16,351 entrée · 471 sortie
+     ✅ aucun appel payant
