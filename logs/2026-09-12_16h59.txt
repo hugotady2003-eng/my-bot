@@ -1,0 +1,75 @@
+
+[16:59] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, #YouManiacSeriesEP3, ã´ã¡ã¬ãµ, #åãã©åç½, #BLEACH_anime
+  🕐 16h (Paris) — rythme journée (52-108 min · 10 publié(s), 6 restant(s) sur 8.0 h) : 52-108 min
+  ⏸️  Dernière publi il y a 22 min — attente.
+  📖 3/3 articles lus en 0.5s (34 déjà en cache)
+  📄 6/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · Libération · Ouest-France · CoinDesk · OpenAI
+  🧠 37 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « "J'ai pris des billets très bien placé… »
+  🧠 Même événement (jugé) : « "Je ne la verrai peut-être qu’une fois… »
+  🧠 Même événement (jugé) : « Céline Dion : 200 millions d'euros dan… »
+  🧠 Même événement (jugé) : « BRICS summit begins in India; Iran-UAE… »
+  🧩 37 articles → 19 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : « Chaque mariage provoquant des troubles à l’ordre p
+  🚨 Sujet chaud (breaking, 7 médias) : Une Irlande « unifiée » « serait fantastique » : à
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : La Tribune, Libération, Melty, Sud Ouest
+  🧮 Score 20.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 2.0h +8 + déjà publié 1× -30
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [3m] Céline Dion entame une série de concerts à la Plénitude Arena de Nanterre.
+         ↳ France Info, Public : France Info annonce 16 concerts cet automne, tandis que Public é
+         motif : Périmètre temporel différent de la tournée.
+      [1m] ⚡exclusif L'événement génère des retombées économiques estimées à un milliard d'euros po
+      [2m] Près de 9 millions de personnes se sont inscrites pour tenter d'obtenir des bi
+      [1m] ⚡exclusif La chanteuse perçoit 90 % du prix de chaque billet vendu.
+      [1m] ⚡exclusif La chanteuse séjourne au palace Royal Monceau à Paris.
+      [3m] Les fans ont dû débourser des sommes importantes pour obtenir des places, parf
+      [1m] ⚡exclusif Céline Dion a répété son spectacle à Las Vegas avant de finaliser les préparat
+      [1m] ⚡exclusif La fortune personnelle de Céline Dion est estimée à 570 millions d'euros.
+  ⏭️  Écarté : même fait reformulé → suivant
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 37 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : celine, dion, concert, basket, allemagne
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (55 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 10/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 726
+     jetons Gemini : 6,421 entrée · 915 sortie
+     ✅ aucun appel payant
