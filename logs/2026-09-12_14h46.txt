@@ -1,0 +1,49 @@
+
+[14:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, #åç¥äºåçªçµ, SolCex Stocks, #YouManiacSeriesEP3, #REMYxTFORainy
+  🕐 14h (Paris) — rythme journée (48-101 min · 8 publié(s), 8 restant(s) sur 10.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 19 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.4s (43 déjà en cache)
+  📄 5/46 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · OpenAI
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 46 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « BRICS summit begins in India; Iran-UAE… »
+  🧩 46 articles → 25 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Acte malveillant privilégié, 44 blessés : ce que l'o
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion quitte son hôtel avant son premier conce
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 46 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : geneve, otan, arctique
+  ♻️ Doublon d'un sujet déjà publié, écarté : EN DIRECT, présidentielle 2027 : à la Fête de L’Hu
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (40 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 8/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 762
+     jetons Gemini : 2,733 entrée · 87 sortie
+     ✅ aucun appel payant
