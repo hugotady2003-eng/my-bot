@@ -1,0 +1,91 @@
+
+[08:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #ã¢ãã³ãã¥ãªã³ã®è±ªéãµãã¼, #NuNew2ndConcert, #NamtanFilmFancon, é«ç´å¹¹é¨, #ã°ã©ãã«ãã­ãæç¨¿ç¥­
+  🌍 « NamtanFilmFancon » : aucune reprise en français, source internationale retenue
+  🔎 « stray kids » : 1 article(s) frais, le plus récent il y a 16.4 h (Benin Web TV)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « stray kids » écarté : trop secondaire (4/10)
+  🔎 « Lady Gaga » : 1 article(s) frais, le plus récent il y a 0.8 h (Le Parisien)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Lady Gaga » écarté : Information fausse, rumeur non fondée.
+  🕐 8h (Paris) — rythme journée (44-92 min · 2 publié(s), 14 restant(s) sur 16.0 h) : 44-92 min
+  ⏸️  Dernière publi il y a 23 min — attente.
+  📖 1/1 articles lus en 0.3s (67 déjà en cache)
+  📄 11/69 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · Cointelegraph · The Block
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 69 articles → 69 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion à Paris: des fans déjà présents au Royal
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Au moins 44 blessés, une femme en "urgence absolue".
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : US Open. « Une progression assez incroyable » : Alex
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 69 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : suede, otan, defense
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (52 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 2/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.6-flash             🚫 quota
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 1 × gemini-embedding-2-preview   🚫 quota
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 2 × gemini-embedding-2           🚫 quota
+        22. clé 3 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-2-preview   🚫 quota
+        24. clé 3 × gemini-embedding-2           🚫 quota
+        25. clé 4 × gemini-embedding-001         🚫 quota
+        26. clé 4 × gemini-embedding-2-preview   🚫 quota
+        27. clé 4 × gemini-embedding-2           🚫 quota
+        28. clé 5 × gemini-embedding-001         🚫 quota
+        29. clé 5 × gemini-embedding-2-preview   🚫 quota
+        30. clé 5 × gemini-embedding-2           🚫 quota
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+        38. clé 3 × gemini-3.1-flash-lite        ✅
+        39. clé 3 × gemini-3.1-flash-lite        ✅
+        40. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3.6-flash (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,053 entrée · 385 sortie
+     ✅ aucun appel payant
