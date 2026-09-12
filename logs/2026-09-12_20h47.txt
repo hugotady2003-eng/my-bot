@@ -1,0 +1,78 @@
+
+[20:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #Ø§ÙÙÙØ§Ù_Ø§ÙØªØ¹Ø§ÙÙ, #MrFanboyEP3, MR FANBOY CHAPTER 3, #28thMatimunBD, TLE TURNS 28th
+  🌍 « MchoiceMintAwards2026 » : aucune reprise en français, source internationale retenue
+  🔎 « Hull City » : 1 article(s) frais, le plus récent il y a 4.8 h (Eurosport)
+  ⏭️  « Hull City » écarté : Match de football de championnat anglais mineur
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Dario
+  🕐 20h (Paris) — rythme journée (52-108 min · 13 publié(s), 3 restant(s) sur 4.0 h) : 52-108 min
+  🎲 63 min (proba 21%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 0.8s (39 déjà en cache)
+  📄 8/46 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · CoinDesk
+  🧠 46 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 Même événement (jugé) : « Accident de train en Normandie : « Auc… »
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🧩 46 articles → 18 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 6 médias) : C’est un des appels les plus virulents à agir : le
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Challenges, CoinDesk, Libération, Nikkei Asia, The Verge
+  🧮 Score 37.0/100 = gravité 4/10 → 18 + 6 médias +11 + frais 0.8h +13 + programmé 3/10 -15 + portée internationale +10
+  → Sujet chaud pas assez fort (score 37) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Diablo 5 annoncé à la Blizzcon 2026
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 46 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : train, normandie, sncf
+  ♻️ Doublon d'un sujet déjà publié, écarté : Anthropic CEO calls for AI race to slow down. Musk
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (71 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 13/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        17. clé 1 × gemini-3-flash               ⛔ inexistant
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.5-flash-lite (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 721
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,073 entrée · 138 sortie
+     ✅ aucun appel payant
