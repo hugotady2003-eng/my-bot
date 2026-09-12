@@ -1,0 +1,46 @@
+
+[16:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 3 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, #YouManiacSeriesEP3, ã´ã¡ã¬ãµ, #åãã©åç½, #BLEACH_anime
+  🕐 16h (Paris) — rythme journée (44-92 min · 9 publié(s), 7 restant(s) sur 8.0 h) : 44-92 min
+  🎲 51 min (proba 15%) → on attend.
+  📖 2/2 articles lus en 0.8s (46 déjà en cache)
+  📄 10/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · CoinDesk · OpenAI
+  🧠 48 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 48 articles → 22 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 48 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : celine, dion, concert
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (86 s) ──
+     plafonds : X 9/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   ✅
+         9. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite (+22)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 740
+     jetons Gemini : 2,508 entrée · 173 sortie
+     ✅ aucun appel payant
