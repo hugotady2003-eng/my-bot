@@ -1,0 +1,42 @@
+
+[09:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : ã¸ã§ãã³ã, #4ElementsInfiniteBonds, #NamtanFilmFancon, 4E OUR INFINITE MOMENTS, #ã¢ãã³ãã¥ãªã³ã®è±ªéãµãã¼
+  🌍 « NamtanFilmFancon » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #LadyGaga
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 29 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.4s (65 déjà en cache)
+  📄 9/67 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Ouest-France · CoinDesk · Cointelegraph · The Block
+  🧠 66 vecteurs calculés en 1 appel(s)
+  🧩 67 articles → 30 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Durée du show, choix des chansons, scène monumentale
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Déraillement d'un TER en Seine-Maritime : "Je pensai
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Lady Gaga et Michael Polansky parents de leur premie
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Liban : le président Joseph Aoun en visite près d’un
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 67 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : suede, otan, defense, bleues, basketball, allemagne
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (52 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2-preview (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 95 · gemini 2-preview 800 · gemini 2 800
+     jetons Gemini : 2,417 entrée · 154 sortie
+     ✅ aucun appel payant
