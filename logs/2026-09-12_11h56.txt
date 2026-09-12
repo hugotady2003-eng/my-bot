@@ -1,0 +1,49 @@
+
+[11:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : ã¸ã§ãã³ã, ããã»ã¼, #4ElementsInfiniteBonds, #MchoiceMintAwards2026, 4E OUR INFINITE MOMENTS
+  🌍 « Madhuri » : aucune reprise en français, source internationale retenue
+  🔎 « Madhuri » : 1 article(s) frais, le plus récent il y a 6.4 h (The Indian Express)
+  ⏭️  « Madhuri » écarté : Faits divers animalier local en Inde sans enjeu français.
+  🕐 11h (Paris) — rythme journée (46-95 min · 5 publié(s), 11 restant(s) sur 13.0 h) : 46-95 min
+  ⏸️  Dernière publi il y a 39 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.8s (52 déjà en cache)
+  📄 7/56 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · The Block · OpenAI
+  🧠 56 vecteurs calculés en 1 appel(s)
+  🧩 56 articles → 31 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : LIGNE ROUGE: Céline Dion, ses retrouvailles avec la 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une quarantaine de blessés, la piste d'un acte malve
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La mairie RN de Carcassonne fait murer un squat à la
+  ⚪ Écarté (-4, pénalisé par « horoscope ») : En attendant le remake, le meilleur goodies de Zelda
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 56 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : franchises, medicales, genetique
+  ♻️ Doublon d'un sujet déjà publié, écarté : Il n'y avait plus participé depuis 2019: Xi Jinpin
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (48 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 1 × gemini-embedding-2           🚫 quota
+         5. clé 2 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.5-flash-lite (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 776
+     jetons Gemini : 2,902 entrée · 122 sortie
+     ✅ aucun appel payant
