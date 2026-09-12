@@ -1,0 +1,66 @@
+
+[17:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, #YouManiacSeriesEP3, #SixTONESANN, Hull, ã´ã¡ã¬ãµ
+  🔎 « Hull » : 1 article(s) frais, le plus récent il y a 2.8 h (Eurosport)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Hull » écarté : Date future, match fictif ou erreur source.
+  🕐 17h (Paris) — rythme journée (45-94 min · 10 publié(s), 6 restant(s) sur 7.0 h) : 45-94 min
+  🎲 54 min (proba 18%) → on attend.
+  📖 4/4 articles lus en 0.7s (49 déjà en cache)
+  📄 8/53 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · CoinDesk · Cointelegraph · OpenAI
+  🧠 53 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Céline Dion fait son grand retour sur … »
+  🧠 Même événement (jugé) : « Modi meets Xi on margins of BRICS summ… »
+  🧠 Même événement (jugé) : « BRICS joint declaration calls for 'max… »
+  🧩 53 articles → 22 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : « Chaque mariage provoquant des troubles à l’ordre p
+  🚨 Sujet chaud (breaking, 1 médias) : Une Irlande « unifiée » « serait fantastique » : à
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + frais 0.9h +13 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 53 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : celine, dion, concert, basket, allemagne
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (103 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 10/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   🚫 quota
+         7. clé 2 × gemini-embedding-2           🚫 quota
+         8. clé 3 × gemini-embedding-001         🚫 quota
+         9. clé 3 × gemini-embedding-2-preview   ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.5-flash-lite (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 722
+     jetons Gemini : 10,649 entrée · 379 sortie
+     ✅ aucun appel payant
