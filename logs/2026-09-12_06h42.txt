@@ -1,0 +1,102 @@
+
+[06:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : lady gaga, Durk, #NuNew2ndConcert, hoshi, #ãµã¯ãªãã¡ã¤ã¹ã©ã£ã¡æ´¾
+  🔎 « lady gaga » : 1 article(s) frais, le plus récent il y a 1.8 h (boursedirect.fr)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « lady gaga » écarté : Information fausse, rumeur sans fondement officiel.
+  🔎 « hoshi » : 1 article(s) frais, le plus récent il y a 15.2 h (Google Actualités)
+  ⏭️  « hoshi » écarté : trop secondaire (4/10)
+  🌍 « NamtanFilmFancon » : aucune reprise en français, source internationale retenue
+  🔎 « SmackDown » : 1 article(s) frais, le plus récent il y a 4.6 h (Google Actualités)
+  ⏭️  « SmackDown » écarté : Il s'agit d'un simple résultat de catch.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.2s (81 déjà en cache)
+  📄 14/86 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · OpenAI · Cointelegraph
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧩 86 articles → 86 événement(s)
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Céline Dion et ses fans : une communauté affective q
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 86 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (108 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   🚫 quota
+        23. clé 3 × gemini-embedding-2           🚫 quota
+        24. clé 4 × gemini-embedding-001         🚫 quota
+        25. clé 4 × gemini-embedding-2-preview   🚫 quota
+        26. clé 4 × gemini-embedding-2           🚫 quota
+        27. clé 5 × gemini-embedding-001         🚫 quota
+        28. clé 5 × gemini-embedding-2-preview   🚫 quota
+        29. clé 5 × gemini-embedding-2           🚫 quota
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        32. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        35. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 9 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,027 entrée · 309 sortie
+     ✅ aucun appel payant
