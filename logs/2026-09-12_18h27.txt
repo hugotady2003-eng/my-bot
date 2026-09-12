@@ -1,0 +1,76 @@
+
+[18:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #MchoiceMintAwards2026, #YouManiacSeriesEP3, #SixTONESANN, #MrFanboyEP3, Hull
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Hull, #Dario
+  🕐 18h (Paris) — rythme journée (46-97 min · 11 publié(s), 5 restant(s) sur 6.0 h) : 46-97 min
+  ⏸️  Dernière publi il y a 43 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.1s (49 déjà en cache)
+  📄 9/52 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · Libération · Cointelegraph · The Block
+  🧠 52 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 52 articles → 23 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle: "La fin est proche, pour tous ceux q
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Farage’s Reform UK gets biggest donation ever from c
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Premier League. Chelsea accroché par le promu Hull C
+  🚨 Sujet chaud (breaking, 2 médias) : Anthropic boss Dario Amodei calls for AI developme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 5/10 → 22 + 2 médias +4 + frais 0.6h +13 + primeur +5 + portée internationale +10
+  🧩 8 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 6 exclusive(s)
+      [2m] Dario Amodei, PDG d'Anthropic, préconise un ralentissement du développement de
+      [2m] Dario Amodei propose un plan en trois points incluant une surveillance indépen
+      [1m] ⚡exclusif Anthropic s'engage unilatéralement à appliquer l'une des stratégies de ralenti
+      [1m] ⚡exclusif Des inquiétudes existent sur le risque existentiel que l'IA pourrait faire pes
+      [1m] ⚡exclusif Deux employés de l'équipe de sécurité d'Anthropic ont démissionné récemment pa
+      [1m] ⚡exclusif Le sénateur Bernie Sanders demande une pause dans le développement de l'IA ava
+      [1m] ⚡exclusif Le président Donald Trump rejette les craintes liées à l'IA, privilégiant la c
+      [1m] ⚡exclusif Anthropic a identifié et bloqué des tentatives d'utilisation malveillante de s
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (228 → 185 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 49 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 52 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : basket, allemagne, trump, environnement
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (86 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         ✅
+        10. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash (+21)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 721
+     jetons Gemini : 16,486 entrée · 1,101 sortie
+     ✅ aucun appel payant
