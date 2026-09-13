@@ -1,0 +1,132 @@
+
+[00:11] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Kyler Murray, #Ø°ÙØ±Ù_Ø§ÙØ¨ÙØ¹Ù_Ø§ÙØ«Ø§ÙÙÙ_Ø¹Ø´Ø±, Bears, Carrick, Saints
+  🔎 « Kyler Murray » : 1 article(s) frais, le plus récent il y a 0.5 h (RDS)
+  ⏭️  « Kyler Murray » écarté : trop secondaire (2/10)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.2 h (DAZN)
+  ⏭️  « Bears » écarté : trop secondaire (2/10)
+  🔎 « Carrick » : 1 article(s) frais, le plus récent il y a 2.7 h (Goal.com)
+  ⏭️  « Carrick » écarté : Déclaration sportive mineure sans impact en France.
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 5.2 h (DAZN)
+  ⏭️  « Saints » écarté : Simple match sportif habituel sans enjeu majeur.
+  🔎 « Lions » : 1 article(s) frais, le plus récent il y a 4.2 h (Science et vie)
+  ⏭️  « Lions » écarté : trop secondaire (3/10)
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 1.4 h (Touchdown Actu)
+  ⏭️  « Josh Allen » écarté : trop secondaire (3/10)
+  🔎 « Texans » : 1 article(s) frais, le plus récent il y a 0.2 h (DAZN)
+  ⏭️  « Texans » écarté : trop secondaire (2/10)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  📖 103/117 articles lus en 22.4s (1 déjà en cache)
+  📄 15/121 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · The Block
+  🧠 118 vecteurs calculés en 2 appel(s)
+  🧠 Même événement (jugé) : « Présidentielle: Marine Le Pen toujours… »
+  🧩 121 articles → 26 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 33 médias) : Basket 3x3. L’équipe de France masculine décroche 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 20 s
+  🧠 54 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Al Jazeera, BBC, BBC Business, CNBC
+  🧮 Score 53.5/100 = gravité 3/10 → 14 + 33 médias +20 + frais 4.5h +2 + portée mondiale +18
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La Switch 2 peut-elle faire tourner Diablo 4 ? J'ai 
+  🚨 Sujet chaud (breaking, 33 médias) : Trump downplays warnings of AI risks, citing rival
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 77.0/100 = gravité 6/10 → 27 + 33 médias +20 + frais 4.5h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 77) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nains à fusil, Bilbon gothique, à quoi aurait ressem
+  ⚽ API football-data : 25 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 121 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Enquête électorale présidentielle 2027 : Marine Le
+  ♻️ Doublon d'un sujet déjà publié, écarté : Le contrôle des houthistes sur le détroit de Bab A
+  ♻️ Doublon d'un sujet déjà publié, écarté : Coupe du monde du basket : malgré un départ canon,
+  ♻️ Doublon d'un sujet déjà publié, écarté : Législatives en Suède : la gauche en tête, l’extrê
+  ♻️ Doublon d'un sujet déjà publié, écarté : Pouvoir d’achat : une présidentielle en zone crise
+  ♻️ Doublon d'un sujet déjà publié, écarté : Marine Le Pen-Jordan Bardella : à Hénin-Beaumont, 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine : Donald Trump pourrait confier 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Une croix gammée taguée sur une mosquée à Bruxelle
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle: Marine Le Pen toujours nettement e
+  ♻️ Doublon d'un sujet déjà publié, écarté : Pas de premier titre mondial pour l’équipe de Fran
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Nous nous devons plus que jamais de mener la bata
+  ♻️ Doublon d'un sujet déjà publié, écarté : L'enquête sur le déraillement d'un TER en Normandi
+  ♻️ Doublon d'un sujet déjà publié, écarté : Mondial de basket : l'équipe de France féminine s'
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine : Attaques de drones russes à pr
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle 2027 : Le Pen toujours nettement en
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle 2027 - Sondage : Glucksmann, Mélenc
+  ♻️ Doublon d'un sujet déjà publié, écarté : "11 000 euros par vol de cuivre" : 65 attaques en 
+  ♻️ Doublon d'un sujet déjà publié, écarté : SONDAGE Présidentielle 2027 : Mélenchon au second 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Mondial féminin de basket : malgré un grand début 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Sous la menace des drones de Moscou, la Moldavie e
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump demande à Zelensky d’épargner le pétrole rus
+  ♻️ Doublon d'un sujet déjà publié, écarté : Avec 51,3 % des voix, la gauche serait en tête des
+  ♻️ Doublon d'un sujet déjà publié, écarté : On a joué à Diablo IV sur la Nintendo Switch 2 à l
+  ♻️ Doublon d'un sujet déjà publié, écarté : Diablo V prévu pour 2029 : trois classes, monde pr
+  ♻️ Doublon d'un sujet déjà publié, écarté : Revolut confirme avoir transmis passeports, selfie
+  ♻️ Doublon d'un sujet déjà publié, écarté : Tubes et émotion : alors, ce premier concert de Cé
+  ♻️ Doublon d'un sujet déjà publié, écarté : Concert de Céline Dion : la sortie de Christine Ke
+  ♻️ Doublon d'un sujet déjà publié, écarté : Miss France 2027 : découvrez la pétillante Léane F
+  ♻️ Doublon d'un sujet déjà publié, écarté : On a joué à Diablo IV sur la Nintendo Switch 2 à l
+  ♻️ Doublon d'un sujet déjà publié, écarté : Diablo V prévu pour 2029 : trois classes, monde pr
+  ♻️ Doublon d'un sujet déjà publié, écarté : Jean-Jacques Goldman et son obsession pour Céline 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Russia hits Ukrainian train shortly after Boris Jo
+  ♻️ Doublon d'un sujet déjà publié, écarté : Poland, Ukraine accuse Russia of ‘escalation’ afte
+  ♻️ Doublon d'un sujet déjà publié, écarté : Anthropic's Amodei says China presents 'toughest d
+  ♻️ Doublon d'un sujet déjà publié, écarté : Vessel struck in Strait of Hormuz, UKMTO says, as 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Fed rate hike is about Wall Street, not inflation,
+  ♻️ Doublon d'un sujet déjà publié, écarté : Anthropic chief urges slowdown in AI development t
+  ♻️ Doublon d'un sujet déjà publié, écarté : Revolut says customer data exposed through fake go
+  ♻️ Doublon d'un sujet déjà publié, écarté : Symbiosis says it recovered 15 BTC after Bitcoin b
+  ♻️ Doublon d'un sujet déjà publié, écarté : Insight Partners’ Devin Parekh on why the firm is 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Apple is reportedly working on iPhone game control
+  ♻️ Doublon d'un sujet déjà publié, écarté : Apple is designing its own game controllers for iP
+  → Rien à publier.
+
+  ── Bilan du cycle (109 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   ✅
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 1 × gemini-embedding-2           🚫 quota
+        13. clé 2 × gemini-embedding-001         ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 700 · gemini 2 800
+     jetons Gemini : 15,242 entrée · 374 sortie
+     ✅ aucun appel payant
