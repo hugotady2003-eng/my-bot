@@ -1,0 +1,73 @@
+
+[00:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Kyler Murray, #Ø°ÙØ±Ù_Ø§ÙØ¨ÙØ¹Ù_Ø§ÙØ«Ø§ÙÙÙ_Ø¹Ø´Ø±, Bears, Carrick, Saints
+  🔎 « Kyler Murray » : 1 article(s) frais, le plus récent il y a 0.6 h (RDS)
+  ⏭️  « Kyler Murray » écarté : trop secondaire (2/10)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.3 h (DAZN)
+  ⏭️  « Bears » écarté : trop secondaire (3/10)
+  🔎 « Carrick » : 1 article(s) frais, le plus récent il y a 2.7 h (Goal.com)
+  ⏭️  « Carrick » écarté : Déclaration sportive sans impact majeur en France.
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 5.3 h (DAZN)
+  ⏭️  « Saints » écarté : Simple match sportif habituel sans enjeu national.
+  🔎 « Lions » : 1 article(s) frais, le plus récent il y a 4.3 h (Science et vie)
+  ⏭️  « Lions » écarté : Etude scientifique animale sans impact direct.
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 1.5 h (Touchdown Actu)
+  ⏭️  « Josh Allen » écarté : trop secondaire (3/10)
+  🔎 « Texans » : 1 article(s) frais, le plus récent il y a 0.3 h (DAZN)
+  ⏭️  « Texans » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #ManchesterUnited
+  📖 2/2 articles lus en 0.8s (73 déjà en cache)
+  📄 10/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Éditorial. Ondes brouillées sur France… »
+  🧩 76 articles → 35 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 7 médias) : Basket 3x3. L’équipe de France masculine décroche 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Challenges, France Bleu, IGN France, Ouest-France, Sud Ouest
+  🧮 Score 26.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 5.8h +2
+  → Sujet chaud pas assez fort (score 26) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La Switch 2 peut-elle faire tourner Diablo 4 ? J'ai 
+  🚨 Sujet chaud (breaking, 7 médias) : Trump downplays warnings of AI risks, citing rival
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 45 s
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : BBC, BBC Business, Frandroid, Nikkei Asia, Ouest-France
+  🧮 Score 68.0/100 = gravité 6/10 → 27 + 7 médias +11 + frais 4.1h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nains à fusil, Bilbon gothique, à quoi aurait ressem
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Manchester City wrongly awarded Haaland goal by VAR 
+  ⚽ API football-data : 25 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 76 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (96 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2-preview · clé 2 × gemini-embedding-2 · clé 2 × gemini-3-flash (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 719 · gemini 2-preview 700 · gemini 2 800
+     jetons Gemini : 6,413 entrée · 330 sortie
+     ✅ aucun appel payant
