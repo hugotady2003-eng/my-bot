@@ -1,0 +1,66 @@
+
+[00:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Kyler Murray, Zverev, #Ø°ÙØ±Ù_Ø§ÙØ¨ÙØ¹Ù_Ø§ÙØ«Ø§ÙÙÙ_Ø¹Ø´Ø±, Bears, Josh Allen
+  🔎 « Kyler Murray » : 1 article(s) frais, le plus récent il y a 1.1 h (RDS)
+  ⏭️  « Kyler Murray » écarté : trop secondaire (3/10)
+  🔎 « Zverev » : 1 article(s) frais, le plus récent il y a 0.9 h (L'Équipe)
+  ✅ « Zverev » retenu : Victoire d'Alexander Zverev à l'US Open. (7/10) (+1 au score)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.8 h (DAZN)
+  ⏭️  « Bears » écarté : trop secondaire (3/10)
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 2.0 h (Touchdown Actu)
+  ⏭️  « Josh Allen » écarté : trop secondaire (3/10)
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 5.8 h (DAZN)
+  ⏭️  « Saints » écarté : Diffusion sportive habituelle sans fait nouveau.
+  🔎 « Lions » : 1 article(s) frais, le plus récent il y a 4.8 h (Science et vie)
+  ⏭️  « Lions » écarté : trop secondaire (3/10)
+  🔎 « Texans » : 1 article(s) frais, le plus récent il y a 0.8 h (DAZN)
+  ⏭️  « Texans » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Zverev
+  📖 75 articles, tous en cache
+  📄 10/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Éditorial. Ondes brouillées sur France… »
+  🧩 76 articles → 36 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La Switch 2 peut-elle faire tourner Diablo 4 ? J'ai 
+  🚨 Sujet chaud (breaking, 11 médias) : Trump downplays warnings of AI risks, citing rival
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 12 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, BBC Business, Frandroid, Nikkei Asia
+  🧮 Score 72.0/100 = gravité 6/10 → 27 + 11 médias +15 + frais 4.4h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 72) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nains à fusil, Bilbon gothique, à quoi aurait ressem
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Alexander Zverev bat Ben Shelton et remporte l'US Op
+  ⚽ API football-data : 25 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 76 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (55 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2 · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.6-flash (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 247 · gemini 2-preview 700 · gemini 2 800
+     jetons Gemini : 5,626 entrée · 319 sortie
+     ✅ aucun appel payant
