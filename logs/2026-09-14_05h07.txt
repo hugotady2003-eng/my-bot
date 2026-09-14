@@ -1,0 +1,62 @@
+
+[05:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Cowboys, Giants, halsey, Packers, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 6.3 h (rds.ca)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Giants » écarté : trop secondaire (2/10)
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 2.8 h (dazn.com)
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  🔎 « Chargers » : 1 article(s) frais, le plus récent il y a 2.8 h (dazn.com)
+  ⏭️  « Chargers » écarté : trop secondaire (2/10)
+  🔎 « Vikings » : 1 article(s) frais, le plus récent il y a 2.8 h (dazn.com)
+  ⏭️  « Vikings » écarté : trop secondaire (3/10)
+  📖 1/1 articles lus en 0.4s (81 déjà en cache)
+  📄 11/83 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · The Block · Libération
+  🧠 82 vecteurs calculés en 1 appel(s)
+  🧩 83 articles → 41 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : trois petits sièges d’écart 
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 83 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump says U.S. may keep Iranian oil 'like Venezue
+  → Rien à publier.
+
+  ── Bilan du cycle (99 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+         5. clé 1 × gemini-3.1-flash-lite        ✅
+         6. clé 1 × gemini-embedding-001         🚫 quota
+         7. clé 1 × gemini-embedding-2-preview   🚫 quota
+         8. clé 1 × gemini-embedding-2           🚫 quota
+         9. clé 2 × gemini-embedding-001         🚫 quota
+        10. clé 2 × gemini-embedding-2-preview   🚫 quota
+        11. clé 2 × gemini-embedding-2           🚫 quota
+        12. clé 3 × gemini-embedding-001         🚫 quota
+        13. clé 3 × gemini-embedding-2-preview   ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.5-flash-lite (+22)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 645 · gemini 2 800
+     jetons Gemini : 2,893 entrée · 264 sortie
+     ✅ aucun appel payant
