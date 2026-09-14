@@ -1,0 +1,53 @@
+
+[11:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ã»ãã³ã§ã¸ããã³, #Levisxnamtanfilm, #LevisTH, Ganesh Chaturthi, #ãã®PCã§éã³ããã²ã¼ã
+  🔎 « Ganesh Chaturthi » : 1 article(s) frais, le plus récent il y a 4.7 h (linfo.re)
+  ⏭️  « Ganesh Chaturthi » écarté : Célébration récurrente sans nouveauté majeure.
+  🌍 « SADDLE UP OUT NOW » : aucune reprise en français, source internationale retenue
+  🕐 11h (Paris) — rythme journée (46-95 min · 5 publié(s), 11 restant(s) sur 13.0 h) : 46-95 min
+  ⏸️  Dernière publi il y a 8 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/9 articles lus en 1.1s (59 déjà en cache)
+  📄 9/69 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · Positivr · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 68 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Amazon fait le plein de promos tech po… »
+  🧩 69 articles → 28 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : la gauche et le bloc de droi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le studio de professeur Layton admet avoir utilisé l
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Cette décision s'est imposée à moi": Léa Salamé se 
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 69 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : grece, naufrage, migrants, finlande
+  ♻️ Doublon d'un sujet déjà publié, écarté : Cette proposition de Marine Le Pen sur le logement
+  ♻️ Doublon d'un sujet déjà publié, écarté : Céline Dion et moi : «Je pense à toutes les fois o
+  ♻️ Doublon d'un sujet déjà publié, écarté : Un policier filmé jetant violemment un homme au so
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (42 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 1 × gemini-embedding-2           🚫 quota
+         5. clé 2 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-2-preview (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 790
+     jetons Gemini : 3,186 entrée · 202 sortie
+     ✅ aucun appel payant
