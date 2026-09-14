@@ -1,0 +1,126 @@
+
+[16:51] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ä¸­æãããã, #ãã¬ããã»ã¹, #æ¶¼ã¡ããèªè ¹, å¥³åªãã, #ããããªæ¯
+  🕐 16h (Paris) — rythme journée (44-92 min · 9 publié(s), 7 restant(s) sur 8.0 h) : 44-92 min
+  🎲 58 min (proba 29%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/9 articles lus en 1.3s (80 déjà en cache)
+  📄 14/89 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · Positivr · IGN France
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 89 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 89 articles → 26 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Blizzard assure qu'il existe « plein de raisons de c
+  ⚪ Écarté (-2, pénalisé par « comment  ») : « Tarif agent » : pourquoi les électriciens et gazie
+  🚨 Sujet chaud (breaking, 12 médias) : BCE : 9 millions de citoyens ont déjà voté pour le
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 12 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, ActuGaming, Begeek, Frandroid, Gamekult
+  🧮 Score 53.5/100 = gravité 5/10 → 22 + 12 médias +18 + frais 0.9h +13
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (191 → 150 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une publicité très dénudée de Sydney Sweeney fait (à
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le prince Harry et Meghan Markle
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : Microsoft says ‘people matter more than AI’ followin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Google Maps rolling out Android Auto speed limits an
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Emmy Awards : vers des sacres manifestes ou de sacré
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  → 89 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : corruption, procureur
+  ♻️ Doublon d'un sujet déjà publié, écarté : La ville de Paris enregistre sa 99e journée de l'a
+  ♻️ Doublon d'un sujet déjà publié, écarté : « Dégoutée », « scandale » : ils n’ont pas pu assi
+  ♻️ Doublon d'un sujet déjà publié, écarté : Fiscal pressure from Iran War clouds Gulf States’ 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Des données sismiques falsifiées : au Japon, le re
+  ♻️ 7/10 [ai] (déjà analysé, cache) : La Chine au cœur de cinq campagnes visant à distil
+  🎯 Pré-classement : 63 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 6/10 [ai] large: ‘Silent Cold War’: Why calls to slow AI have spa
+  🌍 7/10 sans portée internationale : Les salariés de Blizzard signent un accord histori
+  📉 3/10: Seine-Saint-Denis : un homme d’une trentaine d’années d
+  📉 4/10: DeFi Development Corp expands Solana treasury to 2.39 m
+  📉 3/10: Qui sont les bons et mauvais élèves de la loi SRU en Fr
+  📉 3/10: Yu-Gi-Oh ! Tag Force GX réveille l'âme des cartes en fé
+  ✅ 7/10 [ai] large: Astra cartonne tellement qu’OpenAI suspend les n
+  📉 2/10: Où trouver le journal de Callisto pour débloquer le tro
+  📉 4/10: Emmy Awards : vers des sacres manifestes ou de sacrées 
+  📉 2/10: Les meilleures seeds dans Valheim et comment les utilis
+  📉 4/10: « Tarif agent » : pourquoi les électriciens et gaziers 
+  🌍 6/10 sans portée internationale : Petrol and diesel prices hit highest since 2022
+  📉 3/10: Superhuman acquires YC-backed notetaker Fathom as produ
+  📉 5/10: India Begins Tokenizing Its $620 Billion Corporate Bond
+  📉 3/10: Google Wallet for Android getting vertically stacked ca
+  📉 3/10: Async GRPO with LoRA across HF Jobs: a bucket, a proxy,
+  📉 3/10: Cyclisme. «Ça faisait longtemps que je n’avais pas pris
+  📉 5/10: BYD s’attaque aux camions électriques en Europe avec ce
+  📉 3/10: Son mérou semblait trop frais aux yeux des agents du fi
+  📉 5/10: Déchets nucléaires: La commission d'enquête pour Cigéo 
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 1 média(s) · 0.8h — Des données sismiques falsifiées : au Japon,
+     7/10 · 1 média(s) · 0.9h — Astra cartonne tellement qu’OpenAI suspend l
+     6/10 · 1 média(s) · 0.5h — ‘Silent Cold War’: Why calls to slow AI have
+     7/10 · 1 média(s) · 2.9h — La Chine au cœur de cinq campagnes visant à 
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🧠 14 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC Business, Challenges, L'Express, La Dépêche
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (189 → 149 car.)
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.8h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  🐦 Posté sur X (🎬 vidéo) : https://x.com/i/web/status/2099511948966580638
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  🔓 Trop larges pour bloquer un sujet : nucleaire, seisme
+  ✅ Publié [world]: Des données sismiques falsifiées : au Japon, le redémar
+  🔒 Mots-clés bloqués 2h: japon, nucleaire, seisme
+
+  ── Bilan du cycle (170 s) ──
+     écartés : 7 sujet banal · 2 sans portée internationale
+     plafonds : X 10/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.1-flash-lite        ✅
+        24. clé 1 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     jetons Gemini : 38,955 entrée · 1,488 sortie
+     ✅ aucun appel payant
