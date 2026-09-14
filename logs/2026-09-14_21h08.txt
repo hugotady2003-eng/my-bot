@@ -1,0 +1,131 @@
+
+[21:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #GFKvFB, Ed Sheeran, Macklemore, #Ø§ÙØ§ØªØ­Ø§Ø¯_Ø§ÙØ´Ù Ø§Ù, Kerem
+  🔎 « Ed Sheeran » : 1 article(s) frais, le plus récent il y a 1.7 h (Le HuffPost)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Ed Sheeran » écarté : trop secondaire (5/10)
+  🔎 « Macklemore » : 1 article(s) frais, le plus récent il y a 1.7 h (Le HuffPost)
+  ⏭️  « Macklemore » écarté : trop secondaire (5/10)
+  🌍 « Kerem » : aucune reprise en français, source internationale retenue
+  🔎 « Clara » : 1 article(s) frais, le plus récent il y a 8.7 h (Padel Magazine)
+  ⏭️  « Clara » écarté : trop secondaire (3/10)
+  🔎 « Lukaku » : 1 article(s) frais, le plus récent il y a 2.7 h (Le Soir)
+  ⏭️  « Lukaku » écarté : Joueur belge dans un club turc, anecdotique en France.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #SteamFrame, #IOS27
+  🕐 21h (Paris) — rythme journée (39-81 min · 13 publié(s), 3 restant(s) sur 3.0 h) : 39-81 min
+  🎲 68 min (proba 70%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/13 articles lus en 2.0s (75 déjà en cache)
+  📄 15/88 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · SpaceNews · Sciences et Avenir · Positivr · IGN France
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Agression de trois jeunes étudiants à … »
+  🧩 88 articles → 87 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un film Crazy Taxi en prises de vues réelles, une no
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : A Strasbourg, au procès de l’agression de trois étud
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La sortie de Rayman Legends Retold est repoussée, ma
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : S&P Global backs Kaiko as Series B reaches $110M
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Steam Frame: The Ars Technica review
+  ⚪ Écarté (2, pénalisé par « on a test ») : The Top New Features in Apple’s iOS 27 and iPadOS 27
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  → 88 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : strive, bitcoin, crypto
+  ♻️ Doublon d'un sujet déjà publié, écarté : Un cardinal peut gagner entre 4.500 et 5.000 euros
+  ♻️ Doublon d'un sujet déjà publié, écarté : Affaire Lyhanna : la plainte de la mère de la peti
+  ♻️ Doublon d'un sujet déjà publié, écarté : Counting the votes: Warsh faces a tough battle as 
+  🎯 Pré-classement : 64 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 3/10: Samsung pokes fun at iPhone to Android switching drama 
+  📉 4/10: Bitcoin production rebounds in August for BitFuFu, edge
+  📉 3/10: Flambée des prix du carburant: dans le Nord, plusieurs 
+  📉 5/10: Après la lune de miel, le charisme de Zizou suffira-t-i
+  📉 3/10: "Le cancer a sonné la fin de mon rêve" : Matthieu Larto
+  🌍 6/10 sans portée internationale : Cannabis médical : des associations de patients pr
+  📉 4/10: TBT9 : Cyril Hanouna annonce son retrait de l'émission 
+  ✅ 7/10 [world] large: Hongrie : premier signe clair et encourageant d’
+  📉 2/10: Apple just released new AirPods Pro 3 firmware, more fo
+  🌍 6/10 sans portée internationale : Les politiciens débattent encore de la violence de
+  📉 3/10: Analyse Apple AirPods 5 : quand les écouteurs de base d
+  📉 2/10: La chaleur extrême persiste, le tram ira à l’aéroport e
+  ⏩ Doublon: White House crypto adviser says Trump gave up 'historic
+  📉 2/10: Un dimanche à la campagne : Arié Elmaleh, Catherine Cey
+  📉 5/10: Rayman Legends Retold officiellement reporté par Ubisof
+  📉 4/10: Prix des cartes graphiques : ce comparateur cartographi
+  📉 3/10: NFL Sunday Ticket is $204/year for YouTube Premium subs
+  📉 2/10: Ces dessins animés Nickelodeon des années 90 ont vieill
+  🌍 7/10 sans portée internationale : New York : fermeture d’une douzaine de sites de de
+  📉 4/10: Xiaomi 18 Pro : double capteur 200 mégapixels et batter
+  🏁 Classement final (score · médias · âge) :
+     7/10 · 1 média(s) · 0.2h — Hongrie : premier signe clair et encouragean
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Péter Magyar (Wikipedia)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2099576134685921769
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ✅ Publié [world]: Hongrie : premier signe clair et encourageant d’un chan
+  🔒 Mots-clés bloqués 2h: hongrie, lgbt, magyar
+
+  ── Bilan du cycle (192 s) ──
+     écartés : 6 sujet banal · 3 sans portée internationale
+     plafonds : X 14/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 2 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 2 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-2-preview   🚫 quota
+        14. clé 2 × gemini-embedding-2           🚫 quota
+        15. clé 3 × gemini-embedding-001         🚫 quota
+        16. clé 3 × gemini-embedding-2-preview   🚫 quota
+        17. clé 3 × gemini-embedding-2           🚫 quota
+        18. clé 4 × gemini-embedding-001         🚫 quota
+        19. clé 4 × gemini-embedding-2-preview   🚫 quota
+        20. clé 4 × gemini-embedding-2           🚫 quota
+        21. clé 5 × gemini-embedding-001         🚫 quota
+        22. clé 5 × gemini-embedding-2-preview   🚫 quota
+        23. clé 5 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+        30. clé 2 × gemini-3.5-flash-lite        ✅
+        31. clé 2 × gemini-3.5-flash-lite        ✅
+        32. clé 2 × gemini-3.5-flash-lite        ✅
+        33. clé 2 × gemini-3.5-flash-lite        ✅
+        34. clé 2 × gemini-3.5-flash-lite        ✅
+        35. clé 2 × gemini-3.5-flash-lite        ✅
+        36. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3-flash (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 22,437 entrée · 1,282 sortie
+     ✅ aucun appel payant
