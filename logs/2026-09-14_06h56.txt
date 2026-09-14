@@ -1,0 +1,75 @@
+
+[06:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Cowboys, Giants, #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 12.9 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Cowboys » écarté : trop secondaire (2/10)
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 3.9 h (Odds Scanner)
+  ⏭️  « Giants » écarté : Match de hockey mineur sans enjeu national.
+  🔎 « Lanterns » : 1 article(s) frais, le plus récent il y a 1.7 h (superpouvoir.com)
+  ⏭️  « Lanterns » écarté : Il s'agit d'un simple récapitulatif de série.
+  📖 2/2 articles lus en 0.1s (74 déjà en cache)
+  📄 8/77 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · CoinDesk · Libération · Ouest-France · The Block
+  🧠 76 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Trump downplays warnings of AI risks, … »
+  🧠 Même événement (jugé) : « Questions mount over what an AI 'slowd… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 Même événement (jugé) : « Trump and Mike Johnson think the AI in… »
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  🧩 77 articles → 35 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : WoW Forever : c’est quoi ce « troisième » jeu World 
+  🚨 Sujet chaud (breaking, 18 médias) : Attentats de Trèbes et Carcassonne : trois proches
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 26 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, ActuGaming, BFM People, BFMTV, Begeek
+  🧮 Score 51.5/100 = gravité 5/10 → 22 + 18 médias +18 + frais 11.9h +1 + portée internationale +10
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 77 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (44 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+         5. clé 1 × gemini-embedding-001         🚫 quota
+         6. clé 1 × gemini-embedding-2-preview   🚫 quota
+         7. clé 1 × gemini-embedding-2           🚫 quota
+         8. clé 2 × gemini-embedding-001         🚫 quota
+         9. clé 2 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-2           🚫 quota
+        11. clé 3 × gemini-embedding-001         ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        17. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        18. clé 1 × gemini-3-flash               ⛔ inexistant
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 1 × gemini-3.6-flash             ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-embedding-2 (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 13/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.6-flash
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 645 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,447 entrée · 171 sortie
+     ✅ aucun appel payant
