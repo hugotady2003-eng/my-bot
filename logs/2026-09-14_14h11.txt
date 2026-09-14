@@ -1,0 +1,73 @@
+
+[14:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #CDTVã©ã¤ãã©ã¤ã, #åã«ã¯ãã©ãTVåæ«é², #ããããªæ¯, ã©ãã»ã¼, #THEããã«SHOW
+  🕐 14h (Paris) — rythme journée (43-90 min · 7 publié(s), 9 restant(s) sur 10.0 h) : 43-90 min
+  🎲 44 min (proba 2%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/9 articles lus en 1.6s (59 déjà en cache)
+  📄 12/68 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Sciences et Avenir · Libération · IGN France · Cointelegraph
+  🧠 66 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 68 articles → 28 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Patrick Bruel saura mercredi si l’allègement de son 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Royaume-Uni : les dirigeants écossais, gallois et no
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le prince Harry et Meghan Markle
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le studio de professeur Layton admet avoir utilisé l
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Diablo 4 annonce le retour de Diablo, Baal et Méphis
+  🚨 Sujet chaud (breaking, 5 médias) : Trump agrees to stricter ethics rules to save Clar
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, CoinDesk, Cointelegraph, Hugging Face
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + 5 médias +11 + frais 9.6h +1 + imprévu 7/10 +4 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (169 → 119 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 68 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : bitcoin, crypto, hausse, trump, diesel
+  ♻️ Doublon d'un sujet déjà publié, écarté : Carburants: "Tous les ingrédients sont là pour que
+  ♻️ Doublon d'un sujet déjà publié, écarté : Christophe Galtier pète les plombs et est expulsé 
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 7/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 1 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 751
+     jetons Gemini : 20,899 entrée · 406 sortie
+     ✅ aucun appel payant
