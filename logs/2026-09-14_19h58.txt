@@ -1,0 +1,158 @@
+
+[19:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Ed Sheeran, Macklemore, ä¸­æãããã, #à¸à¹à¸¡à¸à¸¥à¸±à¸à¸à¸­à¸à¸à¸µà¹2, #GalaxyS26FE
+  🔎 « Ed Sheeran » : 1 article(s) frais, le plus récent il y a 0.6 h (Le HuffPost)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Ed Sheeran » écarté : trop secondaire (5/10)
+  🔎 « Macklemore » : 1 article(s) frais, le plus récent il y a 0.6 h (Le HuffPost)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ✅ « Macklemore » retenu : Macklemore écarté de la tournée d'Ed Sheeran (6/10) (+1 au score)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RaymanLegendsRetold, #Macklemore
+  🕐 19h (Paris) — rythme journée (48-101 min · 12 publié(s), 4 restant(s) sur 5.0 h) : 48-101 min
+  🎲 69 min (proba 39%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 1.9s (80 déjà en cache)
+  📄 14/91 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · SpaceNews · Sciences et Avenir · IGN France · CoinDesk
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 91 articles → 91 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Un militaire alcoolisé frappe sa compagne à la fêt
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 3/10 → 14 + frais 2.9h +4 + portée internationale +10 + ⚡ crise institutionnelle → plancher 89
+  🕒 Âge de l'article : 2.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Image écartée : Image sans lien direct
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un film Crazy Taxi en prises de vues réelles, une no
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Autoroute A69 : la facture est tombée pour le conces
+  ⚪ Écarté (2, pénalisé par « on a test ») : iOS 27 est disponible sur iPhone : les 10 meilleures
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Steam Frame : Valve promettait moins cher que l’Inde
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : S&P Global backs Kaiko as Series B reaches $110M
+  ⚪ Écarté (2, pénalisé par « on a test ») : With iOS 27, I’m actually using Siri again
+  🚨 Sujet chaud (breaking, 1 médias) : 270 morts, un avion qui explose et s’écrase sur la
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 3/10 → 14 + frais 0.3h +16 + primeur absolue +8 + portée internationale +10 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 13 s
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Rayman Legends Retold officiellement reporté par Ubi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le plaidoyer de Macklemore, écarté de la tournée d’E
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  → 91 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : brent, iran
+  ♻️ Doublon d'un sujet déjà publié, écarté : Marine Le Pen consolide son ancrage chez les retra
+  ♻️ Doublon d'un sujet déjà publié, écarté : Face aux dangers de l'IA, OpenAI, Anthropic et Goo
+  ♻️ Doublon d'un sujet déjà publié, écarté : Le mariage du fils de Donald Trump financé par un 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Banks escalate stablecoin rewards fight as Senate 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Strive reaches 25,000 BTC milestone with latest $3
+  🎯 Pré-classement : 64 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 3 s
+  📉 3/10: Carney pitches Canada to global investors amid US trade
+  📉 4/10: macOS 27 Golden Gate est disponible avec siri AI en Fra
+  📉 4/10: macOS 27: new Siri takes on AI productivity apps
+  📉 5/10: "Offensively cheap": Solar power is looking up
+  📉 3/10: Avengers: Secret Wars : Thomas Jane tease-t-il le retou
+  📉 3/10: Apple releases macOS Tahoe 26.7 and macOS Sequoia 15.8,
+  📉 4/10: Samsung reportedly considers early ‘Galaxy Z TriFold 2’
+  📉 4/10: macOS 27 is available now
+  📉 5/10: iOS 27 est disponible sur iPhone : les 10 meilleures no
+  🌍 7/10 sans portée internationale : Accident mortel de car en Suisse : une procédure o
+  📉 3/10: NASA Welcomes Djibouti as Newest Artemis Accords Signat
+  📉 2/10: NASA Kicks Off Inspiration Tour with Steelers vs. Falco
+  📉 3/10: Autoroute A69 : la facture est tombée pour le concessio
+  📉 4/10: TBT9 : Cyril Hanouna "vicieux", il dézingue Les enfants
+  📉 4/10: Cet outil d’IA a détecté 6 failles dans Curl que Mythos
+  📉 3/10: VIDEO "Il lui éclate la gueule par terre"… Une interven
+  📉 3/10: Préférence nationale : sur le logement, la «lubie xénop
+  🌍 6/10 sans portée internationale : India to supply Nepal electricity after floods wre
+  📉 3/10: Est-il vrai que «70 % des Français sont éligibles au pa
+  📉 2/10: Pourquoi Édouard Philippe, candidat à la présidentielle
+  🏁 Classement final (score · médias · âge) :
+     7/10 · 1 média(s) · 2.7h — Strive reaches 25,000 BTC milestone with lat
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [crypto]
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 5 s
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🕒 Âge de l'article à la publication : 2.7h (frais ✅)
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2099558295581376711
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ✅ Publié [crypto]: Strive reaches 25,000 BTC milestone with latest $36.6 m
+  🔒 Mots-clés bloqués 2h: strive, bitcoin, crypto
+
+  ── Bilan du cycle (137 s) ──
+     écartés : 8 sujet banal · 2 sans portée internationale
+     plafonds : X 13/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   🚫 quota
+        11. clé 1 × gemini-embedding-2           🚫 quota
+        12. clé 2 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-2-preview   🚫 quota
+        14. clé 2 × gemini-embedding-2           🚫 quota
+        15. clé 3 × gemini-embedding-001         🚫 quota
+        16. clé 3 × gemini-embedding-2-preview   🚫 quota
+        17. clé 3 × gemini-embedding-2           🚫 quota
+        18. clé 4 × gemini-embedding-001         🚫 quota
+        19. clé 4 × gemini-embedding-2-preview   🚫 quota
+        20. clé 4 × gemini-embedding-2           🚫 quota
+        21. clé 5 × gemini-embedding-001         🚫 quota
+        22. clé 5 × gemini-embedding-2-preview   🚫 quota
+        23. clé 5 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+        30. clé 2 × gemini-3.5-flash-lite        ✅
+        31. clé 2 × gemini-3.5-flash-lite        ✅
+        32. clé 2 × gemini-3.5-flash-lite        ✅
+        33. clé 2 × gemini-3.5-flash-lite        ✅
+        34. clé 2 × gemini-3.5-flash-lite        ✅
+        35. clé 2 × gemini-3.5-flash-lite        ✅
+        36. clé 2 × gemini-3.5-flash-lite        ✅
+        37. clé 2 × gemini-3.5-flash-lite        ✅
+        38. clé 2 × gemini-3.5-flash-lite        ✅
+        39. clé 2 × gemini-3.5-flash-lite        ✅
+        40. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 44,184 entrée · 1,646 sortie
+     ✅ aucun appel payant
