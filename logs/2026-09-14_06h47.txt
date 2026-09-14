@@ -1,0 +1,70 @@
+
+[06:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Cowboys, Giants, #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 12.7 h (RDS)
+  ⏭️  « Cowboys » écarté : Sport nord-américain hors actualité française majeure.
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 0.7 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Giants » écarté : trop secondaire (2/10)
+  🔎 « Lanterns » : 1 article(s) frais, le plus récent il y a 1.5 h (Superpouvoir.com)
+  ⏭️  « Lanterns » écarté : Il s'agit d'un simple récapitulatif de série.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 1.9s (74 déjà en cache)
+  📄 8/79 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · CoinDesk · Libération · Ouest-France · The Block
+  🧠 78 vecteurs calculés en 1 appel(s)
+  🧩 79 articles → 36 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : WoW Forever : c’est quoi ce « troisième » jeu World 
+  🚨 Sujet chaud (breaking, 18 médias) : Attentats de Trèbes et Carcassonne : trois proches
+  🧠 27 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, ActuGaming, BFM People, BFMTV, Begeek
+  🧮 Score 36.5/100 = gravité 5/10 → 22 + 18 médias +18 + frais 11.6h +1 + programmé 3/10 -15 + portée internationale +10
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 79 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Donald Trump estime que Volodymyr Zelensky "doit a
+  ♻️ Doublon d'un sujet déjà publié, écarté : Au procès en appel des attentats de Trèbes et Carc
+  → Rien à publier.
+
+  ── Bilan du cycle (100 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+         5. clé 1 × gemini-embedding-001         🚫 quota
+         6. clé 1 × gemini-embedding-2-preview   🚫 quota
+         7. clé 1 × gemini-embedding-2           🚫 quota
+         8. clé 2 × gemini-embedding-001         🚫 quota
+         9. clé 2 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-2           🚫 quota
+        11. clé 3 × gemini-embedding-001         🚫 quota
+        12. clé 3 × gemini-embedding-2-preview   🚫 quota
+        13. clé 3 × gemini-embedding-2           🚫 quota
+        14. clé 4 × gemini-embedding-001         🚫 quota
+        15. clé 4 × gemini-embedding-2-preview   🚫 quota
+        16. clé 4 × gemini-embedding-2           🚫 quota
+        17. clé 5 × gemini-embedding-001         🚫 quota
+        18. clé 5 × gemini-embedding-2-preview   ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.1-flash-lite        ✅
+        24. clé 1 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-3.1-flash-lite        ✅
+        26. clé 1 × gemini-3.1-flash-lite        ✅
+        27. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 645 · gemini 2 800
+     jetons Gemini : 10,143 entrée · 268 sortie
+     ✅ aucun appel payant
