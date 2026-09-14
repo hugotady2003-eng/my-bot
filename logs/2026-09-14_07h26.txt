@@ -1,0 +1,73 @@
+
+[07:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Cowboys, Giants, #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 5.1 h (RueDesJoueurs)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Cowboys » écarté : trop secondaire (2/10)
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 0.4 h (Paris Sportifs LeFigaro)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Giants » écarté : Simple pronostic sportif sans fait nouveau
+  🌍 « twenty one pilots » : aucune reprise en français, source internationale retenue
+  🔎 « twenty one pilots » : 1 article(s) frais, le plus récent il y a 3.1 h (CBC)
+  ⏭️  « twenty one pilots » écarté : Anecdotique pour le public français
+  🔎 « Lanterns » : 1 article(s) frais, le plus récent il y a 2.2 h (Superpouvoir.com)
+  ⏭️  « Lanterns » écarté : Simple recif d'episode de serie tv
+  🕐 7h (Paris) — rythme journée (44-91 min · 1 publié(s), 15 restant(s) sur 17.0 h) : 44-91 min
+  ⏸️  Dernière publi il y a 19 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 404: Not Found
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 1.6s (68 déjà en cache)
+  📄 11/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · Libération · Ouest-France · Positivr · CoinDesk · Cointelegraph
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧩 76 articles → 27 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : WoW Forever : c’est quoi ce « troisième » jeu World 
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 76 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : phishing, arnaque, ecommerce
+  ♻️ Doublon d'un sujet déjà publié, écarté : L'IA au cœur de la politique américaine
+  ♻️ Doublon d'un sujet déjà publié, écarté : « Mbappé et moi sommes les deux meilleurs joueurs 
+  ⏭️ Éphéméride trop banal (intérêt 4/10) → on ne publie pas.
+  → Rien à publier.
+
+  ── Bilan du cycle (54 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 1/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 2 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 1 × gemini-embedding-2           🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-2           🚫 quota
+        16. clé 3 × gemini-embedding-001         ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 645 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,219 entrée · 270 sortie
+     ✅ aucun appel payant
