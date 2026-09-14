@@ -1,0 +1,69 @@
+
+[09:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, Cowboys, Giants, ãªãã¨å³¶
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 1.4 h (Touchdown Actu)
+  ⏭️  « Cowboys » écarté : trop secondaire (3/10)
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 1.4 h (Touchdown Actu)
+  ⏭️  « Giants » écarté : trop secondaire (3/10)
+  🌍 « à¤à¤£à¤ªà¤¤à¤¿ à¤¬à¤ªà¥à¤ªà¤¾ » : aucune reprise en français, source internationale retenue
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 9 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 1.4s (57 déjà en cache)
+  📄 9/67 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · Ouest-France · Positivr · CoinDesk · Cointelegraph · The Block
+  🧠 65 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « "Ça ne rime à rien" : les seniors réti… »
+  🧩 67 articles → 31 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 19 médias) : Affaire Charles Sapin: les antennes de Radio Franc
+  🧠 26 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, BBC Business, Cointelegraph, Gamekult, IGN France
+  🧮 Score 24.5/100 = gravité 3/10 → 14 + 19 médias +18 + frais 1.5h +8 + programmé 3/10 -15
+  🧩 7 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 7 exclusive(s)
+      [1m] ⚡exclusif Les antennes de Radio France sont perturbées par une grève de deux jours pour 
+      [1m] ⚡exclusif Une tribune signée par 300 personnalités a été publiée dans Le Parisien pour p
+      [1m] ⚡exclusif L'appel à la grève a été lancé par l'ensemble des organisations syndicales rep
+      [1m] ⚡exclusif Le message d'avertissement diffusé aux auditeurs explique que les programmes s
+      [1m] ⚡exclusif Charles Sapin a rejoint cet été le magazine Valeurs actuelles en tant que dire
+      [1m] ⚡exclusif La direction de Radio France justifie ce recrutement par le principe du plural
+      [1m] ⚡exclusif Un rassemblement de soutien aux revendications est appelé par l'intersyndicale
+  → Sujet chaud pas assez fort (score 24) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dès le 4 novembre, Blizzard lancera World of Warcraf
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : la gauche et le bloc de droi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : "injustifiée" et "excessive"
+  ⚪ Écarté (-1, pénalisé par « pourrait, comment  ») : Affaire Patrick Bruel : le chanteur interdit de voya
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 67 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : reseaux, sociaux, anthropic, nasdaq
+  ♻️ Doublon d'un sujet déjà publié, écarté : Budget 2027: le gouvernement veut mettre les retra
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle 2027. Marine Le Pen veut mettre la 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Donald Trump : conseillers, militants et créateurs
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump urges Ukraine to stop ‘knocking out’ Russian
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (65 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2-preview (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 420 · gemini 2-preview 645 · gemini 2 800
+     jetons Gemini : 12,821 entrée · 803 sortie
+     ✅ aucun appel payant
