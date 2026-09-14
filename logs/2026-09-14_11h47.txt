@@ -1,0 +1,68 @@
+
+[11:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ã»ãã³ã§ã¸ããã³, #Levisxnamtanfilm, #LevisTH, Ganesh Chaturthi, #ãã®PCã§éã³ããã²ã¼ã
+  🔎 « Ganesh Chaturthi » : 1 article(s) frais, le plus récent il y a 4.8 h (Linfo.re)
+  ⏭️  « Ganesh Chaturthi » écarté : Célébration récurrente sans nouveauté majeure.
+  🌍 « SADDLE UP OUT NOW » : aucune reprise en français, source internationale retenue
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🕐 11h (Paris) — rythme journée (46-95 min · 5 publié(s), 11 restant(s) sur 13.0 h) : 46-95 min
+  ⏸️  Dernière publi il y a 13 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/12 articles lus en 1.6s (61 déjà en cache)
+  📄 9/74 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · Positivr · CoinDesk · The Block
+  🧠 73 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Amazon fait le plein de promos tech po… »
+  🧩 74 articles → 35 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : la gauche et le bloc de droi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le studio de professeur Layton admet avoir utilisé l
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Cette décision s'est imposée à moi": Léa Salamé se 
+  🚨 Sujet chaud (breaking, 1 médias) : Lamine Yamal says he ‘deserves’ Ballon d’Or but Mb
+  🧮 Score 59.5/100 = gravité 7/10 → 32 + frais 0.5h +16 + imprévu 6/10 +4 + primeur absolue +8
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (170 → 116 car.)
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 74 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : grece, naufrage, migrants, finlande
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle 2027 : Jean-Louis Borloo plaude pou
+  ♻️ Doublon d'un sujet déjà publié, écarté : La France décroche face à l’Allemagne: Paris empru
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre au Moyen-Orient : « Des accusations infondé
+  ♻️ Doublon d'un sujet déjà publié, écarté : Yemen gov’t forces advance in Taiz as Houthis clai
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (81 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 1 × gemini-embedding-2           🚫 quota
+         5. clé 2 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.5-flash-lite (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 789
+     jetons Gemini : 20,785 entrée · 451 sortie
+     ✅ aucun appel payant
