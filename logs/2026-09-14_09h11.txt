@@ -1,0 +1,58 @@
+
+[09:11] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, Cowboys, Giants, ãªãã¨å³¶
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 1.2 h (Touchdown Actu)
+  ⏭️  « Cowboys » écarté : trop secondaire (3/10)
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 1.2 h (Touchdown Actu)
+  ⏭️  « Giants » écarté : trop secondaire (3/10)
+  🌍 « à¤à¤£à¤ªà¤¤à¤¿ à¤¬à¤ªà¥à¤ªà¤¾ » : aucune reprise en français, source internationale retenue
+  🕐 9h (Paris) — rythme journée (41-86 min · 2 publié(s), 14 restant(s) sur 15.0 h) : 41-86 min
+  🎲 57 min (proba 36%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.1s (74 déjà en cache)
+  📄 13/77 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · Positivr · CoinDesk · Cointelegraph
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧩 77 articles → 27 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (23h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dès le 4 novembre, Blizzard lancera World of Warcraf
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : la gauche et le bloc de droi
+  🚨 Sujet chaud (breaking, 1 médias) : Un ministre israélien veut déchoir de leur nationa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + frais 0.3h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (182 → 148 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : "injustifiée" et "excessive"
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 77 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : reseaux, sociaux
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (46 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 2/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2-preview (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 634 · gemini 2-preview 645 · gemini 2 800
+     jetons Gemini : 16,924 entrée · 377 sortie
+     ✅ aucun appel payant
