@@ -1,0 +1,87 @@
+
+[17:51] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ä¸­æãããã, #ãã¬ããã»ã¹, #æ¶¼ã¡ããèªè ¹, å¥³åªãã, #à¸à¹à¸¡à¸à¸¥à¸±à¸à¸à¸­à¸à¸à¸µà¹2
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 17h (Paris) — rythme journée (54-113 min · 11 publié(s), 5 restant(s) sur 7.0 h) : 54-113 min
+  ⏸️  Dernière publi il y a 6 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/8 articles lus en 2.1s (67 déjà en cache)
+  📄 11/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · CoinDesk · Ouest-France · Positivr · The Block
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 76 articles → 29 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Oasis : Le groupe Britannique se produira bien au St
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Régression », « affront pour toutes les femmes » :
+  🚨 Sujet chaud (breaking, 26 médias) : Les antennes de Radio France fortement perturbées 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧠 36 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, ActuGaming, Al Jazeera, Ars Technica, BFM People
+  🧮 Score 42.0/100 = gravité 2/10 → 9 + 26 médias +20 + frais 0.9h +13
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le prince Harry et Meghan Markle
+  🚨 Sujet chaud (breaking, 3 médias) : Au procès de l’enlèvement de la petite Mia, le gou
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : L'Express, Libération
+  🧮 Score 61.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.6h +13 + thème porteur +10
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 76 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : corruption, procureur, japon, anthropic
+  ♻️ Doublon d'un sujet déjà publié, écarté : Le réseau ferroviaire, artère vitale de l’Ukraine,
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (109 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         ✅
+        10. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite (+21)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     jetons Gemini : 24,134 entrée · 463 sortie
+     ✅ aucun appel payant
