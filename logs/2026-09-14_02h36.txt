@@ -1,0 +1,63 @@
+
+[02:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Packers, Chargers, Vikings, Flamengo, Bruno Henrique
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 0.3 h (DAZN)
+  ⏭️  « Packers » écarté : trop secondaire (3/10)
+  🔎 « Chargers » : 1 article(s) frais, le plus récent il y a 0.3 h (DAZN)
+  ⏭️  « Chargers » écarté : trop secondaire (3/10)
+  🔎 « Vikings » : 1 article(s) frais, le plus récent il y a 0.3 h (DAZN)
+  ⏭️  « Vikings » écarté : trop secondaire (3/10)
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 1.8 h (OneFootball)
+  ⏭️  « Flamengo » écarté : trop secondaire (1/10)
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 1.8 h (OneFootball)
+  ⏭️  « Corinthians » écarté : trop secondaire (1/10)
+  🔎 « Jordan Love » : 1 article(s) frais, le plus récent il y a 0.5 h (DAZN)
+  ⏭️  « Jordan Love » écarté : Sport americain marginal en France.
+  📖 75 articles, tous en cache
+  📄 10/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧩 76 articles → 37 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : un seul siège d’écart entre 
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Trump downplays warnings of AI risks, citing rival
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 39.0/100 = gravité 6/10 → 27 + frais 5.8h +2 + portée internationale +10
+  → Sujet chaud pas assez fort (score 39) → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 76 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (41 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-embedding-001         🚫 quota
+         8. clé 1 × gemini-embedding-2-preview   🚫 quota
+         9. clé 1 × gemini-embedding-2           🚫 quota
+        10. clé 2 × gemini-embedding-001         ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 645 · gemini 2 800
+     jetons Gemini : 3,662 entrée · 262 sortie
+     ✅ aucun appel payant
