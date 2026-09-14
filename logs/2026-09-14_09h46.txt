@@ -1,0 +1,58 @@
+
+[09:46] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, #ilkdersimizkardeÅlik, ãªãã¨å³¶, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🌍 « à¤à¥à¤¨à¥_à¤à¥à¤¨à¥_à¤®à¥à¤_à¤­à¤¾à¤à¤ªà¤¾ » : aucune reprise en français, source internationale retenue
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 29 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/6 articles lus en 0.8s (63 déjà en cache)
+  📄 10/72 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · Ouest-France · Libération · Positivr · CoinDesk · Cointelegraph
+  🧠 69 vecteurs calculés en 1 appel(s)
+  🧩 72 articles → 34 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : la gauche et le bloc de droi
+  🚨 Sujet chaud (breaking, 16 médias) : Affaire Charles Sapin: les antennes de Radio Franc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 15 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFM People, BFMTV, Begeek, IGN France
+  🧮 Score 44.5/100 = gravité 3/10 → 14 + 16 médias +18 + frais 0.6h +13
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dès le 4 novembre, Blizzard lancera World of Warcraf
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : "injustifiée" et "excessive"
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Voilà à quoi ressemble la nouvelle carte du remake d
+  ⚪ Écarté (-1, pénalisé par « pourrait, comment  ») : Affaire Patrick Bruel : le chanteur interdit de voya
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 72 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : reseaux, sociaux, anthropic, nasdaq
+  ♻️ Doublon d'un sujet déjà publié, écarté : Train bombardé en Ukraine : passagers, convoi dipl
+  ♻️ Doublon d'un sujet déjà publié, écarté : "C'est ce qui fait monter les prix": Donald Trump 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Grand prix de Montréal : Paul Seixas battu au spri
+  ♻️ Doublon d'un sujet déjà publié, écarté : Nouvelle fusillade à Toulouse : un homme blessé pa
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (41 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2-preview · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.6-flash (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 143 · gemini 2-preview 645 · gemini 2 800
+     jetons Gemini : 7,205 entrée · 475 sortie
+     ✅ aucun appel payant
