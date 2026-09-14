@@ -1,0 +1,53 @@
+
+[14:41] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #CDTVã©ã¤ãã©ã¤ã, #åã«ã¯ãã©ãTVåæ«é², #ããããªæ¯, ã©ãã»ã¼, #THEããã«SHOW
+  🕐 14h (Paris) — rythme journée (48-101 min · 8 publié(s), 8 restant(s) sur 10.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 7 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 1.0s (52 déjà en cache)
+  📄 8/57 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · CoinDesk · Libération · Ouest-France · Positivr · IGN France
+  🧠 57 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 57 articles → 35 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les dirigeants écossais, gallois et nord-irlandais d
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le prince Harry et Meghan Markle
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le studio de professeur Layton admet avoir utilisé l
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Diablo 4 annonce le retour de Diablo, Baal et Méphis
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : Tesla va enfin dévoiler son nouveau Roadster, qui po
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 57 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : diesel, trump, crypto, clarity
+  ♻️ Doublon d'un sujet déjà publié, écarté : Une vidéo montre un policier jetant un SDF à terre
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (57 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 8/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 1 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.1-flash-lite (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 746
+     jetons Gemini : 2,625 entrée · 94 sortie
+     ✅ aucun appel payant
