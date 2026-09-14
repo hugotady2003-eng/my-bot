@@ -1,0 +1,153 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Cowboys, Giants, #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 13.0 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Cowboys » écarté : trop secondaire (2/10)
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 1.0 h (RDS)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏭️  « Giants » écarté : trop secondaire (2/10)
+  🔎 « Lanterns » : 1 article(s) frais, le plus récent il y a 1.8 h (Superpouvoir.com)
+  ⏭️  « Lanterns » écarté : Il s'agit d'un simple récapitulatif de série.
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 1919 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 404: Not Found
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/8 articles lus en 1.5s (77 déjà en cache)
+  📄 11/86 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · Libération · Positivr · The Block
+  🧠 85 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🧩 86 articles → 33 événement(s), dont 6 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : WoW Forever : c’est quoi ce « troisième » jeu World 
+  🚨 Sujet chaud (breaking, 18 médias) : Attentats de Trèbes et Carcassonne : trois proches
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧠 27 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, ActuGaming, BFM People, BFMTV, Begeek
+  🧮 Score 51.5/100 = gravité 5/10 → 22 + 18 médias +18 + frais 11.4h +1 + portée internationale +10
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 3 column 18 (char 82) → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 3 column 18 (char 82) → couple suivant
+  👁️ Image écartée : Avocat non identifié
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  → 86 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Naufrage d’un ferry en Indonésie : les recherches 
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Trump downplays warnings of AI risks, citing rival
+  🎯 Pré-classement : 63 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  📉 5/10: Anthropic walks tightrope to Nasdaq, pushing for a slow
+  📉 4/10: The iPhone Duo didn’t reinvent Android foldables, but I
+  📉 3/10: This unique retro dock adds a flip-up display, Thunderb
+  📉 5/10: Trump and Mike Johnson think the AI industry is overrea
+  📉 2/10: Jacques Martin a fini sa vie dans un palace : mais son 
+  📉 4/10: Rencontrez enfin la Tsarine dans la version 7.1 de Gens
+  📉 3/10: Is Clarity dead? A vibes-based analysis: State of Crypt
+  📉 4/10: World of Warcraft Forever se présente comme un Vanilla 
+  📉 4/10: Le DLSS 5 sur les vieux jeux PlayStation et Dreamcast :
+  📉 3/10: "Léon" : ces 26 minutes scandaleuses avec Jean Reno que
+  📉 3/10: Policiers, salariés du secteur de l'énergie, inaction c
+  📉 2/10: Programmes perturbés en raison d'un mouvement de grève 
+  ✅ 6/10 [world] mondiale: "Le plus européen des pays non-européens": en pl
+  🌍 7/10 sans portée internationale : « Il est hors de question de geler le barème de l’
+  📉 3/10: Transformers : le dernier Optimus de Peter Cullen se ré
+  📉 3/10: « La taxation des plus riches est vitale » : ce collect
+  📉 3/10: En cas d’hospitalisation, quels frais ne sont pas rembo
+  📉 2/10: Philippe Etchebest : c'est fini, fermeture définitive d
+  📉 2/10: La Route du Rhum vient à la rencontre du public dans tr
+  ✅ 7/10 [tech] large: Pourquoi il faut faire attention aux sites .shop
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 1 média(s) · 0.2h — Pourquoi il faut faire attention aux sites .
+     7/10 · 1 média(s) · 0.4h — "Le plus européen des pays non-européens": e
+     7/10 · 1 média(s) · 10.3h — Trump downplays warnings of AI risks, citing
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [tech]
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (248 → 123 car.)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2099364380542730410
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ✅ Publié [tech]: Pourquoi il faut faire attention aux sites .shop : 119 
+  🔒 Mots-clés bloqués 2h: phishing, arnaque, ecommerce
+
+  ── Bilan du cycle (367 s) ──
+     écartés : 1 sujet banal · 1 sans portée internationale
+     plafonds : X 1/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+         5. clé 1 × gemini-embedding-001         🚫 quota
+         6. clé 1 × gemini-embedding-2-preview   🚫 quota
+         7. clé 1 × gemini-embedding-2           🚫 quota
+         8. clé 2 × gemini-embedding-001         🚫 quota
+         9. clé 2 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-2           🚫 quota
+        11. clé 3 × gemini-embedding-001         🚫 quota
+        12. clé 3 × gemini-embedding-2-preview   🚫 quota
+        13. clé 3 × gemini-embedding-2           🚫 quota
+        14. clé 4 × gemini-embedding-001         🚫 quota
+        15. clé 4 × gemini-embedding-2-preview   🚫 quota
+        16. clé 4 × gemini-embedding-2           🚫 quota
+        17. clé 5 × gemini-embedding-001         🚫 quota
+        18. clé 5 × gemini-embedding-2-preview   ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        22. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        23. clé 1 × gemini-3-flash               ⛔ inexistant
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        28. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 2 × gemini-3.1-flash-lite        ✅
+        30. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        31. clé 2 × gemini-3.1-flash-lite        ✅
+        32. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        33. clé 2 × gemini-3.1-flash-lite        ✅
+        34. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        35. clé 2 × gemini-3.1-flash-lite        ✅
+        36. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        37. clé 2 × gemini-3.1-flash-lite        ✅
+        38. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        39. clé 2 × gemini-3.1-flash-lite        ✅
+        40. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        … et 8 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 645 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 64,156 entrée · 1,857 sortie
+     ✅ aucun appel payant
