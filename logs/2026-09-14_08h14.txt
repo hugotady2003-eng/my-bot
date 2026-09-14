@@ -1,0 +1,171 @@
+
+[08:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Cowboys, #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, Giants, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 0.2 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Cowboys » écarté : trop secondaire (2/10)
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 0.2 h (Touchdown Actu)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Giants » écarté : trop secondaire (3/10)
+  🌍 « à¤à¤£à¤ªà¤¤à¤¿ à¤¬à¤ªà¥à¤ªà¤¾ » : aucune reprise en français, source internationale retenue
+  🔎 « Massad » : 1 article(s) frais, le plus récent il y a 8.9 h (atlasinfo.fr)
+  ⏭️  « Massad » écarté : trop secondaire (5/10)
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 8h (Paris) — rythme journée (41-86 min · 1 publié(s), 15 restant(s) sur 16.0 h) : 41-86 min
+  🎲 64 min (proba 51%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/6 articles lus en 1.1s (76 déjà en cache)
+  📄 12/84 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · Positivr · CoinDesk · Cointelegraph
+  🧠 82 vecteurs calculés en 1 appel(s)
+  🧩 84 articles → 34 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : La France soumet à Bruxelles une nouvelle version 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 2 médias +4 + frais 0.6h +13 + thème porteur +10 + primeur +5 + portée mondiale +18 + ⚡ démission politique → plancher 89
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 4 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [2m] Le gouvernement français a soumis à la Commission européenne une nouvelle vers
+      [2m] Cette nouvelle soumission intervient un mois après la censure d'un précédent t
+      [1m] Emmanuel Macron a annoncé cette notification sur le réseau X, affirmant vouloi
+         ↳ BFMTV : Emmanuel Macron a annoncé la notification sur X lundi matin en é
+         motif : Midi Libre cite plus longuement les déclarations d'Emmanuel Macron.
+      [1m] ⚡exclusif Emmanuel Macron a chargé le Premier ministre de trouver une voie de passage co
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 33 s
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : WoW Forever : c’est quoi ce « troisième » jeu World 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : la gauche et le bloc de droi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un requin attaque un homme en Australie et le blesse
+  ⚪ Écarté (-5, pénalisé par « \b(?:météo ») : Météo : jusqu'à 35 °C ce début de semaine en Occitan
+  🚨 Sujet chaud (breaking, 22 médias) : « Que personne ne le cherche » : le complot machia
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 3 s
+  🧠 31 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Mac, Begeek, CoinDesk, Cointelegraph
+  🧮 Score 46.0/100 = gravité 4/10 → 18 + 22 médias +20 + frais 1.6h +8
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 2 s
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  → 84 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : phishing, arnaque, ecommerce
+  ♻️ Doublon d'un sujet déjà publié, écarté : Interdiction des réseaux sociaux, législatives en 
+  ♻️ 7/10 [tech] (déjà analysé, cache) : La France soumet à Bruxelles une nouvelle version 
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Trump downplays warnings of AI risks, citing rival
+  🎯 Pré-classement : 60 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 7/10 [ai] mondiale: IPO record en vue : Anthropic viserait le Nasdaq
+  ✅ 8/10 [world] large: Le gouvernement soumet une nouvelle version de l
+  📉 2/10: Pixel mort, pixel bloqué : ne les confondez plus
+  📉 2/10: Agathe Lecaron se rêvait Miss à 14 ans, mais Flavie Fla
+  📉 4/10: Spatial européen : la bataille du nouveau patron d’Aria
+  📉 2/10: Demain nous appartient en avance : résumé de l'épisode 
+  🌍 6/10 sans portée internationale : WoW Forever : c’est quoi ce « troisième » jeu Worl
+  🌍 6/10 sans portée internationale : « Il sait que l’irréparable a été commis » : après
+  🌍 7/10 sans portée internationale : Bronchiolite : la campagne de prévention pour les 
+  📉 4/10: Patrick Martin (Medef) : « La jeunesse est un sujet pri
+  📉 5/10: "Le boom de l'IA a changé la donne" : ces pénuries qui 
+  📉 3/10: Windows 11 a un raccourci pratique pour fermer les appl
+  📉 4/10: APOD: 2026 September 14 – Where Your Elements Came From
+  📉 2/10: How to protect your laptop, phone and bike from thieves
+  📉 3/10: Vague de chaleur en Occitanie : jusqu’à 34 °C voire 36 
+  📉 3/10: Try These 3 iOS 27 Safari Settings to Get More Out of A
+  📉 2/10: Trafic perturbé pour le réseau de transport en commun l
+  🌍 6/10 sans portée internationale : Vers un ruissellement de la dette
+  📉 5/10: La sonde européenne BepiColombo se déleste avant de fil
+  📉 4/10: Microsoft transforme le bureau de Windows 11 en pub géa
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.2h — Le gouvernement soumet une nouvelle version 
+     8/10 · 1 média(s) · -2.9h — IPO record en vue : Anthropic viserait le Na
+     9/10 · 3 média(s) · 1.0h — La France soumet à Bruxelles une nouvelle ve
+     7/10 · 1 média(s) · 11.4h — Trump downplays warnings of AI risks, citing
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (169 → 127 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  🐦 Posté sur X (🎬 vidéo) : https://x.com/i/web/status/2099381192479088814
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  🔓 Trop larges pour bloquer un sujet : europe
+  ✅ Publié [world]: Le gouvernement soumet une nouvelle version de l'interd
+  🔒 Mots-clés bloqués 2h: reseaux, sociaux, europe
+
+  ── Bilan du cycle (204 s) ──
+     écartés : 4 sujet banal · 4 sans portée internationale
+     plafonds : X 2/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 2 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 1 × gemini-embedding-2           🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-2           🚫 quota
+        16. clé 3 × gemini-embedding-001         🚫 quota
+        17. clé 3 × gemini-embedding-2-preview   🚫 quota
+        18. clé 3 × gemini-embedding-2           🚫 quota
+        19. clé 4 × gemini-embedding-001         🚫 quota
+        20. clé 4 × gemini-embedding-2-preview   🚫 quota
+        21. clé 4 × gemini-embedding-2           🚫 quota
+        22. clé 5 × gemini-embedding-001         🚫 quota
+        23. clé 5 × gemini-embedding-2-preview   ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+        30. clé 2 × gemini-3.5-flash-lite        ✅
+        31. clé 2 × gemini-3.5-flash-lite        ✅
+        32. clé 2 × gemini-3.5-flash-lite        ✅
+        33. clé 2 × gemini-3.5-flash-lite        ✅
+        34. clé 2 × gemini-3.5-flash-lite        ✅
+        35. clé 2 × gemini-3.5-flash-lite        ✅
+        36. clé 2 × gemini-3.5-flash-lite        ✅
+        37. clé 2 × gemini-3.5-flash-lite        ✅
+        38. clé 2 × gemini-3.5-flash-lite        ✅
+        39. clé 2 × gemini-3.5-flash-lite        ✅
+        40. clé 2 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 796 · gemini 2-preview 645 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 50,853 entrée · 2,300 sortie
+     ✅ aucun appel payant
