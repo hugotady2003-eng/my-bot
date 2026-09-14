@@ -1,0 +1,98 @@
+
+[23:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #GFKvFB, Ed Sheeran, Macklemore, Newcastle, Ä°smail
+  🔎 « Ed Sheeran » : 1 article(s) frais, le plus récent il y a 2.4 h (Le Parisien)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Ed Sheeran » écarté : trop secondaire (4/10)
+  🔎 « Macklemore » : 1 article(s) frais, le plus récent il y a 2.4 h (Le Parisien)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Macklemore » écarté : trop secondaire (5/10)
+  🔎 « Newcastle » : 1 article(s) frais, le plus récent il y a 0.2 h (L'Équipe)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Newcastle » écarté : trop secondaire (3/10)
+  🌍 « Ø§ÙØ§ÙÙÙ_Ø¨Ø§Ø®ØªØ§ÙÙØ± » : aucune reprise en français, source internationale retenue
+  🔎 « Leeds » : 1 article(s) frais, le plus récent il y a 0.2 h (L'Équipe)
+  ⏭️  « Leeds » écarté : Résultat sportif ancien, pas une actualité récente.
+  🌍 « temptationisland » : aucune reprise en français, source internationale retenue
+  🕐 23h (Paris) — rythme quota atteint (16) — seules les alertes passent : 150-240 min
+  ⏸️  Dernière publi il y a 17 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.4s (58 déjà en cache)
+  📄 13/61 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · CoinDesk · SpaceNews · Sciences et Avenir · Positivr
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🧩 61 articles → 61 événement(s)
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : A Strasbourg, au procès de l’agression de trois étud
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les États-Unis disposent d’armes dans l’espace, affi
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La sortie de Rayman Legends Retold est repoussée, ma
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🛑 Seuil souple atteint (16/16) — on garde la place au chaud (breaking/France live).
+
+  ── Bilan du cycle (117 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 16/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-embedding-001         🚫 quota
+        13. clé 1 × gemini-embedding-2-preview   🚫 quota
+        14. clé 2 × gemini-embedding-001         🚫 quota
+        15. clé 2 × gemini-embedding-2-preview   🚫 quota
+        16. clé 2 × gemini-embedding-2           🚫 quota
+        17. clé 3 × gemini-embedding-001         🚫 quota
+        18. clé 3 × gemini-embedding-2-preview   🚫 quota
+        19. clé 3 × gemini-embedding-2           🚫 quota
+        20. clé 4 × gemini-embedding-001         🚫 quota
+        21. clé 4 × gemini-embedding-2-preview   🚫 quota
+        22. clé 4 × gemini-embedding-2           🚫 quota
+        23. clé 5 × gemini-embedding-001         🚫 quota
+        24. clé 5 × gemini-embedding-2-preview   🚫 quota
+        25. clé 5 × gemini-embedding-2           🚫 quota
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.1-flash-lite        ✅
+        28. clé 2 × gemini-3.1-flash-lite        ✅
+        29. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        37. clé 3 × gemini-3.5-flash-lite        ✅
+        38. clé 2 × gemini-3.6-flash             🚫 quota
+        39. clé 3 × gemini-3.5-flash-lite        ✅
+        40. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.5-flash-lite (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,223 entrée · 326 sortie
+     ✅ aucun appel payant
