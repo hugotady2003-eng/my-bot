@@ -1,0 +1,59 @@
+
+[17:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ä¸­æãããã, #ãã¬ããã»ã¹, #æ¶¼ã¡ããèªè ¹, å¥³åªãã, #à¸à¹à¸¡à¸à¸¥à¸±à¸à¸à¸­à¸à¸à¸µà¹2
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 17h (Paris) — rythme journée (54-113 min · 11 publié(s), 5 restant(s) sur 7.0 h) : 54-113 min
+  ⏸️  Dernière publi il y a 1 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 0.9s (65 déjà en cache)
+  📄 7/74 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Ouest-France · Sciences et Avenir · Positivr · The Block · SpaceNews
+  🧠 73 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 74 articles → 43 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Oasis : Le groupe Britannique se produira bien au St
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Régression », « affront pour toutes les femmes » :
+  🚨 Sujet chaud (breaking, 15 médias) : Les antennes de Radio France fortement perturbées 
+  🧠 18 article(s) sur un autre sujet, écartés du dossier : ActuGaming, Ars Technica, BFM People, BFMTV, Begeek
+  🧮 Score 25.0/100 = gravité 2/10 → 9 + 15 médias +18 + frais 0.7h +13 + programmé 0/10 -15
+  → Sujet chaud pas assez fort (score 25) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le prince Harry et Meghan Markle
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 74 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : corruption, procureur, japon, anthropic
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine: l’Europe s’indigne des frappes 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Carcassonne : Vidéo, plainte de la famille… Ce que
+  ⚠️ Wikipedia: The read operation timed out
+  → Rien à publier.
+
+  ── Bilan du cycle (78 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         ✅
+        10. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite (+21)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     jetons Gemini : 7,153 entrée · 170 sortie
+     ✅ aucun appel payant
