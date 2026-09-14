@@ -1,0 +1,87 @@
+
+[01:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Ed Sheeran, Macklemore, #IRIAMã¡ã³ãä¸­ã®ãã©ã­ã¼ç¥­ã, Mitch McConnell, #LaIslaDeLasTentaciones3
+  🔎 « Ed Sheeran » : 1 article(s) frais, le plus récent il y a 3.3 h (franceinfo)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Ed Sheeran » écarté : trop secondaire (5/10)
+  🔎 « Macklemore » : 1 article(s) frais, le plus récent il y a 3.3 h (franceinfo)
+  ✅ « Macklemore » retenu : Éviction d'un artiste suite à des propos politiques (6/10) (+1 au score)
+  🔎 « Mitch McConnell » : 1 article(s) frais, le plus récent il y a 0.5 h (Zonebourse Suisse)
+  ⏭️  « Mitch McConnell » écarté : trop secondaire (5/10)
+  🌍 « $Edel » : aucune reprise en français, source internationale retenue
+  🌍 « temptationisland » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #IOS27, #Macklemore
+  📖 69 articles, tous en cache
+  📄 10/69 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · SpaceNews · Sciences et Avenir · Positivr · Decrypt
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 69 articles → 69 événement(s)
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : A Strasbourg, au procès de l’agression de trois étud
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un Britannique admet avoir drogué et violé sa femme 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Apple Home’s new security camera features cost as mu
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le rappeur américain Macklemore écarté de la tournée
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 69 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (64 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-2-preview   🚫 quota
+        22. clé 3 × gemini-embedding-2           🚫 quota
+        23. clé 4 × gemini-embedding-001         🚫 quota
+        24. clé 4 × gemini-embedding-2-preview   🚫 quota
+        25. clé 4 × gemini-embedding-2           🚫 quota
+        26. clé 5 × gemini-embedding-001         🚫 quota
+        27. clé 5 × gemini-embedding-2-preview   🚫 quota
+        28. clé 5 × gemini-embedding-2           🚫 quota
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.5-flash-lite        ✅
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 3 × gemini-3.5-flash-lite        ✅
+        37. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 742
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,715 entrée · 238 sortie
+     ✅ aucun appel payant
