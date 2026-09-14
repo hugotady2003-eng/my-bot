@@ -1,0 +1,56 @@
+
+[16:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ä¸­æãããã, #ãã¬ããã»ã¹, #æ¶¼ã¡ããèªè ¹, å¥³åªãã, #ããããªæ¯
+  🕐 16h (Paris) — rythme journée (52-108 min · 10 publié(s), 6 restant(s) sur 8.0 h) : 52-108 min
+  ⏸️  Dernière publi il y a 2 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/7 articles lus en 1.3s (63 déjà en cache)
+  📄 9/71 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · CoinDesk · Ouest-France · Positivr · IGN France
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 70 vecteurs calculés en 1 appel(s)
+  🧩 71 articles → 36 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Blizzard assure qu'il existe « plein de raisons de c
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Demande d'annulation de deux victoires de LFI aux mu
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une publicité très dénudée de Sydney Sweeney fait (à
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le prince Harry et Meghan Markle
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : Microsoft says ‘people matter more than AI’ followin
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 71 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : corruption, procureur, japon
+  ♻️ Doublon d'un sujet déjà publié, écarté : "La désescalade devient un impératif économique" :
+  ♻️ Doublon d'un sujet déjà publié, écarté : "La sécurité dans l'Arctique doit être assurée col
+  ♻️ Doublon d'un sujet déjà publié, écarté : Une femme enceinte et son fils de 2 ans meurent pi
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (67 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 10/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite (+20)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     jetons Gemini : 2,444 entrée · 47 sortie
+     ✅ aucun appel payant
