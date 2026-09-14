@@ -1,0 +1,75 @@
+
+[10:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, #ilkdersimizkardeÅlik, ãªãã¨å³¶, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🌍 « à¤à¥à¤¨à¥_à¤à¥à¤¨à¥_à¤®à¥à¤_à¤­à¤¾à¤à¤ªà¤¾ » : aucune reprise en français, source internationale retenue
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 10h (Paris) — rythme journée (42-87 min · 3 publié(s), 13 restant(s) sur 14.0 h) : 42-87 min
+  🎲 64 min (proba 50%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/11 articles lus en 1.8s (75 déjà en cache)
+  📄 13/88 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · CoinDesk · Positivr · Cointelegraph
+  🧠 86 vecteurs calculés en 1 appel(s)
+  🧩 88 articles → 35 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mostra de Venise : un ministre israélien veut déchoi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Il sera très difficile de gouverner » : aucun vain
+  🕒 Sujet chaud mais article ancien (24h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dès le 4 novembre, Blizzard lancera World of Warcraf
+  🚨 Sujet chaud (breaking, 14 médias) : Un mort et 25 disparus dans le naufrage d'une emba
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 15 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Ars Technica, BFMTV, Challenges, Frandroid
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + 14 médias +18 + frais 0.4h +16 + thème porteur +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️🤝 Image récupérée chez un média jumeau (Sud Ouest) — même sujet
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : L’administration Trump veut supprimer les plafonds
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Voilà à quoi ressemble la nouvelle carte du remake d
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Pourquoi une invocation de Final Fantasy VII Revelat
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : "injustifiée" et "excessive"
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 88 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : anthropic, nasdaq
+  ♻️ Doublon d'un sujet déjà publié, écarté : JO 2030. Vincent Roberti va assurer l’intérim au C
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle 2027 : un baiser pour sauver les ap
+  ⏭️ Éphéméride trop banal (intérêt 5/10) → on ne publie pas.
+  → Rien à publier.
+
+  ── Bilan du cycle (126 s) ──
+     écartés : 6 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-embedding-001 · clé 2 × gemini-3-flash (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 453 · gemini 2 800
+     jetons Gemini : 23,881 entrée · 547 sortie
+     ✅ aucun appel payant
