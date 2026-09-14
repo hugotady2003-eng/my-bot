@@ -1,0 +1,92 @@
+
+[07:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Cowboys, Giants, #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 5.4 h (RueDesJoueurs)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Cowboys » écarté : Simple résultat sportif secondaire pour la France.
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 0.7 h (Google Actualités)
+  ⏭️  « Giants » écarté : Simple pronostic sportif sans enjeu d'actualité.
+  🌍 « twenty one pilots » : aucune reprise en français, source internationale retenue
+  🔎 « twenty one pilots » : 1 article(s) frais, le plus récent il y a 3.4 h (CBC)
+  ⏭️  « twenty one pilots » écarté : Anecdote musicale sans impact pour la France
+  🔎 « Lanterns » : 1 article(s) frais, le plus récent il y a 2.4 h (Superpouvoir.com)
+  ⏭️  « Lanterns » écarté : Simple récapitulatif d'un épisode de série.
+  🕐 7h (Paris) — rythme journée (44-91 min · 1 publié(s), 15 restant(s) sur 17.0 h) : 44-91 min
+  ⏸️  Dernière publi il y a 34 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/7 articles lus en 0.9s (66 déjà en cache)
+  📄 12/74 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · Positivr · CoinDesk · Cointelegraph
+  🧠 73 vecteurs calculés en 1 appel(s)
+  🧩 74 articles → 26 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 8 médias) : La France soumet à l’UE une nouvelle version de so
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, L'Express, Public, TechCrunch
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 8 médias +15 + frais 0.5h +13 + thème porteur +10 + portée internationale +10 + ⚡ démission politique → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : WoW Forever : c’est quoi ce « troisième » jeu World 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : la gauche et le bloc de droi
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 74 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : phishing, arnaque, ecommerce
+  ♻️ Doublon d'un sujet déjà publié, écarté : BFM Crypto, la chronique : Clarity Act, le vote qu
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle 2027: Marine Le Pen toujours largem
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (48 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 1/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 2 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 1 × gemini-embedding-2           🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-2           🚫 quota
+        16. clé 3 × gemini-embedding-001         🚫 quota
+        17. clé 3 × gemini-embedding-2-preview   🚫 quota
+        18. clé 3 × gemini-embedding-2           🚫 quota
+        19. clé 4 × gemini-embedding-001         ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 645 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 18,405 entrée · 755 sortie
+     ✅ aucun appel payant
