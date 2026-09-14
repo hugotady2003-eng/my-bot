@@ -1,0 +1,134 @@
+
+[17:41] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ä¸­æãããã, #ãã¬ããã»ã¹, #æ¶¼ã¡ããèªè ¹, å¥³åªãã, #à¸à¹à¸¡à¸à¸¥à¸±à¸à¸à¸­à¸à¸à¸µà¹2
+  🕐 17h (Paris) — rythme journée (45-94 min · 10 publié(s), 6 restant(s) sur 7.0 h) : 45-94 min
+  🎲 47 min (proba 6%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/9 articles lus en 1.2s (83 déjà en cache)
+  📄 11/94 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · Positivr · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 92 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.6-flash (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧩 94 articles → 39 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Municipales 2026 : L’annulation de l’élection de deu
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Régression », « affront pour toutes les femmes » :
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Lupin Partie 4 : une date de sortie et une jolie ban
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Oasis de retour au Stade de France en 2027, 18 ans a
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : French Days 2026 : plus que quelques heures pour sai
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Calendrier de Slow Horses Saison 6, dates et heure d
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le prince Harry et Meghan Markle
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  → 94 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : corruption, procureur, japon
+  ♻️ Doublon d'un sujet déjà publié, écarté : Mort de Federico Aramburu : "Ce sont des criminels
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Astra cartonne tellement qu’OpenAI suspend les nou
+  🎯 Pré-classement : 72 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ✅ 6/10 [ai] mondiale: Un « scénario de Guerre froide » : la Chine crit
+  📉 5/10: "Tous les droits humains sont menacés": l'ONU appelle à
+  📉 4/10: Le procès du complotiste Rémy Daillet et de son groupus
+  📉 3/10: Google’s Pixel 11 is cheaper ahead of iPhone 18 Pro lau
+  📉 2/10: Deals: AirPods, MacBook Air $150 off, Series 12, Anker 
+  📉 2/10: iMazing puts you in full control of your iPhone data, n
+  📉 4/10: Galaxy S26 series reportedly getting a price hike immin
+  📉 2/10: Élections sénatoriales 2026 : quels sont les départemen
+  📉 3/10: Summer Training: Catching Up With NASA’s Astronaut Cand
+  ⏩ Doublon: IA : le patron d’Anthropic appelle à ralentir la course
+  ✅ 7/10 [crypto] large: Strive reaches 25,000 BTC milestone with latest 
+  📉 2/10: One PIece Chapitre 1194 : date de sortie et spoilers po
+  📉 3/10: Budget : les retraités sont prêts à participer à "l'eff
+  📉 2/10: "J'ai besoin de souffler" : Stéphane Hénon se confie su
+  📉 3/10: Angèle, Theodora, Squeezie… Les artistes francophones s
+  📉 3/10: Lupin Partie 4 : une date de sortie et une jolie bande 
+  📉 2/10: Grève à Radio France : après avoir largement perturbé l
+  📉 2/10: Médias. Frédérique Galametz devient la première femme à
+  📉 5/10: Avec Flex et Sentinel-3C, l’Europe renforce sa surveill
+  📉 2/10: Calendrier de Slow Horses Saison 6, dates et heure de s
+  🏁 Classement final (score · médias · âge) :
+     7/10 · 2 média(s) · 0.2h — Un « scénario de Guerre froide » : la Chine 
+     7/10 · 1 média(s) · 0.5h — Strive reaches 25,000 BTC milestone with lat
+     7/10 · 1 média(s) · 1.7h — Astra cartonne tellement qu’OpenAI suspend l
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (292 → 148 car.)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2099524851375669521
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  🔓 Trop larges pour bloquer un sujet : chine, ia
+  ✅ Publié [ai]: Un « scénario de Guerre froide » : la Chine critique ve
+  🔒 Mots-clés bloqués 2h: chine, anthropic, ia
+
+  ── Bilan du cycle (249 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × gemini-embedding-2-preview   ✅
+        15. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        17. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        18. clé 1 × gemini-3.6-flash             ⚠️ 503 Server Error: Serv
+        19. clé 1 × gemini-3-flash               ⛔ inexistant
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.1-flash-lite        ✅
+        24. clé 1 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-3.1-flash-lite        ✅
+        26. clé 1 × gemini-3.1-flash-lite        ✅
+        27. clé 1 × gemini-3.1-flash-lite        ✅
+        28. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        29. clé 1 × gemini-3.6-flash             ✅
+        30. clé 1 × gemini-3.1-flash-lite        ✅
+        31. clé 1 × gemini-3.1-flash-lite        ✅
+        32. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 22,412 entrée · 1,309 sortie
+     ✅ aucun appel payant
