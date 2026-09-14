@@ -1,0 +1,93 @@
+
+[18:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ä¸­æãããã, #ãã¬ããã»ã¹, #æ¶¼ã¡ããèªè ¹, å¥³åªãã, #à¸à¹à¸¡à¸à¸¥à¸±à¸à¸à¸­à¸à¸à¸µà¹2
+  🕐 18h (Paris) — rythme journée (46-97 min · 11 publié(s), 5 restant(s) sur 6.0 h) : 46-97 min
+  ⏸️  Dernière publi il y a 16 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/11 articles lus en 1.9s (68 déjà en cache)
+  📄 12/79 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · CoinDesk · Positivr · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 79 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « Why are AI’s biggest companies suddenl… »
+  🧩 79 articles → 31 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Oasis : Le groupe Britannique se produira bien au St
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Régression », « affront pour toutes les femmes » :
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : Au procès de l’enlèvement de la petite Mia, le gou
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Gamekult, L'Express, Libération, Public
+  🧮 Score 55.5/100 = gravité 7/10 → 32 + 5 médias +11 + frais 0.8h +13
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (177 → 129 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 79 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : japon, anthropic
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (63 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         ✅
+        11. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        15. clé 1 × gemini-3-flash               ⛔ inexistant
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 16,456 entrée · 395 sortie
+     ✅ aucun appel payant
