@@ -1,0 +1,71 @@
+
+[10:46] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Ganesh Chaturthi, #ãã®PCã§éã³ããã²ã¼ã, #ilkdersimizkardeÅlik, #WINTER_SADDLE_UP, #ìí°_ìë¤ì _ììëì´
+  🔎 « Ganesh Chaturthi » : 1 article(s) frais, le plus récent il y a 3.8 h (Linfo.re)
+  ⏭️  « Ganesh Chaturthi » écarté : Célébration religieuse récurrente sans actualité marquante.
+  🌍 « SADDLE UP OUT NOW » : aucune reprise en français, source internationale retenue
+  🌍 « KARINA 16 BIT RELEASE » : aucune reprise en français, source internationale retenue
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  ⏸️  Dernière publi il y a 19 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/11 articles lus en 1.6s (62 déjà en cache)
+  📄 9/75 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · CoinDesk · Cointelegraph · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 73 vecteurs calculés en 1 appel(s)
+  🧩 75 articles → 29 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mostra de Venise : un ministre israélien veut déchoi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Il sera très difficile de gouverner » : aucun vain
+  🕒 Sujet chaud mais article ancien (25h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le studio de professeur Layton admet avoir utilisé l
+  🚨 Sujet chaud (breaking, 21 médias) : Adolescent de 15 ans tué en 2024 à Romans-sur-Isèr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 27 article(s) sur un autre sujet, écartés du dossier : BBC Business, Begeek, Challenges, Cointelegraph, Frandroid
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 21 médias +20 + frais 0.8h +13
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : "injustifiée" et "excessive"
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 75 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : anthropic, nasdaq, grece, naufrage, migrants
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle 2027 : l’affiliation partisane cime
+  ♻️ Doublon d'un sujet déjà publié, écarté : IA : Donald Trump à contre-courant des patrons du 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Deux cryptomilliardaires donnent plus de 80 millio
+  ♻️ Doublon d'un sujet déjà publié, écarté : Ce que l'on sait de la frappe de drone russe contr
+  ♻️ Doublon d'un sujet déjà publié, écarté : Carburants : le principal oléoduc qui contournait 
+  ♻️ Doublon d'un sujet déjà publié, écarté : L'échec de la politique carcérale de la France coû
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (93 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.5-flash-lite (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 82 · gemini 2 800
+     jetons Gemini : 16,427 entrée · 737 sortie
+     ✅ aucun appel payant
