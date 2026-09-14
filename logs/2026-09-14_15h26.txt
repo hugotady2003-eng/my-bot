@@ -1,0 +1,62 @@
+
+[15:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #ãã¬ããã»ã¹, ä¸­æãããã, #æ¶¼ã¡ããèªè ¹, #CDTVã©ã¤ãã©ã¤ã, å¥³åªãã
+  🕐 15h (Paris) — rythme journée (43-91 min · 8 publié(s), 8 restant(s) sur 9.0 h) : 43-91 min
+  🎲 52 min (proba 19%) → on attend.
+  📖 1/1 articles lus en 0.8s (76 déjà en cache)
+  📄 14/77 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · The Block · Positivr
+  🧠 77 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 77 articles → 25 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une publicité très dénudée de Sydney Sweeney fait (à
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Diablo 4 annonce le retour de Diablo, Baal et Méphis
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Notre mobilisation est un cri du cœur après l’été» 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le prince Harry et Meghan Markle
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le studio de professeur Layton admet avoir utilisé l
+  🚨 Sujet chaud (breaking, 21 médias) : Ukraine : accusé de corruption, le procureur génér
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 22 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Google, ActuGaming, BBC Business, Challenges
+  🧮 Score 45/100 = gravité 8/10 → 36 + 21 médias +20 + frais 0.9h +13 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 45) → suivant
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 77 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : diesel, trump, crypto, clarity
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (55 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 8/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     jetons Gemini : 6,477 entrée · 144 sortie
+     ✅ aucun appel payant
