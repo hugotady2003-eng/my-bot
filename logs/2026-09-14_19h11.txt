@@ -1,0 +1,83 @@
+
+[19:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ä¸­æãããã, #ãã¬ããã»ã¹, Ed Sheeran, å¥³åªãã, #æ¶¼ã¡ããèªè ¹
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #EdSheeran
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 19h (Paris) — rythme journée (48-101 min · 12 publié(s), 4 restant(s) sur 5.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 23 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 16/18 articles lus en 1.9s (67 déjà en cache)
+  📄 11/85 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · SpaceNews · Libération · Sciences et Avenir · IGN France · CoinDesk
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧩 85 articles → 85 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : GTA 6 : véhicules, map, date de sortie, précommand
+  🧮 Score 22.5/100 = gravité 3/10 → 14 + frais 0.2h +16 + programmé 0/10 -15 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 22) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un film Crazy Taxi en prises de vues réelles, une no
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dette: "C'est l'État qui doit se serrer la ceinture"
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : S&P Global backs Kaiko as Series B reaches $110M
+  ⚪ Écarté (2, pénalisé par « on a test ») : With iOS 27, I’m actually using Siri again
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il n'y a pas de position neutre entre l'oppresseur 
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 85 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : anthropic, brent, iran
+  ♻️ Doublon d'un sujet déjà publié, écarté : Transport aérien : pourquoi les pilotes de ligne r
+  ♻️ Doublon d'un sujet déjà publié, écarté : watchOS 27 est disponible : nouveautés, Apple Watc
+  ♻️ Doublon d'un sujet déjà publié, écarté : Apple releases iOS 27 with Siri AI overhaul
+  ♻️ Doublon d'un sujet déjà publié, écarté : watchOS 27 now available for Apple Watch, here’s w
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 12/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   🚫 quota
+        11. clé 4 × gemini-embedding-2           🚫 quota
+        12. clé 5 × gemini-embedding-001         🚫 quota
+        13. clé 5 × gemini-embedding-2-preview   🚫 quota
+        14. clé 5 × gemini-embedding-2           🚫 quota
+        15. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        18. clé 1 × gemini-3.6-flash             🚫 quota
+        19. clé 1 × gemini-3-flash               ⛔ inexistant
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+        30. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,617 entrée · 122 sortie
+     ✅ aucun appel payant
