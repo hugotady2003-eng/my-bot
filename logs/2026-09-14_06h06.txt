@@ -1,0 +1,69 @@
+
+[06:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Cowboys, Giants, zara larsson, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY, halsey
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 12.1 h (RDS)
+  ⏭️  « Cowboys » écarté : Sport US mineur pour le public français
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 7.3 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Giants » écarté : trop secondaire (2/10)
+  🔎 « Lanterns » : 1 article(s) frais, le plus récent il y a 0.8 h (Superpouvoir.com)
+  ⏭️  « Lanterns » écarté : Il s'agit d'un simple récapitulatif de série.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 3.8 h (DAZN)
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/11 articles lus en 1.9s (69 déjà en cache)
+  📄 11/81 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · The Block · Libération
+  🧠 80 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Éditorial. Ondes brouillées sur France… »
+  🧠 Même événement (jugé) : « Washington scrambles to meet calls for… »
+  🧩 81 articles → 28 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le dessin de Chaunu : la rentrée de Marine Le Pen au
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 81 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle 2027 - Sondage : un seul candidat f
+  ♻️ Doublon d'un sujet déjà publié, écarté : Committee calls for bill to address AI threat to h
+  → Rien à publier.
+
+  ── Bilan du cycle (67 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+         5. clé 1 × gemini-3.1-flash-lite        ✅
+         6. clé 1 × gemini-embedding-001         🚫 quota
+         7. clé 1 × gemini-embedding-2-preview   🚫 quota
+         8. clé 1 × gemini-embedding-2           🚫 quota
+         9. clé 2 × gemini-embedding-001         🚫 quota
+        10. clé 2 × gemini-embedding-2-preview   🚫 quota
+        11. clé 2 × gemini-embedding-2           🚫 quota
+        12. clé 3 × gemini-embedding-001         🚫 quota
+        13. clé 3 × gemini-embedding-2-preview   🚫 quota
+        14. clé 3 × gemini-embedding-2           🚫 quota
+        15. clé 4 × gemini-embedding-001         🚫 quota
+        16. clé 4 × gemini-embedding-2-preview   ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-2.5-flash-lite (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 645 · gemini 2 800
+     jetons Gemini : 2,817 entrée · 259 sortie
+     ✅ aucun appel payant
