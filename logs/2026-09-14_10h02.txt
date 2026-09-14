@@ -1,0 +1,63 @@
+
+[10:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  ⏭️  Le Saviez-vous : « Origine du nom Bluetooth » n'explique pas vraiment → on ne publie pas
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #GaneshChaturthi, #ãã®PCã§éã³ããã²ã¼ã, #ilkdersimizkardeÅlik, ãªãã¨å³¶, #ã·ã«ãã¼ã¦ã£ã¼ã¯ãauPAY
+  🌍 « à¤à¥à¤¨à¥_à¤à¥à¤¨à¥_à¤®à¥à¤_à¤­à¤¾à¤à¤ªà¤¾ » : aucune reprise en français, source internationale retenue
+  🕐 10h (Paris) — rythme journée (42-87 min · 3 publié(s), 13 restant(s) sur 14.0 h) : 42-87 min
+  🎲 45 min (proba 6%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/12 articles lus en 2.6s (63 déjà en cache)
+  📄 10/77 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Positivr · CoinDesk · Cointelegraph · The Block
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧩 77 articles → 38 événement(s), dont 6 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Législatives en Suède : la gauche et le bloc de droi
+  🚨 Sujet chaud (breaking, 3 médias) : Affaire Charles Sapin: les antennes de Radio Franc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BFM People, Ouest-France
+  🧮 Score 46.5/100 = gravité 3/10 → 14 + 3 médias +7 + frais 0.0h +16 + portée internationale +10
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (161 → 123 car.)
+  🖼️🤝 Image récupérée chez un média jumeau (BFM People) — même sujet
+  👁️ Image écartée : Personnes non concernées
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dès le 4 novembre, Blizzard lancera World of Warcraf
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Voilà à quoi ressemble la nouvelle carte du remake d
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : "injustifiée" et "excessive"
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 77 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : reseaux, sociaux, anthropic, nasdaq
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (56 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3-flash (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 640 · gemini 2 800
+     jetons Gemini : 17,640 entrée · 432 sortie
+     ✅ aucun appel payant
