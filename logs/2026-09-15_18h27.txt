@@ -1,0 +1,81 @@
+
+[18:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : Discord, ãã£ã¹ã³, JJ Gabriel, #åã®å¥½ãã¯ç¡æµ, Dino
+  🔎 « JJ Gabriel » : 1 article(s) frais, le plus récent il y a 2.4 h (Foot Mercato)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « JJ Gabriel » écarté : trop secondaire (3/10)
+  🔎 « Dino » : 1 article(s) frais, le plus récent il y a 6.6 h (L'Équipe)
+  ⏭️  « Dino » écarté : trop secondaire (5/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Discord
+  🕐 18h (Paris) — rythme journée (46-97 min · 11 publié(s), 5 restant(s) sur 6.0 h) : 46-97 min
+  ⏸️  Dernière publi il y a 35 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 1.9s (63 déjà en cache)
+  📄 6/72 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · Positivr
+  🧠 70 vecteurs calculés en 1 appel(s)
+  🧩 72 articles → 33 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Budget 2027 : Sébastien Lecornu ne veut pas augmente
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Realme a une belle surprise pour les fans de Harry P
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Formation professionnelle : jusqu’à 867 suppressions
+  🚨 Sujet chaud (breaking, 1 médias) : Standard Chartered says Arbitrum could outperform 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.5/100 = gravité 3/10 → 14 + frais 0.6h +13 + primeur absolue +8 + portée internationale +10
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Discord est tombé en panne : voici ce que l’on sait
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 72 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : carburant, gazole, essence, meta, lunettes, surveillance
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Il a tiré pour en terminer": au procès de l'assas
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump EPA moves to wipe out climate rules for powe
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (90 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 1 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-001         🚫 quota
+        11. clé 2 × gemini-embedding-2-preview   🚫 quota
+        12. clé 2 × gemini-embedding-2           🚫 quota
+        13. clé 3 × gemini-embedding-001         🚫 quota
+        14. clé 3 × gemini-embedding-2-preview   🚫 quota
+        15. clé 3 × gemini-embedding-2           🚫 quota
+        16. clé 4 × gemini-embedding-001         🚫 quota
+        17. clé 4 × gemini-embedding-2-preview   ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3-flash (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 730
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,825 entrée · 160 sortie
+     ✅ aucun appel payant
