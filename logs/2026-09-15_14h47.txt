@@ -1,0 +1,51 @@
+
+[14:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #Ø§ÙØ­ÙØ«Ù_ÙØ³ØªÙØ¯Ù_Ù ÙÙ, #ããã³ã³, #ä»°å¤©ãã¥ã¼ã¹, POND GEMINI WITH BREEZE, ãã¸ãã¯3
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #CatherineRinger
+  🕐 14h (Paris) — rythme journée (48-101 min · 8 publié(s), 8 restant(s) sur 10.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 4 min — attente.
+  📖 1/1 articles lus en 0.7s (9 déjà en cache)
+  📄 2/10 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 10 vecteurs calculés en 1 appel(s)
+  🧩 10 articles → 8 événement(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Rookies Cup, champion de France… Trois choses à savo
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Patrick Bruel : bien avant les plaintes, cette tourn
+  🚨 Sujet chaud (breaking, 1 médias) : Catherine Ringer, célèbre voix des Rita Mitsouko, 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 14.5/100 = gravité 9/10 → 40 + frais 2.3h +4 + déjà publié 1× -30
+  ⏭️  Écarté : même fait reformulé → suivant
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 10 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : catherine ringer, rita mitsouko, deces, trump, danemark, baltique
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (78 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 8/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   ✅
+         5. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         6. clé 1 × gemini-3.1-flash-lite        ✅
+         7. clé 1 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite (+26)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 732
+     jetons Gemini : 2,514 entrée · 217 sortie
+     ✅ aucun appel payant
