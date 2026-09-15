@@ -1,0 +1,88 @@
+
+[17:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : Discord, ãã£ã¹ã³, JJ Gabriel, #åã®å¥½ãã¯ç¡æµ, Dino
+  🔎 « JJ Gabriel » : 1 article(s) frais, le plus récent il y a 1.9 h (Foot Mercato)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « JJ Gabriel » écarté : Rumeur de transfert anecdotique pour le public français
+  🔎 « Dino » : 1 article(s) frais, le plus récent il y a 6.1 h (lequipe.fr)
+  ⏭️  « Dino » écarté : trop secondaire (5/10)
+  🌍 « Nunes Marques » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Discord, #CatherineRinger
+  🕐 17h (Paris) — rythme journée (54-113 min · 11 publié(s), 5 restant(s) sur 7.0 h) : 54-113 min
+  ⏸️  Dernière publi il y a 4 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/6 articles lus en 1.4s (47 déjà en cache)
+  📄 4/55 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir
+  🧠 53 vecteurs calculés en 1 appel(s)
+  🧩 55 articles → 32 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Budget 2027 : Sébastien Lecornu ne veut pas augmente
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Communiqué de presse - Nouvelle tournée Clair Obscur
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le casting de la série Harry Potter s'enrichit avec 
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Discord est tombé en panne : voici ce que l’on sait
+  🚨 Sujet chaud (breaking, 7 médias) : Catherine Ringer : "C'est un sel sans poivre", 19 
+  🧠 9 article(s) sur un autre sujet, écartés du dossier : Cointelegraph, IGN France, Konbini, Libération, Melty
+  🧮 Score 82.5/100 = gravité 9/10 → 40 + 7 médias +11 + frais 0.8h +13 + imprévu 9/10 +18
+  📖 Parcours trouvé pour Catherine Ringer
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ↩️ Pas un décès malgré le classement du modèle → actualité normale [world]
+  📚 Affaire suivie : 1 publication(s) en mémoire
+  📈 Hashtag(s) en tendance : #CatherineRinger
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • SUITE MAL ÉCRITE
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ❌ Suivi breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 55 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : carburant, gazole, essence, meta, lunettes, surveillance
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Plus de huit millions de livres pour enfants" par
+  ♻️ Doublon d'un sujet déjà publié, écarté : Catherine Ringer : "C'est un sel sans poivre", 19 
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 1 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-001         🚫 quota
+        11. clé 2 × gemini-embedding-2-preview   🚫 quota
+        12. clé 2 × gemini-embedding-2           🚫 quota
+        13. clé 3 × gemini-embedding-001         🚫 quota
+        14. clé 3 × gemini-embedding-2-preview   🚫 quota
+        15. clé 3 × gemini-embedding-2           🚫 quota
+        16. clé 4 × gemini-embedding-001         ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite (+17)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 730
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 22,244 entrée · 526 sortie
+     ✅ aucun appel payant
