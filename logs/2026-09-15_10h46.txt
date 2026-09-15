@@ -1,0 +1,65 @@
+
+[10:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : Karina, Gema, #ã´ã³ãã£ã®æ°ãããããã«, #EngineersDay, #JusticeForGulzarSingh
+  🔎 « Karina » : 1 article(s) frais, le plus récent il y a 2.3 h (Google Actualités)
+  ⏭️  « Karina » écarté : Article ancien sans fait nouveau marquant.
+  🌍 « Gema » : aucune reprise en français, source internationale retenue
+  🌍 « EngineersDay » : aucune reprise en français, source internationale retenue
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  🎲 55 min (proba 21%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 11/13 articles lus en 2.0s (69 déjà en cache)
+  📄 14/82 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · SpaceNews · Libération · The Block · Sciences et Avenir · Positivr
+  🧠 81 vecteurs calculés en 1 appel(s)
+  🧩 82 articles → 32 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Devinez qui était la mieux sapée aux Emmy Awards ?
+  🚨 Sujet chaud (breaking, 4 médias) : Prix des carburants : le dépôt pétrolier de Fos-su
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : France Bleu, Le Monde, Ouest-France
+  🧮 Score 41.0/100 = gravité 4/10 → 18 + 4 médias +7 + frais 0.2h +16
+  → Sujet chaud pas assez fort (score 41) → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : Emmanuel Macron à Orange ce mardi pour le lancemen
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Journal du Geek, Libération, Midi Libre
+  🧮 Score 32.5/100 = gravité 3/10 → 14 + 5 médias +11 + frais 0.6h +13 + programmé 3/10 -15 + portée internationale +10
+  → Sujet chaud pas assez fort (score 32) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Cacatastrophe à l’Hyrox : que s’est-il passé à Pékin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le Steam Frame est officiel : il coûte 1 049 €, et l
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FLEX and Sentinel-3C launch highlights
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 82 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : pentagone, munitions, iran
+  ♻️ Doublon d'un sujet déjà publié, écarté : Violences sexuelles: Anne Hidalgo assure avoir "ag
+  ♻️ Doublon d'un sujet déjà publié, écarté : Rencontres entre le maire de Sablé-sur-Sarthe et l
+  ♻️ Doublon d'un sujet déjà publié, écarté : États-Unis : des armes en orbite, première étape c
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (59 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-embedding-2 · clé 2 × gemini-3-flash (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 182 · gemini 2 799
+     jetons Gemini : 8,854 entrée · 190 sortie
+     ✅ aucun appel payant
