@@ -1,0 +1,69 @@
+
+[19:26] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : Gilmar Mendes, Discord, JJ Gabriel, ãã£ã¹ã³, Ø³Ø¹Ø¯ Ø§ÙÙØ§ØµØ±
+  🔎 « JJ Gabriel » : 1 article(s) frais, le plus récent il y a 3.4 h (Foot Mercato)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « JJ Gabriel » écarté : Rumeur de transfert sportif sans confirmation officielle.
+  🔎 « Dino » : 1 article(s) frais, le plus récent il y a 7.6 h (L'Équipe)
+  ✅ « Dino » retenu : Entraîneur de Lens sur le départ. (6/10) (+1 au score)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Discord, #Dino
+  🕐 19h (Paris) — rythme journée (48-101 min · 12 publié(s), 4 restant(s) sur 5.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 17 min — attente.
+  📖 4/4 articles lus en 0.6s (42 déjà en cache)
+  📄 4/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir
+  🧠 46 vecteurs calculés en 1 appel(s)
+  🧩 47 articles → 31 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Discord est tombé en panne : voici ce que l’on sait
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 47 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : meta, lunettes, surveillance, hanouna, tbt9
+  ♻️ Doublon d'un sujet déjà publié, écarté : Apple: iOS 27, iPadOS 27, watchOS 27 et MacOS 27 s
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (44 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 12/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 1 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-001         🚫 quota
+        11. clé 2 × gemini-embedding-2-preview   🚫 quota
+        12. clé 2 × gemini-embedding-2           🚫 quota
+        13. clé 3 × gemini-embedding-001         🚫 quota
+        14. clé 3 × gemini-embedding-2-preview   🚫 quota
+        15. clé 3 × gemini-embedding-2           🚫 quota
+        16. clé 4 × gemini-embedding-001         🚫 quota
+        17. clé 4 × gemini-embedding-2-preview   🚫 quota
+        18. clé 4 × gemini-embedding-2           🚫 quota
+        19. clé 5 × gemini-embedding-001         ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 730
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,060 entrée · 165 sortie
+     ✅ aucun appel payant
