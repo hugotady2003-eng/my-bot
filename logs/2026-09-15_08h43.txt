@@ -1,0 +1,123 @@
+
+[08:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #ã´ã³ãã£ã®æ°ãããããã«, Broncos, Bo Nix, #EngineersDay, Chiefs
+  🔎 « Broncos » : 1 article(s) frais, le plus récent il y a 0.7 h (L'Équipe)
+  ⏭️  « Broncos » écarté : trop secondaire (3/10)
+  🌍 « EngineersDay » : aucune reprise en français, source internationale retenue
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 0.7 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Chiefs » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #ThePitt
+  🕐 8h (Paris) — rythme journée (44-92 min · 2 publié(s), 14 restant(s) sur 16.0 h) : 44-92 min
+  ⏸️  Dernière publi il y a 38 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/4 articles lus en 0.4s (78 déjà en cache)
+  📄 15/82 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · SpaceNews · Ouest-France · CoinDesk · The Block · Sciences et Avenir
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Guerre en Ukraine : l'Otan abat un dro… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧩 82 articles → 81 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Widow’s Bay» et «The Pitt» dominent les Emmy Awards
+  🚨 Sujet chaud (breaking, 1 médias) : Prix des carburants : "le mouvement risque de se d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 34.5/100 = gravité 3/10 → 14 + frais 0.7h +13 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 34) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Le Pentagone reconnait une "pénurie" de munitions 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.5/100 = gravité 9/10 → 40 + frais 0.6h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Mobilisations en France : les pêcheurs bloquent un
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 37.5/100 = gravité 3/10 → 14 + frais 0.2h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 38) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : « Projet Azur » et enlèvement de Mia : le groupusc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45/100 = gravité 7/10 → 32 + frais 0.5h +16 + thème porteur +10 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 45) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le Tesla Semi arrive en Europe : son responsable nou
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FLEX and Sentinel-3C launched
+  🚨 Sujet chaud (breaking, 2 médias) : Un drone abattu par l’Otan dans le ciel de la Litu
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 82 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : otan, drone, lituanie, crypto, clarity
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting property name enclosed in double quotes: line 2 co → couple suivant
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (167 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 2/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × gemini-embedding-2-preview   🚫 quota
+        15. clé 5 × gemini-embedding-2           🚫 quota
+        16. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        18. clé 1 × gemini-3.6-flash             🚫 quota
+        19. clé 1 × gemini-3-flash               ⛔ inexistant
+        20. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        23. clé 2 × gemini-3.6-flash             🚫 quota
+        24. clé 2 × gemini-3-flash               ⛔ inexistant
+        25. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        38. clé 3 × gemini-3.6-flash             ⚠️ Expecting property nam
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 7/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.6-flash
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 21,833 entrée · 575 sortie
+     ✅ aucun appel payant
