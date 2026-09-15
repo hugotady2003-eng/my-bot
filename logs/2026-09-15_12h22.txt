@@ -1,0 +1,70 @@
+
+[12:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #AskSRK, Karina, #ãã©ãã¯ãµã³ãã¼æ°ä½, #RokidStyle, åè£å ç
+  🌍 « AskSRK » : aucune reprise en français, source internationale retenue
+  🔎 « AskSRK » : 1 article(s) frais, le plus récent il y a 1.5 h (India TV News)
+  ⏭️  « AskSRK » écarté : Interaction de fans sur reseau social.
+  🔎 « Karina » : 1 article(s) frais, le plus récent il y a 3.9 h (Google Actualités)
+  ⏭️  « Karina » écarté : Article ancien sans lien avec un fait nouveau
+  🌍 « Gema » : aucune reprise en français, source internationale retenue
+  🕐 12h (Paris) — rythme journée (46-97 min · 6 publié(s), 10 restant(s) sur 12.0 h) : 46-97 min
+  ⏸️  Dernière publi il y a 13 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/11 articles lus en 1.7s (66 déjà en cache)
+  📄 14/77 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · SpaceNews · Libération · Sciences et Avenir · CoinDesk · Positivr
+  🧠 77 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « For the first time, the US military co… »
+  🧩 77 articles → 32 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Devinez qui était la mieux sapée aux Emmy Awards ?
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La Rochelle: une mobilisation en cours pour proteste
+  🚨 Sujet chaud (breaking, 1 médias) : 800 euros de solde, avantages, nombre de recrues..
+  🧮 Score 32.5/100 = gravité 3/10 → 14 + frais 0.2h +16 + programmé 3/10 -15 + primeur absolue +8 + portée internationale +10
+  → Sujet chaud pas assez fort (score 32) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Malgré l’absence de diffusion, la Liga et Canal+ s’a
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Hyrox admet « une erreur » dans sa gestion d’un cas 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La Poste : les services en bureau perturbés dans tou
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Inacceptable" : une frégate russe tire des fusées é
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : BYD sort un camion électrique à 600 km d’autonomie e
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le Steam Frame est officiel : il coûte 1 049 €, et l
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Hong Kong-founded crypto exchange CoinEx to shut dow
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Athlétisme : en 2029, le Kenya deviendra le premier 
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 77 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : espace, armement, iran, diplomatie
+  ♻️ Doublon d'un sujet déjà publié, écarté : Bruno Retailleau s’affiche encore avec le syndicat
+  ♻️ Doublon d'un sujet déjà publié, écarté : « J’ai la tête ailleurs », ce petit guide bordelai
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (63 s) ──
+     écartés : 10 sujet banal
+     plafonds : X 6/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 1 × gemini-embedding-2           🚫 quota
+         6. clé 2 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 776
+     jetons Gemini : 7,104 entrée · 206 sortie
+     ✅ aucun appel payant
