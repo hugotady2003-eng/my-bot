@@ -1,0 +1,92 @@
+
+[23:41] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 3 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : Ø§ÙÙØµØ±, #Ø§ÙÙÙØ§Ù_Ø§ÙØºØ±Ø§ÙÙ, Max Dowman, Vinicius, #KohLanta
+  🔎 « Max Dowman » : 1 article(s) frais, le plus récent il y a 0.6 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Max Dowman » écarté : trop secondaire (3/10)
+  🔎 « Vinicius » : 1 article(s) frais, le plus récent il y a 0.5 h (Yahoo Actualités)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Vinicius » écarté : trop secondaire (5/10)
+  🌍 « Massie » : aucune reprise en français, source internationale retenue
+  🔎 « Massie » : 1 article(s) frais, le plus récent il y a 4.1 h (NPR)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ✅ « Massie » retenu : Initiative de destitution contre un ministre américain. (6/10) (+1 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #EdSheeran, #KashPatel, #Massie
+  🕐 23h (Paris) — rythme quota atteint (16) — seules les alertes passent : 150-240 min
+  ⏸️  Dernière publi il y a 29 min — attente.
+  📖 2/2 articles lus en 0.6s (27 déjà en cache)
+  📄 2/30 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · The Block
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Discord est tombé en panne : voici ce … »
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🧩 30 articles → 29 événement(s)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : The FBI Doubles Down on Easing ‘Bestiality’ Hiring S
+  🚨 Sujet chaud (breaking, ? médias) : Republican Rep. Massie moves to impeach Defense Se
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 9 → 10 (+1)
+  🛑 Seuil atteint (16/16) — seule une alerte vitale passerait → suivant
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  🛑 Seuil souple atteint (16/16) — on garde la place au chaud (breaking/France live).
+
+  ── Bilan du cycle (84 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 16/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 2 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-2-preview   🚫 quota
+        14. clé 2 × gemini-embedding-2           🚫 quota
+        15. clé 3 × gemini-embedding-001         🚫 quota
+        16. clé 3 × gemini-embedding-2-preview   🚫 quota
+        17. clé 3 × gemini-embedding-2           🚫 quota
+        18. clé 4 × gemini-embedding-001         🚫 quota
+        19. clé 4 × gemini-embedding-2-preview   🚫 quota
+        20. clé 4 × gemini-embedding-2           🚫 quota
+        21. clé 5 × gemini-embedding-001         🚫 quota
+        22. clé 5 × gemini-embedding-2-preview   🚫 quota
+        23. clé 5 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-3.1-flash-lite        ✅
+        25. clé 2 × gemini-3.1-flash-lite        ✅
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.1-flash-lite        ✅
+        28. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 2 × gemini-3.6-flash             🚫 quota
+        34. clé 3 × gemini-3.5-flash-lite        ✅
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 730
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,134 entrée · 284 sortie
+     ✅ aucun appel payant
