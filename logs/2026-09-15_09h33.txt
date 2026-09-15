@@ -1,0 +1,59 @@
+
+[09:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #ã´ã³ãã£ã®æ°ãããããã«, #EngineersDay, Gema, Yahir, #SurfNLove
+  🌍 « EngineersDay » : aucune reprise en français, source internationale retenue
+  🌍 « Gema » : aucune reprise en français, source internationale retenue
+  🔎 « Broncos » : 1 article(s) frais, le plus récent il y a 1.5 h (L'Équipe)
+  ⏭️  « Broncos » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #CoinEx
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 33 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/8 articles lus en 1.3s (69 déjà en cache)
+  📄 16/77 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · SpaceNews · Libération · CoinDesk · Sciences et Avenir
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧩 77 articles → 25 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : "Je dois gagner 30 ou 40 euros par plein" : face à
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 6/10 → 27 + frais 1.4h +8 + primeur +5 + ⚡ crise institutionnelle → plancher 89
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ Contrôle visuel indisponible (503 Server Error: Service Unavailable for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent) → image conservée
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Police : le syndicat Alliance appelle à manifester c
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FLEX and Sentinel-3C launched
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : CoinEx to cease operation after 9 years, citing ‘sig
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 77 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : crypto, clarity, pentagone, munitions, iran
+  ♻️ Doublon d'un sujet déjà publié, écarté : Un "totem non négociable" : accusés de ne payer qu
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (140 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2 · clé 1 × gemini-embedding-2-preview · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-001 (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 330 · gemini 2-preview 800 · gemini 2 799
+     jetons Gemini : 14,977 entrée · 469 sortie
+     ✅ aucun appel payant
