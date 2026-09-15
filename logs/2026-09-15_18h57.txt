@@ -1,0 +1,102 @@
+
+[18:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Gilmar Mendes, Discord, JJ Gabriel, ãã£ã¹ã³, Ø³Ø¹Ø¯ Ø§ÙÙØ§ØµØ±
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Dino, #Discord, #KashPatel
+  🕐 18h (Paris) — rythme journée (46-97 min · 11 publié(s), 5 restant(s) sur 6.0 h) : 46-97 min
+  🎲 64 min (proba 36%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.8s (71 déjà en cache)
+  📄 8/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · Positivr
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 74 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧩 76 articles → 33 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : SIGNÉ CONSIGNY - Marine Le Pen a-t-elle intérêt à sa
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un si grand soleil en avance : résumé et explication
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Realme a une belle surprise pour les fans de Harry P
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Il hurle et tape du poing sur la table» : des auteu
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel: la justice se prononce ce mer
+  🚨 Sujet chaud (breaking, 23 médias) : "100 000 patients ne peuvent plus attendre" : un c
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 31 article(s) sur un autre sujet, écartés du dossier : BFMTV, Begeek, France Bleu, Frandroid, Gamekult
+  🧮 Score 46.5/100 = gravité 3/10 → 14 + 23 médias +20 + frais 0.6h +13
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Standard Chartered says Arbitrum could outperform 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 36.5/100 = gravité 3/10 → 14 + frais 1.1h +8 + primeur +5 + portée internationale +10
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 23 médias) : Menaces de mort dans un collège d’Eysines : « Les 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 46.5/100 = gravité 3/10 → 14 + 23 médias +20 + frais 0.7h +13
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ligue 1. Le RC Lens confirme le départ de son entraî
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Discord est tombé en panne : voici ce que l’on sait
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FBI’s Kash Patel defends hiring policy change on bes
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 76 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : meta, lunettes, surveillance
+  ♻️ Doublon d'un sujet déjà publié, écarté : Espace : missiles, lasers, brouillage… Washington 
+  ♻️ Doublon d'un sujet déjà publié, écarté : iPhone 18 Pro et 18 Pro Max : ce que l’étiquette é
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (131 s) ──
+     écartés : 8 sujet banal
+     plafonds : X 11/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 1 × gemini-3.6-flash             🚫 quota
+        16. clé 1 × gemini-3-flash               ⛔ inexistant
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 730
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 27,716 entrée · 592 sortie
+     ✅ aucun appel payant
