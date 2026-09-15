@@ -1,0 +1,76 @@
+
+[13:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 9 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #Ø§ÙØ­ÙØ«Ù_ÙØ³ØªÙØ¯Ù_Ù ÙÙ, ç³äºå¤§æº, #SurfNLoveQ1, #AskSRK, #TOIDialoguesUttarakhand
+  🌍 « AskSRK » : aucune reprise en français, source internationale retenue
+  🔎 « AskSRK » : 1 article(s) frais, le plus récent il y a 1.1 h (Bollywood Hungama)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « AskSRK » écarté : trop secondaire (2/10)
+  🌍 « TOIDialoguesUttarakhand » : aucune reprise en français, source internationale retenue
+  🕐 13h (Paris) — rythme journée (47-99 min · 7 publié(s), 9 restant(s) sur 11.0 h) : 47-99 min
+  ⏸️  Dernière publi il y a 39 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/3 articles lus en 0.3s (62 déjà en cache)
+  📄 15/65 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · Sciences et Avenir · Positivr · CoinDesk
+  🧠 65 vecteurs calculés en 1 appel(s)
+  🧩 65 articles → 20 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-1, pénalisé par « horoscope ») : Nouveau service militaire national : Emmanuel Macron
+  🚨 Sujet chaud (breaking, 1 médias) : Des "manœuvres provocatrices" : une frégate russe 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 80.0/100 = gravité 8/10 → 36 + frais 0.3h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (208 → 158 car.)
+  👁️ Image écartée : Hélicoptère non danois
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Éric Ciotti, maire UDR de Nice, souhaite un "plan Ma
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Rugby. L’Olympia accueillera la « Nuit du Rugby » de
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Calendrier de MobLand Saison 2, dates et heure de so
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Tuerie de Chevaline : une « remise en situation » su
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : SFR fibre Sobriété : SFR lance nouveau forfait sans 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nairobi to host World Athletics Championships in 202
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 65 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : iran, diplomatie, catherine ringer, rita mitsouko, deces, trump
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (123 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 7/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   🚫 quota
+         7. clé 2 × gemini-embedding-2           🚫 quota
+         8. clé 3 × gemini-embedding-001         ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 735
+     jetons Gemini : 16,068 entrée · 506 sortie
+     ✅ aucun appel payant
