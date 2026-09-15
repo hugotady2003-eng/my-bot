@@ -1,0 +1,90 @@
+
+[17:04] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : Discord, ãã£ã¹ã³, #åã®å¥½ãã¯ç¡æµ, JJ Gabriel, #ãããã®äºç¿»
+  🔎 « JJ Gabriel » : 1 article(s) frais, le plus récent il y a 1.1 h (Foot Mercato)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « JJ Gabriel » écarté : trop secondaire (4/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Discord
+  🕐 17h (Paris) — rythme journée (45-94 min · 10 publié(s), 6 restant(s) sur 7.0 h) : 45-94 min
+  ⏸️  Dernière publi il y a 18 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 19/22 articles lus en 4.1s (40 déjà en cache)
+  📄 6/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir
+  🧠 62 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧩 63 articles → 28 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : MA VIE À PLUS DE 2 EUROS LE LITRE. Le boom des conve
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Discord est victime d’une grosse panne ce mardi 15 s
+  🚨 Sujet chaud (breaking, 22 médias) : Charles Sapin à Radio France: les personnels voten
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 32 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFM People, Begeek, Challenges, Frandroid
+  🧮 Score 22.0/100 = gravité 2/10 → 9 + 22 médias +20 + frais 0.7h +13 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 22) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Lio : "Toutes les nanas en ont marre de toi", Patric
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 63 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : danemark, militaire, carburant, gazole, essence
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine : "Il est temps d’avoir le coura
+  ♻️ Doublon d'un sujet déjà publié, écarté : Déraillement d'un train en Normandie: les opératio
+  ♻️ Doublon d'un sujet déjà publié, écarté : Russia warns Denmark after near miss in Baltic Sea
+  ♻️ Doublon d'un sujet déjà publié, écarté : Bitcoin Sinks as the Senate's Clarity Act Showdown
+  ♻️ Doublon d'un sujet déjà publié, écarté : Amazon says Fire TV devices will be able to sidelo
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (427 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 10/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-embedding-001         🚫 quota
+         8. clé 1 × gemini-embedding-2-preview   🚫 quota
+         9. clé 2 × gemini-embedding-001         🚫 quota
+        10. clé 2 × gemini-embedding-2-preview   🚫 quota
+        11. clé 2 × gemini-embedding-2           🚫 quota
+        12. clé 3 × gemini-embedding-001         🚫 quota
+        13. clé 3 × gemini-embedding-2-preview   🚫 quota
+        14. clé 3 × gemini-embedding-2           🚫 quota
+        15. clé 4 × gemini-embedding-001         ✅
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 730
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,580 entrée · 214 sortie
+     ✅ aucun appel payant
