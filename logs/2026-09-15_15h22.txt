@@ -1,0 +1,82 @@
+
+[15:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #Ø§ÙØ­ÙØ«Ù_ÙØ³ØªÙØ¯Ù_Ù ÙÙ, ã¾ãã»ã¼, #OhMyGosh_LYKNmv, #ä»°å¤©ãã¥ã¼ã¹, #TOIDialoguesUttarakhand
+  🌍 « TOIDialoguesUttarakhand » : aucune reprise en français, source internationale retenue
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 15h (Paris) — rythme journée (43-91 min · 8 publié(s), 8 restant(s) sur 9.0 h) : 43-91 min
+  ⏸️  Dernière publi il y a 39 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/8 articles lus en 2.1s (37 déjà en cache)
+  📄 5/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir
+  🧠 45 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  🧩 47 articles → 22 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚨 Sujet chaud (breaking, 4 médias) : Qui est le “gourou” Rémy Daillet, jugé pour l'enlè
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.6-flash (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : BFMTV, Konbini, Ouest-France
+  🧮 Score 45/100 = gravité 7/10 → 32 + 4 médias +7 + frais 0.4h +16 + imprévu 6/10 +4 + thème porteur +10 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 45) → suivant
+  ⚪ Écarté (0, pénalisé par « pourrait, comment  ») : Attentats du 13-Novembre : pourquoi Mohamed Bakkali,
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Patrick Bruel : bien avant les plaintes, cette tourn
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 47 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : danemark, baltique
+  ♻️ Doublon d'un sujet déjà publié, écarté : Enlèvement de la petite Mia, projet de coup d’État
+  ♻️ Doublon d'un sujet déjà publié, écarté : Il verse plus de 4 millions de dollars pour pouvoi
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (96 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 8/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        11. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        12. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        13. clé 1 × gemini-3-flash               ⛔ inexistant
+        14. clé 2 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.6-flash             ⚠️ 503 Server Error: Serv
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-3.6-flash             🚫 quota
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 731
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,879 entrée · 167 sortie
+     ✅ aucun appel payant
