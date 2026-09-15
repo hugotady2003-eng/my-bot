@@ -1,0 +1,133 @@
+
+[14:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #Ø§ÙØ­ÙØ«Ù_ÙØ³ØªÙØ¯Ù_Ù ÙÙ, ç³äºå¤§æº, #SurfNLoveQ1, #AskSRK, #TOIDialoguesUttarakhand
+  🌍 « AskSRK » : aucune reprise en français, source internationale retenue
+  🔎 « AskSRK » : 1 article(s) frais, le plus récent il y a 0.4 h (The Times of India)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « AskSRK » écarté : Interaction banale entre une star et ses fans.
+  🌍 « TOIDialoguesUttarakhand » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #CatherineRinger, #RitaMitsouko
+  🕐 14h (Paris) — rythme journée (43-90 min · 7 publié(s), 9 restant(s) sur 10.0 h) : 43-90 min
+  🎲 64 min (proba 46%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/7 articles lus en 1.9s (53 déjà en cache)
+  📄 8/60 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · IGN France · OpenAI · SpaceNews
+  🧠 60 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 Même événement (jugé) : « Catherine Ringer, chanteuse du groupe … »
+  🧩 60 articles → 28 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚨 Sujet chaud (breaking, 3 médias) : Des "manœuvres provocatrices" : une frégate russe 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : Libération, Midi Libre
+  🧮 Score 77.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 0.2h +16 + portée mondiale +18
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (228 → 178 car.)
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  👁️ Image écartée : Hélicoptère non danois
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 17 médias) : Prix des carburants : saccage nocturne au marteau 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧠 23 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, ActuGaming, Al Jazeera, BBC, BFM People
+  🧮 Score 39.5/100 = gravité 3/10 → 14 + 17 médias +18 + frais 1.1h +8
+  → Sujet chaud pas assez fort (score 40) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : SFR fibre Sobriété : SFR lance nouveau forfait sans 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Codes Build and Kill Zombies (Septembre 2026)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Macklemore réagit à son éviction de la tournée d'Ed 
+  🚨 Sujet chaud (breaking, 3 médias) : Périscolaire à Paris : un animateur écope de cinq 
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧮 Score 39.5/100 = gravité 3/10 → 14 + 3 médias +7 + frais 0.3h +16 + programmé 3/10 -15 + portée mondiale +18
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 17 médias) : Catherine Ringer, célèbre voix des Rita Mitsouko, 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 66.5/100 = gravité 9/10 → 40 + 17 médias +18 + frais 1.1h +8
+  🕒 Âge de l'article : 1.9h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🕊️ Hommage validé par le modèle — Décès naturel d'une personnalité publique confirmé. · décès : dans la nuit du 14 septembre 2026
+  📚 Affaire suivie : 1 publication(s) en mémoire
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+     • SUITE MAL ÉCRITE
+  🖼️ Portrait Wikipédia récupéré pour Catherine Ringer (3007 ko)
+  ❌ Suivi échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 17 médias) : Catherine Ringer, chanteuse du groupe rock les Rit
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 60 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : catherine ringer, rita mitsouko, deces, trump
+  ♻️ Doublon d'un sujet déjà publié, écarté : Une nouvelle journée de grève votée à l’unanimité 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Catherine Ringer, 20 films X entre 17 et 25 ans : 
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (542 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 7/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   🚫 quota
+         7. clé 2 × gemini-embedding-2           🚫 quota
+         8. clé 3 × gemini-embedding-001         ✅
+         9. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        10. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        12. clé 1 × gemini-3-flash               ⛔ inexistant
+        13. clé 2 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        23. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-3.1-flash-lite        ✅
+        26. clé 1 × gemini-3.1-flash-lite        ✅
+        27. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite (+20)
+     clés Gemini : 5/5 disponible(s)
+     texte : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 733
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 38,600 entrée · 915 sortie
+     ✅ aucun appel payant
