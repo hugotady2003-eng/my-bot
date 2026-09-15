@@ -1,0 +1,89 @@
+
+[14:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 9 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #Ø§ÙØ­ÙØ«Ù_ÙØ³ØªÙØ¯Ù_Ù ÙÙ, ç³äºå¤§æº, #SurfNLoveQ1, #AskSRK, #TOIDialoguesUttarakhand
+  🌍 « AskSRK » : aucune reprise en français, source internationale retenue
+  🔎 « AskSRK » : 1 article(s) frais, le plus récent il y a 1.5 h (Bollywood Hungama)
+  ⏭️  « AskSRK » écarté : Annonce de film indien sans impact en France
+  🌍 « TOIDialoguesUttarakhand » : aucune reprise en français, source internationale retenue
+  🕐 14h (Paris) — rythme journée (43-90 min · 7 publié(s), 9 restant(s) sur 10.0 h) : 43-90 min
+  🎲 49 min (proba 13%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 11/15 articles lus en 2.8s (56 déjà en cache)
+  📄 16/71 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · CoinDesk · Sciences et Avenir · Positivr
+  🧠 71 vecteurs calculés en 1 appel(s)
+  🧩 71 articles → 16 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-1, pénalisé par « horoscope ») : Nouveau service militaire : Emmanuel Macron annonce 
+  🚨 Sujet chaud (breaking, 32 médias) : Violences dans le périscolaire: devant le Sénat, A
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 52 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Mac, ActuGaming, Al Jazeera, Ars Technica
+  🧮 Score 55.5/100 = gravité 5/10 → 22 + 32 médias +20 + frais 0.8h +13
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 32 médias) : Des "manœuvres provocatrices" : une frégate russe 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.0/100 = gravité 8/10 → 36 + 32 médias +20 + frais 0.8h +13
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (208 → 158 car.)
+  👁️ Image écartée : Hélicoptère non danois
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Vers des négociations commerciales tendues: préparez
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Codes Build and Kill Zombies (Septembre 2026)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Calendrier de MobLand Saison 2, dates et heure de so
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Macklemore réagit à son éviction de la tournée d'Ed 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : "Toutes les nanas en ont mar
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 71 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : iran, diplomatie, catherine ringer, rita mitsouko, deces, trump
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine : Kiev a lancé une offensive pou
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (170 s) ──
+     écartés : 6 sujet banal
+     plafonds : X 7/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 735
+     jetons Gemini : 39,277 entrée · 826 sortie
+     ✅ aucun appel payant
