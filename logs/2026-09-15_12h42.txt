@@ -1,0 +1,106 @@
+
+[12:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #AskSRK, Karina, #ãã©ãã¯ãµã³ãã¼æ°ä½, #RokidStyle, åè£å ç
+  🌍 « AskSRK » : aucune reprise en français, source internationale retenue
+  🔎 « AskSRK » : 1 article(s) frais, le plus récent il y a 0.3 h (Bollywood Hungama)
+  ⏭️  « AskSRK » écarté : Simple interaction de fans avec une star indienne
+  🔎 « Karina » : 1 article(s) frais, le plus récent il y a 4.1 h (Google Actualités)
+  ⏭️  « Karina » écarté : Article ancien sans fait nouveau notable.
+  🌍 « Gema » : aucune reprise en français, source internationale retenue
+  🕐 12h (Paris) — rythme journée (46-97 min · 6 publié(s), 10 restant(s) sur 12.0 h) : 46-97 min
+  ⏸️  Dernière publi il y a 28 min — attente.
+  📖 7/7 articles lus en 2.8s (75 déjà en cache)
+  📄 14/82 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · SpaceNews · Ouest-France · Sciences et Avenir · CoinDesk · Positivr
+  🧠 82 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 1) : HTTPSConnectionPool(host='generativelanguage.googleapis.com' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧩 82 articles → 32 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Emmy Awards : triomphe de «Widow’s Bay» et «The Pitt
+  🚨 Sujet chaud (breaking, 20 médias) : Catherine Ringer, célèbre voix des Rita Mitsouko, 
+  🧠 32 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC, BFMTV, Dexerto, France Bleu
+  🧮 Score 96.5/100 = gravité 9/10 → 40 + 20 médias +20 + frais 1.4h +8 + imprévu 9/10 +18 + portée internationale +10
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🕊️ Hommage validé par le modèle — Décès naturel d'une artiste emblématique de la scène françai · décès : 14 septembre 2026
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ Portrait Wikipédia récupéré pour Catherine Ringer (3007 ko)
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les bureaux de poste perturbés par un incident infor
+  🚨 Sujet chaud (breaking, 20 médias) : Il envoyait des menaces et des insultes à Emmanuel
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.5/100 = gravité 7/10 → 32 + 20 médias +20 + frais 1.4h +8 + portée internationale +10
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Malgré l’absence de diffusion, la Liga et Canal+ s’a
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Inacceptable" : une frégate russe tire des fusées é
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : BYD sort un camion électrique à 600 km d’autonomie e
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le Steam Frame est officiel : il coûte 1 049 €, et l
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 82 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : espace, armement, iran, diplomatie
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (430 s) ──
+     écartés : 6 sujet banal
+     plafonds : X 6/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 1 × gemini-embedding-2           🚫 quota
+         6. clé 2 × gemini-embedding-001         🚫 quota
+         7. clé 2 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        14. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 1 × gemini-3.6-flash             ⚠️ HTTPSConnectionPool(ho
+        16. clé 1 × gemini-3-flash               ⛔ inexistant
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.1-flash-lite        ✅
+        24. clé 1 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-3.1-flash-lite        ✅
+        26. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-embedding-001 · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 (+21)
+     clés Gemini : 5/5 disponible(s)
+     texte : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 767
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 37,098 entrée · 1,038 sortie
+     ✅ aucun appel payant
