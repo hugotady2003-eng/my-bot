@@ -1,0 +1,94 @@
+
+[19:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : Ø³Ø¹Ø¯ Ø§ÙÙØ§ØµØ±, #Ø§ÙÙØµØ±_Ø§ÙØ¹ÙÙ, Gilmar Mendes, JJ Gabriel, Discord
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #EdSheeran, #Discord, #ClarityAct
+  🕐 19h (Paris) — rythme journée (48-101 min · 12 publié(s), 4 restant(s) sur 5.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 37 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 2.1s (51 déjà en cache)
+  📄 5/60 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir
+  🧠 59 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🧩 60 articles → 33 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Salon de l’élevage : « Le compte n’y est toujours pa
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Désaccord sur la Palestine entre Macklemore et Ed Sh
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Spotify lance la fonctionnalité que tous les parents
+  🚨 Sujet chaud (breaking, 18 médias) : «Il avait une connaissance préalable de la présenc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 19 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, BFMTV, Begeek, France Bleu, Frandroid
+  🧮 Score 77.5/100 = gravité 7/10 → 32 + 18 médias +18 + frais 1.0h +8 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — La personne n'est pas décédée dans l'article.
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (173 → 119 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Michel Aoun (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Discord est tombé en panne : voici ce que l’on sait
+  🚨 Sujet chaud (breaking, 1 médias) : 'It's Now or Never' for Clarity Act, Says 'Bitcoin
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 60 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : meta, lunettes, surveillance, hanouna, tbt9
+  ♻️ Doublon d'un sujet déjà publié, écarté : Dans l’Yonne, la mère de famille qui a menacé de m
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (121 s) ──
+     écartés : 4 sujet banal · 1 hommage refusé
+     plafonds : X 12/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   🚫 quota
+        11. clé 4 × gemini-embedding-2           🚫 quota
+        12. clé 5 × gemini-embedding-001         ✅
+        13. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        17. clé 1 × gemini-3-flash               ⛔ inexistant
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 730
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 21,409 entrée · 423 sortie
+     ✅ aucun appel payant
