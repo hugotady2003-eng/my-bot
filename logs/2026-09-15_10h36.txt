@@ -1,0 +1,58 @@
+
+[10:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : Karina, Gema, #ã´ã³ãã£ã®æ°ãããããã«, #EngineersDay, #JusticeForGulzarSingh
+  🔎 « Karina » : 1 article(s) frais, le plus récent il y a 2.1 h (Google Actualités)
+  ⏭️  « Karina » écarté : Article ancien sans fait nouveau marquant.
+  🌍 « Gema » : aucune reprise en français, source internationale retenue
+  🌍 « EngineersDay » : aucune reprise en français, source internationale retenue
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  🎲 45 min (proba 0%) → on attend.
+  📖 5/5 articles lus en 0.8s (76 déjà en cache)
+  📄 14/81 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · SpaceNews · Libération · The Block · Sciences et Avenir · Positivr
+  🧠 80 vecteurs calculés en 1 appel(s)
+  🧩 81 articles → 28 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Devinez qui était la mieux sapée aux Emmy Awards ?
+  🚨 Sujet chaud (breaking, 7 médias) : Prix des carburants : des pêcheurs bloquent l’accè
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : BFMTV, France Bleu, IGN France, L'Express, Le Monde
+  🧮 Score 45.0/100 = gravité 4/10 → 18 + 7 médias +11 + frais 0.2h +16
+  → Sujet chaud pas assez fort (score 45) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Violences dans le périscolaire: Anne Hidalgo recon
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 15.5/100 = gravité 5/10 → 22 + frais 1.6h +8 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 16) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Une erreur» : Hyrox s’excuse après avoir laissé pou
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le Steam Frame est officiel : il coûte 1 049 €, et l
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FLEX and Sentinel-3C launch highlights
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 81 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : pentagone, munitions, iran
+  ♻️ Doublon d'un sujet déjà publié, écarté : Houthis say air strikes hit Yemen after Saudi Arab
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (42 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 268 · gemini 2 799
+     jetons Gemini : 4,278 entrée · 225 sortie
+     ✅ aucun appel payant
