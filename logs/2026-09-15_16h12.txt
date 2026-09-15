@@ -1,0 +1,75 @@
+
+[16:11] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #åã®å¥½ãã¯ç¡æµ, #ä»°å¤©ãã¥ã¼ã¹, #ãããã®äºç¿», #Rare_Interview_SantRampalJi, #Ø§ÙØ­ÙØ«Ù_ÙØ³ØªÙØ¯Ù_Ù ÙÙ
+  🔎 « JJ Gabriel » : 1 article(s) frais, le plus récent il y a 0.2 h (Foot Mercato)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « JJ Gabriel » écarté : trop secondaire (3/10)
+  🕐 16h (Paris) — rythme journée (44-92 min · 9 publié(s), 7 restant(s) sur 8.0 h) : 44-92 min
+  ⏸️  Dernière publi il y a 34 min — attente.
+  📖 6/6 articles lus en 0.9s (51 déjà en cache)
+  📄 6/57 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir
+  🧠 57 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Apple Card has three new and improved … »
+  🧩 57 articles → 29 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 12 médias) : Orange va fermer un service historique en 2027, c’
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 13 article(s) sur un autre sujet, écartés du dossier : Begeek, Frandroid, IGN France, Journal du Geek, La Dépêche
+  🧮 Score 47.5/100 = gravité 3/10 → 14 + 12 médias +18 + frais 0.5h +16
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Ils avaient toutes mes informations" : persuadé de 
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : «Aucun député LFI ne devrait publier» chez Bolloré, 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Bruno Retailleau, candidat LR à la présidentielle, s
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : 14 Emmy Awards mais vous ne l’avez pas matée : 5 rai
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Patrick Bruel : bien avant les plaintes, cette tourn
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 57 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : baltique, danemark, militaire
+  ♻️ Doublon d'un sujet déjà publié, écarté : Les meilleurs mods Valheim en 2026
+  ♻️ Doublon d'un sujet déjà publié, écarté : Morning Minute: Clarity Act Odds Slump After Democ
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (99 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 9/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-embedding-001         🚫 quota
+         8. clé 1 × gemini-embedding-2-preview   🚫 quota
+         9. clé 1 × gemini-embedding-2           🚫 quota
+        10. clé 2 × gemini-embedding-001         🚫 quota
+        11. clé 2 × gemini-embedding-2-preview   🚫 quota
+        12. clé 2 × gemini-embedding-2           🚫 quota
+        13. clé 3 × gemini-embedding-001         🚫 quota
+        14. clé 3 × gemini-embedding-2-preview   ✅
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 (+18)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 730
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 10,781 entrée · 260 sortie
+     ✅ aucun appel payant
