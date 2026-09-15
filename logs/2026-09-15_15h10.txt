@@ -1,0 +1,83 @@
+
+[15:06] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #Ø§ÙØ­ÙØ«Ù_ÙØ³ØªÙØ¯Ù_Ù ÙÙ, #ããã³ã³, #ä»°å¤©ãã¥ã¼ã¹, POND GEMINI WITH BREEZE, ãã¸ãã¯3
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #CatherineRinger, #RitaMitsouko
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 15h (Paris) — rythme journée (43-91 min · 8 publié(s), 8 restant(s) sur 9.0 h) : 43-91 min
+  ⏸️  Dernière publi il y a 25 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 3.0s (26 déjà en cache)
+  📄 3/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 35 articles → 16 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, pénalisé par « pourrait, comment  ») : Attentats du 13-Novembre : pourquoi Mohamed Bakkali,
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Patrick Bruel : bien avant les plaintes, cette tourn
+  🚨 Sujet chaud (breaking, 13 médias) : Catherine Ringer, célèbre voix des Rita Mitsouko, 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : Begeek, Dexerto, France Info, Jeuxvideo.com, Konbini
+  🧮 Score 84.5/100 = gravité 9/10 → 40 + 13 médias +18 + frais 0.4h +16 + thème porteur +10
+  🕒 Âge de l'article : 2.7h (frais ✅)
+  🕊️ Hommage validé par le modèle — Décès naturel d'une artiste emblématique de la scène françai · décès : 14 septembre 2026
+  📚 Affaire suivie : 1 publication(s) en mémoire
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+     • SUITE MAL ÉCRITE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Catherine Ringer (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Suivi breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 13 médias) : Catherine Ringer, chanteuse inoubliable des Rita M
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 35 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : trump, danemark, baltique
+  ♻️ Doublon d'un sujet déjà publié, écarté : Catherine Ringer, célèbre voix des Rita Mitsouko, 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Mort de Catherine Ringer : "Elle avait fait de sa 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Catherine Ringer, chanteuse inoubliable des Rita M
+  ♻️ Doublon d'un sujet déjà publié, écarté : Mort de Catherine Ringer : cinq titres cultes de l
+  ♻️ Doublon d'un sujet déjà publié, écarté : Que risque la chroniqueuse russe Xenia Fedorova, e
+  ♻️ Doublon d'un sujet déjà publié, écarté : Revolut face à un chantage : 680 dossiers d’identi
+  ♻️ Doublon d'un sujet déjà publié, écarté : “Les camionneurs” : Catherine Ringer, sans tabou a
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (204 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 8/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-2.5-flash-lite (+23)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 731
+     jetons Gemini : 21,136 entrée · 541 sortie
+     ✅ aucun appel payant
