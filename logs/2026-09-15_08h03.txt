@@ -1,0 +1,148 @@
+
+[08:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #ã´ã³ãã£ã®æ°ãããããã«, Broncos, Bo Nix, Chiefs, #EstreiaAFazenda
+  🔎 « Broncos » : 1 article(s) frais, le plus récent il y a 0.0 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Broncos » écarté : trop secondaire (2/10)
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 0.0 h (L'Équipe)
+  ⏭️  « Chiefs » écarté : trop secondaire (2/10)
+  🔎 « Kenneth Walker » : 1 article(s) frais, le plus récent il y a 2.7 h (Touchdown Actu)
+  ⏭️  « Kenneth Walker » écarté : trop secondaire (2/10)
+  🔎 « Emmys » : 1 article(s) frais, le plus récent il y a 1.8 h (CANAL+)
+  ✅ « Emmys » retenu : Résultats officiels de la cérémonie des Emmys. (6/10) (+1 au score)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #ThePitt, #Emmys
+  🕐 8h (Paris) — rythme journée (41-86 min · 1 publié(s), 15 restant(s) sur 16.0 h) : 41-86 min
+  🎲 58 min (proba 39%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/9 articles lus en 1.0s (72 déjà en cache)
+  📄 15/82 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · SpaceNews · Libération · CoinDesk · Sciences et Avenir · Positivr
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 82 articles → 82 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La meilleure série de l’année que vous n’avez pas re
+  🚨 Sujet chaud (breaking, 1 médias) : Prix des carburants : Des pêcheurs en colère bloqu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 37.5/100 = gravité 3/10 → 14 + frais 0.4h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Valve lance son nouveau casque VR à plus de 1 000 € 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FLEX and Sentinel-3C launched
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Aux Emmy Awards, les séries "Widow's Bay" et "The Pi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Emmys 2026 : qui a remporté le plus de statuettes ?
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  → 82 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : otan, drone, lituanie
+  ♻️ 7/10 [world] (déjà analysé, cache) : Weapon shortfalls, 'hundreds' of buildings and air
+  🎯 Pré-classement : 60 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 38 s
+  ⏩ Doublon: Guerre en Ukraine : un drone viole l'espace aérien de l
+  📉 3/10: Le gouvernement veut condamner les automobilistes en ex
+  📉 3/10: Emmy winners 2026: ‘Widow’s Bay’ and ‘The Pitt’ dominat
+  ⏩ Doublon: La meilleure série de l’année que vous n’avez pas regar
+  ⏩ Doublon: Widow’s Bay sweeps 78th Primetime Emmy Awards as Apple 
+  📉 3/10: "Il me torturait par télépathie" : l’agresseur d’un cél
+  ✅ 7/10 [crypto] large: CLARITY Act odds fall to 16% as key Democrats re
+  📉 0/10: Demain nous appartient en avance : résumé de l'épisode 
+  📉 4/10: Valve lance son nouveau casque VR à plus de 1 000 € (av
+  ✅ 7/10 [crypto] mondiale: U.S. DOJ seeks $61 million in what it calls Iran
+  📉 3/10: Des défilés Vuitton aux soirées de la BRI, révélations 
+  📉 4/10: XRP Ledger is one vote away from starting its next big 
+  📉 4/10: Ursula von der Leyen, un discours sur la grande désunio
+  📉 5/10: OpenAI’s Sam Altman Warns Humans Could Lose Control of 
+  📉 3/10: "On a l’impression de se faire b****r !" : dans les sta
+  📉 4/10: Apple Home’s new security camera features cost as much 
+  📉 4/10: Microsoft dévoile un projet de code de conduite pour se
+  📉 2/10: Pour les trajets domicile-travail, la voiture toujours 
+  📉 3/10: «En fiction, l’IA ne nous enlèvera pas notre trésor» di
+  📉 5/10: SEGA annonce chez Netflix une série animée Sonic et des
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 1 média(s) · 0.5h — CLARITY Act odds fall to 16% as key Democrat
+     8/10 · 1 média(s) · 0.8h — U.S. DOJ seeks $61 million in what it calls 
+     7/10 · 1 média(s) · 2.3h — Weapon shortfalls, 'hundreds' of buildings a
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [crypto]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (327 → 153 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2099740758899056733
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  🔓 Trop larges pour bloquer un sujet : etats-unis
+  ✅ Publié [crypto]: CLARITY Act odds fall to 16% as key Democrats resist GO
+  🔒 Mots-clés bloqués 2h: crypto, clarity, etats-unis
+
+  ── Bilan du cycle (110 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 2/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   🚫 quota
+        23. clé 3 × gemini-embedding-2           🚫 quota
+        24. clé 4 × gemini-embedding-001         🚫 quota
+        25. clé 4 × gemini-embedding-2-preview   🚫 quota
+        26. clé 4 × gemini-embedding-2           🚫 quota
+        27. clé 5 × gemini-embedding-001         🚫 quota
+        28. clé 5 × gemini-embedding-2-preview   🚫 quota
+        29. clé 5 × gemini-embedding-2           🚫 quota
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+        38. clé 3 × gemini-3.1-flash-lite        ✅
+        39. clé 3 × gemini-3.1-flash-lite        ✅
+        40. clé 3 × gemini-3.1-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.5-flash-lite (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 22,337 entrée · 1,565 sortie
+     ✅ aucun appel payant
