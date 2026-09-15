@@ -1,0 +1,132 @@
+
+[13:11] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 11 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #AskSRK, #RokidStyle, ã«ã¼ã«ã¹, #TOIDialoguesUttarakhand, #ãã©ãã¯ãµã³ãã¼æ°ä½
+  🌍 « AskSRK » : aucune reprise en français, source internationale retenue
+  🔎 « AskSRK » : 1 article(s) frais, le plus récent il y a 0.4 h (Bollywood Hungama)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « AskSRK » écarté : trop secondaire (2/10)
+  🌍 « TOIDialoguesUttarakhand » : aucune reprise en français, source internationale retenue
+  🕐 13h (Paris) — rythme journée (42-89 min · 6 publié(s), 10 restant(s) sur 11.0 h) : 42-89 min
+  🎲 63 min (proba 45%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.4s (61 déjà en cache)
+  📄 12/66 article(s) sans corps lisible → recoupement sur titre et résumé seuls : SpaceNews · Sciences et Avenir · CoinDesk · Libération · Ouest-France · Positivr
+  🧠 66 vecteurs calculés en 1 appel(s)
+  🧩 66 articles → 35 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La Poste : les services en bureau perturbés dans tou
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : BYD sort un camion électrique à 600 km d’autonomie e
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Attention au dernier Patch Tuesday de Windows 11 q
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.0/100 = gravité 6/10 → 27 + frais 0.2h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Solana Treasury Firm DeFi Dev Corp Rolls Out $300M
+  🧮 Score 45.0/100 = gravité 4/10 → 18 + frais 0.2h +16 + programmé 3/10 -15 + primeur absolue +8 + portée mondiale +18
+  → Sujet chaud pas assez fort (score 45) → suivant
+  🚨 Sujet chaud (breaking, 20 médias) : Le seul garde-fou face à l’IA, c’est lui ! Trump b
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 24 article(s) sur un autre sujet, écartés du dossier : BBC, BFMTV, Begeek, Challenges, Dexerto
+  🧮 Score 82.0/100 = gravité 8/10 → 36 + 20 médias +20 + frais 1.8h +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (209 → 162 car.)
+  👁️ Image écartée : Personne incorrecte
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nairobi to host World Athletics Championships in 202
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  → 66 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : iran, diplomatie, catherine ringer, rita mitsouko, deces
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trophée des champions, victoire en Ligue des champ
+  ♻️ Doublon d'un sujet déjà publié, écarté : No one and done: The Fed will hike at least two ti
+  ♻️ 7/10 [world] (déjà analysé, cache) : Ciblée par les drones ukrainiens, l’économie russe
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Le seul garde-fou face à l’IA, c’est lui ! Trump b
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Attention au dernier Patch Tuesday de Windows 11 q
+  ♻️ 7/10 [world] (déjà analysé, cache) : US Supreme Court rejects Trump’s plans on postal b
+  🎯 Pré-classement : 39 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  🌍 7/10 sans portée internationale : Japan's Global Hawk presumed crashed after communi
+  🌍 7/10 sans portée internationale : Mort d’Hayden Panettiere : l’hypothèse d’un compri
+  📉 3/10: OM - PSG. Encore des milliers de places à vendre au Vél
+  📉 4/10: Rares, agressifs mais mieux guéris : 5 choses à savoir 
+  📉 3/10: « World of Warcraft Forever doit vraiment être pour tou
+  📉 3/10: 5 extensions plus tard, Blizzard répond enfin à la plus
+  📉 4/10: Jusqu’à 24 euros de moins sur un plein : comment l’Espa
+  📉 3/10: Iceye’s global presence expands to address sovereign de
+  📉 2/10: Sept. 21: What Comes Next for On-Orbit Servicing?
+  📉 3/10: Watch astronaut Christina Koch and Google’s James Manyi
+  📉 4/10: ‘I believed the hype’: the white South Africans denied 
+  📉 1/10: Randonner à Val d'Isère : des promenades familiales aux
+  📉 3/10: The London hospital funded by donors who invested in th
+  ✅ 6/10 [space] large: FLEX and Sentinel-3C launched
+  📉 3/10: Loto du Patrimoine : 100 000 à 500 000 euros seront rem
+  🌍 8/10 sans portée internationale : Revolut a envoyé vos données à des pirates : êtes 
+  📉 2/10: Pourquoi Alan Dean Foster a préféré les livres à Hollyw
+  ⏩ Doublon: Why banks should stop worrying and learn to love the Cl
+  📉 4/10: Velocity extends Series A to $48M at $200M valuation wi
+  📉 4/10: GM updates its trucks’ native software to coexist with 
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.7h — Le seul garde-fou face à l’IA, c’est lui ! T
+     7/10 · 1 média(s) · 0.2h — Attention au dernier Patch Tuesday de Window
+     7/10 · 1 média(s) · 2.0h — US Supreme Court rejects Trump’s plans on po
+     7/10 · 1 média(s) · 8.2h — Ciblée par les drones ukrainiens, l’économie
+     6/10 · 1 média(s) · 7.8h — FLEX and Sentinel-3C launched
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (209 → 162 car.)
+  👁️ Image écartée : Personne incorrecte
+  🕒 Âge de l'article à la publication : 0.7h (frais ✅)
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2099818649192169749
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  🔓 Trop larges pour bloquer un sujet : ia, technologie
+  ✅ Publié [ai]: Le seul garde-fou face à l’IA, c’est lui ! Trump balaie
+  🔒 Mots-clés bloqués 2h: trump, ia, technologie
+
+  ── Bilan du cycle (100 s) ──
+     écartés : 3 sujet banal · 3 sans portée internationale
+     plafonds : X 7/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   🚫 quota
+         7. clé 2 × gemini-embedding-2           🚫 quota
+         8. clé 3 × gemini-embedding-001         ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     jetons Gemini : 55,388 entrée · 2,019 sortie
+     ✅ aucun appel payant
