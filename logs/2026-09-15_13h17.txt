@@ -1,0 +1,65 @@
+
+[13:16] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 12 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #AskSRK, #RokidStyle, ã«ã¼ã«ã¹, #TOIDialoguesUttarakhand, #ãã©ãã¯ãµã³ãã¼æ°ä½
+  🌍 « AskSRK » : aucune reprise en français, source internationale retenue
+  🔎 « AskSRK » : 1 article(s) frais, le plus récent il y a 0.5 h (Bollywood Hungama)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « AskSRK » écarté : trop secondaire (2/10)
+  🌍 « TOIDialoguesUttarakhand » : aucune reprise en français, source internationale retenue
+  🕐 13h (Paris) — rythme journée (47-99 min · 7 publié(s), 9 restant(s) sur 11.0 h) : 47-99 min
+  ⏸️  Dernière publi il y a 4 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/7 articles lus en 2.0s (40 déjà en cache)
+  📄 9/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : IGN France · Libération · Sciences et Avenir · Positivr · CoinDesk · OpenAI
+  🧠 47 vecteurs calculés en 1 appel(s)
+  🧩 47 articles → 20 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La Poste : les services en bureau perturbés dans tou
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : SFR fibre Sobriété : SFR lance nouveau forfait sans 
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 17 médias) : Attention au dernier Patch Tuesday de Windows 11 q
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 23 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Ars Technica, BBC, CoinDesk, Dexerto
+  🧮 Score 53.0/100 = gravité 6/10 → 27 + 17 médias +18 + frais 1.4h +8
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nairobi to host World Athletics Championships in 202
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 47 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : iran, diplomatie, catherine ringer, rita mitsouko, deces, trump
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (75 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 7/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.1-flash-lite        ✅
+         7. clé 1 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 737
+     jetons Gemini : 19,237 entrée · 560 sortie
+     ✅ aucun appel payant
