@@ -1,0 +1,73 @@
+
+[14:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : #Ø§ÙØ­ÙØ«Ù_ÙØ³ØªÙØ¯Ù_Ù ÙÙ, #ããã³ã³, #ä»°å¤©ãã¥ã¼ã¹, POND GEMINI WITH BREEZE, ãã¸ãã¯3
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #CatherineRinger, #RitaMitsouko
+  🕐 14h (Paris) — rythme journée (48-101 min · 8 publié(s), 8 restant(s) sur 10.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 13 min — attente.
+  📖 10/10 articles lus en 2.2s (12 déjà en cache)
+  📄 2/23 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 22 vecteurs calculés en 1 appel(s)
+  🧩 23 articles → 14 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⚪ Écarté (-1, pénalisé par « horoscope ») : Nouveau service militaire: la première promotion por
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La prison, c’est dur, mais la sortie, c’est sûr : la
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Rookies Cup, champion de France… Trois choses à savo
+  ⚪ Écarté (0, pénalisé par « pourrait, comment  ») : Attentats du 13-Novembre : pourquoi Mohamed Bakkali,
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Patrick Bruel : bien avant les plaintes, cette tourn
+  🚨 Sujet chaud (breaking, 6 médias) : Catherine Ringer, célèbre voix des Rita Mitsouko, 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Dexerto, Konbini, Ouest-France, Public
+  🧮 Score 47.5/100 = gravité 9/10 → 40 + 6 médias +11 + frais 0.2h +16 + thème porteur +10 + déjà publié 1× -30
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 9 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [2m] Catherine Ringer est décédée à l'âge de 68 ans.
+      [1m] La date du décès est le 15 septembre 2026.
+         ↳ Le Monde : Le décès a eu lieu dans la nuit du 14 septembre 2026.
+         motif : Différence de précision sur l'heure ou le fuseau horaire.
+      [1m] ⚡exclusif La cause du décès est un cancer foudroyant.
+      [1m] ⚡exclusif Le décès a été annoncé par la famille via un communiqué.
+      [2m] Catherine Ringer a formé le groupe Les Rita Mitsouko avec Fred Chichin.
+      [2m] Le groupe Les Rita Mitsouko s'est dissous en 2007 après le décès de Fred Chich
+      [1m] ⚡exclusif Catherine Ringer a poursuivi une carrière solo après la fin du groupe.
+      [1m] ⚡exclusif Catherine Ringer avait annulé une lecture musicale fin juin 2026 pour extincti
+  ⏭️  Écarté : même fait reformulé → suivant
+  ⚪ Écarté (0, pénalisé par « au plumard ») : “Les camionneurs” : Catherine Ringer, sans tabou ava
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 23 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : catherine ringer, rita mitsouko, deces, trump, danemark, baltique
+  ♻️ Doublon d'un sujet déjà publié, écarté : Thousands flee to Djibouti amid renewed Yemen figh
+  ♻️ Doublon d'un sujet déjà publié, écarté : Exclusive: Paying for frontier AI models buys 4-mo
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (47 s) ──
+     écartés : 6 sujet banal
+     plafonds : X 8/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 1 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 731
+     jetons Gemini : 4,474 entrée · 897 sortie
+     ✅ aucun appel payant
