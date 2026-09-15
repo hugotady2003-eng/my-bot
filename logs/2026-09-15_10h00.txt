@@ -1,0 +1,70 @@
+
+[09:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : #ã´ã³ãã£ã®æ°ãããããã«, #EngineersDay, Gema, Yahir, #SurfNLove
+  🌍 « EngineersDay » : aucune reprise en français, source internationale retenue
+  🌍 « Gema » : aucune reprise en français, source internationale retenue
+  🔎 « Broncos » : 1 article(s) frais, le plus récent il y a 2.0 h (L'Équipe)
+  ⏭️  « Broncos » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #CoinEx
+  🕐 9h (Paris) — rythme journée (48-101 min · 4 publié(s), 12 restant(s) sur 15.0 h) : 48-101 min
+  ⏸️  Dernière publi il y a 5 min — attente.
+  📖 1/1 articles lus en 0.1s (69 déjà en cache)
+  📄 15/70 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · SpaceNews · Libération · CoinDesk · The Block · Sciences et Avenir
+  🧠 68 vecteurs calculés en 1 appel(s)
+  🧩 70 articles → 30 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : "Je dois gagner 30 ou 40 euros par plein" : face à
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 6/10 → 27 + frais 1.8h +8 + primeur +5 + ⚡ crise institutionnelle → plancher 89
+  🕒 Âge de l'article : 1.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Violences dans le périscolaire: Anne Hidalgo évoque 
+  🚨 Sujet chaud (breaking, 1 médias) : Carburants : des pêcheurs bloquent un dépôt pétrol
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 6/10 → 27 + frais 0.6h +13 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ Contrôle visuel indisponible (503 Server Error: Service Unavailable for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent) → image conservée
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FLEX and Sentinel-3C launch highlights
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un hélicoptère de l’armée danoise a été la cible de 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Cacatastrophe à l’Hyrox : que s’est-il passé à Pékin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : CoinEx to cease operation after 9 years, citing ‘sig
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 70 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : crypto, clarity, pentagone, munitions, iran
+  ♻️ Doublon d'un sujet déjà publié, écarté : Pollution : Donald Trump fait sauter le verrou cli
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (246 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2 (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 709 · gemini 2 799
+     jetons Gemini : 22,389 entrée · 537 sortie
+     ✅ aucun appel payant
