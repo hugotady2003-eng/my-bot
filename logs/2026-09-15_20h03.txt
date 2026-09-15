@@ -1,0 +1,139 @@
+
+[20:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : Ø³Ø¹Ø¯ Ø§ÙÙØ§ØµØ±, #Ø§ÙÙØµØ±_Ø§ÙØ¹ÙÙ, Gilmar Mendes, JJ Gabriel, Discord
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Discord, #ClarityAct, #KashPatel
+  🕐 20h (Paris) — rythme journée (39-81 min · 12 publié(s), 4 restant(s) sur 4.0 h) : 39-81 min
+  🎲 52 min (proba 33%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/12 articles lus en 2.0s (47 déjà en cache)
+  📄 7/60 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block
+  🧠 59 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 Même événement (jugé) : « « Je vis d’eau fraîche et de pain dur … »
+  🧩 60 articles → 22 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Salon de l’élevage : « Le compte n’y est toujours pa
+  🚨 Sujet chaud (breaking, 5 médias) : « Je vis d’eau fraîche et de pain dur »… Rémy Dail
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Konbini, Libération, Public
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 5 médias +11 + frais 0.8h +13 + ⚡ crise institutionnelle → plancher 89
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (164 → 119 car.)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Spotify lance la fonctionnalité que tous les parents
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Discord est tombé en panne : voici ce que l’on sait
+  🚨 Sujet chaud (breaking, 1 médias) : 'It's Now or Never' for Clarity Act, Says 'Bitcoin
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : The FBI Doubles Down on Easing ‘Bestiality’ Hiring S
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  → 60 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : hanouna, tbt9
+  ♻️ Doublon d'un sujet déjà publié, écarté : «Je vais le tuer» : au procès de l’assassinat d’Ar
+  ♻️ Doublon d'un sujet déjà publié, écarté : Prix des carburants plafonnés chez TotalEnergies :
+  ♻️ 7/10 [world] (déjà analysé, cache) : « Je vis d’eau fraîche et de pain dur »… Rémy Dail
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Discord est tombé en panne : voici ce que l’on sai
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Discord est tombé en panne : voici ce que l’on sai
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : US Seeks Forfeiture of $61 Million in Crypto Linke
+  🎯 Pré-classement : 33 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  🌍 7/10 sans portée internationale : Au premier jour du procès de l’enlèvement de Mia, 
+  📉 4/10: iPhone Duo could be very hard to get at launch, per rep
+  ✅ 7/10 [crypto] large: Robinhood Engineers Charged With Fraud Over Alle
+  📉 5/10: Huée par la foule japonaise, Surya Bonaly fait la nique
+  📉 4/10: Binance adds 11 US-listed ETFs to wealth management off
+  📉 3/10: Bateaux, avions, feu d'artifice : revivez l'"immense fê
+  📉 4/10: La maladie du héros de Red Dead 2 était si crédible pou
+  📉 4/10: Test Aniimo sur PC, PS5, Xbox Series, iOS et Android
+  ✅ 6/10 [world] large: Réduire les aides à l'Ukraine, "ce serait aller 
+  📉 5/10: Capitalisation, âge pivot… Les pistes de réflexion polé
+  📉 5/10: Judge blocks Kennedy Center board from returning Trump'
+  📉 5/10: Comment la Russie est devenue « l’Etat-FSB » : « On leu
+  🌍 7/10 sans portée internationale : Les personnages de Kingdom Hearts débarquent dans 
+  📉 3/10: AppZapper 3000: ‘The uninstaller Apple forgot’ returns 
+  📉 3/10: IA en entreprise : ne poussez pas sur la spécialisation
+  🌍 8/10 sans portée internationale : Pesticides : des légumes vendus chez Intermarché e
+  📉 3/10: Test du Ninja CrushBOSS : trois appareils en un, et auc
+  🌍 6/10 sans portée internationale : Ligue 1: la direction de l'arbitrage donne raison 
+  📉 3/10: Google just shared these fun Pixel 11 blueprint wallpap
+  📉 3/10: Plus besoin de tout trimballer : cette sacoche français
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 2 média(s) · 0.2h — Robinhood Engineers Charged With Fraud Over 
+     7/10 · 1 média(s) · 0.4h — « Je vis d’eau fraîche et de pain dur »… Rém
+     8/10 · 2 média(s) · 3.0h — Discord est tombé en panne : voici ce que l’
+     8/10 · 2 média(s) · 3.0h — Discord est tombé en panne : voici ce que l’
+     7/10 · 1 média(s) · 0.9h — US Seeks Forfeiture of $61 Million in Crypto
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [crypto]
+  🧠 30 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, BFMTV, Begeek, Decrypt, France Bleu
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (184 → 158 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  🐦 Posté sur X (🎬 vidéo) : https://x.com/i/web/status/2099921984922755453
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ✅ Publié [crypto]: Robinhood Engineers Charged With Fraud Over Alleged Cry
+  🔒 Mots-clés bloqués 2h: robinhood, crypto, fraude
+
+  ── Bilan du cycle (103 s) ──
+     écartés : 4 sujet banal · 4 sans portée internationale
+     plafonds : X 13/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   🚫 quota
+        11. clé 4 × gemini-embedding-2           🚫 quota
+        12. clé 5 × gemini-embedding-001         ✅
+        13. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 1 × gemini-3.6-flash             🚫 quota
+        17. clé 1 × gemini-3-flash               ⛔ inexistant
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 730
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 36,868 entrée · 1,715 sortie
+     ✅ aucun appel payant
