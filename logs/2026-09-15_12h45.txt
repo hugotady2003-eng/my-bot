@@ -1,0 +1,96 @@
+
+[12:43] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #AskSRK, Karina, #ãã©ãã¯ãµã³ãã¼æ°ä½, #RokidStyle, åè£å ç
+  🌍 « AskSRK » : aucune reprise en français, source internationale retenue
+  🔎 « AskSRK » : 1 article(s) frais, le plus récent il y a 0.5 h (Bollywood Hungama)
+  ⏭️  « AskSRK » écarté : Simple interaction de fans avec une star indienne.
+  🔎 « Karina » : 1 article(s) frais, le plus récent il y a 4.2 h (Google Actualités)
+  ⏭️  « Karina » écarté : Article ancien sans lien avec une actualite recente
+  🌍 « Gema » : aucune reprise en français, source internationale retenue
+  🕐 12h (Paris) — rythme journée (46-97 min · 6 publié(s), 10 restant(s) sur 12.0 h) : 46-97 min
+  ⏸️  Dernière publi il y a 35 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/13 articles lus en 1.6s (73 déjà en cache)
+  📄 15/86 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · SpaceNews · Sciences et Avenir · CoinDesk · Positivr
+  🧠 86 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 86 articles → 36 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 23 médias) : Catherine Ringer, célèbre voix des Rita Mitsouko, 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 40 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Al Jazeera, BBC, BFMTV, Dexerto
+  🧮 Score 93.5/100 = gravité 9/10 → 40 + 23 médias +20 + frais 0.8h +13 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🕊️ Hommage validé par le modèle — Décès naturel d'une artiste emblématique de la scène françai · décès : 14 septembre 2026
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ Portrait Wikipédia récupéré pour Catherine Ringer (3007 ko)
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Emmy Awards : triomphe de «Widow’s Bay» et «The Pitt
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les bureaux de poste perturbés par un incident infor
+  🚨 Sujet chaud (breaking, 23 médias) : Il envoyait des menaces et des insultes à Emmanuel
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 84.5/100 = gravité 7/10 → 32 + 23 médias +20 + frais 0.8h +13 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 1.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Malgré l’absence de diffusion, la Liga et Canal+ s’a
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Inacceptable" : une frégate russe tire des fusées é
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : BYD sort un camion électrique à 600 km d’autonomie e
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le Steam Frame coûte 1 049 euros, ce qui est bien pl
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 86 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : espace, armement, iran, diplomatie
+  ♻️ Doublon d'un sujet déjà publié, écarté : Bitcoin gives back Monday's gain as Clarity Act od
+  ✂️ Éphéméride resserré (183 → 142 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (155 s) ──
+     écartés : 6 sujet banal
+     plafonds : X 6/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 1 × gemini-embedding-2           🚫 quota
+         6. clé 2 × gemini-embedding-001         🚫 quota
+         7. clé 2 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite (+25)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 766
+     jetons Gemini : 34,432 entrée · 987 sortie
+     ✅ aucun appel payant
