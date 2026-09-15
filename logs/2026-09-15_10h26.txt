@@ -1,0 +1,62 @@
+
+[10:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : Karina, Gema, #ã´ã³ãã£ã®æ°ãããããã«, #EngineersDay, #JusticeForGulzarSingh
+  🔎 « Karina » : 1 article(s) frais, le plus récent il y a 1.9 h (Google Actualités)
+  ⏭️  « Karina » écarté : Article ancien sans fait nouveau marquant.
+  🌍 « Gema » : aucune reprise en français, source internationale retenue
+  🌍 « EngineersDay » : aucune reprise en français, source internationale retenue
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  ⏸️  Dernière publi il y a 35 min — attente.
+  📖 9/9 articles lus en 1.3s (70 déjà en cache)
+  📄 13/79 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · SpaceNews · The Block · Libération · Sciences et Avenir · Positivr
+  🧠 78 vecteurs calculés en 1 appel(s)
+  🧩 79 articles → 29 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 7 médias) : Prix des carburants : des pêcheurs bloquent l’accè
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : BFMTV, France Bleu, Frandroid, L'Express, Le Monde
+  🧮 Score 42.0/100 = gravité 4/10 → 18 + 7 médias +11 + frais 1.0h +13
+  → Sujet chaud pas assez fort (score 42) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Violences dans le périscolaire: Anne Hidalgo recon
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 15.5/100 = gravité 5/10 → 22 + frais 1.4h +8 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 16) → suivant
+  🚨 Sujet chaud (breaking, 7 médias) : Des tensions éclatent avec les forces de l'ordre d
+  🧮 Score 37.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 1.0h +13
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Une erreur» : Hyrox s’excuse après avoir laissé pou
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FLEX and Sentinel-3C launch highlights
+  ⚽ API football-data : 7 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 79 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : pentagone, munitions, iran
+  ♻️ Doublon d'un sujet déjà publié, écarté : Plus de 5 % aux États-Unis, plus de 4,5 % en Franc
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine : une frégate russe vise un héli
+  ♻️ Doublon d'un sujet déjà publié, écarté : Interdiction des réseaux sociaux aux moins de 15 a
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (51 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × gemini-embedding-2-preview   ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-embedding-2 (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 436 · gemini 2 799
+     jetons Gemini : 8,493 entrée · 216 sortie
+     ✅ aucun appel payant
