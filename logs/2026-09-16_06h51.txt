@@ -1,0 +1,92 @@
+
+[06:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Drake, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, #ã¢ã¼ã¢ã³ããã§ã³ãã«ã¼ãªã¼é£ã¹ã¦ããã, #dwts, #æééå®é£ã¹ããã¹ãããã²ç»å ´
+  🔎 « Drake » : 1 article(s) frais, le plus récent il y a 1.6 h (SwissHabs)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Drake » écarté : trop secondaire (2/10)
+  🌍 « ã¤ãããªã » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #EdSheeran
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.8s (59 déjà en cache)
+  📄 7/64 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧩 64 articles → 64 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre au Moyen-Orient : Accusés par Riyad d’avoir
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + frais 2.3h +4 + portée mondiale +18
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Entre Kaja Kallas et Ursula von der Leyen, le bras
+  🧮 Score 37.0/100 = gravité 4/10 → 18 + frais 0.2h +16 + programmé 3/10 -15 + primeur absolue +8 + portée internationale +10
+  → Sujet chaud pas assez fort (score 37) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Six questions sur le procès pour corruption de Rac
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45/100 = gravité 8/10 → 36 + frais 0.7h +13 + thème porteur +10 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 45) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Preview : Wo Long 2 : Wings of Ember a déjà le feu s
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 64 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Accès restreint aux réseaux sociaux pour les mineu
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine : drone intercepté par l'OTAN en
+  → Rien à publier.
+
+  ── Bilan du cycle (46 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-embedding-2-preview   🚫 quota
+         9. clé 1 × gemini-embedding-2           🚫 quota
+        10. clé 2 × gemini-embedding-001         🚫 quota
+        11. clé 2 × gemini-embedding-2-preview   🚫 quota
+        12. clé 2 × gemini-embedding-2           🚫 quota
+        13. clé 3 × gemini-embedding-001         🚫 quota
+        14. clé 3 × gemini-embedding-2-preview   🚫 quota
+        15. clé 3 × gemini-embedding-2           🚫 quota
+        16. clé 4 × gemini-embedding-001         🚫 quota
+        17. clé 4 × gemini-embedding-2-preview   🚫 quota
+        18. clé 4 × gemini-embedding-2           🚫 quota
+        19. clé 5 × gemini-embedding-001         🚫 quota
+        20. clé 5 × gemini-embedding-2-preview   🚫 quota
+        21. clé 5 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 2 × gemini-3.6-flash             🚫 quota
+        24. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.5-flash-lite (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,979 entrée · 344 sortie
+     ✅ aucun appel payant
