@@ -1,0 +1,133 @@
+
+[10:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #AWSDataAndAIDay2026, #BOF500, #YuvaSankalpDiwasWithDhami, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, Viva MÃ©xico
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🕐 10h (Paris) — rythme journée (42-87 min · 3 publié(s), 13 restant(s) sur 14.0 h) : 42-87 min
+  🎲 78 min (proba 81%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/12 articles lus en 2.0s (61 déjà en cache)
+  📄 7/75 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · IGN France · The Block
+  🧠 73 vecteurs calculés en 1 appel(s)
+  🧩 75 articles → 34 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : la justice confirme l'allège
+  🚨 Sujet chaud (breaking, 19 médias) : Présidentielle 2027 : Philippe Brun, suspendu à ti
+  🧠 31 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Al Jazeera, Begeek, Challenges, Dexerto
+  🧮 Score 39.5/100 = gravité 3/10 → 14 + 19 médias +18 + frais 0.8h +13 + programmé 3/10 -15 + portée internationale +10
+  → Sujet chaud pas assez fort (score 40) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Budget 2027 : le PS pose ses conditions à Sébastien 
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Périscolaire: la ville de Paris "aurait pu faire mie
+  🚨 Sujet chaud (breaking, 19 médias) : Visite du pape Léon XIV : accueil militaire, Notre
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + 19 médias +18 + frais 0.8h +13 + portée internationale +10
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (246 → 201 car.)
+  👁️ Image écartée : Personnage fictif ou erroné
+  🖼️🤝 Image récupérée chez un média jumeau (BFMTV) — même sujet
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Narcotrafic : un jeune homme de 18 ans abattu par de
+  🚨 Sujet chaud (breaking, 1 médias) : Former Kosovo President Hashim Thaci faces verdict
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 7/10 → 32 + frais 0.6h +13 + primeur absolue +8
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (165 → 122 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  → 75 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Violences sexuelles dans le périscolaire : le mair
+  ♻️ Doublon d'un sujet déjà publié, écarté : Japon : le nombre de centenaires dépasse la barre 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Visite du pape Léon XIV : accueil militaire, Notre
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Petite sal*pe" : Emmanuel Macron reçoit des SMS i
+  ♻️ 7/10 [world] (déjà analysé, cache) : Former Kosovo President Hashim Thaci faces verdict
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Fed meeting is shaping up to be a nightmare for Wa
+  🎯 Pré-classement : 48 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 3/10: La technologie « Audio Intelligence » d'Apple nous prép
+  📉 3/10: Fuite de données : pourquoi NVIDIA et Palantir prennent
+  🌍 7/10 sans portée internationale : Affaire Patrick Bruel : pourquoi le chanteur est d
+  📉 4/10: "Courez, ils arrivent" : nouvelle fusillade mortelle da
+  ⏩ Doublon: Patrick Bruel : Le contrôle judiciaire de l’artiste all
+  🌍 7/10 sans portée internationale : ‘We are prey’: discovery of seven women’s bodies f
+  📉 5/10: Budget 2027 : le PS pose ses conditions à Sébastien Lec
+  📉 3/10: Présidentielle 2027 : cinq candidats en lice pour la pr
+  ✅ 6/10 [science] mondiale: "Nous n'avions jamais vu une chose pareille" : l
+  ✅ 7/10 [world] large: Canada could become 'first associate member' of 
+  📉 4/10: "Je regrette d’être à la retraite", après 43 ans d’une 
+  🌍 8/10 sans portée internationale : EN IMAGES Blocage des pêcheurs à Frontignan : pale
+  ⏩ Doublon: Port de Sète bloqué: "On comprend cette souffrance, on 
+  📉 4/10: Glass Imaging : le pari photo d’OpenAI pour ses futurs 
+  🌍 6/10 sans portée internationale : Panne Free, Orange, Bouygues Télécom, SFR et RATP 
+  📉 4/10: Face à certains retours désastreux sur Marvel’s Wolveri
+  📉 3/10: Périscolaire: la ville de Paris "aurait pu faire mieux"
+  📉 4/10: Ed Sheran lâché par plusieurs artistes : pourquoi l’exc
+  📉 3/10: « Résident Evil » : Plus fun et plus tendue, la nouvell
+  📉 3/10: World of Warcraft Forever : comment accéder à la bêta s
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 3 média(s) · 0.4h — Visite du pape Léon XIV : accueil militaire,
+     7/10 · 1 média(s) · 0.1h — Canada could become 'first associate member'
+     8/10 · 2 média(s) · 1.5h — "Petite sal*pe" : Emmanuel Macron reçoit des
+     7/10 · 1 média(s) · 0.6h — Former Kosovo President Hashim Thaci faces v
+     7/10 · 1 média(s) · 1.8h — Fed meeting is shaping up to be a nightmare 
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (232 → 188 car.)
+  👁️ Image écartée : Personnage fictif ou erroné
+  🖼️🤝 Image récupérée chez un média jumeau (BFMTV) — même sujet
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  🐦 Posté sur X (🎬 vidéo) : https://x.com/i/web/status/2100139932752728505
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ✅ Publié [world]: Visite du pape Léon XIV : accueil militaire, Notre-Dame
+  🔒 Mots-clés bloqués 2h: pape, macron, vatican
+
+  ── Bilan du cycle (216 s) ──
+     écartés : 4 sujet banal · 4 sans portée internationale
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-embedding-2-preview · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 717 · gemini 2 800
+     jetons Gemini : 56,873 entrée · 1,741 sortie
+     ✅ aucun appel payant
