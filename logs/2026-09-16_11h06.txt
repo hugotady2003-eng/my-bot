@@ -1,0 +1,57 @@
+
+[11:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #bist100, #AWSDataAndAIDay2026, #BOF500, #RotamÄ±zKademe, #TurnAroundStock
+  🌍 « bist100 » : aucune reprise en français, source internationale retenue
+  🕐 11h (Paris) — rythme journée (42-87 min · 4 publié(s), 12 restant(s) sur 13.0 h) : 42-87 min
+  ⏸️  Dernière publi il y a 37 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 1.2s (68 déjà en cache)
+  📄 10/78 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · IGN France · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 76 vecteurs calculés en 1 appel(s)
+  🧩 78 articles → 30 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Présidentielle 2027 : qui sont les 5 candidats quali
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : la justice confirme l'allège
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L’hélicoptère d’une chaîne de télévision en pleine a
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  ⚪ Écarté (-5, pénalisé par « \b(?:météo ») : Météo : après une brutale chute des températures et 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Narcotrafic : un jeune homme de 18 ans abattu par de
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Le sexe a disparu du cinéma » : le coup de gueule 
+  🚨 Sujet chaud (breaking, 1 médias) : Former Kosovo President Hashim Thaci faces verdict
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.5/100 = gravité 7/10 → 32 + frais 1.3h +8 + primeur +5
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 78 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : pape, macron, vatican
+  ♻️ Doublon d'un sujet déjà publié, écarté : INFO BFMTV. Laurent Nuñez se rendra à Bordeaux ven
+  ♻️ Doublon d'un sujet déjà publié, écarté : Périscolaire: "Non, on n'a pas caché des pédophile
+  ♻️ Doublon d'un sujet déjà publié, écarté : Ursula von der Leyen au Parlement européen : résea
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (41 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 186 · gemini 2 800
+     jetons Gemini : 3,098 entrée · 146 sortie
+     ✅ aucun appel payant
