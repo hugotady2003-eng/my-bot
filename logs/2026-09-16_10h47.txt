@@ -1,0 +1,76 @@
+
+[10:46] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #AWSDataAndAIDay2026, #BOF500, #YuvaSankalpDiwasWithDhami, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, Viva MÃ©xico
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  ⏸️  Dernière publi il y a 17 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/9 articles lus en 1.1s (53 déjà en cache)
+  📄 9/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · IGN France · The Block
+  🧠 62 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Présidentielle 2027 : il y aura cinq c… »
+  🧩 63 articles → 30 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Cinq candidats participeront à la primaire à gauche 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : la justice confirme l'allège
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L’hélicoptère d’une chaîne de télévision en pleine a
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  🚨 Sujet chaud (breaking, 11 médias) : Primaire PS : le député Philippe Brun suspendu du 
+  🧠 9 article(s) sur un autre sujet, écartés du dossier : BBC Business, Challenges, Frandroid, Melty, Numerama
+  🧮 Score 44.5/100 = gravité 3/10 → 14 + 11 médias +15 + frais 0.2h +16
+  🧩 5 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [4m] Le député Philippe Brun a été suspendu du Parti socialiste et exclu de la prim
+      [1m] Cinq candidats sont retenus pour la primaire de la gauche : Olivier Faure, Rap
+         ↳ La Dépêche : Six candidats étaient initialement en lice, incluant Philippe Br
+         motif : La Dépêche intègre Philippe Brun avant son exclusion, contrairement à 
+      [1m] ⚡exclusif Les accusations portées contre Philippe Brun par une ancienne collaboratrice l
+      [2m] Philippe Brun a exprimé sa stupeur et affirmé ignorer ce qui lui est reproché 
+      [2m] Le premier tour de la primaire est prévu les 9 et 10 octobre, et le second tou
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Narcotrafic : un jeune homme de 18 ans abattu par de
+  🚨 Sujet chaud (breaking, 1 médias) : Former Kosovo President Hashim Thaci faces verdict
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 7/10 → 32 + frais 1.0h +13 + primeur absolue +8
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (166 → 123 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 63 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : pape, macron, vatican
+  ♻️ Doublon d'un sujet déjà publié, écarté : Violences dans le périscolaire: Emmanuel Grégoire 
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (51 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3-flash (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 474 · gemini 2 800
+     jetons Gemini : 23,404 entrée · 925 sortie
+     ✅ aucun appel payant
