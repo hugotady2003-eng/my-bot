@@ -1,0 +1,40 @@
+
+[09:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Viva MÃ©xico, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, Drake, ã«ãã»ã«ãã¤, #BOF500
+  🔎 « Drake » : 1 article(s) frais, le plus récent il y a 1.4 h (Hypebeast)
+  ⏭️  « Drake » écarté : trop secondaire (4/10)
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 33 min — attente.
+  📖 3/3 articles lus en 0.7s (60 déjà en cache)
+  📄 7/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · IGN France · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 63 vecteurs calculés en 1 appel(s)
+  🧩 63 articles → 31 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : la cour d’appel de Versaille
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : Prix, cartes rares et rupture de stock… tout savoir 
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 63 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : gaza, effondrement, immeuble
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (54 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2-preview · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 369 · gemini 2-preview 725 · gemini 2 800
+     jetons Gemini : 2,626 entrée · 154 sortie
+     ✅ aucun appel payant
