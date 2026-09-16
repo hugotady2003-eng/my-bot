@@ -1,0 +1,91 @@
+
+[05:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #dwts, Arboleda, Lozano, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, Dorival
+  🔎 « Lozano » : 1 article(s) frais, le plus récent il y a 1.1 h (OneFootball)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Lozano » écarté : Résultat sportif mineur sans impact en France.
+  🔎 « Morumbi » : 1 article(s) frais, le plus récent il y a 17.6 h (OneFootball)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 14 (char 13) → couple suivant
+  ⏭️  « Morumbi » écarté : Match de football brésilien sans intérêt en France.
+  🌍 « ã¤ãããªã » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #EdSheeran
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.5s (50 déjà en cache)
+  📄 6/53 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧩 53 articles → 53 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  🚨 Sujet chaud (breaking, 1 médias) : OpenAI boss says world 'right to be afraid' but 's
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 40.0/100 = gravité 4/10 → 18 + frais 2.1h +4 + portée mondiale +18
+  → Sujet chaud pas assez fort (score 40) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Preview : Wo Long 2 : Wings of Ember a déjà le feu s
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 53 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (66 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 1 × gemini-embedding-2           🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   🚫 quota
+        18. clé 2 × gemini-embedding-2           🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 3 × gemini-embedding-2-preview   🚫 quota
+        21. clé 3 × gemini-embedding-2           🚫 quota
+        22. clé 4 × gemini-embedding-001         🚫 quota
+        23. clé 4 × gemini-embedding-2-preview   🚫 quota
+        24. clé 4 × gemini-embedding-2           🚫 quota
+        25. clé 5 × gemini-embedding-001         🚫 quota
+        26. clé 5 × gemini-embedding-2-preview   🚫 quota
+        27. clé 5 × gemini-embedding-2           🚫 quota
+        28. clé 1 × gemini-3.6-flash             🚫 quota
+        29. clé 2 × gemini-3.6-flash             🚫 quota
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.5-flash-lite        ✅
+        35. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+        38. clé 3 × gemini-3.1-flash-lite        ✅
+        39. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,164 entrée · 277 sortie
+     ✅ aucun appel payant
