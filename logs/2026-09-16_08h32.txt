@@ -1,0 +1,96 @@
+
+[08:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📈 50 tendances lues sur trends24.in : Viva MÃ©xico, Drake, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, #BOF500, ã«ãã»ã«ãã¤
+  🔎 « Drake » : 1 article(s) frais, le plus récent il y a 2.3 h (NHL.com)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Drake » écarté : Il s'agit simplement de statistiques sportives.
+  🕐 8h (Paris) — rythme journée (44-92 min · 2 publié(s), 14 restant(s) sur 16.0 h) : 44-92 min
+  ⏸️  Dernière publi il y a 34 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 2.1s (57 déjà en cache)
+  📄 7/62 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · IGN France
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Rachida Dati et Carlos Ghosn jugés pou… »
+  🧠 Même événement (jugé) : « Guerre au Moyen-Orient : Accusés par R… »
+  🧩 62 articles → 60 événement(s)
+  🚨 Sujet chaud (breaking, 2 médias) : Le trou dans la couche d’ozone diminue, Trump va l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Présidentielle 2027: Marine Tondelier affirme que "l
+  ⚪ Écarté (-2, pénalisé par « pourrait, comment  ») : Désindexer les pensions ou supprimer l'abattement fi
+  🚨 Sujet chaud (breaking, 1 médias) : Prix du carburant : le mouvement se poursuit, un d
+  🧮 Score 42.0/100 = gravité 4/10 → 18 + frais 0.2h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 42) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Colère des pêcheurs : depuis cette nuit, une centa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 37.5/100 = gravité 3/10 → 14 + frais 0.1h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 62 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : dati, ghosn, corruption, gaza, effondrement, immeuble
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (70 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 2/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-2           🚫 quota
+        16. clé 3 × gemini-embedding-001         🚫 quota
+        17. clé 3 × gemini-embedding-2-preview   🚫 quota
+        18. clé 3 × gemini-embedding-2           🚫 quota
+        19. clé 4 × gemini-embedding-001         🚫 quota
+        20. clé 4 × gemini-embedding-2-preview   🚫 quota
+        21. clé 4 × gemini-embedding-2           🚫 quota
+        22. clé 5 × gemini-embedding-001         🚫 quota
+        23. clé 5 × gemini-embedding-2-preview   🚫 quota
+        24. clé 5 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-2.5-flash-lite (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,658 entrée · 343 sortie
+     ✅ aucun appel payant
