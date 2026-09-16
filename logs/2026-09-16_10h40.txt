@@ -1,0 +1,88 @@
+
+[10:37] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #AWSDataAndAIDay2026, #BOF500, #YuvaSankalpDiwasWithDhami, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, Viva MÃ©xico
+  🕐 10h (Paris) — rythme journée (45-94 min · 4 publié(s), 12 restant(s) sur 14.0 h) : 45-94 min
+  ⏸️  Dernière publi il y a 9 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/8 articles lus en 1.0s (49 déjà en cache)
+  📄 6/58 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · IGN France · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 57 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Présidentielle 2027 : il y aura cinq c… »
+  🧩 58 articles → 37 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : la justice confirme l'allège
+  🚨 Sujet chaud (breaking, 2 médias) : Présidentielle 2027 : il y aura cinq candidats à l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 47.5/100 = gravité 5/10 → 22 + 2 médias +4 + frais 0.1h +16 + primeur +5
+  🧩 4 affirmation(s) : 0 partagée(s) · 2 divergente(s) · 2 exclusive(s)
+      [1m] Philippe Brun est suspendu de la primaire PS-Place publique et du Parti social
+         ↳ La Dépêche : Philippe Brun fait partie des six candidats en lice pour la prim
+         motif : Information plus récente publiée après la décision de suspension.
+      [1m] Cinq candidats sont finalement en lice pour la primaire PS-Place publique.
+         ↳ La Dépêche : Six candidats étaient initialement en lice pour cette primaire.
+         motif : Mise à jour suite à la suspension de Philippe Brun.
+      [1m] ⚡exclusif Sébastien Lecornu réunit le gouvernement en séminaire sur le budget 2027 et de
+      [1m] ⚡exclusif François Hollande annoncera officiellement sa candidature potentielle à l'élec
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Narcotrafic : un jeune homme de 18 ans abattu par de
+  🚨 Sujet chaud (breaking, 7 médias) : Former Kosovo President Hashim Thaci faces verdict
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Journal du Geek, Numerama, Ouest-France, Positivr
+  🧮 Score 73.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 0.7h +13 + portée mondiale +18
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (166 → 123 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 58 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : pape, macron, vatican
+  ♻️ Doublon d'un sujet déjà publié, écarté : Animateurs dans le périscolaire: la mairie de Pari
+  ♻️ Doublon d'un sujet déjà publié, écarté : Violences dans le périscolaire: le maire de Paris 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Carburants : blocage des prix, chèque aux particul
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (161 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 600 · gemini 2 800
+     jetons Gemini : 32,979 entrée · 1,067 sortie
+     ✅ aucun appel payant
