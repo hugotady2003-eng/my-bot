@@ -1,0 +1,89 @@
+
+[12:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #GMMTVStarlympics2026, Olu Jacobs, #RotamÄ±zKademe, #bist100, #BOF500
+  🌍 « Olu Jacobs » : aucune reprise en français, source internationale retenue
+  🔎 « Olu Jacobs » : 1 article(s) frais, le plus récent il y a 0.8 h (BBC)
+  ⏭️  « Olu Jacobs » écarté : trop secondaire (2/10)
+  🌍 « bist100 » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Leyen
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🕐 12h (Paris) — rythme journée (42-88 min · 5 publié(s), 11 restant(s) sur 12.0 h) : 42-88 min
+  ⏸️  Dernière publi il y a 28 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 1.7s (73 déjà en cache)
+  📄 10/81 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block
+  🧠 81 vecteurs calculés en 1 appel(s)
+  🧩 81 articles → 22 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : la justice confirme l'allège
+  🚨 Sujet chaud (breaking, 2 médias) : Primaire de la gauche : qui sont les cinq candidat
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Libération
+  🧮 Score 18.5/100 = gravité 3/10 → 14 + 2 médias +4 + frais 0.3h +16 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 18) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Parti socialiste : le député Philippe Brun suspend
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 19.0/100 = gravité 4/10 → 18 + frais 0.5h +13 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 19) → suivant
+  🚨 Sujet chaud (breaking, 21 médias) : Guerre en Ukraine : quelle est cette nouvelle arme
+  🧠 24 article(s) sur un autre sujet, écartés du dossier : 9to5Google, ActuGaming, Al Jazeera, BFM People, Begeek
+  🧮 Score 95.0/100 = gravité 6/10 → 27 + 21 médias +20 + frais 0.4h +16 + imprévu 6/10 +4 + thème porteur +10 + portée mondiale +18
+  🔍 6 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] 67 % des parents déclarent ne pas avoir assez de ressources financières pour a
+      [2m] Ce frein financier concerne particulièrement 73 % des jeunes parents, 73 % des
+      [2m] 78 % des parents estiment que les impôts et aides publiques ne prennent pas as
+      [2m] Plus de la moitié des parents (56 %) jugent trop chers les tarifs des services
+      [2m] L'enquête a été menée du 29 janvier au 19 février auprès de 2 500 parents par 
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le marché et les tribunaux suffiront : Mark Zuckerbe
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  ⚪ Écarté (-1, pénalisé par « vue de l'étranger ») : Canada, climat, immigration : ce qu'il faut retenir 
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 81 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : pape, macron, vatican, helicoptere, los-angeles
+  ♻️ Doublon d'un sujet déjà publié, écarté : Bitcoin Coinbase Premium hits monthly low as CLARI
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (169 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 1 × gemini-embedding-2           🚫 quota
+         6. clé 2 × gemini-embedding-001         🚫 quota
+         7. clé 2 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite (+26)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 792
+     jetons Gemini : 21,824 entrée · 919 sortie
+     ✅ aucun appel payant
