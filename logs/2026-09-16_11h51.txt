@@ -1,0 +1,75 @@
+
+[11:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #bist100, #AWSDataAndAIDay2026, #BOF500, #RotamÄ±zKademe, #TurnAroundStock
+  🌍 « bist100 » : aucune reprise en français, source internationale retenue
+  🕐 11h (Paris) — rythme journée (46-95 min · 5 publié(s), 11 restant(s) sur 13.0 h) : 46-95 min
+  ⏸️  Dernière publi il y a 17 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/9 articles lus en 1.0s (65 déjà en cache)
+  📄 9/74 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 74 vecteurs calculés en 1 appel(s)
+  🧩 74 articles → 29 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Tesla, BYD, Mercedes, Volvo : les camions électrique
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : la justice confirme l'allège
+  🚨 Sujet chaud (breaking, 2 médias) : Parti socialiste : le député Philippe Brun suspend
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Sud Ouest
+  🧮 Score 23.0/100 = gravité 4/10 → 18 + 2 médias +4 + frais 0.3h +16 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 23) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le marché et les tribunaux suffiront : Mark Zuckerbe
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  🚨 Sujet chaud (breaking, 25 médias) : Trafic de drogue : un jeune homme tué par balles à
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 38 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, ActuGaming, BBC, CNBC, Challenges
+  🧮 Score 49.5/100 = gravité 3/10 → 14 + 25 médias +20 + frais 0.4h +16
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • TROP LONG (194 caractères)
+  ⚖️ Correction factuelle forcée appliquée
+  ✂️ Tweet resserré localement (218 → 7 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 74 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : pape, macron, vatican, helicoptere, los-angeles
+  ♻️ Doublon d'un sujet déjà publié, écarté : « A découvert le 15 du mois, on n’a plus rien à pe
+  📜 Aucun événement assez connu — skip.
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3.6-flash (+27)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 795
+     jetons Gemini : 19,878 entrée · 272 sortie
+     ✅ aucun appel payant
