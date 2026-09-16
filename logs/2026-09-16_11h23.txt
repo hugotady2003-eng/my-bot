@@ -1,0 +1,72 @@
+
+[11:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  📈 50 tendances lues sur trends24.in : #bist100, #AWSDataAndAIDay2026, #BOF500, #RotamÄ±zKademe, #TurnAroundStock
+  🌍 « bist100 » : aucune reprise en français, source internationale retenue
+  🕐 11h (Paris) — rythme journée (42-87 min · 4 publié(s), 12 restant(s) sur 13.0 h) : 42-87 min
+  🎲 52 min (proba 23%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 11/12 articles lus en 3.1s (69 déjà en cache)
+  📄 9/82 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · Libération · Ouest-France · IGN France · The Block
+  🧠 81 vecteurs calculés en 1 appel(s)
+  🧩 82 articles → 40 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Patrick Bruel : la justice confirme l'allège
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Présidentielle 2027 : qui sont les 5 candidats quali
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  ⚪ Écarté (-5, pénalisé par « \b(?:météo ») : Météo : après une brutale chute des températures et 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Le sexe a disparu du cinéma » : le coup de gueule 
+  🚨 Sujet chaud (breaking, 1 médias) : NBC helicopter crashes in LA, killing at least thr
+  🧮 Score 73.5/100 = gravité 7/10 → 32 + frais 0.3h +16 + imprévu 8/10 +18 + primeur absolue +8
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚨 Sujet chaud (breaking, 4 médias) : Former Kosovo President Hashim Thaci faces verdict
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, The Block, Wired
+  🧮 Score 66.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 1.9h +8 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 1.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 82 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : pape, macron, vatican
+  ♻️ Doublon d'un sujet déjà publié, écarté : Prix des carburants : Quel est le prix de l’essenc
+  ♻️ Doublon d'un sujet déjà publié, écarté : Réseaux sociaux : L’UE veut interdire leur accès a
+  ♻️ Doublon d'un sujet déjà publié, écarté : iOS 27 est enfin disponible, avec la nouvelle vers
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (130 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 4/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 2 × gemini-embedding-001 · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 13/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 800
+     jetons Gemini : 28,099 entrée · 494 sortie
+     ✅ aucun appel payant
