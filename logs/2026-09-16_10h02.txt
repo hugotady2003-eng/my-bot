@@ -1,0 +1,54 @@
+
+[10:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  ⏭️  Le Saviez-vous : « Origine expression poser un lapin » n'explique pas vraiment → on ne publie pas
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Viva MÃ©xico, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, Drake, ã«ãã»ã«ãã¤, #BOF500
+  🔎 « Drake » : 1 article(s) frais, le plus récent il y a 1.7 h (Hypebeast)
+  ⏭️  « Drake » écarté : trop secondaire (4/10)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🕐 10h (Paris) — rythme journée (42-87 min · 3 publié(s), 13 restant(s) sur 14.0 h) : 42-87 min
+  🎲 54 min (proba 26%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 11/12 articles lus en 2.4s (56 déjà en cache)
+  📄 8/69 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · IGN France · The Block
+  🧠 68 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Patrick Bruel : Le contrôle judiciaire… »
+  🧩 69 articles → 28 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La justice confirme l'allégement du contrôle judicia
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine: un drone russe sur un minibus f
+  🧮 Score 77.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + imprévu 6/10 +4 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (1816h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 69 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Ursula von der Leyen annonce la présentation proch
+  ♻️ Doublon d'un sujet déjà publié, écarté : Midea PortaSplit : une nouvelle version du climati
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (47 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-001 (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 106 · gemini 2-preview 725 · gemini 2 800
+     jetons Gemini : 13,613 entrée · 506 sortie
+     ✅ aucun appel payant
