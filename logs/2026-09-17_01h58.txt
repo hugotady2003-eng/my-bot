@@ -1,0 +1,131 @@
+
+[01:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Carrick, Adeyemi, Manchester United, Brighton, Lyanco
+  🔎 « Carrick » : 1 article(s) frais, le plus récent il y a 2.8 h (Yahoo Actualités)
+  ⏭️  « Carrick » écarté : trop secondaire (4/10)
+  🔎 « Adeyemi » : 1 article(s) frais, le plus récent il y a 2.1 h (YouTube)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Adeyemi » écarté : Simple reaction video de football sur YouTube
+  🔎 « Manchester United » : 1 article(s) frais, le plus récent il y a 3.0 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Manchester United » écarté : trop secondaire (4/10)
+  🔎 « Brighton » : 1 article(s) frais, le plus récent il y a 3.0 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⏭️  « Brighton » écarté : trop secondaire (5/10)
+  🔎 « Lyanco » : 1 article(s) frais, le plus récent il y a 1.4 h (OneFootball)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Lyanco » écarté : trop secondaire (1/10)
+  🔎 « Rashford » : 1 article(s) frais, le plus récent il y a 3.5 h (Goal.com)
+  ⏭️  « Rashford » écarté : trop secondaire (4/10)
+  🔎 « Cancelo » : 1 article(s) frais, le plus récent il y a 4.8 h (DAZN)
+  ⏭️  « Cancelo » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Raphinha
+  📖 36 articles, tous en cache
+  📄 1/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 36 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Here’s What Snap’s Expensive Specs Can… »
+  🧠 Même événement (jugé) : « Snap announces Specs Intelligence app … »
+  🧩 37 articles → 29 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre à Gaza : un immeuble d’habitation précaire 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + frais 3.4h +4 + portée mondiale +18
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : US interest rates raised for first time in three y
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 1.7h +8 + primeur +5 + portée internationale +10
+  🧩 3 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] La Réserve fédérale américaine a augmenté ses taux d'intérêt pour la première 
+      [2m] Le président Donald Trump s'est vivement opposé à cette hausse et a exigé que 
+      [2m] Le président de la Fed, Kevin Warsh, a qualifié cette décision de responsable 
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : Landes : l'incendie de Lüe est fixé, 190 hectares 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.6h +4
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 2 partagée(s) · 2 divergente(s) · 4 exclusive(s)
+      [2m] L'incendie s'est déclaré le mercredi 16 septembre dans un parc photovoltaïque 
+      [1m] Le feu a brûlé une superficie totale de 190 hectares de forêt.
+         ↳ France Bleu : 150 hectares de bois ont brûlé selon un bilan provisoire en fin 
+         motif : Évolution du bilan de surface calcinée au cours de la soirée.
+      [1m] ⚡exclusif L'incendie a été fixé en début de soirée, vers 21h45.
+      [2m] Au total, 14 moyens aériens ont été déployés, comprenant notamment quatre Cana
+      [1m] Jusqu'à 250 sapeurs-pompiers ont été déployés au sol pour lutter contre les fl
+         ↳ France Bleu : 200 sapeurs-pompiers étaient sur place à 18h30.
+         motif : Actualisation des effectifs engagés par les autorités.
+      [1m] ⚡exclusif Quatre sapeurs-pompiers ont été légèrement blessés lors de l'intervention.
+      [1m] ⚡exclusif Le feu a menacé deux sites industriels travaillant le bois et classés Seveso.
+      [1m] ⚡exclusif Aucune évacuation n'a été envisagée pendant l'intervention.
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Liga. Le FC Barcelone étrille Santander avec un trip
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 37 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (139 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 3 × gemini-3.6-flash             🚫 quota
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 749
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,222 entrée · 1,341 sortie
+     ✅ aucun appel payant
