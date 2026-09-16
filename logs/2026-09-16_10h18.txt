@@ -1,0 +1,81 @@
+
+[10:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  ⏭️  Le Saviez-vous : « Origine de poser un lapin » n'explique pas vraiment → on ne publie pas
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #AWSDataAndAIDay2026, #BOF500, #YuvaSankalpDiwasWithDhami, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, Viva MÃ©xico
+  🕐 10h (Paris) — rythme journée (42-87 min · 3 publié(s), 13 restant(s) sur 14.0 h) : 42-87 min
+  🎲 68 min (proba 59%) → on attend.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/5 articles lus en 1.2s (67 déjà en cache)
+  📄 8/74 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · Libération · IGN France · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 72 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Patrick Bruel : Le contrôle judiciaire… »
+  🧩 74 articles → 31 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La justice confirme l'allégement du contrôle judicia
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine: un drone russe sur un minibus f
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.5/100 = gravité 7/10 → 32 + frais 0.4h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (1816h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 23 médias) : Visite du pape Léon XIV : accueil militaire, Notre
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 34 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, ActuGaming, Al Jazeera, Begeek
+  🧮 Score 92.5/100 = gravité 7/10 → 32 + 23 médias +20 + frais 0.9h +13 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Image écartée : Personnage fictif ou erroné
+  🖼️🤝 Image récupérée chez un média jumeau (Public) — même sujet
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Former Kosovo President Hashim Thaci faces verdict
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 7/10 → 32 + frais 0.5h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • TROP LONG (161 caractères)
+  ✂️ Tweet resserré localement (162 → 109 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 74 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Ce serait une grande victoire pour l’administratio
+  ♻️ Doublon d'un sujet déjà publié, écarté : C’est la rentrée au jardin : nettoyer, tailler… Vo
+  ♻️ Doublon d'un sujet déjà publié, écarté : Avant son trépas, Catherine Ringer “esclave sexuel
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (163 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 720 · gemini 2 800
+     jetons Gemini : 42,256 entrée · 957 sortie
+     ✅ aucun appel payant
