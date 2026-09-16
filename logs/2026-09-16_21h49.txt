@@ -1,0 +1,183 @@
+
+[21:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Récap réutilisé (déjà généré aujourd'hui, 0 coût)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Récap : aucune image pour « L'effondrement d'un immeuble a fait au m… » → fond de catégorie
+  🖼️ Récap : aucune image pour « Un appareil de NBC s'est écrasé, causant… » → fond de catégorie
+  🖼️ Récap : photo retrouvée en mémoire pour « La Réserve fédérale a tranché sur ses … »
+  🖼️ Récap : photo retrouvée en mémoire pour « Le procès pour corruption visant les d… »
+  🖼️ Récap : photo retrouvée en mémoire pour « Le Vatican a décliné les propositions … »
+  🎠 Récap en carrousel : 6 images
+  🖼️ Carrousel : 4 images publiées ensemble
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 16-Sep-26 12:46:05 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AQfCwMjfCQF4ktMp_OwC3yz"}}
+  🛑 Aucune plateforme n'a publié → le récap retentera au prochain run (contenu en cache)
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 16-Sep-26 12:46:44 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AAobsZjj11wUbgY3kl3Wtse"}}
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ØªØ­Øª_Ø§ÙØ¶ØºØ·_Ø±ÙØ§_Ø¬Ø¨Ø±Ø§Ù, #Number_i_ANN, #Ø§Ù Ù_Ø§ÙØ­Ø±Ù ÙÙ_Ø®Ø·_Ø§Ø­Ù Ø±, #BarÄ±ÅDay, Tommy Pham
+  🌍 « Ø§Ù Ù_Ø§ÙØ­Ø±Ù ÙÙ_Ø®Ø·_Ø§Ø­Ù Ø± » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #TheFed, #Warsh
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 21h (Paris) — rythme journée (25-45 min · 5 publié(s), 11 restant(s) sur 3.0 h) : 25-45 min
+  ✅ Dernière publi il y a 613 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/7 articles lus en 1.3s (11 déjà en cache)
+  📄 2/18 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération
+  🧠 18 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Jeff Gundlach says the Fed should have… »
+  🧠 Même événement (jugé) : « Fed raises rates by 25 basis points in… »
+  🧩 18 articles → 14 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Carburants : le gouvernement va "prolonger jusqu’a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 2.8h +4 + thème porteur +10
+  🕒 Âge de l'article : 2.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (169 → 117 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : L’incendie dans un parc photovoltaïque des Landes 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 28.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.5h +8 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 2 divergente(s) · 3 exclusive(s)
+      [2m] Un incendie s'est déclaré dans un parc photovoltaïque à Lüe et s'est propagé à
+      [1m] ⚡exclusif Environ 150 hectares de forêt ont été brûlés par l'incendie.
+      [2m] Le nombre de pompiers mobilisés est estimé entre 200 et 250.
+         ↳ France Bleu : 200 pompiers sur place.
+         ↳ Libération : Jusqu'à 250 pompiers déployés.
+         motif : Différence d'estimation ou évolution des effectifs au cours du temps.
+      [2m] Quatorze moyens aériens sont engagés dans la lutte contre le feu.
+      [1m] ⚡exclusif Quatre sapeurs-pompiers ont été légèrement blessés.
+      [1m] La situation est jugée très défavorable par les autorités.
+         ↳ Libération : Le feu devrait baisser en intensité cette nuit.
+         motif : Différence d'appréciation sur l'évolution immédiate du sinistre.
+      [1m] ⚡exclusif Aucune évacuation de population n'est prévue.
+  → Sujet chaud pas assez fort (score 28) → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Jeff Gundlach says the Fed should have hiked rates
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧮 Score 38.5/100 = gravité 3/10 → 14 + 3 médias +7 + frais 1.7h +8 + portée internationale +10
+  🧩 5 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif Jeff Gundlach estime que la Réserve fédérale aurait dû augmenter ses taux d'in
+      [1m] ⚡exclusif La Réserve fédérale américaine a relevé ses taux d'intérêt de 25 points de bas
+      [1m] ⚡exclusif La décision de la Fed intervient alors que l'inflation reste élevée, portée pa
+      [1m] ⚡exclusif Les actions ont chuté lors de la conférence de presse de la Réserve fédérale, 
+      [1m] ⚡exclusif L'inflation annuelle aux États-Unis a atteint 3,4 % en août, marquant la plus 
+  → Sujet chaud pas assez fort (score 38) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Fed Chair Implies Trump Is Only Half Right on the 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 4/10 → 18 + frais 0.1h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  📈 Hashtag(s) en tendance : #Warsh
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Warsh
+  ✂️ Tweet resserré localement (180 → 155 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  → 18 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : FORUM BFMTV - Hausse du prix des carburants: "On p
+  ♻️ Doublon d'un sujet déjà publié, écarté : Fed Chair Implies Trump Is Only Half Right on the 
+  ♻️ 7/10 [world] (déjà analysé, cache) : L’incendie dans un parc photovoltaïque des Landes 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Carburants : le gouvernement va "prolonger jusqu’a
+  ♻️ 8/10 [world] (déjà analysé, cache) : Landes : l'incendie de Lüe "contenu" mais toujours
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Le prix du gasoil peut-il vraiment atteindre 3 eur
+  ♻️ 6/10 [markets] (déjà analysé, cache) : L’Oréal qui passe en tête devant LVMH, TotalEnergi
+  ♻️ 6/10 [world] (déjà analysé, cache) : EU chief backs plan for Canada to become 'associat
+  ♻️ 7/10 [world] (déjà analysé, cache) : US to bar some South Africans over claims of anti-
+  ♻️ 9/10 [world] (déjà analysé, cache) : Jerusalem Daily: US to send $2.8BN worth of weapon
+  ♻️ 7/10 [markets] (déjà analysé, cache) : US Fed raises interest rates for first time in thr
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Fed raises rates by 25 basis points in first hike 
+  ♻️ 6/10 [space] (déjà analysé, cache) : Faster-flowing glaciers fuel decades of polar ice 
+  🧠 Batch analyse de 4 articles...
+  📉 5/10: Plongée dans la «bascule complotiste» au procès de l’en
+  🌍 6/10 sans portée internationale : FORUM BFMTV - Désindexer les pensions: Gilles, ret
+  📉 3/10: Marvel's Wolverine Review Screenshots
+  📉 5/10: Les joueurs de Marvel's Wolverine testent la séquence à
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.6h — Jerusalem Daily: US to send $2.8BN worth of 
+     8/10 · 2 média(s) · 0.2h — L’incendie dans un parc photovoltaïque des L
+     9/10 · 2 média(s) · 2.9h — Landes : l'incendie de Lüe "contenu" mais to
+     9/10 · 2 média(s) · 1.9h — Fed raises rates by 25 basis points in first
+     8/10 · 1 média(s) · 2.8h — Carburants : le gouvernement va "prolonger j
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.6h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 16-Sep-26 12:49:25 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"Ak7Xs3xTOmJlw1EZOd5fwYs"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Jerusalem Daily: US to send $2.8BN worth of weapons to 
+
+  ── Bilan du cycle (211 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 5/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   🚫 quota
+         7. clé 2 × gemini-embedding-2           🚫 quota
+         8. clé 3 × gemini-embedding-001         🚫 quota
+         9. clé 3 × gemini-embedding-2-preview   ✅
+        10. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        15. clé 1 × gemini-3-flash               ⛔ inexistant
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.1-flash-lite        ✅
+        25. clé 2 × gemini-3.1-flash-lite        ✅
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.1-flash-lite        ✅
+        28. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 2 × gemini-3.6-flash             🚫 quota
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.5-flash-lite        ✅
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 749
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 47,569 entrée · 2,090 sortie
+     ✅ aucun appel payant
