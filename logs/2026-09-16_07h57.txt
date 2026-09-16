@@ -1,0 +1,143 @@
+
+[07:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 1 articles pré-filtrés (mots-clés bloqués, sans coût Claude)
+  📈 50 tendances lues sur trends24.in : Drake, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, Viva MÃ©xico, #BOF500, #ELLEMENXPhuwinDunkSanta
+  🔎 « Drake » : 1 article(s) frais, le plus récent il y a 2.7 h (SwissHabs)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Drake » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #EdSheeran
+  🕐 7h (Paris) — rythme journée (44-91 min · 1 publié(s), 15 restant(s) sur 17.0 h) : 44-91 min
+  🎲 52 min (proba 18%) → on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/5 articles lus en 0.9s (58 déjà en cache)
+  📄 4/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Présidentielle 2027: les candidatures … »
+  🧩 63 articles → 62 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT, guerre en Ukraine : les dernières infor
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 5/10 → 22 + frais 0.8h +13 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (202 → 153 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Volodymyr Zelensky (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-2, pénalisé par « pourrait, comment  ») : Désindexer les pensions ou supprimer l'abattement fi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Los Angeles : un hélicoptère d’une chaîne de télévis
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  → 63 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : dati, ghosn, corruption
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre à Gaza : les Etats-Unis vont livrer pour 2,
+  ♻️ Doublon d'un sujet déjà publié, écarté : La tribune éco : Prochain président(e), 600 millia
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre au Moyen-Orient : Accusés par Riyad d’avoir
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Discord est tombé en panne : voici ce que l’on sai
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI's Brockman Says Safety Concerns Have Alread
+  🎯 Pré-classement : 37 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 2/10: NASA Ames Stars of the Month: September 2026
+  ✅ 9/10 [world] large: At least 10 dead, dozens missing in Gaza buildin
+  📉 2/10: "Il est allergique au bleu" : l'intrus surprend une fem
+  🌍 7/10 sans portée internationale : Republican forces Congress to hold impeachment vot
+  📉 3/10: Google rolling out September 2026 update for Pixel Watc
+  📉 2/10: APOD: 2026 September 16 – Webb’s View of M64
+  🌍 8/10 sans portée internationale : Los Angeles : un hélicoptère d’une chaîne de télév
+  📉 3/10: Can India's data center boom create enough jobs?
+  📉 3/10: “Filmmaker” suing PassThePopcorn may be banned user out
+  ✅ 6/10 [world] mondiale: Visite du pape Léon XIV en France : Emmanuel Mac
+  📉 3/10: Lyon, Marseille, Rennes, clubs historiques, pépites à s
+  📉 4/10: Présidentielle 2027 : six candidats sur la ligne de dép
+  📉 2/10: Walmart Promo Codes: 20% Off for September 2026
+  📉 3/10: The Boox Palma 3 gets stylus support and a sleek redesi
+  📉 4/10: Valve : même si la petite entreprise connaît bien la cr
+  📉 3/10: How chimps teach their kids tool tricks
+  📉 4/10: Oracle dévoile Java 27, tourné vers l’IA et la cryptogr
+  📉 4/10: « Il aurait été très fier aujourd’hui » : l’émouvant ho
+  🌍 6/10 sans portée internationale : Défense, le gouvernement veut 100.000 nouveaux sal
+  📉 3/10: "L’anglais d’un commercial n’est pas celui d’un ingénie
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.8h — At least 10 dead, dozens missing in Gaza bui
+     8/10 · 1 média(s) · 3.4h — Guerre au Moyen-Orient : Accusés par Riyad d
+     6/10 · 1 média(s) · 0.9h — Visite du pape Léon XIV en France : Emmanuel
+     7/10 · 1 média(s) · 9.8h — OpenAI's Brockman Says Safety Concerns Have 
+     8/10 · 1 média(s) · 14.9h — Discord est tombé en panne : voici ce que l’
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 33 s
+  🕒 Âge de l'article à la publication : 0.8h (frais ✅)
+  🐦 Posté sur X (🖼️ image) : https://x.com/i/web/status/2100101742298071238
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ✅ Publié [world]: At least 10 dead, dozens missing in Gaza building colla
+  🔒 Mots-clés bloqués 2h: gaza, effondrement, immeuble
+
+  ── Bilan du cycle (110 s) ──
+     écartés : 3 sujet banal · 3 sans portée internationale
+     plafonds : X 2/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-embedding-2-preview   🚫 quota
+        14. clé 1 × gemini-embedding-2           🚫 quota
+        15. clé 2 × gemini-embedding-001         🚫 quota
+        16. clé 2 × gemini-embedding-2-preview   🚫 quota
+        17. clé 2 × gemini-embedding-2           🚫 quota
+        18. clé 3 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-2-preview   🚫 quota
+        20. clé 3 × gemini-embedding-2           🚫 quota
+        21. clé 4 × gemini-embedding-001         🚫 quota
+        22. clé 4 × gemini-embedding-2-preview   🚫 quota
+        23. clé 4 × gemini-embedding-2           🚫 quota
+        24. clé 5 × gemini-embedding-001         🚫 quota
+        25. clé 5 × gemini-embedding-2-preview   🚫 quota
+        26. clé 5 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+        38. clé 3 × gemini-3.1-flash-lite        ✅
+        39. clé 3 × gemini-3.1-flash-lite        ✅
+        40. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3-flash (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 26,949 entrée · 1,530 sortie
+     ✅ aucun appel payant
