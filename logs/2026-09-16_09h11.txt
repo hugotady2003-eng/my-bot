@@ -1,0 +1,48 @@
+
+[09:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Viva MÃ©xico, Drake, #ãã­ã©ãæ¿ãã§ã³ã¢ã¤ã¹, #BOF500, ã«ãã»ã«ãã¤
+  🔎 « Drake » : 1 article(s) frais, le plus récent il y a 0.9 h (hypebeast.com)
+  ⏭️  « Drake » écarté : trop secondaire (5/10)
+  🕐 9h (Paris) — rythme journée (45-93 min · 3 publié(s), 13 restant(s) sur 15.0 h) : 45-93 min
+  ⏸️  Dernière publi il y a 3 min — attente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 1.0s (44 déjà en cache)
+  📄 6/54 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · IGN France · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 54 vecteurs calculés en 1 appel(s)
+  🧩 54 articles → 25 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : Fabien Roussel une TVA à 5,5 %
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : All support acts on Ed Sheeran's US tour quit after 
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  ⏸️  Cadence pas prête → seuls les canaux bonus (histoire, GTA 6) sont tentés
+  → 54 articles à analyser...
+  🚫 Mots-clés bloqués (2h) : gaza, effondrement, immeuble
+  ♻️ Doublon d'un sujet déjà publié, écarté : EN DIRECT Guerre au Moyen-Orient : Les Houthis du 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Le ministère de l’Intérieur engage une procédure d
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine : un drone russe sur un bus fait
+  ♻️ Doublon d'un sujet déjà publié, écarté : US charges five people over alleged Russian plots
+  ✂️ Éphéméride resserré (196 → 128 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → Rien à publier.
+
+  ── Bilan du cycle (39 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 3/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-001 (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 741 · gemini 2-preview 725 · gemini 2 800
+     jetons Gemini : 2,829 entrée · 178 sortie
+     ✅ aucun appel payant
