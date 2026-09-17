@@ -1,0 +1,112 @@
+
+[06:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Corinthians, Memphis, mc paiva, Diniz, #GranHermano
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 1.7 h (onefootball.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Corinthians » écarté : Match de football étranger sans enjeu majeur.
+  🔎 « Memphis » : 1 article(s) frais, le plus récent il y a 3.1 h (BeBasket)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Memphis » écarté : trop secondaire (1/10)
+  🌍 « HappyBdayPMModi » : aucune reprise en français, source internationale retenue
+  🔎 « soso » : 1 article(s) frais, le plus récent il y a 3.6 h (paris.fr)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⏭️  « soso » écarté : Simple annonce d'un événement culturel sans portée majeure
+  🔎 « Estudiantes » : 1 article(s) frais, le plus récent il y a 1.5 h (onefootball.com)
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting ',' delimiter: line 1 column 19 (char 18) → couple suivant
+  ⏭️  « Estudiantes » écarté : trop secondaire (2/10)
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 2.9s (53 déjà en cache)
+  📄 7/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir
+  🧠 61 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Snap is launching a new Specs AI tool,… »
+  🧩 63 articles → 30 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 15 médias) : Espagne: un mort après de fortes pluies près de Ba
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BFMTV, ESA, Gamekult, Le Monde
+  🧮 Score 70.0/100 = gravité 4/10 → 18 + 15 médias +18 + frais 0.4h +16 + portée mondiale +18
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 15 s
+  🧩 3 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Les pêcheurs méditerranéens ont bloqué le dépôt de carburant de Frontignan pou
+      [1m] ⚡exclusif Le mouvement de grève des pêcheurs, baptisé 'Marée noire', dénonce l'inaction 
+      [1m] ⚡exclusif La fermeture du détroit d'Ormuz par l'Iran paralyse le trafic mondial de brut 
+  🌙 Sujet fort (score 70) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Snap is launching a new Specs AI tool, and it’s comi
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 63 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : D'où viennent les appels à un retour des "gilets j
+  ♻️ Doublon d'un sujet déjà publié, écarté : Comment Emmanuel Macron compte faire aboutir l'int
+  → Rien à publier.
+
+  ── Bilan du cycle (100 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 4 × gemini-3.1-flash-lite        ✅
+        15. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.6-flash             ⚠️ Unterminated string st
+        17. clé 5 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        19. clé 5 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-2-preview   🚫 quota
+        27. clé 3 × gemini-embedding-2           🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 4 × gemini-embedding-2-preview   🚫 quota
+        30. clé 4 × gemini-embedding-2           🚫 quota
+        31. clé 5 × gemini-embedding-001         ✅
+        32. clé 4 × gemini-3.6-flash             🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 11,028 entrée · 608 sortie
+     ✅ aucun appel payant
