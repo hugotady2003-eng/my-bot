@@ -1,0 +1,117 @@
+
+[06:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Corinthians, Memphis, mc paiva, #HappyBdayPMModi, #FLAZZ1RUPIAH
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 2.2 h (OneFootball)
+  ⏭️  « Corinthians » écarté : Match de football sud-américain sans enjeu français.
+  🔎 « Memphis » : 1 article(s) frais, le plus récent il y a 3.7 h (BeBasket)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Memphis » écarté : Match de ligue mineure sans enjeu national.
+  🌍 « HappyBdayPMModi » : aucune reprise en français, source internationale retenue
+  🔎 « soso » : 1 article(s) frais, le plus récent il y a 4.2 h (paris.fr)
+  ⏭️  « soso » écarté : trop secondaire (3/10)
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 1.5s (58 déjà en cache)
+  📄 6/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir
+  🧠 61 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Goldman pivots, now forecasts Fed rate… »
+  🧩 63 articles → 32 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 17 médias) : Le Canada « membre associé » de l’UE : Trump menac
+  🧠 16 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, BFMTV, Challenges, Frandroid
+  ✂️ 1 élément(s) écartés — 1 source(s) hors sujet : Ouest-France
+  🧮 Score 99.5/100 = gravité 9/10 → 40 + 17 médias +18 + frais 0.9h +13 + imprévu 9/10 +18 + portée internationale +10
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] Le prix élevé du carburant pèse lourdement sur les activités professionnelles,
+      [1m] ⚡exclusif Le gouvernement français prolonge et augmente les aides financières liées au c
+      [1m] ⚡exclusif Des pêcheurs méditerranéens bloquent des infrastructures stratégiques pour pro
+      [1m] ⚡exclusif La fermeture du détroit d'Ormuz par l'Iran aggrave les tensions sur l'approvis
+      [1m] ⚡exclusif L'Europe doit accélérer l'électrification du parc automobile pour répondre à l
+  🌙 Sujet fort (score 100) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 17 médias) : Projet d’association avec le Canada : l’UE menacée
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.5/100 = gravité 9/10 → 40 + 17 médias +18 + frais 0.9h +13 + portée internationale +10
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 39 s
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [4m] Les prix des carburants connaissent une forte hausse, impactant gravement les 
+      [1m] ⚡exclusif Le gouvernement français a décidé de prolonger et d'augmenter les aides financ
+      [1m] ⚡exclusif Des pêcheurs méditerranéens mènent des actions de blocage pour protester contr
+      [1m] ⚡exclusif La fermeture du détroit d'Ormuz par l'Iran aggrave les tensions sur l'approvis
+      [1m] ⚡exclusif L'Europe doit accélérer l'électrification du parc automobile pour répondre à l
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Snap is launching a new Specs AI tool, and it’s comi
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 63 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : A stronger dollar and rising yields: How the Fed’s
+  ♻️ Doublon d'un sujet déjà publié, écarté : Goldman pivots, now forecasts Fed rate hike in Oct
+  → Rien à publier.
+
+  ── Bilan du cycle (100 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3-flash               ⛔ inexistant
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-2-preview   🚫 quota
+        27. clé 3 × gemini-embedding-2           🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 4 × gemini-embedding-2-preview   🚫 quota
+        30. clé 4 × gemini-embedding-2           🚫 quota
+        31. clé 5 × gemini-embedding-001         🚫 quota
+        32. clé 5 × gemini-embedding-2-preview   ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 5 × gemini-3-flash · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 11,879 entrée · 1,090 sortie
+     ✅ aucun appel payant
