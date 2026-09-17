@@ -1,0 +1,152 @@
+
+[07:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Corinthians, #HappyBdayPMModi, Memphis, mc paiva, #DeepakChaurasiaModiTalk
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 0.9 h (onefootball.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Corinthians » écarté : Match de football étranger sans enjeu français.
+  🌍 « HappyBdayPMModi » : aucune reprise en français, source internationale retenue
+  🔎 « Memphis » : 1 article(s) frais, le plus récent il y a 4.6 h (BeBasket)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Memphis » écarté : Match de ligue mineure sans enjeu national.
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 1217 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/4 articles lus en 0.8s (9 déjà en cache)
+  📄 2/14 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 13 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Carburants : le gouvernement va "prolo… »
+  🧩 14 articles → 8 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 6 médias) : Fortes pluies en Espagne : un mort près de Barcelo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : Journal du Geek, Ouest-France, Sud Ouest
+  🧮 Score 86.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 0.4h +16 + thème porteur +10 + portée mondiale +18
+  🧩 8 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 8 exclusive(s)
+      [1m] ⚡exclusif Le gouvernement français prolonge jusqu'au 31 décembre les aides aux filières 
+      [1m] ⚡exclusif Le prix du gazole en France dépasse les 2,30 euros le litre.
+      [1m] ⚡exclusif La fermeture du détroit d'Ormuz par l'Iran perturbe l'approvisionnement mondia
+      [1m] ⚡exclusif Les aides au carburant pour les pêcheurs seront relevées de 25 à 35 centimes p
+      [1m] ⚡exclusif Les entreprises du BTP bénéficieront d'un soutien prolongé à hauteur de 20 cen
+      [1m] ⚡exclusif L'aide de 15 centimes par litre de carburant pour les agriculteurs est prolong
+      [1m] ⚡exclusif Les transporteurs routiers ne sont plus éligibles aux aides gouvernementales s
+      [1m] ⚡exclusif Le baril de Brent atteint 108 dollars sur les marchés internationaux.
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : Menaces de Trump contre l’UE, incendie «fixé» dans
+  🧮 Score 43.5/100 = gravité 3/10 → 14 + 6 médias +11 + frais 0.4h +16 + programmé 2/10 -15 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  → 14 articles à analyser...
+  ♻️ 6/10 [science] (déjà analysé, cache) : Déclin du stock d’eau douce : l’Organisation météo
+  ♻️ 7/10 [business] (déjà analysé, cache) : Carburants : le gouvernement va "prolonger jusqu’a
+  ♻️ 7/10 [world] (déjà analysé, cache) : Fortes pluies en Espagne : un mort près de Barcelo
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Le prix du gasoil peut-il vraiment atteindre 3 eur
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Pixel : Google bouche une faille critique déjà exp
+  ♻️ 9/10 [markets] (déjà analysé, cache) : US interest rates raised for first time in three y
+  ♻️ 9/10 [markets] (déjà analysé, cache) : US interest rates raised for first time in three y
+  ♻️ 7/10 [world] (déjà analysé, cache) : US to bar some South Africans over claims of anti-
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI's Rogue AI Agents Were Probing Hugging Face
+  ♻️ 6/10 [space] (déjà analysé, cache) : Faster-flowing glaciers fuel decades of polar ice 
+  🧠 Batch analyse de 3 articles...
+  📉 2/10: Un été 2026 toursique décevant à Lyon par rapport à 202
+  ✅ 7/10 [world] large: Marine Le Pen n'exclut pas de voter une motion d
+  📉 5/10: Premier League. Deux actionnaires de Chelsea quittent l
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 1 média(s) · 0.4h — Fortes pluies en Espagne : un mort près de B
+     8/10 · 1 média(s) · 0.3h — Marine Le Pen n'exclut pas de voter une moti
+     10/10 · 2 média(s) · 5.2h — US interest rates raised for first time in t
+     10/10 · 2 média(s) · 5.2h — US interest rates raised for first time in t
+     7/10 · 1 média(s) · 0.4h — Pixel : Google bouche une faille critique dé
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (166 → 116 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Fortes pluies en Espagne : un mort près de Barcelone ap
+
+  ── Bilan du cycle (127 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-2-preview   🚫 quota
+        27. clé 3 × gemini-embedding-2           🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 4 × gemini-embedding-2-preview   🚫 quota
+        30. clé 4 × gemini-embedding-2           🚫 quota
+        31. clé 5 × gemini-embedding-001         🚫 quota
+        32. clé 5 × gemini-embedding-2-preview   ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        … et 9 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 40,416 entrée · 1,972 sortie
+     ✅ aucun appel payant
