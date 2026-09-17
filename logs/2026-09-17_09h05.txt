@@ -1,0 +1,103 @@
+
+[09:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  ⚠️ gen_carousel: 'list' object has no attribute 'get'
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #HappyBdayPMModi, #MASCRADE2026, Corinthians, #GMMTVFANIVAL2026HappyFamily, Memphis
+  🌍 « HappyBdayPMModi » : aucune reprise en français, source internationale retenue
+  🌍 « MASCRADE2026 » : aucune reprise en français, source internationale retenue
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 2.1 h (OneFootball)
+  ⏭️  « Corinthians » écarté : Match sud-américain sans intérêt direct en France.
+  🔎 « Memphis » : 1 article(s) frais, le plus récent il y a 2.0 h (Goal.com)
+  ⏭️  « Memphis » écarté : trop secondaire (3/10)
+  🕐 9h (Paris) — rythme journée (36-75 min · 0 publié(s), 16 restant(s) sur 15.0 h) : 36-75 min
+  ✅ Dernière publi il y a 1288 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 0.9s (11 déjà en cache)
+  📄 4/22 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Cointelegraph
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 21 vecteurs calculés en 1 appel(s)
+  🧩 22 articles → 12 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Colère des pêcheurs : le dépôt d’essence de Fronti
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : BFM People, BFMTV, Melty, Midi Libre, Ouest-France
+  🧮 Score 58.5/100 = gravité 7/10 → 32 + 5 médias +11 + frais 0.1h +16
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (183 → 117 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  → 22 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Teddy Riner sous le feu des critiques : sa sortie 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Oil extends losses as Saudi Arabia reportedly offe
+  ♻️ 6/10 [science] (déjà analysé, cache) : Déclin du stock d’eau douce : l’Organisation météo
+  ♻️ 7/10 [business] (déjà analysé, cache) : Colère des pêcheurs : le dépôt d’essence de Fronti
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Le prix du gasoil peut-il vraiment atteindre 3 eur
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Pixel : Google bouche une faille critique déjà exp
+  ♻️ 9/10 [markets] (déjà analysé, cache) : US interest rates raised for first time in three y
+  ♻️ 9/10 [markets] (déjà analysé, cache) : US interest rates raised for first time in three y
+  ♻️ 7/10 [world] (déjà analysé, cache) : US to bar some South Africans over claims of anti-
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI reports more incidents of models acting dec
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : BitMEX faces Celsius lawsuit ahead of exchange clo
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI discloses 6 new cases of ‘misaligned’ AI be
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI's Rogue AI Agents Were Probing Hugging Face
+  ♻️ 6/10 [space] (déjà analysé, cache) : Faster-flowing glaciers fuel decades of polar ice 
+  🧠 Batch analyse de 8 articles...
+  📉 5/10: Alice Rufo, ministre déléguée aux Armées: "Jamais nous 
+  📉 2/10: Question de science. Qu’est-ce que la gravitation ?
+  📉 3/10: « Prisonnière 951 » sur Arte : une histoire vraie poign
+  🌍 6/10 sans portée internationale : Présidentielle : le ministre de l’Éducation interd
+  📉 4/10: Son père était tranquillement assis côté passager : un 
+  ✅ 6/10 [ai] large: Charles III demande aux géants de l'IA "l'assura
+  📉 2/10: Ici tout commence en avance : résumé de l'épisode du ve
+  📉 2/10: Pourquoi le Joker de Nolan doit tant à un thriller cult
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 1 média(s) · 0.2h — Colère des pêcheurs : le dépôt d’essence de 
+     9/10 · 1 média(s) · 1.3h — OpenAI discloses 6 new cases of ‘misaligned’
+     10/10 · 2 média(s) · 6.4h — US interest rates raised for first time in t
+     10/10 · 2 média(s) · 6.4h — US interest rates raised for first time in t
+     7/10 · 1 média(s) · 0.1h — Charles III demande aux géants de l'IA "l'as
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [business]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (220 → 155 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Colère des pêcheurs : le dépôt d’essence de Frontignan 
+
+  ── Bilan du cycle (237 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-embedding-001         ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3-flash · clé 2 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 773 · gemini 2-preview 800 · gemini 2 800
+     jetons Gemini : 39,445 entrée · 1,134 sortie
+     ✅ aucun appel payant
