@@ -1,0 +1,105 @@
+
+[06:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Flamengo, Josh Allen, Lions, #bb28, ARRASCAETA
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 10.6 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Flamengo » écarté : Match ancien sans actualité récente pertinente.
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 6.8 h (RDS)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Josh Allen » écarté : trop secondaire (3/10)
+  🔎 « Lions » : 1 article(s) frais, le plus récent il y a 0.7 h (La Montagne)
+  ⏭️  « Lions » écarté : Actualité locale et sportive mineure.
+  🌍 « bb28 » : aucune reprise en français, source internationale retenue
+  🔎 « ARRASCAETA » : 1 article(s) frais, le plus récent il y a 2.0 h (OneFootball)
+  ⏭️  « ARRASCAETA » écarté : Match de football sud-américain sans enjeu français.
+  🔎 « Bills » : 1 article(s) frais, le plus récent il y a 4.4 h (karlobag.eu)
+  ⏭️  « Bills » écarté : Sport US mineur pour le public français.
+  🔎 « Rossi » : 1 article(s) frais, le plus récent il y a 10.4 h (Google Actualités)
+  ⏭️  « Rossi » écarté : trop secondaire (1/10)
+  📖 3/3 articles lus en 0.8s (48 déjà en cache)
+  📄 8/52 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · The Block · OpenAI
+  🧠 51 vecteurs calculés en 1 appel(s)
+  🧩 52 articles → 20 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 6 médias) : Guerre en Ukraine : Poutine joue-t-il son va-tout,
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Jeuxvideo.com, L'Express, Libération, Public, Sud Ouest
+  🧮 Score 63.0/100 = gravité 4/10 → 18 + 6 médias +11 + frais 0.3h +16 + portée mondiale +18
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Les élections législatives en Russie se déroulent du 18 au 20 septembre.
+      [2m] Vladimir Poutine fait face à des pressions et à des rumeurs de nouvelle mobili
+      [1m] ⚡exclusif Vladimir Poutine a publiquement démenti la rumeur d'une nouvelle mobilisation 
+      [1m] ⚡exclusif Le seul parti dissident du pouvoir, Iabloko, a été exclu du scrutin législatif
+      [1m] ⚡exclusif Des incidents récents incluent des attaques de drones en Ukraine, un incident 
+  🌙 Sujet fort (score 63) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Bank of Japan raises interest rates by 25 basis po
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : CoinDesk
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + frais 3.9h +4 + portée mondiale +18
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 52 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Dissuader les menaces actuelles et futures": Wash
+  → Rien à publier.
+
+  ── Bilan du cycle (41 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.1-flash-lite (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,284 entrée · 696 sortie
+     ✅ aucun appel payant
