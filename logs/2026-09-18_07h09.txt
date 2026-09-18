@@ -1,0 +1,196 @@
+
+[07:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Josh Allen, Flamengo, #bb28, Lions, ãã«ã¼ã¤ã³ãã«ã¹
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 7.6 h (rds.ca)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Josh Allen » écarté : trop secondaire (3/10)
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 11.4 h (L'Équipe)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Flamengo » écarté : trop secondaire (1/10)
+  🌍 « bb28 » : aucune reprise en français, source internationale retenue
+  🔎 « Lions » : 1 article(s) frais, le plus récent il y a 1.6 h (La Montagne)
+  ⏭️  « Lions » écarté : Actualité sportive locale et anecdotique
+  🔎 « ARRASCAETA » : 1 article(s) frais, le plus récent il y a 2.6 h (OneFootball)
+  ⏭️  « ARRASCAETA » écarté : Match de football sud-américain sans enjeu français.
+  🔎 « Bills » : 1 article(s) frais, le plus récent il y a 5.3 h (KarloBag.eu)
+  ⏭️  « Bills » écarté : Sport US hors actualite francaise majeure.
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 2612 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/9 articles lus en 2.4s (38 déjà en cache)
+  📄 6/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · The Block
+  🧠 47 vecteurs calculés en 1 appel(s)
+  🧩 48 articles → 22 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Businessman, grand-père et toujours amateur de foot…
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Bank of Japan raises interest rates by 25 basis po
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : CoinDesk
+  🧮 Score 56.0/100 = gravité 8/10 → 36 + frais 4.7h +2 + portée mondiale +18
+  🕒 Âge de l'article : 2.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 41 s
+  ✂️ Tweet resserré localement (172 → 158 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 15 médias) : Un policier acquis à une idéologie d’ultradroite é
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Google, Ars Technica, Gamekult, IGN France
+  🧮 Score 90.0/100 = gravité 8/10 → 36 + 15 médias +18 + frais 1.1h +8 + imprévu 8/10 +18 + portée internationale +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (186 → 155 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (20 Minutes) — même sujet
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 48 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Dans l’Union européenne, les réseaux sociaux seron
+  ♻️ 8/10 [world] (déjà analysé, cache) : Un policier acquis à une idéologie d’ultradroite é
+  ♻️ 6/10 [science] (déjà analysé, cache) : Santé : la vaccination infantile recule en Europe 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Netflix fait scandale avec une pub pour sa série M
+  ♻️ 7/10 [space] (déjà analysé, cache) : Un cratère géant de 222 mètres vient d’apparaître 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Netflix fait scandale avec une pub pour sa série M
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : Solo Leveling: Karma - Trailer cinématique officie
+  ♻️ 7/10 [world] (déjà analysé, cache) : Ninth woman's body found as South African police i
+  ♻️ 9/10 [world] (déjà analysé, cache) : UN experts say grounds to believe US committed war
+  ♻️ 8/10 [world] (déjà analysé, cache) : UN mission finds evidence signaling U.S. war crime
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bank of Japan raises interest rates by 25 basis po
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Real stocks are finally coming on blockchain. Here
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : World launches self-custodial ‘super app’ World Mo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : JPMorgan says bitcoin could get more support than 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Security Experts Want the US and China to Promise 
+  🎯 Pré-classement : 13 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 3/10: APOD: 2026 September 18 – Messier 33: The Triangulum Ga
+  🌍 8/10 sans portée internationale : Yvelines : Un policier soupçonné d’avoir préparé u
+  ✅ 7/10 [ai] large: OpenAI Models Are Writing Their Own Jailbreak In
+  📉 2/10: NordVPN Coupons: 75% Off, Plus 3 Months Free in Septemb
+  📉 2/10: Zoro Coupon Codes: 20% Off September 2026
+  📉 3/10: Femme de Vianney, elle s'est immiscée entre Florent Pag
+  📉 5/10: Why we bought our first home with a 100% mortgage - des
+  📉 5/10: Russie : une mobilisation est-elle vraiment possible ?
+  📉 3/10: À Bram autour de Carole Delga, au rendez-vous annuel de
+  📉 2/10: Google Keep update tweaks the homescreen widget on Andr
+  📉 5/10: RFK Jr. names 8 new members to influential preventive m
+  📉 3/10: WebKit blog breaks down what’s new with Safari 27 for d
+  📉 4/10: Khosla-backed Mazama Energy just raised $135M to drill 
+  📉 2/10: Pixel Now Playing update brings interface tweaks & noti
+  📉 4/10: Businessman, grand-père et toujours amateur de foot… Le
+  🌍 6/10 sans portée internationale : Prix de l'énergie : "Le consommateur français a be
+  📉 3/10: La Gen Z n’est pas un monstre glacial et dégénéré, elle
+  🌍 6/10 sans portée internationale : New tiger cat species identified in Bolivia, first
+  📉 5/10: Cardano’s IOG warns users to avoid YouTube channel amid
+  📉 4/10: Mémoire cash - Pokémon Noir & Blanc, la dernière généra
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.1h — Un policier acquis à une idéologie d’ultradr
+     10/10 · 2 média(s) · 2.0h — UN mission finds evidence signaling U.S. war
+     9/10 · 1 média(s) · 2.1h — Bank of Japan raises interest rates by 25 ba
+     10/10 · 2 média(s) · 8.6h — UN experts say grounds to believe US committ
+     8/10 · 1 média(s) · 1.5h — World launches self-custodial ‘super app’ Wo
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (169 → 124 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (20 Minutes) — même sujet
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Un policier acquis à une idéologie d’ultradroite écroué
+
+  ── Bilan du cycle (196 s) ──
+     écartés : 3 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   🚫 quota
+        29. clé 3 × gemini-embedding-2           🚫 quota
+        30. clé 4 × gemini-embedding-001         ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 6 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview · clé 5 × gemini-3.6-flash (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 52,878 entrée · 1,585 sortie
+     ✅ aucun appel payant
