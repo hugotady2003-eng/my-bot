@@ -1,0 +1,90 @@
+
+[01:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Chelsea, Greenland, Alonso, White House, ãã©ã¼ã¨ãã¼ã¤ã³ã°
+  🔎 « Chelsea » : 1 article(s) frais, le plus récent il y a 2.7 h (Foot Mercato)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Chelsea » écarté : trop secondaire (5/10)
+  🔎 « Alonso » : 1 article(s) frais, le plus récent il y a 3.5 h (Goal.com)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Alonso » écarté : Contenu erroné, Xabi Alonso n'entraîne pas Chelsea.
+  🔎 « White House » : 1 article(s) frais, le plus récent il y a 2.9 h (IMDb)
+  ⏭️  « White House » écarté : Information ancienne et non vérifiée.
+  🌍 « BRECHE » : aucune reprise en français, source internationale retenue
+  🔎 « Henderson » : 1 article(s) frais, le plus récent il y a 1.9 h (Goal.com)
+  ⏭️  « Henderson » écarté : Information factuellement erronée sur le joueur.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.8s (22 déjà en cache)
+  📄 2/25 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🧩 25 articles → 20 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Il semblait préparer une attaque contre son ancien
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 40.0/100 = gravité 8/10 → 36 + frais 2.9h +4
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 4 médias) : Zinédine Zidane joue l’ouverture et mise sur la je
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : France Info, Le Monde, Ouest-France
+  🧮 Score 61.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 4.0h +4 + thème porteur +10
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Messe polémique à Carcassonne : "Calmez-vous les g
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 4.0h +4 + thème porteur +10
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 25 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Houthis accuse Saudi Arabia of launching 26 strike
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 4 × gemini-3-flash (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 747
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,676 entrée · 230 sortie
+     ✅ aucun appel payant
