@@ -1,0 +1,198 @@
+
+[07:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Josh Allen, Flamengo, #bb28, Lions, ãã«ã¼ã¤ã³ãã«ã¹
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 8.1 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Josh Allen » écarté : trop secondaire (2/10)
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 11.9 h (L'Équipe)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Flamengo » écarté : trop secondaire (2/10)
+  🌍 « bb28 » : aucune reprise en français, source internationale retenue
+  🔎 « Lions » : 1 article(s) frais, le plus récent il y a 2.1 h (La Montagne)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Lions » écarté : Actualite locale mineure sans interet national
+  🔎 « ARRASCAETA » : 1 article(s) frais, le plus récent il y a 3.1 h (OneFootball)
+  ⏭️  « ARRASCAETA » écarté : Match de football sud-américain sans enjeu français
+  🔎 « Bills » : 1 article(s) frais, le plus récent il y a 5.8 h (karlobag.eu)
+  ⏭️  « Bills » écarté : Sport US hors actualite majeure en France
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 2642 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/8 articles lus en 0.9s (16 déjà en cache)
+  📄 6/25 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · The Block
+  🧠 24 vecteurs calculés en 1 appel(s)
+  🧩 25 articles → 13 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 6 médias) : EN DIRECT, guerre en Ukraine : des dizaines de dro
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : BFMTV, IGN France, Le Monde, Libération, Midi Libre
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 0.1h +16 + portée internationale +10
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (170 → 124 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Sergueï Sobianine (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : Présidentielle 2027 : Éric Zemmour annonce sa cand
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 0.2h +16 + portée internationale +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Bank of Japan raises interest rates by 25 basis po
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : The Block
+  🧮 Score 60.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 7.2h +2 + portée mondiale +18
+  🕒 Âge de l'article : 2.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (175 → 153 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Un policier acquis à une idéologie d’ultradroite é
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 57.0/100 = gravité 8/10 → 36 + frais 0.6h +13 + primeur absolue +8
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (175 → 130 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 25 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : 6 pays veulent taxer les superprofits du pétrole
+  ♻️ Doublon d'un sujet déjà publié, écarté : Gaz : quel contrat choisir pour contrer la hausse 
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, guerre en Ukraine : des dizaines de dro
+  ♻️ 8/10 [world] (déjà analysé, cache) : Un policier acquis à une idéologie d’ultradroite é
+  ♻️ 8/10 [world] (déjà analysé, cache) : Présidentielle 2027 : Éric Zemmour annonce sa cand
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Netflix fait scandale avec une pub pour sa série M
+  ♻️ 7/10 [space] (déjà analysé, cache) : Un cratère géant de 222 mètres vient d’apparaître 
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Des IA d’OpenAI ont appris à cacher leurs erreurs 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Netflix fait scandale avec une pub pour sa série M
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : Solo Leveling: Karma - Trailer cinématique officie
+  ♻️ 7/10 [world] (déjà analysé, cache) : Ninth woman's body found as South African police i
+  ♻️ 9/10 [world] (déjà analysé, cache) : UN experts say grounds to believe US committed war
+  ♻️ 7/10 [world] (déjà analysé, cache) : Fire engulfs Zaporizhzhia shopping centre after Ru
+  ♻️ 8/10 [world] (déjà analysé, cache) : UN mission finds evidence signaling U.S. war crime
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bank of Japan raises interest rates by 25 basis po
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : World launches self-custodial ‘super app’ World Mo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : JPMorgan says bitcoin could get more support than 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI Models Are Writing Their Own Jailbreak Inst
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Security Experts Want the US and China to Promise 
+  🧠 Batch analyse de 6 articles...
+  ✅ 6/10 [business] mondiale: Crises internationales et prix du carburant : Ma
+  📉 4/10: Acquis auprès de l'Italie, l'Indonésie reçoit son tout 
+  📉 4/10: OM. Quatre défaites à la suite… Bruno Genesio très affe
+  📉 3/10: "Quand on a subi autant de traitements, on ne peut plus
+  🌍 7/10 sans portée internationale : « Repousser mes limites » : de Fortnite aux glacie
+  ✅ 6/10 [tech] large: Au Japon, une ambulance pour les robots humanoïd
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.3h — Présidentielle 2027 : Éric Zemmour annonce s
+     10/10 · 2 média(s) · 2.5h — UN mission finds evidence signaling U.S. war
+     9/10 · 1 média(s) · 0.6h — EN DIRECT, guerre en Ukraine : des dizaines 
+     9/10 · 1 média(s) · 0.6h — Un policier acquis à une idéologie d’ultradr
+     9/10 · 1 média(s) · 2.6h — Bank of Japan raises interest rates by 25 ba
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Présidentielle 2027 : Éric Zemmour annonce sa candidatu
+
+  ── Bilan du cycle (181 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        ✅
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 70,651 entrée · 1,835 sortie
+     ✅ aucun appel payant
