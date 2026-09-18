@@ -1,0 +1,183 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Josh Allen, Flamengo, #bb28, Lions, ãã«ã¼ã¤ã³ãã«ã¹
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 7.5 h (RDS)
+  ⏭️  « Josh Allen » écarté : Sport US mineur pour le public français.
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 11.3 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Flamengo » écarté : Match ancien sans actualité récente pertinente.
+  🌍 « bb28 » : aucune reprise en français, source internationale retenue
+  🔎 « Lions » : 1 article(s) frais, le plus récent il y a 1.5 h (La Montagne)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Lions » écarté : Actualité locale et sportive mineure.
+  🔎 « ARRASCAETA » : 1 article(s) frais, le plus récent il y a 2.5 h (OneFootball)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « ARRASCAETA » écarté : Match de football sud-américain sans enjeu français.
+  🔎 « Bills » : 1 article(s) frais, le plus récent il y a 5.2 h (karlobag.eu)
+  ⏭️  « Bills » écarté : Sport etranger sans interet majeur en France.
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 2608 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/11 articles lus en 1.6s (53 déjà en cache)
+  📄 8/65 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · The Block · OpenAI
+  🧠 64 vecteurs calculés en 1 appel(s)
+  🧩 65 articles → 20 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 17 médias) : Guerre en Ukraine : Poutine joue-t-il son va-tout,
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 22 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, Ars Technica, BBC Business, CNBC
+  🧮 Score 56.0/100 = gravité 4/10 → 18 + 17 médias +18 + frais 4.7h +2 + portée mondiale +18
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 42 s
+  ✂️ Tweet resserré localement (170 → 119 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Businessman, grand-père et toujours amateur de foot…
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Bank of Japan raises interest rates by 25 basis po
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : CoinDesk
+  🧮 Score 56.0/100 = gravité 8/10 → 36 + frais 4.6h +2 + portée mondiale +18
+  🕒 Âge de l'article : 2.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (170 → 148 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 65 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : La soeur de Kim Jong Un fustige les exercices mili
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Ce sera compliqué de me demander des efforts supp
+  ♻️ Doublon d'un sujet déjà publié, écarté : Vianney papa d'une Rita : "Catherine Ringer aimait
+  ♻️ 6/10 [science] (déjà analysé, cache) : Santé : la vaccination infantile recule en Europe 
+  ♻️ 7/10 [business] (déjà analysé, cache) : "L’aide sera dépendante de l’évolution des prix du
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Netflix fait scandale avec une pub pour sa série M
+  ♻️ 7/10 [space] (déjà analysé, cache) : Un cratère géant de 222 mètres vient d’apparaître 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Netflix fait scandale avec une pub pour sa série M
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : Solo Leveling: Karma - Trailer cinématique officie
+  ♻️ 7/10 [world] (déjà analysé, cache) : Ninth woman's body found as South African police i
+  ♻️ 9/10 [world] (déjà analysé, cache) : UN experts say grounds to believe US committed war
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bank of Japan raises interest rates by 25 basis po
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Real stocks are finally coming on blockchain. Here
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : JPMorgan says bitcoin could get more support than 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Security Experts Want the US and China to Promise 
+  🎯 Pré-classement : 29 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 8/10 [world] mondiale: UN mission finds evidence signaling U.S. war cri
+  📉 4/10: Judge rejects OpenAI’s bid to see X’s confidential sett
+  📉 5/10: Zero Parades : le portage PS5 et la Director's Cut dans
+  📉 3/10: WhatsApp starts rolling out new in-chat search button o
+  📉 4/10: How Cooley is accelerating IPO work with ChatGPT
+  ✅ 7/10 [crypto] large: World launches self-custodial ‘super app’ World 
+  📉 5/10: Zcash targets November for NU7 mainnet upgrade with 25-
+  🌍 6/10 sans portée internationale : Mort de Federico Martin Aramburu : une expertise p
+  🌍 6/10 sans portée internationale : « Nous ne sommes pas en capacité d’affronter les c
+  🌍 7/10 sans portée internationale : Small AI models let drones autonomously identify a
+  🌍 6/10 sans portée internationale : Interdiction du CBD à usage alimentaire : pour les
+  📉 3/10: Des tirs près d'une école dans l'Oise font deux blessés
+  📉 5/10: Millie Bobby Brown maman pour la deuxième fois : L'actr
+  🌍 8/10 sans portée internationale : BOJ raises rates to 1.25% in split vote with 2 mem
+  📉 4/10: « Interdiction ferme et définitive » des salons du chio
+  📉 4/10: Google DeepMind launches institute to widen the AGI deb
+  📉 2/10: Mulching : cette méthode de tonte va transformer votre 
+  📉 2/10: Camille Combal, un seul rein et une maladie des yeux : 
+  📉 4/10: Milena Jakšić : «La CPI est une cour en tensions, très 
+  🌍 6/10 sans portée internationale : 13 tonnes de gaz hilarant saisies au péage de Mont
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 2.0h — Bank of Japan raises interest rates by 25 ba
+     10/10 · 2 média(s) · 1.9h — UN mission finds evidence signaling U.S. war
+     10/10 · 2 média(s) · 8.5h — UN experts say grounds to believe US committ
+     8/10 · 1 média(s) · 1.4h — World launches self-custodial ‘super app’ Wo
+     9/10 · 1 média(s) · 7.3h — Security Experts Want the US and China to Pr
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [crypto]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (171 → 10 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:2
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 2.0h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Bank of Japan raises interest rates by 25 basis points.
+
+  ── Bilan du cycle (215 s) ──
+     écartés : 6 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         5. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         6. clé 1 × gemini-3.6-flash             🚫 quota
+         7. clé 1 × gemini-3-flash               ⛔ inexistant
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        11. clé 2 × gemini-3.6-flash             🚫 quota
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-2-preview   🚫 quota
+        25. clé 3 × gemini-embedding-2           🚫 quota
+        26. clé 4 × gemini-embedding-001         ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 49,296 entrée · 1,502 sortie
+     ✅ aucun appel payant
