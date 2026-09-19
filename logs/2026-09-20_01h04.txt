@@ -1,0 +1,63 @@
+
+[01:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Raphinha, #OkanBurukÄ°stifa, NC State, Bama, #TSvGS
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #WhiteHouse
+  📖 16 articles, tous en cache
+  📄 3/16 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 16 vecteurs calculés en 1 appel(s)
+  🧩 16 articles → 8 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚨 Sujet chaud (breaking, 5 médias) : Journalists denied White House access after Trump 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : BBC, BFMTV, CNBC, Ouest-France
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + 5 médias +11 + frais 0.8h +13 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 84) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Mort de Brigitte Bardot
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧮 Score 42.5/100 = gravité 9/10 → 40 + frais 5.6h +2
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚽ API football-data : 45 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 16 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (172 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         ✅
+         5. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         6. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         7. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         8. clé 1 × gemini-3.6-flash             🚫 quota
+         9. clé 1 × gemini-3-flash               ⛔ inexistant
+        10. clé 2 × gemini-3.5-flash-lite        ✅
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 2 × gemini-3.6-flash             ✅
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview (+18)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 747
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,883 entrée · 99 sortie
+     ✅ aucun appel payant
