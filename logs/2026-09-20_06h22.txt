@@ -1,0 +1,115 @@
+
+[06:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #UFC331, Blaney, Ole Miss, Arman, Hocevar
+  🔎 « Blaney » : 1 article(s) frais, le plus récent il y a 0.7 h (Google Actualités)
+  ⏭️  « Blaney » écarté : trop secondaire (2/10)
+  🔎 « Arman » : 1 article(s) frais, le plus récent il y a 1.1 h (UFC Fans)
+  ⏭️  « Arman » écarté : trop secondaire (4/10)
+  🔎 « Hocevar » : 1 article(s) frais, le plus récent il y a 0.7 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Hocevar » écarté : trop secondaire (2/10)
+  🔎 « Ruffy » : 1 article(s) frais, le plus récent il y a 1.1 h (UFC Fans)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Ruffy » écarté : trop secondaire (3/10)
+  📖 30 articles, tous en cache
+  📄 3/30 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 30 vecteurs calculés en 1 appel(s)
+  🧩 30 articles → 18 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚨 Sujet chaud (breaking, 4 médias) : Saint-Pierre-et-Miquelon est « français »… Macron 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 10 (char 9) → couple suivant
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Sud Ouest
+  🧮 Score 60.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 2.8h +4 + portée mondiale +18
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ed Sheeran admits 'mistakes' as he addresses Macklem
+  🚨 Sujet chaud (breaking, 4 médias) : Une attaque massive de drones vise Moscou et frapp
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 2.8h +4 + portée mondiale +18
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧩 7 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 7 exclusive(s)
+      [1m] ⚡exclusif Une attaque massive de drones a visé Moscou et sa région dans la nuit du 19 au
+      [1m] ⚡exclusif L'attaque a causé des dommages à une raffinerie pétrolière stratégique.
+      [1m] ⚡exclusif Le bilan humain de l'attaque s'élève à au moins deux morts.
+      [1m] ⚡exclusif L'attaque a eu lieu lors du dernier jour des élections législatives en Russie.
+      [1m] ⚡exclusif Des évacuations de population ont été provoquées par l'attaque.
+      [1m] ⚡exclusif Les autorités russes ont confirmé l'attaque de drones.
+      [1m] ⚡exclusif Des passagers ont été évacués près de la frontière polonaise en raison d'une a
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 186 (char 185 → couple suivant
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 37 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 30 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (100 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+         5. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         6. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         7. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         8. clé 1 × gemini-3-flash               ⛔ inexistant
+         9. clé 2 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 1 × gemini-embedding-2           🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-2           🚫 quota
+        16. clé 3 × gemini-embedding-001         ✅
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.6-flash             🚫 quota
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 7/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.6-flash
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 23,726 entrée · 1,266 sortie
+     ✅ aucun appel payant
