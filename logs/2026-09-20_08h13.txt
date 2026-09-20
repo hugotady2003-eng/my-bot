@@ -1,0 +1,175 @@
+
+[08:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #UFC331, Pantoja, Chivas, #5DayBankingNow, Joshua Van
+  🔎 « Pantoja » : 1 article(s) frais, le plus récent il y a 1.8 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Pantoja » écarté : trop secondaire (3/10)
+  🔎 « Chivas » : 1 article(s) frais, le plus récent il y a 3.8 h (Paris Sportifs LeFigaro)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Chivas » écarté : Match de football mexicain secondaire en France
+  🔎 « Joshua Van » : 1 article(s) frais, le plus récent il y a 1.8 h (Google Actualités)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Joshua Van » écarté : L'événement UFC 331 est fictif.
+  🔎 « Blaney » : 1 article(s) frais, le plus récent il y a 2.6 h (Google Actualités)
+  ⏭️  « Blaney » écarté : trop secondaire (2/10)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 5557 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.8s (12 déjà en cache)
+  📄 1/15 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération
+  🧠 15 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Trump treads further on free speech wi… »
+  🧩 15 articles → 10 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : Saint-Pierre-des-Corps: cinq personnes interpellées 
+  🚨 Sujet chaud (breaking, 2 médias) : Déprogrammation de Macklemore pour ses propos prop
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 0.7h +13 + primeur +5 + portée mondiale +18
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif Ed Sheeran a qualifié la situation à Gaza d'injustifiable et de catastrophique
+      [2m] Macklemore a été écarté de la tournée d'Ed Sheeran suite à ses prises de posit
+      [1m] ⚡exclusif L'éviction de Macklemore fait suite à la pression exercée par les propriétaire
+      [1m] ⚡exclusif Ed Sheeran a reconnu avoir commis des erreurs dans la gestion de cette polémiq
+      [1m] ⚡exclusif Ed Sheeran s'est produit à Philadelphie sans artiste en première partie.
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT, guerre en Ukraine : des centaines de dr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + frais 3.7h +4 + portée mondiale +18
+  🕒 Âge de l'article : 3.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 8 s
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : Journalists locked out of the White House after Tr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 9/10 → 40 + 3 médias +7 + ancien 12h -12 + portée internationale +10
+  🧩 6 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [3m] Des journalistes de CNN, MS NOW et Politico se sont vu refuser l'accès à la Ma
+      [3m] Donald Trump a justifié cette interdiction par la publication d'informations q
+      [1m] ⚡exclusif Le personnel de haut rang de la Maison Blanche aurait été surpris par cette di
+      [1m] ⚡exclusif La décision a été prise alors que la chef de cabinet Susie Wiles était absente
+      [3m] Les médias concernés considèrent cette mesure comme une atteinte au Premier Am
+      [2m] Donald Trump a déjà tenté de restreindre l'accès de journalistes à la Maison B
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 37 match(s) sur 48h, dont France : 0
+  → 15 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, guerre en Ukraine : des centaines de dr
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre au Moyen-Orient : L’escalade s’accélère, Tr
+  ♻️ 7/10 [world] (déjà analysé, cache) : Saint-Pierre-et-Miquelon est « français »… Macron 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Déprogrammation de Macklemore pour ses propos prop
+  ♻️ 6/10 [world] (déjà analysé, cache) : « Palestine libre », éviction de Macklemore, plus 
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Mort de Brigitte Bardot
+  ♻️ 6/10 [world] (déjà analysé, cache) : Men deported from US bound and beaten in Equatoria
+  ♻️ 9/10 [world] (déjà analysé, cache) : Journalists locked out of the White House after Tr
+  ♻️ 7/10 [world] (déjà analysé, cache) : MS NOW, CNN and Politico journalists blocked from 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Trump treads further on free speech with new journ
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini went rogue, hacked three companies, and Goo
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Google confirms Gemini hacked into three companies
+  🧠 Batch analyse de 3 articles...
+  📉 2/10: «La Thérapeute», huis clos à Oslo
+  📉 2/10: Saint-Pierre-des-Corps: cinq personnes interpellées et 
+  📉 2/10: "J'ai toujours eu ce côté opaque en moi": Hafsia Herzi 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.5h — Journalists locked out of the White House af
+     9/10 · 2 média(s) · 0.7h — Déprogrammation de Macklemore pour ses propo
+     10/10 · 2 média(s) · 11.5h — Google confirms Gemini hacked into three com
+     8/10 · 2 média(s) · 0.7h — « Palestine libre », éviction de Macklemore,
+     9/10 · 1 média(s) · 3.7h — EN DIRECT, guerre en Ukraine : des centaines
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 3 s
+  ✂️ Éphéméride resserré (187 → 187 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 3 s
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Journalists locked out of the White House after Trump b
+
+  ── Bilan du cycle (176 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        13. clé 4 × gemini-3.5-flash-lite        ✅
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 49,187 entrée · 2,308 sortie
+     ✅ aucun appel payant
