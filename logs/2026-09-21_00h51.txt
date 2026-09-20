@@ -1,0 +1,88 @@
+
+[00:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Melty: The read operation timed out
+  📈 50 tendances lues sur trends24.in : Jayden Daniels, Jets, Ravens, Caleb, Packers
+  🔎 « Jayden Daniels » : 1 article(s) frais, le plus récent il y a 0.5 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Jayden Daniels » écarté : trop secondaire (2/10)
+  🔎 « Jets » : 1 article(s) frais, le plus récent il y a 8.9 h (DAZN)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Jets » écarté : Sport américain sans impact majeur en France.
+  🔎 « Ravens » : 1 article(s) frais, le plus récent il y a 5.9 h (DAZN)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Ravens » écarté : Simple diffusion d'un match de sport.
+  🔎 « Caleb » : 1 article(s) frais, le plus récent il y a 2.9 h (DAZN)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⏭️  « Caleb » écarté : trop secondaire (3/10)
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 4.7 h (DAZN)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Packers » écarté : trop secondaire (1/10)
+  🌍 « Jalen » : aucune reprise en français, source internationale retenue
+  🔎 « Jalen » : 1 article(s) frais, le plus récent il y a 2.9 h (NFL.com)
+  ⏭️  « Jalen » écarté : Action de NFL mineure sans interet en France
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 3.0 h (Touchdown Actu)
+  ⏭️  « Bears » écarté : trop secondaire (3/10)
+  📖 20 articles, tous en cache
+  📄 1/20 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération
+  🧠 20 vecteurs calculés en 1 appel(s)
+  🧩 20 articles → 17 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Le corps sans vie de homme de 64 ans disparu à Nog
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 30.0/100 = gravité 2/10 → 9 + frais 0.8h +13 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 30) → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 37 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 20 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (58 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting property nam
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 3 × gemini-3.6-flash             🚫 quota
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 747
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,592 entrée · 320 sortie
+     ✅ aucun appel payant
