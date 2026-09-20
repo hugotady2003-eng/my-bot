@@ -1,0 +1,71 @@
+
+[03:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ä»®é¢ã©ã¤ãã¼ãã¤ã¹, #UFC331, #ãªã¡ã¬ãã¼ã³, Ole Miss, ã¤ãã«æ§
+  🌍 « ã¤ãã«æ§ » : aucune reprise en français, source internationale retenue
+  🌍 « precure » : aucune reprise en français, source internationale retenue
+  🌍 « Trinidad Chambliss » : aucune reprise en français, source internationale retenue
+  🔎 « Trinidad Chambliss » : 1 article(s) frais, le plus récent il y a 2.2 h (Sports Illustrated)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Trinidad Chambliss » écarté : Simple sujet people sportif américain sans intérêt.
+  📖 1/1 articles lus en 0.4s (22 déjà en cache)
+  📄 3/23 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 23 vecteurs calculés en 1 appel(s)
+  🧩 23 articles → 13 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Tennis : Coup dur pour les Bleus, le Canada élimin
+  🧮 Score 89.0/100 = gravité 5/10 → 22 + frais 0.1h +16 + programmé 3/10 -15 + exploit français +4 + primeur absolue +8 + portée internationale +10 + ⚡ crise institutionnelle → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚽ API football-data : 37 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 23 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (37 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   ✅
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,483 entrée · 106 sortie
+     ✅ aucun appel payant
