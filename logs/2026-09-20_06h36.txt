@@ -1,0 +1,89 @@
+
+[06:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #UFC331, Blaney, Ole Miss, Arman, Hocevar
+  🔎 « Blaney » : 1 article(s) frais, le plus récent il y a 1.0 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Blaney » écarté : trop secondaire (2/10)
+  🔎 « Arman » : 1 article(s) frais, le plus récent il y a 1.3 h (UFC Fans)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Arman » écarté : trop secondaire (4/10)
+  🔎 « Hocevar » : 1 article(s) frais, le plus récent il y a 1.0 h (Google Actualités)
+  ⏭️  « Hocevar » écarté : trop secondaire (2/10)
+  🔎 « Ruffy » : 1 article(s) frais, le plus récent il y a 1.3 h (UFC Fans)
+  ⏭️  « Ruffy » écarté : trop secondaire (3/10)
+  📖 3/3 articles lus en 0.4s (27 déjà en cache)
+  📄 4/30 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 30 vecteurs calculés en 1 appel(s)
+  🧩 30 articles → 14 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Saint-Pierre-des-Corps: des tensions après une colli
+  🚨 Sujet chaud (breaking, 4 médias) : Ed Sheeran assure que la situation à Gaza est "inj
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 57.5/100 = gravité 5/10 → 22 + 4 médias +7 + frais 1.0h +8 + thème porteur +10 + portée internationale +10
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 1 exclusive(s)
+      [4m] Ed Sheeran a qualifié la situation à Gaza d'injustifiable et a reconnu avoir c
+      [4m] Le rappeur Macklemore a été évincé de la tournée d'Ed Sheeran après avoir tenu
+      [2m] Ed Sheeran a assuré le concert seul et sans première partie à la suite de ce s
+      [2m] Le chanteur a déclaré qu'il ne voulait pas faire de son métier une plateforme 
+      [1m] ⚡exclusif La polémique a entraîné une baisse des ventes de billets et une chute des prix
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  ⚽ API football-data : 37 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 30 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (49 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3-flash               ⛔ inexistant
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2 (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,019 entrée · 625 sortie
+     ✅ aucun appel payant
