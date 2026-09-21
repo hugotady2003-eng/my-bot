@@ -1,0 +1,160 @@
+
+[07:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Colts, Chiefs, #ã¸ã£ãã¼ãºå¥½ãé¡9é¸, Mahomes, #RecountDUSUResults
+  🔎 « Colts » : 1 article(s) frais, le plus récent il y a 1.0 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Colts » écarté : Sport US mineur pour le public français.
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 1.0 h (RDS)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Chiefs » écarté : Résultat sportif ancien sans actualité récente.
+  🔎 « Mahomes » : 1 article(s) frais, le plus récent il y a 17.4 h (RDS)
+  ⏭️  « Mahomes » écarté : trop secondaire (3/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 6932 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/5 articles lus en 1.6s (35 déjà en cache)
+  📄 4/40 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 40 vecteurs calculés en 1 appel(s)
+  🧩 40 articles → 25 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : « C’est l’enfer sur le plan ps
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.5/100 = gravité 7/10 → 32 + frais 0.5h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (168 → 119 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 40 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : A Saint-Etienne-du-Rouvray, avec les irréductibles
+  ♻️ 7/10 [world] (déjà analysé, cache) : 4 incendies simultanés signalés en Gironde, les ha
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre en Ukraine : « C’est l’enfer sur le plan ps
+  ♻️ 7/10 [world] (déjà analysé, cache) : Washington craint une « escalade rapide » après un
+  ♻️ 7/10 [space] (déjà analysé, cache) : Une première pour le Starship : voilà minute par m
+  ♻️ 6/10 [world] (déjà analysé, cache) : Men deported from US bound and beaten in Equatoria
+  ♻️ 6/10 [business] (déjà analysé, cache) : Bessent calls meeting with China Vice Premier He L
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin’s price has cleared a key hurdle that has 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Why Holding Anything But Bitcoin Has Been a Losing
+  ♻️ 6/10 [tech] (déjà analysé, cache) : An undercover Google analyst infiltrated a notorio
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Google confirms Gemini hacked into three companies
+  🎯 Pré-classement : 9 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 8 s
+  🌍 7/10 sans portée internationale : Massive explosions at Syrian army weapons depot ne
+  📉 4/10: Au pouvoir depuis deux décennies, Benjamin Netanyahu pe
+  📉 3/10: Présidentielle 2027 : les retraités, clé de voûte de la
+  📉 3/10: UK should 'team up' with Canada in new Europe alliance,
+  📉 3/10: VinFast taxi affiliate launches first overseas motorbik
+  📉 3/10: Pakistan eyes cheaper, faster Persian Gulf remittance w
+  📉 2/10: Mémoire cash - SOMA, plongée dans les abysses de la con
+  📉 2/10: Jamy Gourmaud (Le Monde de Jamy) : "Ça s'arrête là", l'
+  🌍 7/10 sans portée internationale : Feux de forêt : trois départements du Sud classés 
+  📉 3/10: Review: Satechi’s Thunderbolt 5 CubeDock pairs perfectl
+  🌍 6/10 sans portée internationale : Mutuelles santé : «Les déremboursements de l’Assur
+  📉 4/10: Japan's disaster worries lift demand for emergency supp
+  📉 2/10: Stéphane Rotenberg : comme lui, Louane et Alain Delon, 
+  📉 5/10: Will you get £13,000 a year when you stop working? Here
+  📉 3/10: Laura Smet balance sur l'attitude "indécente et immonde
+  📉 2/10: APOD: 2026 September 21 – Cocoon Nebula Wide Field
+  🌍 6/10 sans portée internationale : FC 27 : cinq choses à savoir avant la sortie du je
+  📉 3/10: Johnny Hallyday accusé de viol par une hôtesse, en 2005
+  📉 3/10: Dette, réformes, méthode : l'heure de vérité, par Manue
+  📉 5/10: Nutergia, groupe Nicollin, Visionix : ces pépites de no
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 1 média(s) · 0.2h — 4 incendies simultanés signalés en Gironde, 
+     8/10 · 1 média(s) · 0.5h — Guerre en Ukraine : « C’est l’enfer sur le p
+     7/10 · 1 média(s) · 1.2h — Bitcoin’s price has cleared a key hurdle tha
+     7/10 · 1 média(s) · 4.4h — Bessent calls meeting with China Vice Premie
+     8/10 · 1 média(s) · 15.0h — Washington craint une « escalade rapide » ap
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Ouest-France
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (214 → 114 car.)
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : 4 incendies simultanés signalés en Gironde, les habitan
+
+  ── Bilan du cycle (130 s) ──
+     écartés : 4 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 35,404 entrée · 1,651 sortie
+     ✅ aucun appel payant
