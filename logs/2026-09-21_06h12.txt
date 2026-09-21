@@ -1,0 +1,84 @@
+
+[06:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Colts, Chiefs, #ã¸ã£ãã¼ãºå¥½ãé¡9é¸, #GranHermanoUY, æ¬èã®æ¥
+  🔎 « Colts » : 1 article(s) frais, le plus récent il y a 7.3 h (Odds Scanner)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Colts » écarté : Simple annonce de cotes pour un match sportif.
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 16.5 h (RDS)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Chiefs » écarté : trop secondaire (2/10)
+  🔎 « Lanterns » : 1 article(s) frais, le plus récent il y a 1.3 h (Superpouvoir.com)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Lanterns » écarté : Simple recnick d'un episode de serie.
+  🔎 « Mahomes » : 1 article(s) frais, le plus récent il y a 16.5 h (RDS)
+  ⏭️  « Mahomes » écarté : trop secondaire (3/10)
+  📖 7/7 articles lus en 1.6s (41 déjà en cache)
+  📄 5/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 48 vecteurs calculés en 1 appel(s)
+  🧩 48 articles → 28 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 48 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Face à la guerre au Moyen-Orient, la stratégie de 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Iran vows 'painful' retaliation as Trump piles on 
+  → Rien à publier.
+
+  ── Bilan du cycle (66 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        13. clé 4 × gemini-3.5-flash-lite        ✅
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,664 entrée · 236 sortie
+     ✅ aucun appel payant
