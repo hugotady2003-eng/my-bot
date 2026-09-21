@@ -1,0 +1,97 @@
+
+[06:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Colts, Chiefs, #ã¸ã£ãã¼ãºå¥½ãé¡9é¸, Mahomes, #RecountDUSUResults
+  🔎 « Colts » : 1 article(s) frais, le plus récent il y a 0.8 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Colts » écarté : Résultat de match ancien sans actualité récente.
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 0.8 h (RDS)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Chiefs » écarté : Résultat sportif ancien sans actualité récente.
+  🔎 « Mahomes » : 1 article(s) frais, le plus récent il y a 17.2 h (RDS)
+  ⏭️  « Mahomes » écarté : trop secondaire (3/10)
+  📖 7/7 articles lus en 2.0s (43 déjà en cache)
+  📄 3/50 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 50 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Bitcoin reclaims 50-week moving averag… »
+  🧠 Même événement (jugé) : « Google confirms Gemini hacked into thr… »
+  🧩 50 articles → 19 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 17 médias) : Ukraine, Moyen-Orient, carburants… Macron à 20 heu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 25 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Mac, BBC Business, BFMTV, France Bleu
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + 17 médias +18 + frais 0.9h +13
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 10 exclusive(s)
+      [1m] ⚡exclusif L'économie française fait face à des indicateurs dégradés, notamment un défici
+      [1m] ⚡exclusif Les retraités constituent un électorat pivot et incontournable pour l'élection
+      [1m] ⚡exclusif Le soutien électoral des retraités envers le bloc macroniste, bien que toujour
+      [1m] ⚡exclusif La croissance économique française est en stagnation, marquée par une quasi-ab
+      [1m] ⚡exclusif Le tarif des complémentaires santé devrait subir une hausse inéluctable en 202
+      [1m] ⚡exclusif Le président de la Mutualité française demande aux candidats à la présidentiel
+      [1m] ⚡exclusif Le gouvernement prévoit 54 milliards d'euros d'économies dans le budget 2027.
+      [1m] ⚡exclusif Le taux de chômage en France est en progression constante depuis 2025.
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (35h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 50 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (49 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,120 entrée · 1,000 sortie
+     ✅ aucun appel payant
