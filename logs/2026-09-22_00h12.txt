@@ -1,0 +1,96 @@
+
+[00:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Belarus, #bbuk, Fox News, #gfvip, å°é¢¨ä¸é
+  🌍 « bbuk » : aucune reprise en français, source internationale retenue
+  🔎 « Fox News » : 1 article(s) frais, le plus récent il y a 9.9 h (Le Monde.fr)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Fox News » écarté : Fausse information ou canular médiatique.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #WhiteHouse
+  📖 1/1 articles lus en 0.2s (13 déjà en cache)
+  📄 1/14 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération
+  🧠 14 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Men deported from US bound and beaten … »
+  🧠 Même événement (jugé) : « Trump speech inaudible as US networks … »
+  🧩 14 articles → 9 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🕒 Sujet chaud mais article ancien (16h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une entreprise de 2 millions d'euros moins taxée à l
+  🚨 Sujet chaud (breaking, 2 médias) : CNN, MS NOW and Politico file lawsuit against Trum
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 63.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 0.9h +13 + primeur +5 + portée internationale +10
+  🧩 4 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif CNN, Politico et MS NOW attaquent en justice l'administration Trump après l'in
+      [1m] ⚡exclusif Le président Donald Trump a justifié cette interdiction en accusant ces trois 
+      [1m] ⚡exclusif Les trois médias estiment que cette décision viole le Premier Amendement de la
+      [1m] ⚡exclusif Les grands réseaux de télévision américains ont boycotté un événement à la Mai
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 3 médias) : Guerre en Ukraine : après avoir été détenu et tort
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Libération
+  🧮 Score 74.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 1.9h +8 + thème porteur +10 + portée mondiale +18
+  🧩 3 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [1m] ⚡exclusif Mykola Karpiuk, ancien prisonnier politique ukrainien et figure nationaliste, 
+      [1m] ⚡exclusif Mykola Karpiuk avait été détenu et torturé par le Kremlin avant d'être libéré 
+      [1m] ⚡exclusif Les États-Unis ont failli aborder un navire chinois transportant des composant
+  🌙 Sujet fort (score 74) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 14 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : WhatsApp now lets Apple Watch users react with any
+  → Rien à publier.
+
+  ── Bilan du cycle (64 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-embedding-001         🚫 quota
+        13. clé 1 × gemini-embedding-2-preview   🚫 quota
+        14. clé 1 × gemini-embedding-2           🚫 quota
+        15. clé 2 × gemini-embedding-001         🚫 quota
+        16. clé 2 × gemini-embedding-2-preview   🚫 quota
+        17. clé 2 × gemini-embedding-2           🚫 quota
+        18. clé 3 × gemini-embedding-001         ✅
+        19. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.1-flash-lite        ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.6-flash             🚫 quota
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 753
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,381 entrée · 613 sortie
+     ✅ aucun appel payant
