@@ -1,0 +1,82 @@
+
+[00:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #Ø§ÙÙÙÙ _Ø§ÙÙØ·ÙÙ_Ø§ÙØ³Ø¹ÙØ¯Ù_Ù©Ù¦, ã«ã¦ã³ã³, Taylor, Opus 5.5, #Ø¹Ø²ÙØ§_Ø¨Ø·Ø¨Ø¹ÙØ§
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Opus55, #Obamacare, #Giants
+  📖 21 articles, tous en cache
+  📄 3/21 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · The Block · OpenAI
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 21 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧩 21 articles → 12 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Claude Opus 5.5 and OpenAI GPT-6 Sol & Luna both l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 63.5/100 = gravité 7/10 → 32 + frais 2.3h +4 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 6 médias) : Carburants : le gouvernement double les aides aux 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : BFMTV, Frandroid, Jeuxvideo.com, Le Monde, Libération
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 2.3h +4 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 79) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Thélyson Orélien accusé d’avoir utilisé l’IA pour so
+  🚨 Sujet chaud (breaking, 6 médias) : OpenAI lance GPT-6 Sol, quelques minutes après la 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 2.3h +4 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 79) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Trump administration removes around 760,000 Obamac
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 59.0/100 = gravité 8/10 → 36 + frais 1.5h +8 + primeur +5 + portée internationale +10
+  🌙 Sujet fort (score 59) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 3 médias) : UN Security Council Will Get Advice on AI Risks Fr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Decrypt
+  🧮 Score 55.5/100 = gravité 5/10 → 22 + 3 médias +7 + frais 0.3h +16 + portée internationale +10
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 21 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (38 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 1 × gemini-3.6-flash             🚫 quota
+        12. clé 1 × gemini-3-flash               ⛔ inexistant
+        13. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 2 × gemini-3.6-flash             🚫 quota
+        17. clé 2 × gemini-3-flash               ⛔ inexistant
+        18. clé 3 × gemini-3.5-flash-lite        ✅
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2 (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 741
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,962 entrée · 88 sortie
+     ✅ aucun appel payant
