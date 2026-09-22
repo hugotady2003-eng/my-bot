@@ -1,0 +1,166 @@
+
+[08:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #Delvaux, #nampingster, å°é¢¨ä¸é, æ°äºãã, #BijakMenyaringInformasi
+  🔎 « Delvaux » : 1 article(s) frais, le plus récent il y a 16.1 h (L'Avenir)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Delvaux » écarté : trop secondaire (1/10)
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 8432 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 12/13 articles lus en 1.5s (9 déjà en cache)
+  📄 1/22 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 22 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Men deported from US bound and beaten … »
+  🧩 22 articles → 18 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Toute l’info en 2 minutes : Aides sur les carburan
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 3/10 → 14 + frais 0.1h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (178 → 110 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 4 médias) : Carburant : l’Etat autorise la vente de gazole d’é
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : Gamekult, Journal du Geek, Ouest-France
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 0.3h +16 + thème porteur +10
+  🕒 Âge de l'article : 3.3h (frais ✅)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 31 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (222 → 172 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Données de localisation : Google écope d’une amende 
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 22 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Un corps sans vie repêché dans le Rhône : la victi
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump, Xi seek trade stability and deals, but AI, 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Carburant : l’Etat autorise la vente de gazole d’é
+  ♻️ 6/10 [world] (déjà analysé, cache) : Le président iranien promet de "défendre fermement
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Muse interdit d’Amazon : le géant du e-commerce mu
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Données de localisation : Google écope d’une amend
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : De la publicité en jeu quand vous battez un boss :
+  ♻️ 6/10 [world] (déjà analysé, cache) : Banished to alien lands: Trump’s secret deportatio
+  ♻️ 6/10 [world] (déjà analysé, cache) : Men deported from US bound and beaten in Equatoria
+  ♻️ 7/10 [world] (déjà analysé, cache) : Why does the US want to send Israel 40,000 bombs?
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Google Admits Gemini AI Hacked Three Companies—It 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Muse, Meta's extraordinarily privileged AI assista
+  🧠 Batch analyse de 9 articles...
+  📉 2/10: Jean-Paul II, sa première visite en France vue par L’Ex
+  ✅ 8/10 [business] large: Le gouvernement veut rendre aux Français le surp
+  🌍 7/10 sans portée internationale : La France prête à défendre les infrastructures sao
+  📉 3/10: Marc Levy en prise avec l’actualité dans avec « Les Éva
+  📉 4/10: Des milliards pour Queen ou Taylor Swift : pourquoi les
+  📉 3/10: Plus abordable de 1200 €, ce vélo cargo électrique veut
+  📉 5/10: Von der Leyen rencontre Tim Cook à l’ONU sur la protect
+  📉 3/10: Ultime bafouille - Par pitié, arrêtons de juger la qual
+  📉 4/10: Alibaba shares jump as new AI chip, data center buildou
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.1h — Le gouvernement veut rendre aux Français le 
+     9/10 · 2 média(s) · 0.6h — Données de localisation : Google écope d’une
+     8/10 · 1 média(s) · -3.0h — Muse interdit d’Amazon : le géant du e-comme
+     8/10 · 1 média(s) · 0.9h — Why does the US want to send Israel 40,000 b
+     9/10 · 1 média(s) · 7.4h — Google Admits Gemini AI Hacked Three Compani
+  ✂️ Éphéméride resserré (188 → 92 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [business]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (192 → 106 car.)
+  🖼️🤝 Image récupérée chez un média jumeau (Journal du Geek) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Le gouvernement veut rendre aux Français le surplus de 
+
+  ── Bilan du cycle (159 s) ──
+     écartés : 1 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-2-preview   🚫 quota
+        25. clé 3 × gemini-embedding-2           🚫 quota
+        26. clé 4 × gemini-embedding-001         ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview · clé 5 × gemini-3.1-flash-lite (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 48,907 entrée · 1,528 sortie
+     ✅ aucun appel payant
