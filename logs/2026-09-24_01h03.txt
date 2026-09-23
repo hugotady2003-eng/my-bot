@@ -1,0 +1,98 @@
+
+[01:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #Ø§ÙØ³Ø¹ÙØ¯ÙÙ_Ø§ÙÙÙÙØª, #ÙÙÙ__Ø§ÙØ¹ÙØ¯, é£ä¼æã, #OkullarMezarOlmasÄ±n, #italvolley
+  🌍 « italvolley » : aucune reprise en français, source internationale retenue
+  📖 2/2 articles lus en 0.4s (23 déjà en cache)
+  📄 7/25 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · OpenAI · Ouest-France · Cointelegraph · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Royal, Gaza, Ukraine, LFI… Les 4 momen… »
+  🧠 Même événement (jugé) : « Présidentielle 2027 : "Tu me laisses p… »
+  🧠 Même événement (jugé) : « An AI Agent Just Hacked a Government W… »
+  🧩 25 articles → 10 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚨 Sujet chaud (breaking, 9 médias) : Royal, Gaza, Ukraine, LFI… Les 4 moments marquants
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : ActuGaming, BFMTV, Decrypt, La Tribune, NASA
+  🧮 Score 51.5/100 = gravité 3/10 → 14 + 9 médias +15 + frais 0.9h +13 + portée internationale +10
+  🧩 5 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [2m] Les cinq candidats de la primaire socialiste ont débattu en direct sur LCI le 
+      [2m] Les tensions entre les candidats se sont principalement cristallisées autour d
+      [1m] ⚡exclusif Le débat a duré plus de deux heures.
+      [2m] Les candidats présents sur le plateau étaient Raphaël Glucksmann, Olivier Faur
+      [1m] Le débat a également porté sur des sujets internationaux et économiques, bien 
+         ↳ Libération : Les rédactions se contredisent sur l'intensité des échanges inte
+         motif : Appréciation subjective différente du ton des échanges.
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Attentats du 13-Novembre: face à la possible libér
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + frais 0.9h +13 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Judge hears arguments on Trump White House media b
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.7h +8 + primeur +5 + portée internationale +10
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Ce n’est pas quelqu’un à l’extérieur du PS qui va d
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 25 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump-Xi summit live: US says trade truce extended
+  ♻️ Doublon d'un sujet déjà publié, écarté : Anthropic Says Claude Found Something Big in DNA. 
+  → Rien à publier.
+
+  ── Bilan du cycle (99 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 1 × gemini-3.6-flash             🚫 quota
+        12. clé 1 × gemini-3-flash               ⛔ inexistant
+        13. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.6-flash             🚫 quota
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.1-flash-lite (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 762
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 15,534 entrée · 864 sortie
+     ✅ aucun appel payant
