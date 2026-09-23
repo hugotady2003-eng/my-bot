@@ -1,0 +1,136 @@
+
+[01:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #Ø§ÙØ³Ø¹ÙØ¯ÙÙ_Ø§ÙÙÙÙØª, #ÙÙÙ__Ø§ÙØ¹ÙØ¯, é£ä¼æã, #OkullarMezarOlmasÄ±n, #italvolley
+  🌍 « italvolley » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #JointBaseAndrews, #XiJinping
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📖 5/5 articles lus en 1.0s (28 déjà en cache)
+  📄 7/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · OpenAI · Ouest-France · Cointelegraph · The Block
+  🧠 33 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Royal, Gaza, Ukraine, LFI… Les 4 momen… »
+  🧠 Même événement (jugé) : « Primaire de la gauche : Alliance avec … »
+  🧠 Même événement (jugé) : « Présidentielle 2027 : "Tu me laisses p… »
+  🧠 Même événement (jugé) : « An AI Agent Just Hacked a Government W… »
+  🧩 33 articles → 13 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚨 Sujet chaud (breaking, 11 médias) : Royal, Gaza, Ukraine, LFI… Les 4 moments marquants
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 10 article(s) sur un autre sujet, écartés du dossier : ActuGaming, BFMTV, Decrypt, La Tribune, NASA
+  🧮 Score 36.5/100 = gravité 3/10 → 14 + 11 médias +15 + frais 1.5h +8
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] Les cinq candidats de la primaire socialiste ont débattu sur LCI le mercredi 2
+      [3m] Les candidats se sont opposés sur la stratégie à adopter vis-à-vis de La Franc
+      [3m] Les candidats ont eu des échanges vifs sur les grands dossiers internationaux,
+      [3m] Les cinq candidats en lice pour cette primaire sont Raphaël Glucksmann, Olivie
+      [1m] ⚡exclusif Ségolène Royal a défendu l'idée d'une négociation avec la Russie tout en voula
+      [1m] ⚡exclusif La discussion a été globalement calme, les candidats cherchant à ne pas fractu
+      [1m] ⚡exclusif Le premier tour du vote de la primaire est prévu les 9 et 10 octobre.
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Attentats du 13-Novembre: face à la possible libér
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.5h +8 + thème porteur +10 + primeur +5
+  🕒 Âge de l'article : 1.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Judge hears arguments on Trump White House media b
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 2.2h +4 + portée internationale +10
+  🌙 Sujet fort (score 46) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Japan's EdgeCortix looks to work with SpaceX on sp
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 47.5/100 = gravité 3/10 → 14 + frais 0.0h +16 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 48) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Meta is making Muse more powerful and will let you v
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Ce n’est pas quelqu’un à l’extérieur du PS qui va d
+  🚨 Sujet chaud (breaking, 1 médias) : China’s Xi arrives to Trump welcome on state visit
+  🧮 Score 100.0/100 = gravité 9/10 → 40 + frais 0.5h +16 + imprévu 9/10 +18 + primeur absolue +8 + portée mondiale +18
+  🧩 4 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif Le président chinois Xi Jinping est arrivé aux États-Unis pour une visite d'Ét
+      [1m] ⚡exclusif Le président américain Donald Trump a accueilli en personne Xi Jinping sur le 
+      [1m] ⚡exclusif La visite est axée sur des questions cruciales telles que la sécurité, le comm
+      [1m] ⚡exclusif Le programme de la visite comprend un dîner d'État avec des dirigeants de l'in
+  🌙 Sujet fort (score 100) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Trump greets China’s Xi Jinping on arrival for thr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.5/100 = gravité 9/10 → 40 + frais 0.5h +16 + primeur absolue +8 + portée mondiale +18
+  🧩 6 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 6 exclusive(s)
+      [1m] ⚡exclusif Le président américain Donald Trump a accueilli en personne le président chino
+      [1m] ⚡exclusif La visite de Xi Jinping est axée sur des sujets clés tels que la sécurité, le 
+      [1m] ⚡exclusif Le déplacement de Donald Trump sur le tarmac pour saluer le dirigeant chinois 
+      [1m] ⚡exclusif La cérémonie d'accueil comprenait un tapis rouge, des poignées de main entre l
+      [1m] ⚡exclusif Les relations bilatérales sont marquées par des tensions accrues suite à l'imp
+      [1m] ⚡exclusif Malgré les tensions commerciales, Donald Trump a exprimé une affinité personne
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 33 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Anthropic promet de « ralentir autant que nécessai
+  ♻️ Doublon d'un sujet déjà publié, écarté : Vogue sent robots down the runway at Vogue World, 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Meta Pinky Promises Its Smart Glasses Will Be Priv
+  → Rien à publier.
+
+  ── Bilan du cycle (100 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 1 × gemini-3.6-flash             🚫 quota
+        11. clé 1 × gemini-3-flash               ⛔ inexistant
+        12. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 2 × gemini-3.1-flash-lite        ✅
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.6-flash             🚫 quota
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.6-flash             🚫 quota
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-embedding-001 (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 761
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 22,395 entrée · 1,937 sortie
+     ✅ aucun appel payant
