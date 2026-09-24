@@ -1,0 +1,115 @@
+
+[00:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Netanyahu, #TP2FonMaÄdurlarÄ±, #NEDGER, Bibi, #OkullarGÃ¼venliDeÄil
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Netanyahu, #SusanSarandon, #IvoryCoast
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.1s (35 déjà en cache)
+  📄 5/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · OpenAI · Sciences et Avenir
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 36 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Xi draws crowds of Chinese welcomers t… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧩 37 articles → 19 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚨 Sujet chaud (breaking, 7 médias) : Zinédine Zidane dit stop aux caméras dans l’intimi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : BFMTV, Numerama Pop, Ouest-France, Public, Sciences et Avenir
+  🧮 Score 56.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 3.8h +4 + portée internationale +10
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : New York sues Polymarket, alleging it is running an 
+  🚨 Sujet chaud (breaking, 4 médias) : U.S. Federal Reserve moves on proposals to impleme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Decrypt
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 1.0h +8 + portée mondiale +18
+  🧩 2 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 1 exclusive(s)
+      [2m] La Réserve fédérale américaine a proposé de nouvelles règles concernant les ré
+      [1m] ⚡exclusif La proposition de la Fed prévoit des exigences de capital, un délai de rachat 
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Benjamin Netanyahu affirme que "de nombreux juifs"
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : OpenAI, The Verge
+  🧮 Score 70.0/100 = gravité 6/10 → 27 + 4 médias +7 + frais 1.8h +8 + thème porteur +10 + portée mondiale +18
+  🧩 3 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [1m] ⚡exclusif Benjamin Netanyahu a affirmé à l'ONU que de nombreux juifs de New York ne se s
+      [1m] ⚡exclusif Le maire de New York Zohran Mamdani a qualifié Benjamin Netanyahu de menteur e
+      [1m] ⚡exclusif L'actrice américaine Susan Sarandon a été interpellée lors d'une manifestation
+  🌙 Sujet fort (score 70) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Paris : Un intervenant scolaire mis en examen pour
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 20.0/100 = gravité 8/10 → 36 + frais 3.3h +4 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 20) → suivant
+  🚨 Sujet chaud (breaking, 4 médias) : L’actrice américaine Susan Sarandon interpellée lo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 74.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 1.8h +8 + thème porteur +10 + portée mondiale +18
+  🧩 4 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif L'actrice américaine Susan Sarandon a été interpellée par la police lors d'une
+      [1m] ⚡exclusif Benjamin Netanyahou a déclaré à l'ONU que de nombreux juifs ne se sentent plus
+      [1m] ⚡exclusif L'actrice Hannah Einbinder a également été évacuée lors de la même manifestati
+      [1m] ⚡exclusif Le maire de New York Zohran Mamdani a accusé Benjamin Netanyahou de génocide e
+  🌙 Sujet fort (score 74) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : DR Congo and Ivory Coast top Africa Cup of Nations q
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 37 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Après la fermeture d’un centre d’hébergement en Gr
+  → Rien à publier.
+
+  ── Bilan du cycle (80 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   ✅
+         9. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        11. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 1 × gemini-3-flash               ⛔ inexistant
+        14. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 2 × gemini-3.6-flash             🚫 quota
+        22. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.6-flash             🚫 quota
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 733
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,285 entrée · 901 sortie
+     ✅ aucun appel payant
