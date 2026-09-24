@@ -1,0 +1,91 @@
+
+[06:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ããã¾ããã ãã ãããã, é£ä¼æã, #3Cr_MYBharatParivar, #auPAYã¨ãæè¦, #Suraag2OnDDNational
+  🌍 « ããã¾ããã ãã ãããã » : aucune reprise en français, source internationale retenue
+  🌍 « é ã®å è¨± » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #MetaVRGlasses, #WEST
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📖 6/6 articles lus en 1.7s (47 déjà en cache)
+  📄 9/53 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · OpenAI · Cointelegraph · The Block
+  🧠 53 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧩 53 articles → 20 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Trump-Xi summit live: EU flags rare earth worries 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + frais 0.0h +16 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 66) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 22 médias) : OpenAI agent 'infiltrated' Australian government w
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 28 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ars Technica, BBC, BBC Business, CNBC
+  🧮 Score 86.0/100 = gravité 8/10 → 36 + 22 médias +20 + frais 4.8h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 86) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Everything new coming to Meta’s AI agent Muse
+  🚨 Sujet chaud (breaking, 22 médias) : Primaire à gauche : la situation à Gaza et l’allia
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 53.5/100 = gravité 3/10 → 14 + 22 médias +20 + frais 4.8h +2 + portée mondiale +18
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 22 médias) : Guerre en Ukraine : au moins 2 morts et 6 blessés 
+  🧮 Score 100.0/100 = gravité 9/10 → 40 + 22 médias +20 + frais 4.8h +2 + imprévu 8/10 +18 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 100) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 22 médias) : J’ai essayé les lunettes Meta VR et c’est exacteme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 4/10 → 18 + 22 médias +20 + frais 4.8h +2 + portée mondiale +18
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : ‘They uprooted it all’: Israel bulldozes Palestinian
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 53 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Premier feu vert pour la loi "intégrale" contre le
+  ♻️ Doublon d'un sujet déjà publié, écarté : Quels sont les meilleurs étuis pour Nintendo Switc
+  → Rien à publier.
+
+  ── Bilan du cycle (73 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-2-preview   🚫 quota
+         2. clé 1 × gemini-embedding-2           🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   ✅
+        11. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 1 × gemini-3.6-flash             🚫 quota
+        15. clé 1 × gemini-3-flash               ⛔ inexistant
+        16. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.6-flash             🚫 quota
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,870 entrée · 131 sortie
+     ✅ aucun appel payant
