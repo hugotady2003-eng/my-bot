@@ -1,0 +1,96 @@
+
+[06:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : é£ä¼æã, ããã¾ããã ãã ãããã, #ProvaDoFazendeiro, #NeneRoyal, #auPAYã¨ãæè¦
+  🌍 « ããã¾ããã ãã ãããã » : aucune reprise en français, source internationale retenue
+  🌍 « é ã®å è¨± » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #MetaVRGlasses, #MuseCharm
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 1.4s (48 déjà en cache)
+  📄 9/53 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · OpenAI · Cointelegraph · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 53 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « They were labelled 'pervert glasses'. … »
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧩 53 articles → 19 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Trump-Xi summit live: EU flags rare earth worries 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + frais 0.0h +16 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 66) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 25 médias) : OpenAI agent 'infiltrated' Australian government w
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧠 32 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ars Technica, BBC, BBC Business, BFMTV
+  🧮 Score 86.0/100 = gravité 8/10 → 36 + 25 médias +20 + frais 4.7h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 86) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Everything new coming to Meta’s AI agent Muse
+  🚨 Sujet chaud (breaking, 25 médias) : Primaire à gauche : la situation à Gaza et l’allia
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 53.5/100 = gravité 3/10 → 14 + 25 médias +20 + frais 4.7h +2 + portée mondiale +18
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 25 médias) : "Il y aura des élections au Venezuela": la promess
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 90.5/100 = gravité 9/10 → 40 + 25 médias +20 + frais 4.7h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 90) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 25 médias) : J’ai essayé les lunettes Meta VR et c’est exacteme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 4/10 → 18 + 25 médias +20 + frais 4.7h +2 + portée mondiale +18
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Meta is making a standalone Muse AI gadget
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 53 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : La tunique du Christ, conservée à Argentueil, va ê
+  ♻️ Doublon d'un sujet déjà publié, écarté : Carburants, situation géopolitique : Emmanuel Macr
+  ♻️ Doublon d'un sujet déjà publié, écarté : Injures racistes et cyberharcèlement : le parquet 
+  → Rien à publier.
+
+  ── Bilan du cycle (71 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 1 × gemini-3.6-flash             🚫 quota
+        17. clé 1 × gemini-3-flash               ⛔ inexistant
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 2 × gemini-3.6-flash             🚫 quota
+        23. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3-flash (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,655 entrée · 71 sortie
+     ✅ aucun appel payant
