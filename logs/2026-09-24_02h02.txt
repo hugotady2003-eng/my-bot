@@ -1,0 +1,122 @@
+
+[02:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : é£ä¼æã, #ÙÙÙ__Ø§ÙØ¹ÙØ¯, #Ø§ÙØ³Ø¹ÙØ¯ÙÙ_Ø§ÙÙÙÙØª, #ããã¯ã®åæµ·éç£ããããããã¼æè¦çºå£², #LaIslaDeLasTentaciones6
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #XiJinping, #JointBaseAndrews
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.6s (28 déjà en cache)
+  📄 8/32 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · OpenAI · Cointelegraph · The Block
+  🧠 32 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Royal, Gaza, Ukraine, LFI… Les 4 momen… »
+  🧠 Même événement (jugé) : « Primaire de la gauche : Alliance avec … »
+  🧠 Même événement (jugé) : « Présidentielle 2027 : "Tu me laisses p… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « An AI Agent Just Hacked a Government W… »
+  🧩 32 articles → 8 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚨 Sujet chaud (breaking, 16 médias) : Royal, Gaza, Ukraine, LFI… Les 4 moments marquants
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, ActuGaming, Al Jazeera, Ars Technica, BFMTV
+  🧮 Score 39.5/100 = gravité 3/10 → 14 + 16 médias +18 + frais 1.9h +8
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [3m] Le premier débat de la primaire socialiste s'est déroulé mercredi sur LCI avec
+      [3m] Les candidats se sont opposés sur la question des alliances avec La France ins
+      [3m] Les candidats ont divergé sur les grands dossiers internationaux, notamment la
+      [1m] ⚡exclusif Ségolène Royal, Raphaël Glucksmann et Jérôme Guedj ont eu un échange tendu con
+      [1m] ⚡exclusif Le débat a duré plus de deux heures et a permis d'aborder des thèmes économiqu
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Attentats du 13-Novembre: face à la possible libér
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.9h +8 + thème porteur +10 + primeur +5
+  🕒 Âge de l'article : 1.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Japan's EdgeCortix looks to work with SpaceX on sp
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 47.5/100 = gravité 3/10 → 14 + frais 0.0h +16 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 48) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Ce n’est pas quelqu’un à l’extérieur du PS qui va d
+  🚨 Sujet chaud (breaking, 16 médias) : Trump reçoit Xi en grande pompe, les États-Unis et
+  🧮 Score 94.5/100 = gravité 9/10 → 40 + 16 médias +18 + frais 1.9h +8 + imprévu 8/10 +18 + thème porteur +10
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 94) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 16 médias) : China’s Xi arrives to Trump welcome on state visit
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 76.5/100 = gravité 9/10 → 40 + 16 médias +18 + frais 1.9h +8 + thème porteur +10
+  🧩 3 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 1 exclusive(s)
+      [3m] Les cinq candidats de la primaire de la gauche et de l'espace social-démocrate
+      [3m] Les candidats se sont opposés sur la stratégie à adopter vis-à-vis de La Franc
+      [1m] ⚡exclusif Le débat a été marqué par des échanges tendus concernant la guerre en Ukraine,
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 32 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump reçoit Xi en grande pompe, les États-Unis et
+  ♻️ Doublon d'un sujet déjà publié, écarté : J’ai essayé les Meta VR Glasses : suivi des yeux b
+  ♻️ Doublon d'un sujet déjà publié, écarté : OpenAI says Apple Intelligence users showed little
+  → Rien à publier.
+
+  ── Bilan du cycle (86 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-2-preview   🚫 quota
+         2. clé 1 × gemini-embedding-2           🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 1 × gemini-3.6-flash             🚫 quota
+        11. clé 1 × gemini-3-flash               ⛔ inexistant
+        12. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 2 × gemini-3.1-flash-lite        ✅
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 2 × gemini-3.6-flash             🚫 quota
+        18. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.6-flash             🚫 quota
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-embedding-2 (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 23,439 entrée · 1,638 sortie
+     ✅ aucun appel payant
