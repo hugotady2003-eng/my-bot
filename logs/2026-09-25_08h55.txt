@@ -1,0 +1,161 @@
+
+[08:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #SHUFFLE, Cleveland, Packers, Taylor, #NayaUPOnTheWorldStage
+  🔎 « Cleveland » : 1 article(s) frais, le plus récent il y a 5.9 h (Eurosport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Cleveland » écarté : Match de football americain sans interet national.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 0.8 h (L'Équipe)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Packers » écarté : trop secondaire (3/10)
+  🔎 « Taylor » : 1 article(s) frais, le plus récent il y a 9.9 h (RTL)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Taylor » écarté : trop secondaire (5/10)
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 12797 min — on publie.
+  📖 5/5 articles lus en 1.5s (14 déjà en cache)
+  📄 3/20 article(s) sans corps lisible → recoupement sur titre et résumé seuls : OpenAI · Sciences et Avenir
+  🧠 19 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Xi got Trump's red carpet welcome - bu… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Atlanta is getting pandas: China's Xi … »
+  🧩 20 articles → 10 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : France-Turquie : les Bleus favoris ce vendredi pou
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.0/100 = gravité 8/10 → 36 + frais 1.1h +8 + primeur +5
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Crise des carburants : les camions qui livrent les
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (236 → 186 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 20 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Envoi de "moyens militaires" pour "protéger" un si
+  ♻️ 8/10 [world] (déjà analysé, cache) : Xi Jinping à la Maison-Blanche : un dîner en grand
+  ♻️ 8/10 [sports] (déjà analysé, cache) : France-Turquie : les Bleus favoris ce vendredi pou
+  ♻️ 7/10 [business] (déjà analysé, cache) : Crise des carburants : les camions qui livrent les
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : GTA 6 : Rockstar lance le coffret collector ultime
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Anthropic a trouvé un système inconnu dans l’ADN d
+  ♻️ 6/10 [science] (déjà analysé, cache) : Agriculture : le fulgore tacheté asiatique s'est i
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : GTA 6 : Rockstar lance le coffret collector ultime
+  ♻️ 7/10 [world] (déjà analysé, cache) : Xi got Trump's red carpet welcome - but not everyt
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Why Australia chose the world's biggest political 
+  ♻️ 6/10 [world] (déjà analysé, cache) : Converging crises, chaos and walkouts dominate UNG
+  ♻️ 6/10 [world] (déjà analysé, cache) : Atlanta is getting pandas: China's Xi revives a lo
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : U.S. Federal Reserve moves on proposals to impleme
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Fed proposes reserve limits, capital standards for
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Federal Reserve Unveils Stablecoin Rules on Reserv
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Humans Are Reading Your ChatGPT Chats, New Lawsuit
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI extends cyber access to Ukraine for civilia
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Sam Altman’s remarks at the United Nations Securit
+  🧠 Batch analyse de 2 articles...
+  ✅ 8/10 [world] mondiale: "Un acte hostile" et du "chantage économique": l
+  📉 4/10: Ce week-end, les suisses votent sur la neutralité
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.1h — "Un acte hostile" et du "chantage économique
+     9/10 · 1 média(s) · 0.6h — Xi Jinping à la Maison-Blanche : un dîner en
+     8/10 · 1 média(s) · 0.2h — Crise des carburants : les camions qui livre
+     9/10 · 1 média(s) · 1.1h — France-Turquie : les Bleus favoris ce vendre
+     10/10 · 3 média(s) · 8.4h — U.S. Federal Reserve moves on proposals to i
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Numerama Pop, Sciences et Avenir
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (174 → 141 car.)
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : "Un acte hostile" et du "chantage économique": le minis
+
+  ── Bilan du cycle (250 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.6-flash             🚫 quota
+        14. clé 4 × gemini-3.5-flash-lite        ✅
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   🚫 quota
+        29. clé 4 × gemini-embedding-2           🚫 quota
+        30. clé 5 × gemini-embedding-001         🚫 quota
+        31. clé 5 × gemini-embedding-2-preview   ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.6-flash             🚫 quota
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 5 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-3-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 48,574 entrée · 1,090 sortie
+     ✅ aucun appel payant
