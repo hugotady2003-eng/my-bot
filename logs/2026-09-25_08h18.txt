@@ -1,0 +1,159 @@
+
+[08:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #SHUFFLE, Cleveland, Packers, Taylor, #TSTLOASTheEncore
+  🔎 « Cleveland » : 1 article(s) frais, le plus récent il y a 5.3 h (Eurosport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Cleveland » écarté : Sport US mineur sans enjeu pour la France
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 0.2 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  🔎 « Taylor » : 1 article(s) frais, le plus récent il y a 9.3 h (RTL)
+  ⏭️  « Taylor » écarté : trop secondaire (5/10)
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 0.3 h (L'Équipe)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Falcons » écarté : trop secondaire (2/10)
+  🔎 « Patient Zero » : 1 article(s) frais, le plus récent il y a 0.5 h (BFM)
+  ⏭️  « Patient Zero » écarté : Il s'agit d'une fausse information virale.
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 12762 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 1.7s (13 déjà en cache)
+  📄 4/24 article(s) sans corps lisible → recoupement sur titre et résumé seuls : OpenAI · Libération · Sciences et Avenir
+  🧠 21 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Xi got Trump's red carpet welcome - bu… »
+  🧩 24 articles → 10 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : Trump and Xi toast new chapter in friendship at Wh
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : BBC
+  🧮 Score 68.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.6h +13 + primeur +5 + portée internationale +10
+  🧩 6 affirmation(s) : 6 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] Le président américain Donald Trump a accueilli le président chinois Xi Jinpin
+      [2m] Les deux dirigeants ont salué une nouvelle étape dans leur amitié et ont promi
+      [2m] Des manifestants ont bruyamment contesté à l'extérieur des grilles de la Maiso
+      [2m] Selon des experts, les discussions n'ont pas encore produit de résultats très 
+      [2m] Donald Trump a offert à Xi Jinping une sculpture d'un aigle chauve, symbole na
+      [2m] Donald Trump a proposé de faire visiter son projet de salle de bal en construc
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 24 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Il travaille pour les communistes chinois": le pa
+  ♻️ Doublon d'un sujet déjà publié, écarté : Cinq nouvelles personnes mises en examen dans la m
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : GTA 6 : Rockstar lance le coffret collector ultime
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Anthropic a trouvé un système inconnu dans l’ADN d
+  ♻️ 6/10 [science] (déjà analysé, cache) : Agriculture : le fulgore tacheté asiatique s'est i
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : GTA 6 : Rockstar lance le coffret collector ultime
+  ♻️ 8/10 [world] (déjà analysé, cache) : Trump and Xi toast new chapter in friendship at Wh
+  ♻️ 7/10 [world] (déjà analysé, cache) : Xi got Trump's red carpet welcome - but not everyt
+  ♻️ 8/10 [world] (déjà analysé, cache) : Trump and Xi toast new chapter in friendship at Wh
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Why Australia chose the world's biggest political 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Multiple regions in Russia come under Ukrainian dr
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : U.S. Federal Reserve moves on proposals to impleme
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Fed proposes reserve limits, capital standards for
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Federal Reserve Unveils Stablecoin Rules on Reserv
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Humans Are Reading Your ChatGPT Chats, New Lawsuit
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI extends cyber access to Ukraine for civilia
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Sam Altman’s remarks at the United Nations Securit
+  🧠 Batch analyse de 7 articles...
+  📉 3/10: L’éditeur canadien de Thélyson Orélien suspend sa tourn
+  📉 4/10: Euroclear gère des milliards d'avoirs russes gelés
+  📉 5/10: Un réalisateur d’Avengers: Doomsday confirme l’événemen
+  📉 4/10: ProLogium Gen4 : Mercedes premier sur la batterie solid
+  ⏩ Doublon: Un réalisateur d’Avengers: Doomsday confirme l’événemen
+  📉 3/10: Avoir un frigo connecté est une très mauvaise idée et c
+  📉 3/10: GTA 6 : en 25 ans, Rockstar n'a eu besoin que d'un seul
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.6h — Trump and Xi toast new chapter in friendship
+     10/10 · 2 média(s) · 0.6h — Trump and Xi toast new chapter in friendship
+     9/10 · 1 média(s) · 1.0h — Multiple regions in Russia come under Ukrain
+     10/10 · 3 média(s) · 7.8h — U.S. Federal Reserve moves on proposals to i
+     10/10 · 3 média(s) · 10.0h — Fed proposes reserve limits, capital standar
+  ⚠️ Wikipedia: HTTP Error 503: Service Unavailable
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (161 → 121 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.6h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Trump and Xi toast new chapter in friendship at White H
+
+  ── Bilan du cycle (139 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        ✅
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   🚫 quota
+        29. clé 4 × gemini-embedding-2           🚫 quota
+        30. clé 5 × gemini-embedding-001         🚫 quota
+        31. clé 5 × gemini-embedding-2-preview   ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.6-flash             🚫 quota
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 32,067 entrée · 1,341 sortie
+     ✅ aucun appel payant
