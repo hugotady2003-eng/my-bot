@@ -1,0 +1,137 @@
+
+[07:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #SHUFFLE, Cleveland, Packers, Taylor, #TSTLOASTheEncore
+  🔎 « Cleveland » : 1 article(s) frais, le plus récent il y a 4.7 h (Eurosport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Cleveland » écarté : Match de football américain sans actualité marquante.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 2.4 h (Touchdown Actu)
+  ⏭️  « Packers » écarté : Match de NFL sans enjeu pour public français.
+  🔎 « Taylor » : 1 article(s) frais, le plus récent il y a 15.7 h (20 Minutes)
+  ⏭️  « Taylor » écarté : trop secondaire (2/10)
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 2.4 h (Touchdown Actu)
+  ⏭️  « Falcons » écarté : Match de NFL ancien, sans actualité récente.
+  🔎 « Patient Zero » : 1 article(s) frais, le plus récent il y a 8.7 h (RTL)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Patient Zero » écarté : Rumeur de fans sur un nouvel album.
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 12728 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/5 articles lus en 0.9s (13 déjà en cache)
+  📄 5/19 article(s) sans corps lisible → recoupement sur titre et résumé seuls : OpenAI · Libération · Ouest-France · Sciences et Avenir
+  🧠 18 vecteurs calculés en 1 appel(s)
+  🧩 19 articles → 10 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 19 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Développement durable : les entreprises françaises
+  ♻️ Doublon d'un sujet déjà publié, écarté : Iran says it's up to U.S. to end war as China pres
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : GTA 6 : Rockstar lance le coffret collector ultime
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Anthropic a trouvé un système inconnu dans l’ADN d
+  ♻️ 6/10 [science] (déjà analysé, cache) : Agriculture : le fulgore tacheté asiatique s'est i
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : GTA 6 : Rockstar lance le coffret collector ultime
+  ♻️ 7/10 [world] (déjà analysé, cache) : Xi got Trump's red carpet welcome - but not everyt
+  ♻️ 7/10 [world] (déjà analysé, cache) : Media outlets banned by Trump denied access to Whi
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Why Australia chose the world's biggest political 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Multiple regions in Russia come under Ukrainian dr
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : U.S. Federal Reserve moves on proposals to impleme
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Fed proposes reserve limits, capital standards for
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Federal Reserve Unveils Stablecoin Rules on Reserv
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Humans Are Reading Your ChatGPT Chats, New Lawsuit
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI extends cyber access to Ukraine for civilia
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Sam Altman’s remarks at the United Nations Securit
+  🧠 Batch analyse de 3 articles...
+  ✅ 6/10 [world] large: «Bon retour» : les journalistes de CNN, MS Now e
+  📉 3/10: Une habitation détruite par les flammes en Sarthe, plus
+  📉 3/10: Tata v Tata: What’s behind India’s big boardroom brawl?
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.4h — Multiple regions in Russia come under Ukrain
+     10/10 · 3 média(s) · 7.2h — U.S. Federal Reserve moves on proposals to i
+     10/10 · 3 média(s) · 9.4h — Fed proposes reserve limits, capital standar
+     7/10 · 1 média(s) · 0.2h — «Bon retour» : les journalistes de CNN, MS N
+     8/10 · 1 média(s) · 1.8h — Xi got Trump's red carpet welcome - but not 
+  ⏭️ Éphéméride trop banal (intérêt 7/10) → on ne publie pas.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • TROP LONG (161 caractères)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Multiple regions in Russia come under Ukrainian drone a
+
+  ── Bilan du cycle (132 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 4 × gemini-3.6-flash             🚫 quota
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 1 × gemini-embedding-001         🚫 quota
+        25. clé 1 × gemini-embedding-2-preview   🚫 quota
+        26. clé 1 × gemini-embedding-2           🚫 quota
+        27. clé 2 × gemini-embedding-001         🚫 quota
+        28. clé 2 × gemini-embedding-2-preview   🚫 quota
+        29. clé 2 × gemini-embedding-2           🚫 quota
+        30. clé 3 × gemini-embedding-001         🚫 quota
+        31. clé 3 × gemini-embedding-2-preview   🚫 quota
+        32. clé 3 × gemini-embedding-2           🚫 quota
+        33. clé 4 × gemini-embedding-001         🚫 quota
+        34. clé 4 × gemini-embedding-2-preview   🚫 quota
+        35. clé 4 × gemini-embedding-2           🚫 quota
+        36. clé 5 × gemini-embedding-001         🚫 quota
+        37. clé 5 × gemini-embedding-2-preview   ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 21,513 entrée · 585 sortie
+     ✅ aucun appel payant
