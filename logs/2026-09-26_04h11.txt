@@ -1,0 +1,89 @@
+
+[04:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #SmackDown, Lula, Bets, #MightyCorrection, #ã¦ã«ãã©ãã³ããª
+  🔎 « SmackDown » : 1 article(s) frais, le plus récent il y a 10.7 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « SmackDown » écarté : Il s'agit d'un simple programme de divertissement.
+  🔎 « Lula » : 1 article(s) frais, le plus récent il y a 3.3 h (Le Monde.fr)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ✅ « Lula » retenu : Décision politique majeure impactant le secteur des jeux. (7/10) (+1 au score)
+  🔎 « Bets » : 1 article(s) frais, le plus récent il y a 11.9 h (TradingView)
+  ⏭️  « Bets » écarté : Analyse financière technique sans événement marquant.
+  🔎 « Northwestern » : 1 article(s) frais, le plus récent il y a 19.2 h (365Scores)
+  ⏭️  « Northwestern » écarté : trop secondaire (1/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula
+  📖 3/3 articles lus en 1.9s (28 déjà en cache)
+  📄 5/31 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · OpenAI
+  🧠 31 vecteurs calculés en 1 appel(s)
+  🧩 31 articles → 18 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Zinédine Zidane réussit son baptême du feu en Turq
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 63.5/100 = gravité 9/10 → 40 + 5 médias +11 + frais 4.0h +2 + thème porteur +10
+  🧩 7 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [5m] L'équipe de France a battu la Turquie 1-0 lors du premier match de Zinédine Zi
+      [3m] Kylian Mbappé a marqué le seul but du match avant de sortir sur blessure au ge
+      [1m] ⚡exclusif Kylian Mbappé souffre d'une lésion tendineuse due à une hyperextension du geno
+      [1m] ⚡exclusif Zinédine Zidane est le premier sélectionneur de l'équipe de France à remporter
+      [1m] ⚡exclusif Zinédine Zidane a mis en place des changements tactiques, notamment le positio
+      [1m] ⚡exclusif Zinédine Zidane a manqué le début de l'hymne national en raison d'un problème 
+      [1m] La performance de l'équipe de France a été jugée limitée par la faible opposit
+         ↳ Le Monde, France Info : Le Monde et France Info soulignent des aspects intéressants et u
+         motif : Différence d'appréciation éditoriale sur la qualité du jeu.
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, ? médias) : Au Brésil, Lula interdit les paris sportifs en lig
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 8 → 9 (+1)
+  → Sujet chaud pas assez fort (score 9) → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 31 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Court rules Trump can blacklist Anthropic for refu
+  → Rien à publier.
+
+  ── Bilan du cycle (48 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        ✅
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-3-flash (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,192 entrée · 934 sortie
+     ✅ aucun appel payant
