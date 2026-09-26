@@ -1,0 +1,92 @@
+
+[06:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #GMMTVStarlympics2026, Northwestern, #à¸à¹à¹à¸²à¸à¹à¸§à¸¡, #HappyBirthdayGurudevRakeshji, #Ø¨ÙØ§_Ù
+  🔎 « Indiana » : 1 article(s) frais, le plus récent il y a 18.8 h (Zonebourse)
+  ⏭️  « Indiana » écarté : trop secondaire (3/10)
+  🔎 « SmackDown » : 1 article(s) frais, le plus récent il y a 2.9 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « SmackDown » écarté : Résultat de catch considéré comme divertissement récurrent.
+  🔎 « Bets » : 1 article(s) frais, le plus récent il y a 14.6 h (fr.tradingview.com)
+  ⏭️  « Bets » écarté : Analyse financière technique sans événement marquant.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 1.0s (32 déjà en cache)
+  📄 5/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · OpenAI
+  🧠 37 vecteurs calculés en 1 appel(s)
+  🧩 37 articles → 20 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 6 médias) : Jacques Chirac, Kylian Mbappé, Amélie Nothomb, Gér
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : BFMTV, Gamekult, Libération, Public
+  🧮 Score 37.5/100 = gravité 3/10 → 14 + 6 médias +11 + frais 0.8h +13
+  🧩 7 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Kylian Mbappé s'est blessé au genou gauche lors du match Turquie-France.
+      [2m] Kylian Mbappé est forfait pour le reste du rassemblement de l'équipe de France
+      [2m] La France a gagné le match contre la Turquie sur le score de 1-0.
+      [1m] ⚡exclusif Le diagnostic médical officiel est une lésion tendineuse due à une hyperextens
+      [2m] Zinédine Zidane est le sélectionneur de l'équipe de France.
+      [2m] Le match s'est déroulé le vendredi 25 septembre à Izmit (Kocaeli).
+      [1m] ⚡exclusif Kylian Mbappé a été remplacé par le joueur Doué à la 59e minute.
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 37 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : La maire LR de Villeneuve-Saint-Georges interdit l
+  ♻️ Doublon d'un sujet déjà publié, écarté : Plus de 40 millions de personnes potentiellement t
+  ♻️ Doublon d'un sujet déjà publié, écarté : US official claims Trump holds all the cards in Ir
+  → Rien à publier.
+
+  ── Bilan du cycle (112 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,148 entrée · 818 sortie
+     ✅ aucun appel payant
