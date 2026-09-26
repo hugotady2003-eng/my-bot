@@ -1,0 +1,79 @@
+
+[03:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Bets, #MightyCorrection, #ã¦ã«ãã©ãã³ããª, #DeViernes, #SmackDown
+  🔎 « Bets » : 1 article(s) frais, le plus récent il y a 10.8 h (fr.tradingview.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 14 (char 13) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Bets » écarté : Analyse financière technique sans événement marquant.
+  🔎 « SmackDown » : 1 article(s) frais, le plus récent il y a 9.6 h (Google Actualités)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « SmackDown » écarté : Il s'agit d'un simple programme de divertissement.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #ManCity
+  📖 26 articles, tous en cache
+  📄 5/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · OpenAI
+  🧠 26 vecteurs calculés en 1 appel(s)
+  🧩 26 articles → 16 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Zinédine Zidane réussit son baptême du feu en Turq
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 9/10 → 40 + 5 médias +11 + frais 2.9h +4 + thème porteur +10
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧩 6 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [5m] Zinédine Zidane a remporté son premier match en tant que sélectionneur de l'éq
+      [3m] Kylian Mbappé a marqué l'unique but du match avant de se blesser au genou gauc
+      [1m] ⚡exclusif Kylian Mbappé souffre d'une lésion tendineuse due à une hyperextension du geno
+      [1m] ⚡exclusif Zinédine Zidane est le premier sélectionneur de l'équipe de France à remporter
+      [2m] Zinédine Zidane a manqué le début de la Marseillaise en raison d'un léger coua
+      [1m] ⚡exclusif Pour ce premier match, Zinédine Zidane a mis en place de nouveaux choix tactiq
+  🌙 Sujet fort (score 66) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nucléaire : EDF veut revoir les normes de températur
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Man City found guilty of breaking financial rules
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 26 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (64 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.6-flash             🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 1 × gemini-embedding-2           🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-2           🚫 quota
+        16. clé 3 × gemini-embedding-001         ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 10/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.6-flash
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,341 entrée · 796 sortie
+     ✅ aucun appel payant
