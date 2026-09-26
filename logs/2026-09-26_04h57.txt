@@ -1,0 +1,98 @@
+
+[04:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #SmackDown, Bets, Lula, #à¸à¹à¹à¸²à¸à¹à¸§à¸¡, #MightyCorrection
+  🔎 « SmackDown » : 1 article(s) frais, le plus récent il y a 2.8 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « SmackDown » écarté : Résultat de catch sans impact sociétal majeur.
+  🔎 « Bets » : 1 article(s) frais, le plus récent il y a 9.3 h (TradingView)
+  ⏭️  « Bets » écarté : trop secondaire (5/10)
+  🔎 « Lula » : 1 article(s) frais, le plus récent il y a 4.1 h (Le Monde.fr)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Lula » écarté : trop secondaire (4/10)
+  🔎 « olivia » : 1 article(s) frais, le plus récent il y a 9.5 h (dna.fr)
+  ⏭️  « olivia » écarté : trop secondaire (4/10)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.2s (30 déjà en cache)
+  📄 5/31 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · OpenAI
+  🧠 31 vecteurs calculés en 1 appel(s)
+  🧩 31 articles → 16 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 9 médias) : Zinédine Zidane réussit son baptême du feu en Turq
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Jeuxvideo.com, Ouest-France, Sud Ouest, Wired
+  🧮 Score 69.5/100 = gravité 9/10 → 40 + 9 médias +15 + frais 2.7h +4 + thème porteur +10
+  🧩 7 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [4m] L'équipe de France s'est imposée 1-0 face à la Turquie en match de Ligue des n
+      [3m] Kylian Mbappé a inscrit l'unique but de la rencontre avant de se blesser au ge
+      [2m] Zinédine Zidane réussit son premier match en tant que sélectionneur de l'équip
+      [1m] Kylian Mbappé souffre d'une lésion tendineuse due à une hyperextension du geno
+         ↳ France Info, Libération : Mbappé est simplement sorti sur blessure, touché au genou gauche
+         motif : Précisions médicales officielles obtenues après coup
+      [1m] ⚡exclusif C'est la première fois depuis Aimé Jacquet en 1994 qu'un nouveau sélectionneur
+      [1m] ⚡exclusif Zinédine Zidane a mis en place des choix tactiques novateurs avec des joueurs 
+      [1m] ⚡exclusif Zinédine Zidane a sobrement fêté cette première victoire sans manifester de gr
+  🌙 Sujet fort (score 70) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 31 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : TikTok verse au moins 100 millions de dollars à l’
+  → Rien à publier.
+
+  ── Bilan du cycle (78 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,146 entrée · 899 sortie
+     ✅ aucun appel payant
