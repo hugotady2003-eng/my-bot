@@ -1,0 +1,77 @@
+
+[00:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Racing, Enner, Drake Maye, Ravens, Cowboys
+  🔎 « Racing » : 1 article(s) frais, le plus récent il y a 1.5 h (rugbyrama.fr)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Racing » écarté : trop secondaire (5/10)
+  🌍 « Enner » : aucune reprise en français, source internationale retenue
+  🔎 « Enner » : 1 article(s) frais, le plus récent il y a 0.3 h (Sofascore)
+  ⏭️  « Enner » écarté : trop secondaire (2/10)
+  🔎 « Drake Maye » : 1 article(s) frais, le plus récent il y a 6.9 h (Caucus Football)
+  ⏭️  « Drake Maye » écarté : Sport US mineur pour le public français.
+  🔎 « Ravens » : 1 article(s) frais, le plus récent il y a 3.6 h (DAZN)
+  ⏭️  « Ravens » écarté : trop secondaire (2/10)
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 3.6 h (DAZN)
+  ⏭️  « Cowboys » écarté : trop secondaire (3/10)
+  🔎 « VMAs » : 1 article(s) frais, le plus récent il y a 4.8 h (rollingstone.fr)
+  ⏭️  « VMAs » écarté : trop secondaire (5/10)
+  🔎 « Browns » : 1 article(s) frais, le plus récent il y a 1.2 h (RDS)
+  ⏭️  « Browns » écarté : Sport américain mineur pour le public français.
+  📖 15 articles, tous en cache
+  📄 4/15 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · OpenAI
+  🧠 15 vecteurs calculés en 1 appel(s)
+  🧩 15 articles → 11 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Aux Mondiaux de cyclisme, le « miracle » de Brandon 
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 15 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (40 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 3 × gemini-3.5-flash-lite        ✅
+        16. clé 3 × gemini-3.5-flash-lite        ✅
+        17. clé 3 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2-preview · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-001 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash (+17)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 753
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,230 entrée · 253 sortie
+     ✅ aucun appel payant
