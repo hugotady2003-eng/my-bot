@@ -1,0 +1,92 @@
+
+[06:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #æå¤§500åãªã¼ãããã¯, Rams, Broncos, #VMAs, Madonna
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 0.6 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  🔎 « Broncos » : 1 article(s) frais, le plus récent il y a 0.6 h (Touchdown Actu)
+  ⏭️  « Broncos » écarté : trop secondaire (2/10)
+  🔎 « VMAs » : 1 article(s) frais, le plus récent il y a 4.9 h (rollingstone.fr)
+  ⏭️  « VMAs » écarté : trop secondaire (3/10)
+  🔎 « Stafford » : 1 article(s) frais, le plus récent il y a 7.5 h (RDS)
+  ⏭️  « Stafford » écarté : Il s'agit d'un simple fait de match.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Madonna
+  📖 4/4 articles lus en 1.0s (43 déjà en cache)
+  📄 7/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · OpenAI
+  🧠 47 vecteurs calculés en 1 appel(s)
+  🧩 47 articles → 24 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : "Cela va nous permettre de rentrer dans le jeu ins
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 28.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.7h +8 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  🧩 6 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [2m] Le Rassemblement National et l'UDR forment pour la première fois un groupe par
+      [2m] Le groupe parlementaire est constitué d'au moins 14 à 15 sénateurs au total.
+         ↳ France Info, 20 Minutes : France Info mentionne 14 sénateurs (3 existants + 11 nouveaux), 
+         motif : Différence dans le décompte des élus alliés.
+      [2m] La progression du RN au Sénat est largement portée par son implantation locale
+      [1m] ⚡exclusif Edwige Diaz est pressentie pour prendre la tête du nouveau groupe parlementair
+      [1m] ⚡exclusif Le scrutin sénatorial est un suffrage universel indirect basé sur les résultat
+      [1m] ⚡exclusif L'obtention de ce groupe est perçue comme un atout pour la campagne présidenti
+  → Sujet chaud pas assez fort (score 28) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : les MTV Video Music Awards 2026 ont récompensé les m
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 47 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : En grève, les pompiers dorment au pied de la tour 
+  → Rien à publier.
+
+  ── Bilan du cycle (67 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 1 × gemini-embedding-2-preview   🚫 quota
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 2 × gemini-embedding-2           🚫 quota
+        22. clé 3 × gemini-embedding-001         ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,134 entrée · 818 sortie
+     ✅ aucun appel payant
