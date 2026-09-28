@@ -1,0 +1,205 @@
+
+[20:27] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 42 (char 41) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « bottlenose dolphin underwater »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 28-Sep-26 11:29:11 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"Af7zVsOeUKUpS4LMO_g280I"}}
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ãã»ã¹POPS, #OkullardaGÃ¼venlikNerede, JJ McCarthy, #KC_HBDay, #å²¸åªå¤ªèªçç¥­2026
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Mediapart, #Bardella, #Starship
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 20h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 4.0 h) : 25-45 min
+  ✅ Dernière publi il y a 17815 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/8 articles lus en 1.5s (86 déjà en cache)
+  📄 8/94 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block · OpenAI
+  🧠 94 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Écrits antisémites attribués à Jordan … »
+  🧩 94 articles → 35 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mélenchon, Bergé, Faure… après les accusations de «M
+  🚨 Sujet chaud (breaking, 9 médias) : Budget : le gouvernement veut alourdir de 800 mill
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, Begeek, Konbini, Libération
+  🧮 Score 69.5/100 = gravité 7/10 → 32 + 9 médias +15 + frais 0.5h +13 + thème porteur +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (193 → 151 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Months After the $292M Kelp Hack, Chainlink Lets Ins
+  🚨 Sujet chaud (breaking, 1 médias) : Grève du mardi 29 septembre: de "fortes perturbati
+  🧮 Score 22.5/100 = gravité 3/10 → 14 + frais 0.1h +16 + programmé 3/10 -15 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 22) → suivant
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : Greg Guillotin : Une autre plainte pour viol contre 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire des assistants d’eurodéputés du Modem : deux
+  🚨 Sujet chaud (breaking, 33 médias) : SpaceX launches its massive Starship rocket into o
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 40 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Mac, ActuGaming, Ars Technica, BBC Business
+  🧮 Score 69.5/100 = gravité 7/10 → 32 + 33 médias +20 + frais 1.9h +8 + thème porteur +10
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 2.5h (frais ✅)
+  📈 Hashtag(s) en tendance : #Spacex, #Starship
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Spacex, #Starship
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Fonction publique : une mobilisation comme indicateu
+  ⚪ Écarté (-2, pénalisé par « comment  ») : « Pour ne pas être copié » : comment le néo rétro pr
+  🚨 Sujet chaud (breaking, 9 médias) : Seoul summons Ukraine envoy over North Korean pris
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.5/100 = gravité 7/10 → 32 + 9 médias +15 + frais 0.5h +13 + thème porteur +10
+  🕒 Âge de l'article : 3.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Best External Hard Drives (2026): SanDisk, Samsung, 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Bose Launches New Wired Earbuds After More Than a De
+  ⚪ Écarté (-3, pénalisé par « étude ») : « Mediapart » rapporte des propos antisémites de Jor
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 94 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trois personnes jugées pendant trois semaines pour
+  ♻️ 8/10 [world] (déjà analysé, cache) : Royaume-Uni : la piste iranienne examinée après un
+  ♻️ 7/10 [business] (déjà analysé, cache) : Budget : le gouvernement veut alourdir de 800 mill
+  ♻️ 6/10 [sports] (déjà analysé, cache) : « Personne n’est à l’aise avec ces matchs » : face
+  ♻️ 7/10 [world] (déjà analysé, cache) : Seoul summons Ukraine envoy over North Korean pris
+  ♻️ 7/10 [space] (déjà analysé, cache) : SpaceX launches its massive Starship rocket into o
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Florida seeks a ban on ChatGPT acting like a perso
+  ♻️ 7/10 [sports] (déjà analysé, cache) : F1 in Azerbaijan: That was almost a close-run thin
+  🎯 Pré-classement : 65 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🌍 8/10 sans portée internationale : RECAP. Jordan Bardella accusé d'écrits antisémites
+  🌍 8/10 sans portée internationale : Mélenchon, Bergé, Faure… après les accusations de 
+  🌍 7/10 sans portée internationale : La France bat le triste record du taux de suicides
+  📉 4/10: Vitalik Buterin Outlines 'Cryptographic World Computer'
+  📉 5/10: Nidec CEO Kishida set to resign over losses at e-axle E
+  📉 5/10: Groupe RN au Sénat : de la stratégie antisystème à cell
+  📉 5/10: Sénatoriales 2026 : à quoi va ressembler la Chambre hau
+  📉 4/10: Kratos se montre dans un décor de Grèce antique, suscit
+  📉 3/10: Avant d'être adoré des joueurs pour ses jeux SNES et N6
+  ✅ 8/10 [world] large: Russian drone strikes pound civilian targets acr
+  🌍 7/10 sans portée internationale : Blocage des lycées : le ministre de l’intérieur re
+  🌍 6/10 sans portée internationale : Honda pauses Bangkok motorcycle production due to 
+  📉 5/10: SNCF : la billetterie pour les congés de Noël et du Nou
+  📉 4/10: GTA 6 aura un système de météo dynamique "avancé" : et 
+  📉 4/10: OpenAI keeps bulldozing mathematicians
+  📉 4/10: Somali army clashes with local forces for control of Ba
+  📉 2/10: Even Google Search agrees that ‘Googlebook’ wasn’t a ve
+  📉 5/10: What a US diesel export ban could mean for you
+  🌍 6/10 sans portée internationale : Fonction publique : une mobilisation comme indicat
+  📉 3/10: « Pour ne pas être copié » : comment le néo rétro protè
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 1.0h — Russian drone strikes pound civilian targets
+     8/10 · 1 média(s) · 0.4h — Budget : le gouvernement veut alourdir de 80
+     9/10 · 1 média(s) · 3.0h — Royaume-Uni : la piste iranienne examinée ap
+     9/10 · 1 média(s) · 1.6h — Florida seeks a ban on ChatGPT acting like a
+     8/10 · 1 média(s) · 0.9h — F1 in Azerbaijan: That was almost a close-ru
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 1.0h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 28-Sep-26 11:35:54 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AlLTZAzXxNxnKjwyNGTckbR"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Russian drone strikes pound civilian targets across Kyi
+
+  ── Bilan du cycle (483 s) ──
+     écartés : 9 sujet banal · 6 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   🚫 quota
+        11. clé 2 × gemini-embedding-001         🚫 quota
+        12. clé 2 × gemini-embedding-2-preview   🚫 quota
+        13. clé 2 × gemini-embedding-2           🚫 quota
+        14. clé 3 × gemini-embedding-001         🚫 quota
+        15. clé 3 × gemini-embedding-2-preview   🚫 quota
+        16. clé 3 × gemini-embedding-2           🚫 quota
+        17. clé 4 × gemini-embedding-001         🚫 quota
+        18. clé 4 × gemini-embedding-2-preview   🚫 quota
+        19. clé 4 × gemini-embedding-2           🚫 quota
+        20. clé 5 × gemini-embedding-001         🚫 quota
+        21. clé 5 × gemini-embedding-2-preview   ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+        30. clé 2 × gemini-3.5-flash-lite        ✅
+        31. clé 2 × gemini-3.5-flash-lite        ✅
+        32. clé 2 × gemini-3.5-flash-lite        ✅
+        33. clé 2 × gemini-3.5-flash-lite        ✅
+        34. clé 2 × gemini-3.5-flash-lite        ✅
+        35. clé 2 × gemini-3.5-flash-lite        ✅
+        36. clé 2 × gemini-3.5-flash-lite        ✅
+        37. clé 2 × gemini-3.5-flash-lite        ✅
+        38. clé 2 × gemini-3.5-flash-lite        ✅
+        39. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        40. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        … et 4 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 714
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 69,260 entrée · 2,343 sortie
+     ✅ aucun appel payant
