@@ -1,0 +1,85 @@
+
+[01:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  📈 50 tendances lues sur trends24.in : #BizimÃocuklar, Montella, Knies, Olise, #BELFRA
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Mediapart, #Bardella, #WorldLabs
+  📖 1/1 articles lus en 0.0s (24 déjà en cache)
+  📄 3/25 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧩 25 articles → 10 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Antisémitisme obsessionnel" ou "barbouzerie" ? Six 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ligue des nations. Avant d’affronter la France, l’It
+  🚨 Sujet chaud (breaking, 7 médias) : Guerre en Ukraine : nouveaux bombardements meurtri
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, L'Express, La Tribune, Libération
+  🧮 Score 55.5/100 = gravité 9/10 → 40 + 7 médias +11 + frais 3.0h +4
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : OpenAI abandons plan to release upcoming model as 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 88.0/100 = gravité 8/10 → 36 + frais 0.0h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 88) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : OpenAI Halts Model Training as Rogue Agents Target
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Decrypt, Ouest-France
+  🧮 Score 61.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 1.3h +8 + thème porteur +10
+  🌙 Sujet fort (score 61) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : « Démission », « barbouzerie »… Les réactions aprè
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.2h +4 + thème porteur +10
+  🧩 6 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] Jordan Bardella a annoncé son intention de poursuivre en justice Mediapart apr
+      [2m] Marine Le Pen a qualifié les révélations de Mediapart de "barbouzerie" et de f
+      [2m] Mediapart a publié le 28 septembre une enquête accusant Jordan Bardella d'avoi
+      [1m] Jordan Bardella dément formellement les accusations et dénonce sur X une tenta
+         ↳ France Info : Jordan Bardella se contente d'annoncer sa volonté de poursuivre 
+         motif : Niveaux de détail différents selon les choix de rédaction.
+      [1m] ⚡exclusif Marine Tondelier demande la démission de Jordan Bardella de toutes ses fonctio
+      [1m] ⚡exclusif Manuel Bompard estime que ces déclarations montrent l'ancrage de l'antisémitis
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : AMD will acquire Fei-Fei Li’s World Labs for $8.2 bi
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 25 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (41 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 1 × gemini-3.6-flash             🚫 quota
+        12. clé 1 × gemini-3-flash               ⛔ inexistant
+        13. clé 2 × gemini-3.5-flash-lite        ✅
+        14. clé 2 × gemini-3.5-flash-lite        ✅
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 713
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,870 entrée · 720 sortie
+     ✅ aucun appel payant
