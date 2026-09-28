@@ -1,0 +1,161 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #æå¤§500åãªã¼ãããã¯, Rams, Broncos, #VMAs, Madonna
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 0.6 h (touchdownactu.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  🔎 « Broncos » : 1 article(s) frais, le plus récent il y a 0.6 h (touchdownactu.com)
+  ⏭️  « Broncos » écarté : trop secondaire (2/10)
+  🔎 « VMAs » : 1 article(s) frais, le plus récent il y a 5.0 h (rollingstone.fr)
+  ⏭️  « VMAs » écarté : trop secondaire (3/10)
+  🔎 « Madonna » : 1 article(s) frais, le plus récent il y a 5.0 h (rollingstone.fr)
+  ✅ « Madonna » retenu : Annonce officielle d'une prestation musicale majeure. (6/10) (+1 au score)
+  🔎 « Stafford » : 1 article(s) frais, le plus récent il y a 7.6 h (RDS)
+  ⏭️  « Stafford » écarté : Il s'agit d'un simple fait de match.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Madonna
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 17008 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/10 articles lus en 1.0s (41 déjà en cache)
+  📄 7/51 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · OpenAI
+  🧠 51 vecteurs calculés en 1 appel(s)
+  🧩 51 articles → 21 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 9 médias) : "Cela va nous permettre de rentrer dans le jeu ins
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 9 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Al Jazeera, BFM People, France Info, La Dépêche
+  🧮 Score 87.5/100 = gravité 7/10 → 32 + 9 médias +15 + frais 0.8h +13 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 42 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Mondiaux de cyclisme : « C’est un échec »… Ambitie
+  🧮 Score 19.5/100 = gravité 3/10 → 14 + frais 0.5h +13 + programmé 3/10 -15 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 20) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Madonna ouvrira les VMAs 2026, sa première prestatio
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 51 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Présidentielle 2027 : "Emmanuel Macron a renforcé 
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Cela va nous permettre de rentrer dans le jeu ins
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Je suis bloquée": la chanteuse Helena immobilisée
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs turn positive for 2026 with $2.4 bill
+  ♻️ 6/10 [ai] (déjà analysé, cache) : AI Agents Keep Escaping Their Creators' Control—He
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : SEC Staff Says Token Buybacks Don't Make Crypto a 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI extends cyber access to Ukraine for civilia
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI agents tried to ‘bruteforce’ a UN website
+  🎯 Pré-classement : 21 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 5/10: Trump-Xi summit analysis: 'Tangible outcomes' needed fo
+  📉 2/10: Anker’s 25W MagSafe 3-in-1 packs active cooling in a tr
+  ✅ 8/10 [ai] mondiale: Culture IA : OpenAI appuie sur le bouton pause, 
+  📉 4/10: Vitalik Buterin says Hegotá could be Ethereum’s last ‘n
+  📉 3/10: Périco Légasse prend une position radicale sur la Franc
+  ✅ 7/10 [space] mondiale: SpaceX prepares to send Starship rocket to orbit
+  📉 5/10: Retraites : désindexation des pensions, suppression de 
+  📉 2/10: Mémoire cash - Street Fighter II' Special Champion Edit
+  📉 4/10: Plus de 130 conflits armés à travers le monde, la guerr
+  📉 4/10: Palestine Action protesters arrested outside UK Labour 
+  📉 3/10: Sénatoriales : Gendre de Mélenchon, premier élu LFI au 
+  📉 2/10: Nolwenn Leroy "très choquée" : ces intentions pétainist
+  📉 3/10: Sénatoriales 2026 : dans la région, des réélections att
+  ✅ 7/10 [crypto] large: Newsom signs California ban on public officials 
+  🌍 6/10 sans portée internationale : Enseignants, soignants, agents des impôts et de Fr
+  📉 2/10: Engrais verts : les 7 plantes miracles pour transformer
+  📉 5/10: Game and watch - The Last of Us saison 3 s'offre l'imme
+  📉 4/10: Mondiaux de cyclisme. Brandon McNulty, la malice à la P
+  📉 5/10: REPORTAGE « Ils le laissent faire tout ce qu’il veut » 
+  📉 2/10: Brigitte Bardot à en perdre la raison : une Russe débou
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.1h — Culture IA : OpenAI appuie sur le bouton pau
+     8/10 · 1 média(s) · 0.9h — SpaceX prepares to send Starship rocket to o
+     8/10 · 1 média(s) · 1.2h — "Cela va nous permettre de rentrer dans le j
+     8/10 · 1 média(s) · 2.7h — Newsom signs California ban on public offici
+     7/10 · 1 média(s) · 11.7h — OpenAI agents tried to ‘bruteforce’ a UN web
+  ✂️ Éphéméride resserré (200 → 106 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [ai]
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : BFMTV, Jeuxvideo.com
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Culture IA : OpenAI appuie sur le bouton pause, par Ant
+
+  ── Bilan du cycle (210 s) ──
+     écartés : 1 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-2-preview   🚫 quota
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 2 × gemini-embedding-2           🚫 quota
+        22. clé 3 × gemini-embedding-001         ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 40,564 entrée · 1,751 sortie
+     ✅ aucun appel payant
