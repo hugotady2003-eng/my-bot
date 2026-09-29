@@ -1,0 +1,83 @@
+
+[09:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ããã£ã¤, Keenum, #å® é ãã¶ã®æ¥åå¤ç¥­, Eagles, #HimalayanSolarIPOFinalDay
+  🔎 « Keenum » : 1 article(s) frais, le plus récent il y a 3.8 h (Touchdown Actu)
+  ⏭️  « Keenum » écarté : Sport US secondaire pour le public francais
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 1.3 h (L'Équipe)
+  ⏭️  « Eagles » écarté : trop secondaire (3/10)
+  🌍 « JaiAmbeBol » : aucune reprise en français, source internationale retenue
+  🕐 9h (Paris) — rythme journée (36-75 min · 0 publié(s), 16 restant(s) sur 15.0 h) : 36-75 min
+  ✅ Dernière publi il y a 18582 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.3s (7 déjà en cache)
+  📄 1/13 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 12 vecteurs calculés en 1 appel(s)
+  🧩 13 articles → 10 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : France : la dette publique s’alourdit et atteint 119
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 13 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Réouverture du détroit d’Ormuz : les Etats-Unis do
+  ♻️ Doublon d'un sujet déjà publié, écarté : "La stratégie de Total est quand même honteuse": S
+  ♻️ Doublon d'un sujet déjà publié, écarté : Ce jeu Zelda méconnu est excellent et il est désor
+  ♻️ 8/10 [world] (déjà analysé, cache) : « Démission », « barbouzerie »… Les réactions aprè
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 7/10 [world] (déjà analysé, cache) : U.S., Iran hold separate mediator talks as Mideast
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI Halts Model Training as Rogue Agents Target
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Citi Clients Can Now Take Stablecoin Payments Thro
+  ♻️ 8/10 [space] (déjà analysé, cache) : SpaceX's Starship goes orbital, deploying first ne
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI cancels GPT-6.1 Astra release over misbehav
+  🧠 Batch analyse de 2 articles...
+  🌍 6/10 sans portée internationale : France : la dette publique s’alourdit et atteint 1
+  📉 4/10: « C’est ce qui est arrivé de plus fort au MCU », les fr
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 2.8h — OpenAI scraps rollout of new model over safe
+     10/10 · 4 média(s) · 2.8h — OpenAI scraps rollout of new model over safe
+     10/10 · 3 média(s) · 9.5h — OpenAI Halts Model Training as Rogue Agents 
+     10/10 · 3 média(s) · 8.3h — OpenAI cancels GPT-6.1 Astra release over mi
+     9/10 · 1 média(s) · 8.8h — « Démission », « barbouzerie »… Les réaction
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (161 → 127 car.)
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  🕒 Âge de l'article à la publication : 2.8h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : OpenAI scraps rollout of new model over safety concerns
+
+  ── Bilan du cycle (68 s) ──
+     écartés : 1 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-2 · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite (+30)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 728 · gemini 2-preview 800 · gemini 2 800
+     jetons Gemini : 21,095 entrée · 447 sortie
+     ✅ aucun appel payant
