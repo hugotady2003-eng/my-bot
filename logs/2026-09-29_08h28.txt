@@ -1,0 +1,191 @@
+
+[08:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Keenum, Eagles, ããã£ã¤, #HimalayanSolarIPOFinalDay, Jalen
+  🔎 « Keenum » : 1 article(s) frais, le plus récent il y a 3.0 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Keenum » écarté : trop secondaire (2/10)
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 0.5 h (L'Équipe)
+  ⏭️  « Eagles » écarté : trop secondaire (2/10)
+  🔎 « Jalen » : 1 article(s) frais, le plus récent il y a 11.1 h (Flashscore.fr)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Jalen » écarté : Déclaration sportive sans impact majeur en France.
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.5 h (L'Équipe)
+  ⏭️  « Bears » écarté : trop secondaire (3/10)
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 18532 min — on publie.
+  📖 4/4 articles lus en 0.9s (9 déjà en cache)
+  📄 1/14 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Grève dans la fonction publique : des … »
+  🧠 Même événement (jugé) : « OpenAI scraps rollout of new model ove… »
+  🧩 14 articles → 12 événement(s)
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Mort de Nahel Merzouk: la qualification des faits 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 7/10 → 32 + frais 0.6h +13 + primeur absolue +8
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Victime de fait divers et affaire judiciaire en cours. · décès : 2023
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (202 → 158 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Grève de la fonction publique: les syndicats appel
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.0/100 = gravité 6/10 → 27 + 2 médias +4 + frais 1.2h +8 + thème porteur +10 + primeur +5
+  🧩 7 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif Les syndicats appellent à une journée de grève et de manifestations dans la fo
+      [1m] ⚡exclusif La mobilisation est notamment motivée par la contestation d'un nouveau gel du 
+      [1m] ⚡exclusif Dans les écoles du premier degré, 40% de grévistes sont attendus selon les est
+      [2m] Les lycéens poursuivent les blocages de leurs établissements pour protester no
+      [1m] Les transports SNCF et RATP sur les grandes lignes ne devraient être que ponct
+         ↳ France Info : Le trafic SNCF sera normal à l'exception de certaines lignes fra
+         motif : Précisions plus détaillées sur les lignes concernées chez BFMTV
+      [2m] Des perturbations importantes touchent certaines lignes de transports francili
+      [1m] ⚡exclusif La DGAC a demandé de réduire les programmes de vols sur les aéroports de Paris
+  🕒 Âge de l'article : 2.3h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 12 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Grève dans la fonction publique : des lycées bloqu
+  🧮 Score 15.5/100 = gravité 3/10 → 14 + 2 médias +4 + frais 1.2h +8 + programmé 3/10 -15 + primeur +5
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Une journée de grève et de manifestations intersyndicales est organisée dans l
+      [2m] Les lycéens poursuivent les blocages de leurs établissements pour protester co
+      [2m] Le trafic des transports en commun franciliens sera perturbé sur certaines lig
+      [1m] ⚡exclusif La DGAC demande aux compagnies aériennes de réduire leurs programmes de vols à
+      [1m] ⚡exclusif La CGT recense 170 manifestations prévues à travers la France pour cette journ
+  → Sujet chaud pas assez fort (score 16) → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : OpenAI scraps rollout of new model over safety con
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.0h +8 + thème porteur +10 + primeur +5 + portée internationale +10
+  🧩 5 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] OpenAI a annulé le lancement de son nouveau modèle, le GPT-6.1 Astra, en raiso
+      [2m] Selon Saachi Jain, responsable des systèmes de sécurité chez OpenAI, le modèle
+      [2m] Cette décision d'OpenAI a été initialement rapportée par le Wall Street Journa
+      [2m] Des dirigeants de l'industrie de l'IA, dont Sam Altman et Dario Amodei, ont ré
+      [2m] Le modèle phare GPT-6 Astra, spécialisé dans le raisonnement complexe et l'exé
+  🕒 Âge de l'article : 2.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 14 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Corruption : 4 ans de prison requis contre Rachida
+  ♻️ Doublon d'un sujet déjà publié, écarté : L’équipe B des Bleus est trop forte : le grand n’i
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mort de Nahel Merzouk: la qualification des faits 
+  ♻️ 6/10 [world] (déjà analysé, cache) : Grève de la fonction publique: les syndicats appel
+  ♻️ 8/10 [world] (déjà analysé, cache) : « Démission », « barbouzerie »… Les réactions aprè
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 7/10 [world] (déjà analysé, cache) : U.S., Iran hold separate mediator talks as Mideast
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI Halts Model Training as Rogue Agents Target
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Citi Clients Can Now Take Stablecoin Payments Thro
+  ♻️ 8/10 [space] (déjà analysé, cache) : SpaceX's Starship goes orbital, deploying first ne
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI cancels GPT-6.1 Astra release over misbehav
+  🧠 Batch analyse de 1 articles...
+  🌍 7/10 sans portée internationale : $50 million in Bitget hacker swaps puts NEAR Inten
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 2.0h — OpenAI scraps rollout of new model over safe
+     10/10 · 4 média(s) · 2.0h — OpenAI scraps rollout of new model over safe
+     10/10 · 3 média(s) · 8.7h — OpenAI Halts Model Training as Rogue Agents 
+     10/10 · 3 média(s) · 7.5h — OpenAI cancels GPT-6.1 Astra release over mi
+     8/10 · 1 média(s) · 0.6h — Mort de Nahel Merzouk: la qualification des 
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 2.0h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : OpenAI scraps rollout of new model over safety concerns
+
+  ── Bilan du cycle (162 s) ──
+     écartés : 1 hommage refusé · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-2-preview   🚫 quota
+        25. clé 3 × gemini-embedding-2           🚫 quota
+        26. clé 4 × gemini-embedding-001         🚫 quota
+        27. clé 4 × gemini-embedding-2-preview   🚫 quota
+        28. clé 4 × gemini-embedding-2           🚫 quota
+        29. clé 5 × gemini-embedding-001         🚫 quota
+        30. clé 5 × gemini-embedding-2-preview   🚫 quota
+        31. clé 5 × gemini-embedding-2           🚫 quota
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 13 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 5 × gemini-3.5-flash-lite (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 63,962 entrée · 2,697 sortie
+     ✅ aucun appel payant
