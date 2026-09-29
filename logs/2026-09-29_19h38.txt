@@ -1,0 +1,184 @@
+
+[19:33] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « sleeping dolphin »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Tuesday, 29-Sep-26 10:34:01 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AulF1Ype5YSGurZmhNd0rbT"}}
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Jack Smith, #NampingxDelvaux, Spotify, #DiorSummer27xLingOrm, #ãã­ã»ã«6å¨å¹´
+  🔎 « Jack Smith » : 1 article(s) frais, le plus récent il y a 1.9 h (Le Journal de Montréal)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Jack Smith » écarté : trop secondaire (5/10)
+  🔎 « Spotify » : 1 article(s) frais, le plus récent il y a 0.3 h (PhonAndroid)
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ✅ « Spotify » retenu : Panne technique majeure affectant de nombreux utilisateurs f (7/10) (+1 au score)
+  🌍 « DiorSummer27xLingOrm » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Spotify
+  🕐 19h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 5.0 h) : 25-45 min
+  ✅ Dernière publi il y a 19201 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/9 articles lus en 1.9s (14 déjà en cache)
+  📄 8/23 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · The Block · Libération
+  🧠 23 vecteurs calculés en 1 appel(s)
+  🧩 23 articles → 11 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚨 Sujet chaud (breaking, 3 médias) : OpenAI renonce à un nouveau modèle d'IA à quelques
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : L'Express, Sciences et Avenir
+  🧮 Score 82.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.2h +16 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 4.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (225 → 171 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ⚠️ Page article illisible pour vidéo (HTTP Error 405: Not Allowed)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : Face à l'explosion de la pauvreté en Argentine, Ja
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : Journal du Geek, La Tribune, Ouest-France, The Verge
+  🧮 Score 82.0/100 = gravité 6/10 → 27 + 5 médias +11 + frais 0.4h +16 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 1.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • TROP LONG (166 caractères)
+  ✂️ Tweet resserré localement (182 → 126 car.)
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-6, pénalisé par « comment , horoscope ») : Panne majeure chez Spotify, voici comment accéder qu
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 23 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Allemagne, Espagne, Italie… ce que font les voisin
+  ♻️ Doublon d'un sujet déjà publié, écarté : Visite du pape Léon XIV à Lourdes : un jeune d’ori
+  ♻️ Doublon d'un sujet déjà publié, écarté : "On écrit gratuit pour elle", Grand Corps Malade é
+  ♻️ 6/10 [world] (déjà analysé, cache) : Face à l'explosion de la pauvreté en Argentine, Ja
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI renonce à un nouveau modèle d'IA à quelques
+  ♻️ 8/10 [space] (déjà analysé, cache) : Starship atteint enfin l’orbite terrestre
+  ♻️ 8/10 [space] (déjà analysé, cache) : Space X : le Starship atteint enfin l’orbite lors 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Ethereum users get another way to pay privately as
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin beats gold, surge to $100,000 in play
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitwise launches first US spot NEAR ETF after toke
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin gives back gains as long-term holder suppl
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin tests long-term holder supply cluster as l
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitwise launches first US spot NEAR ETF with staki
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Is the Red September Curse Over? Bitcoin Set for B
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Protesters gather at OpenAI’s DevDay
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Anthropic’s IPO pitch includes a warning about hum
+  ♻️ 6/10 [space] (déjà analysé, cache) : Crew-13 Rocket and Spacecraft at Launch Pad
+  🧠 Batch analyse de 6 articles...
+  📉 3/10: Affaire Bardella : LR et le bloc central entre prudence
+  📉 2/10: Les vols dans les casernes de pompiers continuent, des 
+  📉 4/10: Quand la bienveillance contre-attaque : ces 500 000 per
+  📉 5/10: Crise du logement en Espagne : le gouvernement annonce 
+  📉 3/10: BBC Director-General Deems AI-Generated Doctor Who Epis
+  📉 3/10: Apple releases guide to help families ‘build healthy di
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.6h — Space X : le Starship atteint enfin l’orbite
+     9/10 · 1 média(s) · 0.8h — Is the Red September Curse Over? Bitcoin Set
+     8/10 · 2 média(s) · 0.4h — Bitwise launches first US spot NEAR ETF afte
+     8/10 · 2 média(s) · 0.4h — Protesters gather at OpenAI’s DevDay
+     10/10 · 2 média(s) · 4.9h — Starship atteint enfin l’orbite terrestre
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [space]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (207 → 162 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.6h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Tuesday, 29-Sep-26 10:38:14 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AgmX8M3bzUzOSrMwce9HGGT"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Space X : le Starship atteint enfin l’orbite lors de so
+
+  ── Bilan du cycle (317 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         ✅
+        23. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.6-flash             🚫 quota
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-3-flash (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 750
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 48,436 entrée · 1,297 sortie
+     ✅ aucun appel payant
