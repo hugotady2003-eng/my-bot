@@ -1,0 +1,93 @@
+
+[00:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Ø¹Ù Ø§Ù, Austin Riley, Jack Smith, #Ø®ÙÙØ¬ÙÙ¢Ù§, Braves
+  🔎 « Austin Riley » : 1 article(s) frais, le plus récent il y a 0.9 h (rds.ca)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Austin Riley » écarté : trop secondaire (1/10)
+  🔎 « Jack Smith » : 1 article(s) frais, le plus récent il y a 6.7 h (Le Journal de Montréal)
+  ✅ « Jack Smith » retenu : Action judiciaire majeure contre l'ancien président américai (8/10) (+2 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #OpenAI, #Dots, #JackSmith
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📖 2/2 articles lus en 0.8s (19 déjà en cache)
+  📄 2/21 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir
+  🧠 21 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « BMW’s revamped i3 boasts up to 468 mil… »
+  🧩 21 articles → 12 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Menaces de la DZ Mafia contre le maire d’Alès : un
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 2.4h +4
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 8 médias) : The internet is convinced Elon Musk’s xAI trolled 
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Gamekult, Jeuxvideo.com, Sciences et Avenir, TechCrunch, Wired
+  🧮 Score 57.5/100 = gravité 5/10 → 22 + 8 médias +15 + frais 0.4h +16 + imprévu 6/10 +4
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧩 7 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [3m] La nouvelle BMW i3 est une berline électrique basée sur la plateforme Neue Kla
+      [1m] ⚡exclusif La BMW i3 50 xDrive sera commercialisée aux États-Unis au premier trimestre 20
+      [1m] Le prix de départ de la nouvelle BMW i3 en France est fixé à 59 900 €.
+         ↳ The Verge : Le prix de départ aux États-Unis est de 62 850 $ (frais de desti
+         motif : Marchés géographiques différents.
+      [1m] ⚡exclusif La version 50 xDrive de la BMW i3 développe une puissance totale de 463 chevau
+      [2m] L'autonomie maximale annoncée pour la nouvelle BMW i3 est de 912 km en cycle W
+      [1m] ⚡exclusif La BMW i3 40 xDrive développe 374 chevaux et offre jusqu'à 710 km d'autonomie.
+      [1m] ⚡exclusif Les premières livraisons de la série de lancement First Edition sont prévues p
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Bitwise Launches First US Spot Near ETF After Token 
+  🚨 Sujet chaud (breaking, 1 médias) : Présidentielle 2027 : Edouard Philippe dévoile son
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 59.0/100 = gravité 8/10 → 36 + frais 1.0h +8 + thème porteur +10 + primeur +5
+  🌙 Sujet fort (score 59) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 21 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (71 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   🚫 quota
+        11. clé 2 × gemini-embedding-001         🚫 quota
+        12. clé 2 × gemini-embedding-2-preview   ✅
+        13. clé 2 × gemini-3.1-flash-lite        ✅
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.6-flash             🚫 quota
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash (+18)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 745
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,292 entrée · 821 sortie
+     ✅ aucun appel payant
