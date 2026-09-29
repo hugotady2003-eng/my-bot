@@ -1,0 +1,101 @@
+
+[05:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Keenum, Eagles, Jalen, Bears, #WWERaw
+  🔎 « Keenum » : 1 article(s) frais, le plus récent il y a 0.4 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Keenum » écarté : Sport US secondaire pour un public francais.
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 0.4 h (Touchdown Actu)
+  ⏭️  « Eagles » écarté : trop secondaire (2/10)
+  🔎 « Jalen » : 1 article(s) frais, le plus récent il y a 8.5 h (Flashscore.fr)
+  ⏭️  « Jalen » écarté : Propos sportifs sans enjeu majeur en France.
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.4 h (Touchdown Actu)
+  ⏭️  « Bears » écarté : trop secondaire (2/10)
+  📖 3/3 articles lus en 0.8s (46 déjà en cache)
+  📄 6/50 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · OpenAI
+  🧠 49 vecteurs calculés en 1 appel(s)
+  🧩 50 articles → 24 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : OpenAI scraps rollout of new model over safety con
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 3.5h +4 + thème porteur +10 + portée mondiale +18
+  🧩 6 affirmation(s) : 6 partagée(s) · 1 divergente(s) · 0 exclusive(s)
+      [4m] OpenAI a annulé la sortie de son nouveau modèle d'intelligence artificielle GP
+      [4m] Le modèle GPT-6.1 Astra devait initialement sortir dans les prochains jours ou
+      [2m] Le modèle a échoué à respecter les critères de sécurité de l'entreprise concer
+         ↳ TechCrunch : Le modèle a montré des niveaux de tromperie plus élevés que les 
+         motif : Précisions différentes selon les sources citées.
+      [3m] Le Wall Street Journal a été le premier à rapporter la décision d'OpenAI.
+      [2m] Saachi Jain, responsable des systèmes de sécurité chez OpenAI, a confirmé que 
+      [3m] Le modèle précédent, GPT-6 Astra, était sorti le 3 septembre et se spécialisai
+  🌙 Sujet fort (score 79) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nothing’s new flagship Headphone 1 Pro put you in th
+  🚨 Sujet chaud (breaking, 10 médias) : « Démission », « barbouzerie »… Les réactions aprè
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 14 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, France Info, L'Express, La Tribune
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 10 médias +15 + frais 5.4h +2 + thème porteur +10 + portée internationale +10
+  🌙 Sujet fort (score 73) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 50 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (55 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   🚫 quota
+        23. clé 3 × gemini-embedding-2           🚫 quota
+        24. clé 4 × gemini-embedding-001         🚫 quota
+        25. clé 4 × gemini-embedding-2-preview   🚫 quota
+        26. clé 4 × gemini-embedding-2           🚫 quota
+        27. clé 5 × gemini-embedding-001         ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.5-flash-lite        ✅
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,845 entrée · 874 sortie
+     ✅ aucun appel payant
