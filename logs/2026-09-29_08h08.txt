@@ -1,0 +1,177 @@
+
+[08:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Keenum, Eagles, ããã£ã¤, #HimalayanSolarIPOFinalDay, Jalen
+  🔎 « Keenum » : 1 article(s) frais, le plus récent il y a 2.7 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Keenum » écarté : Sport US mineur pour le public français.
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 0.1 h (L'Équipe)
+  ⏭️  « Eagles » écarté : trop secondaire (2/10)
+  🔎 « Jalen » : 1 article(s) frais, le plus récent il y a 10.7 h (Flashscore.fr)
+  ⏭️  « Jalen » écarté : Déclaration sportive sans impact majeur en France.
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.1 h (L'Équipe)
+  ⏭️  « Bears » écarté : trop secondaire (3/10)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 18512 min — on publie.
+  📖 9/9 articles lus en 2.1s (12 déjà en cache)
+  📄 2/22 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « « Démission », « barbouzerie »… Les ré… »
+  🧠 Même événement (jugé) : « OpenAI scraps rollout of new model ove… »
+  🧩 22 articles → 20 événement(s)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 32 s
+  🚨 Sujet chaud (breaking, 1 médias) : Propos antisémites attribués à Jordan Bardella : "
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45/100 = gravité 7/10 → 32 + frais 0.5h +16 + thème porteur +10 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 45) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Headphone (1) Pro officialisé : Nothing met trois tr
+  🚨 Sujet chaud (breaking, 1 médias) : Mort de Nahel Merzouk: la qualification des faits 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Victime de fait divers et affaire judiciaire en cours · décès : 2023
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 7 s
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : OpenAI scraps rollout of new model over safety con
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 1.6h +8 + thème porteur +10 + primeur +5 + portée internationale +10
+  🧩 6 affirmation(s) : 6 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] OpenAI a annulé le lancement de son nouveau modèle, GPT-6.1 Astra, en raison d
+      [2m] Saachi Jain, responsable des systèmes de sécurité chez OpenAI, a déclaré que l
+      [2m] Le modèle a échoué en matière de respect du périmètre, d'autorisation et de co
+      [2m] L'information concernant cette décision a été initialement rapportée par le Wa
+      [2m] Des dirigeants du secteur de l'IA, dont Sam Altman et Dario Amodei, ont récemm
+      [2m] Le modèle phare GPT-6 Astra, spécialisé dans le raisonnement complexe et l'exé
+  🕒 Âge de l'article : 1.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 2 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 22 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Explosion dans les Pyrénées-Orientales : huit pers
+  ♻️ Doublon d'un sujet déjà publié, écarté : Après trois ans de « tronçonneuse », Javier Milei 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mort de Nahel Merzouk: la qualification des faits 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Fortes explosions à Kyiv pendant une alerte aux mi
+  ♻️ 6/10 [world] (déjà analysé, cache) : Grève de la fonction publique: les syndicats appel
+  ♻️ 7/10 [world] (déjà analysé, cache) : Propos antisémites attribués à Jordan Bardella : "
+  ♻️ 8/10 [world] (déjà analysé, cache) : « Démission », « barbouzerie »… Les réactions aprè
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 7/10 [world] (déjà analysé, cache) : U.S., Iran hold separate mediator talks as Mideast
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Goldman Sachs brings $100 billion Treasury fund in
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI Halts Model Training as Rogue Agents Target
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Citi Clients Can Now Take Stablecoin Payments Thro
+  ♻️ 8/10 [space] (déjà analysé, cache) : SpaceX's Starship goes orbital, deploying first ne
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI cancels GPT-6.1 Astra release over misbehav
+  🧠 Batch analyse de 7 articles...
+  📉 3/10: "Un pactole contre un pacte" : comment l'Allemagne a fa
+  🌍 6/10 sans portée internationale : Crise du logement : des manifestations en Espagne
+  📉 5/10: Toute l’info en 2 minutes : Fonctionnaires en colère, B
+  📉 2/10: Pyrénées-Atlantiques - En images, le château d’Audaux s
+  📉 2/10: Nouvelles fragrances femme 2026 : les parfums qui osent
+  📉 4/10: Headphone (1) Pro officialisé : Nothing met trois trans
+  📉 4/10: Sony tourne le dos au CES 2027
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 1.6h — OpenAI scraps rollout of new model over safe
+     10/10 · 4 média(s) · 1.6h — OpenAI scraps rollout of new model over safe
+     9/10 · 2 média(s) · 0.5h — Propos antisémites attribués à Jordan Bardel
+     8/10 · 1 média(s) · 0.3h — Mort de Nahel Merzouk: la qualification des 
+     10/10 · 2 média(s) · 7.7h — « Démission », « barbouzerie »… Les réaction
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (162 → 128 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 1.6h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : OpenAI scraps rollout of new model over safety concerns
+
+  ── Bilan du cycle (178 s) ──
+     écartés : 1 sujet banal · 1 hommage refusé · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         🚫 quota
+        30. clé 4 × gemini-embedding-2-preview   🚫 quota
+        31. clé 4 × gemini-embedding-2           🚫 quota
+        32. clé 5 × gemini-embedding-001         🚫 quota
+        33. clé 5 × gemini-embedding-2-preview   🚫 quota
+        34. clé 5 × gemini-embedding-2           🚫 quota
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 14 autres
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 46,574 entrée · 1,611 sortie
+     ✅ aucun appel payant
