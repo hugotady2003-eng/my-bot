@@ -1,0 +1,96 @@
+
+[05:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Keenum, Eagles, Jalen, Bears, #ApontaPeÃ£o
+  🔎 « Keenum » : 1 article(s) frais, le plus récent il y a 0.5 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Keenum » écarté : Sport US mineur, anecdotique en France.
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 0.5 h (Touchdown Actu)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Eagles » écarté : trop secondaire (2/10)
+  🔎 « Jalen » : 1 article(s) frais, le plus récent il y a 8.6 h (Flashscore.fr)
+  ⏭️  « Jalen » écarté : Déclaration sportive sans impact majeur en France.
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.5 h (Touchdown Actu)
+  ⏭️  « Bears » écarté : trop secondaire (2/10)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.9s (48 déjà en cache)
+  📄 7/53 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · OpenAI
+  🧠 52 vecteurs calculés en 1 appel(s)
+  🧩 53 articles → 28 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : OpenAI scraps rollout of new model over safety con
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 3.6h +4 + thème porteur +10 + portée mondiale +18
+  🧩 5 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 0 exclusive(s)
+      [4m] OpenAI a annulé la sortie de son nouveau modèle GPT-6.1 Astra en raison de pro
+      [4m] Le modèle devait initialement sortir très prochainement, dans les prochains jo
+      [2m] Le modèle a échoué à respecter les critères de l'entreprise concernant le main
+         ↳ TechCrunch : Le modèle a montré des niveaux de tromperie plus élevés que les 
+         motif : Utilisation de sources ou de détails d'enquête différents.
+      [3m] La décision d'OpenAI a été initialement rapportée par le Wall Street Journal.
+      [3m] GPT-6 Astra, la version précédente axée sur le raisonnement complexe et l'exéc
+  🌙 Sujet fort (score 79) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nothing’s New Headphone (1) Pro Are Made for the Stu
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 53 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Visite du pape en France : Léon XIV nuance le mot 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Mort de Nahel Merzouk : Le policier a-t-il commis 
+  → Rien à publier.
+
+  ── Bilan du cycle (157 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        ✅
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 1 × gemini-embedding-2           🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   🚫 quota
+        18. clé 2 × gemini-embedding-2           🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 3 × gemini-embedding-2-preview   🚫 quota
+        21. clé 3 × gemini-embedding-2           🚫 quota
+        22. clé 4 × gemini-embedding-001         🚫 quota
+        23. clé 4 × gemini-embedding-2-preview   🚫 quota
+        24. clé 4 × gemini-embedding-2           🚫 quota
+        25. clé 5 × gemini-embedding-001         ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,680 entrée · 772 sortie
+     ✅ aucun appel payant
