@@ -1,0 +1,150 @@
+
+[08:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ããã£ã¤, Keenum, #å® é ãã¶ã®æ¥åå¤ç¥­, Eagles, #HimalayanSolarIPOFinalDay
+  🔎 « Keenum » : 1 article(s) frais, le plus récent il y a 3.5 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Keenum » écarté : Sport US mineur pour le public français.
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 1.0 h (lequipe.fr)
+  ⏭️  « Eagles » écarté : trop secondaire (3/10)
+  🌍 « JaiAmbeBol » : aucune reprise en français, source internationale retenue
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 18562 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/4 articles lus en 2.7s (9 déjà en cache)
+  📄 3/14 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Le Café Tech: l'IA serait-elle dangere… »
+  🧠 Même événement (jugé) : « OpenAI scraps rollout of new model ove… »
+  🧩 14 articles → 12 événement(s)
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : La Thaïlande face à des inondations monstres : 4 m
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 8/10 → 36 + frais 0.3h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 30 s
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 14 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : La Thaïlande face à des inondations monstres : 4 m
+  ♻️ 8/10 [world] (déjà analysé, cache) : « Démission », « barbouzerie »… Les réactions aprè
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 7/10 [world] (déjà analysé, cache) : U.S., Iran hold separate mediator talks as Mideast
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI Halts Model Training as Rogue Agents Target
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Citi Clients Can Now Take Stablecoin Payments Thro
+  ♻️ 8/10 [space] (déjà analysé, cache) : SpaceX's Starship goes orbital, deploying first ne
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI cancels GPT-6.1 Astra release over misbehav
+  🧠 Batch analyse de 5 articles...
+  📉 3/10: Le Café Tech: l'IA serait-elle dangereuse pour l'humani
+  ⏩ Doublon: Le Café Tech: l'IA serait-elle dangereuse pour l'humani
+  📉 3/10: Mon employeur peut-il m’imposer des congés sans solde ?
+  📉 3/10: Présidentielle 2027. Après Stéphane Le Foll, une trenta
+  📉 3/10: The Witcher 3 Remastered : reprendre une ancienne parti
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.3h — La Thaïlande face à des inondations monstres
+     10/10 · 4 média(s) · 2.5h — OpenAI scraps rollout of new model over safe
+     10/10 · 4 média(s) · 2.5h — OpenAI scraps rollout of new model over safe
+     10/10 · 3 média(s) · 9.2h — OpenAI Halts Model Training as Rogue Agents 
+     10/10 · 3 média(s) · 8.0h — OpenAI cancels GPT-6.1 Astra release over mi
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 3 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → publication SANS image (texte seul)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram sauté pour ce post (pas d'image, texte seul)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : La Thaïlande face à des inondations monstres : 4 morts 
+
+  ── Bilan du cycle (125 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   🚫 quota
+        29. clé 4 × gemini-embedding-2           🚫 quota
+        30. clé 5 × gemini-embedding-001         🚫 quota
+        31. clé 5 × gemini-embedding-2-preview   🚫 quota
+        32. clé 5 × gemini-embedding-2           🚫 quota
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 7 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 32,939 entrée · 1,050 sortie
+     ✅ aucun appel payant
