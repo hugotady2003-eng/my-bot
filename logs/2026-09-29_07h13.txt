@@ -1,0 +1,157 @@
+
+[07:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Keenum, Eagles, Jalen, Bears, ããã£ã¤
+  🔎 « Keenum » : 1 article(s) frais, le plus récent il y a 1.8 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Keenum » écarté : trop secondaire (2/10)
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 1.8 h (Touchdown Actu)
+  ⏭️  « Eagles » écarté : Match ancien sans actualité récente pertinente.
+  🔎 « Jalen » : 1 article(s) frais, le plus récent il y a 9.8 h (Flashscore.fr)
+  ⏭️  « Jalen » écarté : Le titre mentionné est factuellement inexact.
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 1.8 h (Touchdown Actu)
+  ⏭️  « Bears » écarté : Match de NFL sans actualité marquante en France.
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 18457 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/6 articles lus en 1.6s (28 déjà en cache)
+  📄 2/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « « Démission », « barbouzerie »… Les ré… »
+  🧩 35 articles → 22 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 7 médias) : OpenAI scraps rollout of new model over safety con
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC, BBC Business, BFMTV, La Tribune
+  🧮 Score 70.0/100 = gravité 8/10 → 36 + 7 médias +11 + frais 0.7h +13 + thème porteur +10
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (161 → 127 car.)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 11 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : "On est vraiment à bout de nerfs, on n'a plus de sol
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 35 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : « Démission », « barbouzerie »… Les réactions aprè
+  ♻️ 6/10 [markets] (déjà analysé, cache) : La France au pied du mur de la dette. La chronique
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI scraps rollout of new model over safety con
+  ♻️ 7/10 [world] (déjà analysé, cache) : U.S., Iran hold separate mediator talks as Mideast
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Goldman Sachs brings $100 billion Treasury fund in
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI Halts Model Training as Rogue Agents Target
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Citi Clients Can Now Take Stablecoin Payments Thro
+  ♻️ 8/10 [space] (déjà analysé, cache) : SpaceX's Starship goes orbital, deploying first ne
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI cancels GPT-6.1 Astra release over misbehav
+  🎯 Pré-classement : 5 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 2/10: Clément Courgeon : la loi du plus forain
+  📉 3/10: Trajectoire : NutriGenius, l'application dédiée aux con
+  📉 3/10: Mars Has Its Charmes
+  📉 4/10: Burnham to unveil public body to invest in electricity 
+  📉 4/10: Boeing contrôle 94 % du marché contre seulement 6 % pou
+  📉 3/10: Pedro Sanchez, le cavalier seul qui exaspère l'Europe :
+  📉 3/10: Le Pitch : Süvy, un nouveau substitut au sucre - 29/09
+  📉 3/10: APOD: 2026 September 29 – Sh2-188: The Shrimp Nebula
+  📉 3/10: Yves Rénier et Goldie Hawn : l'histoire d'amour secrète
+  📉 3/10: This website lets you explore nearly 30 years of Apple 
+  📉 3/10: Emmy wins and recent premieres help Apple TV reach high
+  📉 5/10: Pope Leo says AI risk concerns not ‘fake news’
+  🌍 6/10 sans portée internationale : Grève : les fonctionnaires face à la grande peur d
+  📉 4/10: Broadcom, Toppan open Singapore's first advanced chip s
+  📉 4/10: Samsung joins AI infrastructure race with $1bn Helix de
+  📉 5/10: Argentina threatens legal action against UK over Falkla
+  📉 5/10: Santé : environ un cancer sur huit dans le monde est li
+  📉 3/10: Le podcast du Journal du Geek : GTA VI n’a-t-il vraimen
+  📉 1/10: Home Depot Promo Codes: 30% Off in October 2026
+  📉 1/10: Motorola Coupon Code for October 2026
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 0.7h — OpenAI scraps rollout of new model over safe
+     10/10 · 4 média(s) · 0.7h — OpenAI scraps rollout of new model over safe
+     10/10 · 2 média(s) · 6.7h — « Démission », « barbouzerie »… Les réaction
+     10/10 · 3 média(s) · 7.5h — OpenAI Halts Model Training as Rogue Agents 
+     10/10 · 3 média(s) · 6.2h — OpenAI cancels GPT-6.1 Astra release over mi
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.7h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : OpenAI scraps rollout of new model over safety concerns
+
+  ── Bilan du cycle (159 s) ──
+     écartés : 1 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 1 × gemini-embedding-2-preview   🚫 quota
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 2 × gemini-embedding-2           🚫 quota
+        22. clé 3 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-2-preview   🚫 quota
+        24. clé 3 × gemini-embedding-2           🚫 quota
+        25. clé 4 × gemini-embedding-001         ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        34. clé 3 × gemini-3.6-flash             🚫 quota
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 34,796 entrée · 1,100 sortie
+     ✅ aucun appel payant
