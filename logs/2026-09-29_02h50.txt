@@ -1,0 +1,75 @@
+
+[02:48] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ä¸è§ãã§ã³ãã¤æ©ãé£ã¹ãã, #WWERaw, Keivo, Tram, æãç«ã®æ¥
+  🌍 « Keivo » : aucune reprise en français, source internationale retenue
+  🔎 « Keivo » : 1 article(s) frais, le plus récent il y a 2.2 h (thenewsnigeria.com.ng)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Keivo » écarté : Divertissement étranger sans impact en France.
+  🔎 « Tram » : 1 article(s) frais, le plus récent il y a 2.7 h (claap.fr)
+  ⏭️  « Tram » écarté : trop secondaire (4/10)
+  🔎 « Knies » : 1 article(s) frais, le plus récent il y a 2.8 h (24heures.ca)
+  ⏭️  « Knies » écarté : Sujet sportif mineur sans actualité récente majeure.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Bardella, #GPT61Astra
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📖 2/2 articles lus en 1.0s (35 déjà en cache)
+  📄 4/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 37 vecteurs calculés en 1 appel(s)
+  🧩 37 articles → 18 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 7 médias) : OpenAI scraps release of latest AI model over safe
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : 9to5Google, Al Jazeera, BBC Business, Decrypt, Ouest-France
+  🧮 Score 83.0/100 = gravité 8/10 → 36 + 7 médias +11 + frais 1.8h +8 + imprévu 8/10 +18 + thème porteur +10
+  🌙 Sujet fort (score 83) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 8 médias) : Guerre en Ukraine : nouveaux bombardements meurtri
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, L'Express, La Tribune, Libération
+  🧮 Score 57.5/100 = gravité 9/10 → 40 + 8 médias +15 + frais 4.5h +2
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Antisémitisme obsessionnel" ou "barbouzerie" ? Six 
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 37 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (71 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-embedding-2-preview   🚫 quota
+        11. clé 1 × gemini-embedding-2           🚫 quota
+        12. clé 2 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-2-preview   🚫 quota
+        14. clé 2 × gemini-embedding-2           🚫 quota
+        15. clé 3 × gemini-embedding-001         ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,061 entrée · 244 sortie
+     ✅ aucun appel payant
