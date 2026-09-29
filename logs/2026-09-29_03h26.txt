@@ -1,0 +1,101 @@
+
+[03:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Eagles, Keenum, Ben Johnson, Bears, #QuemAmaCuida
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 12.9 h (Odds Scanner)
+  ⏭️  « Eagles » écarté : Simple match de sport anecdotique.
+  🔎 « Keenum » : 1 article(s) frais, le plus récent il y a 6.8 h (RDS)
+  ⏭️  « Keenum » écarté : Sport nord-américain mineur pour le public français.
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 15.7 h (arsenalsports.ca)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Bears » écarté : Il s'agit de simples pronostics sportifs.
+  🌍 « Rome Odunze » : aucune reprise en français, source internationale retenue
+  🔎 « Rome Odunze » : 1 article(s) frais, le plus récent il y a 0.2 h (NFL.com)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Rome Odunze » écarté : trop secondaire (1/10)
+  📖 1/1 articles lus en 0.1s (40 déjà en cache)
+  📄 4/42 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 41 vecteurs calculés en 1 appel(s)
+  🧩 42 articles → 19 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : OpenAI scraps rollout of new model over safety con
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.1h +16 + thème porteur +10 + primeur +5 + portée internationale +10
+  🧩 5 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] OpenAI a annulé le déploiement de son nouveau modèle, GPT-6.1 Astra, pour des 
+      [2m] Le modèle n'a pas atteint les standards de sécurité requis concernant le respe
+      [2m] L'information a été initialement rapportée par le Wall Street Journal.
+      [2m] Des dirigeants du secteur, dont Sam Altman et Dario Amodei, appellent à ralent
+      [2m] Le modèle GPT-6 Astra, spécialisé dans le raisonnement complexe et l'exécution
+  🌙 Sujet fort (score 81) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nothing’s New Headphone (1) Pro Are Made for the Stu
+  🚨 Sujet chaud (breaking, 2 médias) : « Démission », « barbouzerie »… Les réactions aprè
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 4.6h +2 + thème porteur +10
+  🧩 6 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Mediapart a publié une enquête attribuant des propos antisémites à Jordan Bard
+      [2m] Jordan Bardella dément formellement les propos qui lui sont prêtés et annonce 
+      [2m] Marine Le Pen qualifie les accusations de Mediapart de « barbouzerie ».
+      [1m] ⚡exclusif Des responsables politiques de gauche demandent des conséquences politiques, d
+      [1m] ⚡exclusif Mediapart décrit Jordan Bardella comme étant aligné sur les thèses d'Alain Sor
+      [1m] ⚡exclusif Jordan Bardella accuse une presse militante de vouloir déstabiliser sa campagn
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 9 médias) : Guerre en Ukraine : nouveaux bombardements meurtri
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 10 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, Al Jazeera, L'Express, La Tribune
+  🧮 Score 57.5/100 = gravité 9/10 → 40 + 9 médias +15 + frais 4.4h +2
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 42 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (63 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         4. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         5. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         6. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+         7. clé 1 × gemini-3-flash               ⛔ inexistant
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-embedding-001         🚫 quota
+        13. clé 1 × gemini-embedding-2-preview   🚫 quota
+        14. clé 1 × gemini-embedding-2           🚫 quota
+        15. clé 2 × gemini-embedding-001         🚫 quota
+        16. clé 2 × gemini-embedding-2-preview   🚫 quota
+        17. clé 2 × gemini-embedding-2           🚫 quota
+        18. clé 3 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-2-preview   🚫 quota
+        20. clé 3 × gemini-embedding-2           🚫 quota
+        21. clé 4 × gemini-embedding-001         ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.1-flash-lite        ✅
+        25. clé 2 × gemini-3.1-flash-lite        ✅
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.1-flash-lite        ✅
+        28. clé 2 × gemini-3.1-flash-lite        ✅
+        29. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,678 entrée · 1,115 sortie
+     ✅ aucun appel payant
