@@ -1,0 +1,191 @@
+
+[22:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Portugal, Ronaldo, رونالدو, #LITTLEKIDxSHUFFLE, Jorge Jesus
+  🔎 « Portugal » : 1 article(s) frais, le plus récent il y a 4.1 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Portugal » écarté : Information ancienne et non vérifiée sur Ronaldo.
+  🔎 « Ronaldo » : 1 article(s) frais, le plus récent il y a 1.7 h (Le Monde.fr)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ✅ « Ronaldo » retenu : Départ soudain de Cristiano Ronaldo de sa sélection. (7/10) (+1 au score)
+  🔎 « Jorge Jesus » : 1 article(s) frais, le plus récent il y a 1.7 h (L'Équipe)
+  ⏭️  « Jorge Jesus » écarté : Information erronée ou non pertinente en France.
+  🌍 « Wicknell Chivayo » : aucune reprise en français, source internationale retenue
+  🔎 « Wicknell Chivayo » : 1 article(s) frais, le plus récent il y a 1.2 h (Hindustan Times)
+  ⏭️  « Wicknell Chivayo » écarté : trop secondaire (2/10)
+  🌍 « Captain Smit Machchhar » : aucune reprise en français, source internationale retenue
+  🔎 « Captain Smit Machchhar » : 1 article(s) frais, le plus récent il y a 1.7 h (Newsweek)
+  ⏭️  « Captain Smit Machchhar » écarté : Pilote étranger salué, sans impact en France
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Ronaldo
+  🕐 22h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 2.0 h) : 25-45 min
+  ✅ Dernière publi il y a 20838 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.2s (7 déjà en cache)
+  📄 1/9 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 9 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Gemini 4 Argon: our next era of fronti… »
+  🧩 9 articles → 6 événement(s)
+  🚨 Sujet chaud (breaking, 2 médias) : Vigilance rouge dans le Gard et l'Hérault : la sit
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 48.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.8h +8 + primeur +5
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Les départements du Gard et de l'Hérault sont placés en vigilance rouge pluie-
+      [2m] Météo-France prévoit un épisode méditerranéen exceptionnel et très marqué pour
+      [1m] ⚡exclusif La Lozère et l'Ardèche restent placées en vigilance orange pluie-inondation et
+         motif : Information non mentionnée dans l'autre article.
+      [1m] ⚡exclusif Les transports scolaires sont suspendus et les établissements scolaires fermés
+         motif : Information non mentionnée dans l'autre article.
+      [1m] ⚡exclusif Les Bouches-du-Rhône seront classées en vigilance orange à partir de 12 h.
+         motif : Information non mentionnée dans l'autre article.
+  🕒 Âge de l'article : 3.2h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 23 s
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Google annonce Gemini 4 Argon et affirme battre GP
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 12 s
+  🧮 Score 81.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 0.6h +13 + thème porteur +10 + primeur +5 + portée mondiale +18
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 8 s
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ⚠️ gemini-3.5-flash-lite (clé 4) : Invalid control character at: line 1 column 278 (char 277) → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Blocage des lycées : le ministre de l’intérieur re
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Ouest-France
+  🧮 Score 54.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.0h +4 + thème porteur +10
+  🕒 Âge de l'article : 4.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : "La loi devrait changer", estime Robert Ménard, ma
+  🧮 Score 17.5/100 = gravité 3/10 → 14 + frais 0.2h +16 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 18) → suivant
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Cristiano Ronaldo quitte la sélection portugaise à l
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 9 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Blocage des lycées : le ministre de l’intérieur re
+  ♻️ 7/10 [world] (déjà analysé, cache) : Vigilance rouge dans le Gard et l'Hérault : la sit
+  ♻️ 8/10 [world] (déjà analysé, cache) : REPLAY Épisode méditerranéen : l’alerte rouge levé
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Budget : « L’état de nervosité des marchés se maté
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Inflation à 3 % : le budget 2027 arrive au moment 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Google annonce Gemini 4 Argon et affirme battre GP
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  🧠 Batch analyse de 1 articles...
+  🌍 7/10 sans portée internationale : Boxe. « La cerise sur le gâteau de deux grandes ca
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.5h — REPLAY Épisode méditerranéen : l’alerte roug
+     10/10 · 2 média(s) · 0.9h — Gemini 4 Argon: our next era of frontier int
+     9/10 · 2 média(s) · 0.5h — Google annonce Gemini 4 Argon et affirme bat
+     9/10 · 1 média(s) · 4.0h — Blocage des lycées : le ministre de l’intéri
+     9/10 · 2 média(s) · 3.2h — Vigilance rouge dans le Gard et l'Hérault : 
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : REPLAY Épisode méditerranéen : l’alerte rouge levée à 2
+
+  ── Bilan du cycle (235 s) ──
+     écartés : 1 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.6-flash             🚫 quota
+        14. clé 4 × gemini-3.5-flash-lite        ✅
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ⚠️ Invalid control charac
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-001 (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 732
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 67,113 entrée · 2,502 sortie
+     ✅ aucun appel payant
