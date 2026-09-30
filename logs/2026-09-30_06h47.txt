@@ -1,0 +1,113 @@
+
+[06:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Ben Rice, #DebateNaGlobo, #à¸¢à¸±à¸§à¸£à¹à¸à¸¹à¸à¹à¸à¸­à¸£à¹Q4, YOURTUBER Q4, #RoÃ§aAFazenda
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #SuperIntelligence
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/8 articles lus en 1.5s (55 déjà en cache)
+  📄 8/64 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block
+  🧠 63 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 64 articles → 23 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 3 médias) : Vigilance rouge "pluie-inondation": les établissem
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 34.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.2h +16 + fait local -20 + sous la barre des faits locaux (66)
+  🧩 7 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [3m] Le Gard et l'Hérault sont placés en vigilance rouge pour risque de pluies et d
+      [1m] ⚡exclusif Les établissements scolaires du Gard sont fermés pour la journée.
+      [1m] ⚡exclusif Les transports en commun sont interrompus dans tout le département du Gard.
+      [3m] La vigilance rouge débute à 8 heures ce mercredi 30 septembre.
+      [3m] Les départements de l'Ardèche, de la Lozère et des Bouches-du-Rhône sont placé
+         ↳ 20 Minutes : Les Bouches-du-Rhône passent en vigilance orange seulement à par
+         motif : Précision temporelle sur le déclenchement de la vigilance.
+      [1m] ⚡exclusif Météo-France prévoit des cumuls de pluie exceptionnels pouvant atteindre 200 à
+      [1m] ⚡exclusif Des réactions à la hausse des cours d'eau ont été observées dès 3h du matin.
+  → Sujet chaud pas assez fort (score 34) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Plus d'un tiers de la population mondiale exposée à 
+  🚨 Sujet chaud (breaking, 25 médias) : Guerre au Moyen-Orient : sept morts à Gaza, un min
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  🚨 Sujet chaud (breaking, 25 médias) : Three takeaways from Trump's 'Super Intelligence' 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 34 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, ActuGaming, Ars Technica, BBC, BBC Business
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + 25 médias +20 + frais 2.6h +4 + thème porteur +10 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Les départements du Gard et de l'Hérault sont placés en vigilance rouge pour r
+      [2m] Un épisode cévenol exceptionnel avec des cumuls de précipitations pouvant atte
+      [1m] ⚡exclusif Les départements de la Lozère, de l'Ardèche et des Bouches-du-Rhône sont placé
+      [1m] ⚡exclusif Vigicrues alerte sur des risques de crues rapides et de dommages importants su
+      [1m] ⚡exclusif Les pluies devraient se décaler vers la Provence, notamment entre Avignon et M
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  ⚪ Écarté (-1, pénalisé par « \b(?:météo ») : Météo : vigilance rouge dans le Gard et l’Hérault po
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 64 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : « Son père n’a pas cessé d’appeler à l’aide » : un
+  ♻️ Doublon d'un sujet déjà publié, écarté : Illinois draft crypto tax rules detail DeFi, stabl
+  → Rien à publier.
+
+  ── Bilan du cycle (68 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-2-preview   🚫 quota
+         2. clé 1 × gemini-embedding-2           🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   ✅
+        11. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 1 × gemini-3.6-flash             🚫 quota
+        15. clé 1 × gemini-3-flash               ⛔ inexistant
+        16. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 2 × gemini-3-flash               ⛔ inexistant
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 3 × gemini-3.6-flash             🚫 quota
+        25. clé 3 × gemini-3-flash               ⛔ inexistant
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-001 · clé 5 × gemini-3.6-flash · clé 5 × gemini-embedding-2-preview (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 12,066 entrée · 1,242 sortie
+     ✅ aucun appel payant
