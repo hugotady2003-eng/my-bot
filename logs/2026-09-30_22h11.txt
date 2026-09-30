@@ -1,0 +1,203 @@
+
+[22:07] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 2 column 14 (char 15) → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Portugal, Ronaldo, رونالدو, #LITTLEKIDxSHUFFLE, Jorge Jesus
+  🔎 « Portugal » : 1 article(s) frais, le plus récent il y a 3.4 h (L'Équipe)
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Portugal » écarté : trop secondaire (5/10)
+  🔎 « Ronaldo » : 1 article(s) frais, le plus récent il y a 1.0 h (Le Monde.fr)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ✅ « Ronaldo » retenu : Départ inattendu de Cristiano Ronaldo de sa sélection. (7/10) (+1 au score)
+  🔎 « Jorge Jesus » : 1 article(s) frais, le plus récent il y a 1.0 h (L'Équipe)
+  ✅ « Jorge Jesus » retenu : Départ de Cristiano Ronaldo de la sélection portugaise. (7/10) (+1 au score)
+  🌍 « Wicknell Chivayo » : aucune reprise en français, source internationale retenue
+  🔎 « Wicknell Chivayo » : 1 article(s) frais, le plus récent il y a 0.5 h (Hindustan Times)
+  ⏭️  « Wicknell Chivayo » écarté : trop secondaire (2/10)
+  🌍 « Captain Smit Machchhar » : aucune reprise en français, source internationale retenue
+  🔎 « Captain Smit Machchhar » : 1 article(s) frais, le plus récent il y a 1.0 h (Newsweek)
+  ⏭️  « Captain Smit Machchhar » écarté : Pilote étranger salué, sans impact en France
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Ronaldo, #JorgeJesus
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 22h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 2.0 h) : 25-45 min
+  ✅ Dernière publi il y a 20795 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 1.3s (7 déjà en cache)
+  📄 1/15 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 15 vecteurs calculés en 1 appel(s)
+  🧩 15 articles → 13 événement(s)
+  🚨 Sujet chaud (breaking, 2 médias) : Vigilance rouge dans le Gard et l'Hérault : la sit
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 48.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.3h +8 + primeur +5
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Les départements du Gard et de l'Hérault sont placés en vigilance rouge pluie-
+      [2m] Météo-France prévoit un épisode méditerranéen exceptionnel pour le Gard et l'H
+      [1m] ⚡exclusif Les transports scolaires sont suspendus et les établissements scolaires sont f
+      [1m] ⚡exclusif La Lozère et l'Ardèche sont maintenues en vigilance orange pluie-inondation et
+      [1m] ⚡exclusif Les Bouches-du-Rhône doivent passer en vigilance orange à partir de 12 h.
+  🕒 Âge de l'article : 2.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Report: Meta’s Muse crosses 5 million downloads amid
+  🚨 Sujet chaud (breaking, 1 médias) : Blocage des lycées : le ministre de l’intérieur re
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 50.0/100 = gravité 8/10 → 36 + frais 3.2h +4 + thème porteur +10
+  🕒 Âge de l'article : 3.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 5 s
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Google rolls out Gemini 4 Argon, its most advanced
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 30 s
+  🧮 Score 61.0/100 = gravité 4/10 → 18 + 2 médias +4 + frais 0.1h +16 + primeur +5 + portée mondiale +18
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 1 s
+  🧩 7 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Google a annoncé le lancement de son modèle d'IA le plus avancé, Gemini 4 Argo
+      [2m] Le modèle offre des performances de pointe en génie logiciel, en cybersécurité
+      [2m] Google déploie le modèle de manière progressive, en commençant par des partena
+      [2m] Le modèle est déjà utilisé en interne chez Google pour optimiser la mémoire de
+      [2m] Google collabore avec le gouvernement américain dans le cadre d'évaluations et
+      [1m] ⚡exclusif Le PDG Sundar Pichai a signé un accord volontaire de sécurité avec le présiden
+      [1m] ⚡exclusif Le modèle sera commercialisé au prix de 2 dollars par million de jetons d'entr
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (196 → 158 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Cristiano Ronaldo quitte la sélection portugaise à l
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Après le psychodrame avec le sélectionneur Jorge Jes
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 15 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Refus de marier un Algérien sous OQTF : 7 500 € d’
+  ♻️ 8/10 [world] (déjà analysé, cache) : Blocage des lycées : le ministre de l’intérieur re
+  ♻️ 7/10 [world] (déjà analysé, cache) : Vigilance rouge dans le Gard et l'Hérault : la sit
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT Épisode méditerranéen : des points de di
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Budget : « L’état de nervosité des marchés se maté
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Inflation à 3 % : le budget 2027 arrive au moment 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Amazon’s delivery driver smart glasses will report
+  🧠 Batch analyse de 6 articles...
+  📉 4/10: Le Tech Flash : OpenAI veut lever 30 milliards de dolla
+  📉 3/10: "Tout se sait" : une ancienne gagnante de "The Voice" p
+  ✅ 7/10 [ai] mondiale: Sen. Hawley: OpenAI CEO Sam Altman declined to t
+  📉 3/10: Nidec races to shore up governance as auditor withholds
+  📉 3/10: The future of AI belongs to the orchestrators
+  📉 3/10: Report: Meta’s Muse crosses 5 million downloads amid ma
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.2h — Gemini 4 Argon: our next era of frontier int
+     9/10 · 1 média(s) · 0.2h — EN DIRECT Épisode méditerranéen : des points
+     8/10 · 1 média(s) · 0.6h — Sen. Hawley: OpenAI CEO Sam Altman declined 
+     9/10 · 1 média(s) · 3.3h — Blocage des lycées : le ministre de l’intéri
+     8/10 · 1 média(s) · 2.5h — Vigilance rouge dans le Gard et l'Hérault : 
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (172 → 122 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Gemini 4 Argon: our next era of frontier intelligence
+
+  ── Bilan du cycle (237 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 3 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 1 × gemini-embedding-001         🚫 quota
+        25. clé 1 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-001         ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 733
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 68,141 entrée · 2,530 sortie
+     ✅ aucun appel payant
