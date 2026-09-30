@@ -1,0 +1,108 @@
+
+[00:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Portugal, Ronaldo, رونالدو, 開催中のガチャ, #天下五剣
+  🔎 « Portugal » : 1 article(s) frais, le plus récent il y a 5.5 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Portugal » écarté : Information ancienne et non vérifiée sur Ronaldo.
+  🔎 « Ronaldo » : 1 article(s) frais, le plus récent il y a 3.1 h (Le Monde.fr)
+  ✅ « Ronaldo » retenu : Départ inattendu d'une star mondiale du football. (7/10) (+1 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Flydubai, #Gemini4Argon, #Ronaldo
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.3s (17 déjà en cache)
+  📄 1/20 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 20 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 20 articles → 15 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : De fortes pluies se sont abattues sur le Gard et l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.0/100 = gravité 6/10 → 27 + 2 médias +4 + frais 2.7h +4
+  🧩 5 affirmation(s) : 1 partagée(s) · 2 divergente(s) · 2 exclusive(s)
+      [1m] La vigilance rouge 'pluie-inondation' est levée pour le Gard et l'Hérault.
+         ↳ France Bleu : Le Gard et l'Hérault sont placés en vigilance rouge inondation p
+         motif : Information plus récente
+      [1m] Les écoles des départements concernés rouvrent jeudi.
+         ↳ France Bleu : Les établissements scolaires sont fermés dans le Gard et dans l'
+         motif : Évolution de la situation au cours de la journée
+      [1m] ⚡exclusif Le Gard, l'Hérault et les Bouches-du-Rhône sont placés en vigilance orange 'pl
+      [2m] Les transports scolaires sont perturbés ou suspendus dans les départements tou
+      [1m] ⚡exclusif La Lozère et l'Ardèche sont placées en vigilance orange.
+  → Sujet chaud pas assez fort (score 35) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Google annonce Gemini 4 Argon et affirme battre GP
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + frais 1.9h +8 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🌙 Sujet fort (score 72) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : Blocage des lycées : le ministre de l’intérieur re
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.8h +4 + thème porteur +10
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Refus de marier un Algérien sous OQTF: Robert Ménard
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Vol de FlyDubai vers Tel-Aviv détourné : Israël déno
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Cristiano Ronaldo quitte la sélection portugaise à l
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 20 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Un cinquième décès lié à la rougeole recensé aux É
+  → Rien à publier.
+
+  ── Bilan du cycle (111 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   ✅
+        19. clé 3 × gemini-3.1-flash-lite        ✅
+        20. clé 3 × gemini-3.1-flash-lite        ✅
+        21. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.6-flash             🚫 quota
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 732
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,057 entrée · 1,232 sortie
+     ✅ aucun appel payant
