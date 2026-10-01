@@ -1,0 +1,185 @@
+
+[07:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Reggie, Arike, #HBD_SITARAMPOSWAL, #AEWDynamite, #ยัวร์ทูบเบอร์Q5
+  🌍 « Reggie » : aucune reprise en français, source internationale retenue
+  🔎 « Reggie » : 1 article(s) frais, le plus récent il y a 5.2 h (The Times of India)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Reggie » écarté : Conflit privé entre influenceurs sans impact majeur.
+  🔎 « Arike » : 1 article(s) frais, le plus récent il y a 0.5 h (Basket USA)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Arike » écarté : trop secondaire (3/10)
+  🌍 « Happy New Month » : aucune reprise en français, source internationale retenue
+  🔎 « Happy New Month » : 1 article(s) frais, le plus récent il y a 6.0 h (Naija News)
+  ⏭️  « Happy New Month » écarté : Célébration récurrente sans fait nouveau.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #ChristaPike
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 21358 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/9 articles lus en 1.5s (11 déjà en cache)
+  📄 2/20 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 20 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Budget : « L’état de nervosité des mar… »
+  🧠 Même événement (jugé) : « Gemini 4 Argon: our next era of fronti… »
+  🧩 20 articles → 11 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Budget 2027 : la dernière bataille de Sébastien Leco
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Blocage des lycées: que sait-on des 85 élèves blessé
+  🚨 Sujet chaud (breaking, 3 médias) : Accusations d’Israël, réactions de Trump… Le point
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 3 médias +7 + frais 4.4h +2 + portée internationale +10 + ⚡ attentat → plancher 89
+  🧩 7 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [3m] Un copilote a poignardé le commandant de bord lors d'un vol Flydubai reliant D
+         ↳ CNBC : La compagnie Flydubai mentionne une altercation dans le cockpit 
+         motif : La compagnie appelle à la prudence face aux spéculations prématurées.
+      [3m] L'avion a dû atterrir en urgence à Tabuk, en Arabie saoudite.
+      [2m] Les autorités israéliennes qualifient l'incident de tentative d'attaque terror
+      [3m] Le commandant de bord blessé a réussi à ouvrir la porte du cockpit, permettant
+      [1m] ⚡exclusif L'appareil a subi une perte d'altitude brutale, passant de 34 000 à 17 000 pie
+      [1m] ⚡exclusif Le commandant de bord blessé est un ressortissant indien nommé Smit Machchhar.
+      [1m] ⚡exclusif L'incident visait potentiellement les accords d'Abraham et la normalisation de
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Exécution ratée de Christa Pike aux Etats-Unis : l
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 23 s
+  🧮 Score 92.5/100 = gravité 9/10 → 40 + frais 0.1h +16 + imprévu 10/10 +18 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  📈 Hashtag(s) en tendance : #ChristaPike
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #ChristaPike
+  ✂️ Tweet resserré localement (206 → 122 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 20 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Exécution ratée de Christa Pike aux Etats-Unis : l
+  ♻️ Doublon d'un sujet déjà publié, écarté : Près de 60 morts déjà recensés en 2026: le parquet
+  ♻️ Doublon d'un sujet déjà publié, écarté : « Des avancées majeures » : les députés se penchen
+  ♻️ 7/10 [business] (déjà analysé, cache) : Budget 2027 : la dernière bataille de Sébastien Le
+  ♻️ 7/10 [world] (déjà analysé, cache) : Vol de FlyDubai vers Tel-Aviv détourné : Israël dé
+  ♻️ 7/10 [world] (déjà analysé, cache) : Accusations d’Israël, réactions de Trump… Le point
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Budget : « L’état de nervosité des marchés se maté
+  ♻️ 6/10 [space] (déjà analysé, cache) : SpaceX Crew-13 décolle jeudi après trois semaines 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Google annonce Gemini 4 Argon et affirme battre GP
+  ♻️ 9/10 [world] (déjà analysé, cache) : Passengers and crew foil co-pilot's apparent attem
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Crypto hacks top $768M in September, worst month o
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : MetaMask exits Ethereum validators amid undisclose
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 8/10 [ai] (déjà analysé, cache) : The Pentagon taps Elon Musk and Palmer Luckey to h
+  🧠 Batch analyse de 6 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  📉 4/10: Un locataire pourra être expulsé après deux mois sans p
+  📉 3/10: Blocage des lycées: que sait-on des 85 élèves blessés d
+  📉 2/10: « Au sein des autres » : au-delà du cancer du sein, le 
+  🌍 6/10 sans portée internationale : Budget 2027 : Sébastien Lecornu au pied du mur fac
+  📉 3/10: Amazon retire 43 % sur son Echo Show 11, l’écran connec
+  📉 2/10: Michèle Laroque en pleine bourre à 66 ans : "Je le fais
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 4.4h — Passengers and crew foil co-pilot's apparent
+     9/10 · 2 média(s) · 1.8h — Budget 2027 : la dernière bataille de Sébast
+     9/10 · 2 média(s) · 1.2h — Accusations d’Israël, réactions de Trump… Le
+     10/10 · 2 média(s) · 9.5h — Gemini 4 Argon: our next era of frontier int
+     8/10 · 1 média(s) · 0.8h — Crypto hacks top $768M in September, worst m
+  ⏭️ Éphéméride trop banal (intérêt 7/10) → on ne publie pas.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (208 → 160 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 4.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Passengers and crew foil co-pilot's apparent attempt to
+
+  ── Bilan du cycle (166 s) ──
+     écartés : 2 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 4 × gemini-3.1-flash-lite        ✅
+        15. clé 4 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   🚫 quota
+        23. clé 3 × gemini-embedding-2           🚫 quota
+        24. clé 4 × gemini-embedding-001         ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        37. clé 4 × gemini-3.6-flash             🚫 quota
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 50,871 entrée · 2,089 sortie
+     ✅ aucun appel payant
