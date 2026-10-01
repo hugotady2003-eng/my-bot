@@ -1,0 +1,137 @@
+
+[06:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Arike, #AEWDynamite, #PLN50RBCUMA40RB, Yankees, Red Sox
+  🌍 « Arike » : aucune reprise en français, source internationale retenue
+  🔎 « Arike » : 1 article(s) frais, le plus récent il y a 0.8 h (ESPN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Arike » écarté : trop secondaire (2/10)
+  🔎 « Yankees » : 1 article(s) frais, le plus récent il y a 3.9 h (PassionMLB)
+  ⏭️  « Yankees » écarté : trop secondaire (2/10)
+  🔎 « Red Sox » : 1 article(s) frais, le plus récent il y a 4.0 h (PassionMLB)
+  ⏭️  « Red Sox » écarté : trop secondaire (2/10)
+  🌍 « Reggie » : aucune reprise en français, source internationale retenue
+  🔎 « Reggie » : 1 article(s) frais, le plus récent il y a 3.9 h (The Times of India)
+  ⏭️  « Reggie » écarté : Conflit privé entre influenceurs sans impact majeur.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #ChristaPike
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 1.1s (56 déjà en cache)
+  📄 6/60 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · SpaceNews
+  🧠 60 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Budget : « L’état de nervosité des mar… »
+  🧠 Même événement (jugé) : « Inflation à 3 % : le budget 2027 arriv… »
+  🧠 Même événement (jugé) : « Gemini 4 Is Here, and Google’s Flagshi… »
+  🧩 60 articles → 31 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Budget 2027 : la dernière bataille de Sébastien Leco
+  🚨 Sujet chaud (breaking, 13 médias) : Impôts, retraites, autoroutes… À quoi s’attendre d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Ars Technica, Ouest-France, Public, Sud Ouest
+  🧮 Score 53.5/100 = gravité 5/10 → 22 + 13 médias +18 + frais 0.5h +13
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 19 s
+  🧩 10 affirmation(s) : 6 partagée(s) · 2 divergente(s) · 3 exclusive(s)
+      [6m] Le gouvernement présente le projet de budget 2027 en Conseil des ministres le 
+      [3m] Le gouvernement prévoit un effort d'économies budgétaires de 54 milliards d'eu
+         ↳ 20 Minutes : L'effort total est de 54 milliards, dont 45 milliards d'efforts 
+         motif : Précision sur la décomposition des chiffres.
+      [4m] Le gouvernement envisage de mettre à contribution les retraités, notamment par
+      [2m] Le gouvernement prévoit de geler le point d'indice des fonctionnaires.
+      [1m] Le gouvernement affirme ne pas proposer de hausse généralisée des impôts.
+         ↳ 20 Minutes : Le taux de prélèvements obligatoires devrait augmenter à 44,2 % 
+         motif : Contradiction entre discours politique et projections chiffrées.
+      [1m] ⚡exclusif Le moral économique des Français atteint un niveau de pessimisme record avec u
+      [3m] Le Premier ministre Sébastien Lecornu qualifie le texte de budget de redressem
+      [1m] ⚡exclusif L'inflation a accéléré à 3,0 % sur un an en septembre 2026.
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Passengers and crew foil co-pilot's apparent attem
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 56.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 4.7h +2 + portée internationale +10
+  🧩 7 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [2m] Un copilote a agressé le commandant de bord lors d'un vol FlyDubai, provoquant
+      [2m] Le commandant de bord a été poignardé par le copilote.
+         ↳ FlyDubai (via CNBC) : La compagnie évoque une altercation sans mentionner de coup de c
+         motif : La compagnie privilégie la prudence face à l'enquête en cours.
+      [2m] L'intervention des passagers et de l'équipage a permis de maîtriser l'assailla
+      [1m] ⚡exclusif Les autorités israéliennes qualifient l'événement de tentative d'attaque terro
+      [1m] ⚡exclusif Le commandant de bord blessé est de nationalité indienne et se nomme Smit Mach
+      [1m] ⚡exclusif L'incident est lié aux tensions géopolitiques entourant les accords d'Abraham.
+      [1m] ⚡exclusif L'assaillant est actuellement interrogé par les autorités saoudiennes.
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : US death row inmate Christa Pike taken to hospital a
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 60 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : L'heure de vérité pour Cédric Jubillar ? Pourquoi 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Bitcoin's soft-inflation pop to $85,500 fades as b
+  → Rien à publier.
+
+  ── Bilan du cycle (106 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   🚫 quota
+        29. clé 3 × gemini-embedding-2           🚫 quota
+        30. clé 4 × gemini-embedding-001         ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 9,506 entrée · 1,819 sortie
+     ✅ aucun appel payant
