@@ -1,0 +1,91 @@
+
+[01:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #STAKE4EVER, Lito, Renan, #さつまいも好きさんモスにおいで, Gilmar
+  🔎 « Lito » : 1 article(s) frais, le plus récent il y a 18.2 h (Le Figaro)
+  ⏭️  « Lito » écarté : Simple promotion commerciale pour un produit high-tech.
+  🔎 « Renan » : 1 article(s) frais, le plus récent il y a 13.8 h (Le Télégramme)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Renan » écarté : Événement local récurrent sans nouveauté marquante.
+  🌍 « Gilmar » : aucune reprise en français, source internationale retenue
+  🔎 « Portugal » : 1 article(s) frais, le plus récent il y a 2.9 h (lequipe.fr)
+  ⏭️  « Portugal » écarté : trop secondaire (5/10)
+  🔎 « Ronaldo » : 1 article(s) frais, le plus récent il y a 2.9 h (lequipe.fr)
+  ⏭️  « Ronaldo » écarté : trop secondaire (5/10)
+  🌍 « Yasin Kol » : aucune reprise en français, source internationale retenue
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📖 28 articles, tous en cache
+  📄 3/28 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 28 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Whatever AI Safety Is, It’s Not This… »
+  🧩 28 articles → 19 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 3 médias) : De Gaza aux insoumis : les candidats rejouent les 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : CNBC, Google DeepMind
+  🧮 Score 34.5/100 = gravité 3/10 → 14 + 3 médias +7 + frais 2.4h +4 + portée internationale +10
+  → Sujet chaud pas assez fort (score 34) → suivant
+  🚨 Sujet chaud (breaking, 6 médias) : "La démission doit aller de soi" : les adversaires
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Al Jazeera, Ouest-France, Public
+  🧮 Score 100.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 1.4h +8 + imprévu 8/10 +18 + thème porteur +10 + portée mondiale +18
+  🧩 7 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Mediapart a publié des éléments visant à authentifier des messages antisémites
+      [2m] Jordan Bardella et le Rassemblement National contestent l'authenticité de ces 
+      [1m] ⚡exclusif Jordan Bardella a annoncé son intention de porter plainte pour faux et usage d
+      [1m] ⚡exclusif Des adversaires politiques demandent à Jordan Bardella de tirer les conséquenc
+      [1m] ⚡exclusif Mediapart a authentifié les conversations via des données de Meta et un consta
+      [1m] ⚡exclusif Le RN qualifie les révélations d'opération de barbouzerie sans preuves.
+      [1m] ⚡exclusif Le parquet de Paris a reçu une plainte pour diffamation avec constitution de p
+  🌙 Sujet fort (score 100) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 28 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (77 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-embedding-001         🚫 quota
+        12. clé 1 × gemini-embedding-2-preview   🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   ✅
+        15. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 2 × gemini-3.6-flash             🚫 quota
+        17. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 3 × gemini-3.1-flash-lite        ✅
+        19. clé 3 × gemini-3.1-flash-lite        ✅
+        20. clé 3 × gemini-3.1-flash-lite        ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite (+18)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 764
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,456 entrée · 858 sortie
+     ✅ aucun appel payant
