@@ -1,0 +1,136 @@
+
+[02:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Portugal, Ronaldo, ぼっちゃまくん, #PLN50RBCUMA40RB, 開催中のガチャ
+  🔎 « Portugal » : 1 article(s) frais, le plus récent il y a 1.9 h (Goal.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Portugal » écarté : Il s'agit d'un match de football ordinaire.
+  🔎 « Ronaldo » : 1 article(s) frais, le plus récent il y a 5.8 h (lemonde.fr)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ✅ « Ronaldo » retenu : Départ surprise d'une star mondiale du football. (7/10) (+1 au score)
+  🌍 « Happy New Month » : aucune reprise en français, source internationale retenue
+  🔎 « Happy New Month » : 1 article(s) frais, le plus récent il y a 1.4 h (Naija News)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Happy New Month » écarté : Célébration récurrente sans nouveauté pour un média français
+  🔎 « Messi » : 1 article(s) frais, le plus récent il y a 13.4 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ✅ « Messi » retenu : Annonce symbolique sur le numéro de Messi. (6/10) (+1 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Gemini4Argon, #Ronaldo, #Messi
+  📖 1/1 articles lus en 1.1s (37 déjà en cache)
+  📄 1/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : SpaceNews
+  🧠 38 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Inflation à 3 % : le budget 2027 arriv… »
+  🧠 Même événement (jugé) : « Trump amazed that an ‘Israeli plumber’… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🧠 Même événement (jugé) : « Gemini 4 Is Here, and Google’s Flagshi… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Gemini 4 Argon: our next era of fronti… »
+  🧠 Même événement (jugé) : « Google releases Gemini 4 Argon, called… »
+  🧩 38 articles → 26 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Google annonce Gemini 4 Argon et affirme battre GP
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : SpaceNews
+  🧮 Score 78.5/100 = gravité 7/10 → 32 + 5 médias +11 + frais 1.6h +8 + thème porteur +10 + portée mondiale +18
+  🧩 7 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [3m] Google a annoncé le lancement de son nouveau modèle d'intelligence artificiell
+      [2m] Selon les benchmarks fournis par Google, Gemini 4 Argon surpasse ses principau
+      [2m] Gemini 4 Argon est initialement déployé de manière restreinte auprès d'un grou
+      [2m] Le modèle a été spécifiquement conçu et entraîné pour des tâches de cyberdéfen
+      [1m] ⚡exclusif Gemini 4 Argon sera commercialisé au prix de lancement de 2 dollars par millio
+      [1m] Le modèle n'a pas encore de date de sortie officielle pour le grand public.
+         ↳ Google DeepMind : Google DeepMind indique qu'il sera rendu disponible aux développ
+         motif : Précisions différentes sur le calendrier de sortie public.
+      [1m] ⚡exclusif Google a abandonné le projet de sortie de Gemini 3.5 Pro qu'il avait initialem
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Vol de FlyDubai vers Tel-Aviv détourné : Israël déno
+  🚨 Sujet chaud (breaking, 3 médias) : De fortes pluies se sont abattues sur le Gard et l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 36.0/100 = gravité 6/10 → 27 + 3 médias +7 + frais 4.6h +2
+  🧩 6 affirmation(s) : 2 partagée(s) · 2 divergente(s) · 2 exclusive(s)
+      [1m] La vigilance rouge 'pluie-inondation' dans le Gard et l'Hérault a été levée pa
+         ↳ Midi Libre, France Bleu : Le Gard et l'Hérault passent en vigilance rouge pluie-inondation
+         motif : Évolution chronologique de la situation météorologique et mise à jour.
+      [2m] Les départements du Gard et de l'Hérault ont été placés en vigilance rouge 'pl
+      [3m] Météo-France a qualifié cet épisode méditerranéen d'exceptionnel.
+      [1m] Les écoles devront rouvrir jeudi dans le Gard et l'Hérault, avec des perturbat
+         ↳ France Bleu : Les établissements scolaires sont fermés et les transports scola
+         motif : Informations rapportées à des moments différents de la journée.
+      [1m] ⚡exclusif La Lozère et l'Ardèche sont maintenues en vigilance orange.
+      [1m] ⚡exclusif Le Gard, l'Hérault et les Bouches-du-Rhône sont placés en vigilance orange plu
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Cristiano Ronaldo quitte la sélection portugaise à l
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 38 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (88 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.6-flash             🚫 quota
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 4 × gemini-3.6-flash             ⚠️ Unterminated string st
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.6-flash             🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,898 entrée · 1,546 sortie
+     ✅ aucun appel payant
