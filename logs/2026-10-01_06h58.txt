@@ -1,0 +1,121 @@
+
+[06:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Arike, #AEWDynamite, #PLN50RBCUMA40RB, Yankees, Red Sox
+  🔎 « Yankees » : 1 article(s) frais, le plus récent il y a 4.6 h (PassionMLB)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Yankees » écarté : trop secondaire (1/10)
+  🔎 « Red Sox » : 1 article(s) frais, le plus récent il y a 4.6 h (PassionMLB)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Red Sox » écarté : trop secondaire (2/10)
+  🌍 « Reggie » : aucune reprise en français, source internationale retenue
+  🔎 « Reggie » : 1 article(s) frais, le plus récent il y a 4.6 h (The Times of India)
+  ⏭️  « Reggie » écarté : Conflit privé entre influenceurs sans impact majeur.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #ChristaPike
+  📖 2/2 articles lus en 0.3s (64 déjà en cache)
+  📄 6/66 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · SpaceNews
+  🧠 66 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Budget : « L’état de nervosité des mar… »
+  🧠 Même événement (jugé) : « Inflation à 3 % : le budget 2027 arriv… »
+  🧩 66 articles → 26 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Budget: le gouvernement présente ce jeudi sa copie p
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Budget 2027 : la dernière bataille de Sébastien Leco
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Accusations d’Israël, réactions de Trump… Le point
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 3 médias +7 + frais 3.8h +4 + portée internationale +10 + ⚡ attentat → plancher 89
+  🧩 6 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [3m] Le vol Flydubai FZ1073 reliant Dubaï à Tel-Aviv a été contraint d'atterrir en 
+      [2m] Le Premier ministre israélien Benyamin Nétanyahou affirme qu'une agression au 
+         ↳ 20 Minutes, CNBC : La compagnie aérienne évoque une altercation dans le cockpit san
+         motif : Prudence de la compagnie aérienne et enquête en cours
+      [2m] Les autorités israéliennes qualifient l'incident de tentative d'attaque terror
+      [2m] La compagnie Flydubai appelle à s'abstenir de toute spéculation prématurée con
+      [1m] ⚡exclusif L'avion a connu une perte d'altitude rapide, passant de 34 000 pieds à moins d
+      [1m] ⚡exclusif Le pilote blessé est de nationalité indienne et se nomme Smit Machchhar.
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 5 médias) : Présidentielle 2027 : Gaza, Ukraine et Mélenchon… 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : BFMTV, Le Monde, Libération, Midi Libre
+  🧮 Score 31.0/100 = gravité 4/10 → 18 + 5 médias +11 + frais 4.6h +2
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 31) → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : US death row inmate Christa Pike taken to hospital a
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : South Korea’s exports hit record high on AI boom
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 66 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (153 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 4 × gemini-3.1-flash-lite        ✅
+        15. clé 4 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 1 × gemini-embedding-2-preview   🚫 quota
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 2 × gemini-embedding-2           🚫 quota
+        22. clé 3 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-2-preview   🚫 quota
+        24. clé 3 × gemini-embedding-2           🚫 quota
+        25. clé 4 × gemini-embedding-001         ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        33. clé 4 × gemini-3.6-flash             🚫 quota
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,110 entrée · 1,163 sortie
+     ✅ aucun appel payant
