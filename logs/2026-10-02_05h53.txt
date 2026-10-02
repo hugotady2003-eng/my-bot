@@ -1,0 +1,122 @@
+
+[05:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Globo, Lula, Browns, #BB28, Aaron Rodgers
+  🔎 « Browns » : 1 article(s) frais, le plus récent il y a 13.0 h (arsenalsports.ca)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Browns » écarté : trop secondaire (2/10)
+  🌍 « BB28 » : aucune reprise en français, source internationale retenue
+  🔎 « BB28 » : 1 article(s) frais, le plus récent il y a 9.0 h (Unisba Media)
+  ⏭️  « BB28 » écarté : Il s'agit d'un divertissement télévisé américain.
+  🔎 « Renan » : 1 article(s) frais, le plus récent il y a 18.0 h (Le Télégramme)
+  ⏭️  « Renan » écarté : Événement local récurrent sans nouveauté marquante.
+  🌍 « GandhiJayanti » : aucune reprise en français, source internationale retenue
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 15.0 h (arsenalsports.ca)
+  ⏭️  « Steelers » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula
+  📖 1/1 articles lus en 0.8s (45 déjà en cache)
+  📄 6/46 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 46 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Le Forum BFMTV – Taxes, lycées : le je… »
+  🧩 46 articles → 28 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : "La démission doit aller de soi" : les adversaires
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Libération
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 3.1h +4 + thème porteur +10 + ⚡ démission politique → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 5 médias) : Primaire de la gauche : Bardella, lycéens, Gaza et
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Google DeepMind, Ouest-France
+  🧮 Score 37.5/100 = gravité 3/10 → 14 + 5 médias +11 + frais 0.7h +13
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Les cinq candidats de la primaire de l'espace social-démocrate ont participé à
+      [2m] Le débat a été particulièrement tendu en raison des désaccords sur les relatio
+      [1m] ⚡exclusif Raphaël Glucksmann et Olivier se sont opposés frontalement, le premier prônant
+      [1m] ⚡exclusif Jérôme Guedj a également attaqué Olivier Faure, l'accusant de faire la danse d
+      [1m] ⚡exclusif Le vote des militants pour cette primaire est prévu les 9-10 et 16-17 octobre.
+      [1m] ⚡exclusif Le débat s'est révélé similaire à celui de la semaine précédente sur LCI et n'
+      [1m] ⚡exclusif Les candidats ont affiché des divergences marquées sur la question du conflit 
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Everything you need to know about Brazil’s tight pre
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 46 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Affaire Bardella : de l'extrême droite à la gauche
+  → Rien à publier.
+
+  ── Bilan du cycle (156 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   ✅
+        29. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.6-flash             🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,107 entrée · 685 sortie
+     ✅ aucun appel payant
