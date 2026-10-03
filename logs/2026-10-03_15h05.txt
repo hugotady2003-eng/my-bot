@@ -1,0 +1,154 @@
+
+[15:02] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 42 (char 41) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  Le Saviez-vous : « Origine de l'expression poser un lapin » n'explique pas vraiment → on ne publie pas
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 阪神優勝, 阪神タイガース, 横浜優勝, 阪神連覇, #YouManiacSeriesEP6
+  🌍 « baystars » : aucune reprise en français, source internationale retenue
+  🔎 « Dena » : 1 article(s) frais, le plus récent il y a 7.0 h (pourelle.info)
+  ⏭️  « Dena » écarté : trop secondaire (2/10)
+  🌍 « KL Rahul » : aucune reprise en français, source internationale retenue
+  🔎 « KL Rahul » : 1 article(s) frais, le plus récent il y a 1.3 h (BCCI)
+  ⏭️  « KL Rahul » écarté : trop secondaire (1/10)
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 15h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 9.0 h) : 25-45 min
+  ✅ Dernière publi il y a 24690 min — on publie.
+  📖 11/11 articles lus en 2.4s (10 déjà en cache)
+  📄 3/21 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · The Block
+  🧠 21 vecteurs calculés en 1 appel(s)
+  🧩 21 articles → 16 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 3 médias) : "Aucun pays au monde ne pourrait avoir accès à une
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Ouest-France, Sud Ouest
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.2h +16 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Blocus des lycées : Ce que l’on sait sur le polici
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + frais 0.4h +16 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (173 → 125 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Japon : abattre ou apprendre à cohabiter, le grand d
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Jordan Bardella : ce lourd secret d'orthographe révé
+  🚨 Sujet chaud (breaking, 1 médias) : Téléphone au volant : la suspension immédiate du p
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 8/10 → 36 + frais 0.1h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 15 s
+  ✂️ Tweet resserré localement (182 → 126 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FlyDubai plane attack by co-pilot was an attempted '
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  → 21 articles à analyser...
+  ♻️ 7/10 [ai] (déjà analysé, cache) : "Aucun pays au monde ne pourrait avoir accès à une
+  ♻️ 7/10 [world] (déjà analysé, cache) : Blocus des lycées : Ce que l’on sait sur le polici
+  ♻️ 7/10 [world] (déjà analysé, cache) : Crise du logement en Espagne : des milliers de man
+  ♻️ 6/10 [business] (déjà analysé, cache) : 0,17 € le kWh : la guerre des centimes entre E.Lec
+  ♻️ 6/10 [space] (déjà analysé, cache) : Le retour sur Terre s'amorce pour Sophie Adenot
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Téléphone au volant : la suspension immédiate du p
+  ♻️ 9/10 [world] (déjà analysé, cache) : FlyDubai plane attack by co-pilot was an attempted
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Paradigm-backed Layer 2 Blast to wind down network
+  ♻️ 8/10 [ai] (déjà analysé, cache) : California Subpoenas OpenAI Over AI Models That Ha
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Ethereum Now Lets You Pay for AI Without Revealing
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 6/10 [space] (déjà analysé, cache) : Beyond the airlock - Sophie Adenot's three spacewa
+  🧠 Batch analyse de 9 articles...
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 23 s
+  📉 4/10: Un homme tué par balle dans un utilitaire qui transport
+  📉 4/10: Japon : abattre ou apprendre à cohabiter, le grand dile
+  📉 3/10: Jordan Bardella : ce lourd secret d'orthographe révélé 
+  📉 3/10: Philippe Candeloro, 54 ans : "Toute ma vie on m'a trait
+  📉 2/10: Adieu les serviettes rêches, ce produit à petit prix aj
+  📉 3/10: Ce classique de la NES est totalement gratuit sur Andro
+  📉 3/10: Crypto's Sisyphean struggle
+  📉 4/10: BlackRock offers a glimpse of how tokenization may chan
+  🌍 6/10 sans portée internationale : The Pope Has Thoughts on AI Art—And They're Not Fl
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.5h — FlyDubai plane attack by co-pilot was an att
+     9/10 · 1 média(s) · 0.1h — Téléphone au volant : la suspension immédiat
+     8/10 · 1 média(s) · 0.2h — "Aucun pays au monde ne pourrait avoir accès
+     8/10 · 1 média(s) · 0.4h — Blocus des lycées : Ce que l’on sait sur le 
+     8/10 · 1 média(s) · 0.4h — Crise du logement en Espagne : des milliers 
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 3 s
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : FlyDubai plane attack by co-pilot was an attempted 'ter
+
+  ── Bilan du cycle (161 s) ──
+     écartés : 3 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 2 × gemini-3.5-flash-lite        ✅
+        10. clé 2 × gemini-3.5-flash-lite        ✅
+        11. clé 2 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-embedding-001         🚫 quota
+        13. clé 1 × gemini-embedding-2-preview   ✅
+        14. clé 2 × gemini-3.5-flash-lite        ✅
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-001 · clé 2 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash (+24)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 379 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 59,293 entrée · 1,582 sortie
+     ✅ aucun appel payant
