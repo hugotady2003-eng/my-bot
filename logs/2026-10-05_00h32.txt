@@ -1,0 +1,119 @@
+
+[00:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Nordeste, Lula, #Eleicoes2026, Eagles, Rams
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 1.5 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Eagles » écarté : trop secondaire (2/10)
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 4.0 h (DAZN)
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  🌍 « Justin Herbert » : aucune reprise en français, source internationale retenue
+  🔎 « Justin Herbert » : 1 article(s) frais, le plus récent il y a 3.7 h (Los Angeles Chargers)
+  ⏭️  « Justin Herbert » écarté : Simple conférence de presse sportive sans fait marquant.
+  🔎 « Raiders » : 1 article(s) frais, le plus récent il y a 2.8 h (fpsnews.net)
+  ⏭️  « Raiders » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula, #Flavio
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.4s (21 déjà en cache)
+  📄 4/23 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block
+  🧠 23 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Primaire à gauche : une thérapie colle… »
+  🧠 Même événement (jugé) : « Économie, Ukraine, énergie, fiscalité.… »
+  🧠 Même événement (jugé) : « Watch: What we know about Russian stri… »
+  🧩 23 articles → 11 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Propos polémiques de Glucksmann, LFI, lycées, retr
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : BFMTV, France Info, Melty, Ouest-France
+  🧮 Score 35.5/100 = gravité 3/10 → 14 + 5 médias +11 + frais 0.4h +16 + programmé 3/10 -15 + portée internationale +10
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] Les cinq candidats à la primaire socialiste ont débattu sur BFMTV le 4 octobre
+      [2m] Les candidats ont exprimé des désaccords marqués concernant leur positionnemen
+      [1m] ⚡exclusif Certains candidats ont tenu des propos inexacts sur la situation financière de
+      [1m] ⚡exclusif Raphaël Glucksmann a critiqué Ségolène Royal pour son attitude supposée envers
+      [1m] ⚡exclusif Les déclarations sur les dividendes versés par TotalEnergies contiennent des a
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Brésil: Flavio Bolsonaro devance largement Lula aprè
+  🚨 Sujet chaud (breaking, 1 médias) : "Je voulais demander pardon" , Prince Waly est mor
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + frais 0.5h +16 + thème porteur +10 + primeur absolue +8
+  🌙 Sujet fort (score 66) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : Au Brésil, le vote pour le premier tour de la prés
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 0.4h +16 + portée internationale +10
+  🧩 6 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Cinq candidats ont participé au troisième et dernier débat de la primaire soci
+      [1m] ⚡exclusif Le premier tour de la primaire socialiste est prévu pour les 9 et 10 octobre.
+      [1m] ⚡exclusif Les candidats ont débattu de leur positionnement vis-à-vis de Jean-Luc Mélench
+      [1m] ⚡exclusif Un vif échange a eu lieu concernant les propos de Raphaël Glucksmann accusant 
+      [1m] ⚡exclusif Certaines déclarations des candidats lors du débat contenaient des inexactitud
+      [1m] ⚡exclusif TotalEnergies a versé des dividendes et racheté des actions durant la crise ga
+  🌙 Sujet fort (score 73) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 23 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (72 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 758
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 9,643 entrée · 1,140 sortie
+     ✅ aucun appel payant
