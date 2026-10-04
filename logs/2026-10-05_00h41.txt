@@ -1,0 +1,121 @@
+
+[00:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Nordeste, Lula, #Eleicoes2026, Eagles, Rams
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 1.7 h (touchdownactu.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Eagles » écarté : trop secondaire (2/10)
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 4.2 h (DAZN)
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  🌍 « Justin Herbert » : aucune reprise en français, source internationale retenue
+  🔎 « Justin Herbert » : 1 article(s) frais, le plus récent il y a 3.9 h (Los Angeles Chargers)
+  ⏭️  « Justin Herbert » écarté : Simple conférence de presse sportive sans fait marquant.
+  🔎 « Raiders » : 1 article(s) frais, le plus récent il y a 0.2 h (leprogresstaffricain.fr)
+  ⏭️  « Raiders » écarté : trop secondaire (1/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula, #Flavio
+  📖 24 articles, tous en cache
+  📄 5/24 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Cointelegraph · The Block
+  🧠 24 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Primaire à gauche : une thérapie colle… »
+  🧠 Même événement (jugé) : « Watch: What we know about Russian stri… »
+  🧠 Même événement (jugé) : « Trump Taps Jay Clayton, the SEC Chair … »
+  🧩 24 articles → 12 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Propos polémiques de Glucksmann, LFI, lycées, retr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : France Info, Libération, Melty, Ouest-France
+  🧮 Score 55.5/100 = gravité 3/10 → 14 + 5 médias +11 + frais 0.5h +13 + portée mondiale +18
+  🧩 4 affirmation(s) : 1 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] Le premier tour de l'élection présidentielle brésilienne oppose le président s
+      [1m] Le dépouillement partiel des votes indique une avance pour Flavio Bolsonaro.
+         ↳ France Info : Le scrutin est décrit comme très disputé sans mentionner d'avanc
+         motif : BFMTV utilise des données de dépouillement partiel plus précises.
+      [1m] ⚡exclusif L'élection se déroule dans un contexte de tensions et de craintes liées aux sc
+      [1m] ⚡exclusif Flavio Bolsonaro est le fils de l'ancien président Jair Bolsonaro.
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Flavio Bolsonaro devance largement Lula après dépoui
+  🚨 Sujet chaud (breaking, 1 médias) : "Je voulais demander pardon" , Prince Waly est mor
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + frais 0.6h +13 + thème porteur +10 + primeur absolue +8
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : Au Brésil, le vote pour le premier tour de la prés
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 0.5h +13 + portée mondiale +18
+  🧩 5 affirmation(s) : 1 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [2m] Le premier tour de l'élection présidentielle brésilienne opposant Lula à Flavi
+      [1m] Le dépouillement partiel des urnes montre une avance de Flavio Bolsonaro sur L
+         ↳ France Info : Le résultat du scrutin est encore attendu et n'est pas encore ét
+         motif : BFMTV rapporte des résultats partiels, France Info attend le résultat 
+      [1m] ⚡exclusif Flavio Bolsonaro recueille environ 50 % des voix contre 42 % pour Lula selon u
+      [1m] ⚡exclusif L'élection est marquée par un climat de tension, des scandales et des craintes
+      [1m] ⚡exclusif Flavio Bolsonaro est le fils de l'ancien président Jair Bolsonaro.
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 24 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (64 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 758
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,596 entrée · 1,030 sortie
+     ✅ aucun appel payant
