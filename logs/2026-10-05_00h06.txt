@@ -1,0 +1,98 @@
+
+[00:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Nordeste, Lula, #Eleicoes2026, Eagles, Rams
+  🔎 « Lula » : 1 article(s) frais, le plus récent il y a 8.0 h (Le Devoir)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ✅ « Lula » retenu : Élection présidentielle au Brésil sous surveillance internat (7/10) (+1 au score)
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 1.1 h (Touchdown Actu)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Eagles » écarté : trop secondaire (2/10)
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 3.6 h (DAZN)
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  🌍 « Justin Herbert » : aucune reprise en français, source internationale retenue
+  🔎 « Justin Herbert » : 1 article(s) frais, le plus récent il y a 3.3 h (Los Angeles Chargers)
+  ⏭️  « Justin Herbert » écarté : Simple conférence de presse sportive sans fait marquant.
+  🔎 « Raiders » : 1 article(s) frais, le plus récent il y a 2.4 h (fpsnews.net)
+  ⏭️  « Raiders » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.3s (17 déjà en cache)
+  📄 2/21 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block
+  🧠 21 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Watch: What we know about Russian stri… »
+  🧩 21 articles → 15 événement(s)
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Si on se rassemble, on peut gagner cette élection p
+  🚨 Sujet chaud (breaking, 1 médias) : "Je voulais demander pardon" , Prince Waly est mor
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + frais 0.0h +16 + imprévu 8/10 +18 + thème porteur +10 + primeur absolue +8
+  🌙 Sujet fort (score 84) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 21 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (64 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 3 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 4 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 1 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-001         🚫 quota
+        26. clé 2 × gemini-embedding-2-preview   ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-001 · clé 4 × gemini-3.6-flash (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 758
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,366 entrée · 436 sortie
+     ✅ aucun appel payant
