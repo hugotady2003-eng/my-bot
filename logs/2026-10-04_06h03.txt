@@ -1,0 +1,84 @@
+
+[06:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #WilliamEstConcert, Tala, Lucki, #LaNuevaEra, #みんなのIRIAMノート
+  🌍 « Tala » : aucune reprise en français, source internationale retenue
+  🔎 « Tala » : 1 article(s) frais, le plus récent il y a 14.4 h (In Review Online)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Tala » écarté : Critique de film internationale sans actualite francaise.
+  🌍 « Lucki » : aucune reprise en français, source internationale retenue
+  🔎 « Lucki » : 1 article(s) frais, le plus récent il y a 2.1 h (Google Actualités)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Lucki » écarté : trop secondaire (2/10)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.9s (30 déjà en cache)
+  📄 6/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · The Block
+  🧠 33 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Guerre en Ukraine : Poutine critiqué s… »
+  🧠 Même événement (jugé) : « Ballots reach remote Indigenous Brazil… »
+  🧩 33 articles → 16 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 12 médias) : Guerre en Ukraine : Poutine critiqué sur le confli
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 12 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ars Technica, CNBC, ESA, Gamekult
+  ✂️ 4 élément(s) écartés — 1 source(s) hors sujet : Ouest-France
+  🧮 Score 52.5/100 = gravité 5/10 → 22 + 12 médias +18 + frais 4.4h +2 + portée internationale +10
+  🧩 2 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [1m] ⚡exclusif L'Agence internationale de l'énergie a libéré environ 325 millions de barils d
+      [1m] ⚡exclusif Des appels à manifester ont été lancés en France à l'automne 2026 concernant l
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 33 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (109 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-embedding-001         🚫 quota
+        13. clé 1 × gemini-embedding-2-preview   🚫 quota
+        14. clé 1 × gemini-embedding-2           🚫 quota
+        15. clé 2 × gemini-embedding-001         🚫 quota
+        16. clé 2 × gemini-embedding-2-preview   🚫 quota
+        17. clé 2 × gemini-embedding-2           🚫 quota
+        18. clé 3 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-2-preview   ✅
+        20. clé 3 × gemini-3.1-flash-lite        ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-embedding-2 (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,681 entrée · 336 sortie
+     ✅ aucun appel payant
