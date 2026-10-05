@@ -1,0 +1,130 @@
+
+[07:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #LaCasaDeLosFamososMexico, Karina, #韓茶あずきですっきり, Memo, #Lanterns
+  🔎 « Lanterns » : 1 article(s) frais, le plus récent il y a 1.4 h (Superpouvoir.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Lanterns » écarté : Simple question sur la diffusion d'une série.
+  🌍 « LaGranja » : aucune reprise en français, source internationale retenue
+  🔎 « Lions » : 1 article(s) frais, le plus récent il y a 2.0 h (ladepeche.fr)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Lions » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Lions » écarté : jugement indisponible
+  🔎 « Panthers » : 1 article(s) frais, le plus récent il y a 13.2 h (Flashscore.fr)
+  ⚠️ Jugement de « Panthers » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Panthers » écarté : jugement indisponible
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula, #Flavio
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 27098 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 1.2s (58 déjà en cache)
+  📄 8/65 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Cointelegraph · The Block
+  🧠 65 vecteurs calculés en 1 appel(s)
+  🧩 65 articles → 22 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Lula a payé le prix du mécontentement des électeur
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Primaire à gauche : les accusations de « brutalisati
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Colère des lycéens: 400 à 500 établissements totalem
+  🚨 Sujet chaud (breaking, 19 médias) : Guerre au Moyen-Orient : les exportations de pétro
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 82.5/100 = gravité 7/10 → 32 + 19 médias +18 + frais 0.6h +13 + thème porteur +10 + portée internationale +10
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CfiX3Y8L6tZwaWZZcTQnE'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle au Brésil : Flavio Bolsonaro crée la 
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 65 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : BFM Crypto, la chronique : Le minage de Bitcoin n'
+  ♻️ Doublon d'un sujet déjà publié, écarté : Voile. Mondiaux de match-racing 2026 : Pauline Cou
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Guerre au Moyen-Orient : les exportations de pétro
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Je voulais demander pardon" , Prince Waly est mor
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Trump unveils 'Super Intelligence Force' to overse
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Paradigm-backed Layer 2 Blast to wind down network
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Trump Taps Jay Clayton, the SEC Chair Who Sued Rip
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Banking Group Sues to Block Crypto's 'Side Door' I
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : 'Uptober' Starts Green as Bitcoin ETFs Draw $134 M
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 7/10 [space] (déjà analysé, cache) : Milt Windler, NASA flight director who helped save
+  ♻️ 6/10 [space] (déjà analysé, cache) : Beyond the airlock - Sophie Adenot's three spacewa
+  🎯 Pré-classement : 33 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CfiX3trX9GzCvWstwNaVg'}
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 1.6h — Trump unveils 'Super Intelligence Force' to 
+     8/10 · 1 média(s) · 0.6h — Guerre au Moyen-Orient : les exportations de
+     8/10 · 1 média(s) · 7.2h — "Je voulais demander pardon" , Prince Waly e
+     8/10 · 1 média(s) · 12.2h — Trump Taps Jay Clayton, the SEC Chair Who Su
+     8/10 · 1 média(s) · 13.2h — Banking Group Sues to Block Crypto's 'Side D
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CfiX4DvF4X1to37NGSzwh'}
+  → 1 sélectionné(s) [ai]
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Sujet non vérifiable (modèle indisponible) → rien publié : Trump unveils 'Super Intelligence Force' to ov
+
+  ── Bilan du cycle (182 s) ──
+     écartés : 4 sujet banal · 1 sujet non vérifiable
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.6-flash             🚫 quota
+        18. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 5 × gemini-3.6-flash             🚫 quota
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   🚫 quota
+        29. clé 3 × gemini-embedding-2           🚫 quota
+        30. clé 4 × gemini-embedding-001         🚫 quota
+        31. clé 4 × gemini-embedding-2-preview   ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-001 (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 385 entrée · 35 sortie
+     ⚠️ 20 appel(s) payés chez Claude (le gratuit n'a pas suffi)
