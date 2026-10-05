@@ -1,0 +1,99 @@
+
+[01:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Olise, #gfvip, #FRABEL, #ローソンのグーコロ男爵, #LaIslaDeLasTentaciones9
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Olise, #JeffreyArcher, #Zidane
+  📖 1/1 articles lus en 0.3s (25 déjà en cache)
+  📄 5/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 26 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧩 26 articles → 12 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mouvement lycéen: "Tout est fait pour dénigrer la je
+  🚨 Sujet chaud (breaking, 6 médias) : Face aux Belges, les Bleus s’offrent une fin en fa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Challenges, Libération, Ouest-France
+  🧮 Score 83.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 1.1h +8 + thème porteur +10 + portée mondiale +18
+  🧩 3 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Une mobilisation lycéenne perturbe de nombreux établissements en France, susci
+      [1m] ⚡exclusif Valérie Pécresse souhaite supprimer les aides de la région aux lycéens sanctio
+      [1m] ⚡exclusif L'équipe de France de football s'est imposée 4 buts à 1 face à la Belgique.
+  🌙 Sujet fort (score 83) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 6 médias) : Politicien et écrivain, le Britannique Jeffrey Arc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 1.1h +8 + thème porteur +10 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  🕊️ Hommage validé par le modèle — Décès naturel d'une personnalité publique · décès : lundi
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🖼️ Portrait Wikipédia récupéré pour Jeffrey Archer (451 ko)
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : Le coaching gagnant de Zidane, la foudre Olise fra
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 1.1h +8 + thème porteur +10 + portée mondiale +18
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Une journée de mobilisation et des blocages de lycées sont en cours en France,
+      [1m] ⚡exclusif Valérie Pécresse souhaite supprimer les aides de la région aux lycéens sanctio
+      [1m] ⚡exclusif La mobilisation des lycéens français et les incidents associés reçoivent une c
+      [1m] ⚡exclusif L'équipe de France de football s'est imposée 4 buts à 1 face à la Belgique.
+      [1m] ⚡exclusif Le rappeur Prince Waly est mort à l'âge de 34 ans des suites d'un pemphigus pa
+  🌙 Sujet fort (score 83) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 26 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (84 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   ✅
+         6. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 1 × gemini-3.6-flash             🚫 quota
+        10. clé 1 × gemini-3-flash               ⛔ inexistant
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2-preview (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 763
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 11,571 entrée · 1,340 sortie
+     ✅ aucun appel payant
