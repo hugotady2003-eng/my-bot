@@ -1,0 +1,112 @@
+
+[00:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #FRABEL, Olise, #ITATUR, اليمن, Doué
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Olise, #JeffreyArcher, #Zidane
+  📖 1/1 articles lus en 0.1s (18 déjà en cache)
+  📄 4/19 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 19 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Mouvement lycéen: "Tout est fait pour … »
+  🧠 Même événement (jugé) : « Blocage des lycées: un jeune dirige de… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 19 articles → 14 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 4 médias) : Blocage des lycées: un jeune dirige des tirs de mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BFM People, Challenges
+  🧮 Score 46.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 2.0h +8
+  🧩 5 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif Un jeune a dirigé des tirs de mortier d'artifice sur des policiers lors de blo
+      [1m] ⚡exclusif Au moins 215 élèves ont été blessés depuis le début du mouvement lycéen, selon
+      [1m] ⚡exclusif Un député LFI a saisi le parquet de Pontoise après des témoignages de violence
+      [1m] ⚡exclusif Valérie Pécresse souhaite supprimer les aides de la région aux lycéens sanctio
+      [1m] ⚡exclusif La femme agressée au spray enflammé à Marseille a témoigné sur BFMTV.
+  🌙 Sujet fort (score 46) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mouvement lycéen: "Tout est fait pour dénigrer la je
+  🚨 Sujet chaud (breaking, 2 médias) : Face aux Belges, les Bleus s’offrent une fin en fa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ✂️ 1 élément(s) écartés — 1 source(s) hors sujet : Libération
+  🧮 Score 78.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 1.0h +13 + thème porteur +10 + primeur +5 + portée internationale +10
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Politicien et écrivain, le Britannique Jeffrey Arc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🕊️ Hommage validé par le modèle — Décès naturel confirmé d'une personnalité publique reconnue. · décès : lundi
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🖼️ Portrait Wikipédia récupéré pour Jeffrey Archer (451 ko)
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Le coaching gagnant de Zidane, la foudre Olise fra
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 1.0h +13 + thème porteur +10 + primeur +5 + portée internationale +10
+  🧩 4 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [2m] L'équipe de France a battu la Belgique sur le score de 4 à 1 ce lundi 5 octobr
+      [2m] Les joueurs entrés en cours de jeu ont été décisifs pour renverser le match ap
+      [1m] Les remplaçants qui ont débloqué le compteur et permis la victoire sont Cherki
+         ↳ Ouest-France : Mentionne les entrants décisifs de manière générale sans citer e
+         motif : Précision différente dans le choix des détails.
+      [1m] ⚡exclusif Ce match constituait la dernière rencontre du premier rassemblement de l'ère Z
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 19 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (84 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   ✅
+         6. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 1 × gemini-3.6-flash             🚫 quota
+        10. clé 1 × gemini-3-flash               ⛔ inexistant
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.1-flash-lite        ✅
+        14. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 2 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 763
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 9,440 entrée · 1,323 sortie
+     ✅ aucun appel payant
