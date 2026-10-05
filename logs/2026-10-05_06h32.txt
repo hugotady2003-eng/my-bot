@@ -1,0 +1,113 @@
+
+[06:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #韓茶あずきですっきり, Lula, #Lanterns, Lions, Flavio
+  🔎 « Lanterns » : 1 article(s) frais, le plus récent il y a 0.8 h (Superpouvoir.com)
+  ⏭️  « Lanterns » écarté : Simple question sur la sortie d'un épisode
+  🔎 « Lions » : 1 article(s) frais, le plus récent il y a 1.3 h (ladepeche.fr)
+  ⏭️  « Lions » écarté : Simple activite locale d'un club service.
+  🔎 « Panthers » : 1 article(s) frais, le plus récent il y a 12.5 h (Flashscore.fr)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « Panthers » écarté : trop secondaire (2/10)
+  🌍 « KeepPounding » : aucune reprise en français, source internationale retenue
+  🔎 « Goff » : 1 article(s) frais, le plus récent il y a 19.4 h (Le Télégramme)
+  ⏭️  « Goff » écarté : trop secondaire (1/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula, #Flavio
+  📖 4/4 articles lus en 1.5s (44 déjà en cache)
+  📄 6/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Cointelegraph · The Block
+  🧠 48 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Trump Taps Jay Clayton, the SEC Chair … »
+  🧩 48 articles → 17 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Avant la primaire à gauche, un dernier débat télévis
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un résultat "inattendu" au premier tour de l'électio
+  🚨 Sujet chaud (breaking, 18 médias) : Présidentielle 2027 : LFI, Ukraine, retraites, lyc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 25 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Al Jazeera, BBC, BFMTV, Cointelegraph
+  🧮 Score 67.0/100 = gravité 4/10 → 18 + 18 médias +18 + frais 0.7h +13 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Cinq candidats ont participé au dernier débat télévisé de la primaire socialis
+      [1m] ⚡exclusif Les candidats sont divisés sur la pertinence d'une alliance électorale avec La
+      [2m] Raphaël Glucksmann et Ségolène Royal ont échangé des critiques mutuelles conce
+      [1m] ⚡exclusif Des tensions sociales et des mouvements de colère lycéenne traversent actuelle
+      [1m] ⚡exclusif Marine Le Pen maintient sa confiance envers Jordan Bardella malgré les accusat
+      [1m] ⚡exclusif Le calendrier de la loi dite 'casseurs-payeurs' a été accéléré suite aux viole
+  🌙 Sujet fort (score 67) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle au Brésil : le conservateur Flavio Bo
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 48 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (64 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         4. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         5. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         6. clé 1 × gemini-3.6-flash             🚫 quota
+         7. clé 1 × gemini-3-flash               ⛔ inexistant
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 2 × gemini-3.6-flash             🚫 quota
+        12. clé 2 × gemini-3-flash               ⛔ inexistant
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 3 × gemini-3.6-flash             🚫 quota
+        17. clé 3 × gemini-3-flash               ⛔ inexistant
+        18. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        21. clé 4 × gemini-3.6-flash             🚫 quota
+        22. clé 4 × gemini-3-flash               ⛔ inexistant
+        23. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        24. clé 5 × gemini-3.1-flash-lite        ✅
+        25. clé 5 × gemini-3.1-flash-lite        ✅
+        26. clé 1 × gemini-embedding-001         🚫 quota
+        27. clé 1 × gemini-embedding-2-preview   🚫 quota
+        28. clé 1 × gemini-embedding-2           🚫 quota
+        29. clé 2 × gemini-embedding-001         🚫 quota
+        30. clé 2 × gemini-embedding-2-preview   🚫 quota
+        31. clé 2 × gemini-embedding-2           🚫 quota
+        32. clé 3 × gemini-embedding-001         🚫 quota
+        33. clé 3 × gemini-embedding-2-preview   🚫 quota
+        34. clé 3 × gemini-embedding-2           🚫 quota
+        35. clé 4 × gemini-embedding-001         ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2 · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-001 · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,557 entrée · 715 sortie
+     ✅ aucun appel payant
