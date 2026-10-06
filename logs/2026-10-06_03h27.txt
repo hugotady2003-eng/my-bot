@@ -1,0 +1,77 @@
+
+[03:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Bijan, #WWERAW, #FandomsComLula, Falcons, #ローソンのグーコロ男爵
+  🔎 « Bijan » : 1 article(s) frais, le plus récent il y a 11.5 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Bijan » écarté : Analyse sportive d'un match de NFL.
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 10.5 h (dazn.com)
+  ⏭️  « Falcons » écarté : trop secondaire (2/10)
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 7.6 h (Don Bosco Aujourd'hui)
+  ⏭️  « Saints » écarté : Célébration récurrente sans fait nouveau.
+  🔎 « Jazz » : 1 article(s) frais, le plus récent il y a 5.1 h (Google Actualités)
+  ⏭️  « Jazz » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Olise
+  📖 29 articles, tous en cache
+  📄 5/29 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 29 vecteurs calculés en 1 appel(s)
+  🧩 29 articles → 13 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : Face aux Belges, les Bleus s’offrent une fin en fa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Libération
+  🧮 Score 44.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 3.5h +4
+  🧩 7 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 7 exclusive(s)
+      [1m] ⚡exclusif L'équipe de France de football a battu la Belgique sur le score de 4 à 1.
+      [1m] ⚡exclusif Zinédine Zidane a exprimé sa satisfaction concernant la performance d'Ousmane 
+      [1m] ⚡exclusif Des lycéens ont organisé des blocages d'établissements scolaires.
+      [1m] ⚡exclusif Valérie Pécresse propose de supprimer les aides régionales aux lycéens sanctio
+      [1m] ⚡exclusif Des incidents violents, incluant des tirs de mortiers d'artifice sur les force
+      [1m] ⚡exclusif Certains lycéens ont nettoyé le quartier après une action de blocage.
+      [1m] ⚡exclusif Des personnalités politiques débattent sur la légitimité et la gestion des mou
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 29 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (89 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-embedding-001         🚫 quota
+        12. clé 1 × gemini-embedding-2-preview   🚫 quota
+        13. clé 1 × gemini-embedding-2           🚫 quota
+        14. clé 2 × gemini-embedding-001         🚫 quota
+        15. clé 2 × gemini-embedding-2-preview   🚫 quota
+        16. clé 2 × gemini-embedding-2           🚫 quota
+        17. clé 3 × gemini-embedding-001         ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-3.5-flash-lite (+18)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,504 entrée · 718 sortie
+     ✅ aucun appel payant
