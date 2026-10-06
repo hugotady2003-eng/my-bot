@@ -1,0 +1,223 @@
+
+[07:06] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Falcons, #miino, #KisshtLoansWithoutHiccups, Saints, Yankees
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 1.6 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Falcons » écarté : trop secondaire (2/10)
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 1.9 h (ladepeche.fr)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Saints » écarté : Article local sans événement d'actualité nationale.
+  🔎 « Yankees » : 1 article(s) frais, le plus récent il y a 9.7 h (rds.ca)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Yankees » écarté : trop secondaire (2/10)
+  🔎 « Boone » : 1 article(s) frais, le plus récent il y a 11.1 h (agridigitale.tg)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Boone » écarté : Conseils de jeu sans événement marquant.
+  🔎 « san diego » : 1 article(s) frais, le plus récent il y a 6.4 h (Google Actualités)
+  ⏭️  « san diego » écarté : Contenu promotionnel sans événement d'actualité majeur.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Quebec
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 3 sujets chauds analysés en UN seul appel (au lieu de 3)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 28533 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 11/17 articles lus en 2.0s (38 déjà en cache)
+  📄 6/55 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 55 vecteurs calculés en 1 appel(s)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 14 s
+  🧩 55 articles → 22 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : 140 000 inscrits pour une prim
+  🚨 Sujet chaud (breaking, 6 médias) : EN DIRECT Blocus des lycées : manifestations dans 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : BFMTV, Le Monde
+  🧮 Score 40.5/100 = gravité 3/10 → 14 + 6 médias +11 + frais 0.2h +16
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [3m] Une journée de mobilisation nationale, appelée 'Acte III', est organisée ce ma
+      [3m] Le mouvement lycéen bénéficie du soutien de plusieurs syndicats de l'Éducation
+      [1m] ⚡exclusif Les autorités ont ordonné la fermeture de plusieurs lycées dans l'Hérault pour
+      [1m] ⚡exclusif Les lycéens manifestent pour réclamer davantage de moyens matériels et humains
+      [2m] La Confédération paysanne a appelé les agriculteurs à rejoindre la mobilisatio
+      [1m] ⚡exclusif La stratégie policière de maintien de l'ordre face aux mineurs fait l'objet de
+      [1m] ⚡exclusif Le ministre de l'Éducation nationale a déclaré que les angoisses des élèves ét
+      [1m] ⚡exclusif Le mouvement lycéen s'inscrit dans une tradition historique de contestation ly
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 6 médias) : Plusieurs lycées fermés, suite des blocus et grand
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : À 40 ans, quels sont les bons réflexes pour bâtir vo
+  🚨 Sujet chaud (breaking, 6 médias) : Au Québec, les indépendantistes remportent les éle
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 0.2h +16
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 9 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [3m] Les syndicats lycéens et étudiants appellent à une troisième journée de mobili
+      [3m] Le mouvement de contestation lycéenne, débuté mi-septembre, bénéficie du souti
+      [2m] Les autorités et les forces de l'ordre craignent des débordements lors de cett
+      [1m] ⚡exclusif Plusieurs lycées de la région de Montpellier sont fermés ce mardi 6 octobre en
+      [1m] ⚡exclusif Les manifestants dénoncent notamment les conditions d'accueil dans les lycées 
+      [1m] ⚡exclusif La stratégie de maintien de l'ordre face aux mineurs fait l'objet de tensions 
+      [1m] ⚡exclusif Le ministre de l'Éducation nationale a déclaré que les angoisses des élèves ét
+      [2m] La Confédération paysanne a appelé les agriculteurs à rejoindre le mouvement l
+  🕒 Âge de l'article : 2.6h (frais ✅)
+  📈 Hashtag(s) en tendance : #Quebec
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Quebec
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 13 médias) : La Russie cherche à rassurer sur un décès supposém
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ars Technica, BFM People, France Bleu, Frandroid
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + 13 médias +18 + frais 0.5h +13
+  🕒 Âge de l'article : 4.4h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🕊️ Hommage REFUSÉ par le modèle — Victime anonyme d'un fait divers sanitaire. · décès : vendredi
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-1, pénalisé par « \b(?:météo ») : «Pluies intenses» et «phénomènes tourbillonnaires» :
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Bardella rattrapé par le poison du soupçon après les
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Quebec separatists win election reviving push for in
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 55 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Renault a 10 milliards d’euros à investir en Franc
+  ♻️ 7/10 [world] (déjà analysé, cache) : Au Québec, les indépendantistes remportent les éle
+  ♻️ 7/10 [world] (déjà analysé, cache) : La Russie cherche à rassurer sur un décès supposém
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le rappeur Prince Waly est mort à 34 ans d’un pemp
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Pentagon stops using Anthropic AI tools after blac
+  ♻️ 8/10 [world] (déjà analysé, cache) : Mexican and Colombian cartel mercenaries filmed fi
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump offers U.S. help to Russia after plague deat
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Strive Adds $169M Bitcoin in Its Biggest Buy in Fo
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  🎯 Pré-classement : 24 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  🌍 8/10 sans portée internationale : France-Belgique : Michael Olise, le « talent pur »
+  📉 4/10: Grève et manifestations du 6 octobre : Les lycéens vont
+  📉 3/10: APOD: 2026 October 6 – A Complete Auroral Oval from SMI
+  📉 3/10: Mouvements lycéens : de 1986 à 2026, retour sur quarant
+  📉 5/10: Guerre en Ukraine : Kaliningrad, le pistolet russe sur 
+  🌍 6/10 sans portée internationale : Violent clashes erupt after mass housing protest i
+  📉 4/10: Apple accuses OpenAI of improperly adding new arguments
+  📉 4/10: Gemini Call for Me might tell your mom you’re running l
+  📉 3/10: The Beaver Brown Waters of Rupert Bay
+  📉 3/10: Soutien-gorge, déodorants, jeûne… Une spécialiste répon
+  📉 3/10: VRAI OU FAUX. Présidentielle 2027 : la France a-t-elle 
+  📉 3/10: Présidentielle 2027 : 140 000 inscrits pour une primair
+  📉 3/10: À 40 ans, quels sont les bons réflexes pour bâtir votre
+  📉 3/10: Google Docs and Drive now support markdown files native
+  📉 3/10: En Haute-Savoie, ce maire veut interdire l’accès aux se
+  📉 4/10: « Si mon corps me le permet, je serai là très longtemps
+  📉 3/10: Maladie surnommée « la peste des mers », le scorbut est
+  📉 4/10: Fronde anti-IA : il est urgent que la jeunesse s’en mêl
+  📉 5/10: Bardella rattrapé par le poison du soupçon après les ré
+  📉 3/10: Le Pitch : Greenfield IT, solution de refroidissement d
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 1.0h — Mexican and Colombian cartel mercenaries fil
+     8/10 · 1 média(s) · 2.6h — Au Québec, les indépendantistes remportent l
+     8/10 · 1 média(s) · 4.4h — La Russie cherche à rassurer sur un décès su
+     8/10 · 1 média(s) · 3.4h — Trump offers U.S. help to Russia after plagu
+     8/10 · 1 média(s) · 6.7h — Strive Adds $169M Bitcoin in Its Biggest Buy
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Al Jazeera
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 1.0h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Mexican and Colombian cartel mercenaries filmed fightin
+
+  ── Bilan du cycle (205 s) ──
+     écartés : 5 sujet banal · 2 sans portée internationale · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 3 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 4 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 11 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-embedding-001 · clé 1 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 50,062 entrée · 3,076 sortie
+     ✅ aucun appel payant
