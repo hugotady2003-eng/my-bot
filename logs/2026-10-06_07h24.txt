@@ -1,0 +1,181 @@
+
+[07:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Falcons, #miino, #KisshtLoansWithoutHiccups, Saints, Yankees
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 1.8 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Falcons » écarté : trop secondaire (2/10)
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 2.1 h (ladepeche.fr)
+  ⏭️  « Saints » écarté : Article local sans événement d'actualité nationale.
+  🔎 « Yankees » : 1 article(s) frais, le plus récent il y a 9.9 h (RDS)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Yankees » écarté : Performance sportive sans impact majeur en France.
+  🔎 « Boone » : 1 article(s) frais, le plus récent il y a 11.3 h (agridigitale.tg)
+  ⏭️  « Boone » écarté : Conseils de jeu sans événement marquant.
+  🔎 « san diego » : 1 article(s) frais, le plus récent il y a 6.6 h (Google Actualités)
+  ⏭️  « san diego » écarté : Contenu promotionnel sans événement d'actualité majeur.
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 28548 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/7 articles lus en 1.6s (11 déjà en cache)
+  📄 3/18 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  ⚠️ Vecteurs (gemini-embedding-001) : HTTPSConnectionPool(host='generativelanguage.googl → couple suivant
+  🧠 18 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 18 articles → 10 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Élection présidentielle : qui est sorti gagnant des 
+  🚨 Sujet chaud (breaking, 1 médias) : Au Québec, les indépendantistes remportent les éle
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 2.8h +4 + portée internationale +10
+  🕒 Âge de l'article : 2.8h (frais ✅)
+  📈 Hashtag(s) en tendance : #Quebec
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Quebec
+  ✂️ Tweet resserré localement (185 → 151 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 8 médias) : La Russie cherche à rassurer sur un décès supposém
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, Le Monde, Midi Libre, Ouest-France
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + 8 médias +15 + frais 0.2h +16
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif La Russie tente de rassurer l'opinion publique concernant un décès qui aurait 
+      [1m] ⚡exclusif La CGT de Charente-Maritime annonce son soutien à la mobilisation lycéenne pré
+      [1m] ⚡exclusif Valérie Pécresse souhaite supprimer les aides régionales aux lycéens sanctionn
+      [1m] ⚡exclusif Marine Le Pen maintient totalement sa confiance à Jordan Bardella malgré les a
+      [1m] ⚡exclusif Le maire de Metz indique qu'un lien reste à établir entre l'incendie d'un coll
+  🕒 Âge de l'article : 4.6h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Victime anonyme d'un fait divers sanitaire. · décès : vendredi
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Brésil : comment Flavio Bolsonaro est devenu favori 
+  ⚪ Écarté (-1, pénalisé par « \b(?:météo ») : Météo : le Gard et l’Hérault placés en vigilance ora
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 18 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Croatie - Espagne. À quelle heure et sur quelle ch
+  ♻️ 7/10 [world] (déjà analysé, cache) : Au Québec, les indépendantistes remportent les éle
+  ♻️ 7/10 [world] (déjà analysé, cache) : La Russie cherche à rassurer sur un décès supposém
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le rappeur Prince Waly est mort à 34 ans d’un pemp
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Pentagon stops using Anthropic AI tools after blac
+  ♻️ 8/10 [world] (déjà analysé, cache) : Mexican and Colombian cartel mercenaries filmed fi
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump offers U.S. help to Russia after plague deat
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : U.S. scraps proposed $10,000 reporting rule for fo
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Strive Adds $169M Bitcoin in Its Biggest Buy in Fo
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  🧠 Batch analyse de 8 articles...
+  📉 5/10: Soupçon de peste en Sibérie : plus le Kremlin tente de 
+  ✅ 8/10 [sports] large: Dernier match de Messi sous le maillot argentin 
+  📉 3/10: «Je préfère prendre un tir de LBD plutôt que ce soit un
+  📉 2/10: Trajectoire : Apaxia, le conseil indépendant en éthique
+  ✅ 6/10 [business] large: L'acier européen en crise face à la Chine
+  ✅ 7/10 [world] mondiale: Brésil : comment Flavio Bolsonaro est devenu fav
+  🌍 7/10 sans portée internationale : Météo : le Gard et l’Hérault placés en vigilance o
+  📉 3/10: Élection présidentielle : qui est sorti gagnant des tro
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.5h — U.S. scraps proposed $10,000 reporting rule 
+     9/10 · 1 média(s) · 0.1h — Dernier match de Messi sous le maillot argen
+     8/10 · 1 média(s) · 0.2h — Brésil : comment Flavio Bolsonaro est devenu
+     9/10 · 1 média(s) · 1.3h — Mexican and Colombian cartel mercenaries fil
+     7/10 · 1 média(s) · 0.2h — L'acier européen en crise face à la Chine
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [crypto]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (214 → 167 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:2
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : U.S. scraps proposed $10,000 reporting rule for for cry
+
+  ── Bilan du cycle (213 s) ──
+     écartés : 3 sujet banal · 1 hommage refusé · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         ⚠️ httpsconnectionpool(ho
+        30. clé 4 × gemini-embedding-2-preview   ✅
+        31. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.6-flash             🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 5 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 42,597 entrée · 1,572 sortie
+     ✅ aucun appel payant
