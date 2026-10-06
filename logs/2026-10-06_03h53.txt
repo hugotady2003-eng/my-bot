@@ -1,0 +1,91 @@
+
+[03:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Bijan, #WWERAW, #FandomsComLula, Falcons, #ローソンのグーコロ男爵
+  🔎 « Bijan » : 1 article(s) frais, le plus récent il y a 11.9 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Bijan » écarté : Analyse sportive d'un match de NFL.
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 10.9 h (DAZN)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Falcons » écarté : Match de saison reguliere NFL sans enjeu majeur
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 10.9 h (DAZN)
+  ⏭️  « Saints » écarté : Match de saison régulière de NFL sans enjeu national.
+  🔎 « Jazz » : 1 article(s) frais, le plus récent il y a 5.5 h (Google Actualités)
+  ⏭️  « Jazz » écarté : trop secondaire (4/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Olise
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📖 1/1 articles lus en 0.2s (32 déjà en cache)
+  📄 5/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 33 vecteurs calculés en 1 appel(s)
+  🧩 33 articles → 16 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 4 médias) : Trump offers U.S. help to Russia after plague deat
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, CNBC, Frandroid
+  🧮 Score 60.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 1.7h +8 + imprévu 7/10 +4 + portée internationale +10
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : Face aux Belges, les Bleus s’offrent une fin en fa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Libération
+  🧮 Score 44.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 4.0h +4
+  🧩 2 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [1m] ⚡exclusif L'équipe de France de football a battu la Belgique sur le score de 4 buts à 1.
+      [1m] ⚡exclusif Zinédine Zidane s'est déclaré satisfait de la prestation de Dembélé lors du ma
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 33 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (159 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        ✅
+        14. clé 4 × gemini-3.5-flash-lite        ✅
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         ✅
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,064 entrée · 361 sortie
+     ✅ aucun appel payant
