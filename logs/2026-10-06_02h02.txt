@@ -1,0 +1,86 @@
+
+[02:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #gfvip, #ローソンのグーコロ男爵, Olise, #LaIslaDeLasTentaciones9, #JTB推し活2026
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 9.1 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Falcons » écarté : Match de saison régulière de NFL sans enjeu.
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 6.2 h (Don Bosco Aujourd'hui)
+  ⏭️  « Saints » écarté : Célébration récurrente sans fait nouveau.
+  🌍 « Gavin Williams » : aucune reprise en français, source internationale retenue
+  🔎 « Gavin Williams » : 1 article(s) frais, le plus récent il y a 0.5 h (MLB.com)
+  ⏭️  « Gavin Williams » écarté : Analyse technique sportive sans événement marquant.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Olise
+  📖 1/1 articles lus en 0.2s (28 déjà en cache)
+  📄 5/29 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 29 vecteurs calculés en 1 appel(s)
+  🧩 29 articles → 11 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mouvement lycéen: "Tout est fait pour dénigrer la je
+  🚨 Sujet chaud (breaking, 5 médias) : Face aux Belges, les Bleus s’offrent une fin en fa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : Frandroid, Libération, Ouest-France
+  🧮 Score 61.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 2.1h +4 + portée internationale +10
+  🧩 10 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 8 exclusive(s)
+      [1m] ⚡exclusif L'équipe de France de football a battu la Belgique sur le score de 4 à 1.
+      [2m] Une mobilisation lycéenne importante a lieu en France, avec plus de 400 établi
+      [2m] La gestion des blocages lycéens et les violences associées font l'objet de déb
+      [1m] ⚡exclusif La presse internationale analyse la crise lycéenne française comme un test pol
+      [1m] ⚡exclusif Valérie Pécresse propose de supprimer les aides régionales aux lycéens sanctio
+      [1m] ⚡exclusif Des médias étrangers comme The Guardian et le New York Times identifient le ma
+      [1m] ⚡exclusif Donald Trump Jr a commenté les événements en liant les violences à la politiqu
+      [1m] ⚡exclusif Le ministère des Affaires étrangères iranien a critiqué la violence des forces
+  🌙 Sujet fort (score 61) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 29 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (83 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 1 × gemini-embedding-2           🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-2           🚫 quota
+        16. clé 3 × gemini-embedding-001         ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,764 entrée · 963 sortie
+     ✅ aucun appel payant
