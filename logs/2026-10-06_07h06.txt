@@ -1,0 +1,188 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Falcons, #miino, #KisshtLoansWithoutHiccups, Saints, Yankees
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 1.5 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Falcons » écarté : trop secondaire (2/10)
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 1.8 h (ladepeche.fr)
+  ⏭️  « Saints » écarté : Article local sans événement d'actualité nationale.
+  🔎 « Yankees » : 1 article(s) frais, le plus récent il y a 9.6 h (RDS)
+  ⏭️  « Yankees » écarté : Performance sportive sans impact majeur en France.
+  🔎 « Boone » : 1 article(s) frais, le plus récent il y a 11.0 h (agridigitale.tg)
+  ⏭️  « Boone » écarté : Contenu spécialisé sur le fantasy football américain.
+  🔎 « san diego » : 1 article(s) frais, le plus récent il y a 6.3 h (Google Actualités)
+  ⏭️  « san diego » écarté : Contenu promotionnel sans événement d'actualité majeur.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Quebec
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 28528 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/8 articles lus en 1.1s (55 déjà en cache)
+  📄 5/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 63 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Blocus des lycées : le rôle clé de l'U… »
+  🧠 Même événement (jugé) : « Colère lycéenne: des milliers de lycée… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Un cas mortel de peste en Russie? Inqu… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧠 Même événement (jugé) : « Blocages des lycées : des manifestatio… »
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧠 Même événement (jugé) : « Colère des lycéens : Pourquoi le maint… »
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Blocage des lycées : pourquoi la journ… »
+  🧩 63 articles → 27 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Blocus des lycées : le rôle clé de l'USL, le syndica
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : À 40 ans, quels sont les bons réflexes pour bâtir vo
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Colère lycéenne: des milliers de lycéens attendus da
+  🚨 Sujet chaud (breaking, 6 médias) : La Russie cherche à rassurer sur un décès supposém
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : Frandroid, NASA, Ouest-France
+  🧮 Score 60.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 1.1h +8 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Une technicienne de laboratoire de 28 ans, Daria Chipilova, est décédée à Irko
+      [2m] Les autorités russes affirment que la situation est sous contrôle et nient l'é
+      [1m] ⚡exclusif La cause officielle du décès annoncée par les autorités est une pneumonie d'or
+      [2m] Des rumeurs évoquent une contamination par la peste, soit via un voyage en Tha
+      [1m] ⚡exclusif Environ 200 personnes ayant été en contact avec la victime ont été placées en 
+      [1m] ⚡exclusif Le président américain Donald Trump a déclaré surveiller la situation de près.
+  🕒 Âge de l'article : 4.3h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Victime d'un fait divers, personne non publique.
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : 140 000 inscrits pour une prim
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Secessionist party wins Quebec election in Canada
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 63 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Un cas mortel de peste en Russie? Inquiétude après
+  ♻️ Doublon d'un sujet déjà publié, écarté : Allemagne : le parti d’extrême droite AfD en passe
+  ♻️ 7/10 [world] (déjà analysé, cache) : La Russie cherche à rassurer sur un décès supposém
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le rappeur Prince Waly est mort à 34 ans d’un pemp
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Pentagon stops using Anthropic AI tools after blac
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump offers U.S. help to Russia after plague deat
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  🎯 Pré-classement : 35 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 7/10 [crypto] mondiale: Strive Adds $169M Bitcoin in Its Biggest Buy in 
+  🌍 7/10 sans portée internationale : « Une note très, très, très positive » : Zinédine 
+  📉 4/10: Blocage des lycées : où et à quelle heure ont lieu les 
+  📉 4/10: Ethereum’s Glamsterdam test gets last-minute fix before
+  🌍 6/10 sans portée internationale : Colère lycéenne: des milliers de lycéens attendus 
+  📉 5/10: Solana Debuts Institutional Settlement Standard With J.
+  📉 3/10: « Au même âge, il est plus pro que moi ! » : rencontre 
+  📉 5/10: OKX eyes emerging markets with yield-offering stablecoi
+  ✅ 8/10 [world] large: Mexican and Colombian cartel mercenaries filmed 
+  📉 4/10: Midterms : au nord de Philadelphie, l’entre-deux politi
+  📉 5/10: Greffiers, policiers... et élus : à Marseille, les comp
+  🌍 7/10 sans portée internationale : Saudi Arabia urged to spare man sentenced to death
+  ⏩ Doublon: Blocus des lycées : le rôle clé de l'USL, le syndicat p
+  🌍 6/10 sans portée internationale : Le projet de loi « casseurs-payeurs », une future 
+  ⏩ Doublon: Blocus des lycées : "on continuera tant qu’on n’aura pa
+  ⏩ Doublon: Blocus des lycéens : que contient le controversé projet
+  📉 3/10: « C’est un endroit entre le monde d’avant et le monde d
+  📉 4/10: Denis Brogniart : Entre TF1 et son business, l'animateu
+  📉 2/10: Poêle à bois : l’erreur d’allumage qui divise par deux 
+  📉 4/10: Prime Day : c’est le top départ des Jours Flash Prime d
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 1.0h — Mexican and Colombian cartel mercenaries fil
+     9/10 · 2 média(s) · 4.3h — La Russie cherche à rassurer sur un décès su
+     8/10 · 1 média(s) · 3.3h — Trump offers U.S. help to Russia after plagu
+     8/10 · 1 média(s) · 6.6h — Strive Adds $169M Bitcoin in Its Biggest Buy
+     8/10 · 1 média(s) · 14.6h — Le rappeur Prince Waly est mort à 34 ans d’u
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (178 → 146 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 1.0h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Mexican and Colombian cartel mercenaries filmed fightin
+
+  ── Bilan du cycle (290 s) ──
+     écartés : 5 sujet banal · 4 sans portée internationale · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-2-preview   🚫 quota
+        25. clé 3 × gemini-embedding-2           🚫 quota
+        26. clé 4 × gemini-embedding-001         ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 3 × gemini-3.6-flash             🚫 quota
+        31. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        35. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 11 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview · clé 5 × gemini-embedding-001 · clé 5 × gemini-3.6-flash (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 32,782 entrée · 2,108 sortie
+     ✅ aucun appel payant
