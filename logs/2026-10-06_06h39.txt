@@ -1,0 +1,144 @@
+
+[06:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Falcons, Saints, Yankees, #miino, Bijan
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 1.1 h (touchdownactu.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Falcons » écarté : trop secondaire (2/10)
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 1.3 h (ladepeche.fr)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Saints » écarté : Article local sans événement d'actualité nationale.
+  🔎 « Yankees » : 1 article(s) frais, le plus récent il y a 9.2 h (RDS)
+  ⏭️  « Yankees » écarté : Performance sportive sans impact majeur en France.
+  🔎 « Bijan » : 1 article(s) frais, le plus récent il y a 10.0 h (RDS)
+  ⏭️  « Bijan » écarté : trop secondaire (2/10)
+  🔎 « Boone » : 1 article(s) frais, le plus récent il y a 10.6 h (agridigitale.tg)
+  ⏭️  « Boone » écarté : Conseils de jeu sans événement marquant.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Quebec
+  📖 3/3 articles lus en 0.8s (50 déjà en cache)
+  📄 4/53 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 53 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Blocages des lycées : des manifestatio… »
+  🧠 Même événement (jugé) : « Colère des lycéens : Pourquoi le maint… »
+  🧠 Même événement (jugé) : « Blocage des lycées : pourquoi la journ… »
+  🧠 Même événement (jugé) : « Blocage des lycées : où et à quelle he… »
+  🧠 Même événement (jugé) : « Blocus des lycées : "on continuera tan… »
+  🧩 53 articles → 32 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 3 s
+  🚨 Sujet chaud (breaking, 11 médias) : Blocages des lycées : des manifestations prévues d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC Business, BFM People, Cointelegraph, Nikkei Asia
+  🧮 Score 41.5/100 = gravité 3/10 → 14 + 11 médias +15 + frais 0.9h +13
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 2 column 18 (char 19) → couple suivant
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [5m] Une trentaine de manifestations et un appel à l'acte III de la mobilisation ly
+      [3m] Les revendications portent sur le manque de moyens, les classes surchargées, l
+      [3m] Le mouvement est marqué par des violences, des interpellations et des blessés 
+      [1m] ⚡exclusif La gestion du maintien de l'ordre face à des mineurs non habitués aux codes de
+      [1m] ⚡exclusif De nombreux lycées restent fermés sur décision des chefs d'établissement ou de
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Blocus des lycées : « On a l’impression d’être invis
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : À 40 ans, quels sont les bons réflexes pour bâtir vo
+  🚨 Sujet chaud (breaking, 2 médias) : La Russie cherche à rassurer sur un décès supposém
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧮 Score 49.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 2.7h +4 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Une employée de l'Institut antipeste d'Irkoutsk est décédée, suscitant des inq
+      [2m] Les autorités russes affirment que la situation est stable et sous contrôle, a
+      [2m] Selon un média indépendant, la victime aurait pu contracter la peste pulmonair
+      [1m] ⚡exclusif Les analyses officielles attribuent le décès à une pneumonie d'origine indéter
+         motif : Information absente du premier article qui met l'accent sur le doute.
+      [1m] ⚡exclusif Environ 200 personnes ayant été en contact avec la victime ont été placées en 
+         motif : Mentionné uniquement par 20 Minutes.
+      [1m] ⚡exclusif Les Etats-Unis, par la voix de Donald Trump et Marco Rubio, surveillent la sit
+         motif : Angle international absent du traitement du Monde.
+  🕒 Âge de l'article : 3.9h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Victime anonyme d'un fait divers sanitaire potentiel
+  ↩️ Hommage non confirmé → actualité normale [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Secessionist party wins Quebec election in Canada
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 53 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (202 s) ──
+     écartés : 3 sujet banal · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        39. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 6 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 25,132 entrée · 1,756 sortie
+     ✅ aucun appel payant
