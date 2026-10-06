@@ -1,0 +1,71 @@
+
+[00:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Tendances : getdaytrends.com injoignable (HTTPSConnectionPool(host='getdaytrends.com', port=)
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Aucune tendance disponible → hashtags choisis sur les mots du tweet
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.2s (19 déjà en cache)
+  📄 5/21 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 21 vecteurs calculés en 1 appel(s)
+  🧩 21 articles → 14 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Winklevoss group seeks to launch Zcash ETF with 0.25
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L'explorateur Karl Bushby de retour en Angleterre ap
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : The best robot vacuum and mop deals during October P
+  🚨 Sujet chaud (breaking, 7 médias) : Allemagne : l’affaire August Hanning, l’ancien che
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Google DeepMind, Jeuxvideo.com, Sciences et Avenir, The Block
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 4.7h +2 + portée mondiale +18
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  ⚪ Écarté (0, pénalisé par « \b(?:horoscope ») : Guerre en Ukraine : contraint de fuir le régime de M
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 21 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : La condamnée ayant survécu à son exécution aux Éta
+  → Rien à publier.
+
+  ── Bilan du cycle (44 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 1 × gemini-3.6-flash             🚫 quota
+        12. clé 1 × gemini-3-flash               ⛔ inexistant
+        13. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 2 × gemini-3.6-flash             🚫 quota
+        17. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-embedding-001 (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,090 entrée · 72 sortie
+     ✅ aucun appel payant
