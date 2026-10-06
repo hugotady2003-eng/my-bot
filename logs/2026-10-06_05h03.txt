@@ -1,0 +1,90 @@
+
+[05:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Yankees, Saints, Falcons, #WWERAW, #FandomsComLula
+  🔎 « Yankees » : 1 article(s) frais, le plus récent il y a 7.6 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Yankees » écarté : Performance sportive sans impact majeur en France.
+  🔎 « Saints » : 1 article(s) frais, le plus récent il y a 12.1 h (dazn.com)
+  ⏭️  « Saints » écarté : trop secondaire (2/10)
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 12.1 h (dazn.com)
+  ⏭️  « Falcons » écarté : trop secondaire (2/10)
+  🔎 « Ben Rice » : 1 article(s) frais, le plus récent il y a 7.6 h (RDS)
+  ⏭️  « Ben Rice » écarté : Performance sportive sans impact majeur en France.
+  🔎 « Bijan » : 1 article(s) frais, le plus récent il y a 8.5 h (RDS)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Bijan » écarté : Sport nord-américain sans impact en France.
+  📖 36 articles, tous en cache
+  📄 4/36 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 36 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧩 36 articles → 23 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : Trump offers U.S. help to Russia after plague deat
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.8h +8 + primeur +5 + portée internationale +10
+  🧩 9 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Le président américain Donald Trump a proposé l'aide des États-Unis à la Russi
+      [2m] Les autorités russes affirment que la situation sanitaire est sous contrôle.
+      [2m] Une employée de laboratoire de 28 ans est décédée dans des circonstances liées
+      [2m] Environ 200 personnes ont été placées en quarantaine par les autorités russes.
+      [1m] ⚡exclusif La cause du décès est attribuée à une pneumonie d'origine indéterminée selon l
+      [1m] ⚡exclusif Des médias locaux suggèrent que le décès pourrait être lié à la peste pulmonai
+      [1m] ⚡exclusif Le département d'État américain encourage la Russie à partager des information
+      [1m] ⚡exclusif Donald Trump a exprimé son inquiétude sur la résistance croissante des microbe
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 36 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (113 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-2-preview   ✅
+        22. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,939 entrée · 959 sortie
+     ✅ aucun appel payant
