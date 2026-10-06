@@ -1,0 +1,81 @@
+
+[00:16] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #السعوديه_الامارات, #خليجي٢٧, كاس الخليج, #مصرف_الراجحي, #دورينا_غير
+  🔎 « Messi » : 1 article(s) frais, le plus récent il y a 3.4 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ✅ « Messi » retenu : Annonce officielle de la retraite internationale de Messi. (7/10) (+1 au score)
+  🔎 « Merino » : 1 article(s) frais, le plus récent il y a 1.1 h (tv5monde)
+  ⏭️  « Merino » écarté : trop secondaire (5/10)
+  🔎 « Lane Johnson » : 1 article(s) frais, le plus récent il y a 1.6 h (DAZN)
+  ⏭️  « Lane Johnson » écarté : trop secondaire (2/10)
+  🔎 « Maradona » : 1 article(s) frais, le plus récent il y a 0.8 h (RMC Sport)
+  ⏭️  « Maradona » écarté : Anecdote ancienne sur Cristiano Ronaldo sans fait nouveau.
+  🔎 « Pauline » : 1 article(s) frais, le plus récent il y a 8.8 h (Gala)
+  ✅ « Pauline » retenu : Hommage médiatique émouvant de Nadine Trintignant. (6/10) (+1 au score)
+  🔎 « san diego » : 1 article(s) frais, le plus récent il y a 5.6 h (Le Devoir)
+  ⏭️  « san diego » écarté : Information fausse, rumeur sans fondement factuel.
+  🌍 « Catrin » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Messi, #Pauline
+  📖 3/3 articles lus en 2.0s (15 déjà en cache)
+  📄 4/18 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · Ouest-France · The Block
+  🧠 18 vecteurs calculés en 1 appel(s)
+  🧩 18 articles → 12 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Winklevoss group seeks to launch Zcash ETF with 0.25
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L'explorateur Karl Bushby de retour en Angleterre ap
+  🚨 Sujet chaud (breaking, 6 médias) : Allemagne : l’affaire August Hanning, l’ancien che
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Google DeepMind, Sciences et Avenir, The Block, The Verge
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 5.0h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 72) mais nuit → il attendra le matin
+  ⚪ Écarté (0, pénalisé par « \b(?:horoscope ») : Guerre en Ukraine : contraint de fuir le régime de M
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Je pars en paix » : l’émouvant message d’adieu de 
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 18 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : OpenAI will watermark ChatGPT outputs by default—b
+  → Rien à publier.
+
+  ── Bilan du cycle (60 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 1 × gemini-embedding-2           🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3-flash (+20)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,627 entrée · 285 sortie
+     ✅ aucun appel payant
