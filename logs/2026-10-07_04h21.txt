@@ -1,0 +1,92 @@
+
+[04:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Messi, Enzo, #DWTS, ميسي, Sancor Seguros
+  🔎 « Messi » : 1 article(s) frais, le plus récent il y a 3.4 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ✅ « Messi » retenu : Dernier match historique de Lionel Messi avec l'Argentine. (6/10) (+1 au score)
+  🔎 « Enzo » : 1 article(s) frais, le plus récent il y a 5.2 h (TOP Mercato)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Enzo » écarté : Rumeur de transfert sans fait nouveau concret.
+  🔎 « DWTS » : 1 article(s) frais, le plus récent il y a 0.4 h (IMDb)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « DWTS » écarté : Divertissement television sans impact direct en France
+  🌍 « Sancor Seguros » : aucune reprise en français, source internationale retenue
+  🔎 « Sancor Seguros » : 1 article(s) frais, le plus récent il y a 0.5 h (SuaraGarut.ID)
+  ⏭️  « Sancor Seguros » écarté : Célébration d'anniversaire d'une entreprise étrangère sans i
+  🔎 « Nico Paz » : 1 article(s) frais, le plus récent il y a 1.4 h (Foot Mercato)
+  ⏭️  « Nico Paz » écarté : trop secondaire (4/10)
+  🌍 « Chiqui Tapia » : aucune reprise en français, source internationale retenue
+  🔎 « Benin » : 1 article(s) frais, le plus récent il y a 3.1 h (LiveFoot)
+  ⏭️  « Benin » écarté : Match amical international sans enjeu majeur.
+  🔎 « Otamendi » : 1 article(s) frais, le plus récent il y a 1.6 h (Foot Mercato)
+  ⏭️  « Otamendi » écarté : trop secondaire (4/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Messi
+  📖 45 articles, tous en cache
+  📄 7/45 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · OpenAI · The Block
+  🧠 45 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « From 'woke' ridicule to real car - new… »
+  🧩 45 articles → 16 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : The best robot vacuum and mop deals during October P
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Lionel Messi en pleurs avant son arrivée au stade po
+  ⚽ API football-data : 5 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 45 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (63 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,398 entrée · 302 sortie
+     ✅ aucun appel payant
