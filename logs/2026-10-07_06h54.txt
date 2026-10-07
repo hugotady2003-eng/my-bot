@@ -1,0 +1,113 @@
+
+[06:53] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Messi, Enzo, Sancor Seguros, #auPAYからプレゼント, #DWTS
+  🔎 « Enzo » : 1 article(s) frais, le plus récent il y a 7.7 h (TOP Mercato)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Enzo » écarté : Rumeur de mercato ancienne et anecdotique.
+  🌍 « Sancor Seguros » : aucune reprise en français, source internationale retenue
+  🔎 « Sancor Seguros » : 1 article(s) frais, le plus récent il y a 3.1 h (SuaraGarut.ID)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Sancor Seguros » écarté : Célébration d'anniversaire sans impact pour la France.
+  🔎 « DWTS » : 1 article(s) frais, le plus récent il y a 0.4 h (IMDb)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « DWTS » écarté : Divertissement télévisé étranger sans impact national.
+  🌍 « Chiqui Tapia » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Messi
+  📖 5/5 articles lus en 0.9s (66 déjà en cache)
+  📄 10/71 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · OpenAI · The Block
+  🧠 71 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🧩 71 articles → 27 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Retour en classe ou nouveaux blocages? Journée test 
+  🚨 Sujet chaud (breaking, 7 médias) : Mobilisation des lycéens : les blocages doivent re
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 11 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, France Info, La Dépêche, Libération
+  🧮 Score 40.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 0.5h +16
+  → Sujet chaud pas assez fort (score 40) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Un taux de mortalité très important »… Que sait-on
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Le concept avait cassé internet : voici la Jaguar Ty
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Football : Pour ses adieux à l’équipe d’Argentine, M
+  ⚽ API football-data : 5 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 71 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Soupçon de peste en Russie : pourquoi il faut rais
+  ♻️ Doublon d'un sujet déjà publié, écarté : 1.700 amendements, 45 milliards d’euros d’économie
+  → Rien à publier.
+
+  ── Bilan du cycle (109 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   ✅
+        29. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.6-flash             ⚠️ Unterminated string st
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.6-flash             ⚠️ Unterminated string st
+        … et 4 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,305 entrée · 212 sortie
+     ✅ aucun appel payant
