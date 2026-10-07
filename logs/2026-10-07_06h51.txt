@@ -1,0 +1,117 @@
+
+[06:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Messi, Enzo, Sancor Seguros, #auPAYからプレゼント, #DWTS
+  🔎 « Enzo » : 1 article(s) frais, le plus récent il y a 7.6 h (TOP Mercato)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Enzo » écarté : Rumeur de transfert sans fait nouveau concret.
+  🌍 « Sancor Seguros » : aucune reprise en français, source internationale retenue
+  🔎 « Sancor Seguros » : 1 article(s) frais, le plus récent il y a 3.0 h (SuaraGarut.ID)
+  ⏭️  « Sancor Seguros » écarté : Célébration d'anniversaire sans impact pour la France.
+  🔎 « DWTS » : 1 article(s) frais, le plus récent il y a 0.3 h (IMDb)
+  ⏭️  « DWTS » écarté : Divertissement télévisé étranger sans impact national.
+  🌍 « Chiqui Tapia » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Messi
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/8 articles lus en 1.0s (62 déjà en cache)
+  📄 10/70 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · OpenAI · The Block
+  🧠 70 vecteurs calculés en 1 appel(s)
+  🧩 70 articles → 30 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Retour en classe ou nouveaux blocages? Journée test 
+  🚨 Sujet chaud (breaking, 7 médias) : Mobilisation des lycéens : les blocages doivent re
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : BFMTV, Libération, Sud Ouest
+  🧮 Score 25.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 0.4h +16 + programmé 3/10 -15
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] Le Premier ministre Sébastien Lecornu a annoncé la suspension des cours et une
+      [2m] Le nombre de manifestants recensés lors de la journée de mobilisation varie en
+      [2m] Plusieurs centaines de personnes ont été interpellées en marge des manifestati
+      [2m] Les syndicats lycéens et étudiants appellent à poursuivre le mouvement avec de
+      [1m] ⚡exclusif Malgré les annonces de continuité pédagogique en distanciel, les cours ne sont
+      [1m] ⚡exclusif Des enquêtes et des signalements d'avocats dénoncent des violences physiques e
+      [1m] ⚡exclusif Emmanuel Macron a réuni ses ministres pour faire le point face à la pression e
+      [2m] Les lycéens protestent contre la vétusté des locaux, la pénurie de professeurs
+  → Sujet chaud pas assez fort (score 26) → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Le concept avait cassé internet : voici la Jaguar Ty
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Football : Pour ses adieux à l’équipe d’Argentine, M
+  ⚽ API football-data : 5 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 70 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Climat : entre 46 et 53 milliards d’euros seront n
+  → Rien à publier.
+
+  ── Bilan du cycle (360 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         🚫 quota
+        30. clé 4 × gemini-embedding-2-preview   ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        39. clé 4 × gemini-3.6-flash             🚫 quota
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 11,072 entrée · 971 sortie
+     ✅ aucun appel payant
