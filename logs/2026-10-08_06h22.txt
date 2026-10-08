@@ -1,0 +1,85 @@
+
+[06:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #NanaPatekar, Yankees, नाना पाटेकर, #マックに新たな主役ジューシーチキン誕生, Om Shanti
+  🌍 « NanaPatekar » : aucune reprise en français, source internationale retenue
+  🔎 « Yankees » : 1 article(s) frais, le plus récent il y a 3.3 h (PassionMLB)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Yankees » écarté : trop secondaire (3/10)
+  🌍 « Om Shanti » : aucune reprise en français, source internationale retenue
+  🌍 « YOURTUBER Q9 » : aucune reprise en français, source internationale retenue
+  🔎 « Boone » : 1 article(s) frais, le plus récent il y a 12.7 h (ActuaLitté.com)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Boone » écarté : Promotion littéraire sans événement d'actualité majeur.
+  📖 5/5 articles lus en 1.6s (57 déjà en cache)
+  📄 9/62 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · The Block · Ouest-France · Sciences et Avenir · OpenAI
+  🧠 62 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Mouvement lycéen : la jeunesse se lève… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Colère lycéenne: une nouvelle journée … »
+  🧠 Même événement (jugé) : « Lycées: Sébastien Lecornu promet des p… »
+  🧩 62 articles → 22 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sébastien Lecornu accablé par « la superposition des
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Texas carries out first US execution since Christa P
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 62 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (108 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   🚫 quota
+        11. clé 1 × gemini-embedding-2           🚫 quota
+        12. clé 2 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-2-preview   🚫 quota
+        14. clé 2 × gemini-embedding-2           🚫 quota
+        15. clé 3 × gemini-embedding-001         🚫 quota
+        16. clé 3 × gemini-embedding-2-preview   🚫 quota
+        17. clé 3 × gemini-embedding-2           🚫 quota
+        18. clé 4 × gemini-embedding-001         🚫 quota
+        19. clé 4 × gemini-embedding-2-preview   ✅
+        20. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 2 × gemini-3.6-flash             🚫 quota
+        22. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.6-flash             🚫 quota
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2 (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,097 entrée · 144 sortie
+     ✅ aucun appel payant
