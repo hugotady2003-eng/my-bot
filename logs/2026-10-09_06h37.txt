@@ -1,0 +1,110 @@
+
+[06:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Cowboys, Bucs, Todd Bowles, Jake Ferguson, #PLN50RBCUMA40RB
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 1.2 h (Touchdown Actu)
+  ⏭️  « Cowboys » écarté : trop secondaire (3/10)
+  🔎 « Bucs » : 1 article(s) frais, le plus récent il y a 18.4 h (arsenalsports.ca)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Bucs » écarté : trop secondaire (2/10)
+  🌍 « Jake Ferguson » : aucune reprise en français, source internationale retenue
+  🔎 « Jake Ferguson » : 1 article(s) frais, le plus récent il y a 8.6 h (Sports Illustrated)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Jake Ferguson » écarté : Simple conseil de fantasy football américain sans portée fra
+  🌍 « Christian Parker » : aucune reprise en français, source internationale retenue
+  🔎 « Christian Parker » : 1 article(s) frais, le plus récent il y a 1.0 h (Athlon Sports)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Christian Parker » écarté : Sport US mineur pour le public francais.
+  🔎 « Jerry » : 1 article(s) frais, le plus récent il y a 16.9 h (Google Actualités)
+  ⏭️  « Jerry » écarté : Diffusion simple d'un dessin animé
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 11/14 articles lus en 1.7s (52 déjà en cache)
+  📄 10/66 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · The Block · Decrypt · OpenAI
+  🧠 66 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Primaire de gauche : de 2007 à 2027, i… »
+  🧠 Même événement (jugé) : « Mobilisation des lycéens : "3 000 prof… »
+  🧩 66 articles → 28 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Primaire à gauche : avec plus de 140 000 votants pou
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 12 médias) : Nvidia-backed AI data centre firm scraps mega list
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 14 article(s) sur un autre sujet, écartés du dossier : Ars Technica, BBC Business, BFMTV, CNBC, Decrypt
+  🧮 Score 56.0/100 = gravité 4/10 → 18 + 12 médias +18 + frais 7.2h +2 + portée mondiale +18
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 66 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Ingérences, menaces… En Grèce, l’ambassadrice de D
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Quiconque utilise le terme 'intelligence artifici
+  ♻️ Doublon d'un sujet déjà publié, écarté : Élections de mi-mandat aux États-Unis : Donald Tru
+  ♻️ Doublon d'un sujet déjà publié, écarté : Uproar in NY after ICE shoots man with child in th
+  → Rien à publier.
+
+  ── Bilan du cycle (86 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         5. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         6. clé 1 × gemini-3.6-flash             🚫 quota
+         7. clé 1 × gemini-3-flash               ⛔ inexistant
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        12. clé 2 × gemini-3-flash               ⛔ inexistant
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 3 × gemini-3.6-flash             🚫 quota
+        17. clé 3 × gemini-3-flash               ⛔ inexistant
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 1 × gemini-embedding-001         🚫 quota
+        23. clé 1 × gemini-embedding-2-preview   🚫 quota
+        24. clé 1 × gemini-embedding-2           🚫 quota
+        25. clé 2 × gemini-embedding-001         🚫 quota
+        26. clé 2 × gemini-embedding-2-preview   🚫 quota
+        27. clé 2 × gemini-embedding-2           🚫 quota
+        28. clé 3 × gemini-embedding-001         🚫 quota
+        29. clé 3 × gemini-embedding-2-preview   🚫 quota
+        30. clé 3 × gemini-embedding-2           🚫 quota
+        31. clé 4 × gemini-embedding-001         🚫 quota
+        32. clé 4 × gemini-embedding-2-preview   ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-embedding-001 · clé 5 × gemini-embedding-2-preview (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,422 entrée · 238 sortie
+     ✅ aucun appel payant
