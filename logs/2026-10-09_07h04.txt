@@ -1,0 +1,191 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Cowboys, #LaGranjaSalvación, #ファミマルで皿洗い卒業, #Aspire2026, Bucs
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 1.7 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Cowboys » écarté : trop secondaire (2/10)
+  🔎 « Bucs » : 1 article(s) frais, le plus récent il y a 18.8 h (arsenalsports.ca)
+  ⏭️  « Bucs » écarté : Simple article de sport sans événement majeur récent.
+  🌍 « IndiaMobileCongress » : aucune reprise en français, source internationale retenue
+  🌍 « Jake Ferguson » : aucune reprise en français, source internationale retenue
+  🔎 « Jake Ferguson » : 1 article(s) frais, le plus récent il y a 9.0 h (Sports Illustrated)
+  ⏭️  « Jake Ferguson » écarté : Simple conseil de fantasy football américain sans intérêt gé
+  🔎 « Jerry » : 1 article(s) frais, le plus récent il y a 17.3 h (Google Actualités)
+  ⏭️  « Jerry » écarté : Diffusion simple d'un épisode de dessin animé.
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 32848 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 404: Not Found
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/7 articles lus en 1.2s (61 déjà en cache)
+  📄 10/68 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · Positivr · The Block · Decrypt
+  🧠 68 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Mobilisation des lycéens : "3 000 prof… »
+  🧠 Même événement (jugé) : « Mobilisation lycéenne : « Ils font sem… »
+  🧠 Même événement (jugé) : « Présidentielle 2027 : 3000 enseignants… »
+  🧩 68 articles → 32 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Primaire de la gauche social-démocrate : avec plus d
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mobilisation des lycéens : "3 000 professeurs rempla
+  🚨 Sujet chaud (breaking, 2 médias) : Nvidia-backed Aussie AI firm Firmus withdraws hist
+  🧮 Score 53.0/100 = gravité 4/10 → 18 + 2 médias +4 + frais 1.1h +8 + primeur +5 + portée mondiale +18
+  🧩 9 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] L'entreprise australienne Firmus, spécialisée dans les centres de données pour
+      [2m] Firmus justifie l'annulation de son introduction en bourse par la volatilité e
+      [2m] La direction de Firmus estime que les conditions de l'offre ne reflétaient pas
+      [2m] L'introduction en bourse visait une valorisation de l'entreprise d'environ 30,
+      [2m] Firmus prévoit désormais de rechercher des capitaux sur les marchés privés et 
+      [1m] ⚡exclusif L'opération aurait pu devenir la deuxième plus importante introduction en bour
+      [1m] ⚡exclusif Un investisseur a confié à la BBC avoir refusé de participer à l'introduction 
+      [1m] ⚡exclusif Firmus a conclu des accords avec Meta pour fournir des capacités de calcul GPU
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (163 → 130 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 11 médias) : Mondial de l’Auto : face à l’offensive chinoise, l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 11 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Dexerto, Gamekult, Journal du Geek, La Dépêche
+  🧮 Score 55.5/100 = gravité 5/10 → 22 + 11 médias +15 + frais 1.0h +8 + portée internationale +10
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (316 → 131 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  → 68 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump wants to reduce the cost of fuel as the midt
+  ♻️ Doublon d'un sujet déjà publié, écarté : Nvidia-backed AI data centre firm scraps landmark 
+  ♻️ 8/10 [space] (déjà analysé, cache) : L'astronaute Sophie Adenot a amerri au large de la
+  ♻️ 7/10 [space] (déjà analysé, cache) : Sophie Adenot : De retour sur Terre ce jeudi, l’as
+  ♻️ 8/10 [space] (déjà analysé, cache) : Sophie Adenot est rentrée : suivez en direct le re
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Apple fixe un événement « Welcome home » au 13 oct
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Un agent IA offensif industrialise les compromissi
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Margaret Hamilton, mère du système informatique du
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Le leaker de GTA 6 Cyberleek revient avec 25 minut
+  ♻️ 9/10 [world] (déjà analysé, cache) : Russian strike on buses kills at least 30, say off
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Nvidia, Oracle, CoreWeave and other AI stocks sink
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : JPMorgan estimates $50 billion has flowed into cry
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Ethereum Test Network Raises Block Limit to Over 3
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Fired OpenAI safety researchers dispute misconduct
+  ♻️ 7/10 [space] (déjà analysé, cache) : SpaceX announces plan to become a ‘major mobile ca
+  ♻️ 8/10 [space] (déjà analysé, cache) : Splashdown confirmed for Sophie Adenot
+  🎯 Pré-classement : 28 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 8/10 [tech] mondiale: "Un grand jour pour Starlink Mobile": Elon Musk 
+  📉 4/10: Mexico prison clash in strife-torn Sinaloa state leaves
+  📉 5/10: China’s P2P stablecoin wallets surge 43x, Korea’s $450B
+  📉 3/10: OLED MacBook Pro to help boost premium display shipment
+  ✅ 6/10 [tech] large: Trump Mobile hack and apparent lack of FCC autho
+  📉 3/10: Accusé de racisme, Jarry s'effondre en larmes à la télé
+  📉 4/10: ICE Agent at NYC Shooting Has History of Alleged Violen
+  ✅ 7/10 [crypto] mondiale: Thailand finalizes rules paving way for Bitcoin,
+  📉 4/10: XRP Ledger adds new controls for banks, stablecoins and
+  📉 5/10: Suspect linked to Monaco bomb attack on millionaire spe
+  📉 3/10: Bruno Retailleau et l'interdiction de LFI : de Paris à 
+  📉 3/10: Assemblée nationale : le Rassemblement national échoue 
+  📉 4/10: Judge weighs if Trump can charge $100K for early access
+  📉 4/10: Marvel annonce le retour d’un monument du MCU pour une 
+  📉 2/10: Mémoire cash - Derrière les bonnets D, le chef-d'œuvre 
+  📉 2/10: De Paris ou d’Espagne, pour la beauté des paysages ou l
+  📉 3/10: Un « ourson d’eau » à la génétique étonnante : pourquoi
+  📉 2/10: Ramonage : pourquoi un seul entretien par an ne suffit 
+  🌍 6/10 sans portée internationale : Écrits antisémites attribués à Jordan Bardella: le
+  📉 3/10: Présidentielle 2027 : 3000 enseignants vont arriver dan
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.2h — "Un grand jour pour Starlink Mobile": Elon M
+     10/10 · 4 média(s) · 9.3h — L'astronaute Sophie Adenot a amerri au large
+     10/10 · 4 média(s) · 9.9h — Sophie Adenot : De retour sur Terre ce jeudi
+     8/10 · 1 média(s) · 1.9h — Thailand finalizes rules paving way for Bitc
+     10/10 · 4 média(s) · 13.4h — Sophie Adenot est rentrée : suivez en direct
+  ✂️ Éphéméride resserré (257 → 166 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 2 sélectionné(s) [gta6, tech]
+  🧠 11 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, ActuGaming, Ars Technica, Cointelegraph, Decrypt
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (277 → 138 car.)
+  🖼️🤝 Image récupérée chez un média jumeau (CNBC) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : "Un grand jour pour Starlink Mobile": Elon Musk se rapp
+
+  ── Bilan du cycle (211 s) ──
+     écartés : 2 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-2-preview   🚫 quota
+        27. clé 3 × gemini-embedding-2           🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 4 × gemini-embedding-2-preview   🚫 quota
+        30. clé 4 × gemini-embedding-2           🚫 quota
+        31. clé 5 × gemini-embedding-001         ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 13 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2 (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 55,716 entrée · 3,029 sortie
+     ✅ aucun appel payant
