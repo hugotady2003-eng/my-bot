@@ -1,0 +1,96 @@
+
+[00:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Panamá, #BÇYDay, #النصر_الدرعيه, SE FLÁVIO VENCE VOCÊ PERDE, #GSvKAS
+  🔎 « Dortmund » : 1 article(s) frais, le plus récent il y a 3.6 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Dortmund » écarté : Match de football de championnat etranger.
+  🔎 « Mike Ditka » : 1 article(s) frais, le plus récent il y a 4.9 h (Martin Cid Magazine)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Mike Ditka » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #KatieZacharia
+  📖 3/3 articles lus en 0.9s (13 déjà en cache)
+  📄 2/16 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Sciences et Avenir · The Block
+  🧠 16 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « US unveils sanctions on ICC in move co… »
+  🧩 16 articles → 12 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Vol FlyDubai dérouté : Le copilote s’était inspiré
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 42.5/100 = gravité 9/10 → 40 + frais 4.5h +2
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mobilisation lycéenne: "Il faut un débouché politiqu
+  🚨 Sujet chaud (breaking, 2 médias) : Présidentielle 2027 : après la cyberattaque sur la
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 57.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 4.3h +2 + thème porteur +10 + portée internationale +10
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [2m] La plateforme de vote a subi une cyberattaque par déni de service via des robo
+      [1m] Le scrutin est prolongé jusqu'au dimanche à 18 heures.
+         ↳ France Bleu : Le vote doit se poursuivre jusqu'au samedi à 20 heures.
+         motif : France Info dispose d'informations plus récentes suite à la décision o
+      [2m] Les organisateurs assurent que la sincérité et l'intégrité du scrutin ne sont 
+      [1m] ⚡exclusif Le taux de participation était de 20 000 votants sur 140 000 inscrits vendredi
+      [1m] ⚡exclusif La commission d'organisation a saisi l'Autorité nationale en matière de sécuri
+      [1m] ⚡exclusif Cinq candidats participent à cette primaire de la gauche.
+      [1m] ⚡exclusif Philippe Brun a été suspendu du Parti socialiste.
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Trump Media advisor Katie Zacharia offered White H
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 50.0/100 = gravité 8/10 → 36 + frais 2.7h +4 + portée internationale +10
+  🌙 Sujet fort (score 50) mais nuit → il attendra le matin
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 16 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : La plateforme de vote pour la primaire de la gauch
+  ♻️ Doublon d'un sujet déjà publié, écarté : Les Etats-Unis imposent des sanctions contre la Co
+  → Rien à publier.
+
+  ── Bilan du cycle (129 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 735
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,629 entrée · 740 sortie
+     ✅ aucun appel payant
