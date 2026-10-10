@@ -1,0 +1,112 @@
+
+[04:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #SmackDown, Angel Reese, Paredes, #ガルパンはいいぞ, #土曜はナニする
+  🔎 « SmackDown » : 1 article(s) frais, le plus récent il y a 2.7 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « SmackDown » écarté : Match de catch sans actualité marquante.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Washington
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.4s (35 déjà en cache)
+  📄 5/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · The Block
+  🧠 36 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Mobilisation lycéenne: "Il faut un déb… »
+  🧠 Même événement (jugé) : « Dual quakes devastate southern Panama… »
+  🧩 37 articles → 21 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Un séisme de magnitude 7,7 a secoué le Panama, pro
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : BBC, BBC Business, Ouest-France
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + 5 médias +11 + frais 3.5h +4 + thème porteur +10 + ⚡ catastrophe majeure → plancher 89
+  🧩 6 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] Un séisme majeur a frappé le Panama, provoquant des dégâts matériels important
+      [2m] Le séisme s'est produit le vendredi 9 octobre.
+      [2m] Le séisme a touché la province de Herrera.
+      [1m] Le séisme principal était d'une magnitude de 7,7.
+         ↳ Al Jazeera : Al Jazeera mentionne deux séismes de magnitude 7,5 et 6,6.
+         motif : Utilisation de sources ou d'estimations différentes selon l'USGS.
+      [1m] ⚡exclusif Le président panaméen a déclaré une catastrophe majeure.
+      [1m] ⚡exclusif Aucune victime n'a été signalée pour l'instant après la secousse.
+  🕒 Âge de l'article : 2.8h (frais ✅)
+  📈 Hashtag(s) en tendance : #Panama
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 8 médias) : EN DIRECT, guerre en Ukraine : l’accord entre Mosc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : BBC Business, Jeuxvideo.com, La Tribune, Le Monde, Nikkei Asia
+  🧮 Score 75.5/100 = gravité 9/10 → 40 + 8 médias +15 + frais 6.5h +2 + portée mondiale +18
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  ⚽ API football-data : 43 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 37 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (56 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-2-preview   ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-001 · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 10,876 entrée · 787 sortie
+     ✅ aucun appel payant
