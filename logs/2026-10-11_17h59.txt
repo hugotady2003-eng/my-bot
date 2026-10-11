@@ -1,0 +1,209 @@
+
+[17:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « viking history »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Sunday, 11-Oct-26 08:56:26 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"Aa3kgLzARx4z-OOtSXa14wF"}}
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #Vivant, 和田さん, #佐久間のドタバタクッキング, #LULANAPAULISTA, #悪役会議室
+  🔎 « Vivant » : 1 article(s) frais, le plus récent il y a 6.0 h (ActuaBD)
+  ⏭️  « Vivant » écarté : Il s'agit d'une réflexion culturelle sans événement.
+  🔎 « Ferrari » : 1 article(s) frais, le plus récent il y a 1.1 h (L'Équipe)
+  ⏭️  « Ferrari » écarté : trop secondaire (5/10)
+  🌍 « Jalen Carter » : aucune reprise en français, source internationale retenue
+  🔎 « Jalen Carter » : 1 article(s) frais, le plus récent il y a 2.0 h (Philadelphia Eagles)
+  ⏭️  « Jalen Carter » écarté : trop secondaire (2/10)
+  🔎 « Lewis » : 1 article(s) frais, le plus récent il y a 1.1 h (L'Équipe)
+  ✅ « Lewis » retenu : Incident de course impliquant Lewis Hamilton chez Ferrari. (6/10) (+1 au score)
+  🔎 « Hamilton » : 1 article(s) frais, le plus récent il y a 1.2 h (Motorsport.com France)
+  ⏭️  « Hamilton » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lewis
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 17h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 7.0 h) : 25-45 min
+  ✅ Dernière publi il y a 36383 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 1.0s (14 déjà en cache)
+  📄 3/23 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération
+  🧠 22 vecteurs calculés en 1 appel(s)
+  🧩 23 articles → 10 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 9 médias) : Qu'est-ce qu'un nodule pulmonaire, dont le pape do
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : BBC Business, BFMTV, Challenges, Google DeepMind, L'Express
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 9 médias +15 + frais 1.7h +8 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Attaque attribuée aux Houthis contre l’aéroport de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 1.4h +8 + primeur +5 + portée internationale +10
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Une attaque contre l'aéroport international du roi Khaled à Riyad a causé 12 m
+      [2m] Les rebelles Houthis du Yémen ont revendiqué l'attaque.
+      [1m] ⚡exclusif L'attaque est présentée comme une réponse à l'offensive des forces yéménites s
+      [1m] ⚡exclusif Les victimes décédées comprennent quatre Saoudiens et huit étrangers de divers
+      [1m] ⚡exclusif Une ressortissante française figure parmi les blessés.
+      [1m] ⚡exclusif Le ministère de l'Éducation saoudien a ordonné la fermeture des écoles et le p
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Midi Libre) — même sujet
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 9 médias) : Pologne : un suspect arrêté en lien avec «une poss
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 9/10 → 40 + 9 médias +15 + frais 1.7h +8 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Donald Tusk (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Harry et Meghan vont effectuer leur premier engageme
+  ⚪ Écarté (1, pénalisé par « comment  ») : 12 morts et plus de 300 blessés : pourquoi l’attaque
+  🕒 Sujet chaud mais article ancien (41h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (41h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : EN DIRECT, primaire à gauche : qui de Raphaël Glucks
+  🚨 Sujet chaud (breaking, 9 médias) : Marineland d’Antibes : décès de Rocky, l’un des da
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 46.5/100 = gravité 3/10 → 14 + 9 médias +15 + frais 1.7h +8 + portée internationale +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ↩️ Aucune personnalité identifiée → actualité normale [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Frédéric Vasseur, Team Principal de Ferrari, après l
+  ⚽ API football-data : 31 match(s) sur 48h, dont France : 0
+  → 23 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Zelensky prêt à accepter un « cessez-le-feu énergé
+  ♻️ 9/10 [world] (déjà analysé, cache) : Pologne : un suspect arrêté en lien avec «une poss
+  ♻️ 9/10 [world] (déjà analysé, cache) : Attaque attribuée aux Houthis contre l’aéroport de
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : En Pologne, le Premier ministre Donald Tusk et son
+  ♻️ 8/10 [world] (déjà analysé, cache) : Qu'est-ce qu'un nodule pulmonaire, dont le pape do
+  ♻️ 8/10 [world] (déjà analysé, cache) : Attaque contre l’aéroport de Riyad : revendication
+  ♻️ 8/10 [world] (déjà analysé, cache) : 12 morts et plus de 300 blessés : pourquoi l’attaq
+  ♻️ 9/10 [world] (déjà analysé, cache) : Pope Leo to have surgery after lump found on lung
+  ♻️ 7/10 [world] (déjà analysé, cache) : Analysis: Trump's shock Russia deal highlights mou
+  ♻️ 9/10 [world] (déjà analysé, cache) : Pope Leo to undergo surgery to remove lung nodule
+  ♻️ 6/10 [business] (déjà analysé, cache) : Vance says Microsoft replaced laid-off workers wit
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Ledger confirms unauthorized hardware implant, say
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : This Sam Altman-Backed Life Insurer Runs Entirely 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 8/10 [world] (déjà analysé, cache) : Ukraine’s drones knock out AI data center belongin
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🧠 Batch analyse de 6 articles...
+  📉 5/10: EN DIRECT, primaire à gauche : qui de Raphaël Glucksman
+  📉 3/10: Le «principal suspect» du cambriolage des tableaux de R
+  📉 4/10: Harry et Meghan vont effectuer leur premier engagement 
+  📉 2/10: Il a grandi dans un village nommé Angoisse, il est deve
+  ⏩ Doublon: Harry et Meghan vont effectuer leur premier engagement 
+  📉 4/10: Avec ses conversations entièrement générées par IA, Dea
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.4h — Pologne : un suspect arrêté en lien avec «un
+     10/10 · 3 média(s) · 0.5h — Attaque attribuée aux Houthis contre l’aérop
+     10/10 · 2 média(s) · 1.0h — Pope Leo to undergo surgery to remove lung n
+     9/10 · 1 média(s) · 0.1h — Qu'est-ce qu'un nodule pulmonaire, dont le p
+     10/10 · 2 média(s) · 1.7h — En Pologne, le Premier ministre Donald Tusk 
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Donald Tusk (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Sunday, 11-Oct-26 08:59:53 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AaGahciGBmiLzTtE4SWuxYY"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Pologne : un suspect arrêté en lien avec «une possible 
+
+  ── Bilan du cycle (260 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.1-flash-lite        ✅
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.1-flash-lite        ✅
+        25. clé 2 × gemini-3.1-flash-lite        ✅
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.1-flash-lite        ✅
+        28. clé 2 × gemini-3.1-flash-lite        ✅
+        29. clé 2 × gemini-3.1-flash-lite        ✅
+        30. clé 2 × gemini-3.1-flash-lite        ✅
+        31. clé 2 × gemini-3.1-flash-lite        ✅
+        32. clé 2 × gemini-3.1-flash-lite        ✅
+        33. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite (+21)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 752
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 72,917 entrée · 2,674 sortie
+     ✅ aucun appel payant
