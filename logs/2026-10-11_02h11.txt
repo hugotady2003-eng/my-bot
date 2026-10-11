@@ -1,0 +1,83 @@
+
+[02:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #MITB, Arch Manning, ウソノワール様, #precure, #EXERCITODOLULACONTRACENSURA
+  🔎 « Arch Manning » : 1 article(s) frais, le plus récent il y a 7.2 h (Caucus Football)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Arch Manning » écarté : Sport US mineur pour le public francais
+  🌍 « precure » : aucune reprise en français, source internationale retenue
+  🔎 « Tiffany » : 1 article(s) frais, le plus récent il y a 18.5 h (jds.fr)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Tiffany » écarté : Simple rencontre en librairie sans actualite marquante
+  🌍 « UCLA » : aucune reprise en français, source internationale retenue
+  🔎 « UCLA » : 1 article(s) frais, le plus récent il y a 0.7 h (USA Today)
+  ⏭️  « UCLA » écarté : trop secondaire (1/10)
+  🔎 « LA Knight » : 1 article(s) frais, le plus récent il y a 4.6 h (Netflix News)
+  ⏭️  « LA Knight » écarté : Match de divertissement sportif fictif ou programmé.
+  🔎 « Roxanne » : 1 article(s) frais, le plus récent il y a 14.2 h (Le Journal de Montréal)
+  ⏭️  « Roxanne » écarté : Simple portrait journalistique sans actualite recente.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.2s (18 déjà en cache)
+  📄 4/19 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 19 vecteurs calculés en 1 appel(s)
+  🧩 19 articles → 16 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 31 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 19 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : La tempête Isaias fait quatre morts dans le sud de
+  → Rien à publier.
+
+  ── Bilan du cycle (51 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 3 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 1 × gemini-embedding-001         🚫 quota
+        23. clé 1 × gemini-embedding-2-preview   🚫 quota
+        24. clé 1 × gemini-embedding-2           🚫 quota
+        25. clé 2 × gemini-embedding-001         🚫 quota
+        26. clé 2 × gemini-embedding-2-preview   ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.1-flash-lite (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,565 entrée · 211 sortie
+     ✅ aucun appel payant
