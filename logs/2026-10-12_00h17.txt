@@ -1,0 +1,100 @@
+
+[00:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Corinthians, Giants, Dan Quinn, #دافعوا_عن_وطنكم_وقيادتكم, Seahawks
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 0.7 h (Goal.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Corinthians » écarté : trop secondaire (3/10)
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 2.8 h (Coinbase)
+  ⏭️  « Giants » écarté : Match de sport américain sans enjeu national.
+  🔎 « Seahawks » : 1 article(s) frais, le plus récent il y a 4.7 h (RueDesJoueurs)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Seahawks » écarté : Match universitaire americain anecdotique en France
+  🔎 « Jayden Daniels » : 1 article(s) frais, le plus récent il y a 7.4 h (RDS)
+  ⏭️  « Jayden Daniels » écarté : Sport US mineur, analyse médicale d'un joueur.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 1.4 h (DAZN)
+  ⏭️  « Packers » écarté : trop secondaire (1/10)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 1.4 h (DAZN)
+  ⏭️  « Bears » écarté : trop secondaire (2/10)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.4s (13 déjà en cache)
+  📄 3/14 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Challenges · The Block
+  🧠 14 vecteurs calculés en 1 appel(s)
+  🧩 14 articles → 11 événement(s)
+  🕒 Sujet chaud mais article ancien (47h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Guerre au Yémen : l'aéroport de Ryad de nouveau vi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.8h +4 + portée mondiale +18
+  🧩 7 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] L'aéroport international de Ryad en Arabie saoudite a été visé par une nouvell
+      [2m] Les frappes de la veille attribuées aux rebelles houthistes ont fait 13 morts.
+      [1m] Les frappes de la veille ont fait 309 blessés selon La Dépêche, contre 308 sel
+         ↳ BBC : Les frappes ont fait 308 blessés.
+         motif : Actualisation des bilans par les autorités
+      [2m] Un projectile a touché le terminal passagers numéro 4 de l'aéroport King Khali
+      [1m] ⚡exclusif Les rebelles houthistes du Yémen ont revendiqué les attaques et mis en garde c
+      [1m] ⚡exclusif Une ressortissante française figure parmi les blessés de l'attaque de samedi.
+      [2m] Les défenses antiaériennes ont intercepté et détruit un missile de croisière p
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  ⚽ API football-data : 31 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 14 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (87 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 737
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,322 entrée · 955 sortie
+     ✅ aucun appel payant
