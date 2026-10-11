@@ -1,0 +1,98 @@
+
+[06:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Bama, House of Cards, Kentucky, 設営完了, Stein
+  🌍 « Bama » : aucune reprise en français, source internationale retenue
+  🔎 « Bama » : 1 article(s) frais, le plus récent il y a 9.0 h (AL.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Bama » écarté : Actualite locale americaine sans interet en France.
+  🌍 « House of Cards » : aucune reprise en français, source internationale retenue
+  🔎 « House of Cards » : 1 article(s) frais, le plus récent il y a 16.2 h (Bloomberg.com)
+  ⏭️  « House of Cards » écarté : Metaphore economique sur l'acier americain.
+  🌍 « Stein » : aucune reprise en français, source internationale retenue
+  🔎 « Stein » : 1 article(s) frais, le plus récent il y a 0.6 h (TigerRag.com |)
+  ⏭️  « Stein » écarté : Sport universitaire américain sans intérêt en France
+  🔎 « MITB » : 1 article(s) frais, le plus récent il y a 1.2 h (Google Actualités)
+  ⏭️  « MITB » écarté : Simple match de catch et divertissement sportif.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Naruto
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/7 articles lus en 2.2s (27 déjà en cache)
+  📄 6/34 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🧩 34 articles → 14 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 9 médias) : Guerre en Ukraine : un enfant tué, 16 Ukrainiens é
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 10 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Ars Technica, BFMTV, CNBC, Libération
+  🧮 Score 63.5/100 = gravité 5/10 → 22 + 9 médias +15 + frais 1.7h +8 + portée mondiale +18
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : First 'Naruto' anime series in 9 years announced at 
+  ⚽ API football-data : 31 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 34 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : «ICE, la chasse à l’homme» sur France TV : les dér
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine: Donald Tump affirme que Vladimi
+  ♻️ Doublon d'un sujet déjà publié, écarté : Seulement 15% d'opinions favorables: la popularité
+  → Rien à publier.
+
+  ── Bilan du cycle (55 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,217 entrée · 192 sortie
+     ✅ aucun appel payant
