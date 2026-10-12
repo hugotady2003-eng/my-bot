@@ -1,0 +1,107 @@
+
+[04:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Mark Andrews, スポーツの日, #出雲駅伝, 連休最終日, 49ers
+  🌍 « Mark Andrews » : aucune reprise en français, source internationale retenue
+  🔎 « Mark Andrews » : 1 article(s) frais, le plus récent il y a 1.1 h (NFL.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Mark Andrews » écarté : trop secondaire (2/10)
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 2.2 h (DAZN)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⏭️  « 49ers » écarté : trop secondaire (2/10)
+  🔎 « Ravens » : 1 article(s) frais, le plus récent il y a 19.3 h (Eurosport)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Ravens » écarté : Match de NFL mineur pour public français
+  🔎 « Seahawks » : 1 article(s) frais, le plus récent il y a 2.0 h (Touchdown Actu)
+  ⏭️  « Seahawks » écarté : trop secondaire (3/10)
+  🔎 « Chargers » : 1 article(s) frais, le plus récent il y a 6.0 h (RueDesJoueurs)
+  ⏭️  « Chargers » écarté : Match de NFL sans impact en France
+  🌍 « Niners » : aucune reprise en français, source internationale retenue
+  🔎 « Niners » : 1 article(s) frais, le plus récent il y a 2.1 h (San Francisco 49ers)
+  ⏭️  « Niners » écarté : trop secondaire (2/10)
+  🔎 « Herbert » : 1 article(s) frais, le plus récent il y a 12.6 h (Yahoo Actualités)
+  ⏭️  « Herbert » écarté : Simple avis personnel d'un dirigeant de club.
+  📖 33 articles, tous en cache
+  📄 6/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Challenges
+  🧠 33 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Raphaël Glucksmann enfariné après sa v… »
+  🧩 33 articles → 17 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Présidentielle 2027 : Raphaël Glucksmann enfariné à 
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre au Moyen-Orient : Nouvelles frappes des Hou
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.0/100 = gravité 8/10 → 36 + frais 0.5h +13 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 75) mais nuit → il attendra le matin
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 33 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (93 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.6-flash             ⚠️ Unterminated string st
+        20. clé 5 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.6-flash             🚫 quota
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 5 × gemini-3.5-flash-lite        ✅
+        27. clé 1 × gemini-embedding-001         🚫 quota
+        28. clé 1 × gemini-embedding-2-preview   🚫 quota
+        29. clé 1 × gemini-embedding-2           🚫 quota
+        30. clé 2 × gemini-embedding-001         🚫 quota
+        31. clé 2 × gemini-embedding-2-preview   🚫 quota
+        32. clé 2 × gemini-embedding-2           🚫 quota
+        33. clé 3 × gemini-embedding-001         ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 5 × gemini-embedding-001 (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,041 entrée · 286 sortie
+     ✅ aucun appel payant
