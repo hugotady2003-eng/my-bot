@@ -1,0 +1,164 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #LaGranjaGala, #ทริปทําบุญบ้าง, #オーブバック作戦会議, Ravens, Falcons
+  🔎 « Ravens » : 1 article(s) frais, le plus récent il y a 4.5 h (Ville de Genève)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Ravens » écarté : Sport suisse mineur sans impact en France.
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 1.0 h (RDS)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Falcons » écarté : Résultat de match ancien sans actualité récente.
+  🌍 « Mark Andrews » : aucune reprise en français, source internationale retenue
+  🔎 « Mark Andrews » : 1 article(s) frais, le plus récent il y a 4.0 h (NFL.com)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Mark Andrews » écarté : Sport US mineur, sans intérêt en France.
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 37168 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 2.1s (46 déjà en cache)
+  📄 9/51 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block
+  🧠 51 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Ledger attack spreads to EU, AI finds … »
+  🧩 51 articles → 25 événement(s), dont 6 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : Raphaël Glucksmann, vainqueur 
+  🚨 Sujet chaud (breaking, 1 médias) : Véhicules électriques, préférence européenne… Macr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 3/10 → 14 + frais 0.5h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (167 → 109 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : Corée du nord : Pyongyang tire plusieurs missiles 
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 17 s
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : BBC Business, BFMTV, Libération, Sud Ouest, The Block
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 1.1h +8 + imprévu 7/10 +4 + thème porteur +10
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 51 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Corée du nord : Pyongyang tire plusieurs missiles 
+  ♻️ 6/10 [business] (déjà analysé, cache) : Mondial de l’Auto 2026 : Stellantis, Renault et Vo
+  ♻️ 9/10 [world] (déjà analysé, cache) : One killed, 11 injured in second Houthi strike on 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin, Ethereum and Solana ETFs All in the Red f
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Silicon Valley is falling in line with Trump’s att
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🎯 Pré-classement : 23 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  🌍 7/10 sans portée internationale : North Korea fires multiple ballistic missiles towa
+  ✅ 6/10 [markets] large: Iran war threatens Healey's Budget plans, think 
+  ✅ 7/10 [world] mondiale: Netanyahu demands probe into sources for award-w
+  📉 5/10: China sanctions Paraguay, Belize ministers over Taiwan 
+  📉 5/10: Trader nets $1.28 million on new 1,000x exchange Papert
+  📉 5/10: Affaire Grégory : Christine Villemin poursuit une ex-jo
+  📉 5/10: Comment expliquer la large victoire de Raphaël Glucksma
+  📉 4/10: Arnaque aux éoliennes et panneaux photovoltaïques : un 
+  📉 5/10: Inflation, AI and climate: IMF kicks off key meeting in
+  ✅ 7/10 [world] large: Judge orders Trump administration to immediately
+  📉 3/10: « Des codes complètement désuets »… Arriver en entretie
+  ✅ 7/10 [world] large: Pauvreté : un « signal d’alarme », l’indice mond
+  ✅ 6/10 [crypto] large: Ledger attack spreads to EU, AI finds ’18 trilli
+  📉 5/10: Pétrole : la réserve stratégique américaine, une arme q
+  ✅ 6/10 [crypto] large: XRP Ledger defends emergency patch for unlimited
+  📉 2/10: Malgré la mobilisation, ce village a perdu sa supérette
+  📉 4/10: « Les labos d’IA commencent à faire des smartphones » :
+  📉 3/10: Rentrée scolaire: la colère des jeunes enseignants dipl
+  📉 4/10: Former Acting Chair Caroline Pham says CFTC can regulat
+  📉 4/10: L’amour est dans le pré 2026 : tensions extrêmes chez J
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 1 média(s) · 0.2h — Corée du nord : Pyongyang tire plusieurs mis
+     8/10 · 1 média(s) · 0.3h — Pauvreté : un « signal d’alarme », l’indice 
+     10/10 · 1 média(s) · 6.3h — One killed, 11 injured in second Houthi stri
+     8/10 · 1 média(s) · 0.6h — Netanyahu demands probe into sources for awa
+     8/10 · 1 média(s) · 2.6h — Judge orders Trump administration to immedia
+  ✂️ Éphéméride resserré (245 → 169 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 21 s
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Corée du nord : Pyongyang tire plusieurs missiles balis
+
+  ── Bilan du cycle (175 s) ──
+     écartés : 1 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 4 × gemini-3.1-flash-lite        ✅
+        15. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.6-flash             🚫 quota
+        17. clé 5 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   ✅
+        26. clé 5 × gemini-3.5-flash-lite        ✅
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 5 × gemini-3.5-flash-lite        ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 37,990 entrée · 1,224 sortie
+     ✅ aucun appel payant
