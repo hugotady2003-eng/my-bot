@@ -1,0 +1,122 @@
+
+[02:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 連休明け, #SOMOS4MILHOESDESOLDADOSDOLULA, RJ Mitte, Breaking Bad, #gfvip
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RJMitte, #BreakingBad, #WalterJr
+  📖 35 articles, tous en cache
+  📄 5/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · IGN France · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 35 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Meta releases its first frontier model… »
+  🧩 35 articles → 18 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : A Aubagne, un élève tire sur un principal et une p
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : CNBC, Libération, Ouest-France
+  🧮 Score 63.5/100 = gravité 9/10 → 40 + 5 médias +11 + frais 5.9h +2 + thème porteur +10
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [2m] Un élève de 14 ans a tiré avec un fusil de chasse dans le collège Joseph-Lakan
+      [2m] Le principal de 53 ans a été blessé à la hanche et une professeure de mathémat
+         ↳ 20 Minutes : 20 Minutes mentionne les blessures sans préciser la localisation
+         motif : Précisions différentes selon les sources sur les blessures.
+      [1m] ⚡exclusif L'assaillant a été maîtrisé par le CPE de l'établissement.
+      [1m] ⚡exclusif L'élève est entré dans l'établissement en dissimulant son arme dans un étui de
+      [1m] ⚡exclusif Les jours des victimes ne sont pas en danger.
+      [1m] ⚡exclusif Le collège accueille environ 625 élèves et est situé près d'une zone commercia
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 3 médias) : RJ Mitte, acteur connu pour avoir joué dans la sér
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, Public
+  🧮 Score 47.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 2.5h +4
+  🕒 Âge de l'article : 2.4h (frais ✅)
+  🕊️ Hommage validé par le modèle — Acteur de Breaking Bad décédé récemment. · décès : récent
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ Portrait Wikipédia récupéré pour RJ Mitte (566 ko)
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Meta's New Muse Wonder Finally Puts Zuckerberg in th
+  🚨 Sujet chaud (breaking, 3 médias) : RJ Mitte, Walter White Jr. dans la série « Breakin
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 51.5/100 = gravité 9/10 → 40 + 3 médias +7 + frais 2.5h +4
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — La cause du décès n'est pas précisée (enquête potentielle). · décès : ce mardi
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 44 s
+  📈 Hashtag(s) en tendance : #RJMitte, #Breakingbad
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #RJMitte
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : Bryan Cranston : RJ Mitte, l’interprète de son fil
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 51.5/100 = gravité 9/10 → 40 + 3 médias +7 + frais 2.5h +4
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  ⚽ API football-data : 18 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 35 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (107 s) ──
+     écartés : 1 sujet banal · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 1 × gemini-3.6-flash             🚫 quota
+        12. clé 1 × gemini-3-flash               ⛔ inexistant
+        13. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 2 × gemini-3.6-flash             🚫 quota
+        17. clé 2 × gemini-3-flash               ⛔ inexistant
+        18. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        21. clé 3 × gemini-3.6-flash             🚫 quota
+        22. clé 3 × gemini-3-flash               ⛔ inexistant
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-embedding-001 · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 28,358 entrée · 1,086 sortie
+     ✅ aucun appel payant
