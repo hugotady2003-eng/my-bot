@@ -1,0 +1,184 @@
+
+[07:41] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Rams, Josh Allen, Bills, James Cook, ファミマの無限クリーム
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 15.7 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Rams » écarté : Simple match sportif sans enjeu national majeur
+  🔎 « Bills » : 1 article(s) frais, le plus récent il y a 15.7 h (DAZN)
+  ⏭️  « Bills » écarté : Match de saison reguliere NFL de sport americain.
+  🔎 « Stafford » : 1 article(s) frais, le plus récent il y a 16.5 h (Martin Cid Magazine)
+  ⏭️  « Stafford » écarté : Anecdote sportive américaine sans impact pour la France
+  🌍 « McVay » : aucune reprise en français, source internationale retenue
+  🔎 « McVay » : 1 article(s) frais, le plus récent il y a 1.4 h (Yahoo Sports)
+  ⏭️  « McVay » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RJMitte, #BreakingBad
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 38649 min — on publie.
+  📖 6/6 articles lus en 1.7s (16 déjà en cache)
+  📄 3/22 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · IGN France · The Block
+  🧠 22 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 22 articles → 15 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Mouvement lycéen: les premiers élèves bloquent l'e
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 17.5/100 = gravité 3/10 → 14 + frais 0.1h +16 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  🧩 7 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 7 exclusive(s)
+      [1m] ⚡exclusif Des lycéens bloquent l'entrée du lycée Hélène Boucher dans le 20e arrondisseme
+      [1m] ⚡exclusif Des blocages lycéens ont lieu simultanément dans plusieurs établissements à tr
+      [1m] ⚡exclusif Une quarantaine d'élèves participent au blocage d'un lycée à Strasbourg.
+      [1m] ⚡exclusif Des professeurs occupent le lycée Paul-Éluard à Saint-Denis à la veille de l'a
+      [1m] ⚡exclusif Des affrontements entre lycéens et forces de l'ordre ont été signalés à Bordea
+      [1m] ⚡exclusif Emmanuel Macron appelle à ce que les mobilisations lycéennes se déroulent dans
+      [1m] ⚡exclusif Une pétition demandant l'interdiction des armes mutilantes lors des manifestat
+  → Sujet chaud pas assez fort (score 18) → suivant
+  🚨 Sujet chaud (breaking, 4 médias) : L’acteur RJ Mitte, fils de Walter White dans la sé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 4.1h +2
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [3m] L'acteur RJ Mitte est décédé à l'âge de 34 ans.
+      [2m] Les causes du décès de RJ Mitte ne sont pas connues.
+         ↳ Public, IGN France : Une enquête a été ouverte pour éclaircir les circonstances de sa
+         motif : Prudence rédactionnelle face à une enquête en cours.
+      [3m] RJ Mitte était atteint de paralysie cérébrale.
+      [3m] RJ Mitte était un militant actif pour l'inclusion des personnes en situation d
+      [1m] ⚡exclusif L'acteur est décédé le lundi 12 octobre 2026 à Brownsville, au Texas.
+      [1m] ⚡exclusif RJ Mitte a été adopté quelques semaines après sa naissance.
+      [1m] ⚡exclusif L'annonce du décès a été faite par son agent Sean Reilly.
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — L'information est fausse, l'acteur est vivant.
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CfyhrJ6WNCRm9mphrRwfo'}
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : AI could self-replicate on home devices within ‘mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 1.0h +13 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CfyhrYC5wFYaqD3GAEPK7'}
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 4 médias) : Tout ce que l’on sait du décès de l’acteur de Brea
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 4.1h +2
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables (Error code: 400 - {'type': 'error', 'error':)
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🛑 Hommage non vérifiable (Error code: 400 - {'type': 'error', 'error':) — traité en actualité normale
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CfyhsJVM8cxajStNeE4S9'}
+  ⚽ API football-data : 18 match(s) sur 48h, dont France : 0
+  → 22 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Carburants: Sébastien Lecornu promet une baisse du
+  ♻️ 9/10 [world] (déjà analysé, cache) : L’acteur RJ Mitte, fils de Walter White dans la sé
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Produits à jeter, dégivrage à distance… Ce que l’o
+  ♻️ 9/10 [world] (déjà analysé, cache) : Tout ce que l’on sait du décès de l’acteur de Brea
+  ♻️ 9/10 [world] (déjà analysé, cache) : Bryan Cranston : RJ Mitte, l’interprète de son fil
+  ♻️ 9/10 [world] (déjà analysé, cache) : RJ Mitte, star de Breaking Bad, est décédé à l’âge
+  ♻️ 7/10 [world] (déjà analysé, cache) : Russia's offensive ability is broken, Kyiv's forme
+  ♻️ 8/10 [ai] (déjà analysé, cache) : AI could self-replicate on home devices within ‘mo
+  ♻️ 6/10 [markets] (déjà analysé, cache) : SK Hynix, SoftBank shares plunge as tech stocks in
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin rebounds above $83,000 as it decouples fro
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : South Korea moves to block 27 crypto websites, inc
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Blur to shut down frontend next month as NFT tradi
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Standard Chartered Will Hold Ripple's Stablecoin i
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta's New Muse Wonder Finally Puts Zuckerberg in 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta releases its first frontier model, Muse Wonde
+  ♻️ 7/10 [world] (déjà analysé, cache) : Elon Musk has donated over $276 million to Republi
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🧠 Batch analyse de 3 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cfyhsh1vm4ddq1oCyRGJB'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 0.3h — L’acteur RJ Mitte, fils de Walter White dans
+     10/10 · 4 média(s) · 0.1h — Tout ce que l’on sait du décès de l’acteur d
+     9/10 · 1 média(s) · 1.0h — AI could self-replicate on home devices with
+     9/10 · 1 média(s) · 1.4h — Bitcoin rebounds above $83,000 as it decoupl
+     10/10 · 4 média(s) · 7.9h — Bryan Cranston : RJ Mitte, l’interprète de s
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CfyhsyDX4BCjHu7ZmDUrj'}
+  → 1 sélectionné(s) [world]
+  ✅ Décès CONFIRMÉ sur Wikipedia (Walter White) → hommage
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ❌ Envoi 'L’acteur RJ Mitte, fils de Walter White ': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CfyhtFS5oGwdUzMFrB8Ba'}
+
+  ── Bilan du cycle (200 s) ──
+     écartés : 2 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 1 × gemini-embedding-2           🚫 quota
+        27. clé 2 × gemini-embedding-001         🚫 quota
+        28. clé 2 × gemini-embedding-2-preview   🚫 quota
+        29. clé 2 × gemini-embedding-2           🚫 quota
+        30. clé 3 × gemini-embedding-001         🚫 quota
+        31. clé 3 × gemini-embedding-2-preview   🚫 quota
+        32. clé 3 × gemini-embedding-2           🚫 quota
+        33. clé 4 × gemini-embedding-001         🚫 quota
+        34. clé 4 × gemini-embedding-2-preview   ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 7 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-001 · clé 4 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-001
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 10,031 entrée · 1,508 sortie
+     ⚠️ 8 appel(s) payés chez Claude (le gratuit n'a pas suffi)
