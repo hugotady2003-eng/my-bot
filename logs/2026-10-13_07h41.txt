@@ -1,0 +1,226 @@
+
+[07:36] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Rams, Josh Allen, Bills, James Cook, ファミマの無限クリーム
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 15.6 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Rams » écarté : Simple match de saison reguliere de NFL.
+  🔎 « Bills » : 1 article(s) frais, le plus récent il y a 15.6 h (DAZN)
+  ⏭️  « Bills » écarté : Match de saison régulière NFL sans enjeu national
+  🔎 « Stafford » : 1 article(s) frais, le plus récent il y a 16.4 h (Martin Cid Magazine)
+  ⏭️  « Stafford » écarté : Anecdotique pour le public français.
+  🌍 « McVay » : aucune reprise en français, source internationale retenue
+  🔎 « McVay » : 1 article(s) frais, le plus récent il y a 1.3 h (Yahoo Sports)
+  ⏭️  « McVay » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RJMitte, #BreakingBad
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 38644 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/9 articles lus en 1.7s (18 déjà en cache)
+  📄 5/27 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · The Block
+  🧠 27 vecteurs calculés en 1 appel(s)
+  🧩 27 articles → 15 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 7 médias) : Mobilisation des lycées : un «acte V» avec une nou
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : BFMTV, Le Monde, Libération, Ouest-France, Sud Ouest
+  🧮 Score 40.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 0.2h +16
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 7 médias) : L’acteur RJ Mitte, fils de Walter White dans la sé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.5/100 = gravité 9/10 → 40 + 7 médias +11 + frais 0.2h +16
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 9 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [3m] L'acteur RJ Mitte est décédé à l'âge de 34 ans.
+      [3m] Une enquête est en cours pour déterminer les causes de la mort.
+      [1m] ⚡exclusif Bryan Cranston a rendu un hommage public à RJ Mitte.
+      [2m] RJ Mitte était atteint d'une paralysie cérébrale.
+      [1m] L'acteur est décédé le lundi 12 octobre 2026 à Brownsville, au Texas.
+         ↳ BFMTV : La date du décès est mentionnée comme étant le lundi 12 octobre 
+         motif : Précision géographique et temporelle plus détaillée dans Public.
+      [3m] RJ Mitte était un militant pour l'inclusion des personnes en situation de hand
+      [1m] ⚡exclusif L'information du décès a été confirmée par ses représentants à TMZ et Deadline
+      [1m] ⚡exclusif RJ Mitte est né le 21 août 1992 à Jackson, dans le Mississippi.
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — L'information est fausse, l'acteur est vivant.
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📈 Hashtag(s) en tendance : #RJMitte, #Breakingbad
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • VOIX DE FAN
+  📈 Hashtag(s) en tendance : #RJMitte, #Breakingbad
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de RJ Mitte (Wikipedia)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Prix Nobel(s) d'économie : la microéconomie dans les
+  🚨 Sujet chaud (breaking, 1 médias) : AI could self-replicate on home devices within ‘mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 0.9h +13 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (189 → 151 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 7 médias) : "Tu vas me manquer, mon garçon": l'hommage "déchir
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.5/100 = gravité 9/10 → 40 + 7 médias +11 + frais 0.2h +16
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [2m] L'acteur RJ Mitte, connu pour son rôle dans Breaking Bad, est décédé à l'âge d
+      [1m] ⚡exclusif Bryan Cranston a publié un hommage public suite au décès de RJ Mitte.
+      [2m] Une enquête est en cours pour déterminer les circonstances du décès.
+      [2m] RJ Mitte était atteint d'une paralysie cérébrale et militait pour l'inclusion 
+      [1m] Le décès est survenu le lundi 12 octobre 2026 à Brownsville, au Texas.
+         ↳ BFMTV : Le décès est survenu le lundi 12 octobre sans précision de lieu.
+         motif : Précision géographique absente chez BFMTV.
+      [1m] ⚡exclusif RJ Mitte devait épouser Kennedy Suarez.
+      [1m] ⚡exclusif RJ Mitte est né le 21 août 1992 à Jackson, dans le Mississippi.
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Le décès est un suicide. · décès : lundi
+  ↩️ Hommage non confirmé → actualité normale [world]
+  📈 Hashtag(s) en tendance : #RJMitte, #Breakingbad
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Public) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 18 match(s) sur 48h, dont France : 0
+  → 27 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Le FMI relève sa prévision de croissance pour la z
+  ♻️ Doublon d'un sujet déjà publié, écarté : "Fait en une demi-heure" : Yuji Horii (Dragon Ques
+  ♻️ 9/10 [world] (déjà analysé, cache) : L’acteur RJ Mitte, fils de Walter White dans la sé
+  ♻️ 9/10 [world] (déjà analysé, cache) : "Tu vas me manquer, mon garçon": l'hommage "déchir
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Produits à jeter, dégivrage à distance… Ce que l’o
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Le FMI affiche son optimisme pour la zone euro et 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Bryan Cranston : RJ Mitte, l’interprète de son fil
+  ♻️ 9/10 [world] (déjà analysé, cache) : RJ Mitte, star de Breaking Bad, est décédé à l’âge
+  ♻️ 7/10 [world] (déjà analysé, cache) : Russia's offensive ability is broken, Kyiv's forme
+  ♻️ 8/10 [ai] (déjà analysé, cache) : AI could self-replicate on home devices within ‘mo
+  ♻️ 6/10 [markets] (déjà analysé, cache) : SK Hynix, SoftBank shares plunge as tech stocks in
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin rebounds above $83,000 as it decouples fro
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : South Korea moves to block 27 crypto websites, inc
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Blur to shut down frontend next month as NFT tradi
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Standard Chartered Will Hold Ripple's Stablecoin i
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta's New Muse Wonder Finally Puts Zuckerberg in 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta releases its first frontier model, Muse Wonde
+  ♻️ 7/10 [world] (déjà analysé, cache) : Elon Musk has donated over $276 million to Republi
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🧠 Batch analyse de 6 articles...
+  📉 3/10: L'ÉDITO ÉCO - Mathématiques: le cri d'alarme des grands
+  📉 4/10: Prix Nobel(s) d'économie : la microéconomie dans les cr
+  📉 2/10: TZR : combien de professeurs remplaçants n’ont pas enco
+  📉 3/10: Samantha Mane : « Nos acquisitions doivent renforcer no
+  📉 3/10: EDITORIAL. Justice, mobilité sociale, immigration : pou
+  📉 5/10: Amazon relance Stargate avec la créatrice de WandaVisio
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 0.3h — L’acteur RJ Mitte, fils de Walter White dans
+     10/10 · 4 média(s) · 0.1h — "Tu vas me manquer, mon garçon": l'hommage "
+     9/10 · 1 média(s) · 0.9h — AI could self-replicate on home devices with
+     9/10 · 1 média(s) · 1.4h — Bitcoin rebounds above $83,000 as it decoupl
+     10/10 · 4 média(s) · 7.9h — Bryan Cranston : RJ Mitte, l’interprète de s
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ✅ Décès CONFIRMÉ sur Wikipedia (Walter White) → hommage
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ Portrait Wikipédia récupéré pour RJ Mitte (508 ko)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  🕊️ Carte hommage : RJ Mitte
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : L’acteur RJ Mitte, fils de Walter White dans la série «
+
+  ── Bilan du cycle (251 s) ──
+     écartés : 2 hommage refusé · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 1 × gemini-embedding-2-preview   🚫 quota
+        27. clé 1 × gemini-embedding-2           🚫 quota
+        28. clé 2 × gemini-embedding-001         🚫 quota
+        29. clé 2 × gemini-embedding-2-preview   🚫 quota
+        30. clé 2 × gemini-embedding-2           🚫 quota
+        31. clé 3 × gemini-embedding-001         🚫 quota
+        32. clé 3 × gemini-embedding-2-preview   🚫 quota
+        33. clé 3 × gemini-embedding-2           🚫 quota
+        34. clé 4 × gemini-embedding-001         🚫 quota
+        35. clé 4 × gemini-embedding-2-preview   ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 15 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-embedding-2 · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-001 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 59,027 entrée · 3,392 sortie
+     ✅ aucun appel payant
