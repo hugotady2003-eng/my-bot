@@ -1,0 +1,187 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Rams, Josh Allen, Bills, James Cook, ファミマの無限クリーム
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RJMitte, #BreakingBad, #Bills
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 38607 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 404: Not Found
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 1.5s (53 déjà en cache)
+  📄 7/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Positivr · IGN France · The Block
+  🧠 63 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Parcoursup, les raisons de la colère l… »
+  🧠 Même événement (jugé) : « Mobilisation lycéenne : les lycéens de… »
+  🧠 Même événement (jugé) : « Colère des lycéens : de nouvelles mani… »
+  🧩 63 articles → 34 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Présidentielle 2027 : après la victoire de Raphaël G
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 11 médias) : EN DIRECT, mouvement lycéen : grève dans l’éducati
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 12 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, CNBC, Challenges, France Info
+  🧮 Score 41.5/100 = gravité 3/10 → 14 + 11 médias +15 + frais 0.5h +13
+  → Sujet chaud pas assez fort (score 42) → suivant
+  🚨 Sujet chaud (breaking, 9 médias) : Cinq personnes tuées après le passage de la tempêt
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : BFMTV, CNBC, L'Express, La Tribune, Libération
+  🧮 Score 96.0/100 = gravité 8/10 → 36 + 9 médias +15 + frais 0.5h +13 + imprévu 7/10 +4 + thème porteur +10 + portée mondiale +18
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Raphaël Glucksmann a remporté la primaire de la gauche.
+      [1m] ⚡exclusif François Hollande a félicité Raphaël Glucksmann pour sa victoire.
+      [1m] ⚡exclusif François Hollande entretient le suspense sur une éventuelle candidature à l'él
+      [1m] ⚡exclusif Raphaël Glucksmann doit encore convaincre une partie de la gauche non-mélencho
+      [1m] ⚡exclusif Ségolène Royal a réagi à la victoire de Raphaël Glucksmann en le qualifiant de
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 21 s
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : AI could self-replicate on home devices within ‘mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 8/10 → 36 + frais 0.3h +16 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (189 → 151 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une nouvelle « affaire du siècle » ? Oxfam attaque l
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 18 match(s) sur 48h, dont France : 0
+  → 63 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : L'ÉDITO ÉCO - Dette publique: Fitch menace de dégr
+  ♻️ 8/10 [world] (déjà analysé, cache) : Cinq personnes tuées après le passage de la tempêt
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Produits à jeter, dégivrage à distance… Ce que l’o
+  ♻️ 7/10 [world] (déjà analysé, cache) : Aubagne : « Je l’ai vu recharger l’arme »… Après l
+  ♻️ 9/10 [world] (déjà analysé, cache) : Bryan Cranston : RJ Mitte, l’interprète de son fil
+  ♻️ 9/10 [world] (déjà analysé, cache) : RJ Mitte, star de Breaking Bad, est décédé à l’âge
+  ♻️ 6/10 [world] (déjà analysé, cache) : Why Moscow is staying tight-lipped on Trump's ener
+  ♻️ 8/10 [ai] (déjà analysé, cache) : AI could self-replicate on home devices within ‘mo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Blur to shut down frontend next month as NFT tradi
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Standard Chartered Will Hold Ripple's Stablecoin i
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta's New Muse Wonder Finally Puts Zuckerberg in 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta releases its first frontier model, Muse Wonde
+  ♻️ 7/10 [world] (déjà analysé, cache) : Elon Musk has donated over $276 million to Republi
+  ♻️ 6/10 [ai] (déjà analysé, cache) : I Got My Muse AI Agent to Sext Me—and Meta Says Th
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🎯 Pré-classement : 25 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 8/10 [crypto] mondiale: Bitcoin rebounds above $83,000 as it decouples f
+  📉 3/10: The iPhone Duo’s cooling system hides a clever trick in
+  ✅ 6/10 [markets] large: SK Hynix, SoftBank shares plunge as tech stocks 
+  📉 3/10: Présidentielle 2027 : après la victoire de Raphaël Gluc
+  📉 3/10: Colère des lycéens : de nouvelles manifestations prévue
+  📉 5/10: Once-largest Ethereum NFT marketplace Blur is shutting 
+  📉 3/10: Meurtre d'un jeune homme à l'arme blanche à Toulouse : 
+  📉 4/10: I earn £120,000 a year making social media videos go vi
+  📉 5/10: Oxfam France dépose un recours gracieux contre l'Etat e
+  📉 3/10: Réforme des retraites : la manoeuvre de Gabriel Attal e
+  📉 4/10: Pour surfer sur le succès de Star Citizen et Squadron 4
+  📉 3/10: Gemini ‘Task’ redesign integrates Spark into the main c
+  📉 5/10: Plus d’école, des téléphones qui sonnent dans le vide… 
+  📉 4/10: Is Singapore now a key link in AI supply chain?
+  📉 4/10: Man dies after fall from Six Flags rollercoaster in Geo
+  🌍 6/10 sans portée internationale : Heating oil customers face tough winter despite sh
+  📉 2/10: Il y a plus de trente ans, Israéliens et Palestiniens o
+  📉 2/10: Chauffage : pourquoi votre radiateur reste froid en hau
+  ✅ 6/10 [business] mondiale: Mondial de l’auto : à Paris, le salon ouvre ses 
+  📉 5/10: On est montés à bord du BYD Atto 8 : 775 ch, 650 km, ch
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.1h — Cinq personnes tuées après le passage de la 
+     9/10 · 1 média(s) · 0.3h — AI could self-replicate on home devices with
+     9/10 · 1 média(s) · 0.7h — Bitcoin rebounds above $83,000 as it decoupl
+     10/10 · 2 média(s) · 7.2h — Bryan Cranston : RJ Mitte, l’interprète de s
+     10/10 · 2 média(s) · 8.2h — RJ Mitte, star de Breaking Bad, est décédé à
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Cinq personnes tuées après le passage de la tempête Rac
+
+  ── Bilan du cycle (174 s) ──
+     écartés : 2 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-2-preview   🚫 quota
+         2. clé 1 × gemini-embedding-2           🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   ✅
+        11. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 1 × gemini-3.6-flash             🚫 quota
+        15. clé 1 × gemini-3-flash               ⛔ inexistant
+        16. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 2 × gemini-3-flash               ⛔ inexistant
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 3 × gemini-3.6-flash             🚫 quota
+        25. clé 3 × gemini-3-flash               ⛔ inexistant
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-001 (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 47,920 entrée · 2,264 sortie
+     ✅ aucun appel payant
