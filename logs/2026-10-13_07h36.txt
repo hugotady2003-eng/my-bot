@@ -1,0 +1,199 @@
+
+[07:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Rams, Josh Allen, Bills, James Cook, ファミマの無限クリーム
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 15.5 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Rams » écarté : trop secondaire (4/10)
+  🔎 « Bills » : 1 article(s) frais, le plus récent il y a 15.5 h (DAZN)
+  ⏭️  « Bills » écarté : Match de saison régulière NFL sans enjeu national.
+  🔎 « Stafford » : 1 article(s) frais, le plus récent il y a 16.3 h (Martin Cid Magazine)
+  ⏭️  « Stafford » écarté : Anecdotique pour le public français.
+  🌍 « McVay » : aucune reprise en français, source internationale retenue
+  🔎 « McVay » : 1 article(s) frais, le plus récent il y a 1.2 h (Yahoo Sports)
+  ⏭️  « McVay » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RJMitte, #BreakingBad
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 38638 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/13 articles lus en 2.1s (17 déjà en cache)
+  📄 6/30 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · IGN France · The Block
+  🧠 30 vecteurs calculés en 1 appel(s)
+  🧩 30 articles → 17 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT Blocus des lycées : Les lycéens dans la ru
+  🚨 Sujet chaud (breaking, 8 médias) : L’acteur RJ Mitte, fils de Walter White dans la sé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 11 article(s) sur un autre sujet, écartés du dossier : BBC, IGN France, Le Monde, Libération, Ouest-France
+  🧮 Score 68.5/100 = gravité 9/10 → 40 + 8 médias +15 + frais 0.5h +13
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — La cause du décès est inconnue
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📈 Hashtag(s) en tendance : #BreakingBad
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 41 s
+  📈 Hashtag(s) en tendance : #RJMitte, #Breakingbad
+  ✂️ Tweet resserré localement (161 → 117 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de RJ Mitte (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Suppression de l'impôt sur la fortune, Pacte Dutre
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 42.0/100 = gravité 4/10 → 18 + frais 0.1h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 42) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : AI could self-replicate on home devices within ‘mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 0.8h +13 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (261 → 210 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 18 match(s) sur 48h, dont France : 0
+  → 30 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Anne-Claire Coudray rhabillée pour l'hiver par Cyr
+  ♻️ Doublon d'un sujet déjà publié, écarté : Auchan, Carrefour, le prix des œufs a augmenté de 
+  ♻️ Doublon d'un sujet déjà publié, écarté : One dead and several hurt after rollercoaster inci
+  ♻️ Doublon d'un sujet déjà publié, écarté : Binance to shut down crypto mining pool services i
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Le FMI pointe un net décrochage de l’économie fran
+  ♻️ 9/10 [world] (déjà analysé, cache) : L’acteur RJ Mitte, fils de Walter White dans la sé
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Produits à jeter, dégivrage à distance… Ce que l’o
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Le FMI affiche son optimisme pour la zone euro et 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Bryan Cranston : RJ Mitte, l’interprète de son fil
+  ♻️ 9/10 [world] (déjà analysé, cache) : RJ Mitte, star de Breaking Bad, est décédé à l’âge
+  ♻️ 7/10 [world] (déjà analysé, cache) : Russia's offensive ability is broken, Kyiv's forme
+  ♻️ 8/10 [ai] (déjà analysé, cache) : AI could self-replicate on home devices within ‘mo
+  ♻️ 6/10 [markets] (déjà analysé, cache) : SK Hynix, SoftBank shares plunge as tech stocks in
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin rebounds above $83,000 as it decouples fro
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : South Korea moves to block 27 crypto websites, inc
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Blur to shut down frontend next month as NFT tradi
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Standard Chartered Will Hold Ripple's Stablecoin i
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta's New Muse Wonder Finally Puts Zuckerberg in 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta releases its first frontier model, Muse Wonde
+  ♻️ 7/10 [world] (déjà analysé, cache) : Elon Musk has donated over $276 million to Republi
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🧠 Batch analyse de 7 articles...
+  📉 3/10: EN DIRECT Blocus des lycées : Les lycéens dans la rue p
+  📉 3/10: Des JO de Paris 2024 au Ballet de Lorraine, Maud Le Pla
+  📉 3/10: « Koh-Lanta » : colliers à gogo, île des bannis… Les rè
+  📉 3/10: Ni il, ni elle, mais iel : le combat intime d’Elyo, box
+  📉 5/10: Casse du Louvre : mystérieux commanditaire, joyaux disp
+  🌍 8/10 sans portée internationale : Breaking Bad actor RJ Mitte dies aged 34
+  📉 5/10: Tokenized SanDisk bets saw more liquidations than XRP a
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 0.2h — L’acteur RJ Mitte, fils de Walter White dans
+     9/10 · 1 média(s) · 0.8h — AI could self-replicate on home devices with
+     9/10 · 1 média(s) · 1.3h — Bitcoin rebounds above $83,000 as it decoupl
+     10/10 · 4 média(s) · 7.8h — Bryan Cranston : RJ Mitte, l’interprète de s
+     10/10 · 4 média(s) · 8.7h — RJ Mitte, star de Breaking Bad, est décédé à
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  ✅ Décès CONFIRMÉ sur Wikipedia (Walter White) → hommage
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ Portrait Wikipédia récupéré pour RJ Mitte (508 ko)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  🕊️ Carte hommage : RJ Mitte
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : L’acteur RJ Mitte, fils de Walter White dans la série «
+
+  ── Bilan du cycle (316 s) ──
+     écartés : 1 sujet banal · 1 hommage refusé · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 1 × gemini-embedding-2           🚫 quota
+        27. clé 2 × gemini-embedding-001         🚫 quota
+        28. clé 2 × gemini-embedding-2-preview   🚫 quota
+        29. clé 2 × gemini-embedding-2           🚫 quota
+        30. clé 3 × gemini-embedding-001         🚫 quota
+        31. clé 3 × gemini-embedding-2-preview   🚫 quota
+        32. clé 3 × gemini-embedding-2           🚫 quota
+        33. clé 4 × gemini-embedding-001         🚫 quota
+        34. clé 4 × gemini-embedding-2-preview   ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 13 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 1 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-001 (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 49,405 entrée · 1,170 sortie
+     ✅ aucun appel payant
