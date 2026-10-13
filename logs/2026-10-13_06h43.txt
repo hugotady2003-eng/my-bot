@@ -1,0 +1,142 @@
+
+[06:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Tendances : getdaytrends.com injoignable (('Connection aborted.', ConnectionResetError(104, )
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Aucune tendance disponible → hashtags choisis sur les mots du tweet
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 1.6s (50 déjà en cache)
+  📄 8/57 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · The Block
+  🧠 57 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Meta releases its first frontier model… »
+  🧩 57 articles → 21 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : "Les emmerdes commencent" : les huit défis que Rapha
+  🚨 Sujet chaud (breaking, 20 médias) : Produits à jeter, dégivrage à distance… Ce que l’o
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 28 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC Business, BFMTV, CNBC, Challenges
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 20 médias +20 + frais 0.6h +13
+  🧩 3 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [1m] ⚡exclusif Une mobilisation lycéenne et étudiante est prévue le mardi 13 octobre 2026 à P
+      [1m] ⚡exclusif Le syndicat Union étudiante a appelé à manifester pour protester contre le man
+      [2m] Le sujet de la cyberattaque des frigos de supermarchés est mentionné comme le 
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 20 médias) : EN DIRECT, mouvement lycéen : grève dans l’éducati
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 46.5/100 = gravité 3/10 → 14 + 20 médias +20 + frais 0.6h +13
+  🧩 5 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif Une nouvelle journée de mobilisation lycéenne et étudiante, qualifiée d'Acte V
+      [1m] ⚡exclusif Des manifestations sont prévues à Paris, Rennes, Toulouse et Poitiers.
+      [1m] ⚡exclusif Le mouvement de contestation lycéen est marqué par des blocages d'établissemen
+      [1m] ⚡exclusif La plateforme Parcoursup est identifiée comme un facteur majeur de l'angoisse 
+      [1m] ⚡exclusif Le mouvement social fait l'objet d'interventions policières depuis deux semain
+  🌙 Sujet fort (score 46) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 20 médias) : L’acteur RJ Mitte, de la série « Breaking Bad », e
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.0/100 = gravité 8/10 → 36 + 20 médias +20 + frais 0.6h +13
+  🧩 4 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] L'information concernant le décès de l'acteur RJ Mitte n'est mentionnée dans a
+         motif : Les textes fournis traitent exclusivement de manifestations lycéennes.
+      [1m] ⚡exclusif Des manifestations lycéennes et étudiantes sont prévues le mardi 13 octobre 20
+      [1m] ⚡exclusif Le syndicat Union étudiante a appelé à une manifestation à Paris.
+      [1m] ⚡exclusif Des rassemblements sont organisés dans plusieurs villes de France, dont Rennes
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Information erronée, l'acteur est vivant.
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Rams, Josh Allen, Bills, James Cook, Stafford
+  📈 Hashtag(s) en tendance : #RJMitte, #Breakingbad
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de RJ Mitte (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une nouvelle « affaire du siècle » ? Oxfam attaque l
+  🚨 Sujet chaud (breaking, 4 médias) : Un engagement de l'Etat sur les incendies, et une 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : France Info, L'Express, Libération
+  🧮 Score 52.5/100 = gravité 5/10 → 22 + 4 médias +7 + frais 0.6h +13 + thème porteur +10
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 18 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 57 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Loi intégrale contre les violences sexistes et sex
+  → Rien à publier.
+
+  ── Bilan du cycle (143 s) ──
+     écartés : 2 sujet banal · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 2 × gemini-embedding-2           🚫 quota
+        22. clé 3 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-2-preview   🚫 quota
+        24. clé 3 × gemini-embedding-2           🚫 quota
+        25. clé 4 × gemini-embedding-001         ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 1 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.5-flash-lite (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 18,881 entrée · 1,310 sortie
+     ✅ aucun appel payant
