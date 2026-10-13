@@ -1,0 +1,115 @@
+
+[06:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Rams, Josh Allen, Bills, James Cook, Stafford
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RJMitte, #BreakingBad, #Bills
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/6 articles lus en 1.8s (54 déjà en cache)
+  📄 8/60 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 60 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Parcoursup, les raisons de la colère l… »
+  🧠 Même événement (jugé) : « Colère des lycéens: de nouveaux blocag… »
+  🧠 Même événement (jugé) : « Mobilisation lycéenne : les lycéens de… »
+  🧠 Même événement (jugé) : « Colère des lycéens : de nouvelles mani… »
+  🧩 60 articles → 17 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : "Les emmerdes commencent" : les huit défis que Rapha
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 25 médias) : EN DIRECT, mouvement lycéen : grève dans l’éducati
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 36 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Google, 9to5Mac, Ars Technica, BBC Business
+  🧮 Score 46.5/100 = gravité 3/10 → 14 + 25 médias +20 + frais 0.8h +13
+  🧩 10 affirmation(s) : 3 partagée(s) · 2 divergente(s) · 5 exclusive(s)
+      [3m] Une nouvelle journée de mobilisation lycéenne et étudiante, baptisée 'acte V',
+      [2m] Le président Emmanuel Macron a appelé au calme et au respect des biens et des 
+      [1m] Les manifestants réclament la suppression de Parcoursup et un plan d'investiss
+         ↳ Le Monde : Le Monde mentionne que Parcoursup cristallise les angoisses sans
+         motif : La Dépêche détaille les revendications précises, Le Monde reste généra
+      [2m] Une manifestation est prévue à Paris au départ de la place d'Italie à 14 heure
+      [1m] ⚡exclusif Un cortège nommé 'Marchons vers Matignon' partira de l'Hôtel de Ville.
+      [1m] Le cortège de la place d'Italie se dirigera vers les Invalides.
+         ↳ BFMTV : BFMTV indique que le cortège de la place d'Italie se rendra à Ma
+         motif : Divergence sur la destination finale du cortège.
+      [1m] ⚡exclusif Des manifestations sont organisées dans plusieurs villes de province comme Ren
+      [1m] ⚡exclusif Le mouvement dure depuis 15 jours.
+  🌙 Sujet fort (score 46) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Produits à jeter, dégivrage à distance… Ce que l’o
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 53.5/100 = gravité 7/10 → 32 + frais 5.9h +2 + thème porteur +10 + portée internationale +10
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une nouvelle « affaire du siècle » ? Oxfam attaque l
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Heating oil customers face tough winter despite shak
+  ⚽ API football-data : 18 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 60 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (55 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 1 × gemini-3.6-flash             🚫 quota
+        16. clé 1 × gemini-3-flash               ⛔ inexistant
+        17. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        20. clé 2 × gemini-3.6-flash             🚫 quota
+        21. clé 2 × gemini-3-flash               ⛔ inexistant
+        22. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        25. clé 3 × gemini-3.6-flash             🚫 quota
+        26. clé 3 × gemini-3-flash               ⛔ inexistant
+        27. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2 · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.5-flash-lite (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,217 entrée · 966 sortie
+     ✅ aucun appel payant
