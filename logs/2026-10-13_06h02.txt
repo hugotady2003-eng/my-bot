@@ -1,0 +1,107 @@
+
+[06:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Rams, Josh Allen, Bills, James Cook, Stafford
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RJMitte, #BreakingBad, #Bills
+  📖 2/2 articles lus en 0.9s (48 déjà en cache)
+  📄 8/50 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · IGN France · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 50 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « "Les emmerdes commencent" : les huit d… »
+  🧠 Même événement (jugé) : « Cyberattack on French supermarkets cau… »
+  🧠 Même événement (jugé) : « Meta releases its first frontier model… »
+  🧩 50 articles → 21 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Glucksmann peut-il "chasser l'esprit de défaite" ? -
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 11 médias) : Mexique : cinq morts après la tempête Rachel et l’
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : Jeuxvideo.com, La Dépêche, La Tribune, Midi Libre, Ouest-France
+  ✂️ 1 élément(s) écartés — 1 source(s) hors sujet : Al Jazeera
+  🧮 Score 68.5/100 = gravité 7/10 → 32 + 11 médias +15 + frais 7.7h +2 + thème porteur +10 + portée internationale +10
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 6 partagée(s) · 2 divergente(s) · 4 exclusive(s)
+      [5m] Une cyberattaque a visé les systèmes de réfrigération de centaines de supermar
+      [5m] L'attaque a consisté à augmenter à distance la température des installations f
+      [3m] Le fabricant danois Danfoss est identifié comme la cible ou le point d'entrée 
+      [3m] Les pertes financières liées à la destruction des produits pourraient atteindr
+         ↳ Challenges : Les pertes sont estimées à plusieurs millions d'euros.
+         motif : Évaluation différente de l'ampleur des dégâts financiers.
+      [4m] La température des systèmes a été portée à 50°C par les pirates.
+         ↳ Le Monde : La température est montée jusqu'à 80°C dans certains magasins.
+         motif : Témoignages locaux rapportant des variations de température extrêmes.
+      [2m] Le parquet de Paris a ouvert une enquête sur cette cyberattaque.
+      [1m] ⚡exclusif Les pirates ont prolongé la durée du cycle de dégivrage pour retarder le décle
+      [1m] ⚡exclusif Danfoss précise que les unités touchées sont des produits anciens en fin de vi
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Heating oil customers face tough winter despite shak
+  ⚽ API football-data : 18 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 50 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (63 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         ✅
+        11. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 1 × gemini-3.6-flash             🚫 quota
+        15. clé 1 × gemini-3-flash               ⛔ inexistant
+        16. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 2 × gemini-3-flash               ⛔ inexistant
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 3 × gemini-3.6-flash             🚫 quota
+        25. clé 3 × gemini-3-flash               ⛔ inexistant
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-001 · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,767 entrée · 1,047 sortie
+     ✅ aucun appel payant
