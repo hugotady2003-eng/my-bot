@@ -1,0 +1,183 @@
+
+[07:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Rams, Josh Allen, Bills, James Cook, ファミマの無限クリーム
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 15.9 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  🔎 « Bills » : 1 article(s) frais, le plus récent il y a 15.9 h (DAZN)
+  ⏭️  « Bills » écarté : Simple annonce de programme sportif hebdomadaire.
+  🔎 « Stafford » : 1 article(s) frais, le plus récent il y a 16.7 h (Martin Cid Magazine)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Stafford » écarté : Anecdote sportive sur le football americain
+  🌍 « McVay » : aucune reprise en français, source internationale retenue
+  🔎 « McVay » : 1 article(s) frais, le plus récent il y a 1.7 h (Yahoo Sports)
+  ⏭️  « McVay » écarté : trop secondaire (1/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RJMitte, #BreakingBad
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 38663 min — on publie.
+  📖 4/4 articles lus en 2.0s (14 déjà en cache)
+  📄 1/18 article(s) sans corps lisible → recoupement sur titre et résumé seuls : IGN France
+  🧠 18 vecteurs calculés en 1 appel(s)
+  🧩 18 articles → 14 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.5-flash-lite (clé 5) : Expecting ',' delimiter: line 14 column 16 (char 203) → couple suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Tout ce que l’on sait du décès de l’acteur de Brea
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.5/100 = gravité 9/10 → 40 + 3 médias +7 + frais 4.3h +2
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [3m] L'acteur RJ Mitte, connu pour son rôle de Walter White Jr. dans Breaking Bad, 
+      [1m] ⚡exclusif La mort de RJ Mitte est survenue le lundi 12 octobre 2026 à Brownsville, au Te
+      [1m] L'acteur s'est donné la mort.
+         ↳ Konbini : Le communiqué de son agent ne précise pas la cause de sa mort.
+         motif : Information plus récente ou communiqués de presse différents selon les
+      [2m] Une enquête a été ouverte pour éclaircir les circonstances de sa disparition.
+      [1m] ⚡exclusif Bryan Cranston a publié un message émouvant sur Instagram pour exprimer son dé
+      [2m] RJ Mitte souffrait réellement de paralysie cérébrale, une pathologie qu'il a m
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Cause de la mort non précisée · décès : lundi
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : AI could self-replicate on home devices within ‘mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 59.0/100 = gravité 8/10 → 36 + frais 1.2h +8 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (213 → 166 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : "Tu vas me manquer fiston", RJ Mitte mort à 34 ans
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.5/100 = gravité 9/10 → 40 + 3 médias +7 + frais 4.3h +2
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [2m] L'acteur RJ Mitte, connu pour son rôle de Walter White Jr. dans Breaking Bad, 
+      [1m] RJ Mitte s'est donné la mort par suicide le lundi 12 octobre 2026 à Brownsvill
+         ↳ Konbini : La cause de sa mort n'est pas précisée dans le communiqué initia
+         motif : Information plus récente ou communiqués de sources différentes.
+      [1m] ⚡exclusif Bryan Cranston, qui jouait son père à l'écran dans Breaking Bad, a publié un m
+      [2m] RJ Mitte souffrait de paralysie cérébrale, une pathologie qu'il partageait ave
+      [2m] Une enquête a été ouverte pour faire toute la lumière sur les circonstances de
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Il s'agit d'un suicide. · décès : 12 octobre
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 18 s
+  📈 Hashtag(s) en tendance : #RJMitte
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 16 s
+  📈 Hashtag(s) en tendance : #RJMitte
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 18 match(s) sur 48h, dont France : 0
+  → 18 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Prix des carburants : près de Lyon, Vienne se déma
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Produits à jeter, dégivrage à distance… Ce que l’o
+  ♻️ 9/10 [world] (déjà analysé, cache) : Tout ce que l’on sait du décès de l’acteur de Brea
+  ♻️ 9/10 [world] (déjà analysé, cache) : "Tu vas me manquer fiston", RJ Mitte mort à 34 ans
+  ♻️ 9/10 [world] (déjà analysé, cache) : Bryan Cranston : RJ Mitte, l’interprète de son fil
+  ♻️ 9/10 [world] (déjà analysé, cache) : RJ Mitte, star de Breaking Bad, est décédé à l’âge
+  ♻️ 7/10 [world] (déjà analysé, cache) : Russia's offensive ability is broken, Kyiv's forme
+  ♻️ 8/10 [ai] (déjà analysé, cache) : AI could self-replicate on home devices within ‘mo
+  ♻️ 6/10 [markets] (déjà analysé, cache) : SK Hynix, SoftBank shares plunge as tech stocks in
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Standard Chartered Will Hold Ripple's Stablecoin i
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta's New Muse Wonder Finally Puts Zuckerberg in 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: our next era of frontier intellige
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta releases its first frontier model, Muse Wonde
+  ♻️ 7/10 [world] (déjà analysé, cache) : Elon Musk has donated over $276 million to Republi
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🧠 Batch analyse de 3 articles...
+  📉 4/10: LVMH pénalisé par la mode et la maroquinerie
+  🌍 7/10 sans portée internationale : ZD Tech : Pourquoi votre batterie externe est deve
+  📉 3/10: OpenAI muscle son siège européen à Dublin
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.4h — Tout ce que l’on sait du décès de l’acteur d
+     10/10 · 3 média(s) · 0.2h — "Tu vas me manquer fiston", RJ Mitte mort à 
+     9/10 · 1 média(s) · 1.2h — AI could self-replicate on home devices with
+     10/10 · 3 média(s) · 8.2h — Bryan Cranston : RJ Mitte, l’interprète de s
+     10/10 · 3 média(s) · 9.1h — RJ Mitte, star de Breaking Bad, est décédé à
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🚫 Faux décès bloqué : Breaking Bad est vivant(e) selon Wikipedia
+
+  ── Bilan du cycle (208 s) ──
+     écartés : 2 hommage refusé · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.6-flash             🚫 quota
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 1 × gemini-embedding-2-preview   🚫 quota
+        25. clé 1 × gemini-embedding-2           🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-2-preview   🚫 quota
+        28. clé 2 × gemini-embedding-2           🚫 quota
+        29. clé 3 × gemini-embedding-001         🚫 quota
+        30. clé 3 × gemini-embedding-2-preview   🚫 quota
+        31. clé 3 × gemini-embedding-2           🚫 quota
+        32. clé 4 × gemini-embedding-001         🚫 quota
+        33. clé 4 × gemini-embedding-2-preview   ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ⚠️ Expecting ',' delimite
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 9 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2-preview (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 45,067 entrée · 2,246 sortie
+     ✅ aucun appel payant
