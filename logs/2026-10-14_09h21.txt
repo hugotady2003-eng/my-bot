@@ -1,0 +1,184 @@
+
+[09:17] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  ⚠️ gemini-3.5-flash-lite (clé 1) : Expecting property name enclosed in double quotes: line 6 co → couple suivant
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Libération, Ouest-France
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ Image libre trouvée sur Commons « pape »
+  🖼️ Image libre trouvée sur Commons « Léon »
+  🖼️ Image libre trouvée sur Commons « opéré »
+  🖼️ Décryptage illustré par 3 image(s) différente(s) sur 6 plans
+  ⛔ gemini-3.1-flash-tts n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (models/gemini-3.1-flash-tts is not found for API v) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  🎞️ Montage : 6 plans, 32.8s
+  🎬 Carrousel vidéo (55s, 6 slides, sans son)
+  🚦 Vidéo TikTok NON VALIDÉE — 1 défaut(s) :
+     • RÉPÉTITION entre les plans 1 et 2
+  🚫 Défauts éditoriaux → version TikTok abandonnée ce jour
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 14-Oct-26 00:19:59 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ASI4F55uCQRUE97OWNJzfAf"}}
+  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Halk TV&#x27;ye, #auPAYとキノコ, #ミツカン白だし万能か, #รักสุดใจนายแฟนบอยSeries, #WhirlpoolLuxuriem
+  🌍 « GET READY FOR FOURTH CONCERT » : aucune reprise en français, source internationale retenue
+  🕐 9h (Paris) — rythme journée (36-75 min · 0 publié(s), 16 restant(s) sur 15.0 h) : 36-75 min
+  ✅ Dernière publi il y a 40186 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/11 articles lus en 1.8s (14 déjà en cache)
+  📄 3/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « ‘Massive’ Russian attack on Ukraine ki… »
+  🧩 26 articles → 13 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Guerre en Ukraine : au moins six morts après des f
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Numerama, Numerama Pop
+  🧮 Score 91.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 0.1h +16 + thème porteur +10 + portée mondiale +18
+  ⚠️ gemini-3.5-flash-lite (clé 1) : Expecting ':' delimiter: line 10 column 9 (char 219) → couple suivant
+  🧩 7 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Des frappes russes ont causé la mort d'au moins six personnes en Ukraine.
+      [2m] Les frappes russes ont privé 600 000 personnes d'électricité.
+      [1m] ⚡exclusif Volodymyr Zelensky qualifie ces frappes de mépris envers les États-Unis et leu
+      [1m] ⚡exclusif Le ministère russe de la Défense confirme avoir mené des frappes massives cont
+      [1m] ⚡exclusif Le maire de Kiev a appelé la population à rester dans les abris.
+      [1m] ⚡exclusif L'opérateur DTEK a signalé des coupures d'électricité d'urgence dans plusieurs
+      [1m] ⚡exclusif Des détails géographiques précis sur les victimes (Kiev, Dnipropetrovsk, Zapor
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Volodymyr Zelensky (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : De nouveaux frigos de supermarchés français visés 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : CNBC, Frandroid, Libération, Midi Libre, ZDNet
+  🧮 Score 78.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 0.1h +16 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (196 → 133 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : Un employé d’OpenAI, créateur de Chat GPT, arrêté 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 0.1h +16 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (237 → 128 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Frandroid) — même sujet
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 13 match(s) sur 48h, dont France : 0
+  → 26 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine: après des frappes massives sur 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Student protest in Albania prompts violent clashes
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Un employé d’OpenAI, créateur de Chat GPT, arrêté 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : au moins six morts après des f
+  ♻️ 7/10 [science] (déjà analysé, cache) : Sécheresse : « La situation la plus grave qu’on ai
+  ♻️ 7/10 [tech] (déjà analysé, cache) : De nouveaux frigos de supermarchés français visés 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Tesla confirme la présentation du Roadster le 15 o
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI : un ingénieur arrêté pour avoir caché un e
+  ♻️ 9/10 [world] (déjà analysé, cache) : "C’est particulièrement déchirant d’apprendre qu’i
+  ♻️ 9/10 [world] (déjà analysé, cache) : Pope diagnosed with lung cancer but had successful
+  ♻️ 7/10 [world] (déjà analysé, cache) : Judge extends block on Trump White House ban of MS
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Coinbase, which holds 5% of all bitcoin, wants the
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI Engineer Arrested for Bugging Office, Compa
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI employee arrested for allegedly planting a 
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🧠 Batch analyse de 9 articles...
+  🌍 7/10 sans portée internationale : Avant Manchester City-PSG, décryptage de l’affaire
+  📉 5/10: La PS5 jailbreakée peut maintenant faire tourner le Xbo
+  ✅ 7/10 [ai] large: OpenAI dit avoir démasqué avec sa propre IA un e
+  📉 3/10: Google Photos veut mettre fin au casse-tête pour récupé
+  📉 4/10: Pas d’écran, 2 Go de mémoire et Gemini dans l’oreille :
+  📉 4/10: "Elle a ramassé Sophie Davant", Laurence Boccolini ne s
+  ⏩ Doublon: La PS5 jailbreakée peut maintenant faire tourner le Xbo
+  ✅ 8/10 [world] large: ‘Massive’ Russian attack on Ukraine kills at lea
+  📉 4/10: ‘Like we don’t exist’: Palestinians in West Bank denied
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.2h — Un employé d’OpenAI, créateur de Chat GPT, a
+     10/10 · 3 média(s) · -1.8h — OpenAI : un ingénieur arrêté pour avoir cach
+     10/10 · 3 média(s) · 0.0h — OpenAI dit avoir démasqué avec sa propre IA 
+     9/10 · 1 média(s) · 0.2h — ‘Massive’ Russian attack on Ukraine kills at
+     9/10 · 1 média(s) · 0.7h — Guerre en Ukraine : au moins six morts après
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (174 → 146 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Frandroid) — même sujet
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 14-Oct-26 00:21:46 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AxpldGc4LPST4qB-qhdO0Yg"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Un employé d’OpenAI, créateur de Chat GPT, arrêté et ac
+
+  ── Bilan du cycle (254 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ⚠️ Expecting property nam
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ⚠️ Expecting ':' delimite
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-3.5-flash-lite        ✅
+        22. clé 1 × gemini-3.5-flash-lite        ✅
+        23. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3.1-flash-lite (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 703 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-3.1-flash-tts
+     jetons Gemini : 71,461 entrée · 3,219 sortie
+     ✅ aucun appel payant
