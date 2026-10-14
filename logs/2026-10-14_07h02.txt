@@ -1,0 +1,150 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #auPAYとキノコ, #ミツカン白だし万能か, #LaGranjaDuelo, #LindungiIndonesia, #HALLOWEENTIPS
+  🌍 « MAHHI VIJ WON HEARTS » : aucune reprise en français, source internationale retenue
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 40048 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 2.0s (58 déjà en cache)
+  📄 7/68 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 68 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Sur le budget 2027, le gouvernement as… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 68 articles → 36 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Présidentielle 2027 : pour Jean-Luc Mélenchon, le so
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Budget 2027 : le RN en soutien du gouvernement pour 
+  ⚪ Écarté (1, pénalisé par « comment , on a test ») : "Un risque que beaucoup d'entreprises sous-estiment"
+  🚨 Sujet chaud (breaking, 3 médias) : Saudi-born engineer for OpenAI arrested for planti
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 7.3h +2 + thème porteur +10 + portée internationale +10
+  🧩 6 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Un ingénieur d'OpenAI a été arrêté pour avoir installé un dispositif d'enregis
+      [2m] OpenAI a utilisé ses propres modèles d'intelligence artificielle pour identifi
+      [2m] L'employé mis en cause est Abdulrahman Alfozan, un ingénieur d'origine saoudie
+      [2m] Le dispositif d'écoute était branché sur le port USB d'un téléviseur et dissim
+      [1m] ⚡exclusif L'employé a été licencié par l'entreprise et l'affaire a été signalée au FBI.
+      [1m] ⚡exclusif L'ingénieur a comparu pour la première fois devant un tribunal fédéral après s
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 13 match(s) sur 48h, dont France : 0
+  → 68 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : "C’est particulièrement déchirant d’apprendre qu’i
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Critique Street Fighter : plus haut, plus fort et 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Pope diagnosed with lung cancer but had successful
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Saudi-born engineer for OpenAI arrested for planti
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI Engineer Arrested for Bugging Office, Compa
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI employee arrested for allegedly planting a 
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🎯 Pré-classement : 41 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  🌍 7/10 sans portée internationale : Budget 2027 : le prix des péages va-t-il s'envoler
+  🌍 8/10 sans portée internationale : Lycéen éborgné en marge d'un blocus à Tours : un p
+  🌍 7/10 sans portée internationale : Justice Department says North Koreans have infiltr
+  📉 5/10: Présidentielle 2027 : pour Jean-Luc Mélenchon, le souti
+  🌍 7/10 sans portée internationale : Budget 2027 : « Pour que le pays ne parte pas dans
+  ✅ 7/10 [world] large: Judge extends block on Trump White House ban of 
+  📉 4/10: Solana sets Oct. 21 for Alpenglow upgrade targeting 150
+  📉 4/10: Coinbase lays out flexible designs as key priority for 
+  📉 3/10: ESA targets Anbernic emulation handhelds as "superfake"
+  🌍 6/10 sans portée internationale : Un « média de référence » utile « en temps de cris
+  📉 3/10: "Je ne savais pas que c'était interdit" : un conducteur
+  📉 4/10: Apple challenges Taction’s $5.7B patent verdict, says d
+  ✅ 6/10 [ai] mondiale: Google DeepMind and Singapore Government announc
+  🌍 6/10 sans portée internationale : Procès des revenantes de l’Etat islamique : Radia 
+  ✅ 8/10 [ai] large: An OpenAI Employee Allegedly Used a Chatbot to H
+  📉 3/10: Présidentielle 2027 : "A six mois d’une élection, ils s
+  📉 3/10: « Le club a vu les efforts que j’ai fournis » : du Pari
+  📉 2/10: Croissant, pain au chocolat, brioche… Quelle est la vie
+  📉 3/10: Mélanie Doutey : "Lycées délaissés, jeunesse sacrifiée"
+  📉 2/10: Pour de superbes rosiers au printemps, ajoutez cet alim
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.8h — Saudi-born engineer for OpenAI arrested for 
+     8/10 · 1 média(s) · 0.0h — Judge extends block on Trump White House ban
+     10/10 · 1 média(s) · 4.8h — Pope diagnosed with lung cancer but had succ
+     10/10 · 3 média(s) · 5.7h — An OpenAI Employee Allegedly Used a Chatbot 
+     10/10 · 4 média(s) · 7.3h — OpenAI Engineer Arrested for Bugging Office,
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.8h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Saudi-born engineer for OpenAI arrested for planting li
+
+  ── Bilan du cycle (79 s) ──
+     écartés : 6 sans portée internationale · 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         ✅
+        14. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 1 × gemini-3-flash               ⛔ inexistant
+        19. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        22. clé 2 × gemini-3.6-flash             🚫 quota
+        23. clé 2 × gemini-3-flash               ⛔ inexistant
+        24. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        31. clé 3 × gemini-3.6-flash             🚫 quota
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.1-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 34,361 entrée · 1,683 sortie
+     ✅ aucun appel payant
