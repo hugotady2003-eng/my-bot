@@ -1,0 +1,106 @@
+
+[05:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #DWTS, #auPAYとキノコ, #HALLOWEENTIPS, #RoçaAFazenda, Paredes
+  🔎 « DWTS » : 1 article(s) frais, le plus récent il y a 0.8 h (IMDb)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « DWTS » écarté : Divertissement télévisé sans impact pour le public français.
+  🔎 « Paredes » : 1 article(s) frais, le plus récent il y a 16.0 h (Futbol24)
+  ⏭️  « Paredes » écarté : Match de football mineur sans enjeu national.
+  🔎 « Vasco Da Gama » : 1 article(s) frais, le plus récent il y a 0.8 h (OneFootball)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Vasco Da Gama » écarté : Match amical ou ancien sans enjeu pour la France.
+  🔎 « Flores » : 1 article(s) frais, le plus récent il y a 6.5 h (VOI.ID)
+  ⏭️  « Flores » écarté : Tourisme catholique à l'étranger sans impact français
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.4s (43 déjà en cache)
+  📄 3/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block
+  🧠 47 vecteurs calculés en 1 appel(s)
+  🧩 47 articles → 33 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 3 médias) : OpenAI Engineer Arrested for Bugging Office, Compa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 5.8h +2 + thème porteur +10 + portée internationale +10
+  🧩 6 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Un ingénieur d'OpenAI, Abdulrahman Alfozan, a été arrêté pour avoir planté un 
+      [1m] ⚡exclusif OpenAI affirme avoir utilisé ses propres modèles d'IA pour identifier l'appare
+      [1m] ⚡exclusif L'employé aurait utilisé des chatbots et des agents de productivité pour plani
+      [2m] Le dispositif d'enregistrement était caché dans du papier toilette et fixé der
+      [1m] ⚡exclusif L'incident a été signalé au FBI, l'employé a été licencié et a comparu pour la
+      [1m] ⚡exclusif OpenAI s'est séparé de Jasmine, Mikita et Tomek après une enquête interne pour
+         motif : Autre incident de politique interne sans rapport direct avec l'affaire
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 8 médias) : Houthi missiles intercepted over Saudi Arabia as b
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, Cointelegraph, Le Monde, Melty
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 8 médias +15 + frais 1.1h +8 + thème porteur +10 + portée mondiale +18 + ⚡ décès d'un chef d'État → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚽ API football-data : 13 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 47 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Guerre en Ukraine. Deux morts à Kiev et attaque d’
+  → Rien à publier.
+
+  ── Bilan du cycle (70 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,729 entrée · 798 sortie
+     ✅ aucun appel payant
