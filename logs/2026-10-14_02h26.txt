@@ -1,0 +1,103 @@
+
+[02:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #VOLTAREMOSAINDAMAIOR, #NinguemCalaOExercitoDoLula, #LulaPeloFimDa6x1, carrick, #SoldadaAnitta
+  🔎 « carrick » : 1 article(s) frais, le plus récent il y a 2.9 h (Goal.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « carrick » écarté : Recyclage d'anciennes déclarations sans fait nouveau.
+  🔎 « Manchester United » : 1 article(s) frais, le plus récent il y a 6.5 h (Foot Mercato)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Manchester United » écarté : Match de football ordinaire sans enjeu majeur
+  🔎 « Martínez » : 1 article(s) frais, le plus récent il y a 2.7 h (Goal.com)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Martínez » écarté : Fait divers sportif mineur sans impact national.
+  🔎 « lamine yamal » : 1 article(s) frais, le plus récent il y a 2.3 h (CANAL+)
+  ⏭️  « lamine yamal » écarté : Contenu obsolète, match ancien sans actualité récente.
+  📖 3/3 articles lus en 0.9s (38 déjà en cache)
+  📄 2/41 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 41 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Cloud : apprendre à prédire plutôt que… »
+  🧠 Même événement (jugé) : « Here’s how much it costs to repair the… »
+  🧩 41 articles → 28 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 6 médias) : OpenAI employee arrested for allegedly planting a 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : Konbini, L'Express, Ouest-France, The Verge, Wired
+  🧮 Score 66.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 3.7h +4 + thème porteur +10 + portée internationale +10
+  🌙 Sujet fort (score 66) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Critique Street Fighter : plus haut, plus fort et 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 43.5/100 = gravité 7/10 → 32 + frais 4.4h +2 + portée internationale +10
+  → Sujet chaud pas assez fort (score 44) → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Ex-gang leader gets 40 years to life for rapper Tu
+  🧮 Score 93.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 0.4h +16 + imprévu 8/10 +18 + primeur +5 + portée internationale +10
+  🧩 6 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Duane « Keffe D » Davis a été condamné à une peine de 40 ans de prison minimum
+      [2m] Duane Davis a été reconnu coupable du meurtre de Tupac Shakur.
+      [1m] ⚡exclusif La défense de Duane Davis a annoncé son intention de faire appel de la décisio
+      [1m] ⚡exclusif Le procureur Marc DiGiacomo a déclaré que Duane Davis mourrait probablement en
+      [1m] ⚡exclusif La condamnation fait suite à un procès basé notamment sur les mémoires de l'ac
+      [1m] ⚡exclusif Duane Davis est le seul individu inculpé dans le meurtre de Tupac Shakur.
+  🌙 Sujet fort (score 94) mais nuit → il attendra le matin
+  ⚽ API football-data : 13 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 41 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Etats-Unis : À 63 ans, Duane Davis écope d’au moin
+  ♻️ Doublon d'un sujet déjà publié, écarté : Iran war live: Saudi coalition hits Houthi sites; 
+  → Rien à publier.
+
+  ── Bilan du cycle (52 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 1 × gemini-embedding-2-preview   🚫 quota
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 2 × gemini-embedding-2           🚫 quota
+        22. clé 3 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-2-preview   ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-embedding-001 (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 9,040 entrée · 751 sortie
+     ✅ aucun appel payant
