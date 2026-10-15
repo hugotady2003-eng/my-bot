@@ -1,0 +1,89 @@
+
+[05:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #OEXERCITODOLULAVOLTOU, #LulaPaiDoFimDa6x1, Dodgers, VITÓRIA DA CLASSE TRABALHADORA, erika hilton
+  🔎 « Dodgers » : 1 article(s) frais, le plus récent il y a 6.0 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Dodgers » écarté : trop secondaire (3/10)
+  🔎 « Carlos Miguel » : 1 article(s) frais, le plus récent il y a 2.1 h (OneFootball)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Carlos Miguel » écarté : Simple fait de jeu sportif sans enjeu majeur.
+  🔎 « Snell » : 1 article(s) frais, le plus récent il y a 9.0 h (RDS)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Snell » écarté : trop secondaire (2/10)
+  🔎 « Brewers » : 1 article(s) frais, le plus récent il y a 14.6 h (Journal de Québec)
+  ⏭️  « Brewers » écarté : trop secondaire (1/10)
+  📖 1/1 articles lus en 0.3s (42 déjà en cache)
+  📄 4/43 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Verge
+  🧠 43 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Musk says US government may be behind … »
+  🧠 Même événement (jugé) : « Fridge hack costing millions and spark… »
+  🧩 43 articles → 27 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 43 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (70 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.6-flash             🚫 quota
+        19. clé 5 × gemini-3.5-flash-lite        ✅
+        20. clé 5 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   🚫 quota
+        29. clé 3 × gemini-embedding-2           🚫 quota
+        30. clé 4 × gemini-embedding-001         ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-embedding-2-preview (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,469 entrée · 184 sortie
+     ✅ aucun appel payant
