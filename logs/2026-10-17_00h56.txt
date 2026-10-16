@@ -1,0 +1,83 @@
+
+[00:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #DilmaSeraVingada, #HOJEEUVOUBATERPANELA, Globo, Scaramucci, #نضربهم_بالارض_ونغرقهم_بالبحر
+  🔎 « Scaramucci » : 1 article(s) frais, le plus récent il y a 17.1 h (Benzinga France)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Scaramucci » écarté : trop secondaire (4/10)
+  🔎 « Katie Zacharia » : 1 article(s) frais, le plus récent il y a 1.7 h (franceinfo)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ✅ « Katie Zacharia » retenu : Éviction rapide d'une porte-parole de la Maison Blanche. (7/10) (+1 au score)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Tesla, #KatieZacharia
+  📖 3/3 articles lus en 0.3s (15 déjà en cache)
+  📄 3/18 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 18 vecteurs calculés en 1 appel(s)
+  🧩 18 articles → 11 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Fusillade d’Aubagne : Un deuxième mineur mis en ex
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ouest-France, Sud Ouest
+  🧮 Score 55.0/100 = gravité 4/10 → 18 + 5 médias +11 + frais 1.4h +8 + portée mondiale +18
+  🧩 5 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif La déforestation au Brésil a diminué de 42 % entre août 2025 et juillet 2026.
+      [1m] ⚡exclusif Des employés de Meta ont reconnu en interne que les comptes Instagram de Lula 
+      [1m] ⚡exclusif Meta a nié toute ingérence politique, affirmant que les problèmes techniques é
+      [1m] ⚡exclusif La justice brésilienne a ordonné à Meta de garantir un traitement égalitaire e
+      [1m] ⚡exclusif Des documents internes suggèrent que Meta a favorisé la visibilité du profil e
+  🌙 Sujet fort (score 55) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 5 médias) : Guerre au Moyen-Orient : les Houthis tirent deux m
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 68.5/100 = gravité 7/10 → 32 + 5 médias +11 + frais 1.4h +8 + portée mondiale +18
+  🧩 5 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif Des employés de Meta ont reconnu en interne que les comptes Instagram de Lula 
+      [1m] ⚡exclusif Meta nie toute ingérence politique et affirme que les problèmes techniques éta
+      [1m] ⚡exclusif La justice brésilienne a ordonné à Meta de garantir un traitement équitable en
+      [1m] ⚡exclusif La déforestation au Brésil a diminué de 42 % entre août 2025 et juillet 2026.
+      [1m] ⚡exclusif Le président Lula s'est fixé pour objectif d'atteindre zéro déforestation illé
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Accusée d'avoir menti sur son CV, Katie Zacharia évi
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 18 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (60 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   🚫 quota
+        11. clé 1 × gemini-embedding-2           🚫 quota
+        12. clé 2 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-2-preview   🚫 quota
+        14. clé 2 × gemini-embedding-2           🚫 quota
+        15. clé 3 × gemini-embedding-001         ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite (+18)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 749
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,069 entrée · 913 sortie
+     ✅ aucun appel payant
