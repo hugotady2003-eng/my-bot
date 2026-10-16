@@ -1,0 +1,147 @@
+
+[20:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « elephant in water »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 16-Oct-26 11:52:04 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AeW7FIGR4X7O21eEOnzzs67"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #The24thBloomOfPor, POR 24TH BIRTHDAY, #LULAPAROUJUIZDEFORA, #MinasGeraisVota13, #LulaEmIpatinga
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #KatieZacharia, #Tesla, #Elon
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 20h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 4.0 h) : 25-45 min
+  ✅ Dernière publi il y a 43758 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/7 articles lus en 0.9s (7 déjà en cache)
+  📄 1/14 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 14 vecteurs calculés en 1 appel(s)
+  🧩 14 articles → 9 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : LES ÉCLAIREURS - Guerre en Ukraine: la réponse de 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (232 → 184 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-2, pénalisé par « comment  ») : L’équivalent de 14 kg de TNT derrière les sièges du 
+  🚨 Sujet chaud (breaking, 6 médias) : Conseil constitutionnel: les parlementaires RN réc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : BBC, BFMTV, Frandroid, Ouest-France, ZDNet
+  🧮 Score 50.5/100 = gravité 3/10 → 14 + 6 médias +11 + frais 1.2h +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (168 → 105 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : Katie Zacharia déjà virée par Donald Trump ? Un ha
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 1.2h +8 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #KatieZacharia
+  ✂️ Tweet resserré localement (186 → 153 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 14 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Mobilisation du 17 octobre : Petit-déjeuner à l’El
+  ♻️ Doublon d'un sujet déjà publié, écarté : Budget européen, soutien à l’Ukraine, immigration…
+  ♻️ Doublon d'un sujet déjà publié, écarté : Katie Zacharia déjà virée par Donald Trump ? Un ha
+  ♻️ 7/10 [world] (déjà analysé, cache) : LES ÉCLAIREURS - Guerre en Ukraine: la réponse de 
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Entre craintes de bulle IA et poussée chinoise, la
+  ♻️ 7/10 [tech] (déjà analysé, cache) : L’équivalent de 14 kg de TNT derrière les sièges d
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Trahi par son NFT : un développeur devant la justi
+  ♻️ 7/10 [world] (déjà analysé, cache) : Inside Ukrainian offensive pushing Russia back - w
+  ♻️ 6/10 [space] (déjà analysé, cache) : Watch: Did Tesla really just unveil a flying car?
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  🧠 Batch analyse de 3 articles...
+  🌍 7/10 sans portée internationale : L'Assemblée nationale rejette la taxe Zucman sur l
+  🌍 6/10 sans portée internationale : « On a vraiment attendu que je bouillonne d’impati
+  📉 2/10: Gironde : l’ouverture du collège du Taillan-Médoc, une 
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 1 média(s) · 0.2h — LES ÉCLAIREURS - Guerre en Ukraine: la répon
+     8/10 · 1 média(s) · 2.2h — L’équivalent de 14 kg de TNT derrière les si
+     8/10 · 1 média(s) · 2.9h — Inside Ukrainian offensive pushing Russia ba
+     7/10 · 1 média(s) · 6.4h — Watch: Did Tesla really just unveil a flying
+     7/10 · 1 média(s) · 12.7h — Trahi par son NFT : un développeur devant la
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (167 → 121 car.)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 16-Oct-26 11:54:37 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"Ad1k7fxfYMahUPzx6mKSvHW"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : LES ÉCLAIREURS - Guerre en Ukraine: la réponse de Volod
+
+  ── Bilan du cycle (228 s) ──
+     écartés : 2 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   🚫 quota
+        11. clé 2 × gemini-embedding-001         🚫 quota
+        12. clé 2 × gemini-embedding-2-preview   ✅
+        13. clé 2 × gemini-3.5-flash-lite        ✅
+        14. clé 2 × gemini-3.5-flash-lite        ✅
+        15. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.6-flash             🚫 quota
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3.6-flash (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 752
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 62,249 entrée · 1,196 sortie
+     ✅ aucun appel payant
