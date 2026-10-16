@@ -1,0 +1,118 @@
+
+[05:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #LulaNaGlobo, #モンスト黄泉のツガイ, コラボ限定グッズ, #ガチハンターメンタルでGET, 合計1,000名様
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 0.0 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Flamengo » écarté : trop secondaire (3/10)
+  🔎 « Seahawks » : 1 article(s) frais, le plus récent il y a 13.0 h (DAZN)
+  ⏭️  « Seahawks » écarté : Simple match de saison sportive reguliere
+  🔎 « chappell » : 1 article(s) frais, le plus récent il y a 8.6 h (Zimbalam)
+  ⏭️  « chappell » écarté : trop secondaire (4/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Oregon, #Roadster
+  📖 1/1 articles lus en 0.3s (51 déjà en cache)
+  📄 3/52 article(s) sans corps lisible → recoupement sur titre et résumé seuls : OpenAI · Ouest-France
+  ⛔ text-embedding-004 n'existe pas sur ce compte — écarté pour la suite du run
+  ⛔ embedding-001 n'existe pas sur ce compte — écarté pour la suite du run
+  🔎 Gemini 503 — The service is currently unavailable.
+  ⚠️ Vecteurs (gemini-embedding-001) : 503 Server Error: Service Unavailable for url: htt → couple suivant
+  🧠 52 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « "On ne se rendra pas aux prochaines ré… »
+  🧠 Même événement (jugé) : « Tesla reveals SpaceX-powered Roadster … »
+  🧠 Même événement (jugé) : « The Tesla Roadster flew, drove upside … »
+  🧠 Même événement (jugé) : « A Tesla Flying Car? I Don’t Know, Man… »
+  🧩 52 articles → 33 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Tesla annonce son Roadster : 0 à 96 km/h en 0,81 sec
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : MSCI adopts index exclusion rules that could oust St
+  🚨 Sujet chaud (breaking, 3 médias) : Une fusillade dans une école primaire de l’Oregon 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 39 s
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BFMTV
+  🧮 Score 59.5/100 = gravité 9/10 → 40 + 3 médias +7 + frais 4.3h +2 + thème porteur +10
+  🧩 5 affirmation(s) : 1 partagée(s) · 2 divergente(s) · 2 exclusive(s)
+      [2m] Une fusillade dans une école primaire de l'Oregon a fait cinq morts, dont troi
+      [1m] Le tireur est un adolescent de 16 ans qui a forcé l'entrée de l'école en tiran
+         ↳ Ouest-France : L'article mentionne l'irruption d'un individu sans préciser son 
+         motif : Niveau de détail et informations complémentaires de la BBC.
+      [1m] Le tireur a été abattu par un membre de la communauté ou un passant armé.
+         ↳ Ouest-France : L'article indique que le tireur fait partie des cinq personnes t
+         motif : Ouest-France ne détaille pas les circonstances de la mort du tireur.
+      [1m] ⚡exclusif Les trois enfants tués étaient âgés de 5, 8 et 11 ans.
+      [1m] ⚡exclusif Plusieurs autres personnes ont été grièvement blessées et transportées à l'hôp
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 52 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (104 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 1 × gemini-embedding-001         🚫 quota
+        25. clé 1 × text-embedding-004           ⛔ inexistant
+        26. clé 1 × embedding-001                ⛔ inexistant
+        27. clé 2 × gemini-embedding-001         🚫 quota
+        28. clé 2 × text-embedding-004           ⛔ inexistant
+        29. clé 2 × embedding-001                ⛔ inexistant
+        30. clé 3 × gemini-embedding-001         🚫 quota
+        31. clé 3 × text-embedding-004           ⛔ inexistant
+        32. clé 3 × embedding-001                ⛔ inexistant
+        33. clé 4 × gemini-embedding-001         ⚠️ 503 server error: serv
+        34. clé 4 × text-embedding-004           ⛔ inexistant
+        35. clé 4 × embedding-001                ⛔ inexistant
+        36. clé 5 × gemini-embedding-001         ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 6 autres
+     jamais essayé ce cycle : clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 2/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798
+     modèles écartés (inexistants) : embedding-001, gemini-2.5-flash-lite, gemini-3-flash, text-embedding-004
+     jetons Gemini : 4,290 entrée · 751 sortie
+     ✅ aucun appel payant
