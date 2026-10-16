@@ -1,0 +1,149 @@
+
+[08:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 緊急地震速報, M9.9, 千島列島, サイバー攻撃, マグニチュード9.9
+  🌍 « M9.9 » : aucune reprise en français, source internationale retenue
+  🔎 « M9.9 » : 1 article(s) frais, le plus récent il y a 0.8 h (아시아경제)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « M9.9 » écarté : Fausse alerte sismique rétractée rapidement au Japon
+  🌍 « マグニチュード9.9 » : aucune reprise en français, source internationale retenue
+  🔎 « Dodgers » : 1 article(s) frais, le plus récent il y a 0.3 h (L'Équipe)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ Jugement de « Dodgers » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Dodgers » écarté : jugement indisponible
+  🔎 « Sam Darnold » : 1 article(s) frais, le plus récent il y a 2.3 h (Touchdown Actu)
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ Jugement de « Sam Darnold » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Sam Darnold » écarté : jugement indisponible
+  🔎 « Bo Nix » : 1 article(s) frais, le plus récent il y a 17.5 h (arsenalsports.ca)
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ Jugement de « Bo Nix » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Bo Nix » écarté : jugement indisponible
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Roadster
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 43004 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/9 articles lus en 2.7s (17 déjà en cache)
+  📄 4/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 26 vecteurs calculés en 1 appel(s)
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : 'parts' → couple suivant
+  🧩 26 articles → 12 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : The Tesla Roadster flew, drove upside down, and hit 
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Mobilisation du 17 octobre : comment les gilets jaun
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Tunnel sous la Manche : accident entre un train de f
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Elle peut voler comme une fusée": Elon Musk dévoile
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 26 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Elon Musk dévoile la Tesla Roadster, sa première v
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Pour le patron de la Fed, l’IA est le changement l
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Tunnel sous la Manche : accident entre un train de
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Entre craintes de bulle IA et poussée chinoise, la
+  ♻️ 6/10 [business] (déjà analysé, cache) : TotalEnergies fait part de marges de raffinage rec
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : À 24 heures près, GTA 6 pourra participer in extre
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 : où écouter la musique du dernier trailer a
+  ♻️ 9/10 [world] (déjà analysé, cache) : Three children and teacher killed in US primary sc
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : 'It's really hard to believe' - How Oregon primary
+  ♻️ 7/10 [world] (déjà analysé, cache) : Alone in Gaza: Genocide leaves Palestinian man wit
+  ♻️ 6/10 [world] (déjà analysé, cache) : US sanctions leave Iranians facing flight cancella
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : An OpenAI agent ran out of Ethereum funds, and too
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin buyers snap up a brief drop below $80,000 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Google Says It Just Cracked One of Quantum Computi
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Tesla reveals SpaceX-powered Roadster that flies a
+  ♻️ 8/10 [tech] (déjà analysé, cache) : The Tesla Roadster flew, drove upside down, and hi
+  ♻️ 6/10 [space] (déjà analysé, cache) : ESA astronaut Sophie Adenot returns from her first
+  🧠 Batch analyse de 8 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cg5RvxEDh5vbFYy5n5fgb'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.6h — Tunnel sous la Manche : accident entre un tr
+     10/10 · 1 média(s) · 2.6h — Three children and teacher killed in US prim
+     8/10 · 1 média(s) · 0.3h — Pour le patron de la Fed, l’IA est le change
+     8/10 · 1 média(s) · 0.4h — Alone in Gaza: Genocide leaves Palestinian m
+     10/10 · 1 média(s) · 4.7h — 'It's really hard to believe' - How Oregon p
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cg5RwCrnbhc1etu6wiCWj'}
+  → 1 sélectionné(s) [breaking]
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Sujet non vérifiable (modèle indisponible) → rien publié : Tunnel sous la Manche : accident entre un trai
+
+  ── Bilan du cycle (202 s) ──
+     écartés : 4 sujet banal · 1 sujet non vérifiable
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        25. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        26. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        27. clé 1 × gemini-embedding-001         🚫 quota
+        28. clé 1 × gemini-embedding-2-preview   🚫 quota
+        29. clé 1 × gemini-embedding-2           🚫 quota
+        30. clé 2 × gemini-embedding-001         🚫 quota
+        31. clé 2 × gemini-embedding-2-preview   🚫 quota
+        32. clé 2 × gemini-embedding-2           🚫 quota
+        33. clé 3 × gemini-embedding-001         🚫 quota
+        34. clé 3 × gemini-embedding-2-preview   🚫 quota
+        35. clé 3 × gemini-embedding-2           🚫 quota
+        36. clé 4 × gemini-embedding-001         🚫 quota
+        37. clé 4 × gemini-embedding-2-preview   🚫 quota
+        38. clé 4 × gemini-embedding-2           🚫 quota
+        39. clé 5 × gemini-embedding-001         ✅
+        40. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        … et 3 autres
+     jamais essayé ce cycle : clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 790 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,183 entrée · 51 sortie
+     ⚠️ 9 appel(s) payés chez Claude (le gratuit n'a pas suffi)
