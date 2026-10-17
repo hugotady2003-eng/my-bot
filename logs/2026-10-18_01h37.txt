@@ -1,0 +1,146 @@
+
+[01:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Francia, BATEU O DESESPERO, Auburn, Macron, LULA REELEITO
+  🌍 « Auburn » : aucune reprise en français, source internationale retenue
+  🔎 « Auburn » : 1 article(s) frais, le plus récent il y a 0.5 h (CBS Sports)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Auburn » écarté : trop secondaire (2/10)
+  🔎 « Macron » : 1 article(s) frais, le plus récent il y a 4.8 h (Le Monde.fr)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ✅ « Macron » retenu : Déclaration officielle d'Emmanuel Macron suite à des violenc (9/10) (+3 au score)
+  🔎 « Dubois » : 1 article(s) frais, le plus récent il y a 0.6 h (Boxemag)
+  ⏭️  « Dubois » écarté : trop secondaire (5/10)
+  🌍 « Tommy Carr » : aucune reprise en français, source internationale retenue
+  🔎 « Tommy Carr » : 1 article(s) frais, le plus récent il y a 0.5 h (Detroit Free Press)
+  ⏭️  « Tommy Carr » écarté : Sport universitaire americain sans interet en France
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Limoges, #Macron
+  📖 21 articles, tous en cache
+  📄 1/21 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 21 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Manifestations du 17 octobre: Sébastie… »
+  🧠 Même événement (jugé) : « 17 octobre: Sébastien Lecornu annonce … »
+  🧠 Même événement (jugé) : « Manifestations du 17 octobre : l’hôtel… »
+  🧠 Même événement (jugé) : « Mobilisation du 17 octobre : « C’est l… »
+  🧩 21 articles → 15 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 6 médias) : Manifestations du 17 octobre: Sébastien Lecornu an
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 1.4h +8 + thème porteur +10
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 5 partagée(s) · 2 divergente(s) · 2 exclusive(s)
+      [2m] Sébastien Lecornu annonce 1 200 interpellations en marge des manifestations du
+         ↳ BFMTV, Sud Ouest : Un premier bilan provisoire faisait état d'environ 400 interpell
+         motif : Actualisation des chiffres par le gouvernement au fil de la soirée.
+      [2m] Le ministère de l'Intérieur recense 550 000 manifestants au total dans le pays
+         ↳ Sud Ouest : Les organisateurs estiment le nombre de manifestants à 800 000.
+         motif : Différence entre les chiffres officiels de la police et ceux des organ
+      [2m] 150 policiers et gendarmes ont été blessés lors des mobilisations.
+      [2m] Le Premier ministre appelle à choisir entre le camp de la République et celui 
+      [3m] L'hôtel de ville de Limoges a été ravagé par un incendie et son beffroi s'est 
+      [1m] ⚡exclusif Les maires de Paris, Marseille et Lyon demandent à être reçus par le Premier m
+      [1m] ⚡exclusif L'humoriste AZ annule sa représentation du 17 octobre au Palais des Glaces à P
+  🌙 Sujet fort (score 65) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 6 médias) : EN DIRECT, manifestations du 17 octobre : le gouve
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 1.4h +8 + thème porteur +10
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 25 s
+  🧩 7 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] Le gouvernement a annoncé un bilan provisoire d'environ 1 200 interpellations 
+         ↳ BFMTV, Sud Ouest : Un précédent bilan provisoire faisait état d'environ 400 interpe
+         motif : Évolution chronologique et actualisation du bilan par les autorités.
+      [2m] Le gouvernement recense 550 000 manifestants au total en France (dont 110 000 
+      [2m] Le Premier ministre Sébastien Lecornu a annoncé que 150 policiers et gendarmes
+      [2m] Le Premier ministre Sébastien Lecornu a déclaré qu'il fallait choisir entre le
+      [3m] L'hôtel de ville de Limoges a été ravagé par un incendie et son beffroi s'est 
+      [1m] ⚡exclusif Les maires de Paris, Marseille et Lyon demandent à être reçus par le gouvernem
+      [1m] ⚡exclusif L'humoriste AZ a annulé sa représentation prévue le 17 octobre au Palais des G
+  🌙 Sujet fort (score 65) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Violent clashes, looting and buildings ablaze in F
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.5/100 = gravité 9/10 → 40 + frais 2.8h +4
+  → Sujet chaud pas assez fort (score 44) → suivant
+  🚨 Sujet chaud (breaking, 6 médias) : Manifestations du 17 octobre : l’hôtel de ville de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 1.4h +8 + thème porteur +10
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [4m] Les manifestations du 17 octobre ont été marquées par de violents incidents, d
+      [3m] Le Premier ministre Sébastien Lecornu a annoncé un bilan provisoire de 1 200 i
+         ↳ BFMTV, Sud Ouest : Le ministre de l'Intérieur Laurent Nuñez avait dans un premier t
+         motif : Actualisation du bilan au cours de la soirée par les autorités.
+      [3m] L'hôtel de ville de Limoges a été ravagé par un incendie spectaculaire au cour
+      [2m] Le ministère de l'Intérieur a recensé 550 000 manifestants en France, dont 110
+      [2m] Sébastien Lecornu a appelé à un choix républicain clair face aux casseurs et a
+      [1m] ⚡exclusif Les maires de Paris, Marseille et Lyon demandent à être reçus par le Premier m
+      [1m] ⚡exclusif L'humoriste AZ a annulé sa représentation du 17 octobre au Palais des Glaces à
+  🌙 Sujet fort (score 65) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, ? médias) : Mobilisation du 17 octobre : Emmanuel Macron dénon
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 8 → 11 (+3)
+  → Sujet chaud pas assez fort (score 11) → suivant
+  ⚽ API football-data : 39 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 21 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Manifestations du 17 octobre : l’hôtel de ville de
+  → Rien à publier.
+
+  ── Bilan du cycle (115 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-001 · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 742
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 11,991 entrée · 2,482 sortie
+     ✅ aucun appel payant
