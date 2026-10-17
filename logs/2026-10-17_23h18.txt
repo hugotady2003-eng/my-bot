@@ -1,0 +1,190 @@
+
+[23:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Indiana, Arch Manning, Macron, Ohio State, #StarAcademy
+  🔎 « Indiana » : 1 article(s) frais, le plus récent il y a 3.1 h (Arts in the City)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Indiana » écarté : trop secondaire (3/10)
+  🔎 « Macron » : 1 article(s) frais, le plus récent il y a 2.5 h (Le Monde.fr)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ✅ « Macron » retenu : Déclaration forte d'Emmanuel Macron suite à des violences. (8/10) (+2 au score)
+  🔎 « Betis » : 1 article(s) frais, le plus récent il y a 2.7 h (Foot Mercato)
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Betis » écarté : trop secondaire (4/10)
+  🔎 « Limoges » : 1 article(s) frais, le plus récent il y a 1.9 h (RTL)
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ✅ « Limoges » retenu : Incendie majeur détruisant un monument historique national. (9/10) (+3 au score)
+  🌍 « Sark » : aucune reprise en français, source internationale retenue
+  🔎 « Sark » : 1 article(s) frais, le plus récent il y a 0.6 h (theScore)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Sark » écarté : Sujet sportif américain sans lien avec la France.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Macron, #Limoges
+  🕐 23h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 1.0 h) : 25-45 min
+  ✅ Dernière publi il y a 45343 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/3 articles lus en 1.1s (12 déjà en cache)
+  📄 2/15 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 15 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Violent clashes, looting and buildings… »
+  🧩 15 articles → 12 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 4 médias) : EN DIRECT, manifestations du 17 octobre : le gouve
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Numerama, Ouest-France
+  🧮 Score 76.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 0.8h +13 + thème porteur +10 + portée internationale +10
+  🧩 6 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [1m] Le nombre de manifestants est estimé à 550 000 par le gouvernement et à 800 00
+         ↳ BBC : Le gouvernement estime le nombre de manifestants à 550 000.
+         motif : La BBC ne mentionne que le chiffre officiel.
+      [2m] Environ 400 personnes ont été interpellées lors des manifestations.
+      [2m] Le gouvernement qualifie les violences urbaines d'une gravité inouïe.
+      [1m] ⚡exclusif Soixante membres des forces de l'ordre ont été blessés.
+      [1m] ⚡exclusif Des bâtiments publics, dont la mairie de Limoges, ont été incendiés.
+      [1m] ⚡exclusif Des pillages et des actes de vandalisme ont été constatés dans plusieurs ville
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Championnat d’Europe de tennis de table. « Continuer
+  🚨 Sujet chaud (breaking, 4 médias) : Violent clashes, looting and buildings ablaze as h
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 80.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 0.8h +13 + thème porteur +10 + portée internationale +10
+  🧩 9 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 9 exclusive(s)
+      [1m] ⚡exclusif Des manifestations contre les normes éducatives et le coût de la vie ont eu li
+      [1m] ⚡exclusif Au moins 400 personnes ont été arrêtées lors des manifestations.
+      [1m] ⚡exclusif Environ 550 000 personnes ont participé aux manifestations à travers le pays.
+      [1m] ⚡exclusif Le gouvernement français a qualifié les événements d'escalade de la violence.
+      [1m] ⚡exclusif Soixante membres des forces de l'ordre ont été blessés, dont deux hospitalisés
+      [1m] ⚡exclusif Des bâtiments publics, dont la mairie de Limoges, ont été incendiés et partiel
+      [1m] ⚡exclusif Des pillages et des actes de vandalisme ont été signalés contre des commerces 
+      [1m] ⚡exclusif La manifestation principale à Paris est restée majoritairement pacifique duran
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, ? médias) : Mobilisation du 17 octobre : Emmanuel Macron dénon
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 8 → 10 (+2)
+  → Sujet chaud pas assez fort (score 10) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Une catastrophe patrimoniale" : l'hôtel de ville de
+  ⚽ API football-data : 39 match(s) sur 48h, dont France : 0
+  → 15 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, manifestations du 17 octobre : le gouve
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Peut-on vraiment confier son épargne à ChatGPT ou 
+  ♻️ 7/10 [space] (déjà analysé, cache) : « Un barbecue qui a mal tourné » : l’astronaute fr
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Le créateur de Dragon Quest vient de créer un jeu 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Violent clashes, looting and buildings ablaze as h
+  ♻️ 6/10 [space] (déjà analysé, cache) : Watch: Did Tesla really just unveil a flying car?
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump waives broad new Russia sanctions, Zelenskyy
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Circle’s Allaire says stablecoin issuer looking to
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 6/10 [tech] (déjà analysé, cache) : TikTok permanently bans ‘Musk’ documentary adverti
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Elon Musk settles lawsuits over $1 million voter g
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI models hacked a crypto wallet and breached 
+  🧠 Batch analyse de 3 articles...
+  📉 1/10: Hockey sur glace. D1 : les Drakkars de Caen en démonstr
+  📉 2/10: Championnat d’Europe de tennis de table. « Continuer su
+  🌍 7/10 sans portée internationale : Cost of living protests hit Belgium, Italy, Portug
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.4h — Violent clashes, looting and buildings ablaz
+     10/10 · 1 média(s) · 1.7h — Trump waives broad new Russia sanctions, Zel
+     9/10 · 1 média(s) · 1.1h — EN DIRECT, manifestations du 17 octobre : le
+     7/10 · 1 média(s) · 0.4h — TikTok permanently bans ‘Musk’ documentary a
+     8/10 · 1 média(s) · 3.0h — « Un barbecue qui a mal tourné » : l’astrona
+  ✂️ Éphéméride resserré (189 → 105 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  📈 Hashtag(s) en tendance : #Limoges
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Limoges
+  ✂️ Tweet resserré localement (297 → 137 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Violent clashes, looting and buildings ablaze as hundre
+
+  ── Bilan du cycle (182 s) ──
+     écartés : 2 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.6-flash             🚫 quota
+        18. clé 3 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite (+18)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 744
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 47,588 entrée · 2,630 sortie
+     ✅ aucun appel payant
