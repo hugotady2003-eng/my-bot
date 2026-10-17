@@ -1,0 +1,162 @@
+
+[23:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Indiana, Arch Manning, Macron, Ohio State, #StarAcademy
+  🔎 « Indiana » : 1 article(s) frais, le plus récent il y a 2.9 h (Arts in the City)
+  ⏭️  « Indiana » écarté : Simple exposition artistique sans actualite marquante
+  🔎 « Macron » : 1 article(s) frais, le plus récent il y a 2.3 h (Le Monde.fr)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ✅ « Macron » retenu : Réaction présidentielle suite à des violences urbaines. (8/10) (+2 au score)
+  🔎 « Betis » : 1 article(s) frais, le plus récent il y a 2.6 h (Foot Mercato)
+  ⏭️  « Betis » écarté : trop secondaire (4/10)
+  🔎 « Limoges » : 1 article(s) frais, le plus récent il y a 1.7 h (RTL)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ✅ « Limoges » retenu : Incendie majeur de l'hôtel de ville de Limoges (9/10) (+3 au score)
+  🌍 « Sark » : aucune reprise en français, source internationale retenue
+  🔎 « Sark » : 1 article(s) frais, le plus récent il y a 0.5 h (theScore)
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting ',' delimiter: line 1 column 19 (char 18) → couple suivant
+  ⏭️  « Sark » écarté : Sport universitaire américain sans intérêt pour la France.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Macron, #Limoges
+  🕐 23h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 1.0 h) : 25-45 min
+  ✅ Dernière publi il y a 45333 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.2s (12 déjà en cache)
+  📄 1/14 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 14 vecteurs calculés en 1 appel(s)
+  🧩 14 articles → 13 événement(s)
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT, manifestations du 17 octobre : le gouve
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 0.9h +13 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 3 column 3 (char 97) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 3 column 18 (char 105) → couple suivant
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, ? médias) : Mobilisation du 17 octobre : Emmanuel Macron dénon
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 8 → 10 (+2)
+  → Sujet chaud pas assez fort (score 10) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Une catastrophe patrimoniale" : l'hôtel de ville de
+  ⚽ API football-data : 39 match(s) sur 48h, dont France : 0
+  → 14 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, manifestations du 17 octobre : le gouve
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Peut-on vraiment confier son épargne à ChatGPT ou 
+  ♻️ 7/10 [space] (déjà analysé, cache) : « Un barbecue qui a mal tourné » : l’astronaute fr
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Le créateur de Dragon Quest vient de créer un jeu 
+  ♻️ 6/10 [space] (déjà analysé, cache) : Watch: Did Tesla really just unveil a flying car?
+  ♻️ 9/10 [world] (déjà analysé, cache) : Iranian TV airs video said to show tanker explosio
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump waives broad new Russia sanctions, Zelenskyy
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Circle’s Allaire says stablecoin issuer looking to
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 6/10 [tech] (déjà analysé, cache) : TikTok permanently bans ‘Musk’ documentary adverti
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Elon Musk settles lawsuits over $1 million voter g
+  ♻️ 8/10 [ai] (déjà analysé, cache) : OpenAI models hacked a crypto wallet and breached 
+  🧠 Batch analyse de 2 articles...
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 2 column 20 (char 33) → couple suivant
+  📉 1/10: Handball. Coupe de France féminine (2e tour) : le Roz H
+  📉 2/10: Cette sitcom Disney a glissé un vrai moment d’horreur e
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 1.1h — Iranian TV airs video said to show tanker ex
+     10/10 · 1 média(s) · 1.5h — Trump waives broad new Russia sanctions, Zel
+     9/10 · 1 média(s) · 0.9h — EN DIRECT, manifestations du 17 octobre : le
+     7/10 · 1 média(s) · 0.2h — TikTok permanently bans ‘Musk’ documentary a
+     8/10 · 1 média(s) · 2.9h — « Un barbecue qui a mal tourné » : l’astrona
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (191 → 147 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 1.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Iranian TV airs video said to show tanker explosion in 
+
+  ── Bilan du cycle (193 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+         5. clé 1 × gemini-3.1-flash-lite        ✅
+         6. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         7. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         8. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         9. clé 1 × gemini-3-flash               ⛔ inexistant
+        10. clé 2 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        12. clé 2 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 1 × gemini-embedding-2           🚫 quota
+        16. clé 2 × gemini-embedding-001         ✅
+        17. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        22. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        25. clé 2 × gemini-3.1-flash-lite        ✅
+        26. clé 1 × gemini-3.6-flash             🚫 quota
+        27. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        28. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 2 × gemini-3.6-flash             🚫 quota
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview (+18)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 744
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 54,309 entrée · 1,108 sortie
+     ✅ aucun appel payant
