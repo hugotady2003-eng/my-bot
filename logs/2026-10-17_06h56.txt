@@ -1,0 +1,88 @@
+
+[06:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #JASPERConcert, #夜と昼を別つ双子の片割れアサ, #9HAMARELOEVERDE, Heartbeat, #LaGranjaFraude
+  🌍 « Heartbeat » : aucune reprise en français, source internationale retenue
+  🔎 « Heartbeat » : 1 article(s) frais, le plus récent il y a 12.1 h (Variety)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Heartbeat » écarté : Simple promotion de film sans fait nouveau.
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/5 articles lus en 1.0s (32 déjà en cache)
+  📄 5/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · OpenAI
+  🧠 37 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « ÉDITORIAL. Lycéens : ce qu’ils disent … »
+  🧠 Même événement (jugé) : « Manifestations du 17 octobre : une "co… »
+  🧠 Même événement (jugé) : « Brazil sees record fall in Amazon defo… »
+  🧩 37 articles → 16 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 8 médias) : Manifestations du 17 octobre : une "convergence de
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Gamekult, La Tribune, Ouest-France, Public
+  🧮 Score 1.5/100 = gravité 3/10 → 14 + 8 médias +15 + frais 1.4h +8 + programmé 3/10 -15 + fait local -20 + sous la barre des faits locaux (66)
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Une mobilisation nationale regroupant divers acteurs sociaux est prévue pour l
+      [1m] ⚡exclusif La préfecture de police de Paris a imposé des restrictions et des itinéraires 
+      [1m] ⚡exclusif La mobilisation du 17 octobre trouve son origine dans un appel lancé sur le ré
+      [1m] ⚡exclusif Les revendications du mouvement portent principalement sur le pouvoir d'achat 
+      [1m] ⚡exclusif La diversité des revendications pourrait nuire à l'unité du mouvement selon de
+  → Sujet chaud pas assez fort (score 2) → suivant
+  ⚽ API football-data : 39 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 37 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Munster - Racing 92. À quelle heure et sur quelle 
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump puts on hold new Russia sanctions he signed 
+  → Rien à publier.
+
+  ── Bilan du cycle (68 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-embedding-2-preview   🚫 quota
+         4. clé 1 × gemini-embedding-2           🚫 quota
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × gemini-embedding-2-preview   🚫 quota
+         7. clé 2 × gemini-embedding-2           🚫 quota
+         8. clé 3 × gemini-embedding-001         🚫 quota
+         9. clé 3 × gemini-embedding-2-preview   ✅
+        10. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        11. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 1 × gemini-3-flash               ⛔ inexistant
+        14. clé 2 × gemini-3.5-flash-lite        ✅
+        15. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.6-flash             🚫 quota
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,421 entrée · 566 sortie
+     ✅ aucun appel payant
