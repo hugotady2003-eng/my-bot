@@ -1,0 +1,136 @@
+
+[00:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Francia, Macron, #StarAcademy, Limoges, Dubois
+  🔎 « Macron » : 1 article(s) frais, le plus récent il y a 3.4 h (Le Monde.fr)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ✅ « Macron » retenu : Déclaration présidentielle suite à des saccages urbains. (8/10) (+2 au score)
+  🔎 « Limoges » : 1 article(s) frais, le plus récent il y a 3.1 h (ici.fr)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ✅ « Limoges » retenu : Incendie majeur d'un bâtiment public historique. (9/10) (+3 au score)
+  🔎 « Dubois » : 1 article(s) frais, le plus récent il y a 6.2 h (DAZN)
+  ⏭️  « Dubois » écarté : trop secondaire (4/10)
+  🔎 « arch » : 1 article(s) frais, le plus récent il y a 5.0 h (Le Dauphiné Libéré)
+  ⏭️  « arch » écarté : trop secondaire (3/10)
+  🔎 « Indiana » : 1 article(s) frais, le plus récent il y a 4.0 h (Arts in the City)
+  ⏭️  « Indiana » écarté : trop secondaire (3/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Macron, #Limoges
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.7s (19 déjà en cache)
+  📄 3/20 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 20 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Mobilisations du 17 octobre: Sébastien… »
+  🧠 Même événement (jugé) : « 17 octobre: Sébastien Lecornu, Premier… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Ligue 1. En marge des manifestations d… »
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🧩 20 articles → 13 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 16 (char 15) → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mobilisation du 17 octobre : « C’est la Révolution, 
+  🚨 Sujet chaud (breaking, 7 médias) : EN DIRECT, manifestations du 17 octobre : le gouve
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 10 (char 9) → couple suivant
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Challenges, Numerama
+  🧮 Score 80.0/100 = gravité 8/10 → 36 + 7 médias +11 + frais 0.7h +13 + thème porteur +10 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 4 column 16 (char 43) → couple suivant
+  🧩 5 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] Le ministère de l'Intérieur annonce 550 000 manifestants et les organisateurs 
+      [1m] Environ 400 personnes ont été interpellées en marge des manifestations.
+         ↳ BFMTV : Le Premier ministre Sébastien Lecornu annonce 1 200 interpellati
+         motif : Chiffres communiqués à des moments différents ou sources distinctes.
+      [2m] La journée de manifestations a été marquée par des affrontements, des dégradat
+      [1m] ⚡exclusif L'hôtel de ville de Limoges a été incendié et très lourdement endommagé par de
+      [1m] ⚡exclusif La personnalité Jeanne Viard a pris part au rassemblement et a affiché son sou
+  🌙 Sujet fort (score 80) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 7 médias) : Ligue 1. En marge des manifestations du 17 octobre
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 47.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 0.7h +13 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [1m] ⚡exclusif La boutique du LOSC à Lille a été vandalisée et pillée en marge des manifestat
+      [4m] Une vaste journée de manifestations et de mobilisations s'est déroulée en Fran
+      [2m] Les manifestations ont été émaillées de violences, d'affrontements, de dégrada
+      [2m] Le nombre de manifestants le 17 octobre est estimé entre 550 000 et 800 000 se
+      [1m] ⚡exclusif Environ 400 personnes ont été interpellées en marge des rassemblements selon l
+  🌙 Sujet fort (score 48) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Violent clashes, looting and buildings ablaze in F
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 53.5/100 = gravité 9/10 → 40 + frais 1.3h +8 + primeur +5
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, ? médias) : Mobilisation du 17 octobre : Emmanuel Macron dénon
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 8 → 10 (+2)
+  → Sujet chaud pas assez fort (score 10) → suivant
+  🚨 Sujet chaud (breaking, ? médias) : La mairie de Limoges détruite par un incendie : "C
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 4 → 7 (+3)
+  → Sujet chaud pas assez fort (score 7) → suivant
+  ⚽ API football-data : 39 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 20 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (139 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.6-flash             🚫 quota
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 742
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 13,075 entrée · 1,267 sortie
+     ✅ aucun appel payant
