@@ -1,0 +1,100 @@
+
+[03:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #LulaTemOMaiorExercitoDoMundo, #DesbloqueiaOJanonesFlavio, #ExercitoDoLulaDominouTudo, #LulaJaSomos5Milhoes, #LulaSeuExercitoTeEspera
+  🔎 « Auburn » : 1 article(s) frais, le plus récent il y a 8.2 h (TradingView)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Auburn » écarté : Donnée financière technique sans impact pour la France.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Limoges
+  📖 27 articles, tous en cache
+  📄 1/27 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 27 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 Même événement (jugé) : « Édition spéciale : Des scènes de chaos… »
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Mobilisation du 17 octobre : Clash ent… »
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Mobilisation du 17 octobre : « C’est l… »
+  🧩 27 articles → 21 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestations du 17 octobre: Sébastien Lecornu an
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 50.0/100 = gravité 8/10 → 36 + frais 3.2h +4 + thème porteur +10
+  🌙 Sujet fort (score 50) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Mobilisation du 17 octobre : Clash entre Lecornu e
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 48.0/100 = gravité 6/10 → 27 + 4 médias +7 + frais 2.8h +4 + thème porteur +10
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif Sébastien Lecornu et Jean-Luc Mélenchon se sont livrés à un violent échange pa
+      [2m] Sébastien Lecornu a annoncé un bilan de 1 200 interpellations à l'issue de la 
+         ↳ Sud Ouest : Environ 400 personnes ont été interpellées dans le pays.
+         motif : Actualisation du bilan au cours de la soirée.
+      [2m] Le ministère de l'Intérieur a recensé 550 000 manifestants au niveau national,
+      [2m] L'hôtel de ville de Limoges a été ravagé par un incendie en marge des manifest
+      [1m] ⚡exclusif Sébastien Lecornu a sommé La France insoumise de choisir entre la République e
+      [1m] ⚡exclusif Jean-Luc Mélenchon a qualifié le Premier ministre de commis provoquant une cri
+      [1m] ⚡exclusif Les maires de Paris, Marseille et Lyon demandent à être reçus par le Premier m
+      [1m] ⚡exclusif Laurent Nuñez a indiqué que des groupes de casseurs liés à l'ultragauche s'éta
+  🌙 Sujet fort (score 48) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Violent clashes, looting and buildings ablaze in F
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 42.5/100 = gravité 9/10 → 40 + frais 4.5h +2
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚽ API football-data : 29 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 27 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (68 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 1 × gemini-embedding-2-preview   🚫 quota
+         5. clé 1 × gemini-embedding-2           🚫 quota
+         6. clé 2 × gemini-embedding-001         🚫 quota
+         7. clé 2 × gemini-embedding-2-preview   ✅
+         8. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 1 × gemini-3.6-flash             🚫 quota
+        11. clé 1 × gemini-3-flash               ⛔ inexistant
+        12. clé 2 × gemini-3.5-flash-lite        ✅
+        13. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 2 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 3 × gemini-3.6-flash             ✅
+        19. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.6-flash             🚫 quota
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,117 entrée · 901 sortie
+     ✅ aucun appel payant
