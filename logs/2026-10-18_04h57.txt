@@ -1,0 +1,115 @@
+
+[04:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #LulaTemOMaiorExercitoDoMundo, #ExercitoDoLulaDominouTudo, #DesbloqueiaOJanonesFlavio, #LulaJaSomos5Milhoes, #LulaSeuExercitoTeAma
+  📖 25 articles, tous en cache
+  📄 1/25 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Manifestations du 17 octobre: Sébastie… »
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Mobilisation du 17 octobre : Clash ent… »
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 25 articles → 19 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 4 médias) : Manifestations du 17 octobre: Sébastien Lecornu an
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 4.7h +2 + thème porteur +10
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [1m] Sébastien Lecornu annonce un bilan de 1.200 interpellations suite aux manifest
+         ↳ BFMTV, Sud Ouest : Un précédent bilan faisait état d'environ 400 interpellations.
+         motif : Actualisation du bilan par les autorités au fil de la soirée.
+      [2m] Le ministère de l'Intérieur recense 550.000 manifestants dans le pays, dont 11
+      [2m] Sébastien Lecornu dénonce des degrés de violence inacceptables et accuse La Fr
+      [1m] ⚡exclusif Jean-Luc Mélenchon accuse en retour le Premier ministre d'avoir joué avec le f
+      [2m] L'hôtel de ville de Limoges a été incendié et très lourdement endommagé lors d
+      [1m] ⚡exclusif 150 policiers et gendarmes ont été blessés au cours de cette journée de mobili
+  🌙 Sujet fort (score 55) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Mobilisation du 17 octobre : Clash entre Lecornu e
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 46.0/100 = gravité 6/10 → 27 + 4 médias +7 + frais 4.7h +2 + thème porteur +10
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 6 affirmation(s) : 4 partagée(s) · 2 divergente(s) · 2 exclusive(s)
+      [1m] ⚡exclusif Une vive passe d'armes verbale a opposé le Premier ministre Sébastien Lecornu 
+      [2m] Sébastien Lecornu a déclaré qu'il était 'le moment de choisir son camp' entre 
+      [2m] Le bilan provisoire des interpellations à l'issue de la journée de manifestati
+         ↳ BFMTV, Sud Ouest : Un précédent bilan dressé par le ministre de l'Intérieur faisait
+         motif : Évolution du bilan au fil de la soirée
+      [2m] La mobilisation du 17 octobre, combinant la contestation contre la vie chère e
+         ↳ Sud Ouest : Les organisateurs revendiquent 800 000 manifestants.
+         motif : Différence entre les chiffres officiels et ceux des organisateurs
+      [1m] ⚡exclusif Environ 150 policiers et gendarmes ont été blessés lors des heurts en marge de
+      [2m] À Limoges, l'hôtel de ville a été incendié par des individus radicaux en fin d
+  🌙 Sujet fort (score 46) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 29 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 25 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (129 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        12. clé 1 × gemini-3-flash               ⛔ inexistant
+        13. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        17. clé 2 × gemini-3-flash               ⛔ inexistant
+        18. clé 3 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.6-flash             🚫 quota
+        24. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.6-flash             🚫 quota
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        33. clé 4 × gemini-3.6-flash             🚫 quota
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-001 (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,740 entrée · 1,370 sortie
+     ✅ aucun appel payant
