@@ -1,0 +1,107 @@
+
+[06:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #AbreOSigiloFlavio, Cowboys, #夢いっぱいのオーブ500個, Packers, #UmaSemanaParaOTetra
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 12.8 h (Universidad de Córdoba (UCO))
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Cowboys » écarté : Lien de streaming frauduleux sans événement réel.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 7.0 h (RDS)
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Packers » écarté : trop secondaire (3/10)
+  🔎 « Kylie » : 1 article(s) frais, le plus récent il y a 1.6 h (Vietnam.vn)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Kylie » écarté : trop secondaire (3/10)
+  📖 1/1 articles lus en 0.6s (41 déjà en cache)
+  📄 6/42 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · SpaceNews
+  🧠 42 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Mobilisation du 17 octobre : Trump et … »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Émeutes: selon les autorités, plus de … »
+  🧠 Même événement (jugé) : « "Le dispositif était sous-dimensionné"… »
+  🧩 42 articles → 21 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : EN DIRECT Violences urbaines : Des pillages et 66 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 38.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.3h +8 + thème porteur +10 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  🧩 4 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] Des interpellations et des pillages ont eu lieu à Paris dimanche soir.
+         ↳ Midi Libre : Midi Libre évoque des affrontements et pillages à Paris et Lyon 
+         motif : Périmètre géographique et temporalité plus précis chez 20 Minutes.
+      [1m] ⚡exclusif Le bilan global des manifestations fait état de plus de 2 400 interpellations.
+      [2m] Emmanuel Macron a promis fermeté et transparence suite aux violences.
+      [1m] ⚡exclusif Une mairie a été totalement détruite par un incendie à Limoges.
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mobilisation du 17 octobre : pour des jeunes manifes
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : China's growth accelerates as AI export boom outweig
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : ‘It broke my heart’: Limoges residents reel after to
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 42 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (82 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   ✅
+        23. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 3 × gemini-3.6-flash             🚫 quota
+        28. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 4 × gemini-3.6-flash             🚫 quota
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,238 entrée · 584 sortie
+     ✅ aucun appel payant
