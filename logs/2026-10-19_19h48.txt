@@ -1,0 +1,180 @@
+
+[19:44] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  Le Saviez-vous : « Origine du nom Bluetooth » n'explique pas vraiment → on ne publie pas
+  ⏱️ texte : API indisponible (500) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 50 (char 49) → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Jalen, #MelhorasJanones, #ข่มขลังตอนที่7, #AbreOSigiloFlavio, #الاهلي_الفيحاء
+  🔎 « Jalen » : 1 article(s) frais, le plus récent il y a 3.2 h (RDS)
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Jalen » écarté : trop secondaire (2/10)
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 2.7 h (DAZN)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Eagles » écarté : trop secondaire (3/10)
+  🕐 19h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 5.0 h) : 25-45 min
+  ✅ Dernière publi il y a 48012 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/6 articles lus en 1.1s (12 déjà en cache)
+  📄 1/18 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 18 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (500) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 18 articles → 16 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 3 médias) : EN DIRECT, manifestations du 17 octobre : de premi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Le Monde, Sud Ouest
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.2h +16
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Micromania s’exprime suite au pillage de certains 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 40.0/100 = gravité 6/10 → 27 + frais 1.6h +8 + primeur +5
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Strive buys $335M in Bitcoin, boosting holdings to
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + frais 1.3h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (197 → 155 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  → 18 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Trump backs Netanyahu: Is the US planning a new Ir
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT, manifestations du 17 octobre : de premi
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Les actes de violence urbaine en France ont eu rai
+  ♻️ 7/10 [space] (déjà analysé, cache) : MMX et le rover Idéfix décollent ce soir vers Phob
+  ♻️ 6/10 [business] (déjà analysé, cache) : Micromania s’exprime suite au pillage de certains 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Ebola cases in Kenya highlight US failures amid Tr
+  ♻️ 6/10 [world] (déjà analysé, cache) : Saudi Arabia postpones big investor conference to 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Metaplanet to take 93.7% stake in Super League thr
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Strive buys $335M in Bitcoin, boosting holdings to
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : JPMorgan's JPM Coin Arrives on Ethereum, Putting B
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Amazon is funding a new nuclear plant in Indiana
+  ♻️ 6/10 [space] (déjà analysé, cache) : Martian Dawn
+  🧠 Batch analyse de 5 articles...
+  📉 5/10: Violences et pillages: "On pensait qu'on allait mourir"
+  📉 4/10: Face à la sécheresse, l’angoisse du manque d’eau potabl
+  📉 3/10: Éditorial. Soulèvements en Europe, une jeunesse en mal 
+  📉 4/10: How HSBC’s Sharia fund invested millions in Israeli war
+  📉 2/10: You should pick up this $850 Pixel 10 Pro XL over its $
+  🏁 Classement final (score · médias · âge) :
+     8/10 · 1 média(s) · 0.5h — EN DIRECT, manifestations du 17 octobre : de
+     8/10 · 1 média(s) · 0.3h — JPMorgan's JPM Coin Arrives on Ethereum, Put
+     8/10 · 1 média(s) · 2.1h — MMX et le rover Idéfix décollent ce soir ver
+     8/10 · 1 média(s) · 1.1h — Metaplanet to take 93.7% stake in Super Leag
+     8/10 · 1 média(s) · 1.3h — Strive buys $335M in Bitcoin, boosting holdi
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → publication SANS image (texte seul)
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram sauté pour ce post (pas d'image, texte seul)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : EN DIRECT, manifestations du 17 octobre : de premiers c
+
+  ── Bilan du cycle (273 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        28. clé 4 × gemini-3.6-flash             🚫 quota
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 754
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 44,256 entrée · 1,151 sortie
+     ✅ aucun appel payant
