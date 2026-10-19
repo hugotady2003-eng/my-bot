@@ -1,0 +1,92 @@
+
+[05:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Lula, Cowboys, #UmaSemanaParaOTetra, Kylie, Packers
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 11.5 h (Universidad de Córdoba (UCO))
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Cowboys » écarté : Lien de streaming frauduleux sans événement réel.
+  🔎 « Kylie » : 1 article(s) frais, le plus récent il y a 0.3 h (Vietnam.vn)
+  ⏭️  « Kylie » écarté : Information people sans impact réel ou officiel.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 11.5 h (Universidad de Córdoba (UCO))
+  ⏭️  « Packers » écarté : Lien de streaming illégal et spam publicitaire.
+  🌍 « VSFashionShow » : aucune reprise en français, source internationale retenue
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 4.2 h (Touchdown Actu)
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula
+  📖 2/2 articles lus en 0.6s (33 déjà en cache)
+  📄 4/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · SpaceNews
+  🧠 35 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « 'Very upsetting': Residents in shock a… »
+  🧩 35 articles → 23 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : China's growth accelerates as AI export boom outweig
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Russia wants something in return for Japan journalis
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Brésil : festival d’insultes lors du débat d’entre-d
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 35 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Anthropic says it will commit 5% of shares to ‘pub
+  → Rien à publier.
+
+  ── Bilan du cycle (52 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2 · clé 5 × gemini-3.6-flash (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,879 entrée · 242 sortie
+     ✅ aucun appel payant
