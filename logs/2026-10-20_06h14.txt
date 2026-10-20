@@ -1,0 +1,111 @@
+
+[06:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : felca, 49ers, #HappyDussehra, #เขมจิราต้องรอดตลอดกาลSeries, #KhemjiraForeverTheSeries
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 0.6 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « 49ers » écarté : trop secondaire (2/10)
+  🌍 « HappyDussehra » : aucune reprise en français, source internationale retenue
+  🌍 « VijayaDashami » : aucune reprise en français, source internationale retenue
+  🔎 « VijayaDashami » : 1 article(s) frais, le plus récent il y a 2.7 h (The Economic Times)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « VijayaDashami » écarté : Célébration religieuse récurrente sans fait nouveau.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #AngelReese
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/9 articles lus en 1.7s (45 déjà en cache)
+  📄 7/54 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · OpenAI
+  🧠 54 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Violences du 17 octobre : « Discours d… »
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Le dessin de Chaunu : les violences du… »
+  🧠 Même événement (jugé) : « Couvre-feu, enquêtes judiciaires aggra… »
+  🧩 54 articles → 27 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 7 médias) : Violences du 17 octobre : « Discours de haine »… G
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : Numerama, Ouest-France, Sud Ouest
+  🧮 Score 45/100 = gravité 8/10 → 36 + 7 médias +11 + frais 0.3h +16 + thème porteur +10 + fait local -20 + sous la barre des faits locaux (66)
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [1m] ⚡exclusif Gérard Larcher n'exclut pas l'idée d'une interdiction de La France insoumise e
+      [2m] Le gouvernement reconnaît des échecs et des erreurs dans la gestion du maintie
+      [3m] Le ministre de l'Intérieur a présenté sa démission au président de la Républiq
+      [1m] ⚡exclusif Des mesures de couvre-feu sont instaurées à partir du lundi soir 19 octobre da
+      [4m] Les manifestations et violences du 17 octobre ont entraîné de nombreuses dégra
+  → Sujet chaud pas assez fort (score 45) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Angel Reese scores 30 as Dream stun Valkyries to go 
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 54 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (204 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-2-preview   🚫 quota
+        22. clé 3 × gemini-embedding-2           🚫 quota
+        23. clé 4 × gemini-embedding-001         ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        27. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        28. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        32. clé 4 × gemini-3.6-flash             🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.6-flash             🚫 quota
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,949 entrée · 641 sortie
+     ✅ aucun appel payant
