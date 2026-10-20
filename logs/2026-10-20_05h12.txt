@@ -1,0 +1,90 @@
+
+[05:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Angel Reese, #LulaAbriuOSigiloFlavioArregou, 49ers, #WWERAW, #ファミマ本気のチョコがけパン
+  🔎 « Angel Reese » : 1 article(s) frais, le plus récent il y a 15.7 h (Basket USA)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Angel Reese » écarté : trop secondaire (2/10)
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 8.4 h (Eurosport)
+  ⏭️  « 49ers » écarté : Match de saison régulière sans enjeu majeur.
+  🌍 « HappyDussehra » : aucune reprise en français, source internationale retenue
+  📖 3/3 articles lus en 0.5s (39 déjà en cache)
+  📄 5/42 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · OpenAI
+  🧠 42 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Violences: 2.513 gardes à vue, dont "p… »
+  🧠 Même événement (jugé) : « Violences du 17 octobre : Trump instru… »
+  🧠 Même événement (jugé) : « Violences du 17 octobre : Jugeant l’at… »
+  🧩 42 articles → 14 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 19 médias) : Anthropic Gives 5% of Itself to the Public. Musk A
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 23 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, ActuGaming, Ars Technica, BBC
+  🧮 Score 61.5/100 = gravité 7/10 → 32 + 19 médias +18 + frais 4.5h +2 + thème porteur +10
+  🧩 8 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 8 exclusive(s)
+      [1m] ⚡exclusif Des violences urbaines et des pillages ont eu lieu en France en marge des mani
+      [1m] ⚡exclusif Le gouvernement français est critiqué pour sa gestion des violences et son man
+      [1m] ⚡exclusif Le ministre de l'Intérieur Laurent Nuñez a proposé sa démission, refusée par E
+      [1m] ⚡exclusif Le gouvernement accuse LFI d'avoir une responsabilité morale et politique dans
+      [1m] ⚡exclusif Donald Trump et J.D. Vance utilisent les violences en France comme argument po
+      [1m] ⚡exclusif Le maire de Longué-Jumelles a décroché le portrait d'Emmanuel Macron pour prot
+      [1m] ⚡exclusif Le gouvernement prévoit de retirer des prestations sociales aux délinquants à 
+      [1m] ⚡exclusif Le beffroi de l'Hôtel de Ville de Limoges a été détruit par un incendie lors d
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 42 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (110 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-2-preview   ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,779 entrée · 765 sortie
+     ✅ aucun appel payant
