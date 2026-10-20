@@ -1,0 +1,123 @@
+
+[00:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Tatum, Barça, #NordestinosComLula, Barcelona, gordon
+  🔎 « Tatum » : 1 article(s) frais, le plus récent il y a 3.6 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Tatum » écarté : trop secondaire (5/10)
+  🔎 « Paul George » : 1 article(s) frais, le plus récent il y a 1.1 h (Basket USA)
+  ⏭️  « Paul George » écarté : trop secondaire (2/10)
+  🔎 « Celtics » : 1 article(s) frais, le plus récent il y a 3.9 h (Eurosport)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Celtics » écarté : Simple résultat sportif de routine sans enjeu majeur
+  🔎 « Lamine » : 1 article(s) frais, le plus récent il y a 1.6 h (CANAL+)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ✅ « Lamine » retenu : Performance sportive marquante lors d'un match européen. (6/10) (+1 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Barca, #Barcelona, #Lamine
+  📖 3/3 articles lus en 2.5s (22 déjà en cache)
+  📄 2/25 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · The Block
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Couvre-feux : hélicoptère et drones su… »
+  🧠 Même événement (jugé) : « Violences du 17 octobre : A Paris, les… »
+  🧠 Même événement (jugé) : « PSG score late to sink Barcelona 4-2 i… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧩 25 articles → 16 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Elon Musk says SpaceX and Tesla discussing possibl
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 4/10 → 18 + frais 0.0h +16 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 3 médias) : EN DIRECT, manifestations du 17 octobre : nouveaux
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 51.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.7h +13
+  🧩 3 affirmation(s) : 1 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [3m] Des couvre-feux et des mesures de sécurité renforcées sont mis en place dans p
+      [1m] ⚡exclusif Le tribunal de Paris fait face à une gestion chaotique des affaires liées aux 
+         motif : Focus de terrain sur la justice par un média local.
+      [1m] La France insoumise souhaite poursuivre Laurent Nuñez en justice à la suite de
+         ↳ BFMTV : Laurent Nuñez dément avoir fait pression sur les renseignements 
+         motif : Réaction officielle face aux accusations de l'opposition.
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Google’s more personalized Gemini AI is heading to
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 3/10 → 14 + frais 0.7h +13 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : PSG score late to sink Barcelona 4-2 in Champions 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 4.2h +2 + thème porteur +10
+  🧩 7 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 6 exclusive(s)
+      [2m] Le Paris Saint-Germain a battu le FC Barcelone sur le score de 4 à 2 en Ligue 
+      [1m] ⚡exclusif Vitinha a inscrit un but décisif en fin de match pour donner l'avantage au Par
+      [1m] ⚡exclusif Fabian Ruiz a marqué le quatrième but assurant la victoire du Paris Saint-Germ
+      [1m] ⚡exclusif Lamine Yamal a marqué le deuxième but égalisateur pour le FC Barcelone.
+      [1m] ⚡exclusif Désiré Doué et Lucas Hernandez ont également marqué pour le Paris Saint-Germai
+      [1m] ⚡exclusif Le jeune Xavi Espart a marqué l'un des buts pour l'équipe catalane.
+      [1m] ⚡exclusif Cette défaite met fin à une série de onze victoires consécutives toutes compét
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, ? médias) : PSG - Barça : Le but splendide de Lamine Yamal en 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 8 → 9 (+1)
+  → Sujet chaud pas assez fort (score 9) → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 25 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Merging SpaceX and Tesla would be a "good idea," M
+  → Rien à publier.
+
+  ── Bilan du cycle (183 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   ✅
+        19. clé 3 × gemini-3.1-flash-lite        ✅
+        20. clé 3 × gemini-3.1-flash-lite        ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.6-flash             🚫 quota
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-001 (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 734
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,197 entrée · 1,100 sortie
+     ✅ aucun appel payant
