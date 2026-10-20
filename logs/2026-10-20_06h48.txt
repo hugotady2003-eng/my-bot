@@ -1,0 +1,102 @@
+
+[06:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : felca, 49ers, #HappyDussehra, #เขมจิราต้องรอดตลอดกาลSeries, #KhemjiraForeverTheSeries
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 1.2 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « 49ers » écarté : trop secondaire (2/10)
+  🌍 « HappyDussehra » : aucune reprise en français, source internationale retenue
+  🌍 « VijayaDashami » : aucune reprise en français, source internationale retenue
+  🔎 « VijayaDashami » : 1 article(s) frais, le plus récent il y a 2.0 h (The Economic Times)
+  ⏭️  « VijayaDashami » écarté : Célébration religieuse récurrente sans fait nouveau.
+  🔎 « Angel Reese » : 1 article(s) frais, le plus récent il y a 0.5 h (Basket USA)
+  ⏭️  « Angel Reese » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Washington
+  📖 5/5 articles lus en 0.9s (57 déjà en cache)
+  📄 8/62 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · OpenAI
+  🧠 62 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « 17 octobre : «Notre République n’est p… »
+  🧠 Même événement (jugé) : « Violences du 17 octobre: des couvre-fe… »
+  🧠 Même événement (jugé) : « "C'était impossible à gérer" : pourquo… »
+  🧠 Même événement (jugé) : « Violences du 17 octobre : "On ne peut … »
+  🧠 Même événement (jugé) : « Couvre-feu, enquêtes judiciaires aggra… »
+  🧩 62 articles → 22 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Violences du 17 octobre: des couvre-feux mis en plac
+  🚨 Sujet chaud (breaking, 27 médias) : L’Ukraine accuse Washington de retarder la livrais
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 31 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Google, 9to5Mac, Al Jazeera, Ars Technica
+  🧮 Score 73.5/100 = gravité 9/10 → 40 + 27 médias +20 + frais 0.9h +13
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] Le gouvernement français reconnaît des failles et une perte de contrôle dans l
+      [2m] Le ministre de l'Intérieur, Laurent Nuñez, a présenté sa démission au présiden
+      [2m] Plus de 2 000 commerces ont été dégradés ou pillés à travers la France lors de
+      [2m] Des couvre-feux partiels et localisés ont été mis en place par les préfets sur
+      [1m] ⚡exclusif Une image virale montrant un couple âgé dépouillé dans la rue s'est révélée êt
+      [1m] ⚡exclusif Le juriste Nicolas Hervieu attribue les débordements à une accumulation d'erre
+      [1m] ⚡exclusif Un expert en sécurité témoigne avoir observé des profils d'émeutiers distincts
+  🌙 Sujet fort (score 74) mais nuit → il attendra le matin
+  ⚪ Écarté (-1, pénalisé par « \b(?:météo ») : Orages, pluies et inondations : 5 départements toujo
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 62 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (137 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   🚫 quota
+        23. clé 3 × gemini-embedding-2           🚫 quota
+        24. clé 4 × gemini-embedding-001         ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 10,268 entrée · 839 sortie
+     ✅ aucun appel payant
