@@ -1,0 +1,105 @@
+
+[02:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #NordestinosComLula, Drummond, Knicks, EAGLE-4, Tatum
+  🔎 « Drummond » : 1 article(s) frais, le plus récent il y a 4.4 h (Google Actualités)
+  ⏭️  « Drummond » écarté : trop secondaire (1/10)
+  🔎 « Knicks » : 1 article(s) frais, le plus récent il y a 1.4 h (TrashTalk)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Knicks » écarté : Les Knicks n'ont pas gagné de titre récemment.
+  🔎 « Tatum » : 1 article(s) frais, le plus récent il y a 5.6 h (L'Équipe)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Tatum » écarté : trop secondaire (5/10)
+  🔎 « Barcelona » : 1 article(s) frais, le plus récent il y a 3.5 h (Google Actualités)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Barcelona » écarté : Match futur sans annonce officielle majeure.
+  🔎 « gordon » : 1 article(s) frais, le plus récent il y a 1.8 h (Elbotola)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « gordon » écarté : trop secondaire (4/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Barca
+  📖 1/1 articles lus en 0.1s (32 déjà en cache)
+  📄 2/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · The Block
+  🧠 33 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Violences du 17 octobre : Avec LFI, Mé… »
+  🧠 Même événement (jugé) : « SpaceX and Tesla boards form special c… »
+  🧩 33 articles → 25 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : Elon Musk says SpaceX and Tesla discussing possibl
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 53.0/100 = gravité 4/10 → 18 + 2 médias +4 + frais 2.0h +8 + primeur +5 + portée mondiale +18
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] SpaceX et Tesla ont entamé des discussions concernant une éventuelle fusion.
+      [1m] ⚡exclusif Des comités spéciaux composés d'administrateurs indépendants ont été formés au
+      [1m] ⚡exclusif La création de ces comités répond à une demande des actionnaires.
+      [1m] ⚡exclusif Elon Musk ne participe pas aux discussions des comités en raison d'un conflit 
+      [2m] L'annonce a été faite par Elon Musk lors de la conférence sur les résultats du
+  🌙 Sujet fort (score 53) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : EN DIRECT, manifestations du 17 octobre : nouveaux
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 48.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.5h +8 + primeur +5
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Les partis politiques sont conviés à une réunion à Matignon ce jeudi pour disc
+      [1m] ⚡exclusif Jean-Luc Mélenchon a confirmé la participation de La France insoumise à la réu
+      [1m] ⚡exclusif Le Premier ministre a adressé une lettre aux partis politiques pour justifier 
+      [1m] ⚡exclusif De nouveaux couvre-feux ont été instaurés pour la soirée de mardi suite aux ma
+      [1m] ⚡exclusif L'exécutif et La France insoumise s'accusent mutuellement d'être responsables 
+  🌙 Sujet fort (score 48) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 33 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (136 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         5. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         6. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         7. clé 1 × gemini-3-flash               ⛔ inexistant
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3.5-flash-lite        ✅
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 1 × gemini-embedding-2           🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   🚫 quota
+        18. clé 2 × gemini-embedding-2           🚫 quota
+        19. clé 3 × gemini-embedding-001         ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 2 × gemini-3.6-flash             🚫 quota
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,414 entrée · 1,060 sortie
+     ✅ aucun appel payant
