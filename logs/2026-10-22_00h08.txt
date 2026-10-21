@@ -1,0 +1,122 @@
+
+[00:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Bioware, carrick, Manchester United, Diomande, Mass Effect
+  🔎 « Bioware » : 1 article(s) frais, le plus récent il y a 1.2 h (ActuGaming)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Bioware » écarté : Information fausse, aucune annonce officielle d'Electronic A
+  🔎 « carrick » : 1 article(s) frais, le plus récent il y a 1.5 h (Foot Mercato)
+  ⏭️  « carrick » écarté : Article ancien sans fait nouveau récent.
+  🔎 « Manchester United » : 1 article(s) frais, le plus récent il y a 1.5 h (Foot Mercato)
+  ⏭️  « Manchester United » écarté : Contenu basé sur des rumeurs ou déclarations anciennes.
+  🔎 « Mass Effect » : 1 article(s) frais, le plus récent il y a 2.9 h (Gameblog)
+  ⏭️  « Mass Effect » écarté : Rumeur de jeu vidéo sans annonce officielle.
+  🔎 « Bayern » : 1 article(s) frais, le plus récent il y a 1.1 h (Foot Mercato)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Bayern » écarté : trop secondaire (5/10)
+  🔎 « Harry Kane » : 1 article(s) frais, le plus récent il y a 0.9 h (Sports.fr)
+  ⏭️  « Harry Kane » écarté : Contenu vague sans fait nouveau récent.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Diomande, #Arsenal
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 1.2s (28 déjà en cache)
+  📄 4/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · OpenAI
+  🧠 33 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  🧩 33 articles → 21 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Cybersécurité : la France et d'autres pays mettent
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 31.0/100 = gravité 6/10 → 27 + frais 3.2h +4
+  → Sujet chaud pas assez fort (score 31) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Quatre membres d’une famille retrouvés morts à Tou
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 3.6h +4
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Disney envoie le Super Bowl 2027 dans l’univers Star
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Meta fined $25bn for 'lies' over user data privacy
+  🚨 Sujet chaud (breaking, 1 médias) : Orange annonce le "rétablissement" de ses services
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 2.7h +4
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Crash d’un avion militaire Mirage 2000D près de Na
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + frais 3.4h +4 + ⚡ catastrophe majeure → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Missiles hit Kyiv after Russia agrees to US call t
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.5/100 = gravité 7/10 → 32 + frais 0.7h +13 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 70) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Real Madrid rout RB Leipzig 4-1 to continue perfec
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 57.0/100 = gravité 8/10 → 36 + frais 0.5h +13 + primeur absolue +8
+  🌙 Sujet fort (score 57) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Declan Rice grabs Arsenal draw at Bayern Munich in C
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 33 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (192 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   ✅
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.6-flash             🚫 quota
+        28. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 739
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,801 entrée · 221 sortie
+     ⚠️ 5 appel(s) payés chez Claude (le gratuit n'a pas suffi)
