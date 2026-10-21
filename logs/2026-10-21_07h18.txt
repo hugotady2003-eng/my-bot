@@ -1,0 +1,156 @@
+
+[07:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Wemby, Paredes, Maracaná, Shai, CHET
+  🔎 « Wemby » : 1 article(s) frais, le plus récent il y a 0.7 h (beIN SPORTS)
+  ⏭️  « Wemby » écarté : trop secondaire (4/10)
+  🔎 « Paredes » : 1 article(s) frais, le plus récent il y a 2.9 h (OneFootball)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Paredes » écarté : trop secondaire (3/10)
+  🔎 « Shai » : 1 article(s) frais, le plus récent il y a 0.1 h (Basket USA)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Shai » écarté : trop secondaire (2/10)
+  🔎 « CHET » : 1 article(s) frais, le plus récent il y a 15.8 h (BeBasket)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « CHET » écarté : Simple déclaration sportive sans véritable événement nouveau
+  🔎 « spurs » : 1 article(s) frais, le plus récent il y a 0.7 h (Le Parisien)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « spurs » écarté : trop secondaire (5/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 50142 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/6 articles lus en 1.7s (25 déjà en cache)
+  📄 4/31 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération
+  🧠 31 vecteurs calculés en 1 appel(s)
+  🧩 31 articles → 19 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Crash d'un avion militaire en Meurthe-et-Moselle, 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 38.0/100 = gravité 8/10 → 36 + frais 5.0h +2
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 31 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Les directs sport du 21 octobre sur Ouest-France :
+  ♻️ Doublon d'un sujet déjà publié, écarté : Violences et présidentielle : pour Donald Trump, M
+  ♻️ 8/10 [sports] (déjà analysé, cache) : PSG-Barcelone : Paris l’emporte au terme d’un matc
+  ♻️ 7/10 [science] (déjà analysé, cache) : L'ONU alerte sur une trajectoire de réchauffement 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Crash d'un avion militaire en Meurthe-et-Moselle, 
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Elon Musk a ordonné de brider Starlink en Ukraine,
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Google resolves cloud outage affecting UK banks an
+  ♻️ 6/10 [world] (déjà analysé, cache) : US grants deportation reprieve to migrants from Uk
+  ♻️ 9/10 [business] (déjà analysé, cache) : Elon Musk says SpaceX and Tesla exploring largest 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Solana’s Alpenglow, its biggest network overhaul s
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin hovers around $83,000 as AI earnings reviv
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Qubic restarts blockchain, opens recovery claims a
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 8/10 [business] (déjà analysé, cache) : SpaceX and Tesla boards form special committees to
+  🧠 Batch analyse de 17 articles...
+  📉 3/10: Portrait d’une génération : treize lycéens racontent le
+  📉 3/10: Le Pitch : Tenderbolt aide à mieux répondre aux appels 
+  📉 3/10: Consultation "Dites-le ICI" : pour 70 % des Français, l
+  📉 5/10: Présidentielle 2027 : Mélenchon au second tour dans un 
+  📉 2/10: À quoi ressemblera le futur hôtel quatre étoiles du cir
+  📉 4/10: Présidentielle au Brésil : les quotas raciaux à l’unive
+  ✅ 8/10 [space] mondiale: Guerre en Ukraine : Musk est bien le responsable
+  📉 2/10: Lola-Fleur Wittaker : son père, sa mère, ses voyages au
+  📉 3/10: Après son état alarmant dans TBT9, Raymond Aabou fait u
+  📉 3/10: Lidl, c'est fini : ce discounter s'associe à un géant d
+  🌍 7/10 sans portée internationale : France is divided over who to blame for weekend ri
+  ✅ 9/10 [world] neutre: Nigeria confirms Ebola case as outbreak spreads 
+  📉 5/10: Elice's huge stock swings show AI's spending boom is ge
+  📉 4/10: Vietnam security ministry seeks Samsung's help on AI an
+  📉 4/10: YouTube might be testing hiding the dislike button
+  🌍 7/10 sans portée internationale : PHP warns it plans to release 2 emergency patches 
+  📉 2/10: Dark comedy ‘Where’s Wanda?’ season 2 premieres on Appl
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.1h — Guerre en Ukraine : Musk est bien le respons
+     10/10 · 3 média(s) · 1.4h — Elon Musk says SpaceX and Tesla exploring la
+     8/10 · 1 média(s) · 0.1h — L'ONU alerte sur une trajectoire de réchauff
+     10/10 · 1 média(s) · 5.0h — Nigeria confirms Ebola case as outbreak spre
+     9/10 · 1 média(s) · 2.3h — PSG-Barcelone : Paris l’emporte au terme d’u
+  ✂️ Éphéméride resserré (194 → 128 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [space]
+  🧠 10 article(s) sur un autre sujet, écartés du dossier : BBC Business, Frandroid, Le Monde, Ouest-France, Public
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (204 → 144 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Guerre en Ukraine : Musk est bien le responsable des re
+
+  ── Bilan du cycle (179 s) ──
+     écartés : 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   🚫 quota
+        29. clé 3 × gemini-embedding-2           🚫 quota
+        30. clé 4 × gemini-embedding-001         🚫 quota
+        31. clé 4 × gemini-embedding-2-preview   ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 793 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 23,347 entrée · 1,295 sortie
+     ✅ aucun appel payant
