@@ -1,0 +1,230 @@
+
+[07:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Wemby, Paredes, Maracaná, Shai, CHET
+  🔎 « Wemby » : 1 article(s) frais, le plus récent il y a 2.0 h (France 24)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Wemby » écarté : trop secondaire (4/10)
+  🔎 « Paredes » : 1 article(s) frais, le plus récent il y a 3.5 h (OneFootball)
+  ⏭️  « Paredes » écarté : Vidéo d'archive d'un ancien match de football.
+  🔎 « Shai » : 1 article(s) frais, le plus récent il y a 0.7 h (Basket USA)
+  ⏭️  « Shai » écarté : trop secondaire (2/10)
+  🔎 « CHET » : 1 article(s) frais, le plus récent il y a 16.4 h (BeBasket)
+  ⏭️  « CHET » écarté : Déclaration sportive sans fait nouveau majeur.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Spurs
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 50177 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.3s (14 déjà en cache)
+  📄 2/16 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France
+  🧠 16 vecteurs calculés en 1 appel(s)
+  🧩 16 articles → 8 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 3 médias) : Un avion de chasse s'écrase en Meurthe-et-Moselle,
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 1.0h +8 + fait local -20 + ⚡ catastrophe majeure → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 4 partagée(s) · 3 divergente(s) · 0 exclusive(s)
+      [3m] Un avion militaire s'est écrasé en Meurthe-et-Moselle le mardi 20 octobre dans
+      [1m] Le crash fait au moins un mort dans l'équipage et les recherches se poursuiven
+         ↳ France Bleu : Impossible de savoir si l'appareil et ses occupants ont été retr
+         motif : Midi Libre dispose d'informations plus récentes de l'armée.
+      [1m] L'appareil impliqué est un avion de chasse Mirage-2000D provenant de la base a
+         ↳ France Bleu : La piste privilégiée est celle du crash d'un avion de chasse, sa
+         motif : Midi Libre communique des précisions officielles ultérieures.
+      [3m] Le crash s'est produit dans le secteur des communes de Rogéville, Domèvre-en-H
+      [2m] D'importants moyens de gendarmerie, de pompiers et de secours sont déployés su
+      [3m] L'accident s'est déroulé aux alentours de 22h30 ou 23h35 selon les sources.
+         ↳ France Bleu, BFMTV : Le maire indique une heure vers 23h35, tandis que des témoins pa
+         motif : Témoignages locaux divergents par rapport à l'estimation de l'élu.
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  ↩️ Aucune personnalité identifiée → actualité normale [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️🤝 Image récupérée chez un média jumeau (France Bleu) — même sujet
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 4 médias) : Limitation du réseau satellitaire Starshield en Uk
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : BBC Business, CoinDesk, The Guardian
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 1.3h +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Sud Ouest) — même sujet
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : Guerre en Ukraine : Musk est bien le responsable d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Ouest-France, Sud Ouest
+  🧮 Score 76.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 0.7h +13 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (162 → 123 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : C’était un vol d’entraînement : le Mirage-200nD, u
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 1.1h +8 + fait local -20 + ⚡ catastrophe majeure → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 4 partagée(s) · 2 divergente(s) · 1 exclusive(s)
+      [3m] Un avion militaire de type Mirage-2000D s'est écrasé en Meurthe-et-Moselle au 
+      [1m] Le crash a fait au moins un mort et les recherches se poursuivent pour retrouv
+         ↳ France Bleu : Les recherches étaient en cours dans la nuit pour retrouver l'éq
+         motif : Informations plus récentes obtenues auprès de l'armée de l'Air.
+      [3m] L'accident s'est produit dans le secteur de Rogéville, Domèvre-en-Haye et Trem
+      [1m] ⚡exclusif L'appareil appartenait à la base aérienne 133 de Nancy-Ochey.
+      [3m] Le crash s'est produit mardi 20 octobre tard dans la soirée, aux alentours de 
+         ↳ France Bleu : Le crash s'est produit vers 22h30 selon les témoins.
+         ↳ BFMTV : Le crash s'est déroulé aux alentours de 23h35 selon le maire.
+         motif : Témoignages divergents sur l'horaire précis de l'explosion.
+      [2m] Un poste de commandement ou de crise a été installé à Rogéville et d'important
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : NBA. Sale soirée pour Wembanyama, Philadelphie gâc
+  🧮 Score 56.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.7h +13 + programmé 3/10 -15 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  📈 Hashtag(s) en tendance : #Knicks, #Spurs
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Spurs
+  ✂️ Tweet resserré localement (189 → 158 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Victor Wembanyama (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 16 articles à analyser...
+  ♻️ 8/10 [sports] (déjà analysé, cache) : PSG-Barcelone : Paris l’emporte au terme d’un matc
+  ♻️ 7/10 [world] (déjà analysé, cache) : Limitation du réseau satellitaire Starshield en Uk
+  ♻️ 8/10 [breaking] (déjà analysé, cache) : Un avion de chasse s'écrase en Meurthe-et-Moselle,
+  ♻️ 8/10 [world] (déjà analysé, cache) : Meurthe-et-Moselle : un avion militaire s’écrase p
+  ♻️ 7/10 [sports] (déjà analysé, cache) : NBA. Sale soirée pour Wembanyama, Philadelphie gâc
+  ♻️ 8/10 [space] (déjà analysé, cache) : Guerre en Ukraine : Musk est bien le responsable d
+  ♻️ 8/10 [world] (déjà analysé, cache) : C’était un vol d’entraînement : le Mirage-200nD, u
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Google resolves cloud outage affecting UK banks an
+  ♻️ 9/10 [world] (déjà analysé, cache) : Nigeria confirms Ebola case as outbreak spreads in
+  ♻️ 6/10 [world] (déjà analysé, cache) : US grants deportation reprieve to migrants from Uk
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Ripple brings Wall Street into 24/7 stock bets, bu
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Solana’s Alpenglow, its biggest network overhaul s
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Qubic restarts blockchain, opens recovery claims a
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 8/10 [business] (déjà analysé, cache) : SpaceX and Tesla boards form special committees to
+  🧠 Batch analyse de 1 articles...
+  🌍 7/10 sans portée internationale : L'homme porté disparu en Corse après les violentes
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.5h — Limitation du réseau satellitaire Starshield
+     10/10 · 1 média(s) · 0.1h — NBA. Sale soirée pour Wembanyama, Philadelph
+     10/10 · 3 média(s) · 0.2h — C’était un vol d’entraînement : le Mirage-20
+     10/10 · 2 média(s) · 0.7h — Guerre en Ukraine : Musk est bien le respons
+     10/10 · 3 média(s) · 1.1h — Un avion de chasse s'écrase en Meurthe-et-Mo
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Sud Ouest) — même sujet
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Limitation du réseau satellitaire Starshield en Ukraine
+
+  ── Bilan du cycle (209 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         🚫 quota
+        30. clé 4 × gemini-embedding-2-preview   ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        35. clé 4 × gemini-3.6-flash             🚫 quota
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 15 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-001 · clé 5 × gemini-embedding-2 · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2-preview (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 789 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 84,166 entrée · 3,273 sortie
+     ✅ aucun appel payant
