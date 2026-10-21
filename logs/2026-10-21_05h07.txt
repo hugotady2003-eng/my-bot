@@ -1,0 +1,121 @@
+
+[05:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Paredes, Maracaná, #DWTS, CHET, Leo Jardim
+  🔎 « Paredes » : 1 article(s) frais, le plus récent il y a 0.7 h (OneFootball)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Paredes » écarté : Vidéo d'archive d'un ancien match de football.
+  🔎 « DWTS » : 1 article(s) frais, le plus récent il y a 6.5 h (IMDb)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « DWTS » écarté : Divertissement américain sans impact pour la France.
+  🔎 « CHET » : 1 article(s) frais, le plus récent il y a 19.7 h (Basket USA)
+  ⏭️  « CHET » écarté : Déclaration sportive sans événement majeur associé.
+  🌍 « Leo Jardim » : aucune reprise en français, source internationale retenue
+  🔎 « Sixers » : 1 article(s) frais, le plus récent il y a 1.0 h (TrashTalk)
+  ⏭️  « Sixers » écarté : trop secondaire (2/10)
+  🔎 « Knicks » : 1 article(s) frais, le plus récent il y a 3.5 h (TrashTalk)
+  ⏭️  « Knicks » écarté : Les Knicks n'ont pas gagné de titre récemment.
+  🔎 « Lebron » : 1 article(s) frais, le plus récent il y a 0.9 h (beIN SPORTS)
+  ⏭️  « Lebron » écarté : trop secondaire (3/10)
+  📖 1/1 articles lus en 0.2s (43 déjà en cache)
+  📄 4/44 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · OpenAI
+  🧠 44 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Couvre-feux : hélicoptère et drones su… »
+  🧠 Même événement (jugé) : « Violences du 17 octobre : Polémique su… »
+  🧠 Même événement (jugé) : « Violences du 17 octobre : Avec LFI, Mé… »
+  🧩 44 articles → 27 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : Musk says SpaceX-Tesla merger a ‘good idea’ as AI 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 44 s
+  🧮 Score 44.0/100 = gravité 4/10 → 18 + 2 médias +4 + frais 3.0h +4 + portée mondiale +18
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 2 s
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif Elon Musk a déclaré qu'une fusion entre Tesla et SpaceX serait une bonne idée.
+      [2m] Les conseils d'administration de Tesla et SpaceX ont formé des comités indépen
+      [2m] La création de ces comités fait suite à une demande des actionnaires.
+      [2m] Elon Musk ne participe pas aux discussions des comités en raison d'un conflit 
+      [1m] ⚡exclusif Les revenus de l'activité intelligence artificielle de SpaceX ont été multipli
+      [1m] ⚡exclusif Une fusion créerait un géant technologique combinant IA, exploration spatiale 
+      [1m] ⚡exclusif SpaceX a acquis la plateforme de médias sociaux X en février.
+  → Sujet chaud pas assez fort (score 44) → suivant
+  🚨 Sujet chaud (breaking, 7 médias) : Violences du 17 octobre : Polémique sur la protect
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Ouest-France, Public, Sud Ouest
+  🧮 Score 50.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 2.0h +8 + portée mondiale +18
+  🧩 7 affirmation(s) : 0 partagée(s) · 1 divergente(s) · 6 exclusive(s)
+      [1m] La préfecture de la Somme dément avoir mobilisé une compagnie de CRS spécifiqu
+         ↳ 20 Minutes : Des vidéos sur les réseaux sociaux et les accusations du syndica
+         motif : Source officielle contre témoignages visuels et accusations syndicales
+      [1m] ⚡exclusif Le syndicat de police Alliance a publiquement exigé des explications sur la pr
+      [1m] ⚡exclusif Jean-Luc Mélenchon a annoncé que La France insoumise participerait à la réunio
+      [1m] ⚡exclusif Le Premier ministre Sébastien Lecornu a invité les partis politiques à une réu
+      [1m] ⚡exclusif Laurent Nuñez dément avoir fait pression sur les renseignements pour incrimine
+      [1m] ⚡exclusif Le gouvernement a annoncé un dispositif sécuritaire renforcé pour le 24 octobr
+      [1m] ⚡exclusif Gérald Darmanin a annoncé 149 incarcérations suite aux violences du 17 octobre
+  🌙 Sujet fort (score 50) mais nuit → il attendra le matin
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 44 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (101 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 3 × gemini-3.1-flash-lite        ✅
+        18. clé 3 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-2-preview   ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 4 × gemini-3.5-flash-lite (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,360 entrée · 1,501 sortie
+     ✅ aucun appel payant
