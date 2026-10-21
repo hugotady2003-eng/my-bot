@@ -1,0 +1,165 @@
+
+[07:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Wemby, Paredes, Maracaná, Shai, CHET
+  🔎 « Wemby » : 1 article(s) frais, le plus récent il y a 1.6 h (France 24)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Wemby » écarté : trop secondaire (4/10)
+  🔎 « Paredes » : 1 article(s) frais, le plus récent il y a 3.1 h (OneFootball)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Paredes » écarté : Match amical sud-américain sans enjeu majeur en France
+  🔎 « Shai » : 1 article(s) frais, le plus récent il y a 0.4 h (Basket USA)
+  ⏭️  « Shai » écarté : trop secondaire (3/10)
+  🔎 « CHET » : 1 article(s) frais, le plus récent il y a 16.1 h (BeBasket)
+  ⏭️  « CHET » écarté : Simple déclaration sportive sans véritable événement nouveau
+  🔎 « spurs » : 1 article(s) frais, le plus récent il y a 1.0 h (Le Parisien)
+  ⏭️  « spurs » écarté : trop secondaire (4/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 50158 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/11 articles lus en 1.1s (12 déjà en cache)
+  📄 3/23 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France
+  🧠 23 vecteurs calculés en 1 appel(s)
+  🧩 23 articles → 14 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Violences du 17 octobre: nouvelle nuit de couvre-feu
+  🚨 Sujet chaud (breaking, 4 médias) : Vers une fusion entre Tesla et SpaceX? Elon Musk a
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Frandroid, Ouest-France
+  🧮 Score 86.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 0.1h +16 + imprévu 7/10 +4 + thème porteur +10 + portée mondiale +18
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Les conseils d'administration de SpaceX et de Tesla ont formé des comités spéc
+      [2m] Elon Musk a déclaré qu'une fusion entre Tesla et SpaceX serait une bonne idée 
+      [2m] Elon Musk ne participe pas aux discussions de ces comités spéciaux en raison d
+      [2m] Ces comités ont été créés à la demande des actionnaires, qui devront approuver
+      [1m] ⚡exclusif Une coopération entre les deux entreprises offrirait des avantages dans les do
+      [1m] ⚡exclusif Il est prématuré de supposer qu'une fusion aura lieu, les comités ne s'étant p
+      [1m] ⚡exclusif SpaceX a publié un bénéfice supérieur aux attentes au troisième trimestre avec
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🖼️🤝 Image récupérée chez un média jumeau (TechCrunch) — même sujet
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les discussions reprennent entre Kiev et Washington
+  🚨 Sujet chaud (breaking, 2 médias) : Crash d'un avion militaire en Meurthe-et-Moselle, 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.7h +4
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 23 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Failles critiques dans PHP : pourquoi vos achats e
+  ♻️ 8/10 [sports] (déjà analysé, cache) : PSG-Barcelone : Paris l’emporte au terme d’un matc
+  ♻️ 7/10 [business] (déjà analysé, cache) : Vers une fusion entre Tesla et SpaceX? Elon Musk a
+  ♻️ 8/10 [world] (déjà analysé, cache) : Crash d'un avion militaire en Meurthe-et-Moselle, 
+  ♻️ 8/10 [space] (déjà analysé, cache) : Guerre en Ukraine : Musk est bien le responsable d
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Google resolves cloud outage affecting UK banks an
+  ♻️ 9/10 [world] (déjà analysé, cache) : Nigeria confirms Ebola case as outbreak spreads in
+  ♻️ 6/10 [world] (déjà analysé, cache) : US grants deportation reprieve to migrants from Uk
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Ripple brings Wall Street into 24/7 stock bets, bu
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Solana’s Alpenglow, its biggest network overhaul s
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Qubic restarts blockchain, opens recovery claims a
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 8/10 [business] (déjà analysé, cache) : SpaceX and Tesla boards form special committees to
+  🧠 Batch analyse de 10 articles...
+  🌍 7/10 sans portée internationale : Violences du 17 octobre: nouvelle nuit de couvre-f
+  ✅ 7/10 [world] mondiale: Les discussions reprennent entre Kiev et Washing
+  🌍 8/10 sans portée internationale : Meurthe-et-Moselle : Un avion militaire s’écrase p
+  📉 4/10: « Dans la société, des verrous ont sauté », selon l’ana
+  🌍 7/10 sans portée internationale : Le député LFI Sébastien Delogu, jugé ce mercredi p
+  📉 5/10: « Je n’en veux pas à Lola d’avoir voté contre moi »: Vi
+  ⏩ Doublon: EN DIRECT Violences du 17 octobre : les syndicats reçus
+  📉 3/10: Ce récent TV QD-Mini LED 4K de 65 pouces (jusqu’à 144 H
+  📉 3/10: Magenta Down, un « jeu d’aventure atmosphérique de scie
+  📉 3/10: Pro-Modi leader burns cockroach effigy to taunt youth p
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 2 média(s) · 0.1h — Vers une fusion entre Tesla et SpaceX? Elon 
+     9/10 · 1 média(s) · 0.3h — Guerre en Ukraine : Musk est bien le respons
+     8/10 · 1 média(s) · 0.1h — Les discussions reprennent entre Kiev et Was
+     10/10 · 2 média(s) · 5.2h — Crash d'un avion militaire en Meurthe-et-Mos
+     10/10 · 1 média(s) · 5.3h — Nigeria confirms Ebola case as outbreak spre
+  ⏭️ Éphéméride trop banal (intérêt 7/10) → on ne publie pas.
+  → 1 sélectionné(s) [business]
+  🖼️🤝 Image récupérée chez un média jumeau (TechCrunch) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Vers une fusion entre Tesla et SpaceX? Elon Musk affirm
+
+  ── Bilan du cycle (149 s) ──
+     écartés : 3 sans portée internationale · 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.6-flash             🚫 quota
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 5 × gemini-3.5-flash-lite        ✅
+        27. clé 1 × gemini-embedding-001         🚫 quota
+        28. clé 1 × gemini-embedding-2-preview   🚫 quota
+        29. clé 1 × gemini-embedding-2           🚫 quota
+        30. clé 2 × gemini-embedding-001         🚫 quota
+        31. clé 2 × gemini-embedding-2-preview   🚫 quota
+        32. clé 2 × gemini-embedding-2           🚫 quota
+        33. clé 3 × gemini-embedding-001         🚫 quota
+        34. clé 3 × gemini-embedding-2-preview   🚫 quota
+        35. clé 3 × gemini-embedding-2           🚫 quota
+        36. clé 4 × gemini-embedding-001         🚫 quota
+        37. clé 4 × gemini-embedding-2-preview   ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 10 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-001 · clé 5 × gemini-embedding-2
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 792 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 28,448 entrée · 2,252 sortie
+     ✅ aucun appel payant
