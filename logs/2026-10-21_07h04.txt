@@ -1,0 +1,183 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Wemby, Paredes, Maracaná, Shai, CHET
+  🔎 « Wemby » : 1 article(s) frais, le plus récent il y a 0.5 h (beIN SPORTS)
+  ⏭️  « Wemby » écarté : trop secondaire (5/10)
+  🔎 « Paredes » : 1 article(s) frais, le plus récent il y a 2.6 h (OneFootball)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Paredes » écarté : Vidéo d'archive d'un ancien match de football.
+  🔎 « Shai » : 1 article(s) frais, le plus récent il y a 0.2 h (Basket USA)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Shai » écarté : trop secondaire (3/10)
+  🔎 « CHET » : 1 article(s) frais, le plus récent il y a 15.6 h (BeBasket)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « CHET » écarté : Déclaration sportive sans fait nouveau majeur.
+  🔎 « spurs » : 1 article(s) frais, le plus récent il y a 0.5 h (Le Parisien)
+  ⏭️  « spurs » écarté : trop secondaire (5/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 50127 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 1.5s (67 déjà en cache)
+  📄 8/74 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · OpenAI
+  🧠 74 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Le dispositif de maintien de l'ordre d… »
+  🧠 Même événement (jugé) : « L'état d'urgence peut-il vraiment perm… »
+  🧠 Même événement (jugé) : « EN DIRECT Violences du 17 octobre : Le… »
+  🧩 74 articles → 27 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT Violences du 17 octobre : Lecornu va recev
+  🚨 Sujet chaud (breaking, 28 médias) : Why does Elon Musk want to merge Tesla and SpaceX?
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 37 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Al Jazeera, Ars Technica, BBC Business, BFMTV
+  🧮 Score 89.0/100 = gravité 5/10 → 22 + 28 médias +20 + frais 1.1h +8 + ⚡ crise institutionnelle → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] Moody's devrait abaisser la note de la dette française selon une majorité d'éc
+      [2m] La note actuelle de Moody's pour la France est Aa3 avec une perspective négati
+      [2m] Standard & Poor's et Fitch classent la dette française à A+ avec une perspecti
+      [2m] Le déficit public français restera au-dessus de 5 % du PIB en 2025 et 2026.
+      [2m] La dette publique française devrait atteindre 121,7 % du PIB l'an prochain.
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (182 → 159 car.)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L'état d'urgence peut-il vraiment permettre d'endigu
+  🚨 Sujet chaud (breaking, 28 médias) : Crash d'un avion militaire en Meurthe-et-Moselle, 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 28 médias +20 + frais 1.1h +8 + ⚡ crise institutionnelle → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] Une majorité d'économistes estime que Moody's devrait abaisser la note de la d
+      [2m] La note actuelle de Moody's pour la France est Aa3 avec une perspective négati
+      [2m] Les agences Standard & Poor's et Fitch classent la dette française un cran en 
+      [2m] Le déficit public français est prévu au-dessus de 5% du PIB pour 2025 et 2026.
+      [2m] La dette publique française devrait atteindre 121,7% du PIB l'an prochain.
+  🕒 Âge de l'article : 4.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (173 → 121 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 74 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Mobilisation du 17 octobre: un maire du Maine-et-L
+  ♻️ 8/10 [world] (déjà analysé, cache) : Crash d'un avion militaire en Meurthe-et-Moselle, 
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Elon Musk a ordonné de brider Starlink en Ukraine,
+  ♻️ 8/10 [space] (déjà analysé, cache) : Le Japon vient de lancer une mission historique ve
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Google resolves cloud outage affecting UK banks an
+  ♻️ 6/10 [world] (déjà analysé, cache) : US grants deportation reprieve to migrants from Uk
+  ♻️ 9/10 [business] (déjà analysé, cache) : Elon Musk says SpaceX and Tesla exploring largest 
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  🎯 Pré-classement : 44 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 3/10: Australian data center operator NextDC's shares plunge 
+  📉 5/10: Violences du 17 octobre : Qu’est-ce que l’état d’urgenc
+  ✅ 7/10 [crypto] large: Bitcoin hovers around $83,000 as AI earnings rev
+  🌍 8/10 sans portée internationale : Mobilisation sociale et violences : après une nouv
+  ✅ 8/10 [sports] large: PSG-Barcelone : Paris l’emporte au terme d’un ma
+  📉 4/10: Violences du 17 octobre : "Je n’accepte pas le système"
+  📉 4/10: MoonPay, Upbit parent Dunamu explore collaboration on s
+  ✅ 6/10 [crypto] large: Solana’s Alpenglow, its biggest network overhaul
+  ✅ 8/10 [business] mondiale: SpaceX and Tesla boards form special committees 
+  📉 5/10: Pakistan warms to Russia with Sharif-Putin summit possi
+  📉 4/10: Terminal X matches senior investor judgment 88.6% with 
+  📉 4/10: Extratropical Cyclone Whips Past Iceland
+  ⏩ Doublon: "Vous alliez faire quoi avec sept paires de lunettes ?"
+  📉 5/10: « Pour se concentrer ce n'est pas l'idéal, mais c'est t
+  📉 3/10: Mémoire cash - Vanquish : petit hommage au parfait anti
+  📉 5/10: Renforcer les capacités du renseignement, augmenter les
+  📉 3/10: Natacha Polony "pas très gentille", Pascal Praud furax 
+  📉 4/10: Téléphérique privé, vue sur les Pyrénées… À quoi ressem
+  📉 2/10: Plantés en octobre, ces 5 arbres métamorphosent votre j
+  🌍 6/10 sans portée internationale : Le canal de Panama bat son record de trafic annuel
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 5 média(s) · 1.2h — Elon Musk says SpaceX and Tesla exploring la
+     9/10 · 1 média(s) · 2.1h — PSG-Barcelone : Paris l’emporte au terme d’u
+     10/10 · 3 média(s) · 7.4h — Elon Musk a ordonné de brider Starlink en Uk
+     10/10 · 4 média(s) · 6.1h — SpaceX and Tesla boards form special committ
+     8/10 · 1 média(s) · 0.9h — Bitcoin hovers around $83,000 as AI earnings
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 39 s
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [business]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (166 → 126 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 1.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Elon Musk says SpaceX and Tesla exploring largest merge
+
+  ── Bilan du cycle (180 s) ──
+     écartés : 2 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 4 × gemini-3.6-flash             🚫 quota
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 7 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 55,438 entrée · 2,499 sortie
+     ✅ aucun appel payant
