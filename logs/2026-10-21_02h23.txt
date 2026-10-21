@@ -1,0 +1,95 @@
+
+[02:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #NordestinosComLula, Drummond, Knicks, EAGLE-4, Tatum
+  🔎 « Drummond » : 1 article(s) frais, le plus récent il y a 3.9 h (Google Actualités)
+  ⏭️  « Drummond » écarté : Actualite locale canadienne sans interet en France.
+  🔎 « Knicks » : 1 article(s) frais, le plus récent il y a 0.8 h (TrashTalk)
+  ✅ « Knicks » retenu : Titre historique des Knicks de New York (7/10) (+1 au score)
+  🔎 « Tatum » : 1 article(s) frais, le plus récent il y a 8.3 h (RMC Sport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Tatum » écarté : trop secondaire (4/10)
+  🔎 « Barcelona » : 1 article(s) frais, le plus récent il y a 2.9 h (Google Actualités)
+  ⏭️  « Barcelona » écarté : Annonce de match futur sans fait nouveau.
+  🔎 « gordon » : 1 article(s) frais, le plus récent il y a 1.2 h (Elbotola)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « gordon » écarté : trop secondaire (5/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Barca, #Knicks
+  📖 1/1 articles lus en 0.1s (30 déjà en cache)
+  📄 2/31 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · The Block
+  🧠 31 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Couvre-feux : hélicoptère et drones su… »
+  🧠 Même événement (jugé) : « Violences du 17 octobre : A Paris, les… »
+  🧠 Même événement (jugé) : « SpaceX and Tesla boards form special c… »
+  🧩 31 articles → 23 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Violences du 17 octobre : A Paris, les comparutions 
+  🚨 Sujet chaud (breaking, 2 médias) : Elon Musk says SpaceX and Tesla discussing possibl
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 53.0/100 = gravité 4/10 → 18 + 2 médias +4 + frais 1.4h +8 + primeur +5 + portée mondiale +18
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] SpaceX et Tesla ont entamé des discussions concernant une éventuelle fusion.
+      [1m] ⚡exclusif Des comités spéciaux composés d'administrateurs indépendants ont été formés au
+      [1m] ⚡exclusif La création de ces comités répond à une demande des actionnaires.
+      [1m] ⚡exclusif Elon Musk ne participe pas aux discussions des comités en raison d'un conflit 
+      [2m] L'annonce a été faite par Elon Musk lors de la conférence sur les résultats du
+  🌙 Sujet fort (score 53) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les Knicks ont célébré leur titre, New York au firma
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 31 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (129 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         4. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         5. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         6. clé 1 × gemini-3.6-flash             🚫 quota
+         7. clé 1 × gemini-3-flash               ⛔ inexistant
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         ✅
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-3.6-flash · clé 4 × gemini-3.5-flash-lite (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,585 entrée · 614 sortie
+     ✅ aucun appel payant
