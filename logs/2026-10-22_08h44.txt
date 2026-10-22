@@ -1,0 +1,156 @@
+
+[08:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Luka, Lakers, #LulaEJanonesAoVivo19h, #DUNKxANYLiveAtวันนี้, #HBDayAmitShah
+  🔎 « Luka » : 1 article(s) frais, le plus récent il y a 1.3 h (Basket USA)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Luka » écarté : trop secondaire (3/10)
+  🔎 « Lakers » : 1 article(s) frais, le plus récent il y a 1.4 h (Basket USA)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Lakers » écarté : trop secondaire (3/10)
+  🌍 « Yaxel » : aucune reprise en français, source internationale retenue
+  🔎 « Yaxel » : 1 article(s) frais, le plus récent il y a 1.2 h (NBA.com)
+  ⏭️  « Yaxel » écarté : Simple compte-rendu de match sportif sans enjeu majeur.
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 51668 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/6 articles lus en 0.9s (38 déjà en cache)
+  📄 7/46 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · The Block · Blockworks
+  🧠 44 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 46 articles → 13 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Mobilisation du 17 octobre : les partis politiques
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 32.5/100 = gravité 7/10 → 32 + frais 0.6h +13 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 32) → suivant
+  🚨 Sujet chaud (breaking, 23 médias) : Critical web security flaws spark global alarm as 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 31 article(s) sur un autre sujet, écartés du dossier : ActuGaming, Al Jazeera, BFMTV, Blockworks, CNBC
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 23 médias +20 + frais 0.3h +16
+  🕒 Âge de l'article : 5.6h (frais ✅)
+  📈 Hashtag(s) en tendance : #Php
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Php
+  ✂️ Tweet resserré localement (165 → 128 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Brest : le père d’une adolescente, disparue depuis
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ second avis de catégorie indisponible : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpfMyk3or6Fmqzgy27w'}
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 69.0/100 = gravité 10/10 → 45 + frais 0.2h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpfeha8S7XUyL8G3J2G'}
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : «Ceux qui prendront l’épée périront par l’épée» : El
+  ⚪ Écarté (-4, pénalisé par « app store ») : Cyberpunk 2077 ajoute un style de combat spectaculai
+  🚨 Sujet chaud (breaking, 23 médias) : Meta sous le coup d’une amende de 25 milliards de 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 23 médias +20 + frais 0.3h +16
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpftiC1VmvLiWaYcKdd'}
+  ⚪ Écarté (0, pénalisé par « app store ») : Les membres Xbox Insider peuvent à présent acheter d
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  → 46 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mobilisation du 17 octobre : les partis politiques
+  ♻️ 7/10 [markets] (déjà analysé, cache) : « Il sera difficile de réduire le déficit » : la d
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Meta sous le coup d’une amende de 25 milliards de 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : ZD Tech : GPT-6 d'OpenAI casse le code Enigma en 2
+  ♻️ 7/10 [world] (déjà analysé, cache) : Missiles hit Kyiv after Russia agrees to US call t
+  ♻️ 9/10 [world] (déjà analysé, cache) : Nigeria confirms Ebola case as outbreak spreads in
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Critical web security flaws spark global alarm as 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Solana’s biggest network change since 2020 is live
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : American Bankers Association accuses OCC of underm
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Who Found the PHP Bug That Made Governments Unplug
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Hackers Exploited the PHP Vulnerabilities Days Bef
+  🎯 Pré-classement : 13 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpgAePYur1JzkjhbszL'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.3h — Meta sous le coup d’une amende de 25 milliar
+     9/10 · 1 média(s) · -2.4h — ZD Tech : GPT-6 d'OpenAI casse le code Enigm
+     8/10 · 1 média(s) · 0.6h — Mobilisation du 17 octobre : les partis poli
+     9/10 · 1 média(s) · 5.6h — Critical web security flaws spark global ala
+     8/10 · 1 média(s) · 1.3h — Solana’s biggest network change since 2020 i
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpgTrkKFzmabUFab7J2'}
+  → 1 sélectionné(s) [tech]
+  ❌ Envoi 'Meta sous le coup d’une amende de 25 mil': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpghgwMdqVJspDUbHaj'}
+
+  ── Bilan du cycle (196 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   🚫 quota
+        29. clé 4 × gemini-embedding-2           🚫 quota
+        30. clé 5 × gemini-embedding-001         ✅
+        31. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.6-flash             🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        40. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 792 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 17,827 entrée · 432 sortie
+     ⚠️ 7 appel(s) payés chez Claude (le gratuit n'a pas suffi)
