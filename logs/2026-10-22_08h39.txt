@@ -1,0 +1,165 @@
+
+[08:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Luka, Lakers, #LulaEJanonesAoVivo19h, #DUNKxANYLiveAtวันนี้, #HBDayAmitShah
+  🔎 « Luka » : 1 article(s) frais, le plus récent il y a 1.3 h (Basket USA)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Luka » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Luka » écarté : jugement indisponible
+  🔎 « Lakers » : 1 article(s) frais, le plus récent il y a 1.3 h (Basket USA)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⚠️ Jugement de « Lakers » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Lakers » écarté : jugement indisponible
+  🌍 « Yaxel » : aucune reprise en français, source internationale retenue
+  🔎 « Yaxel » : 1 article(s) frais, le plus récent il y a 1.1 h (NBA.com)
+  ⚠️ Jugement de « Yaxel » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Yaxel » écarté : jugement indisponible
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 51664 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/12 articles lus en 1.9s (31 déjà en cache)
+  📄 6/45 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · The Block · Blockworks
+  🧠 43 vecteurs calculés en 1 appel(s)
+  🧩 45 articles → 12 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : «Ceux qui prendront l’épée périront par l’épée» : El
+  🚨 Sujet chaud (breaking, 23 médias) : Mobilisation du 17 octobre : les partis politiques
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 67.5/100 = gravité 7/10 → 32 + 23 médias +20 + frais 0.3h +16
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpJNGXLrT2Yjk6Wppsf'}
+  🚨 Sujet chaud (breaking, 23 médias) : Critical web security flaws spark global alarm as 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 23 médias +20 + frais 0.3h +16
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 5.6h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpKsMGngedjWYsLjjN3'}
+  ⚪ Écarté (-4, pénalisé par « app store ») : Cyberpunk 2077 ajoute un style de combat spectaculai
+  🚨 Sujet chaud (breaking, 23 médias) : Meta sous le coup d’une amende de 25 milliards de 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 23 médias +20 + frais 0.3h +16
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpMKgpr3EJgxBuZavba'}
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  → 45 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Emmanuel Macron défend sa tournée de trois jours d
+  ♻️ Doublon d'un sujet déjà publié, écarté : Près d’un Français sur cinq se retrouve à découver
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mobilisation du 17 octobre : les partis politiques
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Orange annonce le "rétablissement" de ses services
+  ♻️ 7/10 [markets] (déjà analysé, cache) : « Il sera difficile de réduire le déficit » : la d
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Meta sous le coup d’une amende de 25 milliards de 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : ZD Tech : GPT-6 d'OpenAI casse le code Enigma en 2
+  ♻️ 7/10 [world] (déjà analysé, cache) : Missiles hit Kyiv after Russia agrees to US call t
+  ♻️ 9/10 [world] (déjà analysé, cache) : Nigeria confirms Ebola case as outbreak spreads in
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Critical web security flaws spark global alarm as 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Solana’s biggest network change since 2020 is live
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : American Bankers Association accuses OCC of underm
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Who Found the PHP Bug That Made Governments Unplug
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Hackers Exploited the PHP Vulnerabilities Days Bef
+  🎯 Pré-classement : 9 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpMeRxMm7ZpBgLpeTmc'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.2h — Meta sous le coup d’une amende de 25 milliar
+     9/10 · 1 média(s) · -2.5h — ZD Tech : GPT-6 d'OpenAI casse le code Enigm
+     8/10 · 1 média(s) · 0.6h — Mobilisation du 17 octobre : les partis poli
+     9/10 · 1 média(s) · 5.6h — Critical web security flaws spark global ala
+     8/10 · 1 média(s) · 1.2h — Solana’s biggest network change since 2020 i
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGpMxwvyfqchM1USDePQ'}
+  → 1 sélectionné(s) [tech]
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Sujet non vérifiable (modèle indisponible) → rien publié : Meta sous le coup d’une amende de 25 milliards
+
+  ── Bilan du cycle (252 s) ──
+     écartés : 2 sujet banal · 1 sujet non vérifiable
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 5 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 5 × gemini-3.6-flash             🚫 quota
+        25. clé 5 × gemini-3-flash               ⛔ inexistant
+        26. clé 2 × gemini-3.6-flash             🚫 quota
+        27. clé 1 × gemini-embedding-001         🚫 quota
+        28. clé 1 × gemini-embedding-2-preview   🚫 quota
+        29. clé 1 × gemini-embedding-2           🚫 quota
+        30. clé 2 × gemini-embedding-001         🚫 quota
+        31. clé 2 × gemini-embedding-2-preview   🚫 quota
+        32. clé 2 × gemini-embedding-2           🚫 quota
+        33. clé 3 × gemini-embedding-001         🚫 quota
+        34. clé 3 × gemini-embedding-2-preview   🚫 quota
+        35. clé 3 × gemini-embedding-2           🚫 quota
+        36. clé 4 × gemini-embedding-001         🚫 quota
+        37. clé 4 × gemini-embedding-2-preview   🚫 quota
+        38. clé 4 × gemini-embedding-2           🚫 quota
+        39. clé 5 × gemini-embedding-001         ✅
+     jamais essayé ce cycle : clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 793 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 393 entrée · 2 sortie
+     ⚠️ 28 appel(s) payés chez Claude (le gratuit n'a pas suffi)
