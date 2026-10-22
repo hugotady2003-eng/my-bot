@@ -1,0 +1,161 @@
+
+[07:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Luka, #LulaEJanonesAoVivo19h, Lakers, #LiveDoLulaComSeuExercito, Kessler
+  🔎 « Luka » : 1 article(s) frais, le plus récent il y a 0.3 h (Basket USA)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Luka » écarté : trop secondaire (3/10)
+  🔎 « Lakers » : 1 article(s) frais, le plus récent il y a 0.3 h (Basket USA)
+  ⏭️  « Lakers » écarté : trop secondaire (3/10)
+  🔎 « Kessler » : 1 article(s) frais, le plus récent il y a 0.3 h (Basket USA)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Kessler » écarté : trop secondaire (2/10)
+  🔎 « Warriors » : 1 article(s) frais, le plus récent il y a 0.3 h (Basket USA)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Warriors » écarté : trop secondaire (2/10)
+  🌍 « Yaxel » : aucune reprise en français, source internationale retenue
+  🔎 « Yaxel » : 1 article(s) frais, le plus récent il y a 0.1 h (NBA.com)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Yaxel » écarté : Simple compte-rendu de match sportif sans enjeu majeur.
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 51603 min — on publie.
+  📖 8/8 articles lus en 1.2s (18 déjà en cache)
+  📄 5/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · The Block
+  🧠 26 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧠 Même événement (jugé) : « Who Found the PHP Bug That Made Govern… »
+  🧠 Même événement (jugé) : « Hackers Exploited the PHP Vulnerabilit… »
+  🧩 26 articles → 10 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 10 médias) : Tempête Austen : des vents allant jusqu’à 130 km/h
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 13 article(s) sur un autre sujet, écartés du dossier : BFMTV, Challenges, France Bleu, France Info, Gamekult
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + 10 médias +15 + frais 0.1h +16
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGjeahMgEBKkF9NTCDTp'}
+  🚨 Sujet chaud (breaking, 10 médias) : L'Ukraine et la Russie négocient en parallèle des 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + 10 médias +15 + frais 0.1h +16
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGjeq92D4gLN55xe8vvQ'}
+  🚨 Sujet chaud (breaking, 10 médias) : Mobilisation du 17 octobre : les partis politiques
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 76.0/100 = gravité 10/10 → 45 + 10 médias +15 + frais 0.1h +16
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGjfKkiNF1D7RxFaGvLS'}
+  🚨 Sujet chaud (breaking, 3 médias) : Critical web security flaws spark global alarm as 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 4.6h +2 + thème porteur +10 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 4.6h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGjhMC6UFhGN8x9RThfR'}
+  🚨 Sujet chaud (breaking, 10 médias) : "Starlink est partout" : en Ukraine, impossible de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 6/10 → 27 + 10 médias +15 + frais 0.1h +16
+  🕒 Âge de l'article : 1.9h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGjhbXoKFyqtuAob7DdT'}
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  → 26 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : L'ÉDITO ÉCO - la CGT appelle à la grève générale l
+  ♻️ Doublon d'un sujet déjà publié, écarté : « Nous faisons partie de l’économie des territoire
+  ♻️ 7/10 [world] (déjà analysé, cache) : Tempête Austen : des vents allant jusqu’à 130 km/h
+  ♻️ 6/10 [tech] (déjà analysé, cache) : "Starlink est partout" : en Ukraine, impossible de
+  ♻️ 9/10 [world] (déjà analysé, cache) : L'Ukraine et la Russie négocient en parallèle des 
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Orange annonce le "rétablissement" de ses services
+  ♻️ 7/10 [markets] (déjà analysé, cache) : « Il sera difficile de réduire le déficit » : la d
+  ♻️ 7/10 [world] (déjà analysé, cache) : Missiles hit Kyiv after Russia agrees to US call t
+  ♻️ 9/10 [world] (déjà analysé, cache) : Nigeria confirms Ebola case as outbreak spreads in
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Critical web security flaws spark global alarm as 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : American Bankers Association accuses OCC of underm
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Who Found the PHP Bug That Made Governments Unplug
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Hackers Exploited the PHP Vulnerabilities Days Bef
+  🧠 Batch analyse de 12 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGjhxmzDTen1HS5AmLSx'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.2h — L'Ukraine et la Russie négocient en parallèl
+     8/10 · 1 média(s) · 0.3h — Tempête Austen : des vents allant jusqu’à 13
+     9/10 · 1 média(s) · 4.6h — Critical web security flaws spark global ala
+     7/10 · 1 média(s) · 1.9h — "Starlink est partout" : en Ukraine, impossi
+     8/10 · 1 média(s) · 10.2h — Orange annonce le "rétablissement" de ses se
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGjiMu3LyHWPNYzZ8JGq'}
+  → 1 sélectionné(s) [world]
+  ❌ Envoi 'L'Ukraine et la Russie négocient en para': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgGjic83T5up14pa73b16'}
+
+  ── Bilan du cycle (193 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 3 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-2-preview   🚫 quota
+        27. clé 3 × gemini-embedding-2           🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 4 × gemini-embedding-2-preview   🚫 quota
+        30. clé 4 × gemini-embedding-2           🚫 quota
+        31. clé 5 × gemini-embedding-001         ✅
+        32. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        33. clé 4 × gemini-3.6-flash             🚫 quota
+        34. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        40. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,906 entrée · 306 sortie
+     ⚠️ 16 appel(s) payés chez Claude (le gratuit n'a pas suffi)
