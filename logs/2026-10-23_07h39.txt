@@ -1,0 +1,180 @@
+
+[07:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Flamengo, 松井秀喜, 松井監督, Muslera, 村上龍さん
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 2.3 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Flamengo » écarté : trop secondaire (3/10)
+  🔎 « Muslera » : 1 article(s) frais, le plus récent il y a 3.3 h (OneFootball)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting ',' delimiter: line 1 column 19 (char 18) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Muslera » écarté : Contenu erroné, Muslera ne joue pas ce match.
+  🔎 « Estudiantes » : 1 article(s) frais, le plus récent il y a 2.3 h (L'Équipe)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Estudiantes » écarté : trop secondaire (2/10)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 5.0 h (Eurosport)
+  ⏭️  « Bears » écarté : Match de NFL sans enjeu pour la France
+  🔎 « Paquetá » : 1 article(s) frais, le plus récent il y a 2.9 h (OneFootball)
+  ⏭️  « Paquetá » écarté : Vidéo d'archive sans aucun fait nouveau.
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 3 sujets chauds analysés en UN seul appel (au lieu de 3)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 53042 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/9 articles lus en 1.7s (11 déjà en cache)
+  📄 7/20 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Libération · Blockworks
+  🧠 20 vecteurs calculés en 1 appel(s)
+  🧩 20 articles → 7 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 10 médias) : Mobilisation sociale et violences : première renco
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 11 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, Cointelegraph, France Info, Journal du Geek
+  🧮 Score 67.0/100 = gravité 4/10 → 18 + 10 médias +15 + frais 0.1h +16 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Tempête Austen: des rafales jusqu'à 140 km/h atten
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 33.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 0.6h +13 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 4 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif La tempête Austen provoque des rafales de vent violentes atteignant jusqu'à 16
+      [1m] ⚡exclusif 23 départements du quart nord-ouest de la France sont placés en vigilance oran
+      [1m] ⚡exclusif La tempête Austen entraîne des perturbations sur le trafic ferroviaire dans le
+      [1m] ⚡exclusif Météo-France n'exclut pas une aggravation du niveau de vigilance concernant le
+  → Sujet chaud pas assez fort (score 34) → suivant
+  🚨 Sujet chaud (breaking, 10 médias) : Mouvement social : Macron reçoit les lycéens ce ve
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 90.5/100 = gravité 7/10 → 32 + 10 médias +15 + frais 0.1h +16 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (189 → 149 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 10 médias) : "La maison s’est mise à trembler d’un seul coup" :
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 99.5/100 = gravité 9/10 → 40 + 10 médias +15 + frais 0.1h +16 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 20 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mouvement social : Macron reçoit les lycéens ce ve
+  ♻️ 7/10 [world] (déjà analysé, cache) : Tempête Austen: des rafales jusqu'à 140 km/h atten
+  ♻️ 8/10 [world] (déjà analysé, cache) : Survols de drones, incendies... Des médias europée
+  ♻️ 6/10 [ai] (déjà analysé, cache) : « Une requête comme dans ChatGPT »… Citadel, l’IA 
+  ♻️ 9/10 [world] (déjà analysé, cache) : "La maison s’est mise à trembler d’un seul coup" :
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Wealthy Chinese move offshore money to U.S. banks 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump asked Musk to lift Starlink slowdown, WSJ re
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin Core changes security policy as AI makes b
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : HSBC rolls out its first HKD stablecoin RedCoin to
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin slides below $81,500 as tech stock sell-of
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  🧠 Batch analyse de 7 articles...
+  📉 4/10: Sylvain Grataloup, président de l'Unpi : "Il faut un vé
+  🌍 6/10 sans portée internationale : Une hausse du SMIC anticipée envisagée ?
+  🌍 7/10 sans portée internationale : Tempête Austen : le trafic des trains très perturb
+  📉 3/10: F1. « C’était mon rêve ! » : Lewis Hamilton enchanté pa
+  📉 2/10: Que risque-t-on si on ne respecte pas l’arrêté préfecto
+  📉 3/10: Les salariés de Walor Bordeaux craignent pour leur aven
+  🌍 6/10 sans portée internationale : Les hôtes Airbnb ne peuvent plus demander aux voya
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.1h — "La maison s’est mise à trembler d’un seul c
+     9/10 · 2 média(s) · 0.1h — Mouvement social : Macron reçoit les lycéens
+     9/10 · 2 média(s) · 1.2h — Tempête Austen: des rafales jusqu'à 140 km/h
+     9/10 · 1 média(s) · 1.6h — Survols de drones, incendies... Des médias e
+     10/10 · 1 média(s) · 8.6h — Trump asked Musk to lift Starlink slowdown, 
+  ✂️ Éphéméride resserré (197 → 185 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : "La maison s’est mise à trembler d’un seul coup" : un s
+
+  ── Bilan du cycle (238 s) ──
+     écartés : 3 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 3 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 2 × gemini-embedding-2           🚫 quota
+        22. clé 3 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-2-preview   🚫 quota
+        24. clé 3 × gemini-embedding-2           🚫 quota
+        25. clé 4 × gemini-embedding-001         🚫 quota
+        26. clé 4 × gemini-embedding-2-preview   🚫 quota
+        27. clé 4 × gemini-embedding-2           🚫 quota
+        28. clé 5 × gemini-embedding-001         ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        35. clé 3 × gemini-3.6-flash             🚫 quota
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 53,804 entrée · 1,972 sortie
+     ✅ aucun appel payant
