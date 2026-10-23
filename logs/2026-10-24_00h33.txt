@@ -1,0 +1,184 @@
+
+[00:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #Somos10MilhoesPorLula, #HojeTemShowDoLula, #ExercitoDoLulaVenceuMaisUma, #فضل_شاكر_موسم_الرياض, الهلال
+  🌍 « LINEマンガ » : aucune reprise en français, source internationale retenue
+  🔎 « Sundowns » : 1 article(s) frais, le plus récent il y a 2.1 h (Goal.com)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Sundowns » écarté : trop secondaire (1/10)
+  🔎 « Bulls » : 1 article(s) frais, le plus récent il y a 14.7 h (Eurosport)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Bulls » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Trappes
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.3s (31 déjà en cache)
+  📄 7/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Jeuxvideo.com · The Block · Libération · Ouest-France · Blockworks
+  🧠 33 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Attaque dans les Yvelines : Emmanuel M… »
+  🧠 Même événement (jugé) : « Tirs mortels à Trappes: le maire de la… »
+  🧩 33 articles → 11 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚨 Sujet chaud (breaking, 10 médias) : Après l’attaque meurtrière de Trappes, qualifiée d
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : BFMTV, France Info, Jeuxvideo.com, Numerama, Sud Ouest
+  🧮 Score 97.5/100 = gravité 9/10 → 40 + 10 médias +15 + frais 2.2h +4 + imprévu 9/10 +18 + thème porteur +10 + portée internationale +10
+  🔍 8 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 7 partagée(s) · 4 divergente(s) · 2 exclusive(s)
+      [1m] Le président Emmanuel Macron a qualifié l'attaque d'attentat terroriste racist
+         ↳ L'Express, BFMTV, La Dépêche : Le ministre de l'Intérieur et d'autres sources évoquent un carac
+         motif : Prudence des autorités sur les motivations réelles du suspect.
+      [5m] Le Parquet national antiterroriste (Pnat) s'est saisi de l'enquête.
+         ↳ 20 Minutes : Le Pnat est en phase d'observation.
+         motif : Évolution rapide de la qualification juridique de l'enquête.
+      [5m] Le bilan humain est d'un mort et de quatre blessés graves.
+         ↳ Le Monde, Libération : Le bilan fait état d'un mort et de cinq blessés graves.
+         motif : Difficulté de consolidation des chiffres en début d'événement.
+      [4m] Le suspect est un homme âgé de 39 ans.
+      [4m] Le tireur a utilisé une arme automatique depuis un véhicule en mouvement.
+         ↳ Le Monde : Le tireur a utilisé un pistolet-mitrailleur de type Sten.
+         motif : Précision technique apportée par une source spécifique.
+      [3m] Le suspect a été interpellé à Coignières.
+      [2m] Le maire de Trappes, Ali Rabeh, estime que le tireur visait au hasard.
+      [1m] ⚡exclusif Marine Le Pen a qualifié l'acte de terroriste aggravé par le racisme.
+  🌙 Sujet fort (score 98) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Mobilisation du 24 octobre : un dispositif policie
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 43.5/100 = gravité 7/10 → 32 + frais 5.6h +2 + thème porteur +10
+  → Sujet chaud pas assez fort (score 44) → suivant
+  🚨 Sujet chaud (breaking, 10 médias) : Tirs à Trappes et à La Verrière : ce que l'on sait
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.5/100 = gravité 9/10 → 40 + 10 médias +15 + frais 2.2h +4 + thème porteur +10 + portée internationale +10
+  🔍 8 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 8 partagée(s) · 3 divergente(s) · 1 exclusive(s)
+      [5m] Le Parquet national antiterroriste (Pnat) s'est saisi de l'enquête sur les tir
+         ↳ 20 Minutes : Le Pnat est en phase d'observation.
+         motif : Évolution rapide de la situation judiciaire et des annonces officielle
+      [1m] Le bilan humain est d'un mort et de cinq blessés.
+         ↳ L'Express, BFMTV, France Info, 20 Minutes, La Dépêche : Le bilan est d'un mort et de quatre blessés.
+         motif : Mise à jour des données de santé et sources divergentes.
+      [1m] ⚡exclusif Le président Emmanuel Macron qualifie l'acte de terroriste et raciste.
+      [4m] Le suspect est un homme âgé de 39 ans.
+      [4m] Le suspect a été interpellé à Coignières.
+      [4m] Le suspect a utilisé une arme automatique depuis un véhicule en mouvement.
+         ↳ Le Monde : Le suspect a utilisé un pistolet-mitrailleur de type Sten.
+         motif : Précision technique vs description générale de l'arme.
+      [2m] Le maire de Trappes, Ali Rabeh, estime que le tireur visait au hasard pour fai
+      [4m] Le suspect a visé une maison de santé, un square et des véhicules.
+  🕒 Âge de l'article : 4.2h (frais ✅)
+  📈 Hashtag(s) en tendance : #Trappes
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Trappes
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Initia halts blockchain after exploit reportedly dra
+  🚨 Sujet chaud (breaking, 10 médias) : Incendie de la mairie de Limoges: Sébastien Lecorn
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.5/100 = gravité 7/10 → 32 + 10 médias +15 + frais 2.2h +4 + thème porteur +10 + portée internationale +10
+  🔍 8 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 8 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [7m] Un homme de 39 ans a ouvert le feu à l'arme automatique depuis un véhicule à T
+         ↳ L'Express, BFMTV, France Info, 20 Minutes, La Dépêche : Le bilan précis varie entre 4 et 5 blessés selon les sources.
+         motif : Évolution du bilan au cours de l'enquête.
+      [6m] Le Parquet national antiterroriste (Pnat) s'est saisi de l'enquête.
+      [2m] Le président Emmanuel Macron a qualifié l'acte d'attentat terroriste raciste.
+      [3m] Le suspect a été interpellé à Coignières.
+      [3m] Le ministre de l'Intérieur Laurent Nuñez a qualifié les faits d'acte grave à c
+      [2m] Le maire de Trappes, Ali Rabeh, a décrit des tirs au hasard visant plusieurs l
+      [3m] Le Premier ministre Sébastien Lecornu a réagi sur X en qualifiant les faits de
+      [5m] Une enfant de 12 ans figure parmi les blessés graves.
+  🌙 Sujet fort (score 70) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 10 médias) : Mobilisation du 24 octobre : un référé déposé same
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 61.5/100 = gravité 5/10 → 22 + 10 médias +15 + frais 2.2h +4 + thème porteur +10 + portée internationale +10
+  🔍 8 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 7 partagée(s) · 2 divergente(s) · 1 exclusive(s)
+      [7m] Un homme de 39 ans a ouvert le feu avec une arme automatique depuis un véhicul
+         ↳ Le Monde, Libération, La Dépêche : Le bilan des blessés est précisément de cinq personnes.
+         ↳ L'Express, BFMTV, France Info, 20 Minutes : Le bilan des blessés est de quatre personnes.
+         motif : Évolution du bilan au cours de l'enquête en cours.
+      [5m] Le Parquet national antiterroriste (Pnat) s'est saisi de l'enquête.
+         ↳ 20 Minutes : Le Pnat est en phase d'observation.
+         motif : Information contradictoire sur le statut de l'enquête.
+      [1m] ⚡exclusif Le président Emmanuel Macron a qualifié l'acte de terroriste et raciste.
+      [3m] Le ministre de l'Intérieur Laurent Nuñez a qualifié l'acte de terroriste tout 
+      [4m] Le suspect a été interpellé à Coignières.
+      [5m] Une enfant de 12 ans figure parmi les blessés graves.
+      [2m] Le maire de Trappes, Ali Rabeh, a décrit des tirs visant plusieurs lieux dont 
+      [3m] Le Premier ministre Sébastien Lecornu a réagi sur X en qualifiant les faits de
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 33 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (126 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-2-preview   ✅
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.6-flash             🚫 quota
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 434 · gemini 2-preview 0 · gemini 2 727
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 29,999 entrée · 4,646 sortie
+     ✅ aucun appel payant
