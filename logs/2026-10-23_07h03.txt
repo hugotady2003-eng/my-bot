@@ -1,0 +1,172 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Flamengo, 松井秀喜, 松井監督, Muslera, 村上龍さん
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 1.7 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Flamengo » écarté : trop secondaire (2/10)
+  🔎 « Muslera » : 1 article(s) frais, le plus récent il y a 2.7 h (OneFootball)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Muslera » écarté : Contenu erroné, Muslera ne joue pas ce match.
+  🔎 « Estudiantes » : 1 article(s) frais, le plus récent il y a 1.7 h (L'Équipe)
+  ⏭️  « Estudiantes » écarté : trop secondaire (2/10)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 4.5 h (Eurosport)
+  ⏭️  « Bears » écarté : Match de NFL sans enjeu pour la France
+  🔎 « Paquetá » : 1 article(s) frais, le plus récent il y a 2.7 h (OneFootball)
+  ⏭️  « Paquetá » écarté : Contenu ancien sans aucun fait nouveau.
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ✅ Dernière publi il y a 53008 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/11 articles lus en 2.1s (60 déjà en cache)
+  📄 10/71 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Libération · Cointelegraph · Blockworks
+  🧠 71 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Mobilisation du 24 octobre: ce que l’o… »
+  🧠 Même événement (jugé) : « Colère sociale: conseil de défense, re… »
+  🧠 Même événement (jugé) : « "Le 17 octobre, ça a été l'étincelle" … »
+  🧩 71 articles → 30 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Violences en France : ce que la psychologie des foul
+  🚨 Sujet chaud (breaking, 15 médias) : Mobilisation sociale et violences : Macron monte e
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : ActuGaming, Ars Technica, BFMTV, Challenges, Cointelegraph
+  🧮 Score 90.0/100 = gravité 8/10 → 36 + 15 médias +18 + frais 1.0h +8 + thème porteur +10 + portée mondiale +18
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] Emmanuel Macron rencontre les organisations lycéennes à l'Élysée ce vendredi à
+      [4m] Le gouvernement renforce les mesures de sécurité et restreint les manifestatio
+      [2m] Le ministre Sébastien Lecornu se déplace à Limoges suite aux violences et à l'
+      [1m] ⚡exclusif Emmanuel Macron a accusé des groupes d'ultragauche d'être responsables des vio
+      [1m] ⚡exclusif La Dépêche critique le retard de la réponse présidentielle face aux revendicat
+         motif : Ligne éditoriale critique
+      [1m] ⚡exclusif Le gouvernement prévoit d'interdire les manifestations sans légitimité et de p
+      [2m] Le président Macron va rencontrer les forces de l'ordre pour leur apporter son
+      [3m] Un conseil de défense est organisé pour préparer la journée de mobilisation du
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 31 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Asia's AI data center boom faces 'reality check' f
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 42.0/100 = gravité 4/10 → 18 + frais 0.0h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 71 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Colère sociale: conseil de défense, rencontre avec
+  ♻️ 8/10 [world] (déjà analysé, cache) : Mobilisation sociale et violences : Macron monte e
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  🎯 Pré-classement : 45 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 7/10 [crypto] mondiale: Bitcoin slides below $81,500 as tech stock sell-
+  ✅ 8/10 [world] mondiale: Survols de drones, incendies... Des médias europ
+  📉 5/10: Les seuls défilés des syndicats autorisés samedi, 20 % 
+  ✅ 9/10 [world] mondiale: Trump asked Musk to lift Starlink slowdown, WSJ 
+  📉 4/10: Uber rival inDrive eyes 2027 robotaxi tests in Central 
+  📉 3/10: WhatsApp starts testing long-awaited scheduled messages
+  📉 5/10: Colère sociale : Macron reçoit enfin les organisations 
+  📉 4/10: Greg Joswiak talks iPhone Duo in-store availability and
+  🌍 7/10 sans portée internationale : What to Know About Shamonda Virus Following the Fi
+  🌍 8/10 sans portée internationale : Avec plus de 50 000 décès liés à la chaleur dont l
+  📉 4/10: SONDAGE. Présidentielle 2027 : Marine Le Pen toujours l
+  ✅ 6/10 [crypto] large: Bitcoin Core changes security policy as AI makes
+  📉 3/10: Chainlink partners with LG CNS to drive Korean won stab
+  ✅ 6/10 [crypto] large: HSBC rolls out its first HKD stablecoin RedCoin 
+  📉 2/10: NASA Invites Media to 2026 von Braun Space Exploration 
+  📉 5/10: Ethereum delays Glamsterdam test after security devs fl
+  📉 4/10: Polymarket has reportedly fired its marketing chief, al
+  📉 4/10: Sans réponse, « la colère sociale ne s’éteindra pas » :
+  📉 3/10: Le musée sur ordonnance : pourquoi se cultiver est auss
+  🌍 6/10 sans portée internationale : Panne de réseau Orange : "Ça recommence", rebelote
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.3h — Mobilisation sociale et violences : Macron m
+     9/10 · 1 média(s) · 1.1h — Survols de drones, incendies... Des médias e
+     10/10 · 1 média(s) · 8.0h — Trump asked Musk to lift Starlink slowdown, 
+     7/10 · 1 média(s) · 0.5h — Bitcoin Core changes security policy as AI m
+     8/10 · 1 média(s) · 2.7h — Bitcoin slides below $81,500 as tech stock s
+  ✂️ Éphéméride resserré (193 → 67 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Mobilisation sociale et violences : Macron monte en pre
+
+  ── Bilan du cycle (151 s) ──
+     écartés : 3 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 3 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+        38. clé 3 × gemini-3.1-flash-lite        ✅
+        39. clé 3 × gemini-3.1-flash-lite        ✅
+        40. clé 3 × gemini-3.1-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 40,694 entrée · 2,452 sortie
+     ✅ aucun appel payant
