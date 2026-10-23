@@ -1,0 +1,146 @@
+
+[08:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 松井秀喜, Flamengo, 村上龍さん, 松井監督, #RoVTPOPTournament
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 0.5 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Flamengo » écarté : trop secondaire (2/10)
+  🔎 « Muslera » : 1 article(s) frais, le plus récent il y a 4.3 h (OneFootball)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Muslera » écarté : Contenu erroné, Muslera ne joue pas ce match.
+  🔎 « Estudiantes » : 1 article(s) frais, le plus récent il y a 0.5 h (L'Équipe)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Estudiantes » écarté : trop secondaire (3/10)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ✅ Dernière publi il y a 53102 min — on publie.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/6 articles lus en 1.1s (13 déjà en cache)
+  📄 5/19 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Libération · Ouest-France · Blockworks
+  🧠 19 vecteurs calculés en 1 appel(s)
+  🧩 19 articles → 12 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Tempête Austen: des rafales jusqu'à 140 km/h atten
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 15.5/100 = gravité 7/10 → 32 + frais 2.2h +4 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 16) → suivant
+  🚨 Sujet chaud (breaking, 6 médias) : Mouvement social : Macron reçoit les lycéens ce ve
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, Challenges, Libération, Ouest-France
+  🧮 Score 78.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 0.1h +16 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (262 → 131 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 19 articles à analyser...
+  ♻️ Doublon d'un sujet déjà publié, écarté : Jean-Luc Mélenchon fait ses calculs avec les jeune
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mouvement social : Macron reçoit les lycéens ce ve
+  ♻️ 7/10 [world] (déjà analysé, cache) : Tempête Austen: des rafales jusqu'à 140 km/h atten
+  ♻️ 8/10 [world] (déjà analysé, cache) : Survols de drones, incendies... Des médias europée
+  ♻️ 6/10 [ai] (déjà analysé, cache) : « Une requête comme dans ChatGPT »… Citadel, l’IA 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Corée : Séoul propose à Pyongyang des pourparlers 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Powerful earthquake hits Tibet killing 16 people, 
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Wealthy Chinese move offshore money to U.S. banks 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump asked Musk to lift Starlink slowdown, WSJ re
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin Core changes security policy as AI makes b
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : HSBC rolls out its first HKD stablecoin RedCoin to
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin slides below $81,500 as tech stock sell-of
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google DeepMind and Singapore Government collabora
+  🧠 Batch analyse de 5 articles...
+  📉 1/10: Le journal de 8h du vendredi 23 octobre 2026
+  📉 4/10: Paul Pogba de retour ? Le champion du monde laisse des 
+  📉 3/10: Dreame S100 : ce TV Mini LED 144 Hz de 55 pouces coûte 
+  📉 4/10: Bose s’offre Skullcandy !
+  📉 5/10: Sur Switch 2, un premier exploit vers le piratage de la
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 1.3h — Powerful earthquake hits Tibet killing 16 pe
+     8/10 · 1 média(s) · 0.1h — Mouvement social : Macron reçoit les lycéens
+     9/10 · 1 média(s) · 2.6h — Survols de drones, incendies... Des médias e
+     10/10 · 1 média(s) · 9.6h — Trump asked Musk to lift Starlink slowdown, 
+     8/10 · 1 média(s) · 0.9h — Corée : Séoul propose à Pyongyang des pourpa
+  ✂️ Éphéméride resserré (193 → 67 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 1.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Powerful earthquake hits Tibet killing 16 people, repor
+
+  ── Bilan du cycle (125 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-embedding-001         🚫 quota
+        13. clé 1 × gemini-embedding-2-preview   🚫 quota
+        14. clé 1 × gemini-embedding-2           🚫 quota
+        15. clé 2 × gemini-embedding-001         🚫 quota
+        16. clé 2 × gemini-embedding-2-preview   🚫 quota
+        17. clé 2 × gemini-embedding-2           🚫 quota
+        18. clé 3 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-2-preview   🚫 quota
+        20. clé 3 × gemini-embedding-2           🚫 quota
+        21. clé 4 × gemini-embedding-001         🚫 quota
+        22. clé 4 × gemini-embedding-2-preview   🚫 quota
+        23. clé 4 × gemini-embedding-2           🚫 quota
+        24. clé 5 × gemini-embedding-001         ✅
+        25. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 3 × gemini-3.6-flash             🚫 quota
+        28. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-embedding-2-preview (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 32,530 entrée · 1,073 sortie
+     ✅ aucun appel payant
