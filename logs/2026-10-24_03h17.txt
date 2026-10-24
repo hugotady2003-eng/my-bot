@@ -1,0 +1,93 @@
+
+[03:16] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #LulaNaGlobo, #DebateNaGlobo, #TarifaZeroSoComLula, #Somos10MilhoesPorLula, #HojeTemShowDoLula
+  🌍 « LINEマンガ » : aucune reprise en français, source internationale retenue
+  📖 47 articles, tous en cache
+  📄 7/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Jeuxvideo.com · The Block · Libération · Ouest-France · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 47 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 47 articles → 18 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 20 médias) : Après l’attaque meurtrière de Trappes, qualifiée d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 21 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, Ars Technica, BFMTV, Blockworks
+  🧮 Score 82.5/100 = gravité 9/10 → 40 + 20 médias +20 + frais 5.0h +2 + thème porteur +10 + portée internationale +10
+  🔍 7 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 7 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [7m] Un homme a ouvert le feu à l'arme automatique dans les communes de Trappes et 
+         ↳ Le Monde : Le bilan fait état d'un mort et de cinq blessés graves.
+         ↳ L'Express, BFMTV, France Info, 20 Minutes, La Dépêche : Le bilan fait état d'un mort et de quatre blessés graves.
+         motif : Évolution du bilan au fil des sources et du temps.
+      [6m] Le Parquet national antiterroriste (Pnat) s'est saisi de l'enquête pour assass
+      [2m] Le président Emmanuel Macron a qualifié l'attaque d'attentat terroriste racist
+      [3m] Le suspect est un homme de 39 ans, nommé Kévin T., résidant à Plaisir.
+      [3m] Le suspect a été interpellé à Coignières.
+      [1m] ⚡exclusif Le suspect possédait un appartement piégé avec des bouteilles de gaz.
+      [1m] ⚡exclusif Le suspect était inconnu des services de renseignement et de la DGSI.
+      [2m] Le maire de Trappes, Ali Rabeh, estime que le tireur agissait au hasard.
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (20h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 42 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 47 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (64 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         ✅
+        11. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 1 × gemini-3.6-flash             🚫 quota
+        15. clé 1 × gemini-3-flash               ⛔ inexistant
+        16. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 2 × gemini-3-flash               ⛔ inexistant
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 3 × gemini-3.6-flash             🚫 quota
+        25. clé 3 × gemini-3-flash               ⛔ inexistant
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-embedding-2 (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,535 entrée · 1,086 sortie
+     ✅ aucun appel payant
