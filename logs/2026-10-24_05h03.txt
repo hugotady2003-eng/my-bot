@@ -1,0 +1,111 @@
+
+[05:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #DebateNaGlobo, Flavio, Ana Clara, #SomosTodos9Dedos, ラポスタ
+  🔎 « Flavio » : 1 article(s) frais, le plus récent il y a 5.8 h (RMC Sport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⏭️  « Flavio » écarté : Soutien politique brésilien sans impact direct en France.
+  🌍 « Ana Clara » : aucune reprise en français, source internationale retenue
+  🔎 « Ana Clara » : 1 article(s) frais, le plus récent il y a 5.8 h (Jurinews)
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Ana Clara » écarté : Actualite politique bresilienne sans interet en France
+  🔎 « SmackDown » : 1 article(s) frais, le plus récent il y a 1.8 h (Google Actualités)
+  ⏭️  « SmackDown » écarté : Match de divertissement sportif sans interet general
+  📖 48 articles, tous en cache
+  📄 7/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Jeuxvideo.com · The Block · Libération · Ouest-France · Blockworks
+  🧠 48 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Attaque dans les Yvelines : Emmanuel M… »
+  🧠 Même événement (jugé) : « Tirs mortels à Trappes: le maire de la… »
+  🧩 48 articles → 19 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 20 médias) : Après l’attaque meurtrière de Trappes, qualifiée d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 21 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, Ars Technica, BFMTV, Blockworks
+  🧮 Score 82.5/100 = gravité 9/10 → 40 + 20 médias +20 + frais 6.7h +2 + thème porteur +10 + portée internationale +10
+  🔍 7 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [7m] Un homme a ouvert le feu à l'arme automatique depuis un véhicule à Trappes et 
+         ↳ Le Monde, 20 Minutes : Le bilan précis fait état d'un mort et de cinq blessés graves.
+         ↳ Libération, L'Express, BFMTV, France Info, La Dépêche : Le bilan fait état d'un mort et de quatre blessés.
+         motif : Actualisation en cours du bilan des blessés par les autorités.
+      [6m] Le Parquet national antiterroriste (Pnat) s'est saisi de l'enquête pour assass
+      [5m] Emmanuel Macron et d'autres responsables qualifient l'attaque d'attentat terro
+      [4m] Le tireur présumé est un homme de 39 ans nommé Kévin T., interpellé à Coignièr
+      [1m] ⚡exclusif Le suspect était inconnu des services de renseignement et de la DGSI, mais pos
+      [1m] ⚡exclusif Le domicile du suspect aurait un appartement piégé avec des bouteilles de gaz,
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 42 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 48 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (145 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 4 × gemini-3.6-flash             🚫 quota
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-embedding-001         🚫 quota
+        26. clé 1 × gemini-embedding-2-preview   🚫 quota
+        27. clé 1 × gemini-embedding-2           🚫 quota
+        28. clé 2 × gemini-embedding-001         🚫 quota
+        29. clé 2 × gemini-embedding-2-preview   🚫 quota
+        30. clé 2 × gemini-embedding-2           🚫 quota
+        31. clé 3 × gemini-embedding-001         🚫 quota
+        32. clé 3 × gemini-embedding-2-preview   🚫 quota
+        33. clé 3 × gemini-embedding-2           🚫 quota
+        34. clé 4 × gemini-embedding-001         🚫 quota
+        35. clé 4 × gemini-embedding-2-preview   ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-001 · clé 5 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,695 entrée · 988 sortie
+     ✅ aucun appel payant
