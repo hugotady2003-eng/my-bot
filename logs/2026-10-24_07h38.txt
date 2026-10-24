@@ -1,0 +1,175 @@
+
+[07:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: The read operation timed out
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #FlavioSurubinha, Lula, Ana Clara, 乗車準備会, #SomosTodos9Dedos
+  🔎 « Lula » : 1 article(s) frais, le plus récent il y a 11.5 h (Le Figaro)
+  ✅ « Lula » retenu : Élection présidentielle tendue au Brésil. (7/10) (+1 au score)
+  🌍 « Ana Clara » : aucune reprise en français, source internationale retenue
+  🔎 « Ana Clara » : 1 article(s) frais, le plus récent il y a 8.4 h (Jurinews)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Ana Clara » écarté : trop secondaire (2/10)
+  🔎 « Thompson » : 1 article(s) frais, le plus récent il y a 0.6 h (Basket USA)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⏭️  « Thompson » écarté : trop secondaire (3/10)
+  🔎 « Wemby » : 1 article(s) frais, le plus récent il y a 15.7 h (RMC)
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Wemby » écarté : trop secondaire (5/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  📖 7/7 articles lus en 1.4s (18 déjà en cache)
+  📄 3/25 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Blockworks
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🧩 25 articles → 14 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT, manifestations du 24 octobre : des cent
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 2.6h +4 + thème porteur +10
+  🕒 Âge de l'article : 2.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (188 → 148 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Un mort et deux blessés graves après le passage de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 0.3h +16 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 42 match(s) sur 48h, dont France : 0
+  → 25 articles à analyser...
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Après l’attaque meurtrière de Trappes, qualifiée d
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT, manifestations du 24 octobre : des cent
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Tirs à Trappes et à La Verrière : ce que l'on sait
+  ♻️ 7/10 [world] (déjà analysé, cache) : Un mort et deux blessés graves après le passage de
+  ♻️ 8/10 [world] (déjà analysé, cache) : Un mort et plusieurs blessés graves, un suspect ar
+  ♻️ 6/10 [science] (déjà analysé, cache) : L’intensité du typhon champi a un coupable tout dé
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Trump's executive order targets mortgage insurance
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Franklin Templeton adds $150 million in fund share
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Initia halts blockchain after exploit reportedly d
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Netanyahu seeking blockchain plan to prepare for p
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Sen. Blumenthal seeks answers from Tether over pay
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Netanyahu Considering Crypto Plan to Dodge Banking
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Senate Democrat Probes Tether Payments to Ex-White
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI says it will no longer train its AI models 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Hottest toy for Christmas? Nvidia CEO plays with a
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Updated Google privacy policy says your Gmail migh
+  ♻️ 6/10 [business] (déjà analysé, cache) : Elon Musk Just Dumped Another $76 Million Into the
+  🧠 Batch analyse de 7 articles...
+  🌍 7/10 sans portée internationale : "C'était terrifiant" : un journaliste se jette à l
+  📉 2/10: On passe à l’heure d’hiver ce week-end : mais faut-il a
+  📉 3/10: Un SUV agréable mais qui ne révolutionne pas sa catégor
+  📉 5/10: Grosse panne Revolut, d’autres failles de type PHP2Shel
+  📉 2/10: Passage à l’heure d’hiver le dimanche 25 mars : tout ce
+  📉 4/10: How Benjamin Netanyahu reshaped Israel’s institutions
+  🌍 6/10 sans portée internationale : Hospital in Yemen’s Taiz warns of collapse in days
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.3h — Un mort et deux blessés graves après le pass
+     10/10 · 3 média(s) · 7.2h — Après l’attaque meurtrière de Trappes, quali
+     10/10 · 4 média(s) · 11.3h — Tirs à Trappes et à La Verrière : ce que l'o
+     10/10 · 4 média(s) · 10.6h — Un mort et plusieurs blessés graves, un susp
+     10/10 · 3 média(s) · 8.4h — Netanyahu Considering Crypto Plan to Dodge B
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Un mort et deux blessés graves après le passage de la t
+
+  ── Bilan du cycle (140 s) ──
+     écartés : 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3-flash               ⛔ inexistant
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.6-flash             ⚠️ Expecting property nam
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.6-flash             🚫 quota
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-embedding-001         🚫 quota
+        26. clé 1 × gemini-embedding-2-preview   🚫 quota
+        27. clé 1 × gemini-embedding-2           🚫 quota
+        28. clé 2 × gemini-embedding-001         🚫 quota
+        29. clé 2 × gemini-embedding-2-preview   🚫 quota
+        30. clé 2 × gemini-embedding-2           🚫 quota
+        31. clé 3 × gemini-embedding-001         🚫 quota
+        32. clé 3 × gemini-embedding-2-preview   🚫 quota
+        33. clé 3 × gemini-embedding-2           🚫 quota
+        34. clé 4 × gemini-embedding-001         🚫 quota
+        35. clé 4 × gemini-embedding-2-preview   🚫 quota
+        36. clé 4 × gemini-embedding-2           🚫 quota
+        37. clé 5 × gemini-embedding-001         ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-3.1-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 33,168 entrée · 1,100 sortie
+     ✅ aucun appel payant
