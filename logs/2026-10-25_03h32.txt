@@ -1,0 +1,105 @@
+
+[03:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 設営完了, #EuVotoFazendoL, おジャ魔女, オメガホーン, ギャバン
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 1.9 h (OneFootball)
+  ⏭️  « Corinthians » écarté : trop secondaire (1/10)
+  🔎 « Neymar » : 1 article(s) frais, le plus récent il y a 3.0 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Neymar » écarté : Déclaration rétrospective sans fait nouveau récent.
+  🌍 « precure » : aucune reprise en français, source internationale retenue
+  📖 1/1 articles lus en 0.1s (34 déjà en cache)
+  📄 8/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Libération · Jeuxvideo.com · Blockworks
+  🧠 35 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Manifestations calmes, tensions en fin… »
+  🧠 Même événement (jugé) : « Après l'attentat de Trappes, le RN cib… »
+  🧠 Même événement (jugé) : « Manifestation du 24 octobre : Une agen… »
+  🧩 35 articles → 15 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 7 médias) : EN DIRECT, manifestations du 24 octobre : entre 41
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Ouest-France, Public
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 4.5h +2 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [3m] Une nouvelle journée de mobilisation sociale contre la vie chère a eu lieu le 
+      [2m] De nombreuses manifestations ont été interdites par les autorités dans plusieu
+      [4m] Des violences et des dégradations ont été constatées en marge des cortèges.
+      [4m] Un dispositif de sécurité massif a été déployé pour encadrer les manifestation
+      [1m] ⚡exclusif Une agence bancaire a été incendiée à Tours lors d'un rassemblement interdit.
+      [1m] ⚡exclusif Un supermarché a été pillé à Marseille durant la journée de mobilisation.
+      [2m] Le gouvernement a tiré les leçons des violences survenues la semaine précédent
+      [1m] ⚡exclusif Des militants d'ultradroite ont commis des agressions à Nice.
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (16h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Almost 1,000 arrested as clashes follow another da
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 42.5/100 = gravité 9/10 → 40 + frais 5.4h +2
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚽ API football-data : 32 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 35 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (80 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3-flash               ⛔ inexistant
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-2-preview   ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 5 × gemini-3.5-flash-lite (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,465 entrée · 947 sortie
+     ✅ aucun appel payant
