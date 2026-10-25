@@ -1,0 +1,133 @@
+
+[02:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : おジャ魔女, #EuVotoFazendoL, Corinthians, #precure, マシュタン
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 0.3 h (OneFootball)
+  ⏭️  « Corinthians » écarté : Match de football brésilien sans intérêt en France.
+  🌍 « precure » : aucune reprise en français, source internationale retenue
+  🔎 « Tennessee » : 1 article(s) frais, le plus récent il y a 8.8 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Tennessee » écarté : Chronique litteraire sans evenement nouveau.
+  🌍 « Scott Frost » : aucune reprise en français, source internationale retenue
+  🔎 « Scott Frost » : 1 article(s) frais, le plus récent il y a 0.5 h (FOX Sports)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Scott Frost » écarté : Contenu sportif ancien sans lien avec l'actualité.
+  📖 34 articles, tous en cache
+  📄 8/34 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Libération · Jeuxvideo.com · Blockworks
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧠 Même événement (jugé) : « Attentat raciste dans les Yvelines : l… »
+  🧠 Même événement (jugé) : « Manifestations calmes, tensions en fin… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Après l'attentat de Trappes, le RN cib… »
+  ⚠️ gemini-3.6-flash (clé 4) : Extra data: line 1 column 3 (char 2) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Almost 1,000 arrested as clashes follo… »
+  🧩 34 articles → 13 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 11 médias) : EN DIRECT, manifestations du 24 octobre : entre 41
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting ',' delimiter: line 1 column 14 (char 13) → couple suivant
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : BBC, Blockworks, Ouest-France, Public, Sud Ouest
+  🧮 Score 60.5/100 = gravité 7/10 → 32 + 11 médias +15 + frais 3.5h +4 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 4 column 16 (char 43) → couple suivant
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [1m] ⚡exclusif Le nombre de manifestants est estimé entre 410 000 par le ministère de l'Intér
+      [5m] Une nouvelle journée de mobilisation contre la vie chère et pour l'éducation a
+      [5m] Des heurts, des tensions en fin de journée et des dégradations ont éclaté dans
+      [2m] Près de 70 000 policiers et gendarmes ont été déployés pour encadrer les cortè
+      [1m] ⚡exclusif Près de 1 000 arrestations ont été effectuées lors de cette journée de mobilis
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Attentat raciste dans les Yvelines : le livre de H
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 4 médias +7 + frais 5.1h +2 + thème porteur +10 + ⚡ attentat → plancher 89
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [3m] Un attentat raciste perpétré par un homme de 39 ans à l'arme automatique dans 
+      [2m] Le Parquet national antiterroriste (PNAT) s'est saisi de l'enquête concernant 
+      [1m] ⚡exclusif Le tireur présumé, nommé Kévin T., a affirmé aux policiers avoir voulu venger 
+      [2m] Un rassemblement et une marche en hommage à la victime, identifiée comme Pengo
+      [1m] ⚡exclusif Emmanuel Macron a qualifié l'attaque d'attentat terroriste fondé sur une idéol
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Saudi-led coalition says it downed 2 missiles fire
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 7/10 → 32 + frais 0.0h +16 + primeur absolue +8
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  ⚽ API football-data : 32 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 34 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (126 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 1 × gemini-embedding-2           🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-2           🚫 quota
+        16. clé 3 × gemini-embedding-001         ✅
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.6-flash             🚫 quota
+        19. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 3 × gemini-3.6-flash             🚫 quota
+        22. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 4 × gemini-3.1-flash-lite        ✅
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        26. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.6-flash             ⚠️ Extra data: line 1 col
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.6-flash             ⚠️ Unterminated string st
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.6-flash             🚫 quota
+        … et 2 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 13,646 entrée · 1,242 sortie
+     ✅ aucun appel payant
