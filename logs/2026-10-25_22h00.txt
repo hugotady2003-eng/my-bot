@@ -1,0 +1,187 @@
+
+[21:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « ancient runestone carving »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Sunday, 25-Oct-26 13:57:21 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AAi037Bj2CyW4YBPvA9ZGEM"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #VotacaoAte19Horas, #DeixemONordesteVotar, PRORROGA TSE, Ravens, #DeixemOPovoVotar
+  🔎 « Ravens » : 1 article(s) frais, le plus récent il y a 0.5 h (Touchdown Actu)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « Ravens » écarté : trop secondaire (2/10)
+  🔎 « Bengals » : 1 article(s) frais, le plus récent il y a 0.5 h (Touchdown Actu)
+  ⏭️  « Bengals » écarté : trop secondaire (2/10)
+  🔎 « Falcons » : 1 article(s) frais, le plus récent il y a 0.5 h (DAZN)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ Jugement de « Falcons » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Falcons » écarté : jugement indisponible
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RealMadrid, #Carrick
+  🕐 21h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 3.0 h) : 25-45 min
+  📖 1/1 articles lus en 0.1s (29 déjà en cache)
+  📄 4/30 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Jeuxvideo.com · The Block · Blockworks
+  🧠 30 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  🧩 30 articles → 16 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Après l’attentat raciste de Trappes, le maire, Ali
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + frais 5.9h +2 + thème porteur +10 + portée mondiale +18 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 5.9h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgPdHn4ivNBqcRC9cXApL'}
+  🚨 Sujet chaud (breaking, 1 médias) : "Tu resteras à jamais dans nos cœurs" : à Aubervil
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + frais 3.9h +4 + thème porteur +10 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 3.9h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgPdJ53RVp5ET9aYiueFj'}
+  🚨 Sujet chaud (breaking, 4 médias) : Présidentielle au Brésil : âpre duel entre Bolsona
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 0.3h +16 + thème porteur +10
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgPdL1BK6DEFgjkmf6Yv2'}
+  🚨 Sujet chaud (breaking, 4 médias) : Guerre en Ukraine. « Nous sommes prêts à discuter 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 0.3h +16 + thème porteur +10
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgPdMVJ2utKCq9Q34e41h'}
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Armée israélienne en état d'alerte, Marines améric
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 8.2h +1 + thème porteur +10 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 4.0h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgPdPRbpjKW3vcu8zsTw4'}
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT Barça - Real Madrid : La chaaaaaatte! Mb
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + frais 2.5h +4 + thème porteur +10 + portée internationale +10 + ⚡ crise institutionnelle → plancher 89
+  🕒 Âge de l'article : 2.5h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgPdPfegKjpiJ3HiEwE8M'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Can Carrick survive Man United’s slump and Fernandes
+  ⚠️ API football-data (clé invalide ou quota dépassé ?) : The read operation timed out
+  → 30 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Après l’attentat raciste de Trappes, le maire, Ali
+  ♻️ 9/10 [world] (déjà analysé, cache) : "Tu resteras à jamais dans nos cœurs" : à Aubervil
+  ♻️ 7/10 [sports] (déjà analysé, cache) : EN DIRECT Barça - Real Madrid : La chaaaaaatte! Mb
+  ♻️ 7/10 [world] (déjà analysé, cache) : Présidentielle au Brésil : âpre duel entre Bolsona
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre en Ukraine. « Nous sommes prêts à discuter 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Armée israélienne en état d'alerte, Marines améric
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : « Les cryptomonnaies ne peuvent pas servir de voie
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Dette, note souveraine, taux d'intérêt records : L
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Xbox fait payer ses joueurs 0,35€ de l'heure... su
+  ♻️ 8/10 [space] (déjà analysé, cache) : Musk says SpaceX restricted Ukraine's Starlink con
+  ♻️ 6/10 [world] (déjà analysé, cache) : Ukraine disputes Elon Musk’s claim that its milita
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : UK banks face 10,000 complaints in 3 months over c
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Netanyahu floats use of blockchain as solution to 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Crypto longs lose $404 million in four hours as bi
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Snap Two-Week Losing Streak Despite L
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Google Quietly Updates Privacy Policy to Let Gmail
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [tech] (déjà analysé, cache) : A YouTuber dissected an iPhone Duo and thinks he f
+  ♻️ 6/10 [tech] (déjà analysé, cache) : OLED iPad mini 8 debuting this week: Here’s what’s
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Touchscreen OLED MacBook Pro launches this week, h
+  🧠 Batch analyse de 10 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgPdQphRX16518rV4iKD3'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 2.5h — EN DIRECT Barça - Real Madrid : La chaaaaaat
+     9/10 · 2 média(s) · 1.0h — Guerre en Ukraine. « Nous sommes prêts à dis
+     10/10 · 1 média(s) · 4.0h — "Tu resteras à jamais dans nos cœurs" : à Au
+     8/10 · 1 média(s) · 0.8h — Présidentielle au Brésil : âpre duel entre B
+     8/10 · 1 média(s) · 0.7h — A YouTuber dissected an iPhone Duo and think
+  ⚠️ Wikipedia: The read operation timed out
+  → 1 sélectionné(s) [sports]
+  ❌ Envoi 'EN DIRECT Barça - Real Madrid : La chaaa': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgPdRfqu11TNXvzHWmjUQ'}
+
+  ── Bilan du cycle (300 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        24. clé 5 × gemini-3.1-flash-lite        ✅
+        25. clé 5 × gemini-3.1-flash-lite        ✅
+        26. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        28. clé 1 × gemini-embedding-001         🚫 quota
+        29. clé 1 × gemini-embedding-2-preview   🚫 quota
+        30. clé 1 × gemini-embedding-2           🚫 quota
+        31. clé 2 × gemini-embedding-001         🚫 quota
+        32. clé 2 × gemini-embedding-2-preview   ✅
+        33. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2 (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 747
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,923 entrée · 292 sortie
+     ⚠️ 33 appel(s) payés chez Claude (le gratuit n'a pas suffi)
