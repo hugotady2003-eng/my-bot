@@ -1,0 +1,157 @@
+
+[07:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #รักแห่งสยามTheMusical, ロブチェン, शरद पूर्णिमा, #HojeEuVotoLula, イッペイ
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/3 articles lus en 0.3s (20 déjà en cache)
+  📄 6/23 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Libération · Ouest-France · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 23 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Après l'attentat de Trappes, le RN cib… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Mobilisation du 24 octobre : 410.000 m… »
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧠 Même événement (jugé) : « Fusillade à Trappes : "J’ai mal partou… »
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Almost 1,000 arrested as clashes follo… »
+  🧩 23 articles → 9 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (20h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Tuerie dans les Yvelines : « Mein Kampf » chez le ti
+  🚨 Sujet chaud (breaking, 3 médias) : Almost 1,000 arrested as clashes follow another da
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 59.5/100 = gravité 9/10 → 40 + 3 médias +7 + frais 7.5h +2 + thème porteur +10
+  🧩 10 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 6 exclusive(s)
+      [1m] ⚡exclusif Près de 1 000 personnes ont été arrêtées lors de la journée de mobilisation du
+      [1m] ⚡exclusif Le ministère de l'Intérieur estime le nombre de manifestants à 410 000, tandis
+      [2m] De nombreuses manifestations ont été interdites par les autorités dans plusieu
+      [3m] La journée de mobilisation a été marquée par des violences et des affrontement
+      [2m] Le gouvernement a déployé un dispositif policier massif pour encadrer les mani
+      [3m] Des pillages et des dégradations de commerces ont été constatés lors de la mob
+      [1m] ⚡exclusif Le président Emmanuel Macron a décrété que seules les manifestations organisée
+      [1m] ⚡exclusif Des militants d'ultradroite ont été impliqués dans des agressions à Nice.
+  🕒 Âge de l'article : 2.5h (frais ✅)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 32 match(s) sur 48h, dont France : 0
+  → 23 articles à analyser...
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Attentat raciste de Trappes : le tireur présumé a 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Mobilisation du 24 octobre : 410.000 manifestants 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Attaque dans les Yvelines : plusieurs centaines de
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Fusillade à Trappes : "J’ai mal partout"… des témo
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Les lunettes Ray-Ban Meta un peu trop à l’écoute
+  ♻️ 9/10 [world] (déjà analysé, cache) : Almost 1,000 arrested as clashes follow another da
+  ♻️ 6/10 [world] (déjà analysé, cache) : Voters in Brazil to choose between Lula and Bolson
+  ♻️ 7/10 [world] (déjà analysé, cache) : Democrats, voting-rights groups challenge Trump's 
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Crypto under weekend pressure, bitcoin slides belo
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Initia halts blockchain after exploit reportedly d
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Crypto longs lose $404 million in four hours as bi
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Argentine judge clears Milei and 10 others in LIBR
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Netanyahu seeking blockchain plan to prepare for p
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Google Quietly Updates Privacy Policy to Let Gmail
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Sweden's Government Offices Block ChatGPT and Clau
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [space] (déjà analysé, cache) : Starlink seems to be working normally again in Ukr
+  🧠 Batch analyse de 5 articles...
+  📉 4/10: Un golf «de classe mondiale» : la nouvelle lubie de Tru
+  📉 2/10: Manifestations calmes, tensions en fin de cortège - 24/
+  📉 2/10: 31 octobre, 5 novembre... quelle suite pour le mouvemen
+  📉 2/10: Comment lutter contre l’anxiété saisonnière,quand la mé
+  🌍 8/10 sans portée internationale : Tuerie dans les Yvelines : « Mein Kampf » chez le 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.8h — Fusillade à Trappes : "J’ai mal partout"… de
+     10/10 · 1 média(s) · 2.5h — Almost 1,000 arrested as clashes follow anot
+     10/10 · 3 média(s) · 20.3h — Attentat raciste de Trappes : le tireur prés
+     10/10 · 4 média(s) · 13.0h — Attaque dans les Yvelines : plusieurs centai
+     10/10 · 2 média(s) · 15.6h — Crypto under weekend pressure, bitcoin slide
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 3 s
+  ✂️ Éphéméride resserré (229 → 147 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [breaking]
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Libération, Ouest-France
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.8h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Fusillade à Trappes : "J’ai mal partout"… des témoins r
+
+  ── Bilan du cycle (111 s) ──
+     écartés : 1 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 1 × gemini-3.6-flash             🚫 quota
+        16. clé 1 × gemini-3-flash               ⛔ inexistant
+        17. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 2 × gemini-3.6-flash             🚫 quota
+        23. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.6-flash             🚫 quota
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        28. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        31. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.6-flash             🚫 quota
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 29,722 entrée · 1,791 sortie
+     ✅ aucun appel payant
