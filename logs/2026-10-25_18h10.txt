@@ -1,0 +1,222 @@
+
+[18:06] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « plastic pen cap »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Sunday, 25-Oct-26 10:07:32 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A_iAWYcnBQ4WkJXRSpf2GSH"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : carrick, Manchester United, #HojeEuVotoLula, Bournemouth, #DeixemONordesteVotar
+  🔎 « carrick » : 1 article(s) frais, le plus récent il y a 1.2 h (L'Équipe)
+  ⏭️  « carrick » écarté : trop secondaire (4/10)
+  🔎 « Manchester United » : 1 article(s) frais, le plus récent il y a 3.8 h (L'Équipe)
+  ⏭️  « Manchester United » écarté : trop secondaire (4/10)
+  🔎 « Bournemouth » : 1 article(s) frais, le plus récent il y a 3.1 h (L'Équipe)
+  ⏭️  « Bournemouth » écarté : Match de football de championnat etranger anecdotique.
+  🔎 « Vivant » : 1 article(s) frais, le plus récent il y a 3.1 h (Futura, le média qui explore le monde)
+  ⏭️  « Vivant » écarté : Article de vulgarisation scientifique sans nouveauté majeure
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 18h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 6.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/7 articles lus en 2.1s (19 déjà en cache)
+  📄 5/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Libération · Ouest-France · Blockworks
+  🧠 26 vecteurs calculés en 1 appel(s)
+  🧩 26 articles → 13 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 8 médias) : Présidentielle 2027 : priorité nationale, Jordan B
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 9 article(s) sur un autre sujet, écartés du dossier : Frandroid, Journal du Geek, La Tribune, Le Monde, Melty
+  ✂️ 1 élément(s) écartés — 1 source(s) hors sujet : Blockworks
+  🧮 Score 62.5/100 = gravité 3/10 → 14 + 8 médias +15 + frais 0.5h +16 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT, élection présidentielle au Brésil : les B
+  🚨 Sujet chaud (breaking, 1 médias) : Mobilisation du 24 octobre : des militants d'ultra
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 37.5/100 = gravité 3/10 → 14 + frais 0.1h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Notre seule boussole c’est la France » : Marine Le
+  🚨 Sujet chaud (breaking, 8 médias) : Une action SpaceX par enfant : l’annonce choc et b
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 90.5/100 = gravité 7/10 → 32 + 8 médias +15 + frais 0.5h +16 + thème porteur +10 + portée mondiale +18
+  🧩 7 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 7 exclusive(s)
+      [1m] ⚡exclusif Le Premier ministre israélien s'est attiré les foudres de ses rivaux.
+      [1m] ⚡exclusif Marine Le Pen a lancé un appel au calme face aux crises politiques.
+      [1m] ⚡exclusif Les syndicats de Fibre Excellence restent confiants malgré la liquidation de l
+      [1m] ⚡exclusif À Marseille, les commerçants expriment leur peur lorsqu'ils retrouvent leurs b
+      [1m] ⚡exclusif La DGA a enregistré des commandes d'armement record depuis le début de l'année
+      [1m] ⚡exclusif Le projet de solarisation de la base sous-marine de Bordeaux menace de ne jama
+      [1m] ⚡exclusif Banni du système en dollars, un pays utilise des dollars numériques à la place
+  🕒 Âge de l'article : 2.1h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Après l’attentat raciste de Trappes, le maire, Ali
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + frais 2.1h +4 + thème porteur +10 + portée mondiale +18 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 2.1h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 5 s
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Ali Rabeh (Wikipedia)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 8 médias) : Armée israélienne en état d'alerte, Marines améric
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 95.0/100 = gravité 8/10 → 36 + 8 médias +15 + frais 0.5h +16 + thème porteur +10 + portée mondiale +18
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 23 s
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (187 → 145 car.)
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Saudi Arabia says it intercepted missiles and dron
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : CNBC
+  🧮 Score 38.0/100 = gravité 8/10 → 36 + 2 médias +4 + ancien 14h -12 + portée internationale +10
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚽ API football-data : 32 match(s) sur 48h, dont France : 0
+  → 26 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Après l’attentat raciste de Trappes, le maire, Ali
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT, élection présidentielle au Brésil : les
+  ♻️ 7/10 [sports] (déjà analysé, cache) : «C’est incroyable, on ne peut pas rêver mieux» : C
+  ♻️ 8/10 [world] (déjà analysé, cache) : Armée israélienne en état d'alerte, Marines améric
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : « Les cryptomonnaies ne peuvent pas servir de voie
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Dette, note souveraine, taux d'intérêt records : L
+  ♻️ 7/10 [tech] (déjà analysé, cache) : CrackGate : l’écran pliable de l’iPhone Duo souffr
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Quelques heures en rayon, et l’iPhone Duo est déjà
+  ♻️ 7/10 [space] (déjà analysé, cache) : Une action SpaceX par enfant : l’annonce choc et b
+  ♻️ 8/10 [world] (déjà analysé, cache) : Saudi Arabia says it intercepted missiles and dron
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : UK banks face 10,000 complaints in 3 months over c
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Netanyahu floats use of blockchain as solution to 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Crypto longs lose $404 million in four hours as bi
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Argentine judge clears Milei and 10 others in LIBR
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Snap Two-Week Losing Streak Despite L
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Google Quietly Updates Privacy Policy to Let Gmail
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [tech] (déjà analysé, cache) : OLED iPad mini 8 debuting this week: Here’s what’s
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Touchscreen OLED MacBook Pro launches this week, h
+  🧠 Batch analyse de 5 articles...
+  🌍 8/10 sans portée internationale : « Notre seule boussole c’est la France » : Marine 
+  🌍 7/10 sans portée internationale : EN DIRECT Mobilisation du 24 octobre : les Gilets 
+  📉 3/10: Laurent Ruquier et Natacha Polony : après l'avoir côtoy
+  📉 2/10: À la TV ce soir : 3 films à regarder ce dimanche 25 oct
+  📉 4/10: Trump’s tariff pause angers some US ranchers, boosts Br
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.2h — Armée israélienne en état d'alerte, Marines 
+     8/10 · 1 média(s) · 0.5h — CrackGate : l’écran pliable de l’iPhone Duo 
+     9/10 · 2 média(s) · 1.7h — EN DIRECT, élection présidentielle au Brésil
+     8/10 · 1 média(s) · 0.5h — «C’est incroyable, on ne peut pas rêver mieu
+     8/10 · 1 média(s) · 0.5h — Quelques heures en rayon, et l’iPhone Duo es
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Sunday, 25-Oct-26 10:10:01 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ANC2qzmZgX4u3HNJCzLW7WC"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Armée israélienne en état d'alerte, Marines américains 
+
+  ── Bilan du cycle (211 s) ──
+     écartés : 2 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 1 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-001         ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 758
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 61,088 entrée · 2,563 sortie
+     ✅ aucun appel payant
