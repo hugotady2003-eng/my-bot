@@ -1,0 +1,141 @@
+
+[02:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : おジャ魔女, #EuVotoFazendoL, Corinthians, #precure, マシュタン
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 0.2 h (OneFootball)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Corinthians » écarté : trop secondaire (1/10)
+  🌍 « precure » : aucune reprise en français, source internationale retenue
+  🔎 « Tennessee » : 1 article(s) frais, le plus récent il y a 9.1 h (Google Actualités)
+  ⏭️  « Tennessee » écarté : Il s'agit d'une simple chronique littéraire ancienne.
+  🌍 « Scott Frost » : aucune reprise en français, source internationale retenue
+  🔎 « Scott Frost » : 1 article(s) frais, le plus récent il y a 0.1 h (Orlando Sentinel)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⏭️  « Scott Frost » écarté : Sport universitaire americain sans interet en France
+  📖 1/1 articles lus en 0.3s (33 déjà en cache)
+  📄 8/34 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Libération · Jeuxvideo.com · Blockworks
+  🧠 34 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Manifestations calmes, tensions en fin… »
+  🧠 Même événement (jugé) : « Après l'attentat de Trappes, le RN cib… »
+  🧠 Même événement (jugé) : « Almost 1,000 arrested as clashes follo… »
+  🧩 34 articles → 12 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 7 médias) : EN DIRECT, manifestations du 24 octobre : entre 41
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Ouest-France, Public
+  🧮 Score 56.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 3.7h +4 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif Le nombre de manifestants est estimé entre 410 000 par le ministère de l'Intér
+      [5m] Une nouvelle journée de manifestations et de mobilisation sociale contre la vi
+      [2m] De nombreuses interdictions de manifester, des restrictions et des couvre-feux
+      [2m] Des tensions, des heurts en fin de journée et des interventions des forces de 
+      [1m] ⚡exclusif Près de 1 000 arrestations ont été effectuées lors de cette journée de mobilis
+      [2m] La mobilisation fait suite aux appels d'anciens Gilets jaunes, d'organisations
+      [1m] ⚡exclusif Un important dispositif des forces de l'ordre, avec environ 70 000 policiers d
+      [1m] ⚡exclusif Des hommes politiques de différentes sensibilités (Marine Tondelier, Carlos Ma
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 10 médias) : Attentat raciste dans les Yvelines : le livre de H
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : BBC, BFMTV, Blockworks, Ouest-France, Sud Ouest
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 10 médias +15 + frais 5.5h +2 + thème porteur +10 + ⚡ attentat → plancher 89
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [4m] Un attentat raciste a eu lieu dans les Yvelines, faisant un mort et plusieurs 
+      [3m] Le tireur présumé, âgé de 39 ans et nommé Kévin T., a été interpellé.
+      [2m] Le Parquet national antiterroriste (PNAT) s'est saisi de l'enquête pour assass
+      [1m] ⚡exclusif Le suspect a déclaré aux policiers avoir voulu venger les commerçants en s'en 
+      [1m] ⚡exclusif Un rassemblement en hommage à la victime, identifiée comme Pengo Bossio Wangi,
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 7 médias) : Almost 1,000 arrested as clashes follow another da
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 9/10 → 40 + 7 médias +11 + frais 3.7h +4 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [1m] ⚡exclusif Près de 1 000 personnes ont été interpellées lors de la nouvelle journée de ma
+      [1m] ⚡exclusif Le ministère de l'Intérieur estime le nombre de manifestants à 410 000, tandis
+      [3m] 70 000 membres des forces de l'ordre ont été déployés pour sécuriser cette deu
+      [2m] Le président Emmanuel Macron avait décrété que seules les manifestations organ
+      [2m] Des heurts, des tirs de gaz lacrymogène, des canons à eau et des incendies de 
+  🌙 Sujet fort (score 66) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Saudi-led coalition says it downed 2 missiles fire
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 7/10 → 32 + frais 0.0h +16 + primeur absolue +8
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  ⚽ API football-data : 32 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 34 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (101 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.6-flash             ⚠️ Expecting property nam
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 1 × gemini-embedding-001         🚫 quota
+        23. clé 1 × gemini-embedding-2-preview   🚫 quota
+        24. clé 1 × gemini-embedding-2           🚫 quota
+        25. clé 2 × gemini-embedding-001         🚫 quota
+        26. clé 2 × gemini-embedding-2-preview   🚫 quota
+        27. clé 2 × gemini-embedding-2           🚫 quota
+        28. clé 3 × gemini-embedding-001         🚫 quota
+        29. clé 3 × gemini-embedding-2-preview   ✅
+        30. clé 4 × gemini-3.6-flash             🚫 quota
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2 · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.1-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 10,960 entrée · 1,878 sortie
+     ✅ aucun appel payant
