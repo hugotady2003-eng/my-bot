@@ -1,0 +1,105 @@
+
+[06:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Lula, Brazil, #LaGranjaGala, #nonaxShopee, Chiefs
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 0.5 h (Eurosport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Chiefs » écarté : Match de saison régulière sans enjeu majeur.
+  🔎 « Eric Bauza » : 1 article(s) frais, le plus récent il y a 0.6 h (IMDb)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Eric Bauza » écarté : Il s'agit d'une fausse information, canular.
+  🔎 « Mahomes » : 1 article(s) frais, le plus récent il y a 0.2 h (Mezha.net)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Mahomes » écarté : Il s'agit d'un match de pré-saison ancien.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula, #Brazil
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/8 articles lus en 1.9s (56 déjà en cache)
+  📄 9/64 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Jeuxvideo.com · The Block · Blockworks
+  🧠 64 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Colère des lycéens : Arrive-t-on vraim… »
+  🧠 Même événement (jugé) : « Élections législatives en Israël : 7-O… »
+  🧠 Même événement (jugé) : « Guerre au Moyen-Orient : tension à 48 … »
+  🧩 64 articles → 23 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Brésil : Lula réélu président à la surprise générale
+  🚨 Sujet chaud (breaking, 21 médias) : Attentat raciste à Trappes: la garde à vue du susp
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 30 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, ActuGaming, BBC Business, BFMTV, Blockworks
+  🧮 Score 69.0/100 = gravité 8/10 → 36 + 21 médias +20 + frais 0.6h +13
+  🧩 8 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] Des élections législatives israéliennes se tiendront le mardi 27 octobre 2026.
+      [2m] Le scrutin est perçu comme un référendum sur le maintien au pouvoir du Premier
+      [2m] Le contexte électoral est marqué par les conséquences de l'attaque du Hamas du
+      [1m] ⚡exclusif La coalition pro-Netanyahou inclut des partis d'extrême droite et ultra-orthod
+      [2m] L'opposition est menée par une coalition incluant Gadi Eisenkot et Yair Golan.
+      [1m] ⚡exclusif Donald Trump a publiquement appelé à voter pour Benyamin Netanyahou.
+      [1m] ⚡exclusif Le témoignage d'une habitante d'Ofakim illustre le traumatisme local lié aux a
+      [1m] ⚡exclusif Al Jazeera qualifie la réponse militaire israélienne à Gaza de guerre génocida
+  🌙 Sujet fort (score 69) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (61h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Brazil's Lula wins historic presidential election; B
+  ⚽ API football-data : 5 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 64 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (116 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 1 × gemini-embedding-2           🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   🚫 quota
+        18. clé 2 × gemini-embedding-2           🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 3 × gemini-embedding-2-preview   🚫 quota
+        21. clé 3 × gemini-embedding-2           🚫 quota
+        22. clé 4 × gemini-embedding-001         🚫 quota
+        23. clé 4 × gemini-embedding-2-preview   ✅
+        24. clé 2 × gemini-3.6-flash             🚫 quota
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 758 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 9,079 entrée · 862 sortie
+     ✅ aucun appel payant
