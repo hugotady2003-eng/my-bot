@@ -1,0 +1,370 @@
+
+[20:51] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « plastic pen cap »
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 26-Oct-26 12:52:42 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AkYq_he3_DPL2PPJQ6q3Xmw"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #GSvFB, #BallonDor, Harry Kane, #الاهلي_الغرافه, #exercitodoLula
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Yamal, #WalterKoenig, #Chekov
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 20h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 4.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/9 articles lus en 1.9s (28 déjà en cache)
+  📄 6/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Blockworks
+  🧠 37 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Lula wins fourth term in dramatic Braz… »
+  🧩 37 articles → 15 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT Ballon d’or 2026 : Kylian Mbappé vainque
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 38.0/100 = gravité 8/10 → 36 + frais 5.9h +2
+  → Sujet chaud pas assez fort (score 38) → suivant
+  🚨 Sujet chaud (breaking, 8 médias) : Présidentielle au Brésil: Donald Trump dénonce des
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : ActuGaming, Frandroid, IGN France, Journal du Geek, La Tribune
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + 8 médias +15 + frais 1.4h +8 + portée mondiale +18
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 10 médias) : Attentat raciste dans les Yvelines : la garde à vu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : Ars Technica, BFM People, Blockworks, Gamekult, La Dépêche
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + 10 médias +15 + frais 1.0h +13 + thème porteur +10 + portée internationale +10 + ⚡ attentat → plancher 89
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [3m] La garde à vue du suspect de l'attentat dans les Yvelines a repris après une i
+      [3m] L'attaque survenue à Trappes et La Verrière a fait un mort et plusieurs blessé
+      [2m] Le Parquet national antiterroriste (PNAT) qualifie les faits d'attentat racist
+      [1m] ⚡exclusif Un expert psychiatre a conclu que l'état de santé du suspect était compatible 
+      [1m] ⚡exclusif L'analyse toxicologique a révélé la présence de cannabis et de cocaïne dans le
+      [1m] ⚡exclusif Le suspect a ouvert le feu en huit lieux différents sur 12 kilomètres avant d'
+      [1m] ⚡exclusif La victime décédée est un jeune homme de 26 ans nommé Pengo Bossio Wangi.
+      [1m] ⚡exclusif Le suspect affirme souffrir de schizophrénie.
+  🕒 Âge de l'article : 1.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Elden Ring : Le film d’A24 disposerait d’un budget
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 2.5h +4 + portée internationale +10
+  🕒 Âge de l'article : 2.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (179 → 124 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 10 médias) : Attentat de Trappes : le PNAT dément que des « tra
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 10 médias +15 + frais 1.0h +13 + thème porteur +10 + portée internationale +10 + ⚡ attentat → plancher 89
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [3m] Un attentat à caractère raciste et terroriste a eu lieu à Trappes et La Verriè
+      [2m] Le suspect, nommé Kevin T., a été interpellé et placé en garde à vue, avec une
+      [2m] Le procureur antiterroriste Olivier Christen a tenu un point presse ou s'est e
+      [1m] ⚡exclusif Des armes, un pistolet mitrailleur, des chargeurs, un couteau, du matériel de 
+      [1m] ⚡exclusif L'analyse toxicologique a révélé la présence de cannabis et de cocaïne dans le
+      [2m] La victime décédée est un jeune homme de 26 ans nommé Pengo Bossio Wangi.
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT PSG - OL : Paris de retour à sa place de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + frais 1.9h +8 + thème porteur +10 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 10 médias) : Attentat à Trappes et La Verrière : Kévin T. va-t-
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 10 médias +15 + frais 1.0h +8 + thème porteur +10 + portée internationale +10 + ⚡ attentat → plancher 89
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] Un attentat à caractère raciste et terroriste a été commis à Trappes et La Ver
+      [3m] L'état de santé de Kévin T. a nécessité des vérifications et une observation p
+      [3m] Le Parquet national antiterroriste (PNAT) et son procureur Olivier Christen pi
+      [1m] ⚡exclusif Des analyses toxicologiques ont révélé la présence de cannabis et de cocaïne d
+      [1m] ⚡exclusif Le suspect a ouvert le feu en huit lieux différents sur un parcours de 12 kilo
+      [1m] ⚡exclusif De nombreuses armes et équipements, incluant un pistolet mitrailleur et un bra
+      [1m] ⚡exclusif La victime décédée est un jeune homme de 26 ans nommé Pengo Bossio Wangi.
+  🕒 Âge de l'article : 2.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une enquête ouverte après le vol d’un métal rare sur
+  🚨 Sujet chaud (breaking, 2 médias) : Cinéma : l’acteur qui jouait Pavel Chekov dans la 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 57.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 1.3h +8 + primeur +5
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  🕊️ Hommage validé par le modèle — Décès naturel d'une personnalité publique · décès : dimanche soir
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ Portrait Wikipédia récupéré pour Walter Koenig (528 ko)
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 8 médias) : iPhone Duo : Apple reconnaît un problème d’écran s
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + 8 médias +15 + frais 1.4h +8 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🎥 Vidéo d'actu récupérée (515 Ko) chez images.frandroid.com → attachée au tweet
+  🎥 Vidéo éditoriale trouvée dans l'article → attachée
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 10 médias) : Le petit-cousin du prince Albert II, Antoine de Ma
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 10 médias +15 + frais 1.0h +8 + thème porteur +10 + portée internationale +10 + ⚡ attentat → plancher 89
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [3m] Un attentat raciste et terroriste a été commis vendredi dans les Yvelines, à T
+      [2m] Le suspect de l'attentat, Kévin T., a été placé en garde à vue et son audition
+         ↳ 20 Minutes : Le suspect a été transféré à l'Infirmerie psychiatrique de la pr
+         motif : Évolution et précisions judiciaires communiquées à des moments différe
+      [2m] Le procureur antiterroriste Olivier Christen a tenu un point presse pour détai
+      [2m] La victime décédée est Pengo Bossio Wangi, un jeune homme de 26 ans.
+      [1m] ⚡exclusif Les analyses toxicologiques ont révélé la présence de cannabis et de cocaïne d
+      [1m] ⚡exclusif Des armes, des munitions, un couteau, une bombe lacrymogène et du matériel de 
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  🖼️🤝 Image récupérée chez un média jumeau (Sud Ouest) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFM People illustre en plateau → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Arkane Lyon va être la prochaine victime de Microsof
+  🚨 Sujet chaud (breaking, 10 médias) : Musk accuses Ukraine of violating Starlink terms w
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 10 médias +15 + frais 1.0h +8 + thème porteur +10 + portée internationale +10 + ⚡ attentat → plancher 89
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [3m] Un attentat à caractère raciste et terroriste a eu lieu vendredi à Trappes et 
+      [2m] Le suspect de l'attentat se nomme Kévin T.
+      [2m] La garde à vue du suspect a été suspendue pour des examens psychiatriques avan
+         ↳ 20 Minutes : La garde à vue a été mise sur pause dimanche et le suspect a été
+         motif : Précisions temporelles et de lieu différentes selon l'avancement de l'
+      [1m] ⚡exclusif Un expert psychiatre a conclu que l'état de santé de Kévin T. était compatible
+      [2m] Le procureur antiterroriste Olivier Christen a donné un point presse lundi en 
+      [1m] ⚡exclusif L'analyse toxicologique a révélé la présence de cannabis et de cocaïne dans le
+      [2m] La victime décédée est un jeune homme de 26 ans nommé Pengo Bossio Wangi.
+      [1m] ⚡exclusif Le suspect a ouvert le feu en huit lieux différents sur un parcours de 12 kilo
+  🕒 Âge de l'article : 1.8h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Monaco : un membre de la famille princière retrouv
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.8h +13 + primeur +5
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 10 médias) : Guerre en Ukraine : portée de 1 200 km, vol à bass
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 10 médias +15 + frais 1.1h +8 + thème porteur +10 + portée internationale +10 + ⚡ attentat → plancher 89
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.5-flash-lite (clé 4) : Expecting ',' delimiter: line 2 column 26 (char 27) → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 3 column 17 (char 98) → couple suivant
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : L'acteur Walter Koenig qui incarnait Pavel Chekov 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 57.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 1.3h +8 + primeur +5
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  ⚠️ Parcours Wikipédia indisponible pour L'acteur Walter Koenig (HTTP Error 404: Not Found)
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  🕊️ Hommage validé par le modèle — Décès naturel d'une personnalité publique connu. · décès : dimanche 25 octobre
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ Portrait Wikipédia récupéré pour Walter Koenig (528 ko)
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 5 match(s) sur 48h, dont France : 0
+  → 37 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Attentat de Trappes : le PNAT dément que des « tra
+  ♻️ 7/10 [world] (déjà analysé, cache) : Présidentielle au Brésil: Donald Trump dénonce des
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Attentat raciste dans les Yvelines : la garde à vu
+  ♻️ 8/10 [sports] (déjà analysé, cache) : EN DIRECT Ballon d’or 2026 : Kylian Mbappé vainque
+  ♻️ 7/10 [breaking] (déjà analysé, cache) : Attentat à Trappes et La Verrière : Kévin T. va-t-
+  ♻️ 7/10 [sports] (déjà analysé, cache) : EN DIRECT PSG - OL : Paris de retour à sa place de
+  ♻️ 8/10 [world] (déjà analysé, cache) : Monaco : un membre de la famille princière retrouv
+  ♻️ 9/10 [world] (déjà analysé, cache) : Cinéma : l’acteur qui jouait Pavel Chekov dans la 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : portée de 1 200 km, vol à bass
+  ♻️ 6/10 [markets] (déjà analysé, cache) : « Que faut-il donc à Moody’s pour dégrader la Fran
+  ♻️ 7/10 [tech] (déjà analysé, cache) : iPhone Duo : Apple reconnaît un problème d’écran s
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le petit-cousin du prince Albert II, Antoine de Ma
+  ♻️ 9/10 [hommage] (déjà analysé, cache) : L'acteur Walter Koenig qui incarnait Pavel Chekov 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Albert II : son petit cousin Antoine de Massy retr
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : Arkane Lyon va être la prochaine victime de Micros
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Un sursis pour Arkane (Dishonored) : Xbox accorde 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Microsoft annonce un plan de départs volontaires a
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Elden Ring : Le film d’A24 disposerait d’un budget
+  ♻️ 7/10 [business] (déjà analysé, cache) : Microsoft propose des indemnités de départ à 60 00
+  ♻️ 8/10 [world] (déjà analysé, cache) : Lula wins fourth term in dramatic Brazil election 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Celebrations in Serbia after veteran ruler Vučić l
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : AI company Anthropic announces IPO, expected as ea
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : NBA names Kalshi, Polymarket preferred exchanges, 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : South Korea lawmakers mull pushing crypto tax impl
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Hyperliquid says Kraken parent Payward to be first
+  ♻️ 6/10 [ai] (déjà analysé, cache) : AI Agents Found a Way Into Anthropic's Business Sy
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Uh oh, it sounds like the iPhone Duo keeps crackin
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Musk accuses Ukraine of violating Starlink terms w
+  🧠 Batch analyse de 7 articles...
+  📉 4/10: Pour François Bayrou, ancien Premier ministre, si Marin
+  📉 2/10: Méduses, moustiques et colibris : comment font‑ils pour
+  🌍 7/10 sans portée internationale : Une enquête ouverte après le vol d’un métal rare s
+  📉 3/10: Quel avenir pour l’école ? Voici ce que proposent les p
+  📉 5/10: AI and oil worries rattle Asian currencies from Taiwan 
+  ✅ 6/10 [crypto] mondiale: CZ pitches BNB Chain’s role in AI as BNB Standar
+  📉 3/10: NASA SEES Interns Tackle Real-World Challenges in Lunar
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.5h — Attentat de Trappes : le PNAT dément que des
+     10/10 · 4 média(s) · 0.7h — Monaco : un membre de la famille princière r
+     9/10 · 1 média(s) · 0.5h — Guerre en Ukraine : portée de 1 200 km, vol 
+     10/10 · 3 média(s) · 2.0h — Attentat raciste dans les Yvelines : la gard
+     10/10 · 1 média(s) · 2.0h — EN DIRECT PSG - OL : Paris de retour à sa pl
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 26-Oct-26 13:00:26 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AQEBrPst1Q10yGv9E6wF6Wd"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Attentat de Trappes : le PNAT dément que des « tracts »
+
+  ── Bilan du cycle (547 s) ──
+     écartés : 2 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   ✅
+        18. clé 3 × gemini-3.5-flash-lite        ✅
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 3 × gemini-3.6-flash             ✅
+        28. clé 3 × gemini-3.6-flash             🚫 quota
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 36 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-001 · clé 4 × gemini-embedding-2 (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 733
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 200,594 entrée · 10,544 sortie
+     ✅ aucun appel payant
