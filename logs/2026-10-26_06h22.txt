@@ -1,0 +1,119 @@
+
+[06:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Lula, Brazil, #LaGranjaGala, #nonaxShopee, Chiefs
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 0.3 h (Eurosport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Chiefs » écarté : Match de saison régulière sans enjeu majeur.
+  🔎 « Eric Bauza » : 1 article(s) frais, le plus récent il y a 0.4 h (IMDb)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Eric Bauza » écarté : Il s'agit d'une fausse information, canular.
+  🔎 « Mahomes » : 1 article(s) frais, le plus récent il y a 19.0 h (Lente Desportiva)
+  ⏭️  « Mahomes » écarté : trop secondaire (3/10)
+  🌍 « Nikolas » : aucune reprise en français, source internationale retenue
+  🔎 « Nikolas » : 1 article(s) frais, le plus récent il y a 8.6 h (FOX Sports)
+  ⏭️  « Nikolas » écarté : Simple fiche statistique sportive sans fait nouveau.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula, #Brazil
+  📖 7/7 articles lus en 1.7s (55 déjà en cache)
+  📄 9/62 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Jeuxvideo.com · The Block · Blockworks
+  🧠 62 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Quelles sont les pistes étudiées par l… »
+  🧠 Même événement (jugé) : « Colère des lycéens : Arrive-t-on vraim… »
+  🧩 62 articles → 20 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Brésil : Lula réélu président à la surprise générale
+  🚨 Sujet chaud (breaking, 16 médias) : Attentat raciste à Trappes: la garde à vue du susp
+  🧠 24 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, Blockworks, CNBC, France Info
+  🧮 Score 71.0/100 = gravité 8/10 → 36 + 16 médias +18 + frais 0.6h +13 + imprévu 6/10 +4
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 21 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 4 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Les textes fournis ne contiennent aucune information concernant l'attentat rac
+      [1m] ⚡exclusif Rachel Edri a été prise en otage par cinq terroristes du Hamas à Ofakim le 7 o
+      [1m] ⚡exclusif La ville d'Ofakim s'apprête à voter pour les élections législatives israélienn
+      [1m] ⚡exclusif Le Premier ministre israélien fait face à des critiques de la part de ses riva
+  🌙 Sujet fort (score 71) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (61h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 16 médias) : Guerre en Ukraine : discussions sous médiation amé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + 16 médias +18 + frais 0.6h +13
+  🧩 4 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif La ville d'Ofakim en Israël se prépare à voter pour des élections législatives
+      [1m] ⚡exclusif Rachel Edri, une habitante d'Ofakim, a été prise en otage par des membres du H
+      [1m] ⚡exclusif Le Premier ministre israélien Benyamin Nétanyahou fait l'objet de critiques de
+      [1m] ⚡exclusif Le soutien politique à Benyamin Nétanyahou reste fort dans certains quartiers 
+  🌙 Sujet fort (score 67) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Social video captures moment Brazil’s election turne
+  ⚽ API football-data : 5 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 62 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (117 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-2-preview   🚫 quota
+        25. clé 3 × gemini-embedding-2           🚫 quota
+        26. clé 4 × gemini-embedding-001         🚫 quota
+        27. clé 4 × gemini-embedding-2-preview   ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        38. clé 3 × gemini-3.6-flash             🚫 quota
+        39. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-embedding-001 (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 758 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 12,522 entrée · 979 sortie
+     ✅ aucun appel payant
