@@ -1,0 +1,145 @@
+
+[07:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Lula, Brazil, #LaGranjaGala, #nonaxShopee, #はま寿司旨ねたこれ食べる
+  🔎 « Brazil » : 1 article(s) frais, le plus récent il y a 10.4 h (TradingView)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⏭️  « Brazil » écarté : Actualite internationale passee sans impact direct en France
+  🔎 « Eric Bauza » : 1 article(s) frais, le plus récent il y a 1.6 h (IMDb)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Eric Bauza » écarté : Il s'agit d'une fausse information, canular.
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 1.5 h (Eurosport)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Chiefs » écarté : Match de saison régulière sans enjeu majeur.
+  🔎 « Mahomes » : 1 article(s) frais, le plus récent il y a 1.2 h (Mezha.net)
+  ⏭️  « Mahomes » écarté : Il s'agit d'un match de pré-saison ancien.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Lula
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/6 articles lus en 0.9s (22 déjà en cache)
+  📄 6/28 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Jeuxvideo.com · The Block · Blockworks
+  🧠 28 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 28 articles → 12 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Présidentielle au Brésil : victoire surprise de Lula
+  🚨 Sujet chaud (breaking, 3 médias) : Guerre au Moyen-Orient : un nouveau missile tiré p
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Ouest-France, Sud Ouest
+  🧮 Score 74.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.4h +16 + thème porteur +10 + portée internationale +10
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Affirmations non analysables (Error code: 400 - {'type': 'error', 'error':)
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgQP68nwNS2PFJBfCTzsf'}
+  ⚽ API football-data : 5 match(s) sur 48h, dont France : 0
+  → 28 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : Présidentielle au Brésil : victoire surprise de Lu
+  ♻️ 9/10 [world] (déjà analysé, cache) : Élections au Brésil : le président Lula réélu
+  ♻️ 9/10 [world] (déjà analysé, cache) : Les Houthis attaquent une nouvelle fois l'aéroport
+  ♻️ 9/10 [world] (déjà analysé, cache) : Brésil : Déjouant les pronostics, Lula remporte la
+  ♻️ 7/10 [markets] (déjà analysé, cache) : La dette de la France, maillon faible de la zone E
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre au Moyen-Orient : un nouveau missile tiré p
+  ♻️ 9/10 [world] (déjà analysé, cache) : Présidentielle au Brésil : Lula décroche un quatri
+  ♻️ 8/10 [world] (déjà analysé, cache) : Élection présidentielle au Brésil : Lula réélu con
+  ♻️ 8/10 [world] (déjà analysé, cache) : Armée israélienne en état d'alerte, Marines améric
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Alerte CrackGate : les écrans de l’iPhone Duo semb
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Anthropic poursuivi par les ayants droit d’Elvis :
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Xbox fait payer ses joueurs 0,35€ de l'heure... su
+  ♻️ 9/10 [world] (déjà analysé, cache) : Celebrations in Serbia after veteran ruler Vučić l
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : India's largest crypto exchange absorbs $16 millio
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin wallet bug let rogue servers steal funds w
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin slips under $80,000 as traders de-risk ahe
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Crypto longs lose $404 million in four hours as bi
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Snap Two-Week Losing Streak Despite L
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Google Quietly Updates Privacy Policy to Let Gmail
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [tech] (déjà analysé, cache) : A YouTuber dissected an iPhone Duo and thinks he f
+  ♻️ 6/10 [tech] (déjà analysé, cache) : OLED iPad mini 8 debuting this week: Here’s what’s
+  🧠 Batch analyse de 6 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgQP6RX1nptTGLDHXk3eB'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 5 média(s) · 0.2h — Élections au Brésil : le président Lula réél
+     10/10 · 2 média(s) · 0.2h — Les Houthis attaquent une nouvelle fois l'aé
+     10/10 · 5 média(s) · 0.3h — Élection présidentielle au Brésil : Lula réé
+     10/10 · 5 média(s) · 0.7h — Présidentielle au Brésil : Lula décroche un 
+     9/10 · 2 média(s) · 0.1h — Alerte CrackGate : les écrans de l’iPhone Du
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgQP6g4dKxP2DBBask8z8'}
+  → 1 sélectionné(s) [world]
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Sujet non vérifiable (modèle indisponible) → rien publié : Élections au Brésil : le président Lula réélu
+
+  ── Bilan du cycle (128 s) ──
+     écartés : 1 sujet banal · 1 sujet non vérifiable
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 2 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.6-flash             🚫 quota
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         🚫 quota
+        30. clé 4 × gemini-embedding-2-preview   🚫 quota
+        31. clé 4 × gemini-embedding-2           🚫 quota
+        32. clé 5 × gemini-embedding-001         ✅
+        33. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.6-flash             🚫 quota
+        35. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        38. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        39. clé 5 × gemini-3.6-flash             ✅
+        40. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 755 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,014 entrée · 162 sortie
+     ⚠️ 6 appel(s) payés chez Claude (le gratuit n'a pas suffi)
