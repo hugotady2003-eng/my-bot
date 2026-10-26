@@ -1,0 +1,181 @@
+
+[00:38] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #BallonDor, Harry Kane, هاري كين, #GSvFB, Mbappe
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #HarryKane, #Alexia, #LamineYamal
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📖 48 articles, tous en cache
+  📄 6/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · The Block · Ouest-France · Blockworks
+  🧠 48 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « DOJ charges ex-FBI Director James Come… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Uh-oh, it sounds like the iPhone Duo k… »
+  🧩 48 articles → 22 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Harry Kane, un Ballon d’or 2026 so prolifique
+  🚨 Sujet chaud (breaking, 13 médias) : Attentat de Trappes : des rassemblements organisés
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🧠 10 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC, BFM People, BFMTV, France Bleu
+  🧮 Score 67.5/100 = gravité 7/10 → 32 + 13 médias +18 + frais 1.6h +8 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 5 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [7m] Harry Kane a remporté le Ballon d'or 2026.
+      [5m] La cérémonie du Ballon d'or 2026 s'est déroulée ce lundi 26 octobre à Londres.
+         ↳ France Bleu : La cérémonie du Ballon d'or se déroulait au théâtre du Châtelet 
+         motif : Erreur géographique dans le texte de France Bleu.
+      [2m] Alexia Putellas a remporté le Ballon d'or féminin 2026.
+      [1m] ⚡exclusif Kylian Mbappé termine à la deuxième place du Ballon d'or 2026.
+      [2m] Harry Kane devient le premier joueur anglais récompensé depuis Michael Owen en
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 13 médias) : Brésil : après la défaite de Bolsonaro, Trump déno
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.5/100 = gravité 7/10 → 32 + 13 médias +18 + frais 1.6h +8 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 0 exclusive(s)
+      [7m] Harry Kane a remporté le Ballon d'Or 2026.
+      [5m] La cérémonie du Ballon d'Or 2026 s'est déroulée ce lundi 26 octobre à Londres.
+         ↳ France Bleu : La cérémonie du Ballon d'or 2026 se déroulait au théâtre du Chât
+         motif : Erreur de localisation dans une source.
+      [2m] Alexia Putellas a remporté le Ballon d'or féminin 2026.
+      [2m] Kylian Mbappé termine à la deuxième place du Ballon d'Or 2026.
+      [2m] Harry Kane devient le premier joueur anglais à remporter le Ballon d'Or depuis
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 13 médias) : Attentat à Trappes et La Verrière : Kévin T. va-t-
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.5/100 = gravité 7/10 → 32 + 13 médias +18 + frais 1.6h +8 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 9 affirmation(s) : 6 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [7m] Harry Kane a remporté le Ballon d'Or 2026.
+      [5m] La cérémonie du Ballon d'Or 2026 s'est déroulée à Londres.
+         ↳ France Bleu : La cérémonie a eu lieu au théâtre du Châtelet à Paris.
+         motif : Erreur factuelle interne au sein de la rédaction de France Bleu.
+      [2m] Alexia Putellas a remporté le Ballon d'Or féminin 2026.
+      [4m] Kylian Mbappé a terminé deuxième du classement du Ballon d'Or 2026.
+      [1m] ⚡exclusif Kevin T. est le suspect principal de l'attentat de Trappes et fait l'objet d'u
+      [2m] Harry Kane est le premier Anglais à remporter le Ballon d'Or depuis Michael Ow
+      [2m] Harry Kane a marqué 73 buts au total sur la saison 2025-2026.
+      [1m] ⚡exclusif Lamine Yamal a remporté le trophée du meilleur jeune joueur.
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Le petit-cousin du prince Albert II, Antoine de Ma
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 33.5/100 = gravité 7/10 → 32 + frais 4.7h +2
+  → Sujet chaud pas assez fort (score 34) → suivant
+  🚨 Sujet chaud (breaking, 13 médias) : L'acteur Walter Koenig qui incarnait Pavel Chekov 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 76.5/100 = gravité 9/10 → 40 + 13 médias +18 + frais 1.6h +8 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  ⚠️ Parcours Wikipédia indisponible pour L'acteur Walter Koenig (HTTP Error 404: Not Found)
+  🕒 Âge de l'article : 4.9h (frais ✅)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🕊️ Hommage validé par le modèle — Décès naturel d'un acteur célèbre de Star Trek · décès : 25 octobre
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 3 column 3 (char 88) → couple suivant
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgRjS1cEyxUXgHXde1e7L'}
+  🚨 Sujet chaud (breaking, 2 médias) : Former FBI director James Comey hit with third set
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 63.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 1.4h +8 + primeur +5 + portée internationale +10
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Affirmations non analysables (Error code: 400 - {'type': 'error', 'error':)
+  🌙 Sujet fort (score 63) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : OpenAI announces three big science discoveries and
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 89.0/100 = gravité 10/10 → 45 + frais 0.1h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : Guerre en Ukraine : portée de 1 200 km, vol à bass
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 56.0/100 = gravité 8/10 → 36 + 2 médias +4 + ancien 3511h -12 + thème porteur +10 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L'attaquant anglais du Bayern Munich, Harry Kane déc
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ballon d'or 2026 : l'attaquant du Bayern Munich Harr
+  ⚽ API football-data : 5 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 48 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (174 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 1 × gemini-3.6-flash             🚫 quota
+        11. clé 1 × gemini-3-flash               ⛔ inexistant
+        12. clé 2 × gemini-3.5-flash-lite        ✅
+        13. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        22. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        25. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.6-flash             ⚠️ Expecting property nam
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.6-flash             🚫 quota
+        29. clé 3 × gemini-3.6-flash             🚫 quota
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        36. clé 4 × gemini-3.6-flash             🚫 quota
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-embedding-001 (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 733
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 31,786 entrée · 2,694 sortie
+     ⚠️ 10 appel(s) payés chez Claude (le gratuit n'a pas suffi)
