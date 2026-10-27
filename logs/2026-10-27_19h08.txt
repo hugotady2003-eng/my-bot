@@ -1,0 +1,184 @@
+
+[19:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « empty French village street »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 66 (char 65) → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Tuesday, 27-Oct-26 11:02:48 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AKlc4A_CX3Wisz2EtEtSbXg"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Soso, Montella, Nelson, #ザッツMILK, Fugiu
+  🌍 « Montella » : aucune reprise en français, source internationale retenue
+  🔎 « Nelson » : 1 article(s) frais, le plus récent il y a 1.0 h (Touchdown Actu)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Nelson » écarté : Simple rumeur ou actualite sportive mineure
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Chine, #Genie4
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 19h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 5.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 18/22 articles lus en 5.1s (15 déjà en cache)
+  📄 6/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Blockworks
+  🧠 37 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « "Le racisme tue, la haine de l'autre t… »
+  🧩 37 articles → 15 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT, législatives en Israël : le taux de parti
+  🚨 Sujet chaud (breaking, 16 médias) : Manifestations du 17 octobre : près de 2 500 comme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 18 article(s) sur un autre sujet, écartés du dossier : Ars Technica, BFMTV, Blockworks, CNBC, Dexerto
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + 16 médias +18 + frais 0.4h +16
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Serge Papin (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : Mobilisation lycéenne : « On devrait être satisfaits
+  🚨 Sujet chaud (breaking, 1 médias) : Elections en Israël, polémique Mao-Mbappé en Chine
+  🧮 Score 40.5/100 = gravité 3/10 → 14 + frais 0.2h +16 + programmé 0/10 -15 + primeur absolue +8 + portée mondiale +18
+  → Sujet chaud pas assez fort (score 40) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Google’s Genie 4 world model adds audio, more realis
+  🚨 Sujet chaud (breaking, 4 médias) : Attentat raciste de Trappes : Sébastien Lecornu dé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : France Info, Le Monde, Ouest-France
+  🧮 Score 51.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 1.5h +8
+  🕒 Âge de l'article : 3.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Sébastien Lecornu (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  → 37 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT, législatives en Israël : le taux de par
+  ♻️ 8/10 [world] (déjà analysé, cache) : Attentat raciste de Trappes : Sébastien Lecornu dé
+  ♻️ 7/10 [business] (déjà analysé, cache) : Manifestations du 17 octobre : près de 2 500 comme
+  ♻️ 8/10 [world] (déjà analysé, cache) : Elections législatives en Israël : le parti de Ben
+  ♻️ 8/10 [hommage] (déjà analysé, cache) : "Le racisme tue, la haine de l'autre tue" : l'Asse
+  ♻️ 7/10 [business] (déjà analysé, cache) : Taxe Shein, Temu, AliExpress : comment un petit co
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Fin de Parcoursup : le gouvernement prépare un rem
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Néocloud : l'alerte d'Elon Musk accélère la chute 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Microsoft ouvre la porte à des départs volontaires
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Fed expected to hold rates steady, but Warsh may p
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Robinhood taps Ripple’s $2.5 billion RLUSD stablec
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Nasdaq-100 comes onchain as Janus Henderson and Ce
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google’s Genie 4 world model adds audio, more real
+  🎯 Pré-classement : 1 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 2/10: Cousin d'Albert II de Monaco, il traverse l'Afrique en 
+  📉 4/10: Anthropic's IPO could be 'speculative fiction' or a 'ge
+  ✅ 6/10 [world] large: Crimes de guerre : une survivante de la junte bi
+  📉 4/10: DeepMind unveils Genie 4 world model promising more rea
+  🌍 7/10 sans portée internationale : Diagonale des fous à La Réunion : un coureur secou
+  🌍 7/10 sans portée internationale : Manifestations des 17 et 24 octobre : "Jusqu'à 10 
+  📉 5/10: Le chapitre 1197 de One Piece révèle les nouvelles flam
+  📉 5/10: Laure Manaudou prend "du plaisir" malgré la douleur : "
+  📉 3/10: From cheap tool to premium subscription: When a beloved
+  🌍 7/10 sans portée internationale : Protesters storm Serbian pro-Vucic TV station afte
+  🌍 7/10 sans portée internationale : "Un gâchis attendu": après l'annonce de la fermetu
+  📉 4/10: Ford simplifies using your EV as a home battery with th
+  📉 3/10: Someone is bringing Android Auto back to your phone’s s
+  📉 2/10: Poêle à granulés au minimum la nuit : le réflexe danger
+  ✅ 6/10 [tech] mondiale: Éviter "une société où la surveillance dissimulé
+  📉 3/10: J’ai roulé 500 km avec le Coros Dura 2 Solar et la mont
+  🌍 6/10 sans portée internationale : Ils avaient été sauvés du trafic et "vont malheure
+  📉 4/10: Les fans des « Feux de l’amour » lancent une pétition p
+  📉 3/10: Mobilisation lycéenne : « On devrait être satisfaits de
+  📉 2/10: Early Black Friday Deals 2026
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 2 média(s) · 0.4h — Manifestations du 17 octobre : près de 2 500
+     10/10 · 3 média(s) · 1.8h — Elections législatives en Israël : le parti 
+     10/10 · 2 média(s) · 2.9h — "Le racisme tue, la haine de l'autre tue" : 
+     9/10 · 2 média(s) · 0.7h — EN DIRECT, législatives en Israël : le taux 
+     10/10 · 2 média(s) · 3.4h — Attentat raciste de Trappes : Sébastien Leco
+  ⚠️ Wikipedia: The read operation timed out
+  → 1 sélectionné(s) [business]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Serge Papin (Wikipedia)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Tuesday, 27-Oct-26 11:08:35 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A6zU8TeGX8EVR3ceNoWczO_"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Manifestations du 17 octobre : près de 2 500 commerces 
+
+  ── Bilan du cycle (403 s) ──
+     écartés : 5 sans portée internationale · 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         3. clé 1 × gemini-3.6-flash             🚫 quota
+         4. clé 1 × gemini-3-flash               ⛔ inexistant
+         5. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         6. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         7. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         8. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+         9. clé 2 × gemini-3-flash               ⛔ inexistant
+        10. clé 3 × gemini-3.5-flash-lite        ✅
+        11. clé 2 × gemini-3.6-flash             🚫 quota
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 2 × gemini-embedding-001         🚫 quota
+        16. clé 2 × gemini-embedding-2-preview   ✅
+        17. clé 3 × gemini-3.5-flash-lite        ✅
+        18. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.6-flash             🚫 quota
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 760
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 55,307 entrée · 2,016 sortie
+     ✅ aucun appel payant
