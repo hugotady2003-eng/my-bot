@@ -1,0 +1,207 @@
+
+[07:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : ユナイト, ちばてつや先生, #秋の新作はコク濃な濃厚味噌だしうどん, #TOIYouthIconsUP, Harry Kane
+  🔎 « king » : 1 article(s) frais, le plus récent il y a 0.8 h (ladepeche.fr)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « king » écarté : trop secondaire (2/10)
+  🔎 « Brewers » : 1 article(s) frais, le plus récent il y a 0.3 h (L'Équipe)
+  ⏭️  « Brewers » écarté : trop secondaire (2/10)
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 3.2 h (Touchdown Actu)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Eagles » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #HarryKane
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/6 articles lus en 1.1s (37 déjà en cache)
+  📄 7/43 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Jeuxvideo.com · Ouest-France · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Elections législatives en Israël : les… »
+  🧠 Même événement (jugé) : « Ballon d'or 2026 : Harry Kane et Alexi… »
+  🧩 43 articles → 41 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Attentat dans les Yvelines: le suspect Kevin T. "c
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + frais 0.1h +16 + imprévu 6/10 +4 + thème porteur +10 + primeur absolue +8 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (185 → 122 car.)
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : Elections législatives en Israël : les bureaux de 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 0.2h +16 + thème porteur +10 + portée internationale +10
+  🧩 6 affirmation(s) : 1 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif Les élections législatives ont débuté en Israël, marquant un scrutin crucial p
+      [2m] Harry Kane a remporté le Ballon d'or masculin 2026.
+         ↳ France Bleu : La cérémonie a eu lieu au London Palladium.
+         ↳ France Info : La cérémonie a eu lieu au théâtre du Châtelet à Paris.
+         motif : Erreur factuelle ou confusion de lieu entre les rédactions.
+      [1m] ⚡exclusif Le gouvernement français prévoit de remplacer Parcoursup en 2028 et d'investir
+      [1m] ⚡exclusif Le Sénat a rejeté la réforme constitutionnelle sur l'autonomie de la Corse.
+      [1m] ⚡exclusif Alexia Putellas a remporté le Ballon d'or féminin 2026.
+      [1m] ⚡exclusif La garde à vue du suspect de l'attentat de Trappes a repris après une interrup
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Chine : deux grands sponsors rompent leur contrat 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 0.6h +13 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (183 → 153 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Ballon d’or 2026 : Battu par Harry Kane, Kylian Mb
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 7/10 → 32 + frais 0.9h +13 + primeur absolue +8
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  📈 Hashtag(s) en tendance : #HarryKane
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : JAŸ-Z confirmed as headliner for Apple Music’s 2027 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Annonces du gouvernement sur les lycées, élections l
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  → 43 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mouvement lycéen et étudiant : Parcoursup, effecti
+  ♻️ 6/10 [world] (déjà analysé, cache) : Midterms : en Géorgie, le vote afro-américain s’él
+  ♻️ 8/10 [world] (déjà analysé, cache) : Attentat dans les Yvelines: le suspect Kevin T. "c
+  ♻️ 8/10 [world] (déjà analysé, cache) : Elections législatives en Israël : les bureaux de 
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Ballon d’or 2026 : Battu par Harry Kane, Kylian Mb
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Chine : deux grands sponsors rompent leur contrat 
+  ♻️ 8/10 [world] (déjà analysé, cache) : « On est proche d’une guerre civile » : au cœur de
+  ♻️ 6/10 [markets] (déjà analysé, cache) : « Que faut-il donc à Moody’s pour dégrader la Fran
+  ♻️ 8/10 [business] (déjà analysé, cache) : Face à l’envolée des coûts de l’IA, Microsoft ouvr
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le petit-cousin du prince Albert II, Antoine de Ma
+  ♻️ 9/10 [hommage] (déjà analysé, cache) : L'acteur Walter Koenig qui incarnait Pavel Chekov 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Microsoft annonce un plan de départs volontaires a
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Elden Ring : Le film d’A24 disposerait d’un budget
+  ♻️ 7/10 [business] (déjà analysé, cache) : Microsoft propose des indemnités de départ à 60 00
+  ♻️ 8/10 [world] (déjà analysé, cache) : Lula wins fourth term in dramatic Brazil election 
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Palestine weekly: West Bank under siege as Israeli
+  ♻️ 6/10 [ai] (déjà analysé, cache) : From Wall Street to Silicon Valley, Anthropic IPO 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Oil falls as renewed diplomatic efforts to end Mid
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Ripple gains final OCC approval to launch national
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Canada’s Draft Stablecoin Rules Cap Redemption Fee
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Cohere says Alibaba’s Qwen model tried to send a f
+  🧠 Batch analyse de 20 articles...
+  📉 3/10: Annonces du gouvernement sur les lycées, élections légi
+  📉 2/10: "Tu peux ouvrir un ticket informatique ?" : plongée dan
+  🌍 6/10 sans portée internationale : Assurance : un nouveau régime "émeutes" en projet
+  📉 5/10: Mobilisation des lycéens : les annonces du gouvernement
+  🌍 7/10 sans portée internationale : Ballon d'or 2026 : Harry Kane et Alexia Putellas s
+  📉 4/10: Royaume-Uni : Les « auditors », ces « journalistes cito
+  📉 4/10: Pourquoi le Ballon d’or 2026 a-t-il échappé à Lamine Ya
+  📉 2/10: LG OLED55B6 : noté 8/10, ce TV taillé pour le gaming et
+  📉 2/10: Jardinage : pourquoi planter sa bêche dans la terre att
+  📉 2/10: "J’ai merdé beaucoup de fois" : Pascal Obispo boulevers
+  📉 2/10: À presque 100 ans, Line Renaud prête à devenir maman : 
+  📉 3/10: Le premier jeu massivement solo de l'histoire : une seu
+  📉 3/10: Le premier Final Fantasy en HD-2D est-il à la hauteur d
+  📉 2/10: Mémoire cash - Torchlight : comment un petit jeu fauché
+  📉 3/10: 'I'm a single mum on £41,000 and limit my weekly shop t
+  📉 3/10: Indonesia-Singapore spats escalate over haze, MSCI
+  ✅ 8/10 [crypto] large: Ripple gets a final go-ahead to launch its own U
+  📉 3/10: X is nudging users to promote their posts with a pointi
+  ✅ 8/10 [business] large: Microsoft offers to buy out a quarter of its wor
+  ✅ 6/10 [tech] large: JAŸ-Z confirmed as headliner for Apple Music’s 2
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.2h — Elections législatives en Israël : les burea
+     10/10 · 2 média(s) · -1.2h — Face à l’envolée des coûts de l’IA, Microsof
+     10/10 · 2 média(s) · 0.5h — Palestine weekly: West Bank under siege as I
+     10/10 · 5 média(s) · 0.9h — Ballon d’or 2026 : Battu par Harry Kane, Kyl
+     10/10 · 2 média(s) · 0.6h — Chine : deux grands sponsors rompent leur co
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Elections législatives en Israël : les bureaux de vote 
+
+  ── Bilan du cycle (301 s) ──
+     écartés : 2 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   🚫 quota
+        29. clé 4 × gemini-embedding-2           🚫 quota
+        30. clé 5 × gemini-embedding-001         🚫 quota
+        31. clé 5 × gemini-embedding-2-preview   🚫 quota
+        32. clé 5 × gemini-embedding-2           🚫 quota
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 15 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 782 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 64,915 entrée · 2,799 sortie
+     ✅ aucun appel payant
