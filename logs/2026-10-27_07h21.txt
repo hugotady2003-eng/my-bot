@@ -1,0 +1,223 @@
+
+[07:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : ユナイト, ちばてつや先生, #秋の新作はコク濃な濃厚味噌だしうどん, #TOIYouthIconsUP, Harry Kane
+  🔎 « king » : 1 article(s) frais, le plus récent il y a 15.8 h (Télé Star)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « king » écarté : Analyse d'une série sans fait nouveau.
+  🔎 « Brewers » : 1 article(s) frais, le plus récent il y a 2.4 h (Mezha.net)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Brewers » écarté : Information factuellement erronée sur la MLB.
+  🔎 « Eagles » : 1 article(s) frais, le plus récent il y a 2.6 h (Touchdown Actu)
+  ⏭️  « Eagles » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #HarryKane
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  💰 3 sujets chauds analysés en UN seul appel (au lieu de 3)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 0.9s (82 déjà en cache)
+  📄 13/89 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · Jeuxvideo.com · Cointelegraph · Blockworks
+  🧠 89 vecteurs calculés en 1 appel(s)
+  🧩 89 articles → 28 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Elections législatives en Israël : "Benyamin Netanya
+  🚨 Sujet chaud (breaking, 1 médias) : Attentat dans les Yvelines: "Il a tiré, le truc ét
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + frais 0.1h +16 + thème porteur +10 + primeur absolue +8 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🖼️🤝 Image récupérée chez un média jumeau (France Bleu) — même sujet
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : votre épargne, ce "magot" que 
+  🚨 Sujet chaud (breaking, 27 médias) : "Vous avez été un président pourri": Donald Trump 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 44 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Mac, ActuGaming, Al Jazeera, BFM People
+  🧮 Score 65.0/100 = gravité 6/10 → 27 + 27 médias +20 + frais 1.3h +8 + portée internationale +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (176 → 129 car.)
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  🖼️🤝 Image récupérée chez un média jumeau (La Tribune) — même sujet
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 27 médias) : Ballon d’or. Encore raté pour Kylian Mbappé, « l’é
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.5/100 = gravité 7/10 → 32 + 27 médias +20 + frais 1.3h +8 + portée internationale +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (164 → 115 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Kylian Mbappé (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:2
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Annonces du gouvernement pour les lycées : "Ils n’on
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : JAŸ-Z confirmed as headliner for Apple Music’s 2027 
+  🚨 Sujet chaud (breaking, 27 médias) : Guerre au Moyen-Orient : législatives en Israël, l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.5/100 = gravité 9/10 → 40 + 27 médias +20 + frais 1.3h +8 + portée internationale +10
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (222 → 169 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Benjamin Netanyahu (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  → 89 articles à analyser...
+  ♻️ 6/10 [world] (déjà analysé, cache) : "Vous avez été un président pourri": Donald Trump 
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Attentat dans les Yvelines: "Il a tiré, le truc ét
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : "Je ne veux pas vivre dans la peur" : des rassembl
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre au Moyen-Orient : législatives en Israël, l
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Ballon d’or. Encore raté pour Kylian Mbappé, « l’é
+  ♻️ 8/10 [world] (déjà analysé, cache) : « On est proche d’une guerre civile » : au cœur de
+  ♻️ 6/10 [markets] (déjà analysé, cache) : « Que faut-il donc à Moody’s pour dégrader la Fran
+  ♻️ 7/10 [tech] (déjà analysé, cache) : iPhone Duo : Apple reconnaît un problème d’écran s
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le petit-cousin du prince Albert II, Antoine de Ma
+  ♻️ 9/10 [hommage] (déjà analysé, cache) : L'acteur Walter Koenig qui incarnait Pavel Chekov 
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Marcus Thuram accusé de séquestration par une infl
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Ballon d'Or 2026 : Harry Kane Sacré, Kylian Mbappé
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : Arkane Lyon va être la prochaine victime de Micros
+  ♻️ 7/10 [business] (déjà analysé, cache) : Microsoft annonce un plan de départs volontaires a
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Elden Ring : Le film d’A24 disposerait d’un budget
+  ♻️ 7/10 [business] (déjà analysé, cache) : Microsoft propose des indemnités de départ à 60 00
+  ♻️ 8/10 [world] (déjà analysé, cache) : Lula wins fourth term in dramatic Brazil election 
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Canada’s Draft Stablecoin Rules Cap Redemption Fee
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  🎯 Pré-classement : 49 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 7/10 [world] mondiale: ​​​​​​​Et si la Russie coupait l’eau du robinet 
+  ✅ 8/10 [world] large: Elections législatives en Israël : très critiqué
+  ✅ 6/10 [ai] mondiale: From Wall Street to Silicon Valley, Anthropic IP
+  📉 4/10: RedotPay weighs confidential US IPO filing by year-end:
+  🌍 8/10 sans portée internationale : Ballon d'or 2026 : l'attaquant du Bayern Munich Ha
+  ✅ 7/10 [crypto] mondiale: Ripple wins final US approval for national trust
+  ✅ 7/10 [markets] large: Oil falls as renewed diplomatic efforts to end M
+  📉 5/10: HSBC announces share buyback of up to $1 billion as thi
+  ✅ 6/10 [crypto] large: BlackRock joins SBI and Startale to link tokeniz
+  📉 4/10: 9to5Mac Daily: October 26, 2026 – Apple unveils new iPa
+  📉 5/10: Fusion Tesla-SpaceX : et si Elon Musk s’apprêtait à cré
+  🌍 6/10 sans portée internationale : Chinese brands drop soccer star Kylian Mbappe for 
+  📉 4/10: StoneX lifts Strive price target 34% as new stock offer
+  ✅ 9/10 [world] neutre: Attentat dans les Yvelines : « Nous savions que 
+  📉 3/10: NASA’s Perseverance Views Dust at Neretva Vallis
+  ✅ 6/10 [world] large: Midterms : en Géorgie, le vote afro-américain s’
+  ✅ 8/10 [business] mondiale: Face à l’envolée des coûts de l’IA, Microsoft ou
+  📉 4/10: Zcash co-founder proposes ending grants funding, citing
+  📉 3/10: Les fortes chaleurs mettent aussi le réseau électrique 
+  📉 3/10: Entre Tower Defense, roguelike et Match-3, l'OVNI Titan
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.1h — Attentat dans les Yvelines: "Il a tiré, le t
+     10/10 · 5 média(s) · 0.3h — Guerre au Moyen-Orient : législatives en Isr
+     10/10 · 3 média(s) · 0.3h — Ballon d’or. Encore raté pour Kylian Mbappé,
+     10/10 · 5 média(s) · 0.2h — Elections législatives en Israël : très crit
+     10/10 · 2 média(s) · -1.8h — Face à l’envolée des coûts de l’IA, Microsof
+  ✂️ Éphéméride resserré (205 → 145 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [breaking]
+  🖼️🤝 Image récupérée chez un média jumeau (France Bleu) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Attentat dans les Yvelines: "Il a tiré, le truc était v
+
+  ── Bilan du cycle (325 s) ──
+     écartés : 4 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        ✅
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-2           🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   🚫 quota
+        23. clé 3 × gemini-embedding-2           🚫 quota
+        24. clé 4 × gemini-embedding-001         🚫 quota
+        25. clé 4 × gemini-embedding-2-preview   🚫 quota
+        26. clé 4 × gemini-embedding-2           🚫 quota
+        27. clé 5 × gemini-embedding-001         🚫 quota
+        28. clé 5 × gemini-embedding-2-preview   ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 7 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 1 × gemini-embedding-2-preview · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 785 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 69,251 entrée · 2,449 sortie
+     ✅ aucun appel payant
