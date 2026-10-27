@@ -1,0 +1,251 @@
+
+[18:52] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 2 column 30 (char 31) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting ',' delimiter: line 3 column 17 (char 35) → couple suivant
+  ⏭️  Le Saviez-vous : « Pourquoi les oignons font pleurer » n'explique pas vraiment → on ne publie pas
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Soso, #ザッツMILK, #恋とき, mc paiva, #FelizAniversarioPresidente
+  🌍 « Burhanettin Duran » : aucune reprise en français, source internationale retenue
+  🔎 « Burhanettin Duran » : 1 article(s) frais, le plus récent il y a 4.8 h (İletişim Başkanlığı)
+  ⏭️  « Burhanettin Duran » écarté : Actualite politique etrangere sans impact direct en France
+  🌍 « Montella » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Chine, #Genie4
+  🕐 18h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 6.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/9 articles lus en 1.7s (22 déjà en cache)
+  📄 7/31 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Blockworks
+  🧠 31 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Attentat raciste dans les Yvelines: l'… »
+  🧠 Même événement (jugé) : « Elections législatives en Israël : le … »
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧠 Même événement (jugé) : « "Le racisme tue, la haine de l'autre t… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧩 31 articles → 11 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT, législatives en Israël : le taux de parti
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Bleach : l'animé c'est terminé, mais l'histoire cont
+  🚨 Sujet chaud (breaking, 12 médias) : Manifestations du 17 octobre : près de 2 500 comme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 15 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Blockworks, France Bleu, Frandroid, Gamekult
+  🧮 Score 90.5/100 = gravité 7/10 → 32 + 12 médias +18 + frais 0.7h +13 + thème porteur +10 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Serge Papin (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 4 médias) : Attentat raciste de Trappes : Sébastien Lecornu dé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Ouest-France
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 1.4h +8 + thème porteur +10 + fait local -20 + ⚡ attentat → plancher 89
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] Un attentat raciste a eu lieu à Trappes et La Verrière, faisant un mort (Pengo
+      [1m] ⚡exclusif Le Premier ministre Sébastien Lecornu a dénoncé les discours qui finissent par
+      [2m] L'Assemblée nationale a observé une minute de silence en hommage à la victime 
+      [1m] ⚡exclusif Une fillette de 11 ans grièvement blessée de huit balles a été opérée avec suc
+      [1m] ⚡exclusif Le tireur, identifié comme Kevin T., a ouvert le feu sur huit sites différents
+  🕒 Âge de l'article : 3.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Sébastien Lecornu (Wikipedia)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 4 médias) : Mort à 96 ans, ce Français a demandé à être enterr
+  🧮 Score 89.0/100 = gravité 5/10 → 22 + 4 médias +7 + frais 1.4h +8 + programmé 3/10 -15 + thème porteur +10 + fait local -20 + ⚡ attentat → plancher 89
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [3m] Un attentat raciste a eu lieu à Trappes et La Verrière dans les Yvelines, comm
+      [2m] L'attentat a fait un mort, un jeune homme de 26 ans nommé Pengo Bossio Wangi.
+      [1m] ⚡exclusif L'Assemblée nationale a observé une minute de silence en hommage à la victime 
+      [1m] ⚡exclusif Le premier ministre Sébastien Lecornu s'est exprimé à l'Assemblée nationale po
+      [1m] ⚡exclusif Une fillette de 11 ans grièvement blessée de huit balles lors de l'attentat a 
+      [2m] L'attentat a fait un total de sept ou huit blessés selon les sources.
+         ↳ Le Monde : L'attentat a fait cinq blessés.
+         motif : Différence dans le bilan chiffré des blessés communiqué.
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 12 médias) : «Dictateur» : Mbappé rattrapé par le col en Chine 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 99.5/100 = gravité 9/10 → 40 + 12 médias +18 + frais 0.7h +13 + thème porteur +10 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Kylian Mbappé (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Google’s Genie 4 world model adds audio, more realis
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  → 31 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT, législatives en Israël : le taux de par
+  ♻️ 8/10 [world] (déjà analysé, cache) : Attentat raciste de Trappes : Sébastien Lecornu dé
+  ♻️ 7/10 [business] (déjà analysé, cache) : Manifestations du 17 octobre : près de 2 500 comme
+  ♻️ 8/10 [world] (déjà analysé, cache) : Législatives en Israël : le Likoud et ses rivaux s
+  ♻️ 9/10 [sports] (déjà analysé, cache) : «Dictateur» : Mbappé rattrapé par le col en Chine 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Elections législatives en Israël : le parti de Ben
+  ♻️ 8/10 [hommage] (déjà analysé, cache) : "Le racisme tue, la haine de l'autre tue" : l'Asse
+  ♻️ 7/10 [business] (déjà analysé, cache) : Taxe Shein, Temu, AliExpress : comment un petit co
+  ♻️ 7/10 [tech] (déjà analysé, cache) : 8 500 éoliennes et panneaux solaires en accès libr
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Fin de Parcoursup : le gouvernement prépare un rem
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Néocloud : l'alerte d'Elon Musk accélère la chute 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Microsoft ouvre la porte à des départs volontaires
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Fed expected to hold rates steady, but Warsh may p
+  ♻️ 7/10 [business] (déjà analysé, cache) : Honda warns 50% Canada auto tariffs would be catas
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Robinhood taps Ripple’s $2.5 billion RLUSD stablec
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Nasdaq-100 comes onchain as Janus Henderson and Ce
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google’s Genie 4 world model adds audio, more real
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Apple iPhone Duo review: Two screens, two experien
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Some iPhone Duo screens are already failing, Apple
+  ♻️ 7/10 [ai] (déjà analysé, cache) : UK Home Office May Face Investigation Over Use of 
+  🧠 Batch analyse de 8 articles...
+  🌍 7/10 sans portée internationale : Attentat raciste dans les Yvelines: l'enfant de 11
+  📉 4/10: Mortelle Adèle débarque en série animée sur Gulli le 14
+  📉 4/10: L'Exotic Park du zoo de Lescar victime d'un vol, 14 sin
+  📉 3/10: ATP 500 de Vienne. Carlos Alcaraz écarte Khachanov au t
+  ⏩ Doublon: Quatorze singes volés dans un zoo des Pyrénées-Atlantiq
+  📉 3/10: Éditorial. Présidentielle : la génération Z, le nouveau
+  📉 4/10: Un jeune homme entre la vie et la mort après avoir été 
+  📉 4/10: Bleach : l'animé c'est terminé, mais l'histoire continu
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.3h — Législatives en Israël : le Likoud et ses ri
+     10/10 · 1 média(s) · 0.3h — «Dictateur» : Mbappé rattrapé par le col en 
+     10/10 · 3 média(s) · 0.5h — EN DIRECT, législatives en Israël : le taux 
+     10/10 · 3 média(s) · 1.6h — Elections législatives en Israël : le parti 
+     10/10 · 3 média(s) · 2.7h — "Le racisme tue, la haine de l'autre tue" : 
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Législatives en Israël : le Likoud et ses rivaux s’écha
+
+  ── Bilan du cycle (540 s) ──
+     écartés : 3 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        31. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.6-flash             🚫 quota
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 11 autres
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 760
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 73,109 entrée · 3,900 sortie
+     ✅ aucun appel payant
