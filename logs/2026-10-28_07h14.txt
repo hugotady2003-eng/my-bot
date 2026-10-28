@@ -1,0 +1,206 @@
+
+[07:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #出身地当てます, 答えの組み合わせ, 純度100, シーサーだらけくじ, Blazers
+  🔎 « Blazers » : 1 article(s) frais, le plus récent il y a 5.9 h (TrashTalk)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Blazers » écarté : Match sportif futur anecdotique pour la France
+  🔎 « Lakers » : 1 article(s) frais, le plus récent il y a 0.0 h (Basket USA)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Lakers » écarté : trop secondaire (3/10)
+  🌍 « jioipolisting » : aucune reprise en français, source internationale retenue
+  🌍 « IshaAmbani » : aucune reprise en français, source internationale retenue
+  🌍 « AnantAmbani » : aucune reprise en français, source internationale retenue
+  🔎 « Dame » : 1 article(s) frais, le plus récent il y a 9.6 h (Le Parisien)
+  ✅ « Dame » retenu : Incident technique sur le chantier de Notre-Dame. (7/10) (+1 au score)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Dame
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.8s (48 déjà en cache)
+  📄 5/50 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · Blockworks
+  🧠 50 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 50 articles → 23 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Israël : au lendemain de législatives cruciales pour
+  🚨 Sujet chaud (breaking, 20 médias) : Prestations sociales saisies, nouvelles interdicti
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 26 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Al Jazeera, Ars Technica, BBC, BFMTV
+  🧮 Score 84.0/100 = gravité 8/10 → 36 + 20 médias +20 + frais 1.2h +8 + thème porteur +10 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Le projet de loi « casseurs-payeurs » a été adopté et élargi au Sénat.
+      [2m] Le texte initial de cinq articles a été enrichi d'une vingtaine de disposition
+      [1m] ⚡exclusif Le projet de loi prévoit une solidarité financière pour les participants à des
+      [1m] ⚡exclusif Le texte a été adopté par 229 voix contre 105 avec le soutien du Rassemblement
+      [1m] ⚡exclusif Laurent Nuñez a annoncé qu'il saisirait le Conseil d'État pour vérifier l'équi
+      [1m] ⚡exclusif Le ministre de l'Intérieur s'est félicité du vote et a qualifié le projet de l
+      [1m] ⚡exclusif La gauche s'oppose au texte, le jugeant inconstitutionnel et attentatoire à la
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 31 s
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : D'abord annoncé en fuite aux États-Unis, Flavio Bols
+  🚨 Sujet chaud (breaking, 20 médias) : Guerre en Ukraine : Donald Trump affirme qu’une re
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 88.5/100 = gravité 9/10 → 40 + 20 médias +20 + frais 1.2h +8 + thème porteur +10 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] Le projet de loi « casseurs-payeurs » a été adopté et élargi par le Sénat.
+      [2m] Le texte initial comportait cinq articles et a été enrichi d'une vingtaine de 
+      [2m] Le projet de loi est désormais transmis à l'Assemblée nationale pour examen.
+      [2m] Le texte a été élaboré suite aux débordements survenus après un sacre du PSG.
+         ↳ France Info, 20 Minutes : France Info mentionne le sacre européen, tandis que 20 Minutes é
+         motif : Précision différente sur la compétition sportive concernée.
+      [1m] ⚡exclusif Le Sénat a adopté le texte par 229 voix contre 105.
+      [1m] ⚡exclusif Laurent Nuñez a annoncé qu'il saisirait le Conseil d'État pour vérifier l'équi
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — La personne citée n'est pas décédée.
+  ↩️ Hommage non confirmé → actualité normale [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 50 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Israël : au lendemain de législatives cruciales po
+  ♻️ 7/10 [world] (déjà analysé, cache) : Comment l’administration Trump nourrit la suspicio
+  ♻️ 8/10 [world] (déjà analysé, cache) : A l’Assemblée nationale, la gauche et le gouvernem
+  ♻️ 8/10 [world] (déjà analysé, cache) : Elections législatives en Israël : égalité entre B
+  ♻️ 7/10 [world] (déjà analysé, cache) : D'abord annoncé en fuite aux États-Unis, Flavio Bo
+  ♻️ 8/10 [world] (déjà analysé, cache) : Prestations sociales saisies, nouvelles interdicti
+  ♻️ 7/10 [world] (déjà analysé, cache) : Élections en Israël : Les pro-Netanyahou et l’oppo
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : Donald Trump affirme qu’une re
+  ♻️ 8/10 [world] (déjà analysé, cache) : Il qualifiait Vladimir Poutine de "véritable ami" 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Législatives en Israël : Benyamin Netanyahou et Ga
+  ♻️ 7/10 [business] (déjà analysé, cache) : Taxe Shein, Temu, AliExpress : comment un petit co
+  ♻️ 9/10 [world] (déjà analysé, cache) : Ceasefire extended across Ukraine's Kherson region
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Mbappé sorry for 'ill-judged' Mao remark after bac
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Trump says Iran war will end 'when I want it to' a
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin treasury Datavault AI plunges 50% after fi
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Bitcoin nears $81,000 ahead of Fed decision as ZEC
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Datavault AI stock plummets 50% after firm says it
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Robinhood Taps Ripple's Stablecoin, Treasury Softw
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Parents sue OpenAI, alleging GPT-4o coached their 
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Here’s why the iPhone Duo’s hinge could be crackin
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Elon Musk says Ukraine’s military violated Starlin
+  ♻️ 6/10 [science] (déjà analysé, cache) : South Carolina's measles outbreak jumped to Washin
+  🎯 Pré-classement : 6 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  🌍 8/10 sans portée internationale : Colère sociale : Le Sénat adopte le projet de loi 
+  📉 3/10: Musk vs Nolan : l’«Odyssée» made in Grok ne mène nulle 
+  📉 3/10: ASEAN prepares QR payments, e-signatures for digital tr
+  📉 5/10: Robinhood’s Tenev warns US tokenization uncertainty det
+  🌍 7/10 sans portée internationale : Oil prices rise as Houthi attacks on Saudi Arabian
+  📉 4/10: Bolsonaro ally denies knowledge of senator’s plan to fl
+  🌍 6/10 sans portée internationale : Bithumb discloses data leak after internal system 
+  📉 4/10: Game and watch - Film Call of Duty : le réalisateur pro
+  📉 5/10: SONDAGE - Générosité : le don moyen des Français recule
+  ✅ 7/10 [ai] large: En Chine, la bulle de l’IA a déjà éclaté, avec d
+  📉 5/10: UBS pre-tax profits jump 27% to $3.59 billion in the th
+  📉 2/10: The Land of the Standing-Up Rocks
+  📉 5/10: « Cela tient de la pensée magique » : coupes dans la sa
+  📉 3/10: UAE bank Mashreq injects $125m into Hong Kong business 
+  📉 4/10: Mahmoud Khalil credits Palestinian activism for reshapi
+  📉 2/10: Mémoire cash - Vous détestez Shaq Fu ? Il est temps de 
+  📉 3/10: Installation d'un thermostat, maîtriser les réglages et
+  📉 4/10: Mouvements étudiants : comment la France et la Serbie i
+  🌍 6/10 sans portée internationale : Luxury cruise passengers stranded in Cambodia due 
+  📉 4/10: ÉDITORIAL. La santé mentale trop négligée
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 5 média(s) · 0.2h — Elections législatives en Israël : égalité e
+     10/10 · 1 média(s) · 0.5h — Guerre en Ukraine : Donald Trump affirme qu’
+     10/10 · 2 média(s) · 0.6h — Prestations sociales saisies, nouvelles inte
+     9/10 · 1 média(s) · 0.3h — Il qualifiait Vladimir Poutine de "véritable
+     10/10 · 5 média(s) · 1.3h — Israël : au lendemain de législatives crucia
+  ✂️ Éphéméride resserré (184 → 78 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Benyamin Nétanyahou (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Elections législatives en Israël : égalité entre Benyam
+
+  ── Bilan du cycle (188 s) ──
+     écartés : 4 sans portée internationale · 2 sujet banal · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 1 × gemini-embedding-2           🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-2-preview   🚫 quota
+        25. clé 2 × gemini-embedding-2           🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-2           🚫 quota
+        29. clé 4 × gemini-embedding-001         🚫 quota
+        30. clé 4 × gemini-embedding-2-preview   🚫 quota
+        31. clé 4 × gemini-embedding-2           🚫 quota
+        32. clé 5 × gemini-embedding-001         🚫 quota
+        33. clé 5 × gemini-embedding-2-preview   ✅
+        34. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        35. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        36. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.6-flash             🚫 quota
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 14 autres
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 719 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 40,779 entrée · 2,904 sortie
+     ✅ aucun appel payant
