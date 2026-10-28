@@ -1,0 +1,108 @@
+
+[04:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #DWTS, #出身地当てます, 答えの組み合わせ, #DeportTheBolsonaros, 純度100
+  🔎 « DWTS » : 1 article(s) frais, le plus récent il y a 0.2 h (IMDb)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « DWTS » écarté : Simple episode de divertissement americain sans actualite fr
+  🔎 « Shirley » : 1 article(s) frais, le plus récent il y a 2.1 h (Google Actualités)
+  ⏭️  « Shirley » écarté : Simple résumé de feuilleton télévisé quotidien.
+  📖 4/4 articles lus en 0.5s (47 déjà en cache)
+  📄 6/51 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · The Block · Blockworks
+  🧠 51 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Mbappé sorry for 'ill-judged' Mao rema… »
+  🧩 51 articles → 24 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Flavio Bolsonaro soupçonné d'avoir fui le Brésil pou
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT, législatives en Israël : les deux blocs a
+  🕒 Sujet chaud mais article ancien (21h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : China's families are now supporting more old people 
+  🚨 Sujet chaud (breaking, 2 médias) : Netanyahu, Eisenkot camps clash over Israel electi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Al Jazeera
+  🧮 Score 40.5/100 = gravité 3/10 → 14 + 2 médias +4 + frais 1.6h +8 + primeur +5 + portée internationale +10
+  🧩 5 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [2m] Les sondages de sortie des urnes placent les blocs de Benjamin Netanyahu et de
+      [2m] Gadi Eisenkot a déclaré que les résultats préliminaires témoignent d'un manque
+      [2m] La participation électorale a atteint 77,7 %, soit le taux le plus élevé pour 
+      [2m] Les partis dirigés par des Arabes devraient obtenir entre 17 et 18 sièges, réa
+         ↳ Al Jazeera : Al Jazeera indique précisément que les partis arabes non alignés
+         motif : Précision de fourchette contre chiffre fixe.
+      [1m] ⚡exclusif Yair Lapid a affirmé que le bloc de Netanyahu a subi une défaite écrasante et 
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 51 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (63 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 1 × gemini-embedding-2-preview   🚫 quota
+        25. clé 1 × gemini-embedding-2           🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-2-preview   🚫 quota
+        28. clé 2 × gemini-embedding-2           🚫 quota
+        29. clé 3 × gemini-embedding-001         🚫 quota
+        30. clé 3 × gemini-embedding-2-preview   🚫 quota
+        31. clé 3 × gemini-embedding-2           🚫 quota
+        32. clé 4 × gemini-embedding-001         🚫 quota
+        33. clé 4 × gemini-embedding-2-preview   ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-001 · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,728 entrée · 687 sortie
+     ✅ aucun appel payant
