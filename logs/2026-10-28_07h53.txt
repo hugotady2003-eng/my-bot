@@ -1,0 +1,153 @@
+
+[07:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #出身地当てます, 答えの組み合わせ, 純度100, シーサーだらけくじ, Blazers
+  🔎 « Blazers » : 1 article(s) frais, le plus récent il y a 0.5 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « Blazers » écarté : trop secondaire (2/10)
+  🔎 « Lakers » : 1 article(s) frais, le plus récent il y a 0.5 h (Basket USA)
+  ⏭️  « Lakers » écarté : trop secondaire (2/10)
+  🌍 « jioipolisting » : aucune reprise en français, source internationale retenue
+  🌍 « IshaAmbani » : aucune reprise en français, source internationale retenue
+  🌍 « AnantAmbani » : aucune reprise en français, source internationale retenue
+  🔎 « Dame » : 1 article(s) frais, le plus récent il y a 10.2 h (Le Parisien)
+  ✅ « Dame » retenu : Incident technique sur le chantier de Notre-Dame. (7/10) (+1 au score)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Dame
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  📖 4/4 articles lus en 1.2s (29 déjà en cache)
+  📄 5/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · Blockworks
+  🧠 33 vecteurs calculés en 1 appel(s)
+  🧩 33 articles → 13 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Israël : au lendemain de législatives cruciales pour
+  🚨 Sujet chaud (breaking, 1 médias) : Le Sénat approuve le projet de loi "casseurs-payeu
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45/100 = gravité 8/10 → 36 + frais 0.3h +16 + thème porteur +10 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 45) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : D'abord annoncé en fuite aux États-Unis, Flavio Bols
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Un assaillant abattu par la police devant l’ambassad
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 33 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Israël : au lendemain de législatives cruciales po
+  ♻️ 7/10 [world] (déjà analysé, cache) : Comment l’administration Trump nourrit la suspicio
+  ♻️ 7/10 [world] (déjà analysé, cache) : Elections en Israël : les deux camps au coude-à-co
+  ♻️ 8/10 [world] (déjà analysé, cache) : Elections législatives en Israël : égalité entre B
+  ♻️ 8/10 [world] (déjà analysé, cache) : Battu à la présidentielle, Flavio Bolsonaro fuit l
+  ♻️ 8/10 [world] (déjà analysé, cache) : Le Sénat approuve le projet de loi "casseurs-payeu
+  ♻️ 7/10 [world] (déjà analysé, cache) : D'abord annoncé en fuite aux États-Unis, Flavio Bo
+  ♻️ 8/10 [world] (déjà analysé, cache) : Prestations sociales saisies, interdictions de man
+  ♻️ 7/10 [world] (déjà analysé, cache) : Élections en Israël : Avantage Netanyahou aux légi
+  ♻️ 8/10 [breaking] (déjà analysé, cache) : Un assaillant abattu par la police devant l’ambass
+  ♻️ 8/10 [world] (déjà analysé, cache) : Il qualifiait Vladimir Poutine de "véritable ami" 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : En Chine, la bulle de l’IA a déjà éclaté, avec des
+  ♻️ 6/10 [business] (déjà analysé, cache) : Rachat d'Eramet : « L'État français ne pouvait pas
+  ♻️ 7/10 [business] (déjà analysé, cache) : Taxe Shein, Temu, AliExpress : comment un petit co
+  ♻️ 7/10 [tech] (déjà analysé, cache) : L’ordinateur tactile d’Apple pourrait être le Macb
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Discord : les messages des grands serveurs publics
+  ♻️ 9/10 [world] (déjà analysé, cache) : Ceasefire extended across Ukraine's Kherson region
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Mbappé sorry for 'ill-judged' Mao remark after bac
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Trump says Iran war will end 'when I want it to' a
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin treasury Datavault AI plunges 50% after fi
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Bitcoin nears $81,000 ahead of Fed decision as ZEC
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Datavault AI stock plummets 50% after firm says it
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Robinhood Taps Ripple's Stablecoin, Treasury Softw
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Parents sue OpenAI, alleging GPT-4o coached their 
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Here’s why the iPhone Duo’s hinge could be crackin
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Elon Musk says Ukraine’s military violated Starlin
+  ♻️ 6/10 [science] (déjà analysé, cache) : South Carolina's measles outbreak jumped to Washin
+  🧠 Batch analyse de 4 articles...
+  🌍 6/10 sans portée internationale : Démarchage téléphonique : 43.000 signalements en d
+  🌍 7/10 sans portée internationale : Réseaux sociaux et addiction : premier procès test
+  🌍 8/10 sans portée internationale : The next phase of military rule in Egypt is here
+  📉 5/10: Experts defer to AI in decision-making, Anthropic study
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.4h — Battu à la présidentielle, Flavio Bolsonaro 
+     10/10 · 2 média(s) · 0.3h — Le Sénat approuve le projet de loi "casseurs
+     10/10 · 3 média(s) · 0.4h — Prestations sociales saisies, interdictions 
+     10/10 · 2 média(s) · 0.1h — Un assaillant abattu par la police devant l’
+     10/10 · 3 média(s) · 0.7h — Elections législatives en Israël : égalité e
+  ✂️ Éphéméride resserré (184 → 78 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🧠 20 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ars Technica, BBC, BFMTV, Blockworks
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ❌ Envoi 'Battu à la présidentielle, Flavio Bolson': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgUCHpRTw2CPzhEAxk8x2'}
+
+  ── Bilan du cycle (185 s) ──
+     écartés : 3 sujet banal · 3 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        ✅
+        23. clé 5 × gemini-3.1-flash-lite        ✅
+        24. clé 5 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-embedding-001         🚫 quota
+        26. clé 1 × gemini-embedding-2-preview   🚫 quota
+        27. clé 1 × gemini-embedding-2           🚫 quota
+        28. clé 2 × gemini-embedding-001         🚫 quota
+        29. clé 2 × gemini-embedding-2-preview   🚫 quota
+        30. clé 2 × gemini-embedding-2           🚫 quota
+        31. clé 3 × gemini-embedding-001         🚫 quota
+        32. clé 3 × gemini-embedding-2-preview   🚫 quota
+        33. clé 3 × gemini-embedding-2           🚫 quota
+        34. clé 4 × gemini-embedding-001         🚫 quota
+        35. clé 4 × gemini-embedding-2-preview   🚫 quota
+        36. clé 4 × gemini-embedding-2           🚫 quota
+        37. clé 5 × gemini-embedding-001         🚫 quota
+        38. clé 5 × gemini-embedding-2-preview   ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 9 autres
+     jamais essayé ce cycle : clé 5 × gemini-embedding-2 · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 719 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 16,379 entrée · 631 sortie
+     ⚠️ 1 appel(s) payés chez Claude (le gratuit n'a pas suffi)
