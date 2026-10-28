@@ -1,0 +1,117 @@
+
+[06:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #出身地当てます, 答えの組み合わせ, 純度100, シーサーだらけくじ, #WorldSeries
+  🔎 « Rays » : 1 article(s) frais, le plus récent il y a 1.2 h (24 heures)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Rays » écarté : Sport nord-américain mineur pour le public français.
+  🔎 « Brewers » : 1 article(s) frais, le plus récent il y a 4.1 h (KarloBag.eu)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Brewers » écarté : trop secondaire (2/10)
+  🔎 « DWTS » : 1 article(s) frais, le plus récent il y a 2.8 h (IMDb)
+  ⏭️  « DWTS » écarté : Divertissement culturel sans impact en France.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/6 articles lus en 0.7s (70 déjà en cache)
+  📄 8/76 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · Blockworks
+  🧠 76 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Il "était mû par la haine et il a tué … »
+  🧩 76 articles → 32 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Israël : au lendemain de législatives cruciales pour
+  🚨 Sujet chaud (breaking, 4 médias) : Le projet de loi "casseurs-payeurs" adopté et élar
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : BFMTV, Libération, Sud Ouest
+  🧮 Score 43.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 0.2h +16 + imprévu 6/10 +4 + fait local -20 + sous la barre des faits locaux (66)
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [2m] Le projet de loi dit "casseurs-payeurs" a été adopté et élargi au Sénat le mer
+      [2m] Le texte initial comptait cinq articles et a été enrichi d'une vingtaine de di
+      [2m] Le projet de loi est transmis à l'Assemblée nationale pour la suite de son exa
+      [1m] Le ministre de l'Intérieur Laurent Nuñez a annoncé qu'il saisirait le Conseil 
+         ↳ BFMTV : Laurent Nuñez s'est félicité du vote des sénateurs et a défendu 
+         motif : Focus sur des déclarations différentes du ministre.
+      [1m] ⚡exclusif Le Sénat a adopté le projet de loi dans la nuit par 229 voix contre 105.
+  → Sujet chaud pas assez fort (score 43) → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Comment les géants de l’IA font tout pour influer su
+  🚨 Sujet chaud (breaking, 2 médias) : Meta- and Google-backed Jio Platforms’ shares soar
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 43 s
+  🧮 Score 61.0/100 = gravité 4/10 → 18 + 2 médias +4 + frais 0.4h +16 + primeur +5 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 61) mais nuit → il attendra le matin
+  ⚪ Écarté (-4, pénalisé par « horoscope ») : LG Promo Codes and Coupons for October 2026
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 76 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (99 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting property nam
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.6-flash             🚫 quota
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-embedding-001         🚫 quota
+        26. clé 1 × gemini-embedding-2-preview   🚫 quota
+        27. clé 1 × gemini-embedding-2           🚫 quota
+        28. clé 2 × gemini-embedding-001         🚫 quota
+        29. clé 2 × gemini-embedding-2-preview   🚫 quota
+        30. clé 2 × gemini-embedding-2           🚫 quota
+        31. clé 3 × gemini-embedding-001         🚫 quota
+        32. clé 3 × gemini-embedding-2-preview   🚫 quota
+        33. clé 3 × gemini-embedding-2           🚫 quota
+        34. clé 4 × gemini-embedding-001         🚫 quota
+        35. clé 4 × gemini-embedding-2-preview   🚫 quota
+        36. clé 4 × gemini-embedding-2           🚫 quota
+        37. clé 5 × gemini-embedding-001         ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 7 autres
+     jamais essayé ce cycle : clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3.1-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 720 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,611 entrée · 1,010 sortie
+     ✅ aucun appel payant
