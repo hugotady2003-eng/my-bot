@@ -1,0 +1,283 @@
+
+[16:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 4 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « duck in art gallery »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 28-Oct-26 08:24:18 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ASbGwKc-4mfiqLX6NWt8c9F"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #ホークス日本一達成, Toledo, #出身地当てます, 答えの組み合わせ, 純度100
+  🔎 « Toledo » : 1 article(s) frais, le plus récent il y a 1.4 h (OneFootball)
+  ✅ « Toledo » retenu : Suspension de matches suite aux victimes en Espagne. (7/10) (+1 au score)
+  🌍 « ENHYPEN » : aucune reprise en français, source internationale retenue
+  🔎 « ENHYPEN » : 1 article(s) frais, le plus récent il y a 2.4 h (Nolae)
+  ⏭️  « ENHYPEN » écarté : Simple actualite musicale de fans sans impact majeur.
+  🔎 « Adamuz » : 1 article(s) frais, le plus récent il y a 5.4 h (Sud Ouest)
+  ✅ « Adamuz » retenu : Accidents ferroviaires graves en Espagne proche France (7/10) (+1 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Iryo, #Toledo, #Adamuz
+  🕐 16h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 8.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 2.3s (22 déjà en cache)
+  📄 6/32 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Blockworks
+  🧠 32 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « At least 68 people dead in high-speed … »
+  🧩 32 articles → 9 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT, accident entre deux trains en Espagne : l
+  🚨 Sujet chaud (breaking, 17 médias) : Attentat raciste à Trappes et La Verrière : Un hom
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  🧠 16 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC, BFM People, Journal du Geek, L'Express
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 17 médias +18 + frais 0.5h +16 + thème porteur +10 + fait local -20 + ⚡ catastrophe majeure → plancher 89
+  🔍 5 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 4 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 0 exclusive(s)
+      [4m] Une collision entre deux trains à grande vitesse a eu lieu en Espagne, sur la 
+      [4m] Le bilan humain provisoire fait état de victimes décédées et blessées suite à 
+         ↳ L'Express, BFMTV, France Info, France Bleu : L'Express évoque au moins 30 morts, France Bleu mentionne 64 mor
+         motif : Évolution du bilan au fil du temps et des sources officielles.
+      [3m] Les deux trains impliqués appartiennent à l'opérateur privé Iryo et à la compa
+      [2m] Le Premier ministre espagnol Pedro Sánchez s'est déclaré consterné par ce grav
+  📖 Parcours trouvé pour La Verrière
+  🕒 Âge de l'article : 2.4h (frais ✅)
+  ↩️ Pas un décès malgré le classement du modèle → actualité normale [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 17 médias) : Serbian shot dead after attacking officer outside 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 17 médias +18 + frais 0.5h +13 + thème porteur +10 + fait local -20 + ⚡ catastrophe majeure → plancher 89
+  🔍 5 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 0 exclusive(s)
+      [4m] Deux trains à grande vitesse sont entrés en collision en Espagne, faisant des 
+         ↳ L'Express, France Info, France Bleu : Le bilan provisoire mentionne 30 morts selon L'Express, au moins
+         motif : Bilans évolutifs ou sources différentes au fil du temps.
+      [4m] L'accident s'est produit sur la ligne à grande vitesse reliant Madrid à l'Anda
+      [3m] La collision implique un train de la compagnie publique Renfe et un train de l
+      [2m] Le Premier ministre espagnol Pedro Sánchez s'est déclaré consterné par ce grav
+      [3m] Cet accident survient moins d'un an après une autre collision ferroviaire meur
+  🕒 Âge de l'article : 5.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+  ⚖️ Correction factuelle forcée appliquée
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Elections en Israël : Nétanyahou en tête mais à la m
+  🚨 Sujet chaud (breaking, 17 médias) : Amine Kessaci au procès des assassins présumés de 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 17 médias +18 + frais 0.5h +13 + thème porteur +10 + fait local -20 + ⚡ catastrophe majeure → plancher 89
+  🔍 5 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+  ⚖️ Correction factuelle forcée appliquée
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Amine Kessaci (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 17 médias) : Guerre en Ukraine : cette spectaculaire opération 
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 17 médias +18 + frais 0.6h +13 + imprévu 6/10 +4 + thème porteur +10 + fait local -20 + ⚡ catastrophe majeure → plancher 89
+  🔍 5 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 0 exclusive(s)
+      [4m] Une collision entre deux trains à grande vitesse a eu lieu en Espagne sur la l
+      [2m] Le bilan humain provisoire de l'accident ferroviaire varie selon les articles.
+         ↳ France Info, BFMTV : L'Express évoque au moins 30 morts, France Bleu fait état d'au m
+         motif : Évolution du bilan au fil du temps et des sources.
+      [3m] L'accident implique un train de l'opérateur privé Iryo et un train de la compa
+      [2m] Le Premier ministre espagnol Pedro Sánchez s'est déclaré consterné par ce grav
+      [3m] Un précédent accident mortel était survenu sur la même ligne à Adamuz en janvi
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Volodymyr Zelensky (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-4, pénalisé par « \b(?:téléréalité, comment  ») : Brigitte Macron et la rumeur "Jean-Michel Trogneux" 
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : Après avoir mis en vente sa veste de la Star Academy
+  🚨 Sujet chaud (breaking, 1 médias) : Attentat dans les Yvelines : le gouvernement annon
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + frais 4.6h +2 + thème porteur +10 + portée internationale +10 + ⚡ attentat → plancher 89
+  📖 Parcours trouvé pour Emmanuel Macron
+  🕒 Âge de l'article : 4.6h (frais ✅)
+  ↩️ Pas un décès malgré le classement du modèle → actualité normale [world]
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 3 column 18 (char 99) → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 17 médias) : At least 68 people dead in high-speed Spain train 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + 17 médias +18 + frais 0.6h +13 + thème porteur +10 + fait local -20 + ⚡ catastrophe majeure → plancher 89
+  🔍 5 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 10 affirmation(s) : 7 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [4m] Une collision entre deux trains à grande vitesse a eu lieu en Espagne sur la l
+      [2m] Le bilan humain de l'accident fait état d'un nombre variable de victimes selon
+         ↳ BFMTV, France Info, L'Express, France Bleu : L'Express évoque au moins 30 morts, France Bleu mentionne au moi
+         motif : Évolution du bilan au fil de la journée.
+      [3m] L'accident implique un train de l'opérateur privé Iryo et un train de la compa
+      [3m] La collision s'est produite à environ 150 km au sud de Madrid, dans la région 
+      [2m] Le Premier ministre espagnol Pedro Sánchez s'est déclaré consterné par ce grav
+      [3m] Cet accident survient moins d'un an après une autre collision mortelle survenu
+      [2m] L'infrastructure gestionnaire ADIF a suspendu le trafic sur la ligne à grande 
+      [1m] ⚡exclusif Emmanuel Macron a exprimé la solidarité de la France après ce drame ferroviair
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #OscarPuente
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Suspendida la jornada de Copa en solidaridad con las
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Accidents de trains en Espagne : d’Adamuz à Urda, un
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 32 articles à analyser...
+  ♻️ 10/10 [breaking] (déjà analysé, cache) : EN DIRECT, accident entre deux trains en Espagne :
+  ♻️ 6/10 [world] (déjà analysé, cache) : EN DIRECT, législatives en Israël : Isaac Herzog, 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Elections en Israël : Nétanyahou en tête mais à la
+  ♻️ 7/10 [world] (déjà analysé, cache) : Amine Kessaci au procès des assassins présumés de 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre en Ukraine : cette spectaculaire opération 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Espagne : au moins 30 morts dans une collision ent
+  ♻️ 9/10 [world] (déjà analysé, cache) : Accident de trains en Espagne: au moins 68 morts, 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Collision meurtrière entre deux trains en Espagne 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Bilan humain, causes de l'accident : ce que l'on s
+  ♻️ 9/10 [hommage] (déjà analysé, cache) : Attentat dans les Yvelines : le gouvernement annon
+  ♻️ 8/10 [hommage] (déjà analysé, cache) : Attentat raciste à Trappes et La Verrière : Un hom
+  ♻️ 7/10 [world] (déjà analysé, cache) : Assassinat de Brahim Kessaci : « Le pardon ne peut
+  ♻️ 8/10 [breaking] (déjà analysé, cache) : Le journaliste Antoine Spire, grande voix de Franc
+  ♻️ 7/10 [world] (déjà analysé, cache) : Serbian shot dead after attacking officer outside 
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : At least 68 people dead in high-speed Spain train 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [tech] (déjà analysé, cache) : xAI is buying out homeowners who promise not to su
+  🧠 Batch analyse de 14 articles...
+  📉 5/10: BFMTV, LCI, RMC… Quarante rédactions dénoncent les « vi
+  📉 1/10: Un petit poisson venu de l’est de l’Europe recensé pour
+  📉 2/10: Soprano en séance de dédicaces exceptionnelle au stade 
+  📉 5/10: Brigitte Macron et la rumeur "Jean-Michel Trogneux" : p
+  📉 5/10: Sur conseil de leur vétérinaire, ils euthanasient leur 
+  📉 3/10: iOS 27 organise désormais vos onglets Safari ouverts, e
+  📉 3/10: Le film Werwulf sort une gamme de parfums (pour enfin s
+  📉 2/10: Alexia Mori (Secret Story) divorcée d'avec Stéphane, au
+  📉 3/10: Après avoir mis en vente sa veste de la Star Academy, M
+  📉 3/10: Google ressuscite une vieille fonction d’Android, et el
+  📉 3/10: The one thing the chancellor didn't mention that will a
+  📉 5/10: Bolsonaro turns up in Florida after vanishing from publ
+  ✅ 7/10 [crypto] mondiale: Fed Rate Decision: What Markets and Bitcoin Trad
+  🌍 6/10 sans portée internationale : A hidden ocean change near Antarctica could have g
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 5 média(s) · 0.3h — Bilan humain, causes de l'accident : ce que 
+     10/10 · 1 média(s) · 0.2h — At least 68 people dead in high-speed Spain 
+     10/10 · 5 média(s) · 0.5h — Collision meurtrière entre deux trains en Es
+     10/10 · 5 média(s) · 2.4h — EN DIRECT, accident entre deux trains en Esp
+     10/10 · 3 média(s) · 2.5h — Attentat raciste à Trappes et La Verrière : 
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 28-Oct-26 08:37:30 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AXx3hdAC_AocKwKJITeAL2q"}}
+  ❌ Post Instagram échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 28-Oct-26 08:37:33 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ARxvafEiO6rcmg3_AUlsx0A"}}
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Bilan humain, causes de l'accident : ce que l'on sait d
+
+  ── Bilan du cycle (953 s) ──
+     écartés : 6 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 3 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 1 × gemini-embedding-2-preview   🚫 quota
+        18. clé 1 × gemini-embedding-2           🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   ✅
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.6-flash             🚫 quota
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 17 autres
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-001 (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 747
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 122,152 entrée · 5,698 sortie
+     ✅ aucun appel payant
