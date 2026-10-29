@@ -1,0 +1,184 @@
+
+[07:26] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Brewers, グッスマ, #モンハンアウトランダーズ, Cuauhtémoc Cárdenas, World Series
+  🔎 « Brewers » : 1 article(s) frais, le plus récent il y a 2.1 h (KarloBag.eu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Brewers » écarté : trop secondaire (3/10)
+  🔎 « Cuauhtémoc Cárdenas » : 1 article(s) frais, le plus récent il y a 0.7 h (LaPresse News)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Cuauhtémoc Cárdenas » écarté : trop secondaire (4/10)
+  🔎 « World Series » : 1 article(s) frais, le plus récent il y a 2.1 h (KarloBag.eu)
+  ⏭️  « World Series » écarté : trop secondaire (3/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 1.0s (25 déjà en cache)
+  📄 8/29 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 29 articles → 29 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Ce n’est pas acceptable » : en Espagne, la série n
+  🚨 Sujet chaud (breaking, 1 médias) : Emmanuel Macron dénonce une «désinhibition du raci
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + frais 0.2h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 25 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.5-flash-lite (clé 5) : Invalid control character at: line 1 column 395 (char 394) → couple suivant
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : "Plus jamais un enfant victime d'inceste n'entendr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 59.0/100 = gravité 8/10 → 36 + frais 1.2h +8 + thème porteur +10 + primeur +5
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Collision meurtrière entre deux trains en Espagne : 
+  🚨 Sujet chaud (breaking, 1 médias) : Attentat raciste à Trappes: le suspect transféré a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + frais 0.4h +16 + thème porteur +10 + primeur absolue +8 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  → 29 articles à analyser...
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : L’Espagne de nouveau endeuillée par une catastroph
+  ♻️ 8/10 [world] (déjà analysé, cache) : Emmanuel Macron dénonce une «désinhibition du raci
+  ♻️ 7/10 [world] (déjà analysé, cache) : Attentat raciste à Trappes: le suspect transféré a
+  ♻️ 7/10 [world] (déjà analysé, cache) : "On a toujours l'impression de déranger" : après l
+  ♻️ 8/10 [world] (déjà analysé, cache) : "Plus jamais un enfant victime d'inceste n'entendr
+  ♻️ 8/10 [breaking] (déjà analysé, cache) : Au moins 68 morts, causes de l'accident : ce que l
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : EN DIRECT Collision de trains en Espagne : Sous le
+  ♻️ 8/10 [world] (déjà analysé, cache) : Le Sénat vote l’imprescriptibilité des crimes sexu
+  ♻️ 9/10 [world] (déjà analysé, cache) : « Ce n’est pas acceptable » : en Espagne, la série
+  ♻️ 7/10 [sports] (déjà analysé, cache) : INFO OUEST-FRANCE. La France veut organiser le Fin
+  ♻️ 8/10 [world] (déjà analysé, cache) : Mobilisation sociale du 24 octobre : l’exécutif a-
+  ♻️ 7/10 [business] (déjà analysé, cache) : « Emprunt citoyen national » : face à la crise bud
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Apple dévoile son premier ordinateur avec un écran
+  ♻️ 8/10 [breaking] (déjà analysé, cache) : Le journaliste Antoine Spire, grande voix de Franc
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Le MacBook Pro devient tactile et c’est une premiè
+  ♻️ 6/10 [space] (déjà analysé, cache) : IA : cette entreprise veut envoyer une mégaconstel
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : High-speed train crash kills at least 68 people in
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Samsung posts tech's biggest ever profit with bloc
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : AI found a way to crash bitcoin nodes on Windows a
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Security failure at Indian certificate firm bites 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Coinbase adds Ripple’s RLUSD stablecoin across ret
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin Treasury Datavault AI Says It Can’t Access
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Russia now requires Apple to store user communicat
+  🧠 Batch analyse de 4 articles...
+  ✅ 7/10 [world] large: Emmanuel Macron appelle à un retour au calme dan
+  🌍 7/10 sans portée internationale : Taxe petit colis : les ventes de Temu et Shein bai
+  🌍 8/10 sans portée internationale : Collision meurtrière entre deux trains en Espagne 
+  🌍 6/10 sans portée internationale : Équipe de France. Un cadre du premier rassemblemen
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.2h — Emmanuel Macron dénonce une «désinhibition d
+     10/10 · 1 média(s) · 0.1h — « Ce n’est pas acceptable » : en Espagne, la
+     9/10 · 2 média(s) · 0.4h — Attentat raciste à Trappes: le suspect trans
+     9/10 · 1 média(s) · 0.4h — Mobilisation sociale du 24 octobre : l’exécu
+     9/10 · 2 média(s) · 0.1h — Emmanuel Macron appelle à un retour au calme
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Emmanuel Macron dénonce une «désinhibition du racisme» 
+
+  ── Bilan du cycle (227 s) ──
+     écartés : 3 sans portée internationale · 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.6-flash             🚫 quota
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 1 × gemini-embedding-2-preview   🚫 quota
+        25. clé 1 × gemini-embedding-2           🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-2-preview   🚫 quota
+        28. clé 2 × gemini-embedding-2           🚫 quota
+        29. clé 3 × gemini-embedding-001         🚫 quota
+        30. clé 3 × gemini-embedding-2-preview   🚫 quota
+        31. clé 3 × gemini-embedding-2           🚫 quota
+        32. clé 4 × gemini-embedding-001         🚫 quota
+        33. clé 4 × gemini-embedding-2-preview   🚫 quota
+        34. clé 4 × gemini-embedding-2           🚫 quota
+        35. clé 5 × gemini-embedding-001         🚫 quota
+        36. clé 5 × gemini-embedding-2-preview   🚫 quota
+        37. clé 5 × gemini-embedding-2           🚫 quota
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 16 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 58,599 entrée · 1,640 sortie
+     ✅ aucun appel payant
