@@ -1,0 +1,147 @@
+
+[06:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Brewers, グッスマ, World Series, #モンハンアウトランダーズ, Cuauhtémoc Cárdenas
+  🔎 « Brewers » : 1 article(s) frais, le plus récent il y a 1.4 h (Hypebeast)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Brewers » écarté : trop secondaire (2/10)
+  🔎 « World Series » : 1 article(s) frais, le plus récent il y a 1.4 h (Hypebeast)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « World Series » écarté : trop secondaire (3/10)
+  🌍 « Cuauhtémoc Cárdenas » : aucune reprise en français, source internationale retenue
+  🔎 « Cuauhtémoc Cárdenas » : 1 article(s) frais, le plus récent il y a 1.7 h (The New York Times)
+  ⏭️  « Cuauhtémoc Cárdenas » écarté : trop secondaire (4/10)
+  🔎 « William Contreras » : 1 article(s) frais, le plus récent il y a 6.8 h (RDS)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « William Contreras » écarté : Sujet sportif mineur en France.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.2s (73 déjà en cache)
+  📄 11/75 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 75 articles → 26 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Marine Le Pen veut sabrer de 29 % les crédits fran
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.5/100 = gravité 5/10 → 22 + frais 0.2h +16 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Trump methane policy rollback may have minimal imp
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 36.5/100 = gravité 3/10 → 14 + frais 1.7h +8 + primeur +5 + portée internationale +10
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚪ Écarté (1, pénalisé par « comment  ») : Comment l’Amérique de Trump a fait de la Ligue fémin
+  🚨 Sujet chaud (breaking, 26 médias) : Le Sénat approuve l'imprescriptibilité des crimes 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 30 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Mac, ActuGaming, Ars Technica, BFM People
+  🧮 Score 80.0/100 = gravité 8/10 → 36 + 26 médias +20 + frais 2.9h +4 + thème porteur +10 + portée internationale +10
+  🔍 8 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 5 partagée(s) · 2 divergente(s) · 3 exclusive(s)
+      [5m] Une collision entre deux trains à grande vitesse a eu lieu le 28 octobre au su
+         ↳ France Info : Le bilan provisoire est d'au moins dix morts.
+         motif : France Info a publié une information plus ancienne.
+      [4m] Le Premier ministre espagnol a décrété trois jours de deuil national.
+      [3m] Le bilan des blessés s'élève à plus d'une centaine de personnes.
+         ↳ Le Monde : Le bilan fait état de 107 blessés.
+         ↳ France Bleu : Le bilan fait état de 80 blessés.
+         motif : Évolution du bilan au fil des mises à jour.
+      [1m] ⚡exclusif Le ministre des Transports espagnol évoque une possible erreur humaine et une 
+      [2m] L'accident implique un train de la compagnie Renfe et un train de la compagnie
+      [1m] ⚡exclusif Emmanuel Macron a exprimé la solidarité de la France après cet accident.
+      [1m] ⚡exclusif Des rescapés témoignent de scènes de panique et de blessures graves à bord des
+      [4m] Cet accident est le plus grave en Espagne depuis le déraillement de 2013 à Sai
+  🌙 Sujet fort (score 80) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT Collision de trains en Espagne : Sous le c
+  🚨 Sujet chaud (breaking, 26 médias) : Au moins 927 personnes sans-abri sont décédées en 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.0/100 = gravité 4/10 → 18 + 26 médias +20 + frais 2.9h +4 + portée internationale +10
+  🔍 8 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 7 partagée(s) · 2 divergente(s) · 3 exclusive(s)
+      [6m] Une collision entre deux trains à grande vitesse a eu lieu le 28 octobre en Es
+      [4m] Le bilan provisoire de l'accident s'élève à 68 morts.
+         ↳ France Info : Le bilan est d'au moins 10 morts.
+         motif : France Info a publié une information plus ancienne.
+      [4m] Le Premier ministre espagnol a décrété trois jours de deuil national.
+      [1m] ⚡exclusif Le ministre des Transports a évoqué une possible erreur humaine et une panne d
+      [2m] L'accident a impliqué un train de la compagnie Renfe et un train de la compagn
+      [2m] Le bilan des blessés est estimé à plus d'une centaine de personnes.
+         ↳ France Bleu : Le bilan est de 80 blessés.
+         ↳ Le Monde : Le bilan est de 107 blessés.
+         motif : Mises à jour successives des autorités régionales.
+      [3m] Cet accident est le plus grave en Espagne depuis la catastrophe de Saint-Jacqu
+      [3m] Le Premier ministre Pedro Sánchez a souligné la gravité de subir deux accident
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Le parquet de Toulouse saisit l'IGPN après la plai
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BFMTV, Libération
+  🧮 Score 13.5/100 = gravité 3/10 → 14 + 3 médias +7 + frais 0.5h +13 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 14) → suivant
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 75 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (76 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        11. clé 2 × gemini-3.6-flash             🚫 quota
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 1 × gemini-embedding-2           🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   🚫 quota
+        18. clé 2 × gemini-embedding-2           🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 3 × gemini-embedding-2-preview   🚫 quota
+        21. clé 3 × gemini-embedding-2           🚫 quota
+        22. clé 4 × gemini-embedding-001         🚫 quota
+        23. clé 4 × gemini-embedding-2-preview   🚫 quota
+        24. clé 4 × gemini-embedding-2           🚫 quota
+        25. clé 5 × gemini-embedding-001         🚫 quota
+        26. clé 5 × gemini-embedding-2-preview   ✅
+        27. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        28. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 3 × gemini-3.6-flash             🚫 quota
+        30. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 5 × gemini-3.5-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 13,802 entrée · 2,090 sortie
+     ✅ aucun appel payant
