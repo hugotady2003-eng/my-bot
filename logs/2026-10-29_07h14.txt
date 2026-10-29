@@ -1,0 +1,190 @@
+
+[07:11] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Brewers, グッスマ, #モンハンアウトランダーズ, Cuauhtémoc Cárdenas, World Series
+  🔎 « Brewers » : 1 article(s) frais, le plus récent il y a 1.9 h (KarloBag.eu)
+  ⏭️  « Brewers » écarté : trop secondaire (4/10)
+  🔎 « Cuauhtémoc Cárdenas » : 1 article(s) frais, le plus récent il y a 0.4 h (LaPresse News)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ✅ « Cuauhtémoc Cárdenas » retenu : Décès d'une figure politique majeure du Mexique. (6/10) (+1 au score)
+  🔎 « World Series » : 1 article(s) frais, le plus récent il y a 1.9 h (KarloBag.eu)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « World Series » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #CuauhtemocCardenas
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.8s (44 déjà en cache)
+  📄 6/46 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Ouest-France · The Block · Blockworks
+  🧠 46 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « "On a toujours l'impression de dérange… »
+  🧩 46 articles → 23 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : "Plus jamais un enfant victime d'inceste n'entendr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 3.3h +4 + thème porteur +10
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 9 affirmation(s) : 7 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Le Sénat a voté pour l'imprescriptibilité des crimes sexuels commis sur les mi
+      [2m] Le vote du Sénat s'est soldé par 252 voix pour et 80 contre, avec le soutien d
+      [2m] L'Assemblée nationale avait déjà approuvé cette mesure cet été dans une rédact
+      [2m] Actuellement, une victime de viol dans l'enfance peut porter plainte jusqu'à s
+      [2m] Le texte doit encore faire l'objet de concertations entre les deux chambres du
+      [2m] Le vote du Sénat, réputé conservateur sur ces questions, ouvre la voie à un ch
+      [2m] Le projet de loi est examiné dans le cadre de la protection des enfants.
+      [1m] ⚡exclusif Le Parlement s'ouvre à cette réforme dans le sillage de plusieurs affaires ou 
+         motif : Mention absente dans l'autre article.
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les États-Unis interdisent les importations de trois
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : une primaire de la droite et d
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Attentat raciste à Trappes: le suspect transféré a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 2 médias +4 + frais 0.8h +13 + thème porteur +10 + primeur +5 + ⚡ attentat → plancher 89
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 28 s
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, ? médias) : Mexique, Cuauhtémoc Cárdenas est mort à 92 ans : f
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 3 → 4 (+1)
+  → Sujet chaud pas assez fort (score 4) → suivant
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  → 46 articles à analyser...
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : L’Espagne de nouveau endeuillée par une catastroph
+  ♻️ 7/10 [world] (déjà analysé, cache) : Attentat raciste à Trappes: le suspect transféré a
+  ♻️ 7/10 [business] (déjà analysé, cache) : Les États-Unis interdisent les importations de tro
+  ♻️ 7/10 [world] (déjà analysé, cache) : "On a toujours l'impression de déranger" : après l
+  ♻️ 8/10 [world] (déjà analysé, cache) : "Plus jamais un enfant victime d'inceste n'entendr
+  ♻️ 8/10 [breaking] (déjà analysé, cache) : Au moins 68 morts, causes de l'accident : ce que l
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : EN DIRECT Collision de trains en Espagne : Sous le
+  ♻️ 8/10 [world] (déjà analysé, cache) : Le Sénat vote l’imprescriptibilité des crimes sexu
+  ♻️ 7/10 [business] (déjà analysé, cache) : « Emprunt citoyen national » : face à la crise bud
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Apple dévoile son premier ordinateur avec un écran
+  ♻️ 8/10 [breaking] (déjà analysé, cache) : Le journaliste Antoine Spire, grande voix de Franc
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Le MacBook Pro devient tactile et c’est une premiè
+  ♻️ 6/10 [space] (déjà analysé, cache) : IA : cette entreprise veut envoyer une mégaconstel
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : High-speed train crash kills at least 68 people in
+  ♻️ 7/10 [world] (déjà analysé, cache) : UK sanctions Sudanese military leaders implicated 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Samsung posts tech's biggest ever profit with bloc
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : AI found a way to crash bitcoin nodes on Windows a
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Security failure at Indian certificate firm bites 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Coinbase adds Ripple’s RLUSD stablecoin across ret
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin Treasury Datavault AI Says It Can’t Access
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  🎯 Pré-classement : 5 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 3/10: Michael Schumacher : "Nous sortions ensemble", ce Brési
+  📉 4/10: Utah charges predictions platform Kalshi with illegal g
+  📉 2/10: Quatre haches féroces Phantom Blade Zero : où trouver t
+  🌍 7/10 sans portée internationale : Arnab Strikes India
+  📉 2/10: Mémoire cash - 16 ans plus tard, Deadly Premonition inc
+  📉 1/10: Norton Coupon Codes: Up to 58% Off
+  📉 4/10: ULA's Vulcan rocket is set to return to flight on Frida
+  📉 4/10: Upwind raises $400M after walking away from Datadog acq
+  📉 3/10: Présidentielle 2027 : une primaire de la droite et du c
+  📉 3/10: Son installation photovoltaïque est un fiasco et il a p
+  🌍 6/10 sans portée internationale : Tampered Ledger wallets cost Singapore users $2.7M
+  🌍 7/10 sans portée internationale : Jennifer Lawrence confirme ce que tous les fans d’
+  📉 4/10: Confusion over Pakistan policy on Taiwan airlines fuels
+  🌍 7/10 sans portée internationale : Collision entre de TGV en Espagne : retour sur les
+  📉 2/10: APOD: 29 October 2026 – The Horns of Venus
+  ✅ 7/10 [tech] mondiale: Russia now requires Apple to store user communic
+  📉 3/10: Route du Rhum. Deux foilers bientôt vendus, successeur 
+  📉 3/10: Face aux populismes, l’appel à la lucidité : on a lu le
+  📉 4/10: Your fridge could one day stake Ether, launch memecoins
+  📉 3/10: Adam Mosseri says negativity around AI is ‘going to get
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.9h — "Plus jamais un enfant victime d'inceste n'e
+     10/10 · 3 média(s) · 0.9h — EN DIRECT Collision de trains en Espagne : S
+     9/10 · 2 média(s) · 0.2h — Attentat raciste à Trappes: le suspect trans
+     8/10 · 1 média(s) · 0.2h — Les États-Unis interdisent les importations 
+     8/10 · 1 média(s) · 0.3h — AI found a way to crash bitcoin nodes on Win
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.9h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : "Plus jamais un enfant victime d'inceste n'entendra qu'
+
+  ── Bilan du cycle (186 s) ──
+     écartés : 4 sans portée internationale · 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3-flash               ⛔ inexistant
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.6-flash             🚫 quota
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 1 × gemini-embedding-001         🚫 quota
+        23. clé 1 × gemini-embedding-2-preview   🚫 quota
+        24. clé 1 × gemini-embedding-2           🚫 quota
+        25. clé 2 × gemini-embedding-001         🚫 quota
+        26. clé 2 × gemini-embedding-2-preview   🚫 quota
+        27. clé 2 × gemini-embedding-2           🚫 quota
+        28. clé 3 × gemini-embedding-001         🚫 quota
+        29. clé 3 × gemini-embedding-2-preview   🚫 quota
+        30. clé 3 × gemini-embedding-2           🚫 quota
+        31. clé 4 × gemini-embedding-001         🚫 quota
+        32. clé 4 × gemini-embedding-2-preview   🚫 quota
+        33. clé 4 × gemini-embedding-2           🚫 quota
+        34. clé 5 × gemini-embedding-001         🚫 quota
+        35. clé 5 × gemini-embedding-2-preview   ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 7 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 30,165 entrée · 2,345 sortie
+     ✅ aucun appel payant
