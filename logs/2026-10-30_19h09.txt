@@ -1,0 +1,187 @@
+
+[19:07] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « bread crumb »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 30-Oct-26 11:07:59 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AOeNS8yXeEDuio0xTh4ukCT"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Happy Halloween, #ตี๋ตี๋ป๋อของวาวา, #KNYvGS, #เขมจิรากลับมาอีกครั้ง, ハロウィン
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 19h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 5.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.9s (29 déjà en cache)
+  📄 8/34 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · The Block · Libération · Cointelegraph · OpenAI
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Manifestation du 31 octobre: "Je ne vo… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Manifestation du 31 octobre : pourquoi… »
+  🧩 34 articles → 10 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 2 column 15 (char 16) → couple suivant
+  🚨 Sujet chaud (breaking, 18 médias) : Crypto giant Binance attempting to recover $6.3bn 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🧠 22 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC, BBC Business, CNBC, CoinDesk
+  🧮 Score 45/100 = gravité 9/10 → 40 + 18 médias +18 + frais 1.6h +8 + fait local -20 + sous la barre des faits locaux (66)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 4 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 1 exclusive(s)
+      [3m] Des manifestations et des mobilisations sociales contre la vie chère sont prév
+      [2m] Les autorités craignent que les déguisements et masques d'Halloween ne soient 
+      [2m] Le ministre de l'Intérieur Laurent Nuñez indique que le port de masques pour H
+      [1m] ⚡exclusif Des organisations étudiantes et de salariés contestent en justice le refus de 
+  → Sujet chaud pas assez fort (score 45) → suivant
+  🚨 Sujet chaud (breaking, 18 médias) : Manifestations du 31 octobre à Paris : la préfectu
+  🧮 Score 4.5/100 = gravité 3/10 → 14 + 18 médias +18 + frais 1.6h +8 + programmé 3/10 -15 + fait local -20 + sous la barre des faits locaux (66)
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] La préfecture refuse le parcours des syndicats et des gilets jaunes entre Bast
+      [1m] ⚡exclusif Les organisations syndicales et étudiantes contestent en justice le refus de l
+      [1m] ⚡exclusif Le ministre de l'Intérieur Laurent Nuñez prévient que le prétexte d'Halloween 
+      [1m] ⚡exclusif Les autorités redoutent que des manifestants violents utilisent des masques de
+      [1m] ⚡exclusif De nombreux appels à rassemblements émanant de l'ultragauche et de gilets jaun
+  → Sujet chaud pas assez fort (score 4) → suivant
+  🚨 Sujet chaud (breaking, 18 médias) : Attentat raciste dans les Yvelines : des associati
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 42.0/100 = gravité 8/10 → 36 + 18 médias +18 + frais 1.6h +8 + fait local -20 + sous la barre des faits locaux (66)
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Collision meurtrière entre deux trains en Espagne : 
+  🚨 Sujet chaud (breaking, 18 médias) : Présidentielle 2027 : Libérée par la BCE, Christin
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45/100 = gravité 9/10 → 40 + 18 médias +18 + frais 1.6h +8 + fait local -20 + sous la barre des faits locaux (66)
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 45) → suivant
+  🚨 Sujet chaud (breaking, 18 médias) : Binance uncovers wider breach in $6.3 billion expl
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45/100 = gravité 9/10 → 40 + 18 médias +18 + frais 1.6h +8 + fait local -20 + sous la barre des faits locaux (66)
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 45) → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  → 34 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Midterms 2026 : face à la méfiance à l’égard de l’
+  ♻️ 8/10 [hommage] (déjà analysé, cache) : Attentat raciste dans les Yvelines : des associati
+  ♻️ 9/10 [world] (déjà analysé, cache) : Collision meurtrière entre deux trains en Espagne 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Présidentielle 2027 : Libérée par la BCE, Christin
+  ♻️ 6/10 [world] (déjà analysé, cache) : Hélicoptères, section de recherche, barrage au péa
+  ♻️ 7/10 [markets] (déjà analysé, cache) : La croissance recule de 0,1 % au 3e trimestre : la
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Informé depuis un an de l’espionnage de Nvidia par
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Présidentielle 2027 : après sa démission, Christin
+  ♻️ 7/10 [business] (déjà analysé, cache) : 8 800 euros, recharge en 9 min, la nouvelle citadi
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto giant Binance attempting to recover $6.3bn 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : US tech stocks see sharp falls as AI spending near
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : What we know about Binance's $6.3bn hack
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : 'Bad time to troll': Binance cofounder Changpeng Z
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Why bitcoin held up better after the record Binanc
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance uncovers wider breach in $6.3 billion expl
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Wall Street analysts urge investors to buy crypto 
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance arranges $6.34 billion to cover losses fro
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Coinbase leads crypto stock selloff following $6.3
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Crypto Biz: Bitcoin’s quantum threat is becoming a
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Recap: How Binance’s record $6.3B hack unfolded
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Texas brothers sentenced to 15 years for holding M
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance says it has $6.34 billion ready to cover h
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Secret Service, FBI Join Binance Hack Probe as Cir
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance Sets Aside $6.34B to Cover Hack Losses, CE
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Elon Musk, CZ Trade Blows Over SpaceX Shares After
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Community safety report and new protections for te
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: Built to solve your hardest proble
+  ♻️ 7/10 [space] (déjà analysé, cache) : Google’s first data center satellite is online and
+  🧠 Batch analyse de 4 articles...
+  📉 3/10: Manifestation du 31 octobre: "Je ne vois pas en quoi ma
+  📉 3/10: La balustrade du balcon cède : deux frères de 25 et 27 
+  📉 3/10: Manifestation du 31 octobre : pourquoi porter un masque
+  📉 3/10: Votre nom peut faire partie de la prochaine grande miss
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 7 média(s) · 0.5h — Crypto giant Binance attempting to recover $
+     10/10 · 7 média(s) · 0.0h — Why bitcoin held up better after the record 
+     10/10 · 7 média(s) · 0.3h — Coinbase leads crypto stock selloff followin
+     10/10 · 7 média(s) · 0.3h — Secret Service, FBI Join Binance Hack Probe 
+     10/10 · 2 média(s) · 0.7h — Présidentielle 2027 : après sa démission, Ch
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [crypto]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (173 → 146 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 30-Oct-26 11:09:14 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"Am6nBKBAlWjNosCD8VdGeFl"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Crypto giant Binance attempting to recover $6.3bn stole
+
+  ── Bilan du cycle (116 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-embedding-2-preview   🚫 quota
+        10. clé 1 × gemini-embedding-2           🚫 quota
+        11. clé 2 × gemini-embedding-001         🚫 quota
+        12. clé 2 × gemini-embedding-2-preview   🚫 quota
+        13. clé 2 × gemini-embedding-2           🚫 quota
+        14. clé 3 × gemini-embedding-001         ✅
+        15. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 2 × gemini-3.6-flash             🚫 quota
+        17. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 3 × gemini-3.1-flash-lite        ✅
+        19. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.6-flash             ⚠️ Expecting property nam
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.6-flash             🚫 quota
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 4 × gemini-embedding-2-preview (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 736 · gemini 2-preview 799 · gemini 2 798
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 36,689 entrée · 3,217 sortie
+     ✅ aucun appel payant
