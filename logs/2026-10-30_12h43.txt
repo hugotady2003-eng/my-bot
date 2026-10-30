@@ -1,0 +1,368 @@
+
+[12:33] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.6-flash (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « Viking king »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 30-Oct-26 04:35:05 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A8P4kBJa22oiRbyjxMYYFlQ"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : ハロウィン, #OrmSMILEwithB03X, ORM BA LEAPMOTOR B03X, #それスノ, LENAMIU PLS LOVE FINAL EP
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Binance
+  🕐 12h (Paris) — rythme journée (29-60 min · 0 publié(s), 16 restant(s) sur 12.0 h) : 29-60 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 11/16 articles lus en 2.5s (30 déjà en cache)
+  📄 12/46 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Jeuxvideo.com · CoinDesk · The Block · Blockworks
+  🧠 46 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Live updates: Binance finds more breac… »
+  🧩 46 articles → 12 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 6 médias) : Cryptos : la plateforme Binance victime d'un pirat
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 13 (char 12) → couple suivant
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : 9to5Google, The Block
+  ✂️ 7 élément(s) écartés — 3 source(s) hors sujet : CoinDesk, Decrypt, The Block
+  🧮 Score 88.0/100 = gravité 10/10 → 45 + 6 médias +11 + frais 2.1h +4 + thème porteur +10 + portée mondiale +18
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting ',' delimiter: line 12 column 6 (char 287) → couple suivant
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] La plateforme Binance a subi un piratage massif estimé à 6,3 milliards de doll
+      [4m] La direction de Binance (Yi He et Richard Teng) a promis de couvrir l'intégral
+      [2m] Les auteurs présumés de cette cyberattaque seraient des pirates originaires de
+      [2m] L'enquête initiale évoquait un ordinateur portable compromis, mais de nouveaux
+      [1m] ⚡exclusif La mise à niveau EIP-7702 d'Ethereum aurait pu aider les attaquants à contourn
+      [1m] ⚡exclusif Les hackers détenaient plus de 18 270 Bitcoins, surpassant la trésorerie d'ent
+      [1m] ⚡exclusif Le jeton RUNE de THORChain a grimpé de 13% après le piratage, le protocole aya
+  🕒 Âge de l'article : 2.2h (frais ✅)
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 3 column 3 (char 83) → couple suivant
+  ⚠️ gemini-3.5-flash-lite (clé 3) : Invalid control character at: line 1 column 314 (char 313) → couple suivant
+  📈 Hashtag(s) en tendance : #Binance
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 3 column 3 (char 84) → couple suivant
+  📈 Hashtag(s) en tendance : #Binance
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 4 médias) : Hugh Jackman, Kyle MacLachlan, Ian McKellen... le 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting ',' delimiter: line 1 column 13 (char 12) → couple suivant
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : BFM People, Libération, Numerama Pop
+  🧮 Score 80.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 0.9h +13 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 1.6h (frais ✅)
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 12 (char 11) → couple suivant
+  🕊️ Hommage validé par le modèle — Décès confirmé de Patrick Stewart, personnalité publique, de · décès : mercredi 28 octobre
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 3 column 3 (char 78) → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 3 column 3 (char 79) → couple suivant
+  🖼️ Portrait Wikipédia récupéré pour Patrick Stewart (477 ko)
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : EIP-7702 didn’t cause Binance hack, but may have a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 74.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 2.1h +4 + thème porteur +10 + portée mondiale +18
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 5 column 18 (char 159) → couple suivant
+  🧩 8 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Binance a été victime d'un piratage massif évalué à 6,3 milliards de dollars, 
+      [4m] La direction de Binance, notamment sa cofondatrice Yi He et son PDG Richard Te
+      [2m] Les entreprises d'analyse de blockchain TRM Labs, Chainalysis et Bitquery esti
+      [2m] L'enquête initiale de Binance évoquait un ordinateur portable compromis appart
+      [1m] ⚡exclusif Selon la société Blockaid, la mise à niveau EIP-7702 d'Ethereum n'est pas la c
+      [1m] ⚡exclusif Le butin en Bitcoin des pirates s'élève à 18 270 BTC, dépassant les réserves d
+      [1m] ⚡exclusif Le jeton RUNE de THORChain a progressé de plus de 13 % après que des fonds vol
+      [1m] ⚡exclusif Binance a réussi à geler et localiser environ 3 milliards de dollars d'actifs 
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 2 co → couple suivant
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : EN DIRECT Manifestations du 31 octobre : Les parco
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ gemini-3.6-flash (clé 2) : Extra data: line 1 column 4 (char 3) → couple suivant
+  🧮 Score 49.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 2.5h +4 + thème porteur +10
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧩 4 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Le ministère de l'Intérieur déploie environ 70 000 policiers et gendarmes sur 
+      [1m] ⚡exclusif Le ministre de l'Intérieur met en garde contre un risque de violences urbaines
+      [1m] ⚡exclusif L'économie française est à l'arrêt en 2026 selon Roland Lescure, et la confian
+      [1m] ⚡exclusif Les prix à la consommation ont augmenté de 3,4 % sur un an en octobre, notamme
+  🕒 Âge de l'article : 4.5h (frais ✅)
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.6-flash : 10 requêtes/min atteintes → pause 2 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 7 médias) : En Ardèche, la convocation d’un syndicaliste après
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : Journal du Geek, L'Express, La Dépêche, Libération, Melty
+  🧮 Score 25.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 0.3h +16 + programmé 3/10 -15
+  → Sujet chaud pas assez fort (score 26) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Un «pays de chiottes» ? Oui, mais les plus belles 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.0/100 = gravité 6/10 → 27 + frais 0.4h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (164 → 120 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Donald Trump (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : Avec un recul surprise du PIB au troisième trimest
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Blockworks
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 3.2h +4 + thème porteur +10 + portée internationale +10
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Le PIB de la France a reculé de 0,1 % au troisième trimestre selon l'Insee.
+      [2m] Le ministre de l'Économie Roland Lescure a déclaré que l'économie française es
+      [1m] ⚡exclusif La croissance française a été négative au premier trimestre (-0,2 %) et a stag
+      [1m] ⚡exclusif Roland Lescure estime que la France ne va pas vers la crise mais qu'un redress
+      [1m] ⚡exclusif L'économiste Matthieu Plane souligne qu'une révision à la baisse du deuxième t
+  🕒 Âge de l'article : 3.2h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 2 s
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Roland Lescure (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 11 médias) : Guerre en Ukraine : derrière la trêve et l'évacuat
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 3 s
+  🧠 12 article(s) sur un autre sujet, écartés du dossier : Decrypt, France Info, Gamekult, Jeuxvideo.com, Journal du Geek
+  🧮 Score 59.5/100 = gravité 7/10 → 32 + 11 médias +15 + frais 0.5h +13
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 8 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 7 s
+  ✂️ Tweet resserré localement (165 → 125 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Du trône d'Elder Scrolls au repos éternel : à 86 ans
+  🚨 Sujet chaud (breaking, 1 médias) : Crypto liquidations jump to $1.57 billion as Binan
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.0/100 = gravité 8/10 → 36 + frais 0.5h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  📈 Hashtag(s) en tendance : #Binance
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (206 → 176 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:2
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : Live updates: Binance finds more breaches in $6.3 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 9/10 → 40 + 6 médias +11 + frais 2.1h +4 + thème porteur +10 + portée mondiale +18
+  🧩 9 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [4m] La plateforme Binance a été victime d'un piratage massif et historique d'un mo
+      [4m] La direction de Binance, notamment la cofondatrice Yi He et le CEO Richard Ten
+      [2m] Des entreprises d'analyse de blockchain, telles que TRM Labs et Chainalysis, a
+      [2m] Binance a indiqué que son enquête initiale pointait vers un ordinateur portabl
+      [1m] ⚡exclusif L'entreprise a réussi à geler et localiser environ 3 milliards de dollars d'ac
+      [1m] ⚡exclusif Selon la firme Blockaid, l'upgrade Ethereum EIP-7702 a pu aider les attaquants
+      [1m] ⚡exclusif Les attaquants ont amassé un butin en bitcoins (18 270 BTC) supérieur aux rése
+      [1m] ⚡exclusif Le jeton RUNE de THORChain a bondi de plus de 13 % après que des fonds volés à
+  🕒 Âge de l'article : 3.1h (frais ✅)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ⚠️ Page article illisible pour vidéo (HTTP Error 429: Too Many Requests)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-5, pénalisé par « au plumard ») : Christine Lagarde (70 ans) au plumard : "Son plaisir
+  🚨 Sujet chaud (breaking, 11 médias) : Derrière l’attentat terroriste de Trappes, un raci
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.0/100 = gravité 8/10 → 36 + 11 médias +15 + frais 0.6h +13
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 7 médias) : Hélicoptères, section de recherche, barrage au péa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 0.3h +16
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  → 46 articles à analyser...
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Avec un recul surprise du PIB au troisième trimest
+  ♻️ 8/10 [world] (déjà analysé, cache) : Derrière l’attentat terroriste de Trappes, un raci
+  ♻️ 6/10 [world] (déjà analysé, cache) : Un «pays de chiottes» ? Oui, mais les plus belles 
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Ne parlez pas trop fort" : la demande du Pentagon
+  ♻️ 10/10 [crypto] (déjà analysé, cache) : Cryptos : la plateforme Binance victime d'un pirat
+  ♻️ 8/10 [world] (déjà analysé, cache) : "On fait croire qu'ici, c'est dangereux" : après l
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT Manifestations du 31 octobre : Les parco
+  ♻️ 7/10 [world] (déjà analysé, cache) : Hélicoptères, section de recherche, barrage au péa
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre en Ukraine : derrière la trêve et l'évacuat
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT Manifestations du 31 octobre : retour de
+  ♻️ 7/10 [markets] (déjà analysé, cache) : La croissance recule de 0,1 % au 3e trimestre : la
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Des hackers ont distribué une version piégée de Cl
+  ♻️ 7/10 [space] (déjà analysé, cache) : Pour échapper aux revirements d’Elon Musk avec Sta
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Hugh Jackman, Kyle MacLachlan, Ian McKellen... le 
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Les fans du MMO Star Trek Online se réunissent en 
+  ♻️ 8/10 [sports] (déjà analysé, cache) : La légende de la F1 nous a quittés : ex-champion e
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Patrick Stewart annoncé mort à 86 ans, la nouvelle
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : Du trône d'Elder Scrolls au repos éternel : à 86 a
+  ♻️ 9/10 [hommage] (déjà analysé, cache) : Game and watch - De Star Trek à The Elder Scrolls 
+  ♻️ 8/10 [business] (déjà analysé, cache) : Amazon falls 7%, Intel plunges 25% in premarket tr
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Crypto liquidations jump to $1.57 billion as Binan
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Live updates: Binance finds more breaches in $6.3 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : EIP-7702 didn’t cause Binance hack, but may have a
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Binance hacker’s Bitcoin haul tops Coinbase’s corp
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : THORChain’s RUNE jumps 13% after Binance’s record 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Coinbase Q3 net income jumps 66% as prediction mar
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Bitcoin slides below $77,000, BNB drops amid Binan
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance Finds 'Additional Points of Breach' in $6.
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Binance Hacker Hunts for Exit Ramps as DeFi Exchan
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  🧠 Batch analyse de 15 articles...
+  📉 5/10: «Je ressens une douce nostalgie à la vue de ce câlin qu
+  📉 3/10: Les métiers du transport public ont besoin de 100.000 r
+  📉 3/10: « On dirait un bouclier gaulois » : à 70 ans, Jean déco
+  📉 5/10: Élections de mi-mandat : Donald Trump essaie de peser s
+  📉 2/10: Dracula sur Arte : derrière le mythe du vampire, la vér
+  📉 3/10: Gastronomie : doudou gustatif, successeur du macaron… l
+  🌍 7/10 sans portée internationale : Affaire Epstein : le prince Andrew en vacances ave
+  📉 3/10: Lauréates 2026 – Les Pépites : une génération qui inven
+  📉 4/10: « Ceux qui ont redessiné les cartes voulaient nous fair
+  📉 2/10: Boulanger régale en ce Pré-Black Friday avec cette remi
+  📉 2/10: Christine Lagarde (70 ans) au plumard : "Son plaisir in
+  📉 5/10: C’est officiel, Pokémon revient chez McDonald’s avec de
+  📉 5/10: En regardant des images satellites, un archéologue déco
+  📉 2/10: Homme au masque d'or Phantom Blade Zero : Comment battr
+  📉 2/10: YouTube for Google TV update gives YouTube Music a dist
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.6h — EN DIRECT Manifestations du 31 octobre : ret
+     10/10 · 5 média(s) · 0.7h — Patrick Stewart annoncé mort à 86 ans, la no
+     10/10 · 5 média(s) · 0.7h — Game and watch - De Star Trek à The Elder Sc
+     10/10 · 4 média(s) · 0.6h — Crypto liquidations jump to $1.57 billion as
+     10/10 · 4 média(s) · 0.7h — EIP-7702 didn’t cause Binance hack, but may 
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (163 → 104 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (20 Minutes) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.7h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 30-Oct-26 04:43:12 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ALLcD9RzauoR0ClepjHP67H"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : EN DIRECT Manifestations du 31 octobre : retour des cou
+
+  ── Bilan du cycle (571 s) ──
+     écartés : 2 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ 503 Server Error: Serv
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.6-flash             🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   ✅
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.1-flash-lite        ✅
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        25. clé 3 × gemini-3.5-flash-lite        ⚠️ Invalid control charac
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.6-flash             ✅
+        30. clé 2 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        37. clé 3 × gemini-3.5-flash-lite        ✅
+        38. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        39. clé 3 × gemini-3.5-flash-lite        ✅
+        40. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        … et 32 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-001 · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash (+20)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 14/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 776
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 203,445 entrée · 7,313 sortie
+     ✅ aucun appel payant
