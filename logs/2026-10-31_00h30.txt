@@ -1,0 +1,122 @@
+
+[00:27] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : ハッピーハロウィン, Poland, الاهلي, Halloween, Tusk
+  🔎 « Poland » : 1 article(s) frais, le plus récent il y a 9.3 h (TradingView)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Poland » écarté : trop secondaire (3/10)
+  🔎 « Tusk » : 1 article(s) frais, le plus récent il y a 12.5 h (Google Actualités)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⚠️ Jugement de « Tusk » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Tusk » écarté : jugement indisponible
+  🌍 « Inés Gómez Mont » : aucune reprise en français, source internationale retenue
+  🔎 « Sam Altman » : 1 article(s) frais, le plus récent il y a 2.9 h (24 heures)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Sam Altman » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Sam Altman » écarté : jugement indisponible
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Halloween
+  📖 35 articles, tous en cache
+  📄 6/36 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · CoinDesk · OpenAI
+  🧠 35 vecteurs calculés en 1 appel(s)
+  🧩 36 articles → 16 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 4 médias) : Crypto giant Binance attempting to recover $6.3bn 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 67.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 5.7h +2 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Attentat de Trappes : le récit en vidéo d’une atta
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + frais 5.7h +2 + thème porteur +10 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 5.7h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgZHu3WqskxgD43DRJr3x'}
+  🚨 Sujet chaud (breaking, 9 médias) : Le gouvernement américain approuve la vente de 500
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 9 médias +15 + frais 2.6h +4 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🌙 Sujet fort (score 73) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Manifs : des casseurs masqués pour Halloween ? - 30/
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 36 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (194 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 5 × gemini-3.6-flash             ⚠️ Unterminated string st
+        25. clé 5 × gemini-3.6-flash             🚫 quota
+        26. clé 1 × gemini-embedding-001         🚫 quota
+        27. clé 1 × gemini-embedding-2-preview   🚫 quota
+        28. clé 1 × gemini-embedding-2           🚫 quota
+        29. clé 2 × gemini-embedding-001         🚫 quota
+        30. clé 2 × gemini-embedding-2-preview   🚫 quota
+        31. clé 2 × gemini-embedding-2           🚫 quota
+        32. clé 3 × gemini-embedding-001         🚫 quota
+        33. clé 3 × gemini-embedding-2-preview   🚫 quota
+        34. clé 3 × gemini-embedding-2           🚫 quota
+        35. clé 4 × gemini-embedding-001         ✅
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2 · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-001 · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 734 · gemini 2-preview 796 · gemini 2 797
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 812 entrée · 38 sortie
+     ⚠️ 24 appel(s) payés chez Claude (le gratuit n'a pas suffi)
