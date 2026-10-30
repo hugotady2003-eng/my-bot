@@ -1,0 +1,135 @@
+
+[06:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 甲斐拓也, アイプラ, Binance, #カグヤと恋愛占い, Panthers
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Binance, #PatrickStewart, #Devops
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/7 articles lus en 2.0s (66 déjà en cache)
+  📄 13/73 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 73 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 Même événement (jugé) : « La coalition de droite et d'extrême dr… »
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « "On fait croire qu'ici, c'est dangereu… »
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Attentat dans les Yvelines : le suspec… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧩 73 articles → 24 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚨 Sujet chaud (breaking, 21 médias) : Binance points to engineer’s hacked laptop in $6.3
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 35 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, Al Jazeera, BFM People, Blockworks
+  🧮 Score 74.5/100 = gravité 9/10 → 40 + 21 médias +20 + frais 3.4h +4 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ gemini-3.5-flash-lite (clé 5) : Expecting ':' delimiter: line 9 column 9 (char 205) → couple suivant
+  🧩 5 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif Une collision ferroviaire mortelle a eu lieu près de Tolède en Espagne.
+      [1m] ⚡exclusif Le bilan humain s'élève à au moins 69 morts.
+      [1m] ⚡exclusif Plusieurs ressortissants français sont portés disparus ou recherchés.
+      [1m] ⚡exclusif L'ancienne ministre espagnole Fátima Báñez figure parmi les victimes identifié
+      [1m] ⚡exclusif Le ministre des Transports a évoqué une erreur humaine comme cause potentielle
+  🌙 Sujet fort (score 74) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Le camp de Benjamin Netanyahu en tête des élection
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BFMTV
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 4 médias +7 + frais 0.7h +13 + imprévu 6/10 +4 + thème porteur +10 + ⚡ attentat → plancher 89
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 4 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Le principal suspect de l'attentat de Trappes et La Verrière a reconnu la prém
+      [3m] L'attaque perpétrée le 23 octobre a fait un mort (un Français de 26 ans) et pl
+      [1m] ⚡exclusif Le suspect a été transféré au tribunal judiciaire de Paris en vue d'une mise e
+         motif : Information plus récente ou détaillée sur la procédure judiciaire
+      [1m] ⚡exclusif Des habitants de Trappes pointent la responsabilité des politiques et des médi
+         motif : Angle thématique centré sur les témoignages locaux
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Accident de trains en Espagne : au moins 69 morts et
+  🚨 Sujet chaud (breaking, 2 médias) : Crypto giant Binance hit by 'largest hack in histo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 80.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 0.6h +13 + primeur +5 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 80) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Attentat raciste de La Verrière et de Trappes : te
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 4/10 → 18 + 4 médias +7 + frais 0.7h +13 + ⚡ attentat → plancher 89
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 73 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (117 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         ✅
+        14. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        18. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        19. clé 1 × gemini-3-flash               ⛔ inexistant
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-3.6-flash             🚫 quota
+        22. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 2 × gemini-3.6-flash             🚫 quota
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.6-flash             🚫 quota
+        32. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        35. clé 4 × gemini-3.6-flash             🚫 quota
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ⚠️ Expecting ':' delimite
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3.6-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 790 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 15,994 entrée · 2,234 sortie
+     ✅ aucun appel payant
