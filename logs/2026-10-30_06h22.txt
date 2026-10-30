@@ -1,0 +1,131 @@
+
+[06:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS ActuGaming: The read operation timed out
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 甲斐拓也, アイプラ, Binance, #カグヤと恋愛占い, Panthers
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Binance, #PatrickStewart, #Devops
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/5 articles lus en 1.6s (62 déjà en cache)
+  📄 13/67 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 67 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Attentat dans les Yvelines : le suspec… »
+  🧠 Même événement (jugé) : « Audio reveals exchanges between Spain … »
+  🧠 Même événement (jugé) : « Crypto giant Binance hit by 'largest h… »
+  🧠 Même événement (jugé) : « $6 billion Binance hack sends bitcoin,… »
+  🧩 67 articles → 23 événement(s), dont 6 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 8 médias) : La plateforme promet de couvrir "toutes les pertes
+  🧮 Score 100.0/100 = gravité 10/10 → 45 + 8 médias +15 + frais 2.3h +4 + imprévu 10/10 +18 + thème porteur +10 + portée mondiale +18
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 7 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [4m] La plateforme Binance a subi une cyberattaque ou un piratage massif estimé à p
+         ↳ CNBC : La plateforme n'a pas explicitement confirmé l'attaque, évoquant
+         motif : CNBC se montre plus prudent en attendant une confirmation officielle.
+      [3m] Binance a promis de couvrir toutes les pertes engendrées par cet incident.
+      [3m] Plusieurs milliards de dollars d'actifs ont été gelés par Binance et d'autres 
+      [3m] Les dépôts et les retraits sur la plateforme ont été temporairement suspendus.
+      [4m] Changpeng Zhao, ancien dirigeant et fondateur de Binance, a été l'un des premi
+      [2m] Ce vol potentiel représente environ quatre fois le montant record du piratage 
+      [1m] ⚡exclusif Le piratage implique un portefeuille chaud spécifique de Binance, dénommé 'Bin
+      [1m] ⚡exclusif Les clients français sont moins exposés car Binance a cessé ses services en Fr
+  🌙 Sujet fort (score 100) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Collision de trains en Espagne: les autorités commen
+  🚨 Sujet chaud (breaking, 8 médias) : Crypto giant Binance hit by 'largest hack in histo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 87.5/100 = gravité 9/10 → 40 + 8 médias +15 + frais 2.3h +4 + thème porteur +10 + portée mondiale +18
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 88) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 8 médias) : Binance points to engineer’s hacked laptop in $6.3
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 87.5/100 = gravité 9/10 → 40 + 8 médias +15 + frais 2.3h +4 + thème porteur +10 + portée mondiale +18
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 46 s
+  🧩 6 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 1 exclusive(s)
+      [2m] La plateforme d'échange de cryptomonnaies Binance a subi un piratage majeur im
+         ↳ BBC Business, CNBC : Les médias anglophones évoquent une enquête sur un problème de s
+         motif : Prudence des communiqués officiels et estimations préliminaires variab
+      [3m] Binance a suspendu temporairement tous les dépôts et retraits suite à cet inci
+      [3m] Plusieurs milliards de dollars d'actifs (environ 2,5 milliards) ont été rapide
+      [4m] Changpeng Zhao, ancien dirigeant et fondateur de Binance, a confirmé que la si
+      [2m] Ce vol potentiel représente environ quatre fois le montant de la cyberattaque 
+      [1m] ⚡exclusif Le piratage de Binance pourrait accélérer la transition du marché des cryptomo
+  🌙 Sujet fort (score 88) mais nuit → il attendra le matin
+  ⚽ API football-data : 9 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 67 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (110 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         ✅
+        14. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 1 × gemini-3-flash               ⛔ inexistant
+        19. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        22. clé 2 × gemini-3.6-flash             🚫 quota
+        23. clé 2 × gemini-3-flash               ⛔ inexistant
+        24. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        26. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        27. clé 3 × gemini-3.6-flash             🚫 quota
+        28. clé 3 × gemini-3-flash               ⛔ inexistant
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        33. clé 4 × gemini-3.6-flash             🚫 quota
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 793 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 12,716 entrée · 2,746 sortie
+     ✅ aucun appel payant
