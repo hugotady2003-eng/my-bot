@@ -1,0 +1,141 @@
+
+[07:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : ハッピーハロウィン, Happy Halloween, Luka, イタズラ, Lakers
+  🔎 « Luka » : 1 article(s) frais, le plus récent il y a 1.5 h (TrashTalk)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Luka » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Luka » écarté : jugement indisponible
+  🔎 « Lakers » : 1 article(s) frais, le plus récent il y a 1.6 h (Basket USA)
+  ⚠️ Jugement de « Lakers » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Lakers » écarté : jugement indisponible
+  🔎 « Curry » : 1 article(s) frais, le plus récent il y a 14.0 h (Télérama)
+  ⚠️ Jugement de « Curry » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Curry » écarté : jugement indisponible
+  🌍 « SardarVallabhbhaiPatel » : aucune reprise en français, source internationale retenue
+  🔎 « Warriors » : 1 article(s) frais, le plus récent il y a 1.6 h (Basket USA)
+  ⚠️ Jugement de « Warriors » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Warriors » écarté : jugement indisponible
+  🌍 « NationalUnityDay » : aucune reprise en français, source internationale retenue
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/4 articles lus en 0.9s (153 déjà en cache)
+  📄 29/159 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · Jeuxvideo.com · CoinDesk · The Block
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 159 articles → 159 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestations du 31 octobre: le conseil d’État an
+  ⚠️ second avis de catégorie indisponible : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgZsyzHULuS8j1wXXPiNW'}
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 49.0/100 = gravité 10/10 → 45 + frais 2.2h +4
+  🕒 Âge de l'article : 2.2h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgZszDuGNps1Tq1ZR7wwL'}
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Chances d'une vague démocrate, enjeu pour Donald T
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 97.0/100 = gravité 10/10 → 45 + frais 0.5h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgZszgs14cXmzpukepGa5'}
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestations du 31 octobre : 70 000 policiers po
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + frais 0.6h +13 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgZszvK8cGUdaiP6JsW2b'}
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mobilisation sociale : six semaines d’un mouvement a
+  🕒 Sujet chaud mais article ancien (20h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-5, pénalisé par « pourrait, comment  ») : Présidentielle 2027 : Edouard Philippe hors jeu ? Po
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 41 match(s) sur 48h, dont France : 0
+  → 159 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations du 31 octobre : 70 000 policiers po
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto giant Binance attempting to recover $6.3bn 
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto giant Binance attempting to recover $6.3bn 
+  🎯 Pré-classement : 136 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgZt1Cde7UjaHuz8PjewF'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 6 média(s) · 0.6h — Manifestations du 31 octobre : 70 000 polici
+     10/10 · 6 média(s) · 9.7h — Crypto giant Binance attempting to recover $
+     10/10 · 6 média(s) · 9.7h — Crypto giant Binance attempting to recover $
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgZt1bdkTRXwSaqxK4wrJ'}
+  → 1 sélectionné(s) [world]
+  ❌ Envoi 'Manifestations du 31 octobre : 70 000 po': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgZt1pzRGDQur4FsZpRU3'}
+
+  ── Bilan du cycle (131 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 5 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 5 × gemini-3.6-flash             🚫 quota
+        25. clé 5 × gemini-3-flash               ⛔ inexistant
+        26. clé 1 × gemini-embedding-2-preview   🚫 quota
+        27. clé 1 × gemini-embedding-2           🚫 quota
+        28. clé 2 × gemini-embedding-001         🚫 quota
+        29. clé 2 × gemini-embedding-2-preview   🚫 quota
+        30. clé 2 × gemini-embedding-2           🚫 quota
+        31. clé 3 × gemini-embedding-001         🚫 quota
+        32. clé 3 × gemini-embedding-2-preview   🚫 quota
+        33. clé 3 × gemini-embedding-2           🚫 quota
+        34. clé 4 × gemini-embedding-001         🚫 quota
+        35. clé 4 × gemini-embedding-2-preview   🚫 quota
+        36. clé 4 × gemini-embedding-2           🚫 quota
+        37. clé 5 × gemini-embedding-001         🚫 quota
+        38. clé 5 × gemini-embedding-2-preview   🚫 quota
+        39. clé 5 × gemini-embedding-2           🚫 quota
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 790 · gemini 2-preview 799 · gemini 2 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 42 entrée · 0 sortie
+     ⚠️ 23 appel(s) payés chez Claude (le gratuit n'a pas suffi)
