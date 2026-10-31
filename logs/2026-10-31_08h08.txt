@@ -1,0 +1,149 @@
+
+[08:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : ハロウィン, Happy Halloween, #ぶいすぽ年末カウントダウン2026, あなたの運勢, ぶいすぽっ
+  🔎 « Luka » : 1 article(s) frais, le plus récent il y a 1.6 h (TrashTalk)
+  ⏭️  « Luka » écarté : trop secondaire (4/10)
+  🔎 « Lakers » : 1 article(s) frais, le plus récent il y a 1.8 h (Basket USA)
+  ⏭️  « Lakers » écarté : trop secondaire (4/10)
+  🌍 « SardarVallabhbhaiPatel » : aucune reprise en français, source internationale retenue
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/7 articles lus en 1.2s (142 déjà en cache)
+  📄 24/151 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · Jeuxvideo.com · CoinDesk · The Block · OpenAI
+  🧠 149 vecteurs calculés en 2 appel(s)
+  🧩 151 articles → 36 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Mobilisation du 31 octobre : le Conseil d'Etat val
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 17.5/100 = gravité 3/10 → 14 + frais 0.5h +16 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 18) → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚨 Sujet chaud (breaking, 9 médias) : Manifestations du 31 octobre : 70 000 policiers po
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 13 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Dexerto, France Bleu, L'Express, La Dépêche
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 9 médias +15 + frais 5.8h +2 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (188 → 146 car.)
+  👁️ Image écartée : Image non représentative
+  🖼️🤝 Image récupérée chez un média jumeau (20 Minutes) — même sujet
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Gaz ou électricité cet hiver : quel chauffage coûte 
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mobilisation sociale : six semaines d’un mouvement a
+  🕒 Sujet chaud mais article ancien (20h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : Niger : deux mois après son enlèvement, le journal
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : BFMTV, Frandroid, Libération, Numerama Pop, ZDNet
+  🧮 Score 31.0/100 = gravité 4/10 → 18 + 5 médias +11 + frais 7.1h +2
+  → Sujet chaud pas assez fort (score 31) → suivant
+  ⚪ Écarté (-5, pénalisé par « pourrait, comment  ») : Présidentielle 2027 : Edouard Philippe hors jeu ? Po
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 41 match(s) sur 48h, dont France : 0
+  → 151 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations du 31 octobre : 70 000 policiers po
+  ♻️ 8/10 [world] (déjà analysé, cache) : US approves sale of 500 Patriot missiles to Ukrain
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto giant Binance attempting to recover $6.3bn 
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Why North Korea's 'elite' hackers are the prime su
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto giant Binance attempting to recover $6.3bn 
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : What we know about Binance's $6.3bn hack
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Experts divided over Binance hack asset freezes, w
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : President Trump says they’re looking into Binance 
+  ♻️ 8/10 [business] (déjà analysé, cache) : Intel Stock Suffers Worst Crash in 50 Years as Wea
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Worried About Crypto Hacks? Buy Bitcoin Proxies in
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: Built to solve your hardest proble
+  🎯 Pré-classement : 116 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 9/10 [crypto] mondiale: Inside the largest crypto hack on record: How at
+  ✅ 6/10 [world] mondiale: « Leur nombre ne peut pas être déterminé avec pr
+  ✅ 7/10 [crypto] large: Binance Hack Shows Why Offshore Exchanges Need U
+  📉 2/10: Week in images: 26-30 October 2026
+  📉 3/10: "Quatre enfants vivent sous l’emprise de papa" : un ado
+  ✅ 6/10 [tech] mondiale: Test Apple iPhone Duo : une œuvre d'art en cours
+  ✅ 6/10 [tech] mondiale: Samsung mercilessly mocks iPhone Duo ‘crackgate’
+  🌍 6/10 sans portée internationale : "La France, c'est nous" : une semaine après l'atte
+  ✅ 8/10 [ai] mondiale: How a Contractor’s Claude Agent Got Into the Pen
+  🌍 6/10 sans portée internationale : Fabrice Lenglart, directeur général de l'Insee : "
+  🌍 7/10 sans portée internationale : Des images d’un vrai drame meurtrier découvertes d
+  📉 3/10: Advice for optimizing the space industry with Laura Cra
+  ✅ 6/10 [space] large: NASA’s James Webb Space Telescope Captures Eerie
+  📉 4/10: Flexell Space and Satoro Agree to Collaborate on In-Orb
+  🌍 7/10 sans portée internationale : Manifestations du 31 octobre : Le tribunal adminis
+  📉 3/10: NASA Releases MAX POWER Key Events for Media, Participa
+  🌍 7/10 sans portée internationale : Intempéries dans le Var: emporté par les eaux, le 
+  📉 3/10: Ma maison est à la fois connectée et idiote : voilà pou
+  📉 4/10: Googlebook : un pari premium qui se heurte à la réalité
+  🌍 6/10 sans portée internationale : "Des boom et des paf": Gaston Lagaffe de retour av
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.1h — Manifestations du 31 octobre : 70 000 polici
+     10/10 · 6 média(s) · 4.9h — Why North Korea's 'elite' hackers are the pr
+     10/10 · 6 média(s) · 9.9h — Crypto giant Binance attempting to recover $
+     10/10 · 6 média(s) · 9.9h — Crypto giant Binance attempting to recover $
+     10/10 · 6 média(s) · 11.2h — Experts divided over Binance hack asset free
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (197 → 156 car.)
+  👁️ Image écartée : Image non représentative
+  🖼️🤝 Image récupérée chez un média jumeau (20 Minutes) — même sujet
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Manifestations du 31 octobre : 70 000 policiers pour un
+
+  ── Bilan du cycle (148 s) ──
+     écartés : 6 sans portée internationale · 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-embedding-001         🚫 quota
+         5. clé 1 × gemini-embedding-2-preview   ✅
+         6. clé 1 × gemini-embedding-2-preview   ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-001 (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 785 · gemini 2-preview 550 · gemini 2 799
+     jetons Gemini : 46,844 entrée · 1,880 sortie
+     ✅ aucun appel payant
