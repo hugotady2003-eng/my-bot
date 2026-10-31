@@ -1,0 +1,203 @@
+
+[19:13] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « old newspaper print »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Saturday, 31-Oct-26 11:15:23 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"Acdee5S_vQEZbcid62uBWkz"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Halloween, #FBvGÖZ, #MrFanboyEP10, #เขมจิราตลอดกาลEP1, MR FANBOY CHAPTER 10
+  🔎 « Halloween » : 1 article(s) frais, le plus récent il y a 6.6 h (CNews)
+  ✅ « Halloween » retenu : Sanctions prévues pour le port de masques en manifestation. (6/10) (+1 au score)
+  🌍 « เขมจิราตลอดกาลEP1 » : aucune reprise en français, source internationale retenue
+  🔎 « Brighton » : 1 article(s) frais, le plus récent il y a 3.3 h (Goal.com)
+  ⏭️  « Brighton » écarté : trop secondaire (5/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Halloween
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 19h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 5.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/8 articles lus en 1.0s (26 déjà en cache)
+  📄 8/34 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Libération · Ouest-France · CoinDesk · Blockworks
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « EN DIRECT Mobilisation du 31 octobre :… »
+  🧩 34 articles → 12 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Collision de trains en Espagne : Une Française est
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 20.0/100 = gravité 8/10 → 36 + frais 2.5h +4 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 20) → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 9 médias) : Manifestations du 31 octobre : des affrontements é
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : 9to5Google, Blockworks, CNBC, Journal du Geek, L'Express
+  🧮 Score 39.5/100 = gravité 3/10 → 14 + 9 médias +15 + frais 1.9h +8 + programmé 3/10 -15 + portée mondiale +18
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 9 médias) : Midterms aux États-Unis : fébrile, Donald Trump en
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 91.5/100 = gravité 9/10 → 40 + 9 médias +15 + frais 1.9h +8 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (178 → 120 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Clermont : un quatrième mort découvert après l’inc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Libération
+  🧮 Score 66.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 0.1h +16 + thème porteur +10 + primeur +5
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 41 match(s) sur 48h, dont France : 0
+  → 34 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Clermont : un quatrième mort découvert après l’inc
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations de la Gen Z en Europe : le mouvemen
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT Mobilisation du 31 octobre : Près d'un d
+  ♻️ 8/10 [world] (déjà analysé, cache) : Collision de trains en Espagne : Une Française est
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms aux États-Unis : fébrile, Donald Trump en
+  ♻️ 7/10 [world] (déjà analysé, cache) : La stabilité économique mondiale à nouveau menacée
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : KRAKEN s’impose comme le film d’horreur français l
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto firm Binance covers 90% of losses after $6.
+  ♻️ 9/10 [world] (déjà analysé, cache) : More than 5,000 die from Ebola in DR Congo's deadl
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto giant Binance attempting to recover $6.3bn 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : US tech stocks see sharp falls as AI spending near
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : What we know about Binance's $6.3bn hack
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance says 90% of $6.3 billion hack losses are n
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Trump promised to slash energy costs — but gasolin
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Traders are already placing leveraged bets on Anth
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance says 90% of stolen assets replenished, tar
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin held up better than expected after Binance
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Hackers hijack a dozen DeFi websites, all register
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Chainalysis says hacker using ‘offensive agentic t
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Inside the largest crypto hack on record: How atta
+  ♻️ 10/10 [crypto] (déjà analysé, cache) : Binance Hack: Everything You Need to Know About th
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance Hack Shows Why Offshore Exchanges Need US 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: Built to solve your hardest proble
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Samsung mercilessly mocks iPhone Duo ‘crackgate’ i
+  🧠 Batch analyse de 7 articles...
+  ✅ 7/10 [world] mondiale: «Certains mangeaient des chiens» : en Ukraine, l
+  📉 4/10: "J'essayais de rentrer chez moi": marin à bord de l'USS
+  📉 3/10: Racing: "Bientôt, on verra la lumière", Patrice Collazo
+  📉 3/10: "On a été entendus mais on a aussi été méprisés" : à Pa
+  🌍 8/10 sans portée internationale : Carburants : une économie de 10,5 euros par plein.
+  📉 3/10: Maintenant que l’IA est là, où sont nos semaines de 4 j
+  📉 4/10: Jerusalem Daily: Who will form Israel’s next government
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 6 média(s) · 0.1h — Binance says 90% of $6.3 billion hack losses
+     10/10 · 1 média(s) · 1.2h — Midterms aux États-Unis : fébrile, Donald Tr
+     10/10 · 6 média(s) · 1.8h — Crypto firm Binance covers 90% of losses aft
+     10/10 · 4 média(s) · 2.7h — Binance says 90% of stolen assets replenishe
+     10/10 · 6 média(s) · 2.8h — Bitcoin held up better than expected after B
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [crypto]
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : CoinDesk, Google AI, Google DeepMind, The Block
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (176 → 157 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Saturday, 31-Oct-26 11:18:04 PDT.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AvwBHblaksUA0_9RJ_TE5Li"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Binance says 90% of $6.3 billion hack losses are now co
+
+  ── Bilan du cycle (283 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        ✅
+        14. clé 4 × gemini-3.5-flash-lite        ✅
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 1 × gemini-embedding-2-preview   🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-2           🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.1-flash-lite (+13)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 755
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 53,400 entrée · 1,355 sortie
+     ✅ aucun appel payant
