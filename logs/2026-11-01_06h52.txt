@@ -1,0 +1,117 @@
+
+[06:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 乗車準備会, Halloween, 東京ドーム公演記念, #全日本大学駅伝, Gabby Williams
+  🔎 « Gabby Williams » : 1 article(s) frais, le plus récent il y a 3.1 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ✅ « Gabby Williams » retenu : Victoire historique en WNBA de Gabby Williams (7/10) (+1 au score)
+  🔎 « Ohio State » : 1 article(s) frais, le plus récent il y a 0.2 h (RueDesJoueurs)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Ohio State » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Ohio State » écarté : jugement indisponible
+  🌍 « ryan day » : aucune reprise en français, source internationale retenue
+  🔎 « ryan day » : 1 article(s) frais, le plus récent il y a 2.0 h (Eleven Warriors)
+  ⚠️ Jugement de « ryan day » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « ryan day » écarté : jugement indisponible
+  🌍 « Happy New Month » : aucune reprise en français, source internationale retenue
+  🌍 « KarnatakaRajyotsava » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Halloween, #GabbyWilliams
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 2.0s (55 déjà en cache)
+  📄 11/59 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 59 articles → 59 événement(s)
+  🕒 Sujet chaud mais article ancien (32h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Route du rhum : derrière la course mythique, des diz
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestations du 31 octobre : « Tentative de meur
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.8h +8 + thème porteur +10 + primeur +5
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Carburants: des prix à la pompe en baisse dès ce d
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 79.0/100 = gravité 10/10 → 45 + frais 0.2h +16 + thème porteur +10 + primeur absolue +8
+  🌙 Sujet fort (score 79) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestation du 31 octobre à Toulouse : des dégui
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 45/100 = gravité 10/10 → 45 + frais 0.6h +13 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 45) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre au Moyen-Orient : Trump menace de frapper d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.5/100 = gravité 9/10 → 40 + frais 0.7h +13 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 90) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre au Moyen-Orient : Trump menace encore l’Ira
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 87.0/100 = gravité 10/10 → 45 + frais 0.1h +16 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 87) mais nuit → il attendra le matin
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Portées par Gabby Williams, décisive et MVP de la fi
+  ⚽ API football-data : 24 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 59 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (111 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.6-flash             🚫 quota
+        14. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.6-flash             🚫 quota
+        17. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 5 × gemini-3.6-flash             🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-2-preview   🚫 quota
+        25. clé 3 × gemini-embedding-2           🚫 quota
+        26. clé 4 × gemini-embedding-001         🚫 quota
+        27. clé 4 × gemini-embedding-2-preview   🚫 quota
+        28. clé 4 × gemini-embedding-2           🚫 quota
+        29. clé 5 × gemini-embedding-001         🚫 quota
+        30. clé 5 × gemini-embedding-2-preview   🚫 quota
+        31. clé 5 × gemini-embedding-2           🚫 quota
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-2 · clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 785 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 832 entrée · 29 sortie
+     ⚠️ 15 appel(s) payés chez Claude (le gratuit n'a pas suffi)
