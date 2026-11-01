@@ -1,0 +1,191 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 乗車準備会, Happy New Month, 東京ドーム公演記念, #FoolInLove, #全日本大学駅伝
+  🌍 « Happy New Month » : aucune reprise en français, source internationale retenue
+  🔎 « Gabby Williams » : 1 article(s) frais, le plus récent il y a 3.3 h (L'Équipe)
+  ✅ « Gabby Williams » retenu : Gabby Williams championne et MVP en WNBA. (7/10) (+1 au score)
+  🔎 « Ohio State » : 1 article(s) frais, le plus récent il y a 0.4 h (RueDesJoueurs)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Ohio State » écarté : Simple pronostic sportif sans événement marquant.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #GabbyWilliams
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/7 articles lus en 1.7s (54 déjà en cache)
+  📄 11/61 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 61 articles → 61 événement(s)
+  🕒 Sujet chaud mais article ancien (32h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Route du rhum : derrière la course mythique, des diz
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestations du 31 octobre : « Tentative de meur
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 2.0h +8 + thème porteur +10 + primeur +5
+  🕒 Âge de l'article : 2.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Prix du gaz, retraites, logement, traitement anti-
+  🧮 Score 39.5/100 = gravité 7/10 → 32 + frais 1.4h +8 + programmé 0/10 -15 + thème porteur +10 + primeur +5
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestation du 31 octobre à Toulouse : des dégui
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 17.5/100 = gravité 3/10 → 14 + frais 0.2h +16 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 18) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre au Moyen-Orient : Trump menace de frapper d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.5/100 = gravité 9/10 → 40 + frais 0.9h +13 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Portées par Gabby Williams, décisive et MVP de la fi
+  ⚽ API football-data : 24 match(s) sur 48h, dont France : 0
+  → 61 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations de la Gen Z en Europe : le mouvemen
+  ♻️ 7/10 [business] (déjà analysé, cache) : Prix du gaz, retraites, logement, traitement anti-
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations du 31 octobre : « Tentative de meur
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre au Moyen-Orient : Trump menace de frapper d
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Cryptomonnaies : après le piratage, Binance prévoi
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : KRAKEN s’impose comme le film d’horreur français l
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto giant Binance attempting to recover $6.3bn 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : US tech stocks see sharp falls as AI spending near
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : What we know about Binance's $6.3bn hack
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance says 90% of $6.3 billion hack losses are n
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump defamation suit against Murdoch, WSJ over Ep
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance says 90% of stolen assets replenished, tar
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin held up better than expected after Binance
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Hackers hijack a dozen DeFi websites, all register
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Chainalysis says hacker using ‘offensive agentic t
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Inside the largest crypto hack on record: How atta
+  ♻️ 10/10 [crypto] (déjà analysé, cache) : Binance Hack: Everything You Need to Know About th
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance Hack Shows Why Offshore Exchanges Need US 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: Built to solve your hardest proble
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance CEO says 90 percent of stolen assets have 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Samsung mercilessly mocks iPhone Duo ‘crackgate’ i
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Here’s how the new MacBook Pro and macOS 27 are op
+  🎯 Pré-classement : 16 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 5/10: Sahara occidental : la disparition annoncée de la missi
+  📉 2/10: Mémoire cash - Le couloir de la mort sur route : commen
+  🌍 7/10 sans portée internationale : La Sécu peut-elle faire faillite et arrêter de pay
+  ✅ 8/10 [world] large: EN DIRECT, midterms 2026 : plus de 52 millions d
+  📉 4/10: Michael Kimmage directeur du Kennan Institute : « Trump
+  ✅ 6/10 [world] mondiale: Élections législatives en Israël : score histori
+  ✅ 9/10 [crypto] mondiale: FBI confirms North Korea's role in $6 billion Bi
+  ✅ 6/10 [world] large: À deux jours des midterms, Trump, le monde en je
+  📉 3/10: Libre et open source express: apocalypse de vulnérabili
+  📉 5/10: Pakistan refineries report 1,860% jump in profit amid w
+  🌍 7/10 sans portée internationale : Prix du gaz, retraites complémentaires, découverts
+  📉 5/10: L'ÉDITO POLITIQUE - Budget 2027: colère sociale, manife
+  📉 5/10: François-Xavier Selleret, directeur général de l’Agirc-
+  📉 3/10: Les catholiques célèbrent la Toussaint ce dimanche, le 
+  📉 4/10: Football, tennis, course à pied… Les sportifs seront-il
+  📉 4/10: Route du rhum : derrière la course mythique, des dizain
+  📉 4/10: Ultra fast-fashion : faut-il durcir les règles pour lut
+  📉 2/10: Pour protéger vos poireaux du gel, voici l’astuce de gr
+  📉 3/10: Deux de ses quatre ânesses seraient mortes de faim, de 
+  📉 2/10: Stade Toulousain : "Avoir quelqu'un à qui parler de tem
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.9h — Guerre au Moyen-Orient : Trump menace de fra
+     10/10 · 6 média(s) · 4.9h — FBI confirms North Korea's role in $6 billio
+     9/10 · 2 média(s) · 1.4h — Prix du gaz, retraites, logement, traitement
+     9/10 · 2 média(s) · 2.0h — Manifestations du 31 octobre : « Tentative d
+     10/10 · 1 média(s) · 8.5h — Cryptomonnaies : après le piratage, Binance 
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.9h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Guerre au Moyen-Orient : Trump menace de frapper de nou
+
+  ── Bilan du cycle (270 s) ──
+     écartés : 2 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 1 × gemini-embedding-2           🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   🚫 quota
+        18. clé 2 × gemini-embedding-2           🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 3 × gemini-embedding-2-preview   🚫 quota
+        21. clé 3 × gemini-embedding-2           🚫 quota
+        22. clé 4 × gemini-embedding-001         🚫 quota
+        23. clé 4 × gemini-embedding-2-preview   🚫 quota
+        24. clé 4 × gemini-embedding-2           🚫 quota
+        25. clé 5 × gemini-embedding-001         🚫 quota
+        26. clé 5 × gemini-embedding-2-preview   🚫 quota
+        27. clé 5 × gemini-embedding-2           🚫 quota
+        28. clé 2 × gemini-3.6-flash             🚫 quota
+        29. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 3 × gemini-3.6-flash             🚫 quota
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        33. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        35. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.6-flash             🚫 quota
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 11 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 785 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 38,417 entrée · 1,773 sortie
+     ✅ aucun appel payant
