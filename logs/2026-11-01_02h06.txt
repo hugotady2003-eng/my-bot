@@ -1,0 +1,111 @@
+
+[02:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Halloween, #AVigília, #全日本大学駅伝, フォーエバーヤング, エバヤン
+  🔎 « Canelo » : 1 article(s) frais, le plus récent il y a 2.4 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Canelo » écarté : trop secondaire (5/10)
+  🔎 « Indiana » : 1 article(s) frais, le plus récent il y a 19.0 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Indiana » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Halloween
+  📖 44 articles, tous en cache
+  📄 9/44 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Libération · CoinDesk · Blockworks
+  🧠 44 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Manifs sauvages, Halloween : une nuit … »
+  🧠 Même événement (jugé) : « Manifestations du 31 octobre : 565 int… »
+  🧠 Même événement (jugé) : « Manifestation du 31 octobre : un genda… »
+  🧠 Même événement (jugé) : « Manifestations du 31 octobre : un gend… »
+  🧠 Même événement (jugé) : « Thousands demonstrate in Paris as prot… »
+  🧩 44 articles → 15 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (27h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 9 médias) : EN DIRECT, manifestations du 31 octobre : plusieur
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : ActuGaming, Al Jazeera, Ouest-France, ZDNet
+  🧮 Score 69.0/100 = gravité 8/10 → 36 + 9 médias +15 + frais 1.3h +8 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [6m] Des manifestations contre la vie chère ont eu lieu partout en France le 31 oct
+      [3m] Un gendarme a été blessé par un cocktail Molotov à Paris lors des manifestatio
+      [2m] Le ministre de l'Intérieur Laurent Nuñez a qualifié l'agression du gendarme de
+      [1m] Le ministère de l'Intérieur a fait état de 565 interpellations en France.
+         ↳ BBC : La BBC indique qu'au moins 290 manifestants ont été arrêtés.
+         motif : Actualisation des chiffres à des moments différents.
+      [1m] ⚡exclusif Plus de 320 000 personnes ont manifesté dans le pays selon les autorités.
+      [1m] ⚡exclusif Environ 70 000 personnes ont manifesté à Paris.
+      [1m] ⚡exclusif Des tags 'remigration' ont été découverts à Paris et la justice a été saisie.
+  🌙 Sujet fort (score 69) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Manifs sauvages, Halloween : une nuit à risque ? - 3
+  ⚽ API football-data : 24 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 44 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.6-flash             🚫 quota
+        18. clé 5 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-2-preview   🚫 quota
+        27. clé 3 × gemini-embedding-2           🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 4 × gemini-embedding-2-preview   ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-001 · clé 5 × gemini-embedding-2 (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,748 entrée · 786 sortie
+     ✅ aucun appel payant
