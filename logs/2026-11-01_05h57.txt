@@ -1,0 +1,103 @@
+
+[05:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Halloween, Gabby Williams, #AVigília, Ohio State, #全日本大学駅伝
+  🔎 « Gabby Williams » : 1 article(s) frais, le plus récent il y a 2.2 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ✅ « Gabby Williams » retenu : Gabby Williams remporte le titre WNBA. (7/10) (+1 au score)
+  🔎 « Ohio State » : 1 article(s) frais, le plus récent il y a 7.4 h (agridigitale.tg)
+  ⏭️  « Ohio State » écarté : Sport universitaire americain sans interet en France
+  🌍 « ryan day » : aucune reprise en français, source internationale retenue
+  🔎 « ryan day » : 1 article(s) frais, le plus récent il y a 1.1 h (Eleven Warriors)
+  ⏭️  « ryan day » écarté : trop secondaire (1/10)
+  🌍 « Fahey » : aucune reprise en français, source internationale retenue
+  🔎 « Fahey » : 1 article(s) frais, le plus récent il y a 4.1 h (The Columbus Dispatch)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Fahey » écarté : trop secondaire (1/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Halloween, #GabbyWilliams
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📖 1/1 articles lus en 0.1s (48 déjà en cache)
+  📄 9/49 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Libération · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  🧩 49 articles → 49 événement(s)
+  🕒 Sujet chaud mais article ancien (31h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestations du 31 octobre : « Tentative de meur
+  ⚠️ second avis de catégorie indisponible : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgbccsCVykeFC6w8aJcEm'}
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 76.0/100 = gravité 10/10 → 45 + frais 0.9h +13 + thème porteur +10 + primeur absolue +8
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Manifs sauvages, Halloween : une nuit à risque ? - 3
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Portées par Gabby Williams, décisive et MVP de la fi
+  ⚽ API football-data : 24 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 49 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (89 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        11. clé 2 × gemini-3.6-flash             🚫 quota
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.6-flash             🚫 quota
+        18. clé 5 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   🚫 quota
+        29. clé 4 × gemini-embedding-2           🚫 quota
+        30. clé 5 × gemini-embedding-001         🚫 quota
+        31. clé 5 × gemini-embedding-2-preview   🚫 quota
+        32. clé 5 × gemini-embedding-2           🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        34. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        35. clé 5 × gemini-3.6-flash             ⚠️ 'parts'
+        36. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 796 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,800 entrée · 112 sortie
+     ⚠️ 11 appel(s) payés chez Claude (le gratuit n'a pas suffi)
