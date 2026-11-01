@@ -1,0 +1,153 @@
+
+[07:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 乗車準備会, Happy New Month, 東京ドーム公演記念, #FoolInLove, #全日本大学駅伝
+  🌍 « Happy New Month » : aucune reprise en français, source internationale retenue
+  🔎 « Gabby Williams » : 1 article(s) frais, le plus récent il y a 3.4 h (L'Équipe)
+  ✅ « Gabby Williams » retenu : Gabby Williams remporte le titre WNBA. (7/10) (+1 au score)
+  🔎 « Ohio State » : 1 article(s) frais, le plus récent il y a 0.6 h (RueDesJoueurs)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Ohio State » écarté : Simple pronostic sportif sans événement marquant.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #GabbyWilliams
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/3 articles lus en 1.1s (32 déjà en cache)
+  📄 7/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 35 articles → 35 événement(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  🕒 Sujet chaud mais article ancien (32h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Route du Rhum : "il y a une part d’inconnu et de déc
+  🚨 Sujet chaud (breaking, 1 médias) : Prix du gaz, retraites, logement, traitement anti-
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.5h +8 + thème porteur +10 + primeur +5
+  🕒 Âge de l'article : 1.5h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgbiNp7Gs1LMziHmeQwUg'}
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestations du 31 octobre : « Tentative de meur
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 2.1h +4 + thème porteur +10
+  🕒 Âge de l'article : 2.1h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgbiP4Rz4832vtPB9hG77'}
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre au Moyen-Orient : Trump menace de frapper d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.5/100 = gravité 9/10 → 40 + frais 1.1h +8 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgbiPJX4FbJYMKh7YPKrJ'}
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Portées par Gabby Williams, décisive et MVP de la fi
+  ⚽ API football-data : 24 match(s) sur 48h, dont France : 0
+  → 35 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, midterms 2026 : plus de 52 millions d’A
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations de la Gen Z en Europe : le mouvemen
+  ♻️ 7/10 [business] (déjà analysé, cache) : Prix du gaz, retraites, logement, traitement anti-
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations du 31 octobre : « Tentative de meur
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre au Moyen-Orient : Trump menace de frapper d
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Cryptomonnaies : après le piratage, Binance prévoi
+  ♻️ 7/10 [world] (déjà analysé, cache) : Crise politique et institutionnelle en Pologne : f
+  ♻️ 6/10 [world] (déjà analysé, cache) : Élections législatives en Israël : score historiqu
+  ♻️ 6/10 [world] (déjà analysé, cache) : À deux jours des midterms, Trump, le monde en jeu
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : KRAKEN s’impose comme le film d’horreur français l
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto giant Binance attempting to recover $6.3bn 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : US tech stocks see sharp falls as AI spending near
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : What we know about Binance's $6.3bn hack
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance says 90% of $6.3 billion hack losses are n
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump defamation suit against Murdoch, WSJ over Ep
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : FBI confirms North Korea's role in $6 billion Bina
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance says 90% of stolen assets replenished, tar
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin held up better than expected after Binance
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Hackers hijack a dozen DeFi websites, all register
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Chainalysis says hacker using ‘offensive agentic t
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Inside the largest crypto hack on record: How atta
+  ♻️ 10/10 [crypto] (déjà analysé, cache) : Binance Hack: Everything You Need to Know About th
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance Hack Shows Why Offshore Exchanges Need US 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: Built to solve your hardest proble
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance CEO says 90 percent of stolen assets have 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Samsung mercilessly mocks iPhone Duo ‘crackgate’ i
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Here’s how the new MacBook Pro and macOS 27 are op
+  🧠 Batch analyse de 6 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgbiPcSpnjAJmcRofFReo'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 1.1h — Guerre au Moyen-Orient : Trump menace de fra
+     8/10 · 1 média(s) · 0.2h — Crise politique et institutionnelle en Polog
+     10/10 · 6 média(s) · 5.0h — FBI confirms North Korea's role in $6 billio
+     9/10 · 2 média(s) · 1.5h — Prix du gaz, retraites, logement, traitement
+     10/10 · 1 média(s) · 8.6h — Cryptomonnaies : après le piratage, Binance 
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgbiPwoQBBoLGoko4qSZU'}
+  → 1 sélectionné(s) [world]
+  ❌ Envoi 'Guerre au Moyen-Orient : Trump menace de': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgbiQBpFxvqf2W77f3Qiz'}
+
+  ── Bilan du cycle (126 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 1 × gemini-embedding-2-preview   🚫 quota
+        15. clé 1 × gemini-embedding-2           🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   🚫 quota
+        18. clé 2 × gemini-embedding-2           🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 3 × gemini-embedding-2-preview   🚫 quota
+        21. clé 3 × gemini-embedding-2           🚫 quota
+        22. clé 4 × gemini-embedding-001         🚫 quota
+        23. clé 4 × gemini-embedding-2-preview   🚫 quota
+        24. clé 4 × gemini-embedding-2           🚫 quota
+        25. clé 5 × gemini-embedding-001         🚫 quota
+        26. clé 5 × gemini-embedding-2-preview   🚫 quota
+        27. clé 5 × gemini-embedding-2           🚫 quota
+        28. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 3 × gemini-3.6-flash             🚫 quota
+        31. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        33. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.6-flash             🚫 quota
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 785 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,276 entrée · 122 sortie
+     ⚠️ 8 appel(s) payés chez Claude (le gratuit n'a pas suffi)
