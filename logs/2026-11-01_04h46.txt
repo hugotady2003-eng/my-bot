@@ -1,0 +1,93 @@
+
+[04:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Gabby Williams, Halloween, #AVigília, #全日本大学駅伝, ryan day
+  🔎 « Gabby Williams » : 1 article(s) frais, le plus récent il y a 1.0 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ✅ « Gabby Williams » retenu : Performance historique d'une joueuse française en WNBA. (6/10) (+1 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Halloween, #Canelo, #GabbyWilliams
+  📖 2/2 articles lus en 0.9s (46 déjà en cache)
+  📄 9/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Libération · CoinDesk · Blockworks
+  🧠 48 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Manifs sauvages, Halloween : une nuit … »
+  🧠 Même événement (jugé) : « Manifestations du 31 octobre : 565 int… »
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧠 Même événement (jugé) : « Manifestations du 31 octobre : un gend… »
+  🧩 48 articles → 19 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (30h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Manifs sauvages, Halloween : une nuit à risque ? - 3
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Boxe : Le Français Mbilli battu par le roi mexicain 
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Portées par Gabby Williams, décisive et MVP de la fi
+  ⚽ API football-data : 24 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 48 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 1 × gemini-embedding-2-preview   🚫 quota
+        10. clé 1 × gemini-embedding-2           🚫 quota
+        11. clé 2 × gemini-embedding-001         🚫 quota
+        12. clé 2 × gemini-embedding-2-preview   🚫 quota
+        13. clé 2 × gemini-embedding-2           🚫 quota
+        14. clé 3 × gemini-embedding-001         🚫 quota
+        15. clé 3 × gemini-embedding-2-preview   🚫 quota
+        16. clé 3 × gemini-embedding-2           🚫 quota
+        17. clé 4 × gemini-embedding-001         🚫 quota
+        18. clé 4 × gemini-embedding-2-preview   🚫 quota
+        19. clé 4 × gemini-embedding-2           🚫 quota
+        20. clé 5 × gemini-embedding-001         🚫 quota
+        21. clé 5 × gemini-embedding-2-preview   ✅
+        22. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 2 × gemini-3.6-flash             🚫 quota
+        24. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 3 × gemini-3.6-flash             🚫 quota
+        28. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 4 × gemini-3.6-flash             🚫 quota
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,803 entrée · 115 sortie
+     ✅ aucun appel payant
