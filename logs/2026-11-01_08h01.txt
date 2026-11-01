@@ -1,0 +1,180 @@
+
+[07:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 乗車準備会, Happy New Month, 東京ドーム公演記念, #FoolInLove, #全日本大学駅伝
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.7s (31 déjà en cache)
+  📄 6/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · CoinDesk · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Prix du gaz, retraites, logement, trai… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧠 Même événement (jugé) : « Manifestations du 31 octobre : un gend… »
+  🧠 Même événement (jugé) : « À deux jours des midterms, Trump, le m… »
+  🧠 Même événement (jugé) : « What we know about Binance's $6.3bn ha… »
+  🧠 Même événement (jugé) : « Binance says 90% of $6.3 billion hack … »
+  🧩 35 articles → 30 événement(s)
+  🕒 Sujet chaud mais article ancien (33h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-2, pénalisé par « \b(?:météo ») : Prix du gaz, pneus neige, retraites complémentaires.
+  🚨 Sujet chaud (breaking, 2 médias) : Manifestations du 31 octobre : « Tentative de meur
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 27.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 6.6h +2 + thème porteur +10 + fait local -20 + sous la barre des faits locaux (66)
+  🧩 8 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [2m] Un gendarme a été visé par un cocktail Molotov lors de la manifestation à Pari
+      [2m] Le ministre de l'Intérieur Laurent Nuñez qualifie l'agression au cocktail Molo
+      [1m] Le gendarme visé par le cocktail Molotov a été blessé légèrement et a poursuiv
+         ↳ La Dépêche : Le gendarme a pris feu et a été pris en compte par ses camarades
+         motif : Précision sur l'état de santé et la suite du service.
+      [1m] ⚡exclusif 565 personnes ont été interpellées au niveau national lors de cette journée de
+      [1m] ⚡exclusif 79 personnes ont été interpellées à Paris.
+      [1m] ⚡exclusif Cinq membres des forces de l'ordre ont été blessés à Paris.
+      [1m] ⚡exclusif Le ministre de l'Intérieur attribue les violences à des groupes d'ultragauche.
+      [1m] ⚡exclusif Les violences ont eu lieu porte de Charenton lors de la dispersion du cortège.
+  → Sujet chaud pas assez fort (score 28) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Rubio says Trump administration did not help Bolso
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + frais 0.4h +16 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 33 s
+  ✂️ Tweet resserré localement (211 → 166 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 24 match(s) sur 48h, dont France : 0
+  → 35 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, midterms 2026 : plus de 52 millions d’A
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations de la Gen Z en Europe : le mouvemen
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Le FBI accuse la Corée du Nord du vol de plus de 6
+  ♻️ 7/10 [business] (déjà analysé, cache) : Prix du gaz, retraites, logement, traitement anti-
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations du 31 octobre : « Tentative de meur
+  ♻️ 8/10 [world] (déjà analysé, cache) : Manifestations du 31 octobre : un gendarme prend f
+  ♻️ 7/10 [world] (déjà analysé, cache) : Crise politique et institutionnelle en Pologne : f
+  ♻️ 6/10 [world] (déjà analysé, cache) : À deux jours des midterms, Trump, le monde en jeu
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : KRAKEN s’impose comme le film d’horreur français l
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Crypto giant Binance attempting to recover $6.3bn 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : US tech stocks see sharp falls as AI spending near
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : What we know about Binance's $6.3bn hack
+  ♻️ 7/10 [world] (déjà analysé, cache) : Rubio says Trump administration did not help Bolso
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance says 90% of $6.3 billion hack losses are n
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump defamation suit against Murdoch, WSJ over Ep
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : FBI confirms North Korea's role in $6 billion Bina
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance says 90% of stolen assets replenished, tar
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin held up better than expected after Binance
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Hackers hijack a dozen DeFi websites, all register
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Chainalysis says hacker using ‘offensive agentic t
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Inside the largest crypto hack on record: How atta
+  ♻️ 10/10 [crypto] (déjà analysé, cache) : Binance Hack: Everything You Need to Know About th
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance Hack Shows Why Offshore Exchanges Need US 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: Built to solve your hardest proble
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Binance CEO says 90 percent of stolen assets have 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Samsung mercilessly mocks iPhone Duo ‘crackgate’ i
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Here’s how the new MacBook Pro and macOS 27 are op
+  🧠 Batch analyse de 6 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  📉 5/10: Ukraine, Otan, droits de douane : ce qu'une victoire dé
+  🌍 7/10 sans portée internationale : Prix du gaz, pneus neige, retraites complémentaire
+  📉 4/10: "Donald Trump rend notre travail plus difficile" : dans
+  📉 3/10: Patinage artistique. Grâce à un programme libre tout en
+  🌍 8/10 sans portée internationale : Carburant : l’exécutif libère 10 millions de baril
+  📉 3/10: Boulanger s’échauffe avant le début du Black Friday en 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.6h — Le FBI accuse la Corée du Nord du vol de plu
+     8/10 · 1 média(s) · 0.4h — Rubio says Trump administration did not help
+     10/10 · 6 média(s) · 5.8h — FBI confirms North Korea's role in $6 billio
+     9/10 · 2 média(s) · 2.3h — Prix du gaz, retraites, logement, traitement
+     9/10 · 2 média(s) · 2.9h — Manifestations du 31 octobre : « Tentative d
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [crypto]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.6h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Le FBI accuse la Corée du Nord du vol de plus de 6 mill
+
+  ── Bilan du cycle (333 s) ──
+     écartés : 2 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × gemini-embedding-2-preview   🚫 quota
+        15. clé 5 × gemini-embedding-2           🚫 quota
+        16. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 1 × gemini-3-flash               ⛔ inexistant
+        21. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 2 × gemini-3.6-flash             🚫 quota
+        25. clé 2 × gemini-3-flash               ⛔ inexistant
+        26. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        28. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        29. clé 3 × gemini-3.6-flash             🚫 quota
+        30. clé 3 × gemini-3-flash               ⛔ inexistant
+        31. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.6-flash             🚫 quota
+        35. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 10 autres
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 785 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 34,403 entrée · 1,847 sortie
+     ✅ aucun appel payant
