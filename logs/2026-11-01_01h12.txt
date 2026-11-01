@@ -1,0 +1,141 @@
+
+[01:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Halloween, フォーエバーヤング, エバヤン, #AVigília, テーオーエルビス
+  🔎 « Halloween » : 1 article(s) frais, le plus récent il y a 2.9 h (RTL)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⏭️  « Halloween » écarté : Célébration récurrente sans actualité notable
+  🔎 « Canelo » : 1 article(s) frais, le plus récent il y a 1.5 h (DAZN)
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⏭️  « Canelo » écarté : Simple combat de boxe sans enjeu national majeur.
+  🔎 « Indiana » : 1 article(s) frais, le plus récent il y a 18.1 h (L'Équipe)
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Indiana » écarté : trop secondaire (3/10)
+  🔎 « Eileen » : 1 article(s) frais, le plus récent il y a 13.1 h (Les Echos)
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⏭️  « Eileen » écarté : Article culturel ancien sans fait nouveau.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Antoine
+  📖 1/1 articles lus en 0.2s (37 déjà en cache)
+  📄 8/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Libération · CoinDesk · Blockworks
+  🧠 38 vecteurs calculés en 1 appel(s)
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧠 Même événement (jugé) : « Manifestations du 31 octobre : 565 int… »
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Manifestation du 31 octobre : un genda… »
+  ⏱️ gemini-3.6-flash : 10 requêtes/min atteintes → pause 39 s
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Manifestations du 31 octobre : un gend… »
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🧠 Même événement (jugé) : « Thousands demonstrate in Paris as prot… »
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « What we know about Binance's $6.3bn ha… »
+  🧩 38 articles → 14 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (26h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 7 médias) : Manifestation du 31 octobre : un gendarme visé par
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : ActuGaming, ZDNet
+  🧮 Score 56.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 2.7h +4 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [3m] Un gendarme a été visé et blessé par un cocktail Molotov à Paris lors de la ma
+      [2m] Le ministre de l'Intérieur Laurent Nuñez a qualifié cet acte de tentative de m
+      [1m] Le ministre de l'Intérieur a fait état d'un bilan national de 565 interpellati
+         ↳ BBC : La BBC indique un bilan d'au moins 290 manifestants arrêtés à l'
+         motif : Chiffres et sources fournis à des moments différents.
+      [2m] L'incident s'est produit lors de l'arrivée du cortège parisien porte de Charen
+      [1m] ⚡exclusif Les candidats à l'élection présidentielle Marine Le Pen et Bruno Retailleau on
+      [1m] ⚡exclusif La BBC rapporte que les manifestations nationales visaient à protester contre 
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 7 médias) : EN DIRECT, manifestations du 31 octobre : plusieur
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 61.0/100 = gravité 8/10 → 36 + 7 médias +11 + frais 2.7h +4 + thème porteur +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [2m] Des manifestations contre la vie chère ont rassemblé des centaines de milliers
+      [2m] Un gendarme a été blessé par un engin incendiaire ou une bombe artisanale lors
+      [2m] Le ministre de l'Intérieur Laurent Nuñez a qualifié l'attaque au cocktail Molo
+      [1m] Le bilan des interpellations s'élève à 565 selon le ministère de l'Intérieur.
+         ↳ BBC : Le ministère de l'Intérieur fait état d'au moins 290 manifestant
+         motif : Bilan actualisé à un moment différent.
+      [1m] ⚡exclusif Environ 70 000 personnes ont participé à la manifestation à Paris.
+      [1m] ⚡exclusif Cinq policiers ont été blessés au total selon le bilan du ministère de l'Intér
+      [1m] ⚡exclusif Des couvre-feux partiels sont prévus dans certaines grandes villes pour la nui
+  🌙 Sujet fort (score 61) mais nuit → il attendra le matin
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité, comment  ») : Star Academy 2026 : Maud, Ydriss, et Antoine, en dan
+  ⚽ API football-data : 24 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 38 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (113 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             ⚠️ Expecting property nam
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 4 × gemini-3.6-flash             ⚠️ Expecting property nam
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.6-flash             ⚠️ Expecting property nam
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 1 × gemini-embedding-001         🚫 quota
+        29. clé 1 × gemini-embedding-2-preview   🚫 quota
+        30. clé 1 × gemini-embedding-2           🚫 quota
+        31. clé 2 × gemini-embedding-001         🚫 quota
+        32. clé 2 × gemini-embedding-2-preview   🚫 quota
+        33. clé 2 × gemini-embedding-2           🚫 quota
+        34. clé 3 × gemini-embedding-001         🚫 quota
+        35. clé 3 × gemini-embedding-2-preview   🚫 quota
+        36. clé 3 × gemini-embedding-2           🚫 quota
+        37. clé 4 × gemini-embedding-001         🚫 quota
+        38. clé 4 × gemini-embedding-2-preview   ✅
+        39. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 14 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 5 × gemini-embedding-001 · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 9,655 entrée · 1,432 sortie
+     ✅ aucun appel payant
