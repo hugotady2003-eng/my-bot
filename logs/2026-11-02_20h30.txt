@@ -1,0 +1,251 @@
+
+[20:22] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « flight data recorder orange »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 02-Nov-26 11:23:10 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A1CnDHU-tJ1Hx6qcpwP3TsL"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #مطلب_الاهلاويين_طرد_بوسيتش, #الاتحاد_العين, #الاهلي_السد, #BahcelievlerdeOnBinTLDestek, Şahap Kavcıoğlu
+  🔎 « ADIPEC » : 1 article(s) frais, le plus récent il y a 6.2 h (Vietnam.vn)
+  ⏭️  « ADIPEC » écarté : trop secondaire (3/10)
+  🔎 « AGOA » : 1 article(s) frais, le plus récent il y a 0.6 h (Anadolu Ajansı)
+  ✅ « AGOA » retenu : Impact sur les relations commerciales internationales. (6/10) (+1 au score)
+  🌍 « Fungo » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #MercadoBitcoin, #AGOA
+  🕐 20h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 4.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/8 articles lus en 1.7s (21 déjà en cache)
+  📄 8/29 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · The Block · Libération · Ouest-France · Sciences et Avenir · Blockworks
+  🧠 29 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧩 29 articles → 16 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Voir notre planète de haut à la fois si belle, si m
+  🚨 Sujet chaud (breaking, 3 médias) : Guerre en Ukraine : reprise des attaques russes à 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 84.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 0.6h +13 + thème porteur +10 + portée mondiale +18
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] Les attaques russes ont repris dans la région de Kherson après la fin d'une tr
+      [3m] La trêve humanitaire à Olechky a permis l'évacuation de civils avant de prendr
+      [1m] ⚡exclusif Dix-huit personnes ont été tuées par des frappes russes contre un village du s
+      [2m] Une attaque de drone russe a visé une voiture dans le quartier de Korabelny à 
+      [1m] ⚡exclusif Un établissement médical dans le centre de Kherson a été attaqué par un drone 
+      [1m] ⚡exclusif Une frappe de drone a tué un homme dans le district de Kharkiv.
+      [1m] ⚡exclusif Des frappes russes à Sloviansk, dans la région de Donetsk, ont fait un mort et
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 5 médias) : EN DIRECT, midterms 2026 : Donald Trump va s’expri
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : Google DeepMind, Numerama Pop, Sciences et Avenir, The Block
+  🧮 Score 74.5/100 = gravité 7/10 → 32 + 5 médias +11 + frais 3.1h +4 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 2.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, pénalisé par « pourrait ») : Pouvoir d'achat: "On devrait avoir cette baisse dura
+  🚨 Sujet chaud (breaking, 1 médias) : Prix des carburants : "Une station sur deux a répe
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 41.0/100 = gravité 6/10 → 27 + frais 2.5h +4 + thème porteur +10
+  → Sujet chaud pas assez fort (score 41) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ils offrent une récompense de 2 millions d'euros pou
+  🚨 Sujet chaud (breaking, 1 médias) : Il enquête sur un journaliste et cite sa famille e
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + frais 0.9h +13 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (199 → 140 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Google a caché une surprise pour le retour de The Le
+  🚨 Sujet chaud (breaking, 1 médias) : Bitcoin traders eye post-election rally as exchang
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 50.0/100 = gravité 6/10 → 27 + frais 1.2h +8 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:2
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : DTCC’s tokenization launch could accelerate adoption
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Anti-Oligarchy Activists Plan to Dox Elon Musk and H
+  🚨 Sujet chaud (breaking, 3 médias) : Des frappes russes font 18 morts en Ukraine au len
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 88.5/100 = gravité 9/10 → 40 + 3 médias +7 + frais 0.6h +13 + thème porteur +10 + portée mondiale +18
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif Dix-huit personnes ont été tuées lundi dans des frappes russes contre un villa
+      [3m] Les attaques russes ont repris dans la région de Kherson au lendemain de la fi
+      [1m] ⚡exclusif Volodymyr Zelensky a estimé que ces frappes anéantissent tout espoir de progrè
+      [3m] Le cessez-le-feu humanitaire observé la semaine dernière à Olechky a permis l'
+      [2m] Une attaque de drone russe a visé une voiture dans le district de Korabelny à 
+      [1m] ⚡exclusif Un établissement médical dans le centre de Kherson a été attaqué par un drone 
+      [1m] ⚡exclusif Des frappes russes ont touché Sloviansk dans la région de Donetsk, faisant un 
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Mercado Bitcoin wallets keep moving funds after $4
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 8/10 → 36 + frais 0.4h +16 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (238 → 171 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Washington entend exclure le Rwanda et l’Afrique du 
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 29 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT, midterms 2026 : Donald Trump va s’expri
+  ♻️ 7/10 [space] (déjà analysé, cache) : «Voir notre planète de haut à la fois si belle, si
+  ♻️ 6/10 [world] (déjà analysé, cache) : Midterms : au Texas, le chèque exorbitant d’Elon M
+  ♻️ 9/10 [world] (déjà analysé, cache) : Des frappes russes font 18 morts en Ukraine au len
+  ♻️ 6/10 [business] (déjà analysé, cache) : Prix des carburants : "Une station sur deux a répe
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : reprise des attaques russes à 
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Il enquête sur un journaliste et cite sa famille e
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Le nouvel Echo Studio d'Amazon est équipé d'une ca
+  ♻️ 6/10 [space] (déjà analysé, cache) : Sophie Adenot "rêve" d'aller sur la Lune
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Google a caché une surprise pour le retour de The 
+  ♻️ 6/10 [world] (déjà analysé, cache) : Fake nuclear warning from hacked app sparks unease
+  ♻️ 8/10 [world] (déjà analysé, cache) : Iran pushing accelerated plan for ceasefire talks 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin traders eye post-election rally as exchang
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : EU entity suspected of losing $106 million from cr
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Mercado Bitcoin wallets keep moving funds after $4
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Binance completes latest proof of reserves as it w
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : North Korea Is Laundering Binance Hack Loot at One
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Anti-Oligarchy Activists Plan to Dox Elon Musk and
+  ♻️ 6/10 [space] (déjà analysé, cache) : NASA’s CHAPEA Crew “Returns” to Earth
+  🧠 Batch analyse de 8 articles...
+  🌍 6/10 sans portée internationale : Pouvoir d'achat: "On devrait avoir cette baisse du
+  📉 5/10: Maintien de l'ordre: "Les organisateurs ne tiennent plu
+  ✅ 6/10 [sports] large: PSG. « Ça va être difficile » : Luis Enrique se 
+  ✅ 8/10 [world] mondiale: Guerre en Ukraine : 18 morts dans des frappes ru
+  🌍 7/10 sans portée internationale : Ils offrent une récompense de 2 millions d'euros p
+  📉 4/10: Ce nouveau forfait 5G de 200 Go coûte moins de 12 euros
+  📉 5/10: DTCC’s tokenization launch could accelerate adoption an
+  📉 5/10: New York Times and other outlets sue web browser Brave 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.4h — Mercado Bitcoin wallets keep moving funds af
+     10/10 · 3 média(s) · 0.2h — Guerre en Ukraine : 18 morts dans des frappe
+     10/10 · 3 média(s) · 0.9h — Des frappes russes font 18 morts en Ukraine 
+     10/10 · 3 média(s) · 0.6h — Guerre en Ukraine : reprise des attaques rus
+     10/10 · 1 média(s) · 1.0h — Il enquête sur un journaliste et cite sa fam
+  ✂️ Éphéméride resserré (170 → 123 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [crypto]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 02-Nov-26 11:30:18 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ABmJUc2nInbiX9_xBVaQXQS"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Mercado Bitcoin wallets keep moving funds after $46M ha
+
+  ── Bilan du cycle (500 s) ──
+     écartés : 7 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-embedding-001         🚫 quota
+        12. clé 1 × gemini-embedding-2-preview   🚫 quota
+        13. clé 1 × gemini-embedding-2           🚫 quota
+        14. clé 2 × gemini-embedding-001         🚫 quota
+        15. clé 2 × gemini-embedding-2-preview   ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.6-flash             🚫 quota
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.6-flash             🚫 quota
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3-flash (+15)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 744
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 89,732 entrée · 3,456 sortie
+     ✅ aucun appel payant
