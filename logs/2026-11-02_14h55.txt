@@ -1,0 +1,240 @@
+
+[14:49] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 34 (char 33) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « ear anatomy side view »
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 02-Nov-26 05:51:27 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AYUIDonY68HE3ImYCN3vFn1"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #CDTVライブライブ, #JO1_We_IGNITE, #キスマイとEscapeしましょう, #日向坂ババ抜き中, #BEFIRST
+  🌍 « BEFIRST » : aucune reprise en français, source internationale retenue
+  🌍 « KEEP IT COOL WITH EST » : aucune reprise en français, source internationale retenue
+  🕐 14h (Paris) — rythme journée (25-50 min · 0 publié(s), 16 restant(s) sur 10.0 h) : 25-50 min
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/14 articles lus en 2.0s (25 déjà en cache)
+  📄 9/40 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Libération · Ouest-France · Sciences et Avenir · Jeuxvideo.com · CoinDesk
+  🧠 39 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Binance users withdraw $3.6bn after la… »
+  🧠 Même événement (jugé) : « Binance taps half its SAFU Bitcoin hol… »
+  🧩 40 articles → 17 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Baisse du prix du gazole: "Ça soulage", réagit ce 
+  🧮 Score 46.0/100 = gravité 6/10 → 27 + frais 0.1h +16 + programmé 3/10 -15 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️🤝 Image récupérée chez un média jumeau (France Bleu) — même sujet
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : La cyberattaque des frigos change d’échelle et fra
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Numerama, Sud Ouest
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.5h +16 + portée internationale +10
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (195 → 158 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 11 médias) : EN DIRECT, midterms 2026 : psychodrame démocrate d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 14 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, BBC, Decrypt, Gamekult, Le Monde
+  🧮 Score 82.5/100 = gravité 7/10 → 32 + 11 médias +15 + frais 1.4h +8 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 1.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (240 → 195 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sophie Adenot "rêve" d'aller sur la Lune
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Prix Médicis 2026 : Philippe Vasset primé pour son r
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Portal : le préquel annulé de Valve refait surface e
+  🚨 Sujet chaud (breaking, 4 médias) : “98 % ont choisi de rester” sur Binance : voici le
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : CoinDesk
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 1.2h +8 + thème porteur +10 + portée mondiale +18
+  🧩 4 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 1 exclusive(s)
+      [3m] Binance a subi un piratage massif entraînant la perte de milliards de dollars 
+      [2m] La reprise des retraits sur la plateforme a entraîné une sortie nette limitée 
+      [2m] Le FBI et d'autres organisations ont attribué le piratage à la Corée du Nord.
+      [1m] ⚡exclusif Binance a puisé dans son fonds de protection des utilisateurs (SAFU) pour couv
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 11 médias) : Après avoir foutu en l'air le marché de la RAM, Sa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.5/100 = gravité 7/10 → 32 + 11 médias +15 + frais 1.4h +8 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (177 → 152 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 4 médias) : No proof of AI in North Korean hackers move of sto
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 6/10 → 27 + 4 médias +7 + frais 1.2h +8 + thème porteur +10 + portée mondiale +18
+  🧩 6 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [3m] La plateforme Binance a subi un piratage massif évalué à environ 6,3 milliards
+      [2m] Le FBI et d'autres grandes organisations accusent la Corée du Nord d'être resp
+      [3m] Binance a rouvert les retraits de manière échelonnée et fait face à des sortie
+      [1m] ⚡exclusif Binance a utilisé son fonds de protection d'urgence (SAFU) en transférant envi
+      [2m] Binance affirme avoir couvert ou remplacé environ 95 % des actifs volés lors d
+      [1m] ⚡exclusif Les premiers contrôles suggèrent que l'incident aurait débuté par un ordinateu
+  🕒 Âge de l'article : 1.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  → 40 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT, midterms 2026 : psychodrame démocrate d
+  ♻️ 6/10 [business] (déjà analysé, cache) : Baisse du prix du gazole: "Ça soulage", réagit ce 
+  ♻️ 6/10 [business] (déjà analysé, cache) : Prix des carburants : "Une station sur deux a répe
+  ♻️ 6/10 [science] (déjà analysé, cache) : Santé : l’épidémie d’Ebola rappelle l’urgence d’un
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le lieu le plus dangereux au monde pour les marins
+  ♻️ 7/10 [tech] (déjà analysé, cache) : La cyberattaque des frigos change d’échelle et fra
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : “98 % ont choisi de rester” sur Binance : voici le
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Après avoir foutu en l'air le marché de la RAM, Sa
+  ♻️ 8/10 [world] (déjà analysé, cache) : Iran killed her teenage daughter - now she is faci
+  ♻️ 10/10 [crypto] (déjà analysé, cache) : Binance users withdraw $3.6bn after largest-ever c
+  ♻️ 6/10 [world] (déjà analysé, cache) : Iran says US talks could resume ‘within a short pe
+  ♻️ 8/10 [markets] (déjà analysé, cache) : U.S. crude falls below $100 amid reports of U.S.-I
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Defense, healthcare, crypto and AI: How the midter
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : No proof of AI in North Korean hackers move of sto
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance taps half its SAFU Bitcoin holdings, relea
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : ‘We found room for even more orange’: Michael Sayl
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Spot bitcoin ETFs see largest daily outflows in fo
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : North Korean hackers launder $242 million of Binan
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Morning Minute: Binance Hack Leads to Mass Outflow
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Strategy Resumes Bitcoin Buys With $66M Purchase
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : BTCPay Tells Merchants to Switch Off Servers Amid 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Argon: Built to solve your hardest proble
+  ♻️ 6/10 [space] (déjà analysé, cache) : NASA hopes the commercial space industry can help 
+  ♻️ 7/10 [tech] (déjà analysé, cache) : AI apps with hidden sexual and violent deepfake fe
+  🧠 Batch analyse de 13 articles...
+  📉 3/10: La mère d’une élève de maternelle agresse la directrice
+  🌍 6/10 sans portée internationale : Plusieurs "apéros de la mort" organisés en région 
+  📉 2/10: Randonnées, bal country, concerts… l’Isère se mobilise 
+  📉 3/10: Cinq Californiens, dont trois enfants, auraient été inf
+  📉 5/10: Prix Médicis 2026 : Philippe Vasset primé pour son roma
+  🌍 7/10 sans portée internationale : Heures pleines, heures creuses : les nouveau régim
+  🌍 6/10 sans portée internationale : Portal : le préquel annulé de Valve refait surface
+  ✅ 6/10 [space] large: Sophie Adenot "rêve" d'aller sur la Lune
+  📉 5/10: "Le dernier amour de ma vie" : Poupette Kenza annonce l
+  ⏩ Doublon: Portal : le préquel annulé de Valve refait surface et d
+  🌍 6/10 sans portée internationale : Cédric Doumbé sans modestie sur son fameux doigté 
+  📉 3/10: Didier Deschamps (57 ans) plutôt passif en privé : "À l
+  📉 4/10: Avec son prochain jeu, Suda51 veut revenir à ses racine
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.2h — U.S. crude falls below $100 amid reports of 
+     10/10 · 3 média(s) · 0.3h — Morning Minute: Binance Hack Leads to Mass O
+     10/10 · 3 média(s) · 0.5h — Binance taps half its SAFU Bitcoin holdings,
+     9/10 · 1 média(s) · 0.4h — “98 % ont choisi de rester” sur Binance : vo
+     10/10 · 2 média(s) · 1.5h — BTCPay Tells Merchants to Switch Off Servers
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [markets]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (193 → 159 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 02-Nov-26 05:55:05 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A_zm2r46JJxoiVHQI-ZHmRP"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : U.S. crude falls below $100 amid reports of U.S.-Iran d
+
+  ── Bilan du cycle (324 s) ──
+     écartés : 4 sans portée internationale · 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   🚫 quota
+        11. clé 1 × gemini-embedding-2           🚫 quota
+        12. clé 2 × gemini-embedding-001         ✅
+        13. clé 2 × gemini-3.5-flash-lite        ✅
+        14. clé 2 × gemini-3.5-flash-lite        ✅
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 2 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 2 × gemini-3.5-flash-lite        ✅
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+        30. clé 2 × gemini-3.5-flash-lite        ✅
+        31. clé 2 × gemini-3.5-flash-lite        ✅
+        32. clé 2 × gemini-3.5-flash-lite        ✅
+        33. clé 2 × gemini-3.5-flash-lite        ✅
+        34. clé 2 × gemini-3.5-flash-lite        ✅
+        35. clé 2 × gemini-3.5-flash-lite        ✅
+        36. clé 2 × gemini-3.5-flash-lite        ✅
+        37. clé 2 × gemini-3.5-flash-lite        ✅
+        38. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash (+22)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 763
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 105,642 entrée · 3,670 sortie
+     ✅ aucun appel payant
