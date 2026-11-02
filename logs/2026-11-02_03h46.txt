@@ -1,0 +1,117 @@
+
+[03:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Broncos, Chiefs, #ExercitoDoLulaNoFantastico, #TOKEN50RBCUMA40RB, Cowboys
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #PalmBeach, #Kimi, #Learjet
+  📖 42 articles, tous en cache
+  📄 8/42 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · CoinDesk · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 42 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 42 articles → 23 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : États-Unis: neuf morts dans le crash d'un petit av
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 2 médias +4 + frais 4.6h +2 + portée mondiale +18 + ⚡ catastrophe majeure → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Un avion Learjet 60 s'est écrasé en Floride, causant la mort des neuf personne
+      [2m] L'accident a eu lieu le dimanche 1er novembre vers 12h50 dans le comté de Palm
+      [2m] L'avion effectuait un vol entre Austin (Texas) et les Bahamas.
+      [2m] Le ministre des Transports Sean Duffy a confirmé le bilan humain.
+      [1m] ⚡exclusif L'avion s'est écrasé à environ 10 km de la résidence Mar-a-Lago de Donald Trum
+      [1m] ⚡exclusif Donald Trump avait quitté sa résidence avant l'accident.
+      [1m] ⚡exclusif La FAA et le NTSB vont mener une enquête sur les causes du crash.
+      [1m] ⚡exclusif Le bilan des victimes au sol n'est pas encore établi.
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « On l’a fait ! »… Antonelli devient le plus jeune c
+  🚨 Sujet chaud (breaking, 2 médias) : Etats-Unis : "J'ai cru que c'était un missile"... 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 4.6h +2 + portée mondiale +18 + ⚡ catastrophe majeure → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Un avion privé Learjet 60 s'est écrasé dans un quartier résidentiel du comté d
+      [2m] L'appareil avait décollé d'Austin, au Texas, et se dirigeait vers les Bahamas.
+      [2m] Le crash a eu lieu dimanche 1er novembre à 12h50 locales.
+      [1m] ⚡exclusif Le crash s'est produit à environ 10 km de la résidence Mar-a-Lago de Donald Tr
+      [1m] ⚡exclusif Des vidéos montrent l'avion arrivant à une vitesse très importante à la vertic
+      [1m] ⚡exclusif Le bilan humain au sol reste à établir.
+      [1m] ⚡exclusif La FAA et le NTSB vont mener une enquête sur l'incident.
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 42 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (47 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 1 × gemini-3.6-flash             🚫 quota
+        17. clé 1 × gemini-3-flash               ⛔ inexistant
+        18. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        21. clé 2 × gemini-3.6-flash             🚫 quota
+        22. clé 2 × gemini-3-flash               ⛔ inexistant
+        23. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        25. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        26. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        27. clé 3 × gemini-3-flash               ⛔ inexistant
+        28. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.6-flash             🚫 quota
+        31. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.6-flash             🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,919 entrée · 1,234 sortie
+     ✅ aucun appel payant
