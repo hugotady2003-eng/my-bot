@@ -1,0 +1,146 @@
+
+[00:22] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 文化の日, الاتحاد, #FNS歌謡祭, #NUFC, ローソン爆裂
+  🌍 « NUFC » : aucune reprise en français, source internationale retenue
+  🔎 « NUFC » : 1 article(s) frais, le plus récent il y a 4.3 h (Pierce Manufacturing)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « NUFC » écarté : Lien de streaming spam pour un match.
+  🔎 « Newcastle » : 1 article(s) frais, le plus récent il y a 3.4 h (Goal.com)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Newcastle » écarté : Simple match de football ordinaire sans enjeu majeur.
+  🔎 « Bruce » : 1 article(s) frais, le plus récent il y a 2.2 h (GazetteSports)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Bruce » écarté : Propos d'entraîneur sportif mineurs
+  🔎 « Adam Robinson » : 1 article(s) frais, le plus récent il y a 1.7 h (La Nouvelle Tribune)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Adam Robinson » écarté : trop secondaire (3/10)
+  🔎 « Everton » : 1 article(s) frais, le plus récent il y a 3.4 h (Goal.com)
+  ⏭️  « Everton » écarté : Simple annonce d'un match de football à venir.
+  📖 1/1 articles lus en 0.1s (37 déjà en cache)
+  📄 10/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Libération · The Block · Ouest-France · Sciences et Avenir · Blockworks
+  🧠 38 vecteurs calculés en 1 appel(s)
+  🧩 38 articles → 11 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 3 médias) : EN DIRECT, midterms 2026 : « L’Iran veut un accord
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Numerama Pop, Sciences et Avenir
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 3 médias +7 + frais 7.0h +2 + thème porteur +10 + portée mondiale +18 + ⚡ crise institutionnelle → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 8 médias) : Alors que la popularité de Donald Trump plonge, le
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, Challenges, Libération, Ouest-France
+  🧮 Score 87.0/100 = gravité 8/10 → 36 + 8 médias +15 + frais 1.6h +8 + thème porteur +10 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 87) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : US midterms 2026: What polls reveal about Democratic
+  🚨 Sujet chaud (breaking, 13 médias) : North Korea denies role in $6.3B Binance hack, poi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Al Jazeera, BFMTV, Blockworks, CoinDesk
+  🧮 Score 94.5/100 = gravité 9/10 → 40 + 13 médias +18 + frais 1.0h +8 + thème porteur +10 + portée mondiale +18
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 29 s
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 94) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 8 médias) : Guerre en Ukraine : 26 morts dans des frappes russ
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 87.0/100 = gravité 8/10 → 36 + 8 médias +15 + frais 1.6h +8 + thème porteur +10 + portée mondiale +18
+  🧩 5 affirmation(s) : 0 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [1m] Des frappes russes ont fait au moins 24 morts dans le village de Komychouvakha
+         ↳ Midi Libre : Le président Volodymyr Zelensky avait initialement fait état de 
+         motif : Information actualisée par les services d'urgence ukrainiens.
+      [1m] ⚡exclusif Les frappes russes ont visé une école servant à la distribution d'aide humanit
+      [1m] ⚡exclusif Les attaques russes ont repris dans la région de Kherson au lendemain de la fi
+      [1m] ⚡exclusif Une frappe de drone a tué un homme dans le district de Kharkiv.
+      [1m] ⚡exclusif Une frappe russe à Sloviansk dans la région de Donetsk a fait un mort et six b
+  🌙 Sujet fort (score 87) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, pénalisé par « \b(?:météo ») : Crash d’avion en Floride : après l’accident qui a fa
+  🚨 Sujet chaud (breaking, 8 médias) : "La Russie ne veut pas de désescalade" : 24 person
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 91.5/100 = gravité 9/10 → 40 + 8 médias +15 + frais 1.6h +8 + thème porteur +10 + portée mondiale +18
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 8 s
+  🧩 4 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif Un bombardement russe a frappé un site de distribution d'aide humanitaire et u
+      [1m] ⚡exclusif Un bombardement russe a causé la mort de 24 personnes dans le village de Komyc
+      [1m] ⚡exclusif Les attaques russes ont repris dans la région de Kherson après la fin d'un ces
+      [1m] ⚡exclusif Des frappes russes ont touché plusieurs localités ukrainiennes, notamment Khar
+  🌙 Sujet fort (score 92) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Copilot in deadly Florida jet crash identified in 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 40.0/100 = gravité 8/10 → 36 + frais 3.4h +4
+  → Sujet chaud pas assez fort (score 40) → suivant
+  ⚽ API football-data : 8 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 38 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (162 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        13. clé 4 × gemini-3.5-flash-lite        ✅
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.6-flash             🚫 quota
+        19. clé 5 × gemini-3.5-flash-lite        ✅
+        20. clé 5 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 742
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 11,854 entrée · 1,779 sortie
+     ✅ aucun appel payant
