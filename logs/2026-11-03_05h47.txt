@@ -1,0 +1,139 @@
+
+[05:46] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Tendances : getdaytrends.com injoignable (HTTPSConnectionPool(host='getdaytrends.com', port=)
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Aucune tendance disponible → hashtags choisis sur les mots du tweet
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.3s (62 déjà en cache)
+  📄 16/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · OpenAI · Sciences et Avenir
+  🧠 63 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 63 articles → 15 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 14 médias) : North Korea denies being behind record $6.3bn Bina
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 15 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC Business, BFMTV, CNBC, CoinDesk
+  🧮 Score 80.5/100 = gravité 9/10 → 40 + 14 médias +18 + frais 2.9h +4 + portée mondiale +18
+  🧩 5 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif La Corée du Nord nie toute implication dans le piratage de Binance d'un montan
+      [1m] ⚡exclusif Donald Trump prononce un discours final avant les élections de mi-mandat devan
+      [1m] ⚡exclusif Les élections de mi-mandat aux États-Unis sont marquées par des enjeux de cont
+      [1m] ⚡exclusif La désinformation générée par l'intelligence artificielle affecte le dérouleme
+      [1m] ⚡exclusif Des cyberattaques visent des réfrigérateurs dans des supermarchés à travers l'
+  🌙 Sujet fort (score 80) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 14 médias) : Crash d'avion en Floride: les conditions météorolo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 76.0/100 = gravité 8/10 → 36 + 14 médias +18 + frais 2.9h +4 + portée mondiale +18
+  🧩 10 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 10 exclusive(s)
+      [1m] ⚡exclusif Donald Trump prévoit de tenir un discours à Washington à la veille des électio
+      [1m] ⚡exclusif Les élections de mi-mandat aux États-Unis sont marquées par des préoccupations
+      [1m] ⚡exclusif Les démocrates cherchent à reprendre le contrôle du Congrès lors des élections
+      [1m] ⚡exclusif Donald Trump a évoqué la possibilité d'un accord avec l'Iran.
+      [1m] ⚡exclusif Le ministre de l'Intérieur Laurent Nuñez maintient l'usage des armes intermédi
+      [1m] ⚡exclusif François Ruffin est présenté comme candidat à l'élection présidentielle pour l
+      [1m] ⚡exclusif Une mère d'élève a été interpellée à Nice pour tentative de meurtre sur le per
+      [1m] ⚡exclusif Des réfrigérateurs connectés en Europe ont été la cible de cyberattaques.
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 20 médias) : South Korea urges exchanges to boost cold storage 
+  🧠 26 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Al Jazeera, Ars Technica, Blockworks, CoinDesk
+  🧮 Score 85.5/100 = gravité 7/10 → 32 + 20 médias +20 + frais 5.5h +2 + imprévu 6/10 +4 + thème porteur +10 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 1 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [3m] Des frappes russes ont causé des pertes humaines et des dégâts matériels dans 
+      [1m] ⚡exclusif Un bombardement russe a frappé le village de Komychouvakha dans la région de Z
+      [1m] Le bilan humain du bombardement à Komychouvakha est estimé à au moins 24 morts
+         ↳ Midi Libre : Le président Zelensky a initialement fait état de 18 morts et 5 
+         motif : Mise à jour des chiffres par les services d'urgence.
+      [1m] ⚡exclusif La reprise des hostilités russes dans la région de Kherson fait suite à la fin
+      [1m] ⚡exclusif Une force multinationale pour l'Ukraine basée en Pologne doit entamer des exer
+      [1m] ⚡exclusif Une startup ukrainienne a développé un récepteur permettant d'intercepter les 
+  🌙 Sujet fort (score 86) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 20 médias) : Guerre en Ukraine : 26 morts dans des frappes, fin
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.5/100 = gravité 7/10 → 32 + 20 médias +20 + frais 5.5h +2 + thème porteur +10 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 1 partagée(s) · 1 divergente(s) · 6 exclusive(s)
+      [3m] Des frappes russes ont causé la mort de nombreuses personnes dans le sud de l'
+         ↳ Midi Libre, Ouest-France : Midi Libre mentionne 24 morts à Komychouvakha, tandis qu'Ouest-F
+         motif : Différence de périmètre géographique et de bilan consolidé.
+      [1m] ⚡exclusif Le gouvernement ukrainien estime que les récentes attaques russes mettent fin 
+      [1m] ⚡exclusif Une école servant à la distribution d'aide humanitaire a été bombardée à Komyc
+      [1m] ⚡exclusif Les attaques russes ont repris dans la région de Kherson après la fin d'un ces
+      [1m] ⚡exclusif La Force multinationale pour l'Ukraine en Pologne débutera ses exercices le 9 
+      [1m] ⚡exclusif Une startup ukrainienne a développé un récepteur permettant d'intercepter les 
+      [1m] ⚡exclusif Des frappes russes ont touché des infrastructures électriques et des zones rés
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 63 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (106 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         ✅
+        14. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        18. clé 1 × gemini-3.6-flash             🚫 quota
+        19. clé 1 × gemini-3-flash               ⛔ inexistant
+        20. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        24. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        25. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        27. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 2 × gemini-3.6-flash             🚫 quota
+        30. clé 3 × gemini-3.6-flash             🚫 quota
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 787 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 16,309 entrée · 2,492 sortie
+     ✅ aucun appel payant
