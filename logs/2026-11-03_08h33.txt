@@ -1,0 +1,167 @@
+
+[08:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #PPxPAPERCLIP, メイショウハチロー, #ゴジラマイナスゼロ, 文化の日, Bears
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.4 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Bears » écarté : trop secondaire (3/10)
+  🔎 « Draymond » : 1 article(s) frais, le plus récent il y a 1.1 h (Basket USA)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Draymond » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Draymond » écarté : jugement indisponible
+  🔎 « Seahawks » : 1 article(s) frais, le plus récent il y a 0.4 h (L'Équipe)
+  ⚠️ Jugement de « Seahawks » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Seahawks » écarté : jugement indisponible
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.8s (34 déjà en cache)
+  📄 12/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Libération · Ouest-France · The Block · Sciences et Avenir · Cointelegraph
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 38 articles → 38 événement(s)
+  ⚪ Écarté (0, pénalisé par « pourrait ») : Lufthansa prévoit une hausse de 2 milliards d’euros 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L'invitée de Bonjour Littoral du mardi 3 novembre 20
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Iran : les Etats-Unis frappent discrètem
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.5/100 = gravité 9/10 → 40 + frais 0.5h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgfc8AMpUArPjdKy8wUAw'}
+  🚨 Sujet chaud (breaking, 1 médias) : "Ils arrêtent des gens qui travaillent dur" : au T
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 2.6h +4 + portée internationale +10
+  🕒 Âge de l'article : 2.6h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgfc8RGm5esVpFpjkcq8M'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : Avec David Lisnard, s’est-il v
+  🚨 Sujet chaud (breaking, 1 médias) : North Korea denies being behind record $6.3bn Bina
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 63.5/100 = gravité 9/10 → 40 + frais 1.2h +8 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgfc8fGtRxX2uqrYeodb6'}
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : Donald Trump va réunir Moscou 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.5/100 = gravité 9/10 → 40 + frais 0.6h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgfc8uJVc8BNx7sbCU2tU'}
+  🚨 Sujet chaud (breaking, 1 médias) : Lenny Kravitz brutalement mort dans le crash d'avi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ second avis de catégorie indisponible : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgfc99LLKq6K3rKH1UeNG'}
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + frais 0.8h +13 + primeur absolue +8 + ⚡ catastrophe majeure → plancher 89
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgfc9Pwg9wSXyzHuAK7z5'}
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Bitcoin drops below $77,000 as chip rout deepens a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 2.8h +4 + portée internationale +10
+  🕒 Âge de l'article : 2.8h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgfc9dy2kKj3nVw3GYaaf'}
+  🚨 Sujet chaud (breaking, 1 médias) : «Décousue» avec «beaucoup d’incohérences» : les vi
+  ⚠️ second avis de catégorie indisponible : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgfcA85DQCE62UxQyCWym'}
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 69.0/100 = gravité 10/10 → 45 + frais 0.1h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgfcAN6aXWQSyV1vsMxVy'}
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  → 38 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Etats-Unis : un enfant décède de la rougeole dans 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Iran : les Etats-Unis frappent discrètem
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Ils arrêtent des gens qui travaillent dur" : au T
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Gaz en Europe : pourquoi le stockage est à son plu
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : Donald Trump va réunir Moscou 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Pressions, intimidations, déclaration de l’état d’
+  ♻️ 6/10 [space] (déjà analysé, cache) : Sophie Adenot "rêve" d'aller sur la Lune
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Lenny Kravitz brutalement mort dans le crash d'avi
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Google a caché une surprise pour le retour de The 
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Grok Bot : derrière son succès, une facture qui in
+  ♻️ 10/10 [world] (déjà analysé, cache) : US strikes Iran ahead of midterm elections
+  ♻️ 9/10 [world] (déjà analysé, cache) : Supreme Court rejects Trump's request to stop Cali
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : North Korea denies being behind record $6.3bn Bina
+  ♻️ 6/10 [world] (déjà analysé, cache) : Palestine weekly: Election deadlock meets West Ban
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : North Korea denies links to Binance hack as resear
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Binance has spent half its SAFU bitcoin, about $58
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Arbitrum’s council moved $30 million of Binance ha
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin drops below $77,000 as chip rout deepens a
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Crypto.com to withdraw Hong Kong consumer app citi
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Kim Jong-Un’s sister rejects FBI claims linking No
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Mercado Bitcoin, Brazil’s largest crypto exchange,
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Claude Fable 5.5, GPT 6.2 Astra Could Be Right Aro
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin Firm Strive Climbs Up the Treasury Ranks W
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Mystery $106 Million Crypto Theft Hits EU Entity D
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Apple recently notified users in 99 countries of p
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Apple to require 18+ age ratings for dating apps a
+  🧠 Batch analyse de 10 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgfcAesdiMKWkJYCWRL6z'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.5h — Guerre en Iran : les Etats-Unis frappent dis
+     10/10 · 2 média(s) · 0.6h — Guerre en Ukraine : Donald Trump va réunir M
+     10/10 · 1 média(s) · 0.8h — Lenny Kravitz brutalement mort dans le crash
+     9/10 · 2 média(s) · 0.3h — Etats-Unis : un enfant décède de la rougeole
+     10/10 · 5 média(s) · 1.2h — North Korea denies being behind record $6.3b
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgfcAuQFQCLL1Sy6C2iCK'}
+  → 1 sélectionné(s) [world]
+  ❌ Envoi 'Guerre en Iran : les Etats-Unis frappent': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgfcB9UaWwui8mkPnyqPg'}
+
+  ── Bilan du cycle (136 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 4 × gemini-3.6-flash             🚫 quota
+        16. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 5 × gemini-3.6-flash             🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 1 × gemini-embedding-2           🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-2-preview   🚫 quota
+        23. clé 2 × gemini-embedding-2           🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-2           🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-2-preview   🚫 quota
+        29. clé 4 × gemini-embedding-2           🚫 quota
+        30. clé 5 × gemini-embedding-001         🚫 quota
+        31. clé 5 × gemini-embedding-2-preview   🚫 quota
+        32. clé 5 × gemini-embedding-2           🚫 quota
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 760 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 403 entrée · 26 sortie
+     ⚠️ 24 appel(s) payés chez Claude (le gratuit n'a pas suffi)
