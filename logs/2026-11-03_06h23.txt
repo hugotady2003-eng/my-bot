@@ -1,0 +1,139 @@
+
+[06:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Bears, #PPxPAPERCLIP, Seahawks, 文化の日, Sam Darnold
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.8 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Bears » écarté : trop secondaire (2/10)
+  🔎 « Seahawks » : 1 article(s) frais, le plus récent il y a 0.8 h (Touchdown Actu)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Seahawks » écarté : trop secondaire (2/10)
+  🔎 « Seattle » : 1 article(s) frais, le plus récent il y a 10.0 h (Google Actualités)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Seattle » écarté : trop secondaire (4/10)
+  🔎 « DWTS » : 1 article(s) frais, le plus récent il y a 1.6 h (IMDb)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « DWTS » écarté : Divertissement télévisé sans impact pour la France.
+  🔎 « Draymond » : 1 article(s) frais, le plus récent il y a 9.2 h (Parlons Basket)
+  ⏭️  « Draymond » écarté : Simple déclaration d'opinion sans fait nouveau majeur.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #QeshmIsland
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 1.5s (67 déjà en cache)
+  📄 17/71 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · OpenAI · Sciences et Avenir
+  🧠 71 vecteurs calculés en 1 appel(s)
+  🧩 71 articles → 18 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : "L'Iran sera le tombeau de Donald Trump" : comment
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 61.5/100 = gravité 5/10 → 22 + frais 0.6h +13 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : "Ils arrêtent des gens qui travaillent dur" : au T
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + frais 0.4h +16 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 66) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine: les négociations entre Kiev et 
+  🧮 Score 100.0/100 = gravité 9/10 → 40 + frais 0.1h +16 + imprévu 9/10 +18 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 100) mais nuit → il attendra le matin
+  ⚪ Écarté (-2, pénalisé par « pourrait, comment  ») : Pressions, intimidations, déclaration de l’état d’ur
+  🚨 Sujet chaud (breaking, 10 médias) : US strikes Iran ahead of midterm elections
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 9 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Al Jazeera, BBC, BBC Business, CNBC
+  🧮 Score 96.0/100 = gravité 10/10 → 45 + 10 médias +15 + frais 1.4h +8 + thème porteur +10 + portée mondiale +18
+  🧩 10 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 6 exclusive(s)
+      [2m] Les États-Unis ont mené des frappes militaires sur l'île de Qeshm en Iran.
+      [2m] Les frappes américaines sont présentées comme limitées et ciblées.
+      [1m] Le vice-président JD Vance affirme que des progrès sont réalisés dans les négo
+         ↳ BBC, BFMTV : Donald Trump déclare qu'un accord semble se mettre en place, tou
+         motif : Différence de communication entre les membres de l'administration.
+      [2m] Les frappes interviennent dans un contexte proche des élections de mi-mandat a
+      [1m] ⚡exclusif Les frappes seraient une réponse à des tirs iraniens contre un appareil améric
+      [1m] ⚡exclusif L'île de Qeshm est ciblée en raison de la présence présumée d'armements iranie
+      [1m] ⚡exclusif Donald Trump évoque la possibilité de cibler un site lié au programme nucléair
+      [1m] ⚡exclusif La campagne militaire américaine contre l'Iran est menée discrètement pour évi
+  🌙 Sujet fort (score 96) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 10 médias) : North Korea denies being behind record $6.3bn Bina
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 91.5/100 = gravité 9/10 → 40 + 10 médias +15 + frais 1.4h +8 + thème porteur +10 + portée mondiale +18
+  🧩 6 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Les États-Unis ont mené des frappes militaires limitées contre l'île de Qeshm 
+      [2m] L'administration Trump exprime une volonté de parvenir à un accord négocié ave
+      [1m] ⚡exclusif Les frappes américaines sur l'île de Qeshm seraient une réponse à des tirs ira
+      [1m] ⚡exclusif L'île de Qeshm est soupçonnée d'abriter des missiles anti-navires, des mines e
+      [1m] ⚡exclusif Donald Trump envisage une possible intervention contre le site nucléaire irani
+      [1m] ⚡exclusif La campagne militaire américaine contre l'Iran est maintenue discrète pour évi
+  🌙 Sujet fort (score 92) mais nuit → il attendra le matin
+  ⚪ Écarté (2, pénalisé par « comment  ») : "On se retrouve avec une finale absurde" : pourquoi 
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 71 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (162 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.6-flash             🚫 quota
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        24. clé 5 × gemini-3.1-flash-lite        ✅
+        25. clé 5 × gemini-3.1-flash-lite        ✅
+        26. clé 1 × gemini-embedding-001         🚫 quota
+        27. clé 1 × gemini-embedding-2-preview   🚫 quota
+        28. clé 1 × gemini-embedding-2           🚫 quota
+        29. clé 2 × gemini-embedding-001         🚫 quota
+        30. clé 2 × gemini-embedding-2-preview   🚫 quota
+        31. clé 2 × gemini-embedding-2           🚫 quota
+        32. clé 3 × gemini-embedding-001         🚫 quota
+        33. clé 3 × gemini-embedding-2-preview   🚫 quota
+        34. clé 3 × gemini-embedding-2           🚫 quota
+        35. clé 4 × gemini-embedding-001         🚫 quota
+        36. clé 4 × gemini-embedding-2-preview   🚫 quota
+        37. clé 4 × gemini-embedding-2           🚫 quota
+        38. clé 5 × gemini-embedding-001         ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 9 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2-preview
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 781 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 12,540 entrée · 1,630 sortie
+     ✅ aucun appel payant
