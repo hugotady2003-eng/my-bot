@@ -1,0 +1,345 @@
+
+[23:14] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 2 column 16 (char 17) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Roma, Cunha, Manchester United, Lacey, #MUNROM
+  🔎 « Roma » : 1 article(s) frais, le plus récent il y a 1.5 h (Sports.fr)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Roma » écarté : Article ancien sans aucun fait nouveau récent.
+  🔎 « Cunha » : 1 article(s) frais, le plus récent il y a 0.3 h (Le Quotidien.lu)
+  ⏭️  « Cunha » écarté : Analyse de carrière sans fait nouveau majeur.
+  🔎 « Manchester United » : 1 article(s) frais, le plus récent il y a 3.3 h (Goal.com)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Manchester United » écarté : Simple diffusion TV d'un match de football
+  🔎 « Lacey » : 1 article(s) frais, le plus récent il y a 0.3 h (Tribuna.com)
+  ⏭️  « Lacey » écarté : Match de jeunes sans enjeu national.
+  🔎 « Dalot » : 1 article(s) frais, le plus récent il y a 4.3 h (Tribuna.com)
+  ⏭️  « Dalot » écarté : trop secondaire (4/10)
+  🌍 « XbiteSweepstakes » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #OscarPuente, #Villarreal
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 23h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 1.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/8 articles lus en 1.1s (25 déjà en cache)
+  📄 11/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · CoinDesk · Ouest-France · The Block · Blockworks
+  🧠 33 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Midterms 2026 : au Texas, les républic… »
+  🧠 Même événement (jugé) : « Midterms 2026: le chanteur Bruce Sprin… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 33 articles → 7 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT, midterms 2026 : du Texas à la Californie,
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Bodo/Glimt-Lille: les Dogues arrachent leur premier 
+  🚨 Sujet chaud (breaking, 18 médias) : Attentat raciste dans les Yvelines : le suspect Ké
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : Ars Technica, BBC, BFMTV, Blockworks, CNBC
+  🧮 Score 67.5/100 = gravité 7/10 → 32 + 18 médias +18 + frais 1.2h +8 + thème porteur +10
+  🧩 8 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [5m] Les élections de mi-mandat (midterms) ont lieu aux États-Unis pour renouveler 
+      [4m] Les sondages prédisent une victoire du Parti démocrate à la Chambre des représ
+      [1m] ⚡exclusif Le scrutin est perçu comme un référendum sur la politique de Donald Trump.
+      [1m] ⚡exclusif Bruce Springsteen a appelé les autorités à garantir des élections libres et éq
+      [1m] ⚡exclusif Le président ukrainien Volodymyr Zelensky a déclaré que ces élections auront u
+      [2m] Environ 250 millions d'électeurs sont appelés aux urnes.
+      [1m] ⚡exclusif Les résultats pourraient être retardés par des litiges ou des recomptages.
+      [1m] ⚡exclusif Les premières estimations des résultats sont attendues à partir de minuit (heu
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Midterms 2026 : Donald Trump révèle à Fox News que
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.5/100 = gravité 9/10 → 40 + frais 2.9h +4 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 2.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (175 → 146 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 18 médias) : South Korea's president says country needs a ‘cybe
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 18 médias +18 + frais 1.3h +8 + thème porteur +10
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] Les élections de mi-mandat aux États-Unis ont lieu le 3 novembre pour renouvel
+      [4m] Les sondages prédisent une victoire du Parti démocrate lors de ces élections.
+      [2m] Environ 250 millions d'électeurs américains sont appelés aux urnes.
+      [1m] ⚡exclusif Bruce Springsteen a appelé les autorités américaines à garantir des élections 
+      [1m] ⚡exclusif Le président Donald Trump a exprimé des doutes sur l'intégrité du scrutin.
+      [1m] ⚡exclusif Le président ukrainien Volodymyr Zelensky a déclaré que les élections américai
+      [1m] ⚡exclusif Les résultats des élections pourraient être retardés par des recomptages ou de
+  🕒 Âge de l'article : 5.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 18 médias) : CZ calls for crypto security alliance as AI-driven
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 18 médias +18 + frais 1.3h +8 + thème porteur +10
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [5m] Les élections de mi-mandat (midterms) ont lieu aux États-Unis pour renouveler 
+      [4m] Les sondages prédisent une victoire potentielle du Parti démocrate au Congrès.
+      [2m] Environ 250 millions d'électeurs américains sont appelés aux urnes.
+      [1m] ⚡exclusif Bruce Springsteen a exhorté les autorités à garantir des élections libres et é
+      [1m] ⚡exclusif Le président Zelensky a déclaré que les élections américaines auront un impact
+      [1m] ⚡exclusif Les résultats pourraient être retardés par des recomptages ou des litiges juri
+      [1m] ⚡exclusif Des astronautes américains ont voté depuis l'espace.
+  🕒 Âge de l'article : 1.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : Catastrophe ferroviaire en Espagne : le ministre d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, France Bleu, Libération
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + 3 médias +7 + frais 3.0h +4 + thème porteur +10 + portée internationale +10 + ⚡ démission politique → plancher 89
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  📈 Hashtag(s) en tendance : #OscarPuente
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #OscarPuente
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Óscar Puente (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Midterms 2026 : au Texas, les républicains craignent
+  🚨 Sujet chaud (breaking, 18 médias) : La loi instaurant une « présomption de légitime dé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.5/100 = gravité 7/10 → 32 + 18 médias +18 + frais 1.3h +8 + thème porteur +10
+  🧩 7 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [5m] Les élections de mi-mandat (midterms) ont lieu aux États-Unis pour renouveler 
+      [3m] Le scrutin se déroule le 3 novembre.
+         ↳ Al Jazeera, Nikkei Asia : Le scrutin a lieu en 2026.
+         motif : Confusion entre différentes années électorales dans les sources.
+      [2m] Environ 250 millions d'électeurs sont appelés aux urnes.
+      [3m] Les sondages prédisent une victoire du Parti démocrate au Congrès.
+      [1m] ⚡exclusif Bruce Springsteen a appelé les autorités américaines à garantir des élections 
+      [1m] ⚡exclusif Le président Zelensky a déclaré que les élections américaines auraient un impa
+      [1m] ⚡exclusif Des astronautes ont voté depuis l'espace pour les élections de 2026.
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 18 médias) : Guerre en Ukraine : Volodymyr Zelensky craint un b
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 76.5/100 = gravité 9/10 → 40 + 18 médias +18 + frais 1.3h +8 + thème porteur +10
+  🧩 6 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [3m] Les élections de mi-mandat aux États-Unis se tiennent le 3 novembre pour renou
+         ↳ Al Jazeera, Nikkei Asia : Les élections de mi-mandat ont lieu en 2026.
+         motif : Confusion entre des archives de 2020 et des données de 2026.
+      [1m] ⚡exclusif Le président ukrainien Volodymyr Zelensky estime que les élections américaines
+      [1m] ⚡exclusif Bruce Springsteen a appelé les autorités américaines à garantir des élections 
+      [2m] Environ 250 millions d'électeurs américains sont appelés aux urnes.
+      [3m] Les sondages prédisent une victoire du Parti démocrate au Congrès.
+      [1m] ⚡exclusif Le scrutin est perçu comme un référendum sur la politique du président Donald 
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 18 médias) : US midterms live: Asia braces for renewed Trump ta
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.5/100 = gravité 7/10 → 32 + 18 médias +18 + frais 1.3h +8 + thème porteur +10
+  🧩 9 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 6 exclusive(s)
+      [5m] Les élections de mi-mandat aux États-Unis ont lieu pour renouveler la Chambre 
+      [3m] Les sondages prédisent une victoire du Parti démocrate à la Chambre des représ
+      [2m] Environ 250 millions d'électeurs américains sont appelés aux urnes.
+      [1m] ⚡exclusif Le président Zelensky a déclaré que les élections américaines auraient un impa
+      [1m] ⚡exclusif Bruce Springsteen a exhorté les autorités à garantir des élections libres et é
+      [1m] ⚡exclusif Le gouvernement Trump a tenté de contester légalement certaines procédures de 
+      [1m] ⚡exclusif Les résultats finaux pourraient être retardés par des recomptages ou des litig
+      [1m] ⚡exclusif Les premières estimations des résultats sont attendues à partir de minuit (heu
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 14 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Justin Sun seeks sanctions against Trump-linked Wo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🧮 Score 45.0/100 = gravité 6/10 → 27 + 2 médias +4 + frais 3.7h +4 + portée internationale +10
+  → Sujet chaud pas assez fort (score 45) → suivant
+  🚨 Sujet chaud (breaking, 18 médias) : CFTC gets into legal clash over stock perps after 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.0/100 = gravité 4/10 → 18 + 18 médias +18 + frais 1.3h +8
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 4 column 16 (char 43) → couple suivant
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 44) → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Ligue des Champions : le PSG pulvérise Villarreal 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 3 médias +7 + frais 3.0h +4 + thème porteur +10 + portée internationale +10 + ⚡ démission politique → plancher 89
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  📈 Hashtag(s) en tendance : #Villarreal
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  → 33 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT, midterms 2026 : du Texas à la Californi
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms 2026 : Donald Trump révèle à Fox News que
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Au Luxembourg, le « FMI européen » s’inquiète de l
+  ♻️ 8/10 [world] (déjà analysé, cache) : Midterms 2026 : au Texas, les républicains craigne
+  ♻️ 9/10 [world] (déjà analysé, cache) : Catastrophe ferroviaire en Espagne : le ministre d
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Bodo/Glimt-Lille: les Dogues arrachent leur premie
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms 2026 : suivez les résultats des élections
+  ♻️ 7/10 [world] (déjà analysé, cache) : Alaska, Maine, Texas... Sept Etats où les résultat
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Ligue des Champions : le PSG pulvérise Villarreal 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Attentat raciste dans les Yvelines : le suspect Ké
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Villarreal - PSG : Le PSG colle un set aux Espagno
+  ♻️ 7/10 [world] (déjà analysé, cache) : La loi instaurant une « présomption de légitime dé
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : Volodymyr Zelensky craint un b
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Binance says fake job interviews used as part of $
+  ♻️ 8/10 [world] (déjà analysé, cache) : President Zelenskyy says US elections will impact 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump DOJ sends target letters to Democrats in Ala
+  ♻️ 7/10 [world] (déjà analysé, cache) : US midterms live: Asia braces for renewed Trump ta
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Justin Sun seeks sanctions against Trump-linked Wo
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : South Korea's president says country needs a ‘cybe
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : CFTC clears stock perpetual futures for trading on
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : CZ calls for crypto security alliance as AI-driven
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Justin Sun Accuses Trump-Backed World Liberty of U
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Ukraine’s drone strikes spur hasty Russian plans f
+  ♻️ 10/10 [crypto] (déjà analysé, cache) : Binance Says Hackers Used Well-Known Tricks to Car
+  🧠 Batch analyse de 6 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 2 column 16 (char 29) → couple suivant
+  ✅ 9/10 [world] mondiale: Donald Trump crée la surprise en annonçant mettr
+  📉 4/10: Midterms 2026: le chanteur Bruce Springsteen appelle le
+  📉 3/10: "Il faut normaliser les relations avec l'Algérie", expl
+  ✅ 8/10 [world] mondiale: EN DIRECT Midterms 2026 : En cas de défaite des 
+  📉 5/10: Ligue des champions. Après trois revers consécutifs, Li
+  ✅ 6/10 [crypto] large: SEC division views Canton Coin as digital commod
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 0.3h — Donald Trump crée la surprise en annonçant m
+     10/10 · 5 média(s) · 0.5h — Midterms 2026 : au Texas, les républicains c
+     10/10 · 6 média(s) · 1.0h — Midterms 2026 : suivez les résultats des éle
+     10/10 · 2 média(s) · 0.6h — Ligue des Champions : le PSG pulvérise Villa
+     10/10 · 2 média(s) · 0.8h — President Zelenskyy says US elections will i
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 3 column 3 (char 18) → couple suivant
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 1 column 129 (char 128 → couple suivant
+  ✂️ Tweet resserré localement (172 → 130 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Donald Trump (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Donald Trump crée la surprise en annonçant mettre fin à
+
+  ── Bilan du cycle (940 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 1 × gemini-embedding-001         🚫 quota
+        23. clé 1 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 30 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 4/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.6-flash
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 680
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 156,510 entrée · 7,534 sortie
+     ✅ aucun appel payant
