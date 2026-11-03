@@ -1,0 +1,136 @@
+
+[06:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Bears, #PPxPAPERCLIP, Seahawks, 文化の日, Sam Darnold
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.8 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Bears » écarté : trop secondaire (2/10)
+  🔎 « Seahawks » : 1 article(s) frais, le plus récent il y a 0.8 h (Touchdown Actu)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Seahawks » écarté : trop secondaire (3/10)
+  🔎 « Seattle » : 1 article(s) frais, le plus récent il y a 9.9 h (Google Actualités)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « Seattle » écarté : trop secondaire (3/10)
+  🔎 « DWTS » : 1 article(s) frais, le plus récent il y a 1.5 h (IMDb)
+  ⏭️  « DWTS » écarté : Divertissement télévisé sans impact pour la France.
+  🔎 « Draymond » : 1 article(s) frais, le plus récent il y a 9.1 h (Parlons Basket)
+  ⏭️  « Draymond » écarté : Simple déclaration d'opinion sans fait nouveau majeur.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #QeshmIsland
+  ⚠️ fetch_article_text: HTTP Error 404: Not Found
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/4 articles lus en 0.3s (67 déjà en cache)
+  📄 17/71 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · OpenAI · Sciences et Avenir
+  🧠 71 vecteurs calculés en 1 appel(s)
+  🧩 71 articles → 18 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : "L'Iran sera le tombeau de Donald Trump" : comment
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 61.5/100 = gravité 5/10 → 22 + frais 0.5h +13 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : "Ils arrêtent des gens qui travaillent dur" : au T
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 31 s
+  🧮 Score 69.5/100 = gravité 7/10 → 32 + frais 0.3h +16 + imprévu 6/10 +4 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 70) mais nuit → il attendra le matin
+  ⚪ Écarté (1, pénalisé par « comment  ») : Elections américaines : Comment les démocrates se so
+  ⚪ Écarté (-2, pénalisé par « pourrait, comment  ») : Pressions, intimidations, déclaration de l’état d’ur
+  🚨 Sujet chaud (breaking, 14 médias) : North Korea denies being behind record $6.3bn Bina
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 12 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ars Technica, BBC, BBC Business, BFMTV
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + 14 médias +18 + frais 1.7h +8 + thème porteur +10 + portée internationale +10 + ⚡ attentat → plancher 89
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [4m] Les élections de mi-mandat aux États-Unis se tiennent ce mardi pour renouveler
+      [1m] ⚡exclusif La Cour suprême des États-Unis a rejeté une demande de l'administration Trump 
+      [3m] Les sondages indiquent que le Parti républicain est en difficulté pour conserv
+      [1m] ⚡exclusif L'administration Trump a multiplié les tentatives pour influencer le processus
+      [1m] ⚡exclusif La campagne électorale dans le Michigan est marquée par une forte polarisation
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚪ Écarté (2, pénalisé par « comment  ») : "On se retrouve avec une finale absurde" : pourquoi 
+  🚨 Sujet chaud (breaking, 14 médias) : US strikes Iran ahead of midterm elections
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 91.0/100 = gravité 10/10 → 45 + 14 médias +18 + frais 1.7h +8 + thème porteur +10 + portée internationale +10
+  🧩 7 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [4m] Les élections de mi-mandat (midterms) se tiennent pour renouveler une partie d
+      [1m] ⚡exclusif La Cour suprême a rejeté une demande de l'administration Trump visant à invali
+      [2m] Les sondages indiquent une dynamique défavorable au Parti républicain pour ces
+      [1m] ⚡exclusif L'administration Trump a multiplié les tentatives pour influencer ou perturber
+      [1m] ⚡exclusif La course au Sénat dans l'État du Michigan est particulièrement serrée et disp
+      [1m] La bataille électorale est décrite comme très serrée entre les deux partis à l
+         ↳ Midi Libre, Al Jazeera : Les républicains sont donnés perdants par les sondages.
+         motif : Différence d'interprétation des données de sondage et de la dynamique.
+      [2m] Le coût de la vie et le prix du carburant sont des thèmes centraux de la campa
+  🌙 Sujet fort (score 91) mais nuit → il attendra le matin
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 71 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (105 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.6-flash             🚫 quota
+        19. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 5 × gemini-3.1-flash-lite        ✅
+        21. clé 5 × gemini-3.1-flash-lite        ✅
+        22. clé 5 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 1 × gemini-embedding-2-preview   🚫 quota
+        25. clé 1 × gemini-embedding-2           🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-2-preview   🚫 quota
+        28. clé 2 × gemini-embedding-2           🚫 quota
+        29. clé 3 × gemini-embedding-001         🚫 quota
+        30. clé 3 × gemini-embedding-2-preview   🚫 quota
+        31. clé 3 × gemini-embedding-2           🚫 quota
+        32. clé 4 × gemini-embedding-001         🚫 quota
+        33. clé 4 × gemini-embedding-2-preview   🚫 quota
+        34. clé 4 × gemini-embedding-2           🚫 quota
+        35. clé 5 × gemini-embedding-001         ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 6 autres
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 782 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 11,399 entrée · 1,365 sortie
+     ✅ aucun appel payant
