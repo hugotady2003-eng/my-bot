@@ -1,0 +1,156 @@
+
+[05:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Tendances : getdaytrends.com injoignable (HTTPSConnectionPool(host='getdaytrends.com', port=)
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Tendances : trends24.in répond 403
+  ⚠️ Aucune tendance disponible → hashtags choisis sur les mots du tweet
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/5 articles lus en 0.6s (58 déjà en cache)
+  📄 16/63 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · OpenAI · Sciences et Avenir
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 63 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 63 articles → 15 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 10 médias) : North Korea denies being behind record $6.3bn Bina
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC Business, CNBC, CoinDesk, Le Monde
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + 10 médias +15 + frais 2.2h +4 + ⚡ catastrophe majeure → plancher 89
+  🔍 5 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 7 partagée(s) · 1 divergente(s) · 0 exclusive(s)
+      [2m] Un avion d'affaires Learjet 60 s'est écrasé en Floride, causant la mort de neu
+      [2m] L'enquête sur les causes de l'accident considère les conditions météorologique
+      [2m] L'appareil avait décollé d'Austin, au Texas, à 10h37 en direction des Bahamas.
+         ↳ BFMTV, Sud Ouest : L'heure de décollage est précisée comme 16h37 heure française pa
+         motif : Utilisation de fuseaux horaires de référence différents.
+      [2m] L'identité des victimes n'est pas encore officiellement confirmée en raison de
+      [2m] La copilote a été identifiée par ses proches comme étant Nathalia Gadelha Filg
+      [2m] La copilote avait obtenu sa licence de pilote à 17 ans et cumulait environ 1 3
+      [2m] Les enquêteurs n'ont pas encore déterminé qui était aux commandes au moment du
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚪ Écarté (1, pénalisé par « comment  ») : Comment la popularité de Donald Trump s’est érodée e
+  🚨 Sujet chaud (breaking, 10 médias) : Crash d'avion en Floride: les conditions météorolo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 10 médias +15 + frais 2.2h +4 + ⚡ catastrophe majeure → plancher 89
+  🔍 5 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 7 partagée(s) · 1 divergente(s) · 0 exclusive(s)
+      [2m] Les conditions météorologiques sont considérées comme un élément majeur de l'e
+      [2m] L'accident d'avion a causé la mort de neuf personnes.
+      [2m] L'appareil impliqué est un Learjet 60 ayant décollé d'Austin vers les Bahamas.
+         ↳ BFMTV, Sud Ouest : L'heure de décollage est indiquée comme 16h37 heure française pa
+         motif : Différence de fuseau horaire de référence utilisé par les rédactions.
+      [2m] L'identité des victimes nécessite des analyses génétiques pour être confirmée 
+      [2m] La copilote a été identifiée par ses proches comme Nathalia Gadelha Filgueiras
+      [2m] La copilote avait obtenu sa licence de pilote à 17 ans et cumulait 1 300 heure
+      [2m] Les enquêteurs n'ont pas encore déterminé qui pilotait l'appareil au moment du
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 22 médias) : South Korea urges exchanges to boost cold storage 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧠 27 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Al Jazeera, Ars Technica, Blockworks, CoinDesk
+  🧮 Score 81.5/100 = gravité 7/10 → 32 + 22 médias +20 + frais 5.6h +2 + thème porteur +10 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 1 partagée(s) · 1 divergente(s) · 6 exclusive(s)
+      [3m] Des frappes russes ont causé des pertes humaines et des dégâts matériels dans 
+      [1m] ⚡exclusif Un bombardement russe a frappé le village de Komychouvakha, dans la région de 
+      [1m] ⚡exclusif Les attaques russes ont repris dans la région de Kherson après la fin d'un ces
+      [1m] Le bilan humain des frappes russes du 2 novembre est estimé à 26 morts selon O
+         ↳ Midi Libre : Le bilan est d'au moins 24 morts à Komychouvakha selon Midi Libr
+         motif : Périmètre géographique et sources différentes.
+      [1m] ⚡exclusif La Force multinationale pour l'Ukraine en Pologne débutera ses exercices le 9 
+      [1m] ⚡exclusif Une frappe de drone a tué un homme dans le district de Kharkiv.
+      [1m] ⚡exclusif Des frappes russes ont touché un immeuble à Sloviansk, faisant un mort et six 
+      [1m] ⚡exclusif Les forces russes ont endommagé des lignes à haute tension à Izium, privant la
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 22 médias) : Guerre en Ukraine : 26 morts dans des frappes, fin
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.5/100 = gravité 7/10 → 32 + 22 médias +20 + frais 5.6h +2 + thème porteur +10 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 1 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [3m] Des frappes russes ont causé la mort de civils dans le sud et l'est de l'Ukrai
+         ↳ Ouest-France, Midi Libre : Le bilan total est de 26 morts selon Ouest-France, tandis que Mi
+         motif : Périmètre géographique et sources d'information différents.
+      [1m] ⚡exclusif Le gouvernement ukrainien estime que les récentes attaques russes mettent fin 
+      [1m] ⚡exclusif Une frappe russe a visé une école servant à la distribution d'aide humanitaire
+      [1m] ⚡exclusif La Russie a repris ses attaques dans la région de Kherson après la fin d'un ce
+      [1m] ⚡exclusif Des infrastructures électriques ont été endommagées par des frappes russes à I
+      [1m] ⚡exclusif La Force multinationale pour l'Ukraine en Pologne débutera ses exercices le 9 
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 63 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (157 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-2           🚫 quota
+        13. clé 5 × gemini-embedding-001         ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        18. clé 1 × gemini-3.6-flash             🚫 quota
+        19. clé 1 × gemini-3-flash               ⛔ inexistant
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+        21. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 2 × gemini-3.6-flash             🚫 quota
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        28. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.6-flash             🚫 quota
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        38. clé 4 × gemini-3.6-flash             🚫 quota
+        39. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-embedding-2 (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 787 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 10,845 entrée · 2,711 sortie
+     ✅ aucun appel payant
