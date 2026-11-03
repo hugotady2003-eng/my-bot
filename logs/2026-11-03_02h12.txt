@@ -1,0 +1,165 @@
+
+[02:11] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : 文化の日, #WWERAW, #ラヴィット, M!LK, ローソン
+  🔎 « Ethan Page » : 1 article(s) frais, le plus récent il y a 1.4 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting ',' delimiter: line 1 column 20 (char 19) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Ethan Page » écarté : Le catch est un divertissement scénarisé.
+  🔎 « John Cena » : 1 article(s) frais, le plus récent il y a 0.5 h (Google Actualités)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « John Cena » écarté : Événement de divertissement sportif sans portée nationale.
+  🔎 « Seahawks » : 1 article(s) frais, le plus récent il y a 5.5 h (RDS)
+  ⏭️  « Seahawks » écarté : trop secondaire (2/10)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.6s (48 déjà en cache)
+  📄 13/50 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · The Block · Sciences et Avenir · Blockworks
+  🧠 50 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Alors que la popularité de Donald Trum… »
+  🧩 50 articles → 12 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 22 médias) : EN DIRECT, midterms 2026 : l’ultime discours de Do
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 23 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Ars Technica, BBC Business, BFMTV, Blockworks
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + 22 médias +20 + frais 2.9h +4 + thème porteur +10 + portée mondiale +18
+  🧩 6 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [5m] Les élections de mi-mandat (midterms) aux États-Unis se tiennent le 3 novembre
+      [1m] ⚡exclusif Donald Trump prononce un ultime discours de campagne le 2 novembre 2026 devant
+      [1m] ⚡exclusif Elon Musk est devenu le plus grand donateur individuel de l'histoire politique
+      [1m] ⚡exclusif La cote de popularité de Donald Trump est au plus bas, autour de 32 %, pénalis
+      [1m] ⚡exclusif La région Asie-Pacifique suit de très près les midterms américaines en raison 
+      [1m] ⚡exclusif Les partisans de Donald Trump sur les réseaux sociaux, face à la perspective d
+  🌙 Sujet fort (score 84) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 22 médias) : Midterms 2026 : qui est Ken Paxton, le sulfureux c
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.0/100 = gravité 6/10 → 27 + 22 médias +20 + frais 2.9h +4 + thème porteur +10 + portée mondiale +18
+  🧩 6 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [6m] Les élections de mi-mandat (midterms) aux États-Unis se tiennent le 3 novembre
+      [2m] Ken Paxton, le procureur général du Texas et candidat républicain soutenu par 
+      [1m] ⚡exclusif Elon Musk est devenu le plus grand donateur individuel de l'histoire politique
+      [1m] ⚡exclusif La cote de popularité de Donald Trump reste proche de son niveau le plus bas, 
+      [1m] ⚡exclusif Donald Trump prononce un ultime discours de campagne à Washington devant le mé
+      [1m] ⚡exclusif Les partisans de Donald Trump sur les réseaux sociaux publient des mèmes inspi
+  🌙 Sujet fort (score 79) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 22 médias) : North Korea denies being behind record $6.3bn Bina
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 92.5/100 = gravité 9/10 → 40 + 22 médias +20 + frais 2.9h +4 + thème porteur +10 + portée mondiale +18
+  🧩 6 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [5m] Les élections de mi-mandat (midterms) aux États-Unis se tiennent le 3 novembre
+      [1m] ⚡exclusif Elon Musk est devenu le plus grand donateur individuel de l'histoire politique
+      [1m] ⚡exclusif La côte de popularité de Donald Trump reste basse à l'approche du scrutin, aff
+      [1m] ⚡exclusif Donald Trump prononce un dernier discours de campagne à Washington devant le m
+      [1m] ⚡exclusif La guerre menée par les États-Unis et Israël contre l'Iran perturbe l'approvis
+      [1m] ⚡exclusif Les partisans de Donald Trump sur les réseaux sociaux utilisent des mèmes et d
+  🌙 Sujet fort (score 92) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 22 médias) : Mercado Bitcoin, Brazil’s largest crypto exchange,
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 88.0/100 = gravité 8/10 → 36 + 22 médias +20 + frais 2.9h +4 + thème porteur +10 + portée mondiale +18
+  🧩 6 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [5m] Les élections de mi-mandat (midterms) aux États-Unis se tiennent le mardi 3 no
+      [1m] ⚡exclusif Elon Musk est devenu le plus grand donateur individuel de l'histoire politique
+      [1m] ⚡exclusif La côte de popularité de Donald Trump reste proche de son niveau le plus bas, 
+      [1m] ⚡exclusif La guerre menée par les États-Unis et Israël contre l'Iran pèse lourdement sur
+      [1m] ⚡exclusif Donald Trump a prononcé un dernier discours de campagne lundi 2 novembre devan
+      [1m] ⚡exclusif Les partisans de Donald Trump sur les réseaux sociaux diffusent des mèmes et d
+  🌙 Sujet fort (score 88) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 9 médias) : Crash en Floride : Ce que l’on sait des neuf victi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC, BFMTV, Libération, Ouest-France
+  🧮 Score 68.5/100 = gravité 7/10 → 32 + 9 médias +15 + frais 2.0h +4 + portée mondiale +18
+  🧩 3 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Des attaques et bombardements russes ont eu lieu le lundi 2 novembre dans plus
+      [1m] ⚡exclusif Un bombardement russe a causé la mort d'au moins 24 personnes dans le village 
+      [1m] ⚡exclusif Des frappes et attaques de drones russes ont touché les régions de Kherson, Kh
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 9 médias) : Fusillade à Marseille : un mort, un blessé grave
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 50.5/100 = gravité 3/10 → 14 + 9 médias +15 + frais 2.0h +4 + portée mondiale +18
+  🧩 2 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [1m] ⚡exclusif Les attaques russes ont repris le lundi 2 novembre 2026 dans la région de Kher
+      [1m] ⚡exclusif Un bombardement russe a causé la mort de civils et fait des blessés dans la ré
+  🌙 Sujet fort (score 50) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 9 médias) : Plane may have broken apart ahead of deadly Florid
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 9 médias +15 + frais 2.0h +4 + portée mondiale +18
+  🧩 3 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Des attaques et bombardements russes ont eu lieu le lundi 2 novembre 2026 dans
+      [1m] ⚡exclusif Un bombardement russe a visé une école servant à l'aide humanitaire et un abri
+         motif : Périmètre géographique différent traité par chaque rédaction.
+      [1m] ⚡exclusif Des frappes de drones et d'artillerie russes ont touché les régions de Kherson
+         motif : Périmètre géographique différent traité par chaque rédaction.
+  🌙 Sujet fort (score 73) mais nuit → il attendra le matin
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 50 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (115 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-2-preview   🚫 quota
+        29. clé 3 × gemini-embedding-2           🚫 quota
+        30. clé 4 × gemini-embedding-001         ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        33. clé 4 × gemini-3.6-flash             🚫 quota
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 8 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-001 · clé 5 × gemini-3.6-flash · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2 (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 18,804 entrée · 3,232 sortie
+     ✅ aucun appel payant
