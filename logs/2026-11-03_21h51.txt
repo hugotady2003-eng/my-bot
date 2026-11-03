@@ -1,0 +1,237 @@
+
+[21:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 3 column 15 (char 33) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  Le Saviez-vous : « L'origine du nom Frigidaire » n'explique pas vraiment → on ne publie pas
+  ⚠️ gemini-3.6-flash (clé 1) : Invalid control character at: line 1 column 2 (char 1) → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ❌ RSS Positivr: IncompleteRead(3201 bytes read)
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #GSvStu, #الهلال_شباب_الاهلي, #ComLulaNaoTemBets, Batrakov, #XbiteSweepstakes
+  🔎 « Batrakov » : 1 article(s) frais, le plus récent il y a 0.7 h (L'Équipe)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Batrakov » écarté : trop secondaire (3/10)
+  🌍 « XbiteSweepstakes » : aucune reprise en français, source internationale retenue
+  🔎 « Guam » : 1 article(s) frais, le plus récent il y a 0.4 h (Libnanews)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Guam » écarté : Sujet ancien sans fait nouveau récent.
+  🔎 « Election Day » : 1 article(s) frais, le plus récent il y a 4.7 h (Rezo Nòdwès)
+  ⏭️  « Election Day » écarté : Événement futur, aucune actualité immédiate.
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 3 sujets chauds analysés en UN seul appel (au lieu de 3)
+  🕐 21h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 3.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/4 articles lus en 1.0s (24 déjà en cache)
+  📄 9/28 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Ouest-France · The Block · Libération · Blockworks
+  🧠 28 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Midterms 2026 : au Texas, les républic… »
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 28 articles → 10 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 14 médias) : EN DIRECT, midterms 2026 : du Texas à la Californi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 15 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, BFMTV, Blockworks, CoinDesk
+  🧮 Score 76.5/100 = gravité 9/10 → 40 + 14 médias +18 + frais 1.3h +8 + thème porteur +10
+  🕒 Âge de l'article : 3.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (239 → 193 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 14 médias) : South Korea's president says country needs a ‘cybe
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 14 médias +18 + frais 1.3h +8 + thème porteur +10
+  🕒 Âge de l'article : 4.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (162 → 123 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Image écartée : Mauvaise personne représentée.
+  🖼️🤝 Image récupérée chez un média jumeau (BBC) — même sujet
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 14 médias) : CZ calls for crypto security alliance as AI-driven
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 14 médias +18 + frais 1.3h +8 + thème porteur +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (175 → 143 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Midterms 2026 : Donald Trump révèle à Fox News que
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.5/100 = gravité 9/10 → 40 + frais 1.3h +8 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (197 → 151 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Google will disable Search for students unless schoo
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Midterms 2026 : au Texas, les républicains craignent
+  🚨 Sujet chaud (breaking, 14 médias) : "Je n'ai jamais été impressionné par Donald Trump"
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.0/100 = gravité 4/10 → 18 + 14 médias +18 + frais 1.3h +8
+  → Sujet chaud pas assez fort (score 44) → suivant
+  🚨 Sujet chaud (breaking, 14 médias) : Pompier blessé par balle près de Marseille : le su
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 39.5/100 = gravité 3/10 → 14 + 14 médias +18 + frais 1.3h +8
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Justin Sun seeks sanctions against Trump-linked Wo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 56.0/100 = gravité 6/10 → 27 + 3 médias +7 + frais 3.9h +4 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 3.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  → 28 articles à analyser...
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : EN DIRECT, midterms 2026 : du Texas à la Californi
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Au Luxembourg, le « FMI européen » s’inquiète de l
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms 2026 : Donald Trump révèle à Fox News que
+  ♻️ 8/10 [world] (déjà analysé, cache) : Midterms 2026 : au Texas, les républicains craigne
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Bodo/Glimt-Lille: des Nordistes sérieux et appliqu
+  ♻️ 7/10 [world] (déjà analysé, cache) : Alaska, Maine, Texas... Sept Etats où les résultat
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Ligue des champions : le PSG mène déjà 4-0, tout r
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Ligue des Champions : Villarreal - PSG, suivez not
+  ♻️ 8/10 [sports] (déjà analysé, cache) : EN DIRECT Villarreal - PSG : Quatre buts en même p
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Binance says fake job interviews used as part of $
+  ♻️ 9/10 [world] (déjà analysé, cache) : Michigan voters face crucial choice as Trump’s gri
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump DOJ sends target letters to Democrats in Ala
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Justin Sun seeks sanctions against Trump-linked Wo
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : South Korea's president says country needs a ‘cybe
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Amazon, Tesla and SpaceX join OKX–ICE tokenized st
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : CFTC clears stock perpetual futures for trading on
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : CZ calls for crypto security alliance as AI-driven
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Justin Sun seeks sanctions against World Liberty, 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Justin Sun Accuses Trump-Backed World Liberty of U
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : CFTC Lets Traders Bet on Stocks With Crypto-Style 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Researchers warned of North Korean hacking tactics
+  ♻️ 10/10 [crypto] (déjà analysé, cache) : Binance Says Hackers Used Well-Known Tricks to Car
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Google will disable Search for students unless sch
+  🧠 Batch analyse de 1 articles...
+  ✅ 8/10 [sports] large: Villarreal - PSG : auteur d’un début de match st
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.3h — Midterms 2026 : au Texas, les républicains c
+     10/10 · 3 média(s) · 0.1h — CZ calls for crypto security alliance as AI-
+     10/10 · 3 média(s) · 0.2h — Justin Sun Accuses Trump-Backed World Libert
+     10/10 · 2 média(s) · 0.1h — Villarreal - PSG : auteur d’un début de matc
+     10/10 · 2 média(s) · 0.9h — Ligue des champions : le PSG mène déjà 4-0, 
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Midterms 2026 : au Texas, les républicains craignent un
+
+  ── Bilan du cycle (337 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.6-flash             ⚠️ Invalid control charac
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 3 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.6-flash             🚫 quota
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 9 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2-preview (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 681
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 89,332 entrée · 2,376 sortie
+     ✅ aucun appel payant
