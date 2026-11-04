@@ -1,0 +1,144 @@
+
+[04:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Texas, Florida, Geórgia, #いい推しの日, Republicans
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #FoxNews, #JonOssoff, #Democrats
+  📖 54 articles, tous en cache
+  📄 13/54 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 54 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧠 Même événement (jugé) : « EN DIRECT Midterms 2026 : La Maison-Bl… »
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « États-Unis : « Ils sont CONTRE moi »… … »
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Democratic rising star Ossoff projecte… »
+  🧩 54 articles → 15 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT, midterms 2026 : les premiers résultats do
+  🚨 Sujet chaud (breaking, 19 médias) : Donald Trump crée la surprise en annonçant mettre 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 21 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ars Technica, Blockworks, CoinDesk, Cointelegraph
+  ✂️ 7 élément(s) écartés — 3 source(s) hors sujet : Al Jazeera, CoinDesk, Nikkei Asia
+  🧮 Score 80.5/100 = gravité 9/10 → 40 + 19 médias +18 + frais 3.4h +4 + portée mondiale +18
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [5m] Les élections de mi-mandat (midterms) aux États-Unis se tiennent le mardi 3 no
+      [5m] Les sondages et les analyses prédisent une possible « vague bleue » et une vic
+      [2m] Le président Donald Trump suit la soirée électorale depuis la Maison-Blanche e
+      [1m] ⚡exclusif Donald Trump a vertement critiqué la chaîne Fox News et ses sondages sur son r
+      [1m] ⚡exclusif Le ministère américain de la Justice a averti plusieurs personnes concernant d
+  🌙 Sujet fort (score 80) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Rappelez-vous, en 2008, Barack Obama devenait le pre
+  🚨 Sujet chaud (breaking, 2 médias) : What happens if North Korea steals Wall Street's t
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : The Verge
+  🧮 Score 31.5/100 = gravité 3/10 → 14 + 2 médias +4 + frais 3.9h +4 + portée internationale +10
+  → Sujet chaud pas assez fort (score 32) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : OpenAI Wants to Rebrand AI Data Centers, Use Them 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Decrypt
+  🧮 Score 30.0/100 = gravité 4/10 → 18 + frais 4.5h +2 + portée internationale +10
+  → Sujet chaud pas assez fort (score 30) → suivant
+  🚨 Sujet chaud (breaking, 19 médias) : AMD rides data center riches to ‘largest and most 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 4/10 → 18 + 19 médias +18 + frais 3.4h +4 + portée mondiale +18
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Les États-Unis organisent leurs élections de mi-mandat (midterms) le mardi 3 n
+      [3m] Les sondages et les analyses avant ou pendant le scrutin annoncent une possibl
+      [2m] Donald Trump suit la soirée électorale depuis la Maison-Blanche entouré de ses
+      [1m] ⚡exclusif Donald Trump a vivement critiqué la chaîne Fox News et ses sondages sur son ré
+      [1m] ⚡exclusif Le ministère américain de la Justice a averti plusieurs personnes liées à une 
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 19 médias) : Midterms 2026 : le démocrate Jon Ossoff est réélu 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 80.5/100 = gravité 9/10 → 40 + 19 médias +18 + frais 3.4h +4 + portée mondiale +18
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [5m] Les élections de mi-mandat (midterms) aux États-Unis se tiennent le mardi 3 no
+      [4m] Les sondages et les analyses évoquent la possibilité d'une « vague bleue » et 
+      [2m] Donald Trump suit les résultats des midterms depuis la Maison-Blanche, entouré
+      [3m] Le Parti républicain et la Maison-Blanche redoutent un revers électoral et la 
+      [1m] ⚡exclusif Donald Trump a vertement critiqué la chaîne Fox News et ses sondages sur son r
+      [1m] ⚡exclusif Le ministère américain de la Justice a averti plusieurs personnes concernant d
+  🌙 Sujet fort (score 80) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ossoff wins reelection in Georgia holding Senate sea
+  ⚽ API football-data : 15 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 54 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (238 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         ✅
+        11. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 1 × gemini-3.6-flash             🚫 quota
+        15. clé 1 × gemini-3-flash               ⛔ inexistant
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        20. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.6-flash             🚫 quota
+        23. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 2 × gemini-3.6-flash             🚫 quota
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        28. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.6-flash             🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 795 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 15,235 entrée · 1,699 sortie
+     ✅ aucun appel payant
