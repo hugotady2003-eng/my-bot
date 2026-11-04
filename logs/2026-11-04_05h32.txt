@@ -1,0 +1,128 @@
+
+[05:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Texas, Florida, #いい推しの日, Republicans, Democrats
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Texas, #FoxNews, #Talarico
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.8s (51 déjà en cache)
+  📄 13/55 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 55 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Midterms 2026: les démocrates en passe… »
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Jon Ossoff, étoile montante des démocr… »
+  🧩 55 articles → 13 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT, midterms 2026 : les démocrates en positio
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Rappelez-vous, en 2008, Barack Obama devenait le pre
+  🚨 Sujet chaud (breaking, 2 médias) : What happens if North Korea steals Wall Street's t
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : The Verge
+  🧮 Score 29.5/100 = gravité 3/10 → 14 + 2 médias +4 + frais 4.7h +2 + portée internationale +10
+  → Sujet chaud pas assez fort (score 30) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : OpenAI Wants to Rebrand AI Data Centers, Use Them 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Decrypt
+  🧮 Score 30.0/100 = gravité 4/10 → 18 + frais 5.2h +2 + portée internationale +10
+  → Sujet chaud pas assez fort (score 30) → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 20 médias) : Guerre en Ukraine : 50 disparus dans l’attaque qui
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Blockworks, Cointelegraph, France Bleu, Ouest-France
+  ✂️ 5 élément(s) écartés — 2 source(s) hors sujet : CoinDesk, Nikkei Asia
+  🧮 Score 82.0/100 = gravité 8/10 → 36 + 20 médias +20 + frais 3.0h +4 + imprévu 6/10 +4 + portée mondiale +18
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] Le Parti démocrate a pris le contrôle de la Chambre des représentants lors des
+      [5m] Les premiers résultats et estimations des élections de mi-mandat laissent prés
+      [1m] ⚡exclusif Le démocrate Jon Ossoff a été réélu sénateur en Géorgie.
+      [1m] ⚡exclusif Donald Trump suivra la soirée électorale à la Maison Blanche entouré de ses pr
+      [2m] Annie Andrews a remporté un siège face aux républicains en Caroline du Sud.
+      [1m] ⚡exclusif Deb Haaland a été élue gouverneure du Nouveau-Mexique, devenant la première fe
+      [1m] ⚡exclusif Le chef des députés démocrates, Hakeem Jeffries, a salué la victoire de son ca
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 20 médias) : Midterms 2026 : au Sénat américain, le démocrate T
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.0/100 = gravité 8/10 → 36 + 20 médias +20 + frais 3.0h +4 + portée mondiale +18
+  🧩 8 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [5m] Les élections de mi-mandat (midterms) de 2026 aux États-Unis se traduisent par
+      [3m] Le Parti démocrate a pris le contrôle de la Chambre des représentants selon le
+      [2m] La popularité de Donald Trump est en baisse, pénalisée notamment par l'inflati
+      [1m] ⚡exclusif Jon Ossoff a été réélu sénateur démocrate en Géorgie.
+      [2m] Annie Andrews a remporté un siège pour les démocrates en Caroline du Sud dans 
+      [1m] ⚡exclusif Deb Haaland a été élue gouverneure du Nouveau-Mexique, devenant la première fe
+      [1m] ⚡exclusif Chris Pappas est devenu le premier homme ouvertement gay élu au Sénat (au New 
+      [1m] ⚡exclusif Keisha Lance Bottoms a été élue gouverneure de Géorgie, devenant la première f
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  ⚽ API football-data : 15 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 55 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (57 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   🚫 quota
+         9. clé 3 × gemini-embedding-2           🚫 quota
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-2-preview   ✅
+        12. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 1 × gemini-3.6-flash             🚫 quota
+        17. clé 1 × gemini-3-flash               ⛔ inexistant
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        22. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.6-flash             🚫 quota
+        25. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.6-flash             🚫 quota
+        28. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.6-flash             🚫 quota
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 15,697 entrée · 1,487 sortie
+     ✅ aucun appel payant
