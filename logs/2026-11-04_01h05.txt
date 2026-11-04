@@ -1,0 +1,208 @@
+
+[01:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #いい推しの日, #CorridaDasBlogueiras8, Cunha, Manchester United, carrick
+  🔎 « Cunha » : 1 article(s) frais, le plus récent il y a 0.8 h (Eurosport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Cunha » écarté : Article rétrospectif sans fait nouveau marquant.
+  🔎 « Manchester United » : 1 article(s) frais, le plus récent il y a 1.4 h (Canal+)
+  ⏭️  « Manchester United » écarté : Match historique sans actualité récente liée
+  🔎 « carrick » : 1 article(s) frais, le plus récent il y a 2.0 h (Goal.com)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting ',' delimiter: line 1 column 19 (char 18) → couple suivant
+  ⏭️  « carrick » écarté : trop secondaire (4/10)
+  🔎 « Lacey » : 1 article(s) frais, le plus récent il y a 2.1 h (Tribuna.com)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Lacey » écarté : Débat mineur sur un fait de match.
+  🔎 « Roma » : 1 article(s) frais, le plus récent il y a 1.4 h (Canal+)
+  ⏭️  « Roma » écarté : Match ancien sans actualité récente
+  🌍 « XbiteSweepstakes » : aucune reprise en français, source internationale retenue
+  🔎 « Amad » : 1 article(s) frais, le plus récent il y a 8.7 h (Le JSL)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Amad » écarté : Anniversaire associatif local sans portée nationale.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #OscarPuente, #Indiana
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/6 articles lus en 0.9s (35 déjà en cache)
+  📄 11/41 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · CoinDesk · Ouest-France · The Block · Blockworks
+  🧠 41 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « RESULTATS. Donald Trump va-t-il perdre… »
+  🧠 Même événement (jugé) : « EN DIRECT Midterms 2026 : En cas de dé… »
+  🧩 41 articles → 8 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Midterms 2026 : Donald Trump révèle à Fox News que
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.5/100 = gravité 9/10 → 40 + frais 4.6h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 70) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 20 médias) : Attentat raciste dans les Yvelines : le suspect Ké
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  🧠 20 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Ars Technica, BBC, Blockworks, CNBC
+  🧮 Score 77.5/100 = gravité 7/10 → 32 + 20 médias +20 + frais 1.4h +8 + portée mondiale +18
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 8 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Près de 250 millions d'électeurs américains sont appelés aux urnes ce mardi 3 
+      [4m] Les élections de mi-mandat aux États-Unis visent à renouveler l'ensemble de la
+      [2m] Les sondages annoncent une possible 'vague bleue' et une reprise en main poten
+      [2m] Le président Donald Trump suivra les résultats électoraux depuis la Maison-Bla
+      [1m] ⚡exclusif Des problèmes techniques ont touché des machines de vote dans le comté de West
+      [1m] ⚡exclusif Le ministère américain de la Justice a averti plus d'une douzaine de personnes
+      [1m] ⚡exclusif Donald Trump a prévenu qu'en cas de défaite républicaine, il mettrait son veto
+      [1m] ⚡exclusif Les premiers bureaux de vote ont commencé à fermer, notamment dans le Kentucky
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : Ligue des Champions : le PSG pulvérise Villarreal 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : France Bleu
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 2 médias +4 + frais 2.5h +4 + thème porteur +10 + ⚡ démission politique → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 20 médias) : Donald Trump crée la surprise en annonçant mettre 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 86.5/100 = gravité 9/10 → 40 + 20 médias +20 + frais 1.4h +8 + portée mondiale +18
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [6m] Les élections de mi-mandat (midterms) aux États-Unis se tiennent ce mardi 3 no
+      [3m] Les sondages et les analyses prédisent une potentielle « vague bleue » et une 
+      [2m] Près de 250 millions d'électeurs américains sont appelés aux urnes pour ce scr
+      [2m] Donald Trump suivra les résultats électoraux depuis la Maison-Blanche en compa
+      [1m] ⚡exclusif Le ministère américain de la Justice (DOJ) avertit plus d'une douzaine de pers
+      [1m] ⚡exclusif Des dysfonctionnements techniques affectent des machines de vote dans le comté
+  🌙 Sujet fort (score 86) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : Catastrophe ferroviaire en Espagne : le ministre d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + 2 médias +4 + frais 2.5h +4 + thème porteur +10 + ⚡ démission politique → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 20 médias) : CZ calls for crypto security alliance as AI-driven
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.0/100 = gravité 8/10 → 36 + 20 médias +20 + frais 1.4h +8 + portée mondiale +18
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Près de 250 millions d'électeurs américains sont appelés aux urnes ce mardi 3 
+      [4m] Les élections de mi-mandat visent à renouveler l'ensemble de la Chambre des re
+      [2m] Les sondages annoncent une possible 'vague bleue' et une reprise en main du Co
+      [2m] Donald Trump suivra les résultats électoraux depuis la Maison-Blanche entouré 
+      [1m] ⚡exclusif Le président Donald Trump a prévenu qu'en cas de défaite républicaine, il mett
+      [1m] ⚡exclusif Des dysfonctionnements de machines de vote ont été signalés dans le comté de W
+      [1m] ⚡exclusif Le ministère américain de la Justice a averti plus d'une douzaine de personnes
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Tether Holds 150,000 Bitcoin, CEO Says—About 50,00
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Decrypt
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + frais 0.8h +13 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : EN DIRECT, midterms 2026 : du Texas à la Californie,
+  🚨 Sujet chaud (breaking, 20 médias) : Midterms 2026 : les premiers bureaux de vote ferme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.0/100 = gravité 8/10 → 36 + 20 médias +20 + frais 1.4h +8 + portée mondiale +18
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 9 affirmation(s) : 6 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [4m] Les élections de mi-mandat (midterms) aux Etats-Unis ont lieu le mardi 3 novem
+      [2m] Près de 250 millions d'électeurs américains sont appelés à voter lors de ce sc
+      [3m] Les sondages annoncent une potentielle 'vague bleue' et une possible reprise d
+      [2m] Le président Donald Trump suit les résultats depuis la Maison-Blanche entouré 
+      [2m] La popularité de Donald Trump est au plus bas, pénalisée notamment par l'infla
+         ↳ Al Jazeera : Al Jazeera mentionne que les démocrates font campagne sur la fin
+         motif : Focus géopolitique différent selon les rédactions.
+      [2m] Les premiers bureaux de vote ont commencé à fermer, notamment dans le Kentucky
+      [1m] ⚡exclusif Des problèmes techniques avec des machines à voter ont été signalés dans le co
+      [1m] ⚡exclusif Le ministère américain de la Justice a averti plusieurs personnes concernant d
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : US midterm election results live: Polls start closin
+  🚨 Sujet chaud (breaking, 20 médias) : What happens if North Korea steals Wall Street's t
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 59.5/100 = gravité 3/10 → 14 + 20 médias +20 + frais 1.4h +8 + portée mondiale +18
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Près de 250 millions d'Américains sont appelés aux urnes ce mardi 3 novembre p
+      [3m] Les élections de mi-mandat décident du renouvellement de l'ensemble de la Cham
+      [2m] Les sondages annoncent une possible 'vague bleue' et une reprise potentielle d
+      [2m] Donald Trump suivra les résultats des élections depuis la Maison-Blanche avec 
+      [1m] ⚡exclusif Le ministère américain de la Justice a averti plus d'une douzaine de personnes
+      [1m] ⚡exclusif Quelques dysfonctionnements de machines à voter ont été signalés dans le comté
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 20 médias) : Guerre en Ukraine : Volodymyr Zelensky craint un b
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 86.5/100 = gravité 9/10 → 40 + 20 médias +20 + frais 1.4h +8 + portée mondiale +18
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Près de 250 millions d'électeurs américains sont appelés aux urnes ce mardi 3 
+      [4m] Les élections de mi-mandat concernent le renouvellement de l'ensemble de la Ch
+      [3m] Les sondages annoncent une possible « vague bleue » et une reprise en main pot
+      [2m] Le président Donald Trump suivra les résultats électoraux depuis la Maison-Bla
+      [1m] ⚡exclusif Donald Trump a prévenu qu'en cas de défaite républicaine, il mettrait son veto
+      [1m] ⚡exclusif Des dysfonctionnements de machines de vote ont été signalés dans le comté de W
+      [1m] ⚡exclusif Le ministère américain de la Justice a averti des personnes liées au recruteme
+  🌙 Sujet fort (score 86) mais nuit → il attendra le matin
+  ⚽ API football-data : 15 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 41 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (246 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 3 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-embedding-001         🚫 quota
+        23. clé 1 × gemini-embedding-2-preview   🚫 quota
+        24. clé 1 × gemini-embedding-2           🚫 quota
+        25. clé 2 × gemini-embedding-001         🚫 quota
+        26. clé 2 × gemini-embedding-2-preview   🚫 quota
+        27. clé 2 × gemini-embedding-2           🚫 quota
+        28. clé 3 × gemini-embedding-001         ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        37. clé 4 × gemini-3.6-flash             ⚠️ Unterminated string st
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.6-flash             🚫 quota
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 7 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 26,991 entrée · 4,277 sortie
+     ✅ aucun appel payant
