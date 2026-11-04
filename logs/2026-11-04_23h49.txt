@@ -1,0 +1,228 @@
+
+[23:42] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 6 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Trump, Lens, #FBvLIV, Fabregas, Valverde
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Trump, #Iran, #Lens
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 23h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 1.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/7 articles lus en 0.8s (28 déjà en cache)
+  📄 11/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Sciences et Avenir · Cointelegraph · Blockworks · OpenAI
+  🧠 35 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Midterms : pour J. D. Vance, la guerre… »
+  🧠 Même événement (jugé) : « Democrats map out an agenda to address… »
+  🧠 Même événement (jugé) : « US midterms live: Wall Street rallies … »
+  🧩 35 articles → 16 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 10 médias) : EN DIRECT, midterms 2026 : dans son premier discou
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 11 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Blockworks, Decrypt, NASA, Ouest-France
+  🧮 Score 85.5/100 = gravité 9/10 → 40 + 10 médias +15 + frais 1.7h +8 + exploit français +4 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  📈 Hashtag(s) en tendance : #Trump
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Trump, #Iran
+  ✂️ Tweet resserré localement (206 → 168 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : God of War Laufey repousse sa date de sortie et ar
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 33.5/100 = gravité 7/10 → 32 + frais 5.3h +2
+  → Sujet chaud pas assez fort (score 34) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Procès du triple narchomicide près de Marseille: u
+  🧮 Score 69.5/100 = gravité 7/10 → 32 + frais 0.1h +16 + imprévu 6/10 +4 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Humilié par Côme, le RC Lens encaisse la plus larg
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + frais 0.8h +13 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  📈 Hashtag(s) en tendance : #Lens, #Come
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 42 s
+  📈 Hashtag(s) en tendance : #Come
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Elon Musk's millions failed to deliver Republican wi
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Democratic sweep of Congress forces crypto industry 
+  🚨 Sujet chaud (breaking, 2 médias) : Mort de Brigitte Bardot : "Tu m’as détruite"... Un
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 5.9h +2 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Une lettre manuscrite de Brigitte Bardot datée de 2022 et critique envers son 
+      [2m] La Fondation Brigitte Bardot et Bernard d'Ormale sont en conflit ouvert concer
+      [1m] ⚡exclusif Bernard d'Ormale est bouleversé et prépare une réponse suite à la publication 
+      [1m] ⚡exclusif L'avocate de Bernard d'Ormale émet des doutes sur l'authenticité de la lettre 
+      [2m] Le journal Le Figaro est à l'origine de la publication du courrier manuscrit d
+  🕒 Âge de l'article : 3.5h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Article axé sur un conflit d'héritage et des tensions · décès : 28 décembre 2025
+  ↩️ Hommage non confirmé → actualité normale [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 15 match(s) sur 48h, dont France : 0
+  → 35 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : EN DIRECT, midterms 2026 : dans son premier discou
+  ♻️ 7/10 [world] (déjà analysé, cache) : Midterms : pour J. D. Vance, la guerre en Iran est
+  ♻️ 7/10 [world] (déjà analysé, cache) : Procès du triple narchomicide près de Marseille: u
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Humilié par Côme, le RC Lens encaisse la plus larg
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Ligue des champions. Le RC Lens, détruit par Côme,
+  ♻️ 6/10 [sports] (déjà analysé, cache) : Masters 1000 de Paris. Fils, Halys et Alcaraz qual
+  ♻️ 8/10 [world] (déjà analysé, cache) : Mort de Brigitte Bardot : "Tu m’as détruite"... Un
+  ♻️ 8/10 [business] (déjà analysé, cache) : Il avait dépensé près de 500 millions de dollars p
+  ♻️ 7/10 [tech] (déjà analysé, cache) : J’ai testé l’iPhone Duo : un produit qui éblouit p
+  ♻️ 7/10 [science] (déjà analysé, cache) : Cyberattaque : les chambres froides de l'EFS prise
+  ♻️ 6/10 [world] (déjà analysé, cache) : "Effondré", Bernard d'Ormale s'interroge sur l'aut
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : God of War Laufey repousse sa date de sortie et ar
+  ♻️ 8/10 [world] (déjà analysé, cache) : 'This is a disaster': Angry Republicans blame Trum
+  ♻️ 8/10 [world] (déjà analysé, cache) : Ukraine says bodycam video shows deadly Russian do
+  ♻️ 7/10 [business] (déjà analysé, cache) : Elon Musk's millions failed to deliver Republican 
+  ♻️ 8/10 [markets] (déjà analysé, cache) : What was really behind Wednesday's monster rally? 
+  ♻️ 6/10 [world] (déjà analysé, cache) : Democrats map out an agenda to address affordabili
+  ♻️ 9/10 [markets] (déjà analysé, cache) : US midterms live: Wall Street rallies as Trump sig
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : BitMart founder says security team ‘severely under
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Crypto PACs eye 2028 “new map” as Democrats take C
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Democratic sweep of Congress forces crypto industr
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin rebounds past $80,000 as markets shrug off
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : French Hill’s race still too close to call as Hous
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Coinbase Says 99% of Customer Crypto Is Offline an
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : A thousand fewer paths to root
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Big Tech claims voters’ AI backlash is “anti-Trump
+  ♻️ 6/10 [space] (déjà analysé, cache) : NASA Shares Plans to Accelerate Artemis, Return to
+  🧠 Batch analyse de 6 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 2 column 28 (char 41) → couple suivant
+  📉 3/10: FORUM BFMTV - "Ce qui est exceptionnel pour un policier
+  ✅ 7/10 [world] mondiale: Législatives en Israël : Netanyahou persiste et 
+  📉 4/10: Sudan factories struggle to restart after devastating w
+  📉 3/10: Japan logistics startups expand cold food networks in M
+  📉 4/10: Qualcomm is betting big on data centers as smartphone s
+  📉 3/10: Apple TV reportedly getting Justin Timberlake docuserie
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.3h — EN DIRECT, midterms 2026 : dans son premier 
+     10/10 · 2 média(s) · 0.8h — Humilié par Côme, le RC Lens encaisse la plu
+     10/10 · 2 média(s) · 0.7h — Ligue des champions. Le RC Lens, détruit par
+     9/10 · 2 média(s) · 0.5h — Crypto PACs eye 2028 “new map” as Democrats 
+     10/10 · 1 média(s) · 2.0h — Coinbase Says 99% of Customer Crypto Is Offl
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  📈 Hashtag(s) en tendance : #Trump
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Trump, #Iran
+  ✂️ Tweet resserré localement (172 → 145 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : EN DIRECT, midterms 2026 : dans son premier discours ap
+
+  ── Bilan du cycle (394 s) ──
+     écartés : 2 sujet banal · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 1 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-001         🚫 quota
+        11. clé 2 × gemini-embedding-2-preview   🚫 quota
+        12. clé 2 × gemini-embedding-2           🚫 quota
+        13. clé 3 × gemini-embedding-001         ✅
+        14. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 2 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3.5-flash-lite        ✅
+        17. clé 3 × gemini-3.5-flash-lite        ✅
+        18. clé 3 × gemini-3.5-flash-lite        ✅
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.5-flash-lite        ✅
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 3 × gemini-3.5-flash-lite        ✅
+        37. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        38. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        39. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-embedding-2 (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 743
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 83,779 entrée · 2,702 sortie
+     ✅ aucun appel payant
