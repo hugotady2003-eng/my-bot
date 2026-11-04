@@ -1,0 +1,372 @@
+
+[12:32] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Le Monde, Libération
+  🖼️ 4 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ Image libre trouvée sur Commons « Route »
+  🖼️ Image libre trouvée sur Commons « Rhum »
+  🖼️ Image libre trouvée sur Commons « Armel »
+  🖼️ Décryptage illustré par 2 image(s) différente(s) sur 6 plans
+  ⛔ gemini-3.1-flash-tts n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (models/gemini-3.1-flash-tts is not found for API v) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  🎞️ Montage : 6 plans, 32.8s
+  🎬 Carrousel vidéo (55s, 6 slides, sans son)
+  🚦 Vidéo TikTok NON VALIDÉE — 1 défaut(s) :
+     • RÉPÉTITION entre les plans 1 et 2
+  🚫 Défauts éditoriaux → version TikTok abandonnée ce jour
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 04-Nov-26 03:34:36 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AzLgV8a-rWDRCTN7tGW42Ts"}}
+  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « orange flight recorder »
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ Contrôle visuel indisponible (503 Server Error: Service Unavailable for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent) → image conservée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 04-Nov-26 03:35:25 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A65nI-O5eSywBiQaHLyJUFx"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #いい推しの日, Trump, #ScarletHeartUllaveeEP1, #もうすぐ美鈴ガラクタロード, スパリク
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Trump, #Texas, #Democrats
+  🕐 12h (Paris) — rythme journée (29-60 min · 0 publié(s), 16 restant(s) sur 12.0 h) : 29-60 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  📖 11/15 articles lus en 1.9s (31 déjà en cache)
+  📄 8/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · Jeuxvideo.com · Blockworks
+  🧠 46 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.6-flash (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 Même événement (jugé) : « James Talarico, Abdul El-Sayed... Qui … »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🧩 47 articles → 12 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  🚨 Sujet chaud (breaking, 17 médias) : Midterms : les démocrates doublement victorieux, u
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 11 (char 10) → couple suivant
+  🧠 15 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Blockworks, CoinDesk, Cointelegraph, Decrypt
+  🧮 Score 90.5/100 = gravité 7/10 → 32 + 17 médias +18 + frais 0.7h +13 + thème porteur +10 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.6-flash (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  🧩 5 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 1 exclusive(s)
+      [5m] Les démocrates remportent la majorité à la Chambre des représentants et au Sén
+      [2m] Donald Trump déclare qu'il acceptera les résultats des élections et qu'il est 
+      [2m] Donald Trump minimise la portée de la défaite républicaine, affirmant qu'il n'
+      [2m] Plusieurs figures démocrates remportent des victoires historiques dans des Éta
+      [1m] ⚡exclusif Donald Trump attribue en partie la défaite républicaine à la guerre en Iran.
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 156 (char 155 → couple suivant
+  📈 Hashtag(s) en tendance : #Trump
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 128 (char 127 → couple suivant
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 4 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Piratage : Le Crédit mutuel Arkéa victime d’une cy
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 8/10 → 36 + frais 2.1h +4 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 2.1h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 17 médias) : Midterms 2026 : Donald Trump subit une défaite his
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 95.0/100 = gravité 8/10 → 36 + 17 médias +18 + frais 0.8h +13 + thème porteur +10 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [4m] Les démocrates ont remporté la majorité à la Chambre des représentants et au S
+      [2m] Donald Trump a déclaré qu'il acceptait les résultats des élections et qu'il ét
+      [2m] Le démocrate James Talarico a remporté l'élection sénatoriale au Texas, mettan
+      [2m] Donald Trump a minimisé sa responsabilité personnelle dans cette défaite, affi
+      [1m] ⚡exclusif Gina Hinojosa a été élue gouverneure du Texas, devenant la première femme d'or
+      [1m] ⚡exclusif Donald Trump a évoqué la guerre contre l'Iran comme l'un des facteurs ayant co
+      [1m] ⚡exclusif Deb Haaland a été élue gouverneure du Nouveau-Mexique, devenant la première fe
+  🕒 Âge de l'article : 2.8h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  📈 Hashtag(s) en tendance : #Trump, #Iran
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  📈 Hashtag(s) en tendance : #Trump, #Iran
+  🖼️ 4 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "À cette température-là, ça devient du boudin !" : d
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Test de The Legend of Zelda: Ocarina of Time, et c’e
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Midterms, le jour d’après : «une lueur d’espoir pour
+  🚨 Sujet chaud (breaking, 3 médias) : Grève du 5 novembre : manifestations, dispositif p
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.1-flash-lite (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Dexerto, Numerama
+  🧮 Score 51.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.7h +13
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (191 → 158 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (BFMTV) — même sujet
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Tous ses proches se sont concertés : cet humoriste a
+  🚨 Sujet chaud (breaking, 1 médias) : SpaceX, Tesla fall around 4% on Democrats' big win
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 68.0/100 = gravité 6/10 → 27 + frais 1.3h +8 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (164 → 128 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 17 médias) : Football. La Liga bouleverse son calendrier après 
+  🧮 Score 100.0/100 = gravité 7/10 → 32 + 17 médias +18 + frais 0.9h +13 + imprévu 8/10 +18 + thème porteur +10 + portée mondiale +18
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 6 exclusive(s)
+      [5m] Le parti démocrate a remporté la majorité au Sénat et à la Chambre des représe
+      [2m] Donald Trump a déclaré qu'il acceptait les résultats des élections et qu'il ét
+      [1m] Donald Trump minimise l'impact de cette défaite sur son bilan personnel.
+         ↳ Le Monde : Le Monde qualifie la défaite de débâcle historique pour Donald T
+         motif : Différence d'interprétation politique et d'angle éditorial.
+      [2m] James Talarico a été élu sénateur au Texas, mettant fin à une longue dominatio
+      [1m] ⚡exclusif Gina Hinojosa a été élue gouverneure du Texas, devenant la première femme d'or
+      [1m] ⚡exclusif Deb Haaland a été élue gouverneure du Nouveau-Mexique, devenant la première fe
+      [1m] ⚡exclusif Adam Hamilton a été élu au Kansas, mettant fin à 94 ans de domination républic
+      [1m] ⚡exclusif Keisha Lance Bottoms a été élue gouverneure de Géorgie, devenant la première f
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — Décès accidentel sur un terrain de football · décès : 3 novembre 2026
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Onduleur et moteur : ce que le Cybercab prépare en d
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Florida Republicans fend off Democrats as state elec
+  ⚽ API football-data : 15 match(s) sur 48h, dont France : 0
+  → 47 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Midterms 2026 : Donald Trump subit une défaite his
+  ♻️ 8/10 [world] (déjà analysé, cache) : Budget 2027 : devant l’impasse des débats, Sébasti
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms, le jour d’après : «une lueur d’espoir po
+  ♻️ 7/10 [world] (déjà analysé, cache) : Grève du 5 novembre : manifestations, dispositif p
+  ♻️ 7/10 [world] (déjà analysé, cache) : Midterms : les démocrates doublement victorieux, u
+  ♻️ 7/10 [world] (déjà analysé, cache) : Midterms 2026 : raz-de-marée démocrate au Congrès,
+  ♻️ 8/10 [world] (déjà analysé, cache) : Propositions de loi, enquêtes visant l'administrat
+  ♻️ 8/10 [business] (déjà analysé, cache) : Piratage : Le Crédit mutuel Arkéa victime d’une cy
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Football. La Liga bouleverse son calendrier après 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Donald Trump : "Je n’ai pas à me sentir coupable",
+  ♻️ 8/10 [business] (déjà analysé, cache) : Cyberattaque au Crédit Mutuel Arkéa : 133 millions
+  ♻️ 8/10 [world] (déjà analysé, cache) : "À cette température-là, ça devient du boudin !" :
+  ♻️ 6/10 [world] (déjà analysé, cache) : Midterms : les armes juridiques du Congrès et de l
+  ♻️ 8/10 [world] (déjà analysé, cache) : Le Boeing 747 de Donald Trump, sa "Maison Blanche 
+  ♻️ 7/10 [world] (déjà analysé, cache) : South Carolina elects Democratic senator for first
+  ♻️ 6/10 [world] (déjà analysé, cache) : Florida Republicans fend off Democrats as state el
+  ♻️ 7/10 [world] (déjà analysé, cache) : What Trump losing power over Congress means for Ir
+  ♻️ 6/10 [markets] (déjà analysé, cache) : SpaceX, Tesla fall around 4% on Democrats' big win
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : ZachXBT names French bank Crédit Mutuel Arkéa as s
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Binance hack may be ‘temporary setback’ for crypto
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs lose $1.16B as Bitwise calls selling 
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : ZachXBT Names French Bank Crédit Mutuel Arkéa as A
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Ukraine’s drone strikes spur hasty Russian plans f
+  🎯 Pré-classement : 2 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 17 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ✅ 9/10 [world] mondiale: ‘Seismic shift’: World reacts to US midterm elec
+  📉 3/10: The Legend of Zelda: Ocarina of Time never gets old
+  ✅ 7/10 [world] large: Midterms 2026 : dans le Michigan, Abdul El-Sayed
+  ✅ 7/10 [crypto] mondiale: Bitcoin rebounds from midterm dip as DeFi leads 
+  📉 3/10: Grève du 5 novembre: près de 70.000 forces de l'ordre d
+  📉 4/10: Intelligence artificielle : chez Lectra, l’IA a intégré
+  📉 2/10: Dihnamic, le hub d’innovation numérique qui aide à fran
+  📉 3/10: Accusée de racisme, BFMTV veut « renforcer la diversité
+  🌍 6/10 sans portée internationale : Même à 550 000 €, la première Ferrari électrique a
+  📉 4/10: La "taxe Zucman" échoue en Californie, mais la campagne
+  🌍 6/10 sans portée internationale : SCX 26 : Naval Group ose le canon électromagnétiqu
+  📉 4/10: Onduleur et moteur : ce que le Cybercab prépare en douc
+  📉 5/10: Tous ses proches se sont concertés : cet humoriste a vé
+  📉 3/10: LEGO dévoile son Godzilla gigantesque, mais le résultat
+  📉 3/10: Comment se protéger du botulisme, cette maladie qui peu
+  📉 2/10: Bai Chilian, dame aux serpents jumeaux Phantom Blade Ze
+  📉 2/10: Codes Depth Incremental (Novembre 2026)
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.3h — Midterms, le jour d’après : «une lueur d’esp
+     10/10 · 4 média(s) · 0.5h — ZachXBT Names French Bank Crédit Mutuel Arké
+     10/10 · 1 média(s) · 0.4h — ‘Seismic shift’: World reacts to US midterm 
+     10/10 · 6 média(s) · 0.9h — Midterms : les démocrates doublement victori
+     10/10 · 6 média(s) · 0.9h — Donald Trump : "Je n’ai pas à me sentir coup
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🧠 11 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, BFMTV, CNBC, CoinDesk
+  📈 Hashtag(s) en tendance : #Trump
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Trump
+  ✂️ Tweet resserré localement (178 → 129 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Donald Trump (Wikipedia)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 04-Nov-26 03:50:07 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AgVVIGY9ExH4nqv1eGkxRgK"}}
+  ❌ Post Instagram échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Wednesday, 04-Nov-26 03:50:08 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AZpRIUgF35RdtEpYICdrWuN"}}
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Midterms, le jour d’après : «une lueur d’espoir pour la
+
+  ── Bilan du cycle (1065 s) ──
+     écartés : 6 sujet banal · 2 sans portée internationale · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        12. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        13. clé 1 × gemini-3.6-flash             ⚠️ 503 Server Error: Serv
+        14. clé 1 × gemini-3-flash               ⛔ inexistant
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        17. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        20. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        21. clé 2 × gemini-3.5-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        23. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        24. clé 2 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        26. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        29. clé 1 × gemini-3.6-flash             ⚠️ 503 Server Error: Serv
+        30. clé 2 × gemini-3.5-flash-lite        ✅
+        31. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        32. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        33. clé 2 × gemini-3.5-flash-lite        ✅
+        34. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        35. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        36. clé 2 × gemini-3.5-flash-lite        ✅
+        37. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        38. clé 1 × gemini-3.6-flash             🚫 quota
+        39. clé 2 × gemini-3.5-flash-lite        ✅
+        40. clé 1 × gemini-3.1-flash-lite        ⚠️ 503 Server Error: Serv
+        … et 21 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-2 · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 2 × gemini-embedding-2-preview (+25)
+     clés Gemini : 5/5 disponible(s)
+     texte : 13/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0 · gemini 2-preview 496 · gemini 2 796
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash, gemini-3.1-flash-tts
+     jetons Gemini : 130,932 entrée · 5,664 sortie
+     ✅ aucun appel payant
