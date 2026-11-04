@@ -1,0 +1,194 @@
+
+[07:08] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Texas, Trump, Republicans, Democrats, #いい推しの日
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Texas, #Trump, #Iran
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/12 articles lus en 2.4s (61 déjà en cache)
+  📄 13/73 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 73 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧩 73 articles → 21 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 2 column 3 (char 4) → couple suivant
+  🚨 Sujet chaud (breaking, 15 médias) : EN DIRECT, midterms 2026 : les démocrates remporte
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 80.0/100 = gravité 8/10 → 36 + 15 médias +18 + frais 0.5h +16 + portée internationale +10
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 1.5h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghPm4PRXumjEUyxa3ahL'}
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Midterms 2026 : la Chambre des représentants passe d
+  🚨 Sujet chaud (breaking, 6 médias) : N Korea fires multiple missiles, denies US claims 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 1.0h +8 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghPnzMPmZQWK8Vn8BzG2'}
+  🚨 Sujet chaud (breaking, 4 médias) : US midterms live: Democrats take control of Senate
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 60.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 0.8h +13
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghPpvL7Hw4iaDCbkcPc8'}
+  🚨 Sujet chaud (breaking, 11 médias) : Midterms: Donald Trump dit "accepter" le résultat 
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 68.0/100 = gravité 10/10 → 45 + 11 médias +15 + frais 1.4h +8
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghPs6xP1aZbLPHJNpitM'}
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 6 médias) : Guerre en Ukraine : une réunion ce mercredi à Brux
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.0/100 = gravité 6/10 → 27 + 6 médias +11 + frais 1.1h +8 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghPtYqtXuMP8bjQviacW'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Nos critiques des sorties de la semaine : «l’Affaire
+  🚨 Sujet chaud (breaking, 15 médias) : Midterms 2026 aux États-Unis : « Je suis tout à fa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.5/100 = gravité 9/10 → 40 + 15 médias +18 + frais 0.5h +13 + portée internationale +10
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghPuzw4xP2rqq1M85L69'}
+  ⚽ API football-data : 15 match(s) sur 48h, dont France : 0
+  → 73 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, midterms 2026 : les démocrates remporte
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms 2026 : Donald Trump révèle à Fox News que
+  ♻️ 7/10 [world] (déjà analysé, cache) : Midterms 2026 : les démocrates décrochent la major
+  ♻️ 7/10 [world] (déjà analysé, cache) : RESULTATS. Les démocrates s'emparent du Sénat, les
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Ligue des Champions : le PSG pulvérise Villarreal 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Attentat raciste dans les Yvelines : le suspect Ké
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms 2026 aux États-Unis : enquêtes, nominatio
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms 2026 aux États-Unis : « Je suis tout à fa
+  ♻️ 8/10 [world] (déjà analysé, cache) : Midterms 2026 aux Etats-Unis : déferlante démocrat
+  ♻️ 6/10 [world] (déjà analysé, cache) : Guerre en Ukraine : une réunion ce mercredi à Brux
+  ♻️ 8/10 [world] (déjà analysé, cache) : N Korea fires multiple missiles, denies US claims 
+  ♻️ 9/10 [world] (déjà analysé, cache) : US midterms live: Democrats take control of Senate
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Tether Holds 150,000 Bitcoin, CEO Says—About 50,00
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Ukraine’s drone strikes spur hasty Russian plans f
+  🎯 Pré-classement : 37 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghPvKXG3Rpzg2heuqpAR'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 7 média(s) · 0.5h — Midterms 2026 : les démocrates décrochent la
+     10/10 · 9 média(s) · 0.4h — RESULTATS. Les démocrates s'emparent du Séna
+     10/10 · 9 média(s) · 0.4h — Midterms 2026 aux États-Unis : enquêtes, nom
+     10/10 · 9 média(s) · 0.4h — Midterms 2026 aux États-Unis : « Je suis tou
+     10/10 · 9 média(s) · 0.5h — Midterms 2026 aux Etats-Unis : déferlante dé
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghPverbgwjSxxWiC2thS'}
+  → 1 sélectionné(s) [world]
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Sujet non vérifiable (modèle indisponible) → rien publié : Midterms 2026 : les démocrates décrochent la m
+
+  ── Bilan du cycle (337 s) ──
+     écartés : 2 sujet banal · 1 sujet non vérifiable
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-2-preview   🚫 quota
+         2. clé 1 × gemini-embedding-2           🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 2 × gemini-embedding-2           🚫 quota
+         6. clé 3 × gemini-embedding-001         🚫 quota
+         7. clé 3 × gemini-embedding-2-preview   🚫 quota
+         8. clé 3 × gemini-embedding-2           🚫 quota
+         9. clé 4 × gemini-embedding-001         🚫 quota
+        10. clé 4 × gemini-embedding-2-preview   🚫 quota
+        11. clé 4 × gemini-embedding-2           🚫 quota
+        12. clé 5 × gemini-embedding-001         ✅
+        13. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        16. clé 1 × gemini-3.6-flash             🚫 quota
+        17. clé 1 × gemini-3-flash               ⛔ inexistant
+        18. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        21. clé 2 × gemini-3.6-flash             🚫 quota
+        22. clé 2 × gemini-3-flash               ⛔ inexistant
+        23. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.6-flash             🚫 quota
+        29. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        30. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        31. clé 4 × gemini-3.6-flash             🚫 quota
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        34. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        35. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        36. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        37. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        38. clé 5 × gemini-3.6-flash             ⚠️ Unterminated string st
+        39. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2 · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 785 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,623 entrée · 28 sortie
+     ⚠️ 52 appel(s) payés chez Claude (le gratuit n'a pas suffi)
