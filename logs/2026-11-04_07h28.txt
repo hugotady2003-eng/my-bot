@@ -1,0 +1,272 @@
+
+[07:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Texas, Trump, Republicans, Democrats, #いい推しの日
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Texas, #Trump, #Iran
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  💰 4 sujets chauds analysés en UN seul appel (au lieu de 4)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/11 articles lus en 1.7s (64 déjà en cache)
+  📄 14/75 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Jeuxvideo.com · Blockworks
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Midterms 2026 : tsunami démocrate et c… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « EN DIRECT Midterms 2026 : Face à une d… »
+  🧠 Même événement (jugé) : « Midterms 2026 aux États-Unis : femme n… »
+  🧠 Même événement (jugé) : « Midterms 2026 aux États-Unis : enquête… »
+  🧠 Même événement (jugé) : « Midterms : les armes juridiques du Con… »
+  🧩 75 articles → 15 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 33 médias) : EN DIRECT, midterms 2026 : les démocrates remporte
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 37 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Al Jazeera, Ars Technica, BFMTV, Blockworks
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 33 médias +20 + frais 0.6h +13 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 10 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 7 exclusive(s)
+      [3m] Les démocrates remportent la majorité des sièges au Sénat.
+      [1m] ⚡exclusif Donald Trump a déclaré qu'il acceptait les résultats des élections et qu'il ét
+      [1m] ⚡exclusif Donald Trump a qualifié la performance des démocrates de « bon boulot ».
+      [3m] Les démocrates remportent la majorité à la Chambre des représentants.
+      [2m] Le Parti républicain subit un désaveu électoral majeur.
+      [1m] ⚡exclusif L'inflation et les crises géopolitiques ont affaibli la popularité de Donald T
+      [1m] ⚡exclusif Le documentariste Ken Burns a publié un éditorial critique sur la situation po
+      [1m] ⚡exclusif Deb Haaland est élue gouverneure du Nouveau-Mexique.
+  🕒 Âge de l'article : 1.7h (frais ✅)
+  📈 Hashtag(s) en tendance : #Kansas
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Texas, #Kansas, #Trump
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 33 médias) : U.S. midterm elections in pictures: Democrats' swe
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 33 médias +20 + frais 0.7h +13 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 7 exclusive(s)
+      [3m] Le Parti démocrate remporte la majorité à la Chambre des représentants et au S
+      [2m] Donald Trump reconnaît les résultats des élections et exprime sa volonté de co
+      [3m] Les élections de mi-mandat sont perçues comme un vote sanction contre la prési
+      [1m] ⚡exclusif Le Sénat américain compte désormais au moins 52 sièges démocrates.
+      [1m] ⚡exclusif L'inflation et les crises géopolitiques (Iran, détroits) ont affaibli la popul
+      [1m] ⚡exclusif Le documentariste Ken Burns a publié une tribune critique envers Donald Trump 
+      [1m] ⚡exclusif Chris Pappas devient le premier homme ouvertement gay élu au Sénat.
+      [1m] ⚡exclusif Deb Haaland est élue gouverneure du Nouveau-Mexique, devenant la première femm
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  📈 Hashtag(s) en tendance : #Trump
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Trump
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 33 médias) : Midterms 2026 : tsunami démocrate et crépuscule de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  🚨 Sujet chaud (breaking, 33 médias) : Midterms 2026 aux États-Unis : femme noire gouvern
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 6/10 → 27 + 33 médias +20 + frais 0.7h +13 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [3m] Le Parti démocrate remporte la majorité au Sénat et à la Chambre des représent
+      [1m] ⚡exclusif Donald Trump déclare qu'il acceptera les résultats des élections et collaborer
+      [1m] ⚡exclusif Keisha Lance Bottoms est élue gouverneure de Géorgie, devenant la première fem
+      [1m] ⚡exclusif Deb Haaland est élue gouverneure du Nouveau-Mexique, devenant la première femm
+      [1m] ⚡exclusif Chris Pappas est élu au Sénat, devenant le premier homme ouvertement gay à ce 
+      [2m] Le président Donald Trump subit un désaveu électoral majeur lors de ces électi
+      [2m] L'inflation liée à la politique économique de Donald Trump est un facteur clé 
+      [1m] ⚡exclusif Ken Burns a publié un éditorial critique sur l'état de la démocratie américain
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 33 médias) : N Korea fires multiple missiles, denies US claims 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 33 médias +20 + frais 0.7h +13 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [3m] Les élections de mi-mandat aux États-Unis se sont soldées par une victoire dém
+      [1m] ⚡exclusif Donald Trump a déclaré qu'il accepterait les résultats des élections et qu'il 
+      [1m] ⚡exclusif Les démocrates ont obtenu la majorité absolue au Sénat avec au moins 52 sièges
+      [1m] ⚡exclusif La popularité de Donald Trump est affectée par l'inflation liée à la guerre av
+      [1m] ⚡exclusif Le documentariste Ken Burns a publié un éditorial dans le New York Times criti
+      [1m] ⚡exclusif Plusieurs personnalités politiques démocrates ont été élues ou réélues, dont J
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 33 médias) : Guerre en Ukraine : une réunion ce mercredi à Brux
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 6/10 → 27 + 33 médias +20 + frais 0.7h +13 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 6 exclusive(s)
+      [3m] Les élections de mi-mandat aux États-Unis se soldent par une victoire démocrat
+      [1m] ⚡exclusif Donald Trump a déclaré qu'il accepterait les résultats des élections et qu'il 
+      [1m] ⚡exclusif Les démocrates ont obtenu la majorité absolue au Sénat avec au moins 52 sièges
+      [1m] ⚡exclusif L'inflation et les crises géopolitiques (Iran, détroits) ont pesé sur la popul
+      [1m] ⚡exclusif Le documentariste Ken Burns a publié un éditorial critique sur l'état de la dé
+      [1m] ⚡exclusif Plusieurs personnalités démocrates, dont Jon Ossoff et Keisha Lance Bottoms, o
+      [1m] ⚡exclusif Deb Haaland a été élue gouverneure du Nouveau-Mexique, devenant la première fe
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 33 médias) : Midterms : Donald Trump reconnaît le rôle de l'Ira
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 74.5/100 = gravité 7/10 → 32 + 33 médias +20 + frais 0.7h +13 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] Les élections de mi-mandat se soldent par une victoire des démocrates qui obti
+      [1m] ⚡exclusif Donald Trump déclare qu'il acceptera les résultats des élections et qu'il est 
+      [1m] ⚡exclusif La popularité de Donald Trump est en baisse en raison de l'inflation liée à la
+      [1m] ⚡exclusif Le documentariste Ken Burns a publié un éditorial critique sur la situation po
+      [1m] ⚡exclusif Donald Trump a salué le travail des démocrates suite aux résultats des électio
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  📈 Hashtag(s) en tendance : #Trump, #Iran
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 15 match(s) sur 48h, dont France : 0
+  → 75 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, midterms 2026 : les démocrates remporte
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms 2026 : Donald Trump révèle à Fox News que
+  ♻️ 8/10 [world] (déjà analysé, cache) : Midterms 2026 : les démocrates obtiennent la major
+  ♻️ 7/10 [world] (déjà analysé, cache) : Midterms : Donald Trump reconnaît le rôle de l'Ira
+  ♻️ 9/10 [world] (déjà analysé, cache) : Victoire démocrate au Sénat, Donald Trump promet d
+  ♻️ 7/10 [world] (déjà analysé, cache) : Midterms 2026 : les démocrates décrochent la major
+  ♻️ 7/10 [world] (déjà analysé, cache) : RESULTATS. Les démocrates s'emparent du Sénat, les
+  ♻️ 7/10 [world] (déjà analysé, cache) : Attentat raciste dans les Yvelines : le suspect Ké
+  ♻️ 7/10 [sports] (déjà analysé, cache) : Ligue des Champions : le PSG pulvérise Villarreal 
+  ♻️ 6/10 [world] (déjà analysé, cache) : Midterms 2026 aux États-Unis : femme noire gouvern
+  ♻️ 9/10 [world] (déjà analysé, cache) : Midterms 2026 aux États-Unis : enquêtes, nominatio
+  ♻️ 6/10 [world] (déjà analysé, cache) : Guerre en Ukraine : une réunion ce mercredi à Brux
+  ♻️ 8/10 [world] (déjà analysé, cache) : N Korea fires multiple missiles, denies US claims 
+  ♻️ 8/10 [world] (déjà analysé, cache) : U.S. midterm elections in pictures: Democrats' swe
+  ♻️ 9/10 [world] (déjà analysé, cache) : US midterms live: Democrats take control of Senate
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Tether Holds 150,000 Bitcoin, CEO Says—About 50,00
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Ukraine’s drone strikes spur hasty Russian plans f
+  🎯 Pré-classement : 35 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting ',' delimiter: line 2 column 47 (char 60) → couple suivant
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghQxkPQy3Rjd8xGhLRyk'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 9 média(s) · 0.2h — Midterms 2026 : les démocrates obtiennent la
+     10/10 · 8 média(s) · 0.2h — Midterms : Donald Trump reconnaît le rôle de
+     10/10 · 9 média(s) · 0.4h — Victoire démocrate au Sénat, Donald Trump pr
+     10/10 · 9 média(s) · 0.3h — RESULTATS. Les démocrates s'emparent du Séna
+     10/10 · 7 média(s) · 0.7h — Midterms 2026 : les démocrates décrochent la
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting property name enclosed in double quotes: line 2 co → couple suivant
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghQzPSst7YXv1PqjXyHj'}
+  → 1 sélectionné(s) [world]
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ❌ Envoi 'Midterms 2026 : les démocrates obtiennen': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CghR1GJYceDrSitmnaNrJ'}
+
+  ── Bilan du cycle (420 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-embedding-001         🚫 quota
+         8. clé 2 × gemini-embedding-2-preview   🚫 quota
+         9. clé 2 × gemini-embedding-2           🚫 quota
+        10. clé 3 × gemini-embedding-001         🚫 quota
+        11. clé 3 × gemini-embedding-2-preview   🚫 quota
+        12. clé 3 × gemini-embedding-2           🚫 quota
+        13. clé 4 × gemini-embedding-001         🚫 quota
+        14. clé 4 × gemini-embedding-2-preview   🚫 quota
+        15. clé 4 × gemini-embedding-2           🚫 quota
+        16. clé 5 × gemini-embedding-001         ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.6-flash             🚫 quota
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 2 × gemini-3.6-flash             🚫 quota
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        28. clé 4 × gemini-3.6-flash             🚫 quota
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 16 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 783 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 100,799 entrée · 5,823 sortie
+     ⚠️ 3 appel(s) payés chez Claude (le gratuit n'a pas suffi)
