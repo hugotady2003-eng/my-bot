@@ -1,0 +1,100 @@
+
+[02:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #JR缶発売キャンペーン, 発売決定記念キャンペーン, #緑茶割のJR缶, Lens, Yuri Alberto
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Vance, #Lens, #Come
+  📖 48 articles, tous en cache
+  📄 9/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Sciences et Avenir · Cointelegraph · Blockworks · OpenAI
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🧠 48 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Midterms 2026 : Le parti républicain d… »
+  🧩 48 articles → 22 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 8 médias) : EN DIRECT, midterms 2026 : dans son premier discou
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Public, Sciences et Avenir, The Block, Wired
+  🧮 Score 91.5/100 = gravité 9/10 → 40 + 8 médias +15 + frais 1.8h +8 + thème porteur +10 + portée mondiale +18
+  🧩 6 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [3m] Le Parti démocrate a remporté une victoire majeure aux élections de mi-mandat,
+      [2m] Donald Trump a subi une défaite électorale historique lors de ces élections de
+         ↳ L'Express : L'Express présente le scrutin comme un référendum sur Trump sans
+         motif : Différence d'appréciation éditoriale sur l'ampleur du résultat.
+      [1m] ⚡exclusif Donald Trump a déclaré qu'il accepterait les résultats des élections et souhai
+      [1m] ⚡exclusif Le Parti républicain est divisé sur la stratégie à adopter après la défaite, n
+      [1m] ⚡exclusif Le vice-président J.D. Vance attribue la défaite républicaine au conflit en Ir
+      [1m] ⚡exclusif Le Wall Street Journal suggère que les républicains doivent se concentrer sur 
+  🌙 Sujet fort (score 92) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 10 médias) : RC Lens - Côme : la réaction de Ruben Aguilar aprè
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 13 article(s) sur un autre sujet, écartés du dossier : Ars Technica, BBC, BFMTV, Blockworks, Cointelegraph
+  🧮 Score 83.0/100 = gravité 8/10 → 36 + 10 médias +15 + frais 2.2h +4 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 83) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Budget 2027 : Coup dur pour Lecornu, le projet de 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + frais 0.4h +16 + thème porteur +10 + primeur absolue +8 + fait local -20 + ⚡ crise institutionnelle → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Humilié par Côme, le RC Lens encaisse la plus larg
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : France Info
+  🧮 Score 29.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 2.4h +4 + thème porteur +10 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 30) → suivant
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 48 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (81 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 1 × gemini-embedding-2           🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × gemini-embedding-2-preview   🚫 quota
+         6. clé 2 × gemini-embedding-2           🚫 quota
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × gemini-embedding-2-preview   ✅
+         9. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        11. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 1 × gemini-3-flash               ⛔ inexistant
+        14. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        17. clé 2 × gemini-3.6-flash             🚫 quota
+        18. clé 2 × gemini-3-flash               ⛔ inexistant
+        19. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.1-flash-lite        ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-embedding-2 (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,794 entrée · 702 sortie
+     ✅ aucun appel payant
