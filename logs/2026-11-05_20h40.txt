@@ -1,0 +1,242 @@
+
+[20:33] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « Guyane map »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 05-Nov-26 11:35:06 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A0KKCk0YZEqc6bCJYi-0d28"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Paraguay, Santiago Peña, Russell Brand, Portugal, #FonunaKadarSOYULDUK
+  🔎 « Santiago Peña » : 1 article(s) frais, le plus récent il y a 1.9 h (Le Monde.fr)
+  ⏭️  « Santiago Peña » écarté : Information fausse, le président n'a pas démissionné.
+  🔎 « Russell Brand » : 1 article(s) frais, le plus récent il y a 1.6 h (Le Monde.fr)
+  ✅ « Russell Brand » retenu : Condamnation judiciaire majeure d'une célébrité internationa (8/10) (+2 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Paraguay, #NASDAQ, #RussellBrand
+  🕐 20h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 4.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/5 articles lus en 0.4s (20 déjà en cache)
+  📄 7/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Libération · Ouest-France · CoinDesk · Blockworks · OpenAI
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Midterms 2026 : pourquoi Tesla et Spac… »
+  🧠 Même événement (jugé) : « Fed, OCC check US banks after Binance … »
+  🧩 26 articles → 14 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 6 médias) : EN DIRECT, grève du 5 novembre : entre 575 000 et 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Hugging Face, Numerama, Numerama Pop, OpenAI, Ouest-France
+  🧮 Score 51.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 2.2h +4
+  🕒 Âge de l'article : 3.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 9/10 → 40 + 6 médias +11 + frais 2.2h +4
+  🕒 Âge de l'article : 2.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Israël : Gadi Eisenkot, l’ancien chef d’état-major i
+  🚨 Sujet chaud (breaking, 3 médias) : Midterms 2026 : pourquoi Tesla et SpaceX ont-elles
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Blockworks
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 6.6h +2 + portée mondiale +18 + ⚡ crise institutionnelle → plancher 89
+  🧩 6 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Les élections de mi-mandat 2026 ont entraîné un changement de majorité au Cong
+      [1m] ⚡exclusif Elon Musk a investi plus de 445 millions de dollars dans la campagne électoral
+      [1m] ⚡exclusif Les candidats républicains soutenus par Elon Musk au Texas ont été battus par 
+      [1m] ⚡exclusif Le résultat des élections marque la fin de la domination politique de Donald T
+      [1m] ⚡exclusif Les actions des entreprises d'Elon Musk ont subi une chute de valeur important
+      [1m] ⚡exclusif Le Congrès américain avait cessé d'exercer son rôle de contrôle sur l'exécutif
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : OpenAI Found 948 Linux Security Flaws—And Figured 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + frais 0.4h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (182 → 151 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Paraguay President Santiago Peña resigns after ban
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + frais 2.0h +8 + primeur +5 + ⚡ démission politique → plancher 89
+  🕒 Âge de l'article : 2.0h (frais ✅)
+  📈 Hashtag(s) en tendance : #SantiagoPena, #Paraguay
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #SantiagoPena, #Paraguay
+  ✂️ Tweet resserré localement (166 → 123 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : US midterms live: Nasdaq tumbles more than 5% on A
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 8/10 → 36 + frais 0.0h +16 + primeur absolue +8 + portée internationale +10
+  📈 Hashtag(s) en tendance : #Nasdaq
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Nasdaq
+  ✂️ Tweet resserré localement (205 → 163 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L’ancien comédien britannique Russell Brand jugé cou
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  → 26 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, grève du 5 novembre : entre 575 000 et 
+  ♻️ 9/10 [world] (déjà analysé, cache) : « Les midterms 2026 marquent un sérieux coup de fr
+  ♻️ 9/10 [world] (déjà analysé, cache) : Israël : Gadi Eisenkot, l’ancien chef d’état-major
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Midterms 2026 : pourquoi Tesla et SpaceX ont-elles
+  ♻️ 9/10 [world] (déjà analysé, cache) : Paraguay President Santiago Peña resigns after ban
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Iran says tankers struck in Hormuz amid fears of n
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Wall Street's fear gauge surges the most since Apr
+  ♻️ 6/10 [business] (déjà analysé, cache) : Trump's energy deals are about to face a wave of i
+  ♻️ 8/10 [markets] (déjà analysé, cache) : US midterms live: Nasdaq tumbles more than 5% on A
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : What is TraderTraitor, the hacking squad behind th
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Binance, Deribit revoke SignalPlus API keys after 
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Fed, OCC check US banks after Binance hack as expe
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Europe’s largest asset manager Amundi tokenizes eq
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Canary’s Injective ETF debuts on Nasdaq with expos
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Anchorage Digital seeks CFTC swap dealer registrat
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI Found 948 Linux Security Flaws—And Figured 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Trump-Backed American Bitcoin Turns a Profit as Bi
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : GPT‑6 Cyber: Advancing the frontier of aligned cyb
+  🧠 Batch analyse de 5 articles...
+  🌍 8/10 sans portée internationale : Turquie : un homme tue au moins huit personnes dan
+  📉 4/10: Test du Macbook Pro avec écran Proled XDR: que vaut le 
+  📉 3/10: Wushu, baseball5, aviron de mer… Ces disciplines qui po
+  📉 4/10: Beverly Hills 90210 : après Luke Perry et Shannen Doher
+  📉 4/10: New NVIDIA Cosmos 3 Open Models for Interactive World S
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.5h — Midterms 2026 : pourquoi Tesla et SpaceX ont
+     10/10 · 1 média(s) · 0.9h — Iran says tankers struck in Hormuz amid fear
+     10/10 · 1 média(s) · 1.7h — Israël : Gadi Eisenkot, l’ancien chef d’état
+     10/10 · 2 média(s) · 2.2h — GTA 6 : que nous révèlent les 39 nouvelles i
+     10/10 · 2 média(s) · 2.2h — GTA 6 : que nous révèlent les 39 nouvelles i
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [markets]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (178 → 152 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 05-Nov-26 11:40:44 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AoMT-rZ2fo9HZ2qzJvM8jyA"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Midterms 2026 : pourquoi Tesla et SpaceX ont-elles perd
+
+  ── Bilan du cycle (424 s) ──
+     écartés : 2 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 11 autres
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2 · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 765
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 97,906 entrée · 3,270 sortie
+     ✅ aucun appel payant
