@@ -1,0 +1,250 @@
+
+[18:38] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « human liver anatomy »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 05-Nov-26 09:39:41 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A5-aU4M43Z0Vw5Ws789XMuY"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Russell Brand, Portugal, #ScarletHeartUllaveeEP2, Cristiano Ronaldo, Santiago Peña
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Portugal, #SantiagoPena, #Paraguay
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 18h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 6.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/12 articles lus en 3.1s (16 déjà en cache)
+  📄 7/29 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · The Block · Ouest-France · CoinDesk · Blockworks
+  🧠 28 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Manifestations massives, députés commu… »
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Le début de la fin du mouvement MAGA ?… »
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Grève du 5 novembre : vacances, alimen… »
+  🧩 29 articles → 13 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : EN DIRECT, grève du 5 novembre : entre 600 000 et 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Blockworks, L'Express
+  ✂️ 1 élément(s) écartés — 1 source(s) hors sujet : Libération
+  🧮 Score 60.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 0.7h +13
+  🧩 7 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 6 exclusive(s)
+      [3m] Une journée de grève nationale et de manifestations a eu lieu le 5 novembre en
+      [1m] ⚡exclusif Le nombre de manifestants en France est estimé entre 600 000 et 1,6 million.
+      [1m] ⚡exclusif Une conférence sociale entre syndicats et patronat est prévue à Matignon le lu
+      [1m] ⚡exclusif Les revendications des syndicats portent sur les salaires, les services public
+      [1m] ⚡exclusif La mobilisation a été annoncée par une intersyndicale composée de la CFDT, la 
+      [1m] ⚡exclusif Le trafic ferroviaire de la SNCF est perturbé, tandis que la RATP prévoit un t
+      [1m] ⚡exclusif Les manifestants ont été interrogés sur les dépenses auxquelles ils ont dû ren
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Challenges) — même sujet
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Attentat raciste de Trappes : la mère et des sœurs
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Libération
+  🧮 Score 65.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.1h +16 + imprévu 6/10 +4 + primeur +5
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (182 → 148 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 2 s
+  🧮 Score 65.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 0.3h +16 + primeur +5
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 12 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧩 4 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] Rockstar Games a dévoilé 39 nouvelles images de GTA 6 le 5 novembre.
+      [2m] La sortie de GTA 6 est prévue pour le 19 novembre 2026 sur PS5 et Xbox Series 
+      [2m] Les nouvelles images soulignent la grande densité de Vice City et la richesse 
+      [2m] La galerie présente un monde ouvert incluant des véhicules personnalisables, l
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Bitcoin crashes 6% to 7-week low as US stocks eras
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Cointelegraph
+  🧮 Score 76.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.9h +13 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (195 → 153 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : COMMENTAIRE. Cristiano Ronaldo et le Portugal, une f
+  🚨 Sujet chaud (breaking, 4 médias) : Paraguay President Santiago Peña resigns after ban
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, Decrypt, The Block
+  🧮 Score 78.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 0.7h +13 + portée mondiale +18
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  📈 Hashtag(s) en tendance : #SantiagoPena, #Paraguay
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #SantiagoPena, #Paraguay
+  ✂️ Tweet resserré localement (166 → 123 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 4 médias) : Paraguay President Pena resigns in wake of bank co
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 0.7h +13 + portée mondiale +18
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  📈 Hashtag(s) en tendance : #SantiagoPena, #Paraguay
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #SantiagoPena, #Paraguay
+  ✂️ Tweet resserré localement (187 → 151 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  → 29 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, grève du 5 novembre : entre 600 000 et 
+  ♻️ 8/10 [world] (déjà analysé, cache) : EN DIRECT, midterms 2026 : les dernières informati
+  ♻️ 8/10 [world] (déjà analysé, cache) : Attentat raciste de Trappes : la mère et des sœurs
+  ♻️ 6/10 [world] (déjà analysé, cache) : Face à la désinformation russe, le Monténégro et l
+  ♻️ 6/10 [tech] (déjà analysé, cache) : "On n'a pas pensé à les sécuriser ni à auditer leu
+  ♻️ 7/10 [sports] (déjà analysé, cache) : COMMENTAIRE. Cristiano Ronaldo et le Portugal, une
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Vance walks Trump tightrope with scathing election
+  ♻️ 9/10 [world] (déjà analysé, cache) : Paraguay President Santiago Peña resigns after ban
+  ♻️ 9/10 [world] (déjà analysé, cache) : Paraguay President Pena resigns in wake of bank co
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : What is TraderTraitor, the hacking squad behind th
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin crashes 6% to 7-week low as US stocks eras
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Canary’s Injective ETF debuts on Nasdaq with expos
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Anchorage Digital seeks CFTC swap dealer registrat
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Solana Labs’ Leap Launches Mobile App for Trading 
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Democrats to Push Broader Crypto Market Structure 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  🧠 Batch analyse de 11 articles...
+  📉 3/10: Manifestations massives, députés communistes qui rejoig
+  ✅ 9/10 [world] neutre: Le début de la fin du mouvement MAGA ?
+  📉 3/10: Grève du 5 novembre : vacances, alimentation… ces dépen
+  📉 2/10: Guillaume Cramoisan (Ici tout commence) papa de 2 garço
+  📉 4/10: PS6 : le développement avance bien
+  ✅ 7/10 [markets] large: Wall Street's fear gauge surges the most since A
+  📉 4/10: Democratic 'blue wave' may buoy yen if AI trade reverse
+  ✅ 8/10 [markets] large: US midterms live: Nasdaq tumbles more than 5% on
+  📉 2/10: Ember’s smallest self-heating mug is on sale for just $
+  📉 3/10: Waze may soon be able to show cyclists using Garmin sma
+  📉 3/10: DroidDeck review: This could change how you game on you
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.3h — GTA 6 : que nous révèlent les 39 nouvelles i
+     10/10 · 2 média(s) · 0.3h — GTA 6 : que nous révèlent les 39 nouvelles i
+     10/10 · 1 média(s) · 0.2h — Le début de la fin du mouvement MAGA ?
+     10/10 · 2 média(s) · 0.5h — Paraguay President Santiago Peña resigns aft
+     10/10 · 2 média(s) · 0.6h — Paraguay President Pena resigns in wake of b
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [gaming]
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 3 column 18 (char 94) → couple suivant
+  ❌ Envoi 'GTA 6 : que nous révèlent les 39 nouvell': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgkCYyxgKdTXGFTUcw4CA'}
+
+  ── Bilan du cycle (486 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 1 × gemini-embedding-2-preview   🚫 quota
+        10. clé 2 × gemini-embedding-001         🚫 quota
+        11. clé 2 × gemini-embedding-2-preview   ✅
+        12. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        14. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.6-flash             🚫 quota
+        19. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        20. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.6-flash             🚫 quota
+        23. clé 4 × gemini-3.1-flash-lite        ✅
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        37. clé 4 × gemini-3.6-flash             🚫 quota
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 13 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-embedding-2 · clé 3 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 1/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.6-flash
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 769
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 91,966 entrée · 3,329 sortie
+     ⚠️ 1 appel(s) payés chez Claude (le gratuit n'a pas suffi)
