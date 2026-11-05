@@ -1,0 +1,187 @@
+
+[11:34] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Ouest-France
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ Image libre trouvée sur Commons « États-Unis »
+  🖼️ Image libre trouvée sur Commons « course »
+  🖼️ Image libre trouvée sur Commons « présidentielle »
+  🖼️ Décryptage illustré par 3 image(s) différente(s) sur 6 plans
+  ⛔ gemini-3.1-flash-tts n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (models/gemini-3.1-flash-tts is not found for API v) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  🎞️ Montage : 6 plans, 32.8s
+  🎬 Carrousel vidéo (55s, 6 slides, sans son)
+  🎞️ Montage : 7 plans, 61.8s
+  📱 Version TikTok : 9:16, 6 plans, 59s, sous-titrée
+  📥 Version TikTok déposée : sortie_tiktok/pulse-2026-11-05.mp4 (58.1 Mo)
+  📝 Légende à compléter    : sortie_tiktok/pulse-2026-11-05-legende.txt
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 05-Nov-26 02:41:22 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AZcpPNK5hmlRVciLO0n14Rd"}}
+  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « human liver anatomy »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : キラちゃん, #お買い物はチナpay, #iQIYIiJOYTH2027xDMD, #赤いきつね緑のたぬきシリーズ食べ比べ, メイちゃん
+  🕐 11h (Paris) — rythme journée (31-65 min · 0 publié(s), 16 restant(s) sur 13.0 h) : 31-65 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 17/23 articles lus en 1.5s (20 déjà en cache)
+  📄 11/43 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Libération · The Block · Ouest-France · Jeuxvideo.com · Blockworks
+  🧠 43 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « What Democrats can and can't do with t… »
+  🧩 43 articles → 12 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Forêt Kokiri Zelda Ocarina of Time : Où trouver l'ép
+  🚨 Sujet chaud (breaking, 4 médias) : Pouvoir d’achat : Smic, allègements de charges, gr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : L'Express, Libération
+  🧮 Score 60.0/100 = gravité 6/10 → 27 + 4 médias +7 + frais 0.2h +16 + thème porteur +10
+  🧩 3 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [1m] ⚡exclusif Une journée nationale de grèves et de manifestations a été organisée par les s
+      [1m] ⚡exclusif Le préfet de police de Paris a annoncé la suspension temporaire des parcours d
+      [1m] ⚡exclusif Le Conseil d'État a annulé l'autorisation judiciaire permettant une manifestat
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ⚠️ Fetch image: HTTP Error 404: Not Found
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (20h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 21 médias) : Cyberattaque Crédit Mutuel Arkéa : 100 millions d'
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 25 article(s) sur un autre sujet, écartés du dossier : Ars Technica, BBC, BFMTV, Blockworks, Challenges
+  🧮 Score 91.5/100 = gravité 9/10 → 40 + 21 médias +20 + frais 0.8h +13 + portée mondiale +18
+  🕒 Âge de l'article : -0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (273 → 131 car.)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Hong Kong passes law requiring crypto exchanges to r
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Data centers : l’IA pousse des demandes de consommat
+  ⚽ API football-data : 3 match(s) sur 48h, dont France : 0
+  → 43 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Midterms 2026 : comment la base électorale qui ava
+  ♻️ 8/10 [world] (déjà analysé, cache) : Midterms : Enquêtes, destitution… Comment les démo
+  ♻️ 6/10 [business] (déjà analysé, cache) : Pouvoir d’achat : Smic, allègements de charges, gr
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Data centers : l’IA pousse des demandes de consomm
+  ♻️ 7/10 [business] (déjà analysé, cache) : L’Europe recule encore sur la fin du thermique : l
+  ♻️ 9/10 [business] (déjà analysé, cache) : Cyberattaque Crédit Mutuel Arkéa : 100 millions d'
+  ♻️ 8/10 [world] (déjà analysé, cache) : Vance walks Trump tightrope with scathing election
+  ♻️ 7/10 [world] (déjà analysé, cache) : What Democrats can and can't do with their new pow
+  ♻️ 8/10 [markets] (déjà analysé, cache) : What was really behind Wednesday's monster rally? 
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI pledges to pay for data center power after 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Hong Kong passes law requiring crypto exchanges to
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : OpenAI says its AI can break into Linux at scale. 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : South Korea seeks 4th crypto tax delay, targets 20
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : France budget rejection sidelines stablecoin tax, 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Eric Trump’s American Bitcoin swings to $126 milli
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : The Digital Chamber calls Sherrod Brown’s win ‘mos
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Gemini 4 Carbon: Our next frontier model
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Hackers exploited iOS and Android flaws to infect 
+  🎯 Pré-classement : 4 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 8/10 [world] mondiale: Congress defeat: How Trump’s allies are distanci
+  📉 5/10: Bitcoin win rate vs. S&P 500 recovers as post-midterm h
+  📉 4/10: Bitcoin miner Riot could pay Anthropic 12% interest und
+  📉 5/10: Revalorisation des salaires, services publics, "justice
+  📉 2/10: Manifestation du 5 novembre à Toulouse : trois des huit
+  ✅ 7/10 [world] large: ‘Helpless’: The families facing winter in tents 
+  📉 4/10: Meta prépare la retraite des Quest 2 et Quest Pro
+  📉 5/10: Setting a new standard for responsible AI infrastructur
+  📉 2/10: Comment les parcours République-Bastille-Nation sont de
+  📉 5/10: Arkansas Sues Kalshi, Joining a Growing List of States 
+  📉 3/10: Il quitte la Formule 1 pour élever des vaches en Isère 
+  📉 3/10: A Closer Look at Phonon TTS. Launching High-Quality On-
+  📉 3/10: Chasse à l'alouette: les quotas de capture renouvelés p
+  📉 3/10: Quand Edouard Philippe livrait un plaidoyer pro-primair
+  🌍 7/10 sans portée internationale : 285 000 victimes de violences conjugales ont été e
+  📉 2/10: 5 novembre: un cortège fourni s'élance à Nantes
+  📉 3/10: Élise Lucet : plus de 50.000 euros de bijoux dérobés à 
+  📉 3/10: La régulation, une arme économique stratégique : les re
+  📉 5/10: « Il peut rester en mission sous l'eau entre 1 et 3 moi
+  🌍 6/10 sans portée internationale : Particle Physicists Are Getting a First Glimpse In
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · -0.5h — Cyberattaque Crédit Mutuel Arkéa : 100 milli
+     10/10 · 2 média(s) · 0.3h — Congress defeat: How Trump’s allies are dist
+     8/10 · 1 média(s) · 0.3h — ‘Helpless’: The families facing winter in te
+     10/10 · 2 média(s) · 4.6h — Midterms : Enquêtes, destitution… Comment le
+     9/10 · 1 média(s) · 2.3h — OpenAI says its AI can break into Linux at s
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [business]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (273 → 131 car.)
+  🕒 Âge de l'article à la publication : -0.5h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 05-Nov-26 02:43:35 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AB_BakuCzftShfZy0wBBf7D"}}
+  ❌ Post Instagram échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 05-Nov-26 02:43:37 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"Ai6aNIP9bdGeGn8gm9C_OGm"}}
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Cyberattaque Crédit Mutuel Arkéa : 100 millions d'euros
+
+  ── Bilan du cycle (527 s) ──
+     écartés : 3 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        ✅
+         5. clé 1 × gemini-3.1-flash-lite        ✅
+         6. clé 1 × gemini-embedding-001         ✅
+         7. clé 1 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-embedding-2-preview · clé 1 × gemini-3.6-flash · clé 1 × gemini-embedding-2 · clé 1 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2-preview · clé 2 × gemini-3.6-flash (+29)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 15/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 34 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-3.1-flash-tts
+     jetons Gemini : 60,467 entrée · 3,111 sortie
+     ✅ aucun appel payant
