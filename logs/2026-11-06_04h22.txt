@@ -1,0 +1,111 @@
+
+[04:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #学マスログボどっち派, Ravens, #SixTONES_マイオンリー, #MasterChefAltaTensión, #โอ๋เอ๋10เดือนจําไว้เยย
+  🔎 « Ravens » : 1 article(s) frais, le plus récent il y a 11.5 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Ravens » écarté : Match sportif international sans enjeu majeur national.
+  🌍 « HappyDhanteras » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #OvalOffice, #Paraguay
+  📖 50 articles, tous en cache
+  📄 12/51 article(s) sans corps lisible → recoupement sur titre et résumé seuls : OpenAI · Ouest-France · CoinDesk · The Verge · Libération · The Block
+  🧠 50 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Midterms 2026 : pourquoi Tesla et Spac… »
+  🧩 51 articles → 18 événement(s), dont 5 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Elon Musk's Tesla and SpaceX lose over $420 billio
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + frais 0.0h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 84) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Meet *sshole, the vulnerability that lets hackers SS
+  🚨 Sujet chaud (breaking, 3 médias) : Etats-Unis : Des élections « truquées »… Trump est
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Journal du Geek
+  🧮 Score 60.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 4.2h +2 + thème porteur +10 + portée internationale +10
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Trump signs order preventing future presidents fro
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BBC, Libération
+  🧮 Score 31.5/100 = gravité 5/10 → 22 + 4 médias +7 + frais 5.7h +2
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 3 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] Rockstar Games a publié 39 nouvelles images et captures d'écran de GTA 6 le 5 
+      [2m] La sortie de GTA 6 est prévue pour le 19 novembre 2026 sur PS5 et Xbox Series 
+      [2m] Les nouvelles images dévoilées mettent en avant la densité de Vice City, ses e
+  → Sujet chaud pas assez fort (score 32) → suivant
+  🚨 Sujet chaud (breaking, 13 médias) : Bitcoin Fixes This? Paraguay President Resigns Aft
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 19 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, Al Jazeera, Ars Technica, Blockworks
+  🧮 Score 90.5/100 = gravité 9/10 → 40 + 13 médias +18 + frais 3.6h +4 + thème porteur +10 + portée mondiale +18
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 40 s
+  🌙 Sujet fort (score 90) mais nuit → il attendra le matin
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 51 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (101 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-2-preview   🚫 quota
+        25. clé 3 × gemini-embedding-2           🚫 quota
+        26. clé 4 × gemini-embedding-001         ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2-preview · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash (+6)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 798 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,628 entrée · 1,097 sortie
+     ✅ aucun appel payant
