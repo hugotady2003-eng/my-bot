@@ -1,0 +1,194 @@
+
+[22:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 2 column 26 (char 27) → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Stephen Miller, #RTXOn, Susie Wiles, Chief of Staff, #KasımdaFonuTamOde
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #StephenMiller, #SusieWiles, #ThomasMarkle
+  🕐 22h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 2.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.3s (19 déjà en cache)
+  📄 4/22 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Blockworks
+  🧠 22 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Trump promotes Stephen Miller to Chief… »
+  🧠 Même événement (jugé) : « Trump says Stephen Miller to replace S… »
+  🧩 22 articles → 11 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 4 médias) : Meghan Markle’s father arrested in US over alleged
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Ars Technica, Decrypt, The Block
+  🧮 Score 73.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 1.2h +8 + portée mondiale +18
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  📈 Hashtag(s) en tendance : #ThomasMarkle
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (185 → 127 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : Trump says Stephen Miller to replace Susie Wiles a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 80.5/100 = gravité 9/10 → 40 + 3 médias +7 + frais 1.0h +13 + thème porteur +10 + portée internationale +10
+  🧩 5 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 1 exclusive(s)
+      [3m] Donald Trump a nommé Stephen Miller au poste de directeur de cabinet de la Mai
+      [2m] Stephen Miller prendra ses fonctions de directeur de cabinet dès lundi.
+      [3m] Cette nomination intervient après la défaite du Parti républicain lors des éle
+      [2m] Susie Wiles quitte son poste actuel pour rejoindre l'organisation politique de
+      [1m] ⚡exclusif Chuck Schumer, chef des démocrates au Sénat, a vivement critiqué cette nominat
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 10 s
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🎥 Vidéo d'actu récupérée (8.1 Mo) chez pdl-iphone-cnbc-com.akamaized.net → attachée au tweet
+  🎥 Vidéo éditoriale trouvée dans l'article → attachée
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Gnosis Pay breach exposes card details, personal dat
+  🚨 Sujet chaud (breaking, 3 médias) : Donald Trump promeut son conseiller Stephen Miller
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 1.0h +13 + thème porteur +10 + portée internationale +10
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  📈 Hashtag(s) en tendance : #StephenMiller
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : Accident de car mortel dans l'Ain : en garde à vue, 
+  🚨 Sujet chaud (breaking, 1 médias) : Cyberattaque : Crédit Mutuel Arkéa affirme avoir r
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.0/100 = gravité 8/10 → 36 + frais 1.5h +8 + thème porteur +10 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (167 → 122 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : F1. Le nouveau champion du monde Kimi Antonelli term
+  ⚪ Écarté (-1, pénalisé par « horoscope ») : Trump promotes Stephen Miller to Chief of Staff ‘to 
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 22 articles à analyser...
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Accident de car dans l'Ain : le chauffeur "indique
+  ♻️ 7/10 [world] (déjà analysé, cache) : Donald Trump promeut son conseiller Stephen Miller
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Accident de car mortel dans l'Ain : en garde à vue
+  ♻️ 8/10 [business] (déjà analysé, cache) : Cyberattaque : Crédit Mutuel Arkéa affirme avoir r
+  ♻️ 7/10 [world] (déjà analysé, cache) : Crash du Learjet 60 en Floride : le givre et la ru
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : REPLAY Accident de car dans l’Ain : le conducteur 
+  ♻️ 7/10 [business] (déjà analysé, cache) : L’augmentation du smic est au premier rang des rev
+  ♻️ 7/10 [space] (déjà analysé, cache) : « Être une femme, ça aide » : l’astronaute Sophie 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump promotes Stephen Miller to Chief of Staff ‘t
+  ♻️ 9/10 [world] (déjà analysé, cache) : Meghan Markle’s father arrested in US over alleged
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump says Stephen Miller to replace Susie Wiles a
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : US Treasury cuts off MEXC over alleged $16B in ill
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Gnosis Pay breach exposes card details, personal d
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance hack is ‘cyber war,’ TRM Labs executive sa
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Treasury cuts off MEXC Global over alleged $16 bil
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : US Treasury walks back crypto surveillance ‘travel
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Greece Passes Crypto Tax Law With 10% Gains Levy, 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Nvidia hardware worth $11.4M vanished between Oakl
+  🧠 Batch analyse de 3 articles...
+  📉 3/10: Le top / flop de la semaine : l'augmentation du plafond
+  📉 4/10: F1. Le nouveau champion du monde Kimi Antonelli termine
+  📉 5/10: Report: Apple faces congressional scrutiny over ICE tra
+  ⬇️ 'breaking' déclassé (contenu non urgent) : REPLAY Accident de car dans l’Ain : le conducteur 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.8h — Donald Trump promeut son conseiller Stephen 
+     10/10 · 3 média(s) · 0.7h — US Treasury cuts off MEXC over alleged $16B 
+     10/10 · 3 média(s) · 0.8h — Treasury cuts off MEXC Global over alleged $
+     10/10 · 3 média(s) · 1.0h — Trump promotes Stephen Miller to Chief of St
+     10/10 · 3 média(s) · 1.3h — Meghan Markle’s father arrested in US over a
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • TROP LONG (169 caractères)
+  ✂️ Tweet resserré localement (184 → 125 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.8h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Donald Trump promeut son conseiller Stephen Miller, rep
+
+  ── Bilan du cycle (231 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 1 × gemini-embedding-2           🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-2           🚫 quota
+        23. clé 3 × gemini-embedding-001         ✅
+        24. clé 3 × gemini-3.6-flash             🚫 quota
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3-flash (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 712
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 61,831 entrée · 1,987 sortie
+     ✅ aucun appel payant
