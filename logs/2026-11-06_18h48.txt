@@ -1,0 +1,180 @@
+
+[18:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 3 column 15 (char 33) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « vintage couch furniture »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 06-Nov-26 09:46:41 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A8jI4AiGt8ICJe9X_EP9qB5"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #RTXOn, #RYUHEI_HBD_20th, #หมดเวลารักByPor, 喜怒哀楽, #LoversAndGangstersEP2
+  🌍 « RYUHEI_HBD_20th » : aucune reprise en français, source internationale retenue
+  🌍 « หมดเวลารักByPor » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #MeghanMarkle, #CyberTruck
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 18h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 6.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/11 articles lus en 1.4s (20 déjà en cache)
+  📄 6/31 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Blockworks · OpenAI
+  🧠 31 vecteurs calculés en 1 appel(s)
+  🧩 31 articles → 13 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (1, pénalisé par « comment  ») : Manifestations du 7 novembre : ville par ville, voic
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : Accident de car mortel dans l'Ain : en garde à vue, 
+  🚨 Sujet chaud (breaking, 7 médias) : Manifestations du 7 novembre : le dispositif de sé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : BBC, Blockworks, Challenges, Le Monde, Ouest-France
+  🧮 Score 38.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 0.3h +16 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 38) → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 7 médias) : L’augmentation du smic est au premier rang des rev
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 38.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 0.3h +16 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 38) → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Crypto Liquidations Top $1 Billion as Bitcoin Test
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Cointelegraph, Decrypt
+  🧮 Score 57.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 2.2h +4 + portée internationale +10
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (183 → 151 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : États-Unis : mort de l’ancien sénateur démocrate J
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 66.5/100 = gravité 5/10 → 22 + frais 0.2h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🕊️ Hommage validé par le modèle — Décès naturel d'une personnalité publique politique. · décès : vendredi
+  🖼️ Portrait Wikipédia récupéré pour Jay Rockefeller (205 ko)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 7 médias) : « Cela peut faire gagner quelques minutes à une fa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 20.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 0.3h +16 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 20) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le père de Meghan Markle arrêté aux États-Unis après
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : RIP Cybertruck. You Were Unloved, Unwanted, and Utte
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 31 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations du 7 novembre : le dispositif de sé
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Accident de car dans l'Ain : le chauffeur "indique
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Accident de car mortel dans l'Ain : en garde à vue
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT Accident de car dans l’Ain : Le conducte
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le père de Meghan Markle arrêté aux États-Unis apr
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : EN DIRECT Accident de car dans l’Ain : le conducte
+  ♻️ 7/10 [business] (déjà analysé, cache) : L’augmentation du smic est au premier rang des rev
+  ♻️ 7/10 [space] (déjà analysé, cache) : « Être une femme, ça aide » : l’astronaute Sophie 
+  ♻️ 7/10 [space] (déjà analysé, cache) : La NASA dévoile un mystérieux avion expérimental a
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Claude passe au crible vos comptes bancaires grâce
+  ♻️ 6/10 [world] (déjà analysé, cache) : US prosecutor who led Trump-backed election probe 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Thailand moves to block Bitget as crypto exchange'
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : What Democrats’ US midterm sweep means for the CLA
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Nigeria sets new crypto licensing rules, bans algo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Crypto Card Provider Gnosis Pay Says Hackers Acces
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Crypto Liquidations Top $1 Billion as Bitcoin Test
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : GPT‑6 Cyber: Advancing the frontier of aligned cyb
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Just about anyone can rent access to White House I
+  ♻️ 8/10 [business] (déjà analysé, cache) : RIP Cybertruck. You Were Unloved, Unwanted, and Ut
+  🧠 Batch analyse de 9 articles...
+  📉 5/10: Fini les franchises et dépassements d'honoraires, 20 se
+  📉 5/10: Manifestations du 7 novembre : ville par ville, voici l
+  🌍 7/10 sans portée internationale : Des bombardements sur un marché au Yémen font 30 m
+  📉 5/10: "Ça arrive sans prévenir" : Delphine Wespiser face au c
+  📉 4/10: Four midterms takeaways for 2028 White House race
+  📉 3/10: How Paraguay’s Ueno collapse is only its latest banking
+  📉 4/10: US city votes to divest from Israel
+  🌍 6/10 sans portée internationale : U.S. prediction markets regulator issues demand th
+  ✅ 7/10 [crypto] mondiale: US Sanctions 45 More Targets Tied to Alleged Cry
+  ⬇️ 'breaking' déclassé (contenu non urgent) : Accident de car dans l'Ain : le chauffeur "indique
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 0.2h — Accident de car dans l'Ain : le chauffeur "i
+     10/10 · 4 média(s) · 0.3h — Accident de car mortel dans l'Ain : en garde
+     10/10 · 4 média(s) · 0.4h — EN DIRECT Accident de car dans l’Ain : le co
+     9/10 · 2 média(s) · 0.5h — Le père de Meghan Markle arrêté aux États-Un
+     9/10 · 2 média(s) · 0.1h — Just about anyone can rent access to White H
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 06-Nov-26 09:48:00 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AaJ3CLpu_IuzK9KdhDR4a6K"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Accident de car dans l'Ain : le chauffeur "indique qu'i
+
+  ── Bilan du cycle (123 s) ──
+     écartés : 4 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   ✅
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-001 · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 · clé 3 × gemini-2.5-flash-lite (+17)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 714
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 47,822 entrée · 1,325 sortie
+     ✅ aucun appel payant
