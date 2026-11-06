@@ -1,0 +1,193 @@
+
+[18:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 43 (char 42) → couple suivant
+  ⏭️  Le Saviez-vous : « Pourquoi les oignons font pleurer » n'explique pas vraiment → on ne publie pas
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #RTXOn, #RYUHEI_HBD_20th, #หมดเวลารักByPor, 喜怒哀楽, #LoversAndGangstersEP2
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #MeghanMarkle, #ThomasMarkle, #CyberTruck
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 18h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 6.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/14 articles lus en 3.1s (17 déjà en cache)
+  📄 8/31 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · CoinDesk · Blockworks · OpenAI
+  🧠 31 vecteurs calculés en 1 appel(s)
+  🧩 31 articles → 7 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Je n’ose pas imaginer ce que le FBI va découvrir" :
+  🚨 Sujet chaud (breaking, 12 médias) : Manifestations du 7 novembre : « le dispositif » d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 11 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Begeek, Blockworks, Le Monde, Libération
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + 12 médias +18 + frais 0.5h +16
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 4 partagée(s) · 2 divergente(s) · 1 exclusive(s)
+      [2m] Un accident de car s'est produit le vendredi 6 novembre au matin dans l'Ain, f
+      [1m] ⚡exclusif Le chauffeur se serait assoupi au volant selon ses premières déclarations lors
+      [2m] Le nombre total de passagers à bord du véhicule est évalué à 49 selon le parqu
+         ↳ Midi Libre : Le véhicule transportait environ 70 personnes selon des sources 
+         ↳ La Dépêche : 49 passagers se trouvaient à bord selon le parquet.
+         motif : Sources officielles divergentes ou estimations initiales différentes.
+      [2m] Le bilan des blessés fait état de seize blessés dont trois ou quatre en urgenc
+         ↳ Midi Libre : Seize personnes ont été blessées dont trois grièvement.
+         ↳ La Dépêche : Quatre personnes restent hospitalisées en urgence absolue.
+         motif : Bilan provisoire évolutif selon l'avancement des secours.
+      [2m] L'accident a eu lieu sur la route départementale 22 à Lent, au sud de Bourg-en
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Laurent Nuñez (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ain : deux morts dans un accident de car, le conduct
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : Accident mortel d'un car dans l'Ain : le chauffeur, 
+  🚨 Sujet chaud (breaking, 1 médias) : L’augmentation du smic est au premier rang des rev
+  🧮 Score 59.5/100 = gravité 7/10 → 32 + frais 0.0h +16 + imprévu 6/10 +4 + primeur absolue +8
+  🕒 Âge de l'article : 0.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (227 → 179 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Olivier de Kersauson (Route du Rhum) veut "mettre le
+  🚨 Sujet chaud (breaking, 4 médias) : Crypto Liquidations Top $1 Billion as Bitcoin Test
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Cointelegraph, Decrypt
+  🧮 Score 57.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 2.5h +4 + portée internationale +10
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (228 → 185 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le père de Meghan Markle arrêté aux États-Unis après
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : RIP Cybertruck. You Were Unloved, Unwanted, and Utte
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 31 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestations du 7 novembre : « le dispositif » d
+  ♻️ 7/10 [world] (déjà analysé, cache) : Israël : Eisenkot en passe d’être choisi pour remp
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Accident de car dans l'Ain : le chauffeur "indique
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Ain : deux morts dans un accident de car, le condu
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT Accident de car dans l’Ain : Le conducte
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le père de Meghan Markle arrêté aux États-Unis apr
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : EN DIRECT Accident de car dans l’Ain : le conducte
+  ♻️ 7/10 [business] (déjà analysé, cache) : L’augmentation du smic est au premier rang des rev
+  ♻️ 7/10 [space] (déjà analysé, cache) : « Être une femme, ça aide » : l’astronaute Sophie 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Claude passe au crible vos comptes bancaires grâce
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Thailand moves to block Bitget as crypto exchange'
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : What Democrats’ US midterm sweep means for the CLA
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Nigeria sets new crypto licensing rules, bans algo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Crypto Card Provider Gnosis Pay Says Hackers Acces
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Crypto Liquidations Top $1 Billion as Bitcoin Test
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : GPT‑6 Cyber: Advancing the frontier of aligned cyb
+  ♻️ 8/10 [business] (déjà analysé, cache) : RIP Cybertruck. You Were Unloved, Unwanted, and Ut
+  🧠 Batch analyse de 13 articles...
+  📉 3/10: «Supprimer CNews» : que sont devenues les autres pétiti
+  📉 3/10: Toulouse-Strasbourg: suivez le match de la 10e journée 
+  📉 5/10: Sa maison était peinte du sol au plafond : par hasard, 
+  🌍 8/10 sans portée internationale : « Je la giflais, je la mordais » : au procès de la
+  📉 3/10: « C’est inhabitable » : une famille avec deux enfants e
+  🌍 8/10 sans portée internationale : Accident mortel d'un car dans l'Ain : le chauffeur
+  🌍 8/10 sans portée internationale : "Je n’ose pas imaginer ce que le FBI va découvrir"
+  📉 4/10: "Ils sont bien gentils" : Vianney prend position et déf
+  📉 3/10: Olivier de Kersauson (Route du Rhum) veut "mettre le cu
+  📉 4/10: Ratchet & Clank : Ranger Rumble ferme ses portes moins 
+  🌍 8/10 sans portée internationale : Wisconsin reports measles death of a baby, first d
+  📉 5/10: Could potential AI clones of GTA VI force a quicker off
+  📉 4/10: It's a weird time to buy a laptop, but the new MacBook 
+  ⬇️ 'breaking' déclassé (contenu non urgent) : Accident de car dans l'Ain : le chauffeur "indique
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 5 média(s) · 0.4h — Accident de car dans l'Ain : le chauffeur "i
+     10/10 · 5 média(s) · 0.2h — EN DIRECT Accident de car dans l’Ain : le co
+     9/10 · 2 média(s) · 0.3h — Le père de Meghan Markle arrêté aux États-Un
+     10/10 · 5 média(s) · 2.9h — Ain : deux morts dans un accident de car, le
+     9/10 · 1 média(s) · 1.0h — Crypto Liquidations Top $1 Billion as Bitcoi
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : IGN France, La Dépêche, Libération, Ouest-France
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Accident de car dans l'Ain : le chauffeur "indique qu'i
+
+  ── Bilan du cycle (218 s) ──
+     écartés : 6 sujet banal · 4 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 2 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-2-preview   ✅
+        18. clé 3 × gemini-3.5-flash-lite        ✅
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-embedding-2 · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview (+17)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 715
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 67,806 entrée · 2,503 sortie
+     ✅ aucun appel payant
