@@ -1,0 +1,189 @@
+
+[07:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #HappiestWithMarkLee, #学マスログボどっち派, Happy Dhanteras, #まおりゅうの5周年を祝う, Ravens
+  🌍 « Happy Dhanteras » : aucune reprise en français, source internationale retenue
+  🔎 « Happy Dhanteras » : 1 article(s) frais, le plus récent il y a 2.7 h (The Economic Times)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Happy Dhanteras » écarté : Célébration récurrente sans fait nouveau marquant.
+  🔎 « Ravens » : 1 article(s) frais, le plus récent il y a 1.2 h (La Presse)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Ravens » écarté : trop secondaire (2/10)
+  🔎 « Giannis » : 1 article(s) frais, le plus récent il y a 0.5 h (BasketSession.com)
+  ⏭️  « Giannis » écarté : Simple déclaration d'un entraîneur sur un joueur.
+  🌍 « Herbal World » : aucune reprise en français, source internationale retenue
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.3s (22 déjà en cache)
+  📄 5/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Jeuxvideo.com · Blockworks · OpenAI · The Verge
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🧩 26 articles → 14 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Grève du 5 novembre : entre colère sociale et révo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : Ars Technica, CNBC, Jeuxvideo.com, The Verge
+  🧮 Score 66.0/100 = gravité 6/10 → 27 + 5 médias +11 + frais 2.0h +8 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 1.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 42 s
+  🖼️ 4 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 4 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : "Il y a donc maintenant de l'espoir" : que pourrai
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 68.0/100 = gravité 6/10 → 27 + frais 1.2h +8 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (164 → 114 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 7 médias) : Midterms 2026 aux États-Unis : Donald Trump s’empo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Blockworks, Journal du Geek, Le Monde, Numerama, Numerama Pop
+  🧮 Score 66.0/100 = gravité 8/10 → 36 + 7 médias +11 + frais 9.4h +1 + portée mondiale +18
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (196 → 152 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (BFMTV) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Énergie, IA, défense... Tirant les leçons de la po
+  🧮 Score 45.0/100 = gravité 4/10 → 18 + frais 0.1h +16 + programmé 3/10 -15 + primeur absolue +8 + portée mondiale +18
+  → Sujet chaud pas assez fort (score 45) → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 26 articles à analyser...
+  ♻️ 6/10 [world] (déjà analysé, cache) : Grève du 5 novembre : entre colère sociale et révo
+  ♻️ 9/10 [world] (déjà analysé, cache) : Le ciel européen en état d’alerte après des menace
+  ♻️ 6/10 [world] (déjà analysé, cache) : "La Chine recrute jusque dans les écoles de commer
+  ♻️ 7/10 [world] (déjà analysé, cache) : Joseph Votel, ex-général de l'US Army : "Nous pour
+  ♻️ 6/10 [world] (déjà analysé, cache) : "Il y a donc maintenant de l'espoir" : que pourrai
+  ♻️ 8/10 [world] (déjà analysé, cache) : Midterms 2026 aux États-Unis : Donald Trump s’empo
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : Henry Cavill développe son premier jeu vidéo
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Midterms 2026 : pourquoi Tesla et SpaceX ont-elles
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Oil prices rise as investors weigh renewed U.S.-Ir
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Nasdaq sell-off batters Asian chip stocks as SK Hy
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Renewed U.S.-Iran tension could push oil past $100
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Crypto exchanges tout cold storage ratios after Bi
+  ♻️ 6/10 [business] (déjà analysé, cache) : Core Scientific to quit Bitcoin mining by year-end
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Bitcoin Fixes This? Paraguay President Resigns Aft
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI Promises to Foot AI’s Power Bill After Vote
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : GPT‑6 Cyber: Advancing the frontier of aligned cyb
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Meta, Google, and TikTok sue California AG over te
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI is stepping back from NDAs for data center 
+  ♻️ 6/10 [space] (déjà analysé, cache) : Blue Origin says it is building a higher-performin
+  🧠 Batch analyse de 3 articles...
+  🌍 7/10 sans portée internationale : Autoroute A69 : avant l’ouverture, des décennies d
+  📉 2/10: Black Friday 2026 : Dyson, Dreame, iRobot… les 7 meille
+  📉 3/10: Pourquoi la difficulté de Phantom Blade Zero divise-t-e
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 0.4h — Midterms 2026 aux États-Unis : Donald Trump 
+     9/10 · 3 média(s) · 1.2h — "Il y a donc maintenant de l'espoir" : que p
+     10/10 · 1 média(s) · 9.4h — Le ciel européen en état d’alerte après des 
+     10/10 · 3 média(s) · 11.2h — Midterms 2026 : pourquoi Tesla et SpaceX ont
+     10/10 · 1 média(s) · 8.1h — Bitcoin Fixes This? Paraguay President Resig
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (187 → 120 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (BFMTV) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Midterms 2026 aux États-Unis : Donald Trump s’emporte c
+
+  ── Bilan du cycle (173 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3-flash               ⛔ inexistant
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        20. clé 4 × gemini-3.6-flash             🚫 quota
+        21. clé 4 × gemini-3-flash               ⛔ inexistant
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 1 × gemini-embedding-001         🚫 quota
+        25. clé 1 × gemini-embedding-2-preview   🚫 quota
+        26. clé 1 × gemini-embedding-2           🚫 quota
+        27. clé 2 × gemini-embedding-001         🚫 quota
+        28. clé 2 × gemini-embedding-2-preview   🚫 quota
+        29. clé 2 × gemini-embedding-2           🚫 quota
+        30. clé 3 × gemini-embedding-001         🚫 quota
+        31. clé 3 × gemini-embedding-2-preview   🚫 quota
+        32. clé 3 × gemini-embedding-2           🚫 quota
+        33. clé 4 × gemini-embedding-001         🚫 quota
+        34. clé 4 × gemini-embedding-2-preview   🚫 quota
+        35. clé 4 × gemini-embedding-2           🚫 quota
+        36. clé 5 × gemini-embedding-001         ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 16 autres
+     jamais essayé ce cycle : clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 793 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 62,031 entrée · 1,374 sortie
+     ✅ aucun appel payant
