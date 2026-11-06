@@ -1,0 +1,232 @@
+
+[17:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  Le Saviez-vous : « L'origine du mot OK » n'explique pas vraiment → on ne publie pas
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #RYUHEI_HBD_20th, #หมดเวลารักByPor, 喜怒哀楽, #RTXOn, #LoversAndGangstersEP2
+  🌍 « RYUHEI_HBD_20th » : aucune reprise en français, source internationale retenue
+  🌍 « หมดเวลารักByPor » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #CyberTruck
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 3 sujets chauds analysés en UN seul appel (au lieu de 3)
+  🕐 17h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 7.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 13/15 articles lus en 2.1s (15 déjà en cache)
+  📄 7/30 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · Blockworks · OpenAI
+  🧠 30 vecteurs calculés en 1 appel(s)
+  🧩 30 articles → 11 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : "On a surmonté les difficultés et on a un très bon
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 40.0/100 = gravité 6/10 → 27 + frais 1.1h +8 + primeur +5
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 14 médias) : Crypto Liquidations Top $1 Billion as Bitcoin Test
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Begeek, Blockworks, CoinDesk, Cointelegraph
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 14 médias +18 + frais 1.8h +8 + thème porteur +10 + fait local -20 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (178 → 136 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 14 médias) : Grève du 5 novembre : deux journalistes de «Politi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 3/10 → 14 + 14 médias +18 + frais 1.8h +8 + fait local -20 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (190 → 157 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Au Kenya, un gourou condamné à 200 ans de prison p
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Libération
+  🧮 Score 61.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.1h +16 + primeur +5
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (189 → 159 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 14 médias) : Un homme condamné à Paris à deux ans de prison fer
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 14 médias +18 + frais 1.8h +8 + thème porteur +10 + fait local -20 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (185 → 160 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 14 médias) : « Elle ne s’est tout jamais vraiment remise de ses
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 4/10 → 18 + 14 médias +18 + frais 1.8h +8 + fait local -20 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 4 image(s) trouvée(s) mais toutes trop petites (<380×240)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 4 image(s) trouvée(s) mais toutes trop petites (<380×240)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : RIP Cybertruck. You Were Unloved, Unwanted, and Utte
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 30 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Au Kenya, un gourou condamné à 200 ans de prison p
+  ♻️ 6/10 [tech] (déjà analysé, cache) : "On a surmonté les difficultés et on a un très bon
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Ain : une fille de 7 ans et un jeune homme de 18 a
+  ♻️ 7/10 [world] (déjà analysé, cache) : EN DIRECT Accident de car dans l’Ain : Une fillett
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Un homme condamné à Paris à deux ans de prison fer
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Affaire Holograph : 3 condamnations et près de 2 m
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Claude passe au crible vos comptes bancaires grâce
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Thailand moves to block Bitget as crypto exchange'
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : What Democrats’ US midterm sweep means for the CLA
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Nigeria sets new crypto licensing rules, bans algo
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Crypto Liquidations Top $1 Billion as Bitcoin Test
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : $3.1B in Stolen Binance Crypto Has Yet to Be Laund
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : GPT‑6 Cyber: Advancing the frontier of aligned cyb
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Ramp data shows AI spending stalling just as Anthr
+  ♻️ 8/10 [business] (déjà analysé, cache) : RIP Cybertruck. You Were Unloved, Unwanted, and Ut
+  🧠 Batch analyse de 11 articles...
+  📉 3/10: Après des propos litigieux sur Jean-Luc Mélenchon et Zo
+  🌍 7/10 sans portée internationale : "Petite martyre de l'A10" : "Je n'étais pas une bo
+  📉 4/10: Trois individus en détention provisoire après un violen
+  📉 3/10: RSE : pour Élisabeth Laville, fondatrice du cabinet Uto
+  ✅ 6/10 [tech] large: Cyberattaque : Illicado ciblé par des pirates, p
+  📉 5/10: La Terre vient de capturer une deuxième Lune, mais elle
+  📉 5/10: NieR Automata : Une erreur fait passer le poids du jeu 
+  📉 4/10: Jerusalem Daily: Arab parties back Eisenkot against Net
+  📉 3/10: What did the Republicans lose in the US midterms?
+  🌍 7/10 sans portée internationale : Millions fleeing Sudan’s war risk losing shelter a
+  📉 3/10: How Akai and Moog are embracing vibe-coded mods
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.2h — Au Kenya, un gourou condamné à 200 ans de pr
+     9/10 · 2 média(s) · 0.3h — Un homme condamné à Paris à deux ans de pris
+     9/10 · 1 média(s) · 0.1h — Crypto Liquidations Top $1 Billion as Bitcoi
+     10/10 · 1 média(s) · 2.0h — Ain : une fille de 7 ans et un jeune homme d
+     9/10 · 1 média(s) · 2.3h — RIP Cybertruck. You Were Unloved, Unwanted, 
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (220 → 172 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → publication SANS image (texte seul)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram sauté pour ce post (pas d'image, texte seul)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Au Kenya, un gourou condamné à 200 ans de prison pour l
+
+  ── Bilan du cycle (170 s) ──
+     écartés : 2 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-embedding-001         🚫 quota
+        11. clé 1 × gemini-embedding-2-preview   🚫 quota
+        12. clé 2 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-2-preview   ✅
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 2 × gemini-3.6-flash             🚫 quota
+        17. clé 3 × gemini-3.5-flash-lite        ✅
+        18. clé 3 × gemini-3.5-flash-lite        ✅
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-2 · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-001 · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 717
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 89,435 entrée · 2,178 sortie
+     ✅ aucun appel payant
