@@ -1,0 +1,145 @@
+
+[08:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Happy Dhanteras, #Happiest_MarkLee, #学マスログボどっち派, #まおりゅうの5周年を祝う, #KamiBersamaPrabowo
+  🌍 « Happy Dhanteras » : aucune reprise en français, source internationale retenue
+  🔎 « Happy Dhanteras » : 1 article(s) frais, le plus récent il y a 4.0 h (The Economic Times)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Happy Dhanteras » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Happy Dhanteras » écarté : jugement indisponible
+  🌍 « Drama Jokowi » : aucune reprise en français, source internationale retenue
+  🚫 gemini-embedding-001 : quota de vecteurs épuisé → modèle suivant
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/8 articles lus en 1.7s (51 déjà en cache)
+  📄 9/61 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Jeuxvideo.com · The Block · Blockworks · OpenAI
+  🧠 59 vecteurs calculés en 1 appel(s)
+  🧩 61 articles → 19 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Intempéries en Corse : deux personnes sont mortes no
+  🚨 Sujet chaud (breaking, 1 médias) : Grève du 5 novembre : entre colère sociale et révo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 41.0/100 = gravité 6/10 → 27 + frais 3.0h +4 + thème porteur +10
+  → Sujet chaud pas assez fort (score 41) → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : "Un véritable bain de sang": plus forte chute depu
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 87.0/100 = gravité 10/10 → 45 + 5 médias +11 + frais 0.8h +13 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgmJJzah6yvbSh99mdZnG'}
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : Intempéries en Corse : l'épisode orageux fait deux m
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Zelda: Ocarina of Time : ça y est, tout le monde fai
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : Un gynécologue condamné à cinq ans de prison pour vi
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 61 articles à analyser...
+  ♻️ 6/10 [world] (déjà analysé, cache) : Grève du 5 novembre : entre colère sociale et révo
+  ♻️ 9/10 [world] (déjà analysé, cache) : Le ciel européen en état d’alerte après des menace
+  ♻️ 6/10 [world] (déjà analysé, cache) : "La Chine recrute jusque dans les écoles de commer
+  ♻️ 7/10 [world] (déjà analysé, cache) : Joseph Votel, ex-général de l'US Army : "Nous pour
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI lance GPT-6 Cyber, une IA qui traque les fa
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : GTA 6 : que nous révèlent les 39 nouvelles images 
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : Henry Cavill développe son premier jeu vidéo
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Oil prices rise as investors weigh renewed U.S.-Ir
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Nasdaq sell-off batters Asian chip stocks as SK Hy
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Renewed U.S.-Iran tension could push oil past $100
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Crypto exchanges tout cold storage ratios after Bi
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Bitcoin Fixes This? Paraguay President Resigns Aft
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI Promises to Foot AI’s Power Bill After Vote
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : GPT‑6 Cyber: Advancing the frontier of aligned cyb
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI is stepping back from NDAs for data center 
+  ♻️ 6/10 [space] (déjà analysé, cache) : Blue Origin says it is building a higher-performin
+  🎯 Pré-classement : 23 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgmJKJ5A3Dyg1MLcus5EQ'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 10.8h — Le ciel européen en état d’alerte après des 
+     10/10 · 1 média(s) · 9.5h — Bitcoin Fixes This? Paraguay President Resig
+     7/10 · 1 média(s) · -0.5h — OpenAI lance GPT-6 Cyber, une IA qui traque 
+     8/10 · 2 média(s) · 3.0h — Grève du 5 novembre : entre colère sociale e
+     10/10 · 3 média(s) · 14.3h — GTA 6 : que nous révèlent les 39 nouvelles i
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgmJKgGQ55SrAPAaLDELE'}
+  ⚠️ GTA6: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgmJKv7LZYV8NNjSqidjR'}
+  → 1 sélectionné(s) [world]
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Sujet non vérifiable (modèle indisponible) → rien publié : Le ciel européen en état d’alerte après des me
+
+  ── Bilan du cycle (142 s) ──
+     écartés : 4 sujet banal · 1 sujet non vérifiable
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 5 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 5 × gemini-3.6-flash             🚫 quota
+        25. clé 5 × gemini-3-flash               ⛔ inexistant
+        26. clé 1 × gemini-embedding-2           🚫 quota
+        27. clé 2 × gemini-embedding-001         🚫 quota
+        28. clé 2 × gemini-embedding-2-preview   🚫 quota
+        29. clé 2 × gemini-embedding-2           🚫 quota
+        30. clé 3 × gemini-embedding-001         🚫 quota
+        31. clé 3 × gemini-embedding-2-preview   🚫 quota
+        32. clé 3 × gemini-embedding-2           🚫 quota
+        33. clé 4 × gemini-embedding-001         🚫 quota
+        34. clé 4 × gemini-embedding-2-preview   🚫 quota
+        35. clé 4 × gemini-embedding-2           🚫 quota
+        36. clé 5 × gemini-embedding-2-preview   ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-001 · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-001
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 787 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     ⚠️ 21 appel(s) payés chez Claude (le gratuit n'a pas suffi)
