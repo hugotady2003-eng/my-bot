@@ -1,0 +1,195 @@
+
+[21:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting ',' delimiter: line 3 column 17 (char 35) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « vintage car horn »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 06-Nov-26 12:51:32 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"Am1qAdk12rlA74hX2DtpYjG"}}
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : Stephen Miller, #RTXOn, Susie Wiles, Chief of Staff, #AlışverişeTutuklama
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #StephenMiller, #SusieWiles
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 21h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 3.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.3s (13 déjà en cache)
+  📄 4/15 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Libération · Blockworks
+  🧠 15 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Trump says Stephen Miller to replace S… »
+  🧩 15 articles → 10 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-2, pénalisé par « \b(?:fait divers ») : Accident de car mortel dans l'Ain : en garde à vue, 
+  🚨 Sujet chaud (breaking, 2 médias) : Trump says Stephen Miller to replace Susie Wiles a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 93.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 0.2h +16 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🧩 6 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Stephen Miller remplace Susie Wiles au poste de chef de cabinet de la Maison B
+      [1m] ⚡exclusif Stephen Miller prendra ses fonctions à partir de lundi.
+      [1m] ⚡exclusif Susie Wiles rejoint l'organisation politique de Donald Trump.
+      [1m] ⚡exclusif Stephen Miller est décrit comme l'architecte de la politique anti-immigration 
+      [1m] ⚡exclusif Donald Trump a annoncé ce changement via son réseau social Truth Social.
+      [1m] ⚡exclusif Ce remaniement intervient trois jours après la victoire des Démocrates aux éle
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🎥 Vidéo d'actu récupérée (8.1 Mo) chez pdl-iphone-cnbc-com.akamaized.net → attachée au tweet
+  🎥 Vidéo éditoriale trouvée dans l'article → attachée
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Remaniement : après la débâcle des midterms, Trump
+  🧮 Score 100.0/100 = gravité 9/10 → 40 + 2 médias +4 + frais 0.2h +16 + imprévu 9/10 +18 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Stephen Miller est nommé directeur de cabinet de la Maison Blanche, remplaçant
+      [2m] Cette nomination intervient après une défaite électorale majeure des Républica
+      [1m] ⚡exclusif Susie Wiles rejoint l'organisation politique de Donald Trump.
+      [1m] ⚡exclusif Stephen Miller est décrit comme l'architecte de la politique anti-immigration 
+      [1m] ⚡exclusif Stephen Miller s'oppose publiquement à la culture woke et communiste.
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📈 Hashtag(s) en tendance : #StephenMiller
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #StephenMiller
+  ✂️ Tweet resserré localement (179 → 125 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Stephen Miller (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Accident de car dans l'Ain : le chauffeur "indique q
+  🚨 Sujet chaud (breaking, 1 médias) : Cyberattaque : Crédit Mutuel Arkéa affirme avoir r
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 77.0/100 = gravité 8/10 → 36 + frais 0.5h +13 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (166 → 122 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : L’augmentation du smic est au premier rang des rev
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 3.4h +4
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Friday’s Android app deals and freebies: Wreckfest, 
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 15 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : Remaniement : après la débâcle des midterms, Trump
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Accident de car dans l'Ain : le chauffeur "indique
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Accident de car mortel dans l'Ain : en garde à vue
+  ♻️ 8/10 [business] (déjà analysé, cache) : Cyberattaque : Crédit Mutuel Arkéa affirme avoir r
+  ♻️ 7/10 [business] (déjà analysé, cache) : L’augmentation du smic est au premier rang des rev
+  ♻️ 7/10 [space] (déjà analysé, cache) : « Être une femme, ça aide » : l’astronaute Sophie 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump says Stephen Miller to replace Susie Wiles a
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance hack is ‘cyber war,’ TRM Labs executive sa
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Russia finalizes crypto trading rules ahead of Nov
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : US Treasury walks back crypto surveillance ‘travel
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Trump administration moves closer to allowing cryp
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Greece Passes Crypto Tax Law With 10% Gains Levy, 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Free Chinese AI Models Are Getting Scary Good at H
+  🧠 Batch analyse de 1 articles...
+  📉 2/10: Friday’s Android app deals and freebies: Wreckfest, Kin
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.2h — Remaniement : après la débâcle des midterms,
+     10/10 · 1 média(s) · 0.2h — Trump says Stephen Miller to replace Susie W
+     9/10 · 1 média(s) · 0.3h — US Treasury walks back crypto surveillance ‘
+     9/10 · 1 média(s) · 0.3h — Greece Passes Crypto Tax Law With 10% Gains 
+     10/10 · 2 média(s) · 2.3h — Accident de car dans l'Ain : le chauffeur "i
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📈 Hashtag(s) en tendance : #StephenMiller
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #StephenMiller
+  ✂️ Tweet resserré localement (179 → 125 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Stephen Miller (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 06-Nov-26 12:54:13 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"APnnQvzsDbmpUvr8h0n5Nse"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Remaniement : après la débâcle des midterms, Trump fait
+
+  ── Bilan du cycle (207 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 1 × gemini-embedding-2-preview   🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2 · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-embedding-2 · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-embedding-2-preview (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 712
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 62,185 entrée · 2,294 sortie
+     ✅ aucun appel payant
