@@ -1,0 +1,109 @@
+
+[00:26] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ⚠️ Tendances : trends24.in répond 403
+  📈 50 tendances lues sur getdaytrends.com : #AVigília, Valencia, Dana White, maffeo, #BallandoConLeStelle
+  🔎 « Valencia » : 1 article(s) frais, le plus récent il y a 3.1 h (Real Madrid CF | Web Oficial)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Valencia » écarté : Hommage sportif sans portée générale.
+  🔎 « Dana White » : 1 article(s) frais, le plus récent il y a 2.6 h (Le Monde.fr)
+  ⏭️  « Dana White » écarté : trop secondaire (5/10)
+  🔎 « maffeo » : 1 article(s) frais, le plus récent il y a 1.2 h (Onze Mondial)
+  ⏭️  « maffeo » écarté : trop secondaire (4/10)
+  🔎 « Maresca » : 1 article(s) frais, le plus récent il y a 0.2 h (L'Équipe)
+  ⏭️  « Maresca » écarté : trop secondaire (4/10)
+  🔎 « Delap » : 1 article(s) frais, le plus récent il y a 3.7 h (Goal.com)
+  ⏭️  « Delap » écarté : trop secondaire (4/10)
+  📖 31 articles, tous en cache
+  📄 11/31 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · The Block · Ouest-France · Jeuxvideo.com · Blockworks
+  🧠 31 vecteurs calculés en 1 appel(s)
+  🧩 31 articles → 12 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Israël : Gadi Eisenkot, principal opposant de Benyam
+  🚨 Sujet chaud (breaking, 2 médias) : Attentat raciste dans les Yvelines : "Pengo n’est 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Ouest-France
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.7h +8 + thème porteur +10 + primeur +5 + ⚡ attentat → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, pénalisé par « pourrait ») : Augmentation du Smic : le ministre du Travail estime
+  🚨 Sujet chaud (breaking, 2 médias) : Fusillade à Cracovie : six morts, seize blessés do
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 1.8h +8 + thème porteur +10 + primeur +5
+  🧩 6 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] Un homme a ouvert le feu au hasard dans le centre de Cracovie, faisant six mor
+      [2m] L'attaque s'est produite un samedi peu avant 15 heures sur la place du marché 
+      [2m] Le tireur est de nationalité polonaise et a été neutralisé ou arrêté par la po
+         ↳ BBC : Sud Ouest indique que l'auteur a été neutralisé par la police, t
+         motif : Précision sur l'état de santé du tireur
+      [2m] Plusieurs policiers ont été blessés lors de l'intervention, l'un d'eux se trou
+      [1m] ⚡exclusif Il s'agit de la plus grave tuerie de masse qu'ait connue le pays depuis des dé
+      [1m] ⚡exclusif Cinq étrangers figurent parmi les seize blessés et le tireur serait fasciné pa
+  🕒 Âge de l'article : 3.2h (frais ✅)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Un homme arrêté en Norvège après une intrusion pré
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 43.5/100 = gravité 7/10 → 32 + frais 5.4h +2 + thème porteur +10
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 36 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 31 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (61 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 1 × gemini-embedding-2-preview   🚫 quota
+        23. clé 1 × gemini-embedding-2           🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-2           🚫 quota
+        27. clé 3 × gemini-embedding-001         ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-2 · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-2 (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0 · gemini 2 760
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 10,468 entrée · 786 sortie
+     ✅ aucun appel payant
