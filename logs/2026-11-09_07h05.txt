@@ -1,0 +1,221 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ã­ãã®æ¨ããã±ã ã¼ãã¼, Caleb, Bears, Bucs, Baker
+  🔎 « Caleb » : 1 article(s) frais, le plus récent il y a 6.5 h (Rezo Nòdwès)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Caleb » écarté : trop secondaire (3/10)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 7.0 h (Eurosport)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Bears » écarté : Simple match de NFL sans enjeu national.
+  🔎 « Bucs » : 1 article(s) frais, le plus récent il y a 0.4 h (Mezha.net)
+  ⏭️  « Bucs » écarté : trop secondaire (2/10)
+  🔎 « Baker » : 1 article(s) frais, le plus récent il y a 17.4 h (TradingView)
+  ⏭️  « Baker » écarté : Simple donnee financiere sans interet general
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #JensenHuang, #Nvidia
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 1.8s (53 déjà en cache)
+  📄 12/61 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · The Block · Libération · Blockworks
+  🧠 61 vecteurs calculés en 1 appel(s)
+  🧩 61 articles → 16 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mobilisation sociale : pour Sébastien Lecornu, la se
+  🚨 Sujet chaud (breaking, 22 médias) : Nvidia launches investigation into CEO's affair wi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 32 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC Business, BFM People, BFMTV, Blockworks
+  🧮 Score 83.0/100 = gravité 10/10 → 45 + 22 médias +20 + frais 1.3h +8 + thème porteur +10
+  🕒 Âge de l'article : 5.2h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 40 s
+  📈 Hashtag(s) en tendance : #JensenHuang
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • TROP LONG (164 caractères)
+  📈 Hashtag(s) en tendance : #JensenHuang, #Nvidia
+  ✂️ Tweet resserré localement (169 → 124 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 22 médias) : Revendications des syndicats, pistes du gouverneme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.5/100 = gravité 5/10 → 22 + 22 médias +20 + frais 1.3h +8 + thème porteur +10
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (182 → 146 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 22 médias) : Is Jensen Huang’s job on the line? Yale’s Jeffrey 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.5/100 = gravité 7/10 → 32 + 22 médias +20 + frais 1.3h +8 + thème porteur +10
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  📈 Hashtag(s) en tendance : #JensenHuang
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #JensenHuang, #Nvidia
+  ✂️ Tweet resserré localement (210 → 168 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 4 médias) : Electrification, intelligence artificielle, financ
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Sud Ouest
+  🧮 Score 55.5/100 = gravité 5/10 → 22 + 4 médias +7 + frais 0.6h +13 + programmé 3/10 -15 + thème porteur +10 + portée mondiale +18
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] La COP31 se tient du 9 au 20 novembre 2026 à Antalya, en Turquie, et est co-or
+      [2m] La Turquie lance l'initiative '35-by-35', visant à ce que l'électricité représ
+      [1m] ⚡exclusif La conférence s'ouvre dans un contexte international marqué par la guerre mené
+      [1m] ⚡exclusif La conférence s'ouvre dans un contexte de forte inquiétude climatique après de
+      [1m] ⚡exclusif Le gouvernement turc de Recep Tayyip Erdogan a mené des campagnes anti-LGBT av
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (Positivr) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : États-Unis : « Je ne faisais que plaisanter », Don
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 4/10 → 18 + frais 0.3h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 61 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : L’affaire Michel Zecler, emblématique des violence
+  ♻️ 9/10 [world] (déjà analysé, cache) : Six personnes abattues dans la rue, un suspect aux
+  ♻️ 8/10 [world] (déjà analysé, cache) : À l'aube d'un nouvel hiver glacial, des centaines 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Un homme arrêté en Norvège après une intrusion pré
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Pour la sortie de Zelda : Ocarina of Time, Google 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Seven dead and more than 100 injured after trains 
+  ♻️ 10/10 [tech] (déjà analysé, cache) : Nvidia launches investigation into CEO's affair wi
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia investigates CEO Jensen Huang's relationshi
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump says renewed Iran strikes ‘highly unlikely’ 
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia probes CEO Jensen Huang's affair amid China
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : This Bitcoin Developer’s Idea Would Make Quantum A
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [business] (déjà analysé, cache) : Is Jensen Huang’s job on the line? Yale’s Jeffrey 
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia will investigate CEO Jensen Huang’s relatio
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Here’s the full text of Jensen Huang’s memo to Nvi
+  🎯 Pré-classement : 23 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 8/10 [crypto] mondiale: Bitcoin drops, then pops as Nvidia cheating scan
+  🌍 7/10 sans portée internationale : Hausse du Smic, pouvoir d'achat: sans latitude, Le
+  📉 5/10: Budget : 49.3 ou ordonnances, le choix cornélien de Séb
+  🌍 6/10 sans portée internationale : «Ce texte sonne la mobilisation générale» : après 
+  📉 5/10: Mobilisation sociale : pour Sébastien Lecornu, la semai
+  ✅ 7/10 [world] large: ‘Tents don’t protect us’: Rains flood displaced 
+  📉 4/10: Two rival Ethereum proposals aim to stop Glamsterdam br
+  🌍 8/10 sans portée internationale : La moitié de la population du Paraguay n'a plus ac
+  📉 4/10: Binance's bitcoin mining pool finds just one block in a
+  ✅ 9/10 [tech] large: Nvidia perps slide as market reacts to CEO Jense
+  📉 2/10: Élagage d’automne : quels sont ces 5 arbres à tailler d
+  🌍 7/10 sans portée internationale : From supermarket fridges to passenger flights, a w
+  📉 5/10: La pétition appelant à fermer CNews passe la barre du m
+  📉 3/10: "Vivre avec nos enfants plutôt que de les découvrir à l
+  📉 5/10: Philippine GDP growth further slows to 2.1% in Q3, drag
+  📉 2/10: Après l'amour, Camille Lou se "lave la 'hum'", Cyril Fé
+  📉 2/10: Demain nous appartient en avance : résumé de l'épisode 
+  📉 3/10: Karine Le Marchand : "On nous pompe l'air avec le vivre
+  📉 5/10: La Cop31 veut accélérer l’électrification pour sauver l
+  📉 5/10: Est-on à l’aube d’une baisse massive des prix de l'immo
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 5 média(s) · 0.6h — Is Jensen Huang’s job on the line? Yale’s Je
+     10/10 · 3 média(s) · 2.7h — Bitcoin drops, then pops as Nvidia cheating 
+     10/10 · 7 média(s) · 2.5h — Nvidia perps slide as market reacts to CEO J
+     10/10 · 5 média(s) · 5.2h — Nvidia launches investigation into CEO's aff
+     10/10 · 6 média(s) · 7.2h — Nvidia investigates CEO Jensen Huang's relat
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [business]
+  📈 Hashtag(s) en tendance : #JensenHuang, #Nvidia
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #JensenHuang, #Nvidia
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.6h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Is Jensen Huang’s job on the line? Yale’s Jeffrey Sonne
+
+  ── Bilan du cycle (233 s) ──
+     écartés : 4 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 5 × gemini-3.5-flash-lite        ✅
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 1 × gemini-embedding-2-preview   🚫 quota
+        25. clé 1 × gemini-embedding-2           🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-2-preview   🚫 quota
+        28. clé 2 × gemini-embedding-2           🚫 quota
+        29. clé 3 × gemini-embedding-001         🚫 quota
+        30. clé 3 × gemini-embedding-2-preview   🚫 quota
+        31. clé 3 × gemini-embedding-2           🚫 quota
+        32. clé 4 × gemini-embedding-001         🚫 quota
+        33. clé 4 × gemini-embedding-2-preview   ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 18 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-001 · clé 5 × gemini-embedding-2-preview (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 793 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 85,109 entrée · 2,816 sortie
+     ✅ aucun appel payant
