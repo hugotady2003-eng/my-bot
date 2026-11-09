@@ -1,0 +1,261 @@
+
+[07:27] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ã­ãã®æ¨ããã±ã ã¼ãã¼, Caleb, Bears, Bucs, Baker
+  🔎 « Caleb » : 1 article(s) frais, le plus récent il y a 6.9 h (Rezo Nòdwès)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « Caleb » écarté : trop secondaire (3/10)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 7.5 h (Eurosport)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Bears » écarté : trop secondaire (2/10)
+  🔎 « Bucs » : 1 article(s) frais, le plus récent il y a 0.9 h (Mezha.net)
+  ⏭️  « Bucs » écarté : trop secondaire (2/10)
+  🔎 « Baker » : 1 article(s) frais, le plus récent il y a 17.9 h (TradingView)
+  ⏭️  « Baker » écarté : Simple mise à jour de données financières boursières.
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #JensenHuang, #Nvidia
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 3 sujets chauds analysés en UN seul appel (au lieu de 3)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/10 articles lus en 2.4s (19 déjà en cache)
+  📄 7/29 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · CoinDesk · The Block · Blockworks
+  🧠 29 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Nvidia probes CEO Jensen Huang's affai… »
+  🧩 29 articles → 7 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 14 médias) : Nvidia ouvre une enquête sur son PDG Jensen Huang,
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 14 article(s) sur un autre sujet, écartés du dossier : BFM People, BFMTV, Blockworks, CoinDesk, Decrypt
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + 14 médias +18 + frais 1.0h +8 + thème porteur +10 + ⚡ attentat → plancher 89
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [3m] Un homme a ouvert le feu à Cracovie, causant la mort de six personnes et faisa
+      [2m] Trois corps supplémentaires ont été découverts au domicile du suspect.
+      [2m] L'attaque est qualifiée d'acte terroriste par les autorités.
+      [1m] ⚡exclusif Le suspect est un homme de 24 ans.
+      [1m] ⚡exclusif Le suspect a été interpellé sur place et est blessé.
+      [1m] ⚡exclusif Le suspect est décrit comme fasciné par l'extrême droite.
+      [2m] L'attaque a eu lieu le samedi 7 novembre.
+         ↳ Ouest-France : L'attaque a eu lieu le samedi 8 novembre.
+         motif : Erreur factuelle ou de calendrier entre les rédactions.
+  🕒 Âge de l'article : -1.7h (frais ✅)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 17 s
+  📈 Hashtag(s) en tendance : #JensenHuang, #Nvidia
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #JensenHuang, #Nvidia
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (BBC Business) — même sujet
+  👁️ Image écartée : Il s'agit d'un photomontage.
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 14 médias) : Affaire Zecler : six ans après, les policiers qui 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 14 médias +18 + frais 1.1h +8 + thème porteur +10 + ⚡ attentat → plancher 89
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 9 affirmation(s) : 6 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [3m] Un homme a ouvert le feu à Cracovie, causant la mort de six personnes et bless
+      [2m] Trois corps supplémentaires ont été découverts au domicile du suspect.
+      [2m] L'attaque est qualifiée d'acte terroriste.
+      [2m] L'attaque a eu lieu le samedi 7 novembre.
+         ↳ Ouest-France : L'attaque a eu lieu le samedi 8 novembre.
+         motif : Erreur factuelle ou de calendrier entre les rédactions.
+      [2m] Le suspect est un homme de 24 ans fasciné par l'extrême droite.
+      [2m] Deux policiers figurent parmi les blessés.
+      [1m] ⚡exclusif Il s'agit de la première attaque terroriste en Pologne depuis la Seconde Guerr
+      [1m] ⚡exclusif La Pologne entame deux jours de deuil national.
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : « Dana adore cette idée »: Donald Trump assure que
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : BBC Business, CNBC, Gamekult, La Tribune, Ouest-France
+  🧮 Score 67.0/100 = gravité 6/10 → 27 + 6 médias +11 + frais 11.6h +1 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (193 → 150 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 14 médias) : Pologne : l’auteur de la tuerie de Cracovie est mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 14 médias +18 + frais 1.1h +8 + thème porteur +10 + ⚡ attentat → plancher 89
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 4 partagée(s) · 2 divergente(s) · 3 exclusive(s)
+      [3m] Un homme a ouvert le feu à Cracovie, causant six morts et une quinzaine de ble
+      [1m] L'auteur présumé de la tuerie est décédé.
+         ↳ Ouest-France : Le suspect a été interpellé sur place, blessé.
+         motif : Évolution de la situation après l'interpellation initiale.
+      [2m] Trois corps supplémentaires ont été retrouvés au domicile du suspect.
+      [2m] Les autorités enquêtent sur l'attaque en tant qu'acte terroriste.
+      [1m] ⚡exclusif Le suspect était âgé de 24 ans.
+      [1m] ⚡exclusif Le suspect était fasciné par les idées d'extrême droite.
+      [1m] ⚡exclusif La Pologne observe deux jours de deuil national.
+      [2m] L'attaque a eu lieu le samedi 7 novembre.
+         ↳ Ouest-France : L'attaque a eu lieu le samedi 8 novembre.
+         motif : Erreur factuelle de calendrier dans l'une des sources.
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (16h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (17h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 29 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Donald Trump reconnaît que la politique d’expulsio
+  ♻️ 8/10 [world] (déjà analysé, cache) : Pologne : l’auteur de la tuerie de Cracovie est mo
+  ♻️ 9/10 [world] (déjà analysé, cache) : Six personnes abattues dans la rue, un suspect aux
+  ♻️ 6/10 [world] (déjà analysé, cache) : « Dana adore cette idée »: Donald Trump assure que
+  ♻️ 9/10 [world] (déjà analysé, cache) : Donald Trump : furieux face à la victoire démocrat
+  ♻️ 7/10 [world] (déjà analysé, cache) : Affaire Zecler : six ans après, les policiers qui 
+  ♻️ 8/10 [world] (déjà analysé, cache) : À l'aube d'un nouvel hiver glacial, des centaines 
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia ouvre une enquête sur son PDG Jensen Huang,
+  ♻️ 7/10 [world] (déjà analysé, cache) : Un homme arrêté en Norvège après une intrusion pré
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Pour la sortie de Zelda : Ocarina of Time, Google 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Seven dead and more than 100 injured after trains 
+  ♻️ 7/10 [world] (déjà analysé, cache) : ‘Tents don’t protect us’: Rains flood displaced Pa
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia investigates CEO Jensen Huang's relationshi
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump says renewed Iran strikes ‘highly unlikely’ 
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia probes CEO Jensen Huang's affair amid China
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin drops, then pops as Nvidia cheating scanda
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia perps slide as market reacts to CEO Jensen 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : This Bitcoin Developer’s Idea Would Make Quantum A
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [business] (déjà analysé, cache) : Is Jensen Huang’s job on the line? Yale’s Jeffrey 
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia will investigate CEO Jensen Huang’s relatio
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Here’s the full text of Jensen Huang’s memo to Nvi
+  🧠 Batch analyse de 7 articles...
+  📉 3/10: "Inutile et délétère": la contestation s'organise contr
+  📉 2/10: BFM Crypto, la chronique : Balenciaga, le grand virage 
+  📉 5/10: Tchernobyl : le site doit être à nouveau sécurisé
+  📉 3/10: OM. « Un esprit transpire dans ce groupe » : la grande 
+  ✅ 9/10 [world] neutre: Fusillade en Pologne : le suspect de la tuerie d
+  📉 2/10: À moins de 300 €, ce pack Marshall avec une enceinte St
+  🌍 8/10 sans portée internationale : Jensen Huang: Silicon Valley superstar engulfed by
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.1h — Pologne : l’auteur de la tuerie de Cracovie 
+     10/10 · 7 média(s) · -1.7h — Nvidia ouvre une enquête sur son PDG Jensen 
+     10/10 · 3 média(s) · 0.1h — Fusillade en Pologne : le suspect de la tuer
+     9/10 · 3 média(s) · 0.1h — « Dana adore cette idée »: Donald Trump assu
+     10/10 · 3 média(s) · 1.0h — Donald Trump reconnaît que la politique d’ex
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (220 → 139 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → publication SANS image (texte seul)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram sauté pour ce post (pas d'image, texte seul)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Pologne : l’auteur de la tuerie de Cracovie est mort
+
+  ── Bilan du cycle (257 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.6-flash             🚫 quota
+        24. clé 5 × gemini-3.1-flash-lite        ✅
+        25. clé 5 × gemini-3.1-flash-lite        ✅
+        26. clé 5 × gemini-3.1-flash-lite        ✅
+        27. clé 5 × gemini-3.1-flash-lite        ✅
+        28. clé 1 × gemini-embedding-2-preview   🚫 quota
+        29. clé 1 × gemini-embedding-2           🚫 quota
+        30. clé 2 × gemini-embedding-001         🚫 quota
+        31. clé 2 × gemini-embedding-2-preview   🚫 quota
+        32. clé 2 × gemini-embedding-2           🚫 quota
+        33. clé 3 × gemini-embedding-001         🚫 quota
+        34. clé 3 × gemini-embedding-2-preview   🚫 quota
+        35. clé 3 × gemini-embedding-2           🚫 quota
+        36. clé 4 × gemini-embedding-001         🚫 quota
+        37. clé 4 × gemini-embedding-2-preview   🚫 quota
+        38. clé 4 × gemini-embedding-2           🚫 quota
+        39. clé 5 × gemini-embedding-001         ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 19 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-2-preview
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 792 · gemini 2-preview 799 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 75,852 entrée · 4,139 sortie
+     ✅ aucun appel payant
