@@ -1,0 +1,141 @@
+
+[06:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ã­ãã®æ¨ããã±ã ã¼ãã¼, Caleb, Bears, Baker, Bucs
+  🔎 « Caleb » : 1 article(s) frais, le plus récent il y a 6.0 h (Rezo Nòdwès)
+  ⏭️  « Caleb » écarté : Fait divers international sans impact direct en France.
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 6.5 h (Eurosport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Bears » écarté : trop secondaire (2/10)
+  🔎 « Baker » : 1 article(s) frais, le plus récent il y a 16.9 h (TradingView)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⏭️  « Baker » écarté : Simple donnee financiere sans interet general
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Jensen, #Nvidia
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/9 articles lus en 1.1s (48 déjà en cache)
+  📄 13/57 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 57 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧠 Même événement (jugé) : « Revendications des syndicats, pistes d… »
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 57 articles → 14 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 6 médias) : Nvidia launches investigation into CEO's affair wi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : BBC Business, CNBC, CoinDesk
+  🧮 Score 97.0/100 = gravité 10/10 → 45 + 6 médias +11 + frais 0.6h +13 + thème porteur +10 + portée mondiale +18
+  🧩 4 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [3m] La COP31 se tient du 9 au 20 novembre à Antalya, en Turquie, co-organisée avec
+      [2m] La présidence de la COP31 promeut l'objectif d'atteindre 35 % d'électricité da
+         ↳ France Info : Ne mentionne pas cet objectif précis de 35 % et se focalise sur 
+         motif : Périmètre différent de couverture de l'événement.
+      [1m] ⚡exclusif La Turquie mène une campagne anti-LGBT ayant entraîné de nombreuses arrestatio
+      [1m] ⚡exclusif La conférence s'ouvre dans le contexte de la guerre menée par les États-Unis c
+  🌙 Sujet fort (score 97) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : La maîtresse de Jensen Huang soupçonnée d'être une
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.1h +16 + imprévu 9/10 +18 + primeur +5 + portée internationale +10
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 4 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif Le conseil d'administration de Nvidia a ouvert une enquête indépendante concer
+      [1m] ⚡exclusif Jensen Huang a reconnu publiquement avoir entretenu une relation extraconjugal
+      [1m] ⚡exclusif Le conseil d'administration de Nvidia exprime sa confiance envers Jensen Huang
+      [1m] ⚡exclusif Des rapports de presse suggèrent qu'une responsable chinoise est soupçonnée d'
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mobilisation sociale : pour Sébastien Lecornu, la se
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 17 médias) : Revendications des syndicats, pistes du gouverneme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 20 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, Blockworks, CoinDesk, Cointelegraph, Decrypt
+  🧮 Score 68.5/100 = gravité 5/10 → 22 + 17 médias +18 + frais 1.6h +8 + thème porteur +10 + portée internationale +10
+  🔍 6 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [5m] Le Premier ministre Sébastien Lecornu réunit les partenaires sociaux à Matigno
+      [3m] Le gouvernement dispose d'une marge de manœuvre financière très limitée pour r
+      [2m] Les syndicats de la fonction publique ne sont pas conviés à la conférence soci
+      [4m] Le gouvernement envisage une revalorisation du Smic, actuellement fixé à 1 477
+         ↳ Midi Libre : La revalorisation du Smic pourrait être une simple anticipation 
+         motif : Midi Libre apporte des précisions techniques sur la mesure envisagée.
+      [4m] Sébastien Lecornu rencontrera les représentants des lycéens et étudiants l'apr
+      [1m] ⚡exclusif Les syndicats ont des revendications divergentes sur le montant de l'augmentat
+      [1m] ⚡exclusif La colère sociale est alimentée par la hausse des prix des carburants liée à l
+      [1m] ⚡exclusif Le directeur de l'OFCE estime que le gouvernement est dans une situation de gr
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 57 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (155 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         5. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         6. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+         7. clé 1 × gemini-3-flash               ⛔ inexistant
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        11. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        12. clé 2 × gemini-3-flash               ⛔ inexistant
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 1 × gemini-embedding-2-preview   🚫 quota
+        16. clé 1 × gemini-embedding-2           🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-2           🚫 quota
+        20. clé 3 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-2-preview   🚫 quota
+        22. clé 3 × gemini-embedding-2           🚫 quota
+        23. clé 4 × gemini-embedding-001         🚫 quota
+        24. clé 4 × gemini-embedding-2-preview   ✅
+        25. clé 1 × gemini-3.6-flash             🚫 quota
+        26. clé 2 × gemini-3.6-flash             🚫 quota
+        27. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        30. clé 3 × gemini-3.6-flash             🚫 quota
+        31. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.6-flash             🚫 quota
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 6 autres
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-3-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 797 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 14,962 entrée · 1,799 sortie
+     ✅ aucun appel payant
