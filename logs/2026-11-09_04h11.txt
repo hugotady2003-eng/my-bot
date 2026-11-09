@@ -1,0 +1,103 @@
+
+[04:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Caleb, Doran, Bucs, #LamansionVIP2, #LaGranjaGala
+  🔎 « Caleb » : 1 article(s) frais, le plus récent il y a 3.6 h (Rezo Nòdwès)
+  ⏭️  « Caleb » écarté : Actualite internationale mineure pour la France.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 2.3 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 14 (char 13) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Jensen, #Nvidia
+  📖 34 articles, tous en cache
+  📄 7/34 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 34 articles → 18 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : Nvidia investigates CEO Jensen Huang's relationshi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧮 Score 59.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 4.3h +2 + portée internationale +10
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 59) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Essonne : Une députée LFI blessée par un tir de mort
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : Nvidia launches investigation into CEO's affair wi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 68.0/100 = gravité 10/10 → 45 + 5 médias +11 + frais 4.3h +2 + portée internationale +10
+  🧩 5 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [4m] Nvidia a ouvert une enquête indépendante suite aux informations selon lesquell
+      [4m] Jensen Huang a admis son infidélité dans un message envoyé aux salariés et s'e
+      [2m] Le conseil d'administration de Nvidia a déclaré qu'il n'avait aucune raison de
+      [2m] Alice Huang est identifiée comme une dirigeante ou employée liée à Megaspeed, 
+      [2m] Jensen Huang reste pleinement engagé à continuer de diriger Nvidia sans interr
+  🌙 Sujet fort (score 68) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 34 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (57 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   🚫 quota
+        11. clé 1 × gemini-embedding-2           🚫 quota
+        12. clé 2 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-2-preview   🚫 quota
+        14. clé 2 × gemini-embedding-2           🚫 quota
+        15. clé 3 × gemini-embedding-001         🚫 quota
+        16. clé 3 × gemini-embedding-2-preview   🚫 quota
+        17. clé 3 × gemini-embedding-2           🚫 quota
+        18. clé 4 × gemini-embedding-001         ✅
+        19. clé 1 × gemini-3.6-flash             🚫 quota
+        20. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 2 × gemini-3.6-flash             🚫 quota
+        22. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        25. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.6-flash             🚫 quota
+        28. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.6-flash             🚫 quota
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2 (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,492 entrée · 1,167 sortie
+     ✅ aucun appel payant
