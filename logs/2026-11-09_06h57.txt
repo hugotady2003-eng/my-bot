@@ -1,0 +1,135 @@
+
+[06:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ã­ãã®æ¨ããã±ã ã¼ãã¼, Caleb, Bears, Bucs, Baker
+  🔎 « Caleb » : 1 article(s) frais, le plus récent il y a 6.4 h (Rezo Nòdwès)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Caleb » écarté : Fait divers international sans impact direct en France.
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 6.9 h (Eurosport)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Bears » écarté : Match de football américain hors actualité française.
+  🔎 « Bucs » : 1 article(s) frais, le plus récent il y a 0.3 h (Mezha.net)
+  ⏭️  « Bucs » écarté : trop secondaire (2/10)
+  🔎 « Baker » : 1 article(s) frais, le plus récent il y a 17.3 h (TradingView)
+  ⏭️  « Baker » écarté : Simple donnee financiere sans interet general
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Nvidia, #JensenHuang
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.8s (56 déjà en cache)
+  📄 13/58 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 58 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Budget : 49.3 ou ordonnances, le choix… »
+  🧠 Même événement (jugé) : « Revendications des syndicats, pistes d… »
+  🧩 58 articles → 16 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Mobilisation sociale : pour Sébastien Lecornu, la se
+  🚨 Sujet chaud (breaking, 21 médias) : Nvidia launches investigation into CEO's affair wi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 44 s
+  🧠 31 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC Business, BFM People, BFMTV, CNBC
+  🧮 Score 91.0/100 = gravité 10/10 → 45 + 21 médias +20 + frais 1.1h +8 + portée mondiale +18
+  🌙 Sujet fort (score 91) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 6 médias) : Revendications des syndicats, pistes du gouverneme
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : L'Express
+  🧮 Score 51.5/100 = gravité 5/10 → 22 + 6 médias +11 + frais 1.1h +8 + thème porteur +10
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [5m] Le Premier ministre Sébastien Lecornu réunit le patronat et les organisations 
+      [4m] Une hausse du Smic est attendue ou envisagée à l'issue de cette conférence soc
+         ↳ Le Monde : Le Monde ne mentionne pas explicitement la hausse du Smic parmi 
+         motif : Angle rédactionnel centré sur la chronologie globale du mouvement.
+      [2m] Les syndicats de la fonction publique ne sont pas conviés à la conférence soci
+      [3m] Le Premier ministre doit également rencontrer les représentants lycéens et étu
+      [1m] ⚡exclusif Les syndicats affichent des revendications salariales variées, la CGT demandan
+      [1m] ⚡exclusif L'acte IV de la mobilisation a rassemblé samedi 7 novembre 146 000 personnes e
+      [1m] ⚡exclusif La hausse du Smic pourrait consister en une avance d'un mois au 1er décembre e
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 21 médias) : Is Jensen Huang’s job on the line? Yale’s Jeffrey 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 77.5/100 = gravité 7/10 → 32 + 21 médias +20 + frais 1.1h +8 + portée mondiale +18
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 21 médias) : États-Unis : « Je ne faisais que plaisanter », Don
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.0/100 = gravité 4/10 → 18 + 21 médias +20 + frais 1.1h +8 + portée mondiale +18
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 21 médias) : La maîtresse du patron de Nvidia soupçonnée d'être
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.0/100 = gravité 8/10 → 36 + 21 médias +20 + frais 1.1h +8 + portée mondiale +18
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 58 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (96 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting property nam
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.6-flash             🚫 quota
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 1 × gemini-embedding-001         🚫 quota
+        27. clé 1 × gemini-embedding-2-preview   🚫 quota
+        28. clé 1 × gemini-embedding-2           🚫 quota
+        29. clé 2 × gemini-embedding-001         🚫 quota
+        30. clé 2 × gemini-embedding-2-preview   🚫 quota
+        31. clé 2 × gemini-embedding-2           🚫 quota
+        32. clé 3 × gemini-embedding-001         🚫 quota
+        33. clé 3 × gemini-embedding-2-preview   🚫 quota
+        34. clé 3 × gemini-embedding-2           🚫 quota
+        35. clé 4 × gemini-embedding-001         🚫 quota
+        36. clé 4 × gemini-embedding-2-preview   ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 6 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 5 × gemini-embedding-001 · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-2 · clé 5 × gemini-3.6-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 794 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 10,154 entrée · 984 sortie
+     ✅ aucun appel payant
