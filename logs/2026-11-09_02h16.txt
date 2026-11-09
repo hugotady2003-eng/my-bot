@@ -1,0 +1,112 @@
+
+[02:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Packers, Chargers, Jordan Love, Drake Maye, Gojek Mulai 1000 DiGoPay
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 2.7 h (DAZN)
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  🔎 « Chargers » : 1 article(s) frais, le plus récent il y a 11.8 h (Mezha.net)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Chargers » écarté : Match sportif international sans enjeu majeur en France
+  🔎 « Raiders » : 1 article(s) frais, le plus récent il y a 12.6 h (www.footballr.at)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Raiders » écarté : trop secondaire (2/10)
+  🔎 « Patriots » : 1 article(s) frais, le plus récent il y a 2.7 h (DAZN)
+  ⏭️  « Patriots » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Jensen, #Nvidia
+  📖 32 articles, tous en cache
+  📄 7/32 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 32 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Democrats amp up Trump investigation t… »
+  🧩 32 articles → 15 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 5 médias) : Nvidia investigates CEO Jensen Huang's relationshi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 61.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 2.4h +4 + portée internationale +10
+  🧩 6 affirmation(s) : 6 partagée(s) · 1 divergente(s) · 0 exclusive(s)
+      [4m] Le conseil d'administration de Nvidia a ouvert une enquête indépendante sur le
+      [4m] Jensen Huang a admis avoir eu une liaison extraconjugale avec Alice Huang.
+      [3m] Les agences de renseignement américaines considèrent Alice Huang comme une esp
+      [2m] Le conseil d'administration de Nvidia déclare n'avoir aucune raison de croire 
+      [2m] Alice Huang est une cadre dirigeante au sein de l'entreprise Megaspeed, basée 
+         ↳ The Verge : Alice Huang est décrite comme une cadre dans le domaine de l'IA.
+         motif : Précision sur le secteur d'activité de la personne concernée.
+      [2m] Jensen Huang a affirmé son intention de rester à la tête de Nvidia.
+  🌙 Sujet fort (score 61) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Essonne : Une députée LFI blessée par un tir de mort
+  🚨 Sujet chaud (breaking, 5 médias) : Nvidia launches investigation into CEO's affair wi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 10/10 → 45 + 5 médias +11 + frais 2.4h +4 + portée internationale +10
+  🧩 8 affirmation(s) : 8 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [4m] Le conseil d'administration de Nvidia a ouvert une enquête indépendante concer
+      [4m] Jensen Huang a admis avoir eu une liaison avec Alice Huang, une femme soupçonn
+      [2m] Le conseil d'administration de Nvidia déclare ne pas avoir de preuves que des 
+      [3m] Jensen Huang a présenté des excuses publiques à sa famille et aux parties pren
+      [2m] Alice Huang est une cadre travaillant pour une entreprise de puces basée à Sin
+      [2m] Jensen Huang a l'intention de poursuivre ses fonctions de PDG de Nvidia.
+      [2m] Les soupçons d'espionnage à l'encontre d'Alice Huang proviennent d'agences de 
+      [2m] L'information sur l'implication d'Alice Huang dans une opération d'espionnage 
+  🌙 Sujet fort (score 70) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 32 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (50 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 1 × gemini-embedding-2-preview   🚫 quota
+        21. clé 1 × gemini-embedding-2           🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-2           🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-2-preview   ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-embedding-2 · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-embedding-2 (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,832 entrée · 1,498 sortie
+     ✅ aucun appel payant
