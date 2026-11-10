@@ -1,0 +1,251 @@
+
+[08:16] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #10KasÄ±m, Vikings, #ã¹ã¿ã¼ããã¯ã¹ã1ãæéæ¯æ¥æ¥½ããã, Carson Wentz, #10NovemberTetapDamai
+  🔎 « Vikings » : 1 article(s) frais, le plus récent il y a 0.6 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « Vikings » écarté : trop secondaire (2/10)
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  💰 3 sujets chauds analysés en UN seul appel (au lieu de 3)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/8 articles lus en 1.4s (34 déjà en cache)
+  📄 9/44 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Sciences et Avenir · CoinDesk · Libération · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Avec l’attribution des cyberattaques c… »
+  🧠 Même événement (jugé) : « Cyberattaque contre des frigos: la Fra… »
+  🧠 Même événement (jugé) : « La France "ne s'interdit rien" dans la… »
+  🧩 44 articles → 41 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Iran : suspension des bombardements, blo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 97.0/100 = gravité 10/10 → 45 + frais 0.3h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (185 → 158 car.)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Jensen Huang’s alleged honeypot scandal has inspired
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Brigitte et Emmanuel Macron portent de nouveau pla
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (174 → 128 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : les négociations directes entr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.5/100 = gravité 9/10 → 40 + frais 0.1h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 12 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les électeurs de Californie rejettent une taxe de 5 
+  🚨 Sujet chaud (breaking, 1 médias) : La lente remontée du taux de chômage fait une timi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 51.0/100 = gravité 6/10 → 27 + frais 0.1h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Soupçons d’espionnage chez Nvidia : « Je crois qu’
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (199 → 146 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Trump says FBI investigating Nvidia boss's affair 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + frais 3.4h +4 + portée mondiale +18
+  🕒 Âge de l'article : 3.4h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Bitcoin miner MARA sold 13,597 BTC for $1.1 billio
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 53.5/100 = gravité 7/10 → 32 + frais 2.0h +4 + portée mondiale +18
+  🕒 Âge de l'article : 2.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (193 → 96 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-4, pénalisé par « horoscope ») : Bose Promo Code: 40% Off for November 2026
+  🚨 Sujet chaud (breaking, 1 médias) : L’univers cinématographique DC Comics de James Gun
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 46.5/100 = gravité 5/10 → 22 + frais 0.2h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (181 → 153 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (16h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 44 articles à analyser...
+  ♻️ 6/10 [business] (déjà analysé, cache) : Les électeurs de Californie rejettent une taxe de 
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Cyberattaque contre des réfrigérateurs de supermar
+  ♻️ 9/10 [world] (déjà analysé, cache) : « J’ai du mal à le voir discuter avec Poutine ou T
+  ♻️ 6/10 [business] (déjà analysé, cache) : La lente remontée du taux de chômage fait une timi
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : les négociations directes entr
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Soupçons d’espionnage chez Nvidia : « Je crois qu’
+  ♻️ 7/10 [world] (déjà analysé, cache) : Brigitte et Emmanuel Macron portent de nouveau pla
+  ♻️ 10/10 [world] (déjà analysé, cache) : Guerre en Iran : suspension des bombardements, blo
+  ♻️ 6/10 [space] (déjà analysé, cache) : Ce que la fusée géante Starship va tenter dans les
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Jensen Huang, le patron de Nvidia, au cœur de soup
+  ♻️ 6/10 [space] (déjà analysé, cache) : Un astronaute pakistanais bientôt à bord de la sta
+  ♻️ 8/10 [world] (déjà analysé, cache) : L'ex-comédien britannique Russell Brand condamné à
+  ♻️ 9/10 [world] (déjà analysé, cache) : "Que quelqu'un comme Teddy Riner..." : Emmanuel Ma
+  ♻️ 7/10 [business] (déjà analysé, cache) : Cybertruck : les clients vont récupérer leur acomp
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Dans une lettre, des salariés de Microsoft dénonce
+  ♻️ 8/10 [business] (déjà analysé, cache) : Trump says FBI investigating Nvidia boss's affair 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Ukraine peace talks resume with 'some flexibility'
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump says more US attacks on Iran 'highly unlikel
+  ♻️ 8/10 [business] (déjà analysé, cache) : Trump says FBI investigating Nvidia boss's affair 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Palestine Weekly: West Bank on fire – and Gaza’s t
+  ♻️ 6/10 [business] (déjà analysé, cache) : Jensen Huang affair puts Nvidia's future at risk, 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump says Iran war to end 'fairly soon,' plays do
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin miner MARA sold 13,597 BTC for $1.1 billio
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : XRP Ledger maps out quantum-proof accounts, with n
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI builds kill switch to stop rogue agents wit
+  ♻️ 7/10 [business] (déjà analysé, cache) : Trump Media swings to $410 million profit in Q3, d
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Jensen Huang’s alleged honeypot scandal has inspir
+  ♻️ 7/10 [business] (déjà analysé, cache) : Here’s what Trump said he knew about Jensen Huang
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Canadian court certifies class action against Appl
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Apple Intelligence completes regulatory registrati
+  🧠 Batch analyse de 11 articles...
+  ✅ 8/10 [world] large: Avec l’attribution des cyberattaques contre les 
+  📉 3/10: « C'est une bonne nouvelle », le grand entretien avec E
+  ⏩ Doublon: Cyberattaque contre des frigos: la France "ne s'interdi
+  ⏩ Doublon: La France "ne s'interdit rien" dans la riposte contre l
+  ⏩ Doublon: Cyberattaques visant des frigos de supermarchés : la Fr
+  📉 4/10: Nous avons accéléré la même IA jusqu’à 72 % sur un PC N
+  📉 3/10: Uber veut aussi vous trouver une place de parking
+  📉 4/10: La division jeux vidéo de Skydance touchée par des lice
+  📉 3/10: Vietnam's FPT sees rising demand for AI adoption in Jap
+  📉 5/10: SoftBank swings to first-half loss as AI ambitions face
+  📉 2/10: Bose Promo Code: 40% Off for November 2026
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.2h — Guerre en Ukraine : les négociations directe
+     10/10 · 4 média(s) · 0.2h — Soupçons d’espionnage chez Nvidia : « Je cro
+     10/10 · 3 média(s) · 0.3h — Guerre en Iran : suspension des bombardement
+     10/10 · 4 média(s) · 0.4h — Trump says Iran war to end 'fairly soon,' pl
+     10/10 · 4 média(s) · 0.2h — Avec l’attribution des cyberattaques contre 
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Guerre en Ukraine : les négociations directes entre Kie
+
+  ── Bilan du cycle (338 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.6-flash             🚫 quota
+        24. clé 5 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-embedding-2           🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-2-preview   🚫 quota
+        28. clé 2 × gemini-embedding-2           🚫 quota
+        29. clé 3 × gemini-embedding-001         🚫 quota
+        30. clé 3 × gemini-embedding-2-preview   🚫 quota
+        31. clé 3 × gemini-embedding-2           🚫 quota
+        32. clé 4 × gemini-embedding-001         🚫 quota
+        33. clé 4 × gemini-embedding-2-preview   🚫 quota
+        34. clé 4 × gemini-embedding-2           🚫 quota
+        35. clé 5 × gemini-embedding-001         🚫 quota
+        36. clé 5 × gemini-embedding-2-preview   🚫 quota
+        37. clé 5 × gemini-embedding-2           🚫 quota
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 23 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-2-preview · clé 1 × gemini-embedding-001 · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 759 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 114,699 entrée · 3,077 sortie
+     ✅ aucun appel payant
