@@ -1,0 +1,123 @@
+
+[01:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Broncano, #ãã¿ãä¸ç·ã«ã¦ãããã©ãã, Jags, Massie, Gunn
+  🔎 « Jags » : 1 article(s) frais, le plus récent il y a 9.8 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview, gemini-embedding-2
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Jags » écarté : Actualite sportive americaine mineure pour la France
+  🔎 « Gunn » : 1 article(s) frais, le plus récent il y a 6.8 h (Première)
+  ⏭️  « Gunn » écarté : Fausse information ou canular sur les reseaux
+  🔎 « Jordan Davis » : 1 article(s) frais, le plus récent il y a 2.5 h (Touchdown Actu)
+  ⏭️  « Jordan Davis » écarté : trop secondaire (3/10)
+  🔎 « Fable 5.2 » : 1 article(s) frais, le plus récent il y a 4.2 h (Clubic)
+  ✅ « Fable 5.2 » retenu : Annonce majeure de nouveaux modèles par Anthropic. (7/10) (+1 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Massie, #Hegseth, #Fable52
+  📖 51 articles, tous en cache
+  📄 12/53 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Libération · Sciences et Avenir · CoinDesk · Blockworks
+  🧠 51 vecteurs calculés en 1 appel(s)
+  🧩 53 articles → 10 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 20 médias) : Zoe Kleinman: Nvidia CEO's affair will cause rippl
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 29 article(s) sur un autre sujet, écartés du dossier : 9to5Google, 9to5Mac, ActuGaming, Al Jazeera, BBC
+  🧮 Score 86.5/100 = gravité 9/10 → 40 + 20 médias +20 + frais 1.8h +8 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 86) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 11 médias) : « Je suis un simple exécutant » : les explications
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 12 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFM People, BFMTV, France Bleu, Journal du Geek
+  🧮 Score 76.5/100 = gravité 7/10 → 32 + 11 médias +15 + frais 4.2h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Etats-Unis : le ministre de la Défense visé par une 
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : États-Unis : Le Congrès lance une procédure de desti
+  🚨 Sujet chaud (breaking, 20 médias) : Guerre en Ukraine : des hackers infiltrent des don
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.0/100 = gravité 8/10 → 36 + 20 médias +20 + frais 1.8h +8 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 20 médias) : Trump says FBI investigating Nvidia boss's affair 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.0/100 = gravité 8/10 → 36 + 20 médias +20 + frais 1.8h +8 + portée mondiale +18
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 36 s
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, ? médias) : Claude Fable 5.2 et Mythos 5.2 lancés en même temp
+  📈 Sujet en tendance : score 4 → 5 (+1)
+  → Sujet chaud pas assez fort (score 5) → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 53 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (97 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-embedding-001         🚫 quota
+        26. clé 1 × gemini-embedding-2-preview   🚫 quota
+        27. clé 1 × gemini-embedding-2           🚫 quota
+        28. clé 2 × gemini-embedding-001         🚫 quota
+        29. clé 2 × gemini-embedding-2-preview   🚫 quota
+        30. clé 2 × gemini-embedding-2           🚫 quota
+        31. clé 3 × gemini-embedding-001         🚫 quota
+        32. clé 3 × gemini-embedding-2-preview   🚫 quota
+        33. clé 3 × gemini-embedding-2           🚫 quota
+        34. clé 4 × gemini-embedding-001         ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 4 × gemini-embedding-2 · clé 4 × gemini-embedding-2-preview · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-embedding-2 · clé 5 × gemini-embedding-2-preview · clé 5 × gemini-embedding-001 (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 799 · gemini 2-preview 800 · gemini 2 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 13,963 entrée · 1,229 sortie
+     ✅ aucun appel payant
