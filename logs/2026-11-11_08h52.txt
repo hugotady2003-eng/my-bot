@@ -1,0 +1,138 @@
+
+[08:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  📈 50 tendances lues sur trends24.in : ããã­ã¼, Wanda, Coachella, #VisionQuest, #JUNGKOOKxGRAFF
+  🔎 « Wanda » : 1 article(s) frais, le plus récent il y a 4.1 h (Mezha.net)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Wanda » écarté : Simple spéculation sur une série télévisée.
+  🔎 « Coachella » : 1 article(s) frais, le plus récent il y a 1.2 h (Hypebeast)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Coachella » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Coachella » écarté : jugement indisponible
+  🔎 « VisionQuest » : 1 article(s) frais, le plus récent il y a 1.1 h (Disneyphile)
+  ⚠️ Jugement de « VisionQuest » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « VisionQuest » écarté : jugement indisponible
+  🌍 « JUNGKOOKxGRAFF » : aucune reprise en français, source internationale retenue
+  🌍 « BhaiDooj » : aucune reprise en français, source internationale retenue
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 1.0s (32 déjà en cache)
+  📄 6/36 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · Cointelegraph · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 36 articles → 36 événement(s)
+  ⚪ Écarté (-5, pénalisé par « pourrait, comment  ») : Présidentielle 2027 : Teddy Riner candidat pour frag
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : à Abou Dhabi, les pourparlers 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 68.0/100 = gravité 8/10 → 36 + frais 3.4h +4 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 3.4h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgvn4zaMS6btAq969Adtg'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Route du Rhum : Basile Bourgnon sur les vagues de so
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sursis inespéré pour Pete Hegseth : le chef du Penta
+  🚨 Sujet chaud (breaking, 1 médias) : L’affaire Jensen Huang : quand un scandale privé d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.5/100 = gravité 9/10 → 40 + frais 0.9h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgvn5EevjdZbvDkJx9oTs'}
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 36 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : à Abou Dhabi, les pourparlers 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Russie : incendie dans un important port russe sur
+  ♻️ 7/10 [world] (déjà analysé, cache) : Cyberattaques : jusqu'où peut aller l'Iran ?
+  ♻️ 7/10 [business] (déjà analysé, cache) : "Ridicule" pour les salariés, "très compliquée" po
+  ♻️ 7/10 [world] (déjà analysé, cache) : Haïti : le président du Salvador Nayib Bukele en g
+  ♻️ 9/10 [world] (déjà analysé, cache) : Présidentielle 2027 : Teddy Riner candidat pour fr
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : incendie dans un important por
+  ♻️ 9/10 [world] (déjà analysé, cache) : Sursis inespéré pour Pete Hegseth : le chef du Pen
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Digital Fairness Act : l'UE veut imposer la résili
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 sera jouable sur Xbox One grâce au cloud gam
+  ♻️ 9/10 [gta6] (déjà analysé, cache) : Vous n’avez pas besoin de PS5 ou de Xbox Series po
+  ♻️ 9/10 [business] (déjà analysé, cache) : L’affaire Jensen Huang : quand un scandale privé d
+  ♻️ 9/10 [gta6] (déjà analysé, cache) : Le trailer du préchargement de GTA 6 dévoile près 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Three Iran-backed suspects plotted attacks includi
+  ♻️ 8/10 [world] (déjà analysé, cache) : US House blocks bid to impeach Defence Secretary P
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia hires major US law firm to investigate alle
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 7/10 [business] (déjà analysé, cache) : Nvidia's Huang tries to project 'business as usual
+  ♻️ 9/10 [ai] (déjà analysé, cache) : Anthropic sets IPO price range of $70 to $78, look
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Goldman Sachs, Citi among banks said to commit $27
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Initia confirms second exploit in 3 weeks, $3.27M 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Trump Media Posts $410 Million Profit. Bitcoin Gai
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia Erases 2026 Gains as Republicans Threaten J
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [business] (déjà analysé, cache) : Nvidia’s crisis has corporate governance experts r
+  🧠 Batch analyse de 11 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgvn5WrkfYyjy2bT4WFw9'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.2h — Présidentielle 2027 : Teddy Riner candidat p
+     10/10 · 2 média(s) · 0.7h — Russie : incendie dans un important port rus
+     10/10 · 2 média(s) · 0.9h — L’affaire Jensen Huang : quand un scandale p
+     10/10 · 3 média(s) · 1.6h — Guerre en Ukraine : incendie dans un importa
+     10/10 · 2 média(s) · 1.1h — Sursis inespéré pour Pete Hegseth : le chef 
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgvn5qoXeuShQNxW9sU2V'}
+  → 1 sélectionné(s) [world]
+  ❌ Envoi 'Présidentielle 2027 : Teddy Riner candid': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgvn65ucDp4oe83jsU8jq'}
+
+  ── Bilan du cycle (103 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.6-flash             🚫 quota
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 5 × gemini-3.6-flash             🚫 quota
+        24. clé 1 × gemini-embedding-001         🚫 quota
+        25. clé 1 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-001         🚫 quota
+        29. clé 3 × gemini-embedding-2-preview   🚫 quota
+        30. clé 4 × gemini-embedding-001         🚫 quota
+        31. clé 4 × gemini-embedding-2-preview   🚫 quota
+        32. clé 5 × gemini-embedding-001         🚫 quota
+        33. clé 5 × gemini-embedding-2-preview   🚫 quota
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/10 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 799 · gemini 2-preview 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 790 entrée · 38 sortie
+     ⚠️ 16 appel(s) payés chez Claude (le gratuit n'a pas suffi)
