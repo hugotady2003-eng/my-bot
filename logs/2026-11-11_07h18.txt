@@ -1,0 +1,190 @@
+
+[07:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Wanda, #VisionQuest, ããã­ã¼, Paul George, #JUNGKOOKxGRAFF
+  🔎 « Wanda » : 1 article(s) frais, le plus récent il y a 2.5 h (Mezha.net)
+  ⏭️  « Wanda » écarté : Simple spéculation sur une série à venir
+  🔎 « VisionQuest » : 1 article(s) frais, le plus récent il y a 0.5 h (Superpouvoir.com)
+  ⏭️  « VisionQuest » écarté : Simple interrogation sur la diffusion d'une série.
+  🔎 « Paul George » : 1 article(s) frais, le plus récent il y a 0.6 h (Basket USA)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Paul George » écarté : trop secondaire (3/10)
+  🌍 « JUNGKOOKxGRAFF » : aucune reprise en français, source internationale retenue
+  🔎 « dwts » : 1 article(s) frais, le plus récent il y a 10.2 h (IMDb)
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting ',' delimiter: line 1 column 20 (char 19) → couple suivant
+  ⏭️  « dwts » écarté : Divertissement TV américain sans intérêt en France.
+  🌍 « BhaiDooj » : aucune reprise en français, source internationale retenue
+  🔎 « Jaylen Brown » : 1 article(s) frais, le plus récent il y a 0.4 h (L'Équipe)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Jaylen Brown » écarté : trop secondaire (3/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/9 articles lus en 1.6s (49 déjà en cache)
+  📄 8/58 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · Cointelegraph · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧠 Même événement (jugé) : « "Ridicule" pour les salariés, "très co… »
+  🧩 58 articles → 57 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : Retailleau propose à Philippe,
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : à Abou Dhabi, les pourparlers 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 77.0/100 = gravité 8/10 → 36 + frais 1.8h +8 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (206 → 158 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Volodymyr Zelensky (Wikipedia)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : US House blocks bid to impeach Defence Secretary P
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 50.0/100 = gravité 8/10 → 36 + frais 2.8h +4 + portée internationale +10
+  🕒 Âge de l'article : 2.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (177 → 123 car.)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 17 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 58 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : à Abou Dhabi, les pourparlers 
+  ♻️ 7/10 [business] (déjà analysé, cache) : "Ridicule" pour les salariés, "très compliquée" po
+  ♻️ 9/10 [world] (déjà analysé, cache) : Présidentielle 2027 : Éric Zemmour, président du p
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre au Moyen-Orient : trois « agents iraniens »
+  ♻️ 8/10 [world] (déjà analysé, cache) : Pourparlers Ukraine-Russie : à Abu Dhabi, des « ch
+  ♻️ 6/10 [world] (déjà analysé, cache) : « Construire une communauté Asie-Pacifique pour pr
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 sera jouable sur Xbox One grâce au cloud gam
+  ♻️ 9/10 [gta6] (déjà analysé, cache) : Vous n’avez pas besoin de PS5 ou de Xbox Series po
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : GTA 6 sera jouable sur une console à 65 € : est-ce
+  ♻️ 9/10 [gta6] (déjà analysé, cache) : GTA 6 devient le jeu le plus précommandé de l’hist
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : PlayStation annule le jeu-service Fairgames, annon
+  ♻️ 9/10 [gta6] (déjà analysé, cache) : Le trailer du préchargement de GTA 6 dévoile près 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Three Iran-backed suspects plotted attacks includi
+  ♻️ 8/10 [world] (déjà analysé, cache) : US House blocks bid to impeach Defence Secretary P
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia hires major US law firm to investigate alle
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 7/10 [business] (déjà analysé, cache) : Nvidia's Huang tries to project 'business as usual
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Goldman Sachs, Citi among banks said to commit $27
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Initia confirms second exploit in 3 weeks, $3.27M 
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin slides below $74,000 after hotter-than-exp
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Trump Media Posts $410 Million Profit. Bitcoin Gai
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia Erases 2026 Gains as Republicans Threaten J
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI, Anthropic face new oversight as New York’s
+  🎯 Pré-classement : 14 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 4/10: Conditionnement des aides aux entreprises : derrière la
+  📉 4/10: Viols multiples, soumission chimique et vidéos : deux a
+  ✅ 7/10 [ai] large: OpenAI lance une "Control Room" pour interrompre
+  📉 5/10: Présidentielle 2027 : Retailleau propose à Philippe, At
+  📉 3/10: "Je rajoute des chaussettes sur mes chaussettes": ces F
+  🌍 6/10 sans portée internationale : Across Protocol restores website after hackers hij
+  📉 4/10: IHI to mass-produce dual-use satellites in Japan
+  📉 4/10: End of an era: Apple Support Community forums will perm
+  📉 3/10: Seagate's new hybrid drive raises some old questions
+  📉 4/10: BotPsy: On-Device Personal Assistant with a Sub-Billion
+  📉 3/10: 11-Novembre: des commémorations de l'armistice partout 
+  📉 2/10: Mémoire cash - ChuChu Rocket ! Le puzzle-game génial (e
+  📉 4/10: Poundland hopeful for last-minute rescue deal to stave 
+  📉 3/10: "Saint Lucky Luke": les secrets du nouvel album des ave
+  📉 5/10: China offers to buy more Papua New Guinea gas after Tai
+  📉 5/10: Microsoft says tech firms must 'prove' AI data centers 
+  📉 3/10: "J'ai été naïve" : attaquée par Alexis Corbière en plei
+  📉 2/10: «Infirmary», «Everytime», «Izolyatsia» ... Nos critique
+  📉 2/10: Pierre Gagnaire ne voulait pas être chef à la place du 
+  📉 4/10: South African swimmer Tatjana Smith switches allegiance
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.5h — Pourparlers Ukraine-Russie : à Abu Dhabi, de
+     10/10 · 2 média(s) · 1.8h — Guerre en Ukraine : à Abou Dhabi, les pourpa
+     8/10 · 1 média(s) · 0.3h — Guerre au Moyen-Orient : trois « agents iran
+     8/10 · 1 média(s) · 0.4h — Initia confirms second exploit in 3 weeks, $
+     8/10 · 1 média(s) · 0.1h — OpenAI lance une "Control Room" pour interro
+  ✂️ Éphéméride resserré (218 → 119 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (185 → 122 car.)
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Pourparlers Ukraine-Russie : à Abu Dhabi, des « changem
+
+  ── Bilan du cycle (182 s) ──
+     écartés : 1 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         4. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         5. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         6. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         7. clé 1 × gemini-3-flash               ⛔ inexistant
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        10. clé 2 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.6-flash             🚫 quota
+        12. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-embedding-2-preview   🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-2-preview   🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-2-preview   🚫 quota
+        23. clé 4 × gemini-embedding-001         🚫 quota
+        24. clé 4 × gemini-embedding-2-preview   🚫 quota
+        25. clé 5 × gemini-embedding-001         🚫 quota
+        26. clé 5 × gemini-embedding-2-preview   🚫 quota
+        27. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        28. clé 3 × gemini-3.6-flash             🚫 quota
+        29. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        30. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        31. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.6-flash             🚫 quota
+        36. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 10 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/10 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800 · gemini 2-preview 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 48,904 entrée · 2,006 sortie
+     ✅ aucun appel payant
