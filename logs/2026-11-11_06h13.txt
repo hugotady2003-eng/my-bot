@@ -1,0 +1,128 @@
+
+[06:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : WANDA, #VisionQuest, ããã­ã¼, Paul George, #dwts
+  🔎 « WANDA » : 1 article(s) frais, le plus récent il y a 1.4 h (Mezha.net)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « WANDA » écarté : Spéculation sur une série de fiction.
+  🔎 « VisionQuest » : 1 article(s) frais, le plus récent il y a 0.4 h (Superpouvoir.com)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « VisionQuest » écarté : Analyse d'une série sans fait nouveau.
+  🔎 « Paul George » : 1 article(s) frais, le plus récent il y a 14.5 h (Basket USA)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Paul George » écarté : trop secondaire (3/10)
+  🔎 « dwts » : 1 article(s) frais, le plus récent il y a 9.1 h (IMDb)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « dwts » écarté : Divertissement américain sans lien direct en France
+  🔎 « Tatum » : 1 article(s) frais, le plus récent il y a 9.7 h (Basket USA)
+  ⏭️  « Tatum » écarté : trop secondaire (4/10)
+  🔎 « Jaylen Brown » : 1 article(s) frais, le plus récent il y a 9.7 h (Basket USA)
+  ⏭️  « Jaylen Brown » écarté : Simple match de saison régulière de basket.
+  🔎 « Celtics » : 1 article(s) frais, le plus récent il y a 10.9 h (Basket USA)
+  ⏭️  « Celtics » écarté : Simple declaration sportive sans evenement majeur
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  📖 5/5 articles lus en 1.4s (64 déjà en cache)
+  📄 9/69 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Libération · CoinDesk · Blockworks · OpenAI
+  🧠 69 vecteurs calculés en 1 appel(s)
+  🧩 69 articles → 20 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Etats-Unis : Pete Hegseth, défiant et offensif, écha
+  🚨 Sujet chaud (breaking, 31 médias) : États-Unis : Hegseth sauve sa peau à la tête du Pe
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 36 s
+  🧠 44 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Google, 9to5Mac, Al Jazeera, Ars Technica
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + 31 médias +20 + frais 4.2h +2 + imprévu 6/10 +4 + portée mondiale +18
+  🧩 3 affirmation(s) : 1 partagée(s) · 3 divergente(s) · 0 exclusive(s)
+      [2m] La santé financière de l'entreprise Trump Media & Technology Group fait l'obje
+         ↳ Decrypt : Trump Media enregistre un bénéfice de 410 millions de dollars, t
+         motif : Utilisation de sources, méthodologies ou périodes financières différen
+      [1m] L'action et les investissements de Trump Media & Technology Group ont connu un
+         ↳ Decrypt : Trump Media affiche des résultats positifs avec un bénéfice net 
+         motif : Contradiction directe sur la situation financière globale de l'entrepr
+      [1m] Trump Media a réalisé un bénéfice net de 410 millions de dollars grâce aux cry
+         ↳ BFMTV : L'action s'est effondrée et les investissements dans les cryptom
+         motif : Évaluation opposée de la performance des actifs numériques.
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 69 articles à analyser...
+  → 1 sélectionné(s) [gta6]
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 2 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : GTA 6 devient le jeu le plus précommandé de l’histoire
+
+  ── Bilan du cycle (159 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        15. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 4 × gemini-3.1-flash-lite        ✅
+        17. clé 3 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.6-flash             🚫 quota
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-embedding-2-preview   🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-2-preview   🚫 quota
+        28. clé 3 × gemini-embedding-001         🚫 quota
+        29. clé 3 × gemini-embedding-2-preview   🚫 quota
+        30. clé 4 × gemini-embedding-001         🚫 quota
+        31. clé 4 × gemini-embedding-2-preview   🚫 quota
+        32. clé 5 × gemini-embedding-001         🚫 quota
+        33. clé 5 × gemini-embedding-2-preview   ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 1/10 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 800 · gemini 2-preview 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 16,883 entrée · 980 sortie
+     ✅ aucun appel payant
