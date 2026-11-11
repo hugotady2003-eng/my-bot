@@ -1,0 +1,107 @@
+
+[00:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Veterans Day, #ãªã«ãã¾ã¤ã, Merab, Tomb of the Unknown Soldier, Usman
+  🔎 « Veterans Day » : 1 article(s) frais, le plus récent il y a 3.1 h (L'Est Républicain)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Veterans Day » écarté : Célébration récurrente sans nouveauté majeure.
+  🔎 « Merab » : 1 article(s) frais, le plus récent il y a 2.7 h (Le Parisien)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Merab » écarté : trop secondaire (4/10)
+  🔎 « Usman » : 1 article(s) frais, le plus récent il y a 4.0 h (RMC Sport)
+  ⏭️  « Usman » écarté : trop secondaire (4/10)
+  🔎 « Jordi Wild » : 1 article(s) frais, le plus récent il y a 4.5 h (Demócrata)
+  ⏭️  « Jordi Wild » écarté : Actualite politique espagnole sans impact direct en France
+  📖 3/3 articles lus en 0.9s (27 déjà en cache)
+  📄 3/30 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · CoinDesk · Blockworks
+  🧠 30 vecteurs calculés en 1 appel(s)
+  🧩 30 articles → 17 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (1, pénalisé par « comment  ») : Présidentielle 2027 : comment Emmanuel Macron a adou
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Emmanuel Macron : un garde d'honneur s'effondre à 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 0.9h +13 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Un garde d'honneur s'est effondré et a perdu connaissance sur le parvis de l'É
+      [1m] ⚡exclusif Emmanuel Macron et des membres du personnel se sont rapidement dirigés vers le
+         motif : Mention absente dans l'autre article.
+      [1m] ⚡exclusif L'état de santé du militaire et la raison de son évanouissement ne sont pas co
+         motif : Public ne mentionne pas l'état de santé.
+      [1m] ⚡exclusif Emmanuel Macron a présidé la cérémonie de commémoration de l'armistice à l'Arc
+         motif : La Dépêche se focalise uniquement sur l'Élysée.
+      [1m] ⚡exclusif Le Premier ministre Sébastien Lecornu s'est déplacé à Vernon l'après-midi du 1
+         motif : Information absente chez La Dépêche.
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (31h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 4 médias) : Nvidia prepares to oust Jensen Huang, WSJ reports 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : CoinDesk
+  🧮 Score 81.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 0.3h +16 + portée mondiale +18
+  🧩 6 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] Le conseil d'administration de Nvidia se prépare à destituer le PDG Jensen Hua
+      [3m] Jensen Huang a admis avoir eu une liaison extraconjugale avec une femme soupço
+      [2m] ⚡exclusif Jensen Huang a eu une seconde liaison avec Kimberly Powell, vice-présidente de
+      [1m] ⚡exclusif Des membres du Congrès américain appellent à la démission de Jensen Huang et é
+      [1m] ⚡exclusif L'action Nvidia a chuté de plus de 7 % dans les échanges après la clôture suit
+      [1m] ⚡exclusif Nvidia a mandaté des experts juridiques pour enquêter sur la situation.
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 30 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (66 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-embedding-2-preview   🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-2-preview   🚫 quota
+        22. clé 3 × gemini-embedding-001         ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-3.1-flash-lite (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 6/10 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,077 entrée · 1,171 sortie
+     ✅ aucun appel payant
