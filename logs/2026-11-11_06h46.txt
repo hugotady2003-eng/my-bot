@@ -1,0 +1,113 @@
+
+[06:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : WANDA, #VisionQuest, ããã­ã¼, Paul George, #dwts
+  🔎 « WANDA » : 1 article(s) frais, le plus récent il y a 2.0 h (Mezha.net)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « WANDA » écarté : Spéculation sur une série de fiction.
+  🔎 « VisionQuest » : 1 article(s) frais, le plus récent il y a 1.0 h (Superpouvoir.com)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « VisionQuest » écarté : Simple récapitulatif d'épisode de série.
+  🔎 « Paul George » : 1 article(s) frais, le plus récent il y a 0.1 h (Basket USA)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Paul George » écarté : trop secondaire (4/10)
+  🔎 « dwts » : 1 article(s) frais, le plus récent il y a 9.7 h (IMDb)
+  ⏭️  « dwts » écarté : Divertissement américain sans impact en France.
+  🔎 « Tatum » : 1 article(s) frais, le plus récent il y a 0.1 h (Basket USA)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Tatum » écarté : trop secondaire (3/10)
+  🔎 « Jaylen Brown » : 1 article(s) frais, le plus récent il y a 10.2 h (Basket USA)
+  ⏭️  « Jaylen Brown » écarté : trop secondaire (3/10)
+  🔎 « Celtics » : 1 article(s) frais, le plus récent il y a 0.1 h (Basket USA)
+  ⏭️  « Celtics » écarté : trop secondaire (3/10)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/7 articles lus en 1.5s (70 déjà en cache)
+  📄 12/77 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · OpenAI · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 77 articles → 77 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Le déni n'est plus possible": Bruno Retailleau prop
+  🚨 Sujet chaud (breaking, 1 médias) : États-Unis : Hegseth sauve sa peau à la tête du Pe
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 51.5/100 = gravité 7/10 → 32 + frais 4.6h +2 + portée mondiale +18
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Etats-Unis : Pete Hegseth, défiant et offensif, écha
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : à Abu Dhabi, les pourparlers r
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 77.0/100 = gravité 8/10 → 36 + frais 1.3h +8 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🌙 Sujet fort (score 77) mais nuit → il attendra le matin
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Les navigateurs français Corentin Horeau et Basile B
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 77 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (55 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        ✅
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.6-flash             🚫 quota
+        14. clé 4 × gemini-3.5-flash-lite        ✅
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 1 × gemini-embedding-2-preview   🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-2-preview   🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-2-preview   🚫 quota
+        26. clé 4 × gemini-embedding-001         🚫 quota
+        27. clé 4 × gemini-embedding-2-preview   🚫 quota
+        28. clé 5 × gemini-embedding-001         🚫 quota
+        29. clé 5 × gemini-embedding-2-preview   🚫 quota
+        30. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        31. clé 4 × gemini-3.6-flash             🚫 quota
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/10 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800 · gemini 2-preview 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,388 entrée · 402 sortie
+     ✅ aucun appel payant
