@@ -1,0 +1,127 @@
+
+[00:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Veterans Day, #ãªã«ãã¾ã¤ã, Merab, Tomb of the Unknown Soldier, Usman
+  🔎 « Veterans Day » : 1 article(s) frais, le plus récent il y a 3.3 h (L'Est Républicain)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Veterans Day » écarté : Célébration récurrente sans nouveauté majeure.
+  🔎 « Merab » : 1 article(s) frais, le plus récent il y a 2.8 h (Le Parisien)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Merab » écarté : trop secondaire (4/10)
+  🔎 « Usman » : 1 article(s) frais, le plus récent il y a 4.1 h (RMC Sport)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Usman » écarté : trop secondaire (3/10)
+  🔎 « Jordi Wild » : 1 article(s) frais, le plus récent il y a 4.7 h (Demócrata)
+  ⏭️  « Jordi Wild » écarté : Sujet politique espagnol sans impact en France.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Arlington
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/4 articles lus en 0.3s (28 déjà en cache)
+  📄 5/32 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 32 vecteurs calculés en 1 appel(s)
+  🧩 32 articles → 12 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (1, pénalisé par « comment  ») : Présidentielle 2027 : comment Emmanuel Macron a adou
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 12 médias) : Emmanuel Macron : un garde d'honneur s'effondre à 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 14 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, BFMTV, Blockworks, France Info
+  🧮 Score 77.5/100 = gravité 7/10 → 32 + 12 médias +18 + frais 1.0h +8 + thème porteur +10 + portée internationale +10
+  🧩 7 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] La Russie a interdit l'entrée sur son territoire à quatre personnalités frança
+      [2m] Moscou justifie cette interdiction comme une mesure de rétorsion suite à l'exp
+      [1m] ⚡exclusif La diplomatie russe affirme que ces quatre personnes ont participé au harcèlem
+      [1m] ⚡exclusif Le Monde et Ouest-France dénoncent une entrave à la liberté d'informer.
+      [1m] ⚡exclusif Le Monde soutient Ariane Chemin, soulignant qu'elle a enquêté sur les activité
+      [1m] ⚡exclusif Le correspondant du Monde à Moscou, Benjamin Quénelle, a dû quitter la Russie 
+      [1m] ⚡exclusif Paul Gogo a quitté la Russie en février après y avoir été correspondant pour p
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (31h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 4 médias) : Nvidia prepares to oust Jensen Huang, WSJ reports 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : CoinDesk
+  🧮 Score 81.5/100 = gravité 9/10 → 40 + 4 médias +7 + frais 0.5h +16 + portée mondiale +18
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] Le conseil d'administration de Nvidia envisage de démettre Jensen Huang de ses
+      [3m] Jensen Huang a admis avoir eu une liaison avec une femme soupçonnée par le ren
+      [2m] Jensen Huang a eu une seconde liaison extra-conjugale avec Kimberly Powell, vi
+      [1m] ⚡exclusif Des membres du Congrès américain demandent la démission de Jensen Huang pour d
+      [2m] Le conseil d'administration de Nvidia pourrait se réunir dès aujourd'hui pour 
+      [1m] ⚡exclusif L'action Nvidia a chuté de plus de 7 % dans les échanges après la clôture suit
+      [1m] ⚡exclusif Nvidia a engagé l'ancien procureur Joon H. Kim pour mener une enquête interne.
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 12 médias) : Donald Trump profite du 11-Novembre pour défendre 
+  🧮 Score 86.0/100 = gravité 8/10 → 36 + 12 médias +18 + frais 1.0h +8 + imprévu 7/10 +4 + thème porteur +10 + portée internationale +10
+  🧩 5 affirmation(s) : 2 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] La Russie a interdit l'entrée sur son territoire à quatre personnalités frança
+      [2m] Moscou justifie cette interdiction comme une mesure de rétorsion suite à l'exp
+      [1m] La diplomatie russe accuse les quatre personnes visées d'avoir participé au ha
+         ↳ BFMTV : Le Monde qualifie le travail d'Ariane Chemin d'enquête journalis
+         motif : Point de vue officiel russe contre défense journalistique du Monde.
+      [1m] ⚡exclusif Le journal Le Monde dénonce une entrave à la liberté d'informer.
+      [1m] ⚡exclusif Le correspondant du Monde à Moscou, Benjamin Quénelle, a dû quitter la Russie 
+  🌙 Sujet fort (score 86) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 32 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (116 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-embedding-001         🚫 quota
+        23. clé 1 × gemini-embedding-2-preview   🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-2-preview   🚫 quota
+        26. clé 3 × gemini-embedding-001         ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-embedding-2-preview · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-2-preview · clé 4 × gemini-3.6-flash · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-embedding-001 (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 6/10 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 12,085 entrée · 1,972 sortie
+     ✅ aucun appel payant
