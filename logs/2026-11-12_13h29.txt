@@ -1,0 +1,213 @@
+
+[13:18] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « donut frying in oil »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 12-Nov-26 04:21:30 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A2iyb2VLYstjhyWC-UQkMT3"}}
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #CTWxKengNampingXmas, KNP CHRISTMAS AT CENTRALWORLD, #ãªã«ãã¨ãµããã¿çé ä¿¡, #CTWxTleFirstOneXmas, #GFMegaGaleà¸à¸±à¸FriendsofGrab
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #MichaelCarrick, #Starshield
+  🕐 13h (Paris) — rythme journée (26-55 min · 0 publié(s), 16 restant(s) sur 11.0 h) : 26-55 min
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/7 articles lus en 1.2s (22 déjà en cache)
+  📄 6/30 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · CoinDesk · The Block · Blockworks
+  🧠 29 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Bitcoin ETFs Bleed $1.4B in Five Days … »
+  🧩 30 articles → 16 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 9 médias) : Nvidia board weighs Jensen Huang’s future: Can it 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Al Jazeera, Ars Technica, Dexerto, France Bleu
+  🧮 Score 69.5/100 = gravité 9/10 → 40 + 9 médias +15 + frais 2.3h +4 + portée internationale +10
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (177 → 148 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Attentat raciste dans les Yvelines : "Des Kévin Te
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + frais 4.3h +2 + thème porteur +10 + fait local -20 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 4.3h (frais ✅)
+  ⚠️ fetch_article_text: The read operation timed out
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (176 → 147 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Agriculture: Annie Genevard annonce "un plan à 725 m
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Le président du Rassemblement national, Jordan Barde
+  🚨 Sujet chaud (breaking, 5 médias) : GTA 6 est en magasin : où le payer moins cher, à J
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : BFM People, Numerama, Numerama Pop, Ouest-France
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 1.1h +8 + portée mondiale +18
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : 'No light, no water, no heat': Ukrainians struggle w
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ethlabs drops Hegotá slot proposal in push for 2027 
+  🚨 Sujet chaud (breaking, 5 médias) : Arrêtée à l’aéroport, une retraitée de 78 ans appr
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 25 s
+  🧮 Score 35.5/100 = gravité 3/10 → 14 + 5 médias +11 + frais 1.1h +8 + programmé 2/10 -15 + portée mondiale +18
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 5 médias) : L'acteur américain Stacy Keach, star de la série "
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 1.1h +8 + portée mondiale +18
+  🕒 Âge de l'article : 3.4h (frais ✅)
+  🕊️ Hommage validé par le modèle — Décès naturel d'un acteur renommé. · décès : 11 novembre
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ Portrait Wikipédia récupéré pour Stacy Keach (302 ko)
+  ⚠️ Repérage du visage indisponible (quota vision épuisé) → détection classique
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Premier League. Manchester United renvoie Michael Ca
+  🚨 Sujet chaud (breaking, 1 médias) : Ukraine warns of fresh Starshield disruptions as U
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.5/100 = gravité 9/10 → 40 + frais 1.0h +8 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  📈 Hashtag(s) en tendance : #Starshield
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (202 → 157 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 30 articles à analyser...
+  ♻️ 7/10 [business] (déjà analysé, cache) : Eli Lilly prend l'avantage sur son rival Novo Nord
+  ♻️ 7/10 [world] (déjà analysé, cache) : Attentat raciste dans les Yvelines : "Des Kévin Te
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Ligue des nations : aux portes des quarts de final
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Bilan des frappes de drones ukrainiens : Yandex a 
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 est en magasin : où le payer moins cher, à J
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 pourrait être censuré dans certains pays et 
+  ♻️ 8/10 [world] (déjà analysé, cache) : L'acteur américain Stacy Keach, star de la série "
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 est en magasin : où le payer moins cher, à J
+  ♻️ 8/10 [world] (déjà analysé, cache) : 'No light, no water, no heat': Ukrainians struggle
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia board weighs Jensen Huang’s future: Can it 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Ukraine warns of fresh Starshield disruptions as U
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Stablecoin supply falls $14.2B in biggest 30-day d
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Ethlabs drops Hegotá slot proposal in push for 202
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Sygnum launches ETH Alpha Fund targeting 8% to 10%
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : India's Financial Crimes Agency Searches CoinDCX, 
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Bleed $1.4B in Five Days as Investors
+  ♻️ 8/10 [business] (déjà analysé, cache) : Pressure Mounts on Nvidia's Jensen Huang Amid Repo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 10/10 [business] (déjà analysé, cache) : Nvidia’s stock drops as board reportedly preps to 
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia is reportedly preparing to fire Jensen Huan
+  ♻️ 9/10 [business] (déjà analysé, cache) : CEO Jensen Huang's job is suddenly on the line at 
+  ♻️ 10/10 [tech] (déjà analysé, cache) : Nvidia CEO Jensen Huang set to be fired, with John
+  🧠 Batch analyse de 6 articles...
+  ✅ 8/10 [world] large: Alertes à la bombe : 1 800 écoles de nouveau cib
+  🌍 6/10 sans portée internationale : Agriculture: Annie Genevard annonce "un plan à 725
+  🌍 7/10 sans portée internationale : Le président du Rassemblement national, Jordan Bar
+  📉 4/10: Premier League. Manchester United renvoie Michael Carri
+  ✅ 9/10 [world] large: Xi Jinping says Taiwan’s ‘complete reunification
+  ✅ 7/10 [crypto] large: Bitcoin weakness erases September's bullish sign
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 6 média(s) · 0.4h — Nvidia CEO Jensen Huang set to be fired, wit
+     10/10 · 1 média(s) · 0.4h — Xi Jinping says Taiwan’s ‘complete reunifica
+     10/10 · 6 média(s) · 0.7h — Nvidia board weighs Jensen Huang’s future: C
+     9/10 · 1 média(s) · 0.3h — Alertes à la bombe : 1 800 écoles de nouveau
+     10/10 · 1 média(s) · 2.6h — Ligue des nations : aux portes des quarts de
+  ✂️ Éphéméride resserré (238 → 152 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [tech]
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 3 column 17 (char 93) → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 3 column 18 (char 93) → couple suivant
+  ✂️ Tweet resserré localement (163 → 123 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 12-Nov-26 04:29:08 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ARGLCyie7Ul87UfYmehS3j4"}}
+  ❌ Post Instagram échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 12-Nov-26 04:29:10 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AVQS6A_4bxpS9Yh02CnefYc"}}
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Nvidia CEO Jensen Huang set to be fired, with Johny Sro
+
+  ── Bilan du cycle (639 s) ──
+     écartés : 5 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 1 × gemini-embedding-2-preview   ✅
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.1-flash-lite        ✅
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.1-flash-lite        ✅
+        25. clé 2 × gemini-3.1-flash-lite        ✅
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.1-flash-lite        ✅
+        28. clé 2 × gemini-3.1-flash-lite        ✅
+        29. clé 2 × gemini-3.1-flash-lite        ✅
+        30. clé 2 × gemini-3.1-flash-lite        ✅
+        31. clé 2 × gemini-3.1-flash-lite        ✅
+        32. clé 2 × gemini-3.1-flash-lite        ✅
+        33. clé 2 × gemini-3.1-flash-lite        ✅
+        34. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        35. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        36. clé 3 × gemini-3.5-flash-lite        ✅
+        37. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        38. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-embedding-2-preview · clé 2 × gemini-embedding-001 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-embedding-2-preview · clé 3 × gemini-embedding-001 · clé 3 × gemini-3-flash (+16)
+     clés Gemini : 5/5 disponible(s)
+     texte : 10/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.6-flash
+     vecteurs : 9/10 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 0 · gemini 2-preview 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 98,920 entrée · 2,446 sortie
+     ✅ aucun appel payant
