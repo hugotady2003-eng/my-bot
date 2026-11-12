@@ -1,0 +1,101 @@
+
+[06:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ã¡ãããã¯ãªããã¯, ãªã³ãã­ã¹, #LaGranjaAsamblea, Jensen, Marcus Smart
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Mississippi, #Jensen, #ScottColom
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/6 articles lus en 0.8s (69 déjà en cache)
+  📄 14/75 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks · SpaceNews
+  🧠 75 vecteurs calculés en 1 appel(s)
+  🧩 75 articles → 22 événement(s), dont 6 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚨 Sujet chaud (breaking, 8 médias) : Nvidia s’apprête à limoger son PDG Jensen Huang, u
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : BFMTV, France Bleu, L'Express, La Tribune, Libération
+  🧮 Score 96.5/100 = gravité 9/10 → 40 + 8 médias +15 + frais 0.7h +13 + imprévu 10/10 +18 + portée internationale +10
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 96) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 8 médias) : Ligue des nations : Zidane, le trouble Mbappé et l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.5/100 = gravité 7/10 → 32 + 8 médias +15 + frais 0.7h +13 + portée internationale +10
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 4 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [1m] ⚡exclusif Une primaire de la droite et du centre pour l'élection présidentielle de 2027 
+      [1m] ⚡exclusif Édouard Philippe est opposé à l'organisation d'une primaire pour désigner un c
+      [1m] ⚡exclusif Un sondage Cluster 17 pour Politico teste le potentiel électoral de Christine 
+      [1m] ⚡exclusif Christine Lagarde a précédemment déclaré qu'une candidature à l'élection prési
+  🌙 Sujet fort (score 70) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Espagne : mobilisation massive pour le droit au loge
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Quand ? Avec qui ? Comment ? A droite et au centre, 
+  🚨 Sujet chaud (breaking, 5 médias) : Plusieurs personnalités politiques réagissent aprè
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, France Bleu, France Info, Libération
+  🧮 Score 65.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 1.2h +8 + thème porteur +10
+  🌙 Sujet fort (score 65) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Midterms : exploit des démocrates dans le Mississipp
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Democrat Scott Colom seals historic win in Mississip
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 75 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (106 s) ──
+     écartés : 4 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × gemini-embedding-2-preview   🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-2-preview   🚫 quota
+         5. clé 3 × gemini-embedding-001         🚫 quota
+         6. clé 3 × gemini-embedding-2-preview   🚫 quota
+         7. clé 4 × gemini-embedding-001         🚫 quota
+         8. clé 4 × gemini-embedding-2-preview   🚫 quota
+         9. clé 5 × gemini-embedding-001         ✅
+        10. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        13. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        14. clé 1 × gemini-3-flash               ⛔ inexistant
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.6-flash             🚫 quota
+        17. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.6-flash             🚫 quota
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.6-flash             ⚠️ Expecting property nam
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 4/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.6-flash
+     vecteurs : 2/10 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 789 · gemini 2-preview 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 9,150 entrée · 882 sortie
+     ✅ aucun appel payant
