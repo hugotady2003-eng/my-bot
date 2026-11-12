@@ -1,0 +1,162 @@
+
+[08:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ã¡ãããã¯ãªããã¯, #LMSY4thSeries, #LEEKNOWSOLOIST, LMSY FITTING 4th SERIES, LEE KNOW SOLO DEBUT
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Mississippi, #Jensen, #Nvidia
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 2 column 20 (char 33) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 13/14 articles lus en 1.5s (23 déjà en cache)
+  📄 5/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · The Block · Blockworks
+  🧠 37 vecteurs calculés en 1 appel(s)
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 37 articles → 23 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, pénalisé par « pourrait ») : Jensen Huang devrait se faire limoger par Nvidia
+  🚨 Sujet chaud (breaking, 1 médias) : "Tout l’immeuble a commencé à trembler" : un bâtim
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 53.5/100 = gravité 9/10 → 40 + frais 1.2h +8 + primeur +5
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 2 column 21 (char 22) → couple suivant
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgxeYUHoPVWtKttsZ3V2U'}
+  🚨 Sujet chaud (breaking, 1 médias) : Sous le vernis "bling-bling", Kylian Mbappé aime l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 37.5/100 = gravité 3/10 → 14 + frais 0.1h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Il a une image de gagnant" : quel candidat à la pré
+  ⚪ Écarté (2, pénalisé par « comment  ») : Google DeepMind dévoile AlphaGenome 2 : une IA pour 
+  🚨 Sujet chaud (breaking, 1 médias) : Plusieurs personnalités politiques réagissent aprè
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + frais 2.1h +4 + thème porteur +10 + ⚡ attentat → plancher 89
+  🕒 Âge de l'article : 2.1h (frais ✅)
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgxeYjYpEyKT2VaV1DC9s'}
+  🚨 Sujet chaud (breaking, 1 médias) : Midterms aux Etats-Unis : les démocrates entérinen
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 0.6h +13 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgxeYyxFDyDGEwqpiuX7m'}
+  🚨 Sujet chaud (breaking, 8 médias) : Nvidia s’apprête à virer Jensen Huang, son PDG, ap
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 75.5/100 = gravité 9/10 → 40 + 8 médias +15 + frais 4.2h +2 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgxeatjmzBVP4DUyi8P1W'}
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 37 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Plusieurs personnalités politiques réagissent aprè
+  ♻️ 8/10 [world] (déjà analysé, cache) : Midterms aux Etats-Unis : les démocrates entérinen
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : "Tout l’immeuble a commencé à trembler" : un bâtim
+  ♻️ 9/10 [business] (déjà analysé, cache) : Jensen Huang devrait se faire limoger par Nvidia
+  ♻️ 9/10 [gta6] (déjà analysé, cache) : Une semaine avant sa sortie, GTA 6 aurait déjà rap
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia s’apprête à virer Jensen Huang, son PDG, ap
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia : le conseil d’administration préparerait l
+  ♻️ 8/10 [world] (déjà analysé, cache) : Ukraine's power supply close to critical as Russia
+  ♻️ 9/10 [world] (déjà analysé, cache) : Israeli strike on hospital kills at least five Pal
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia board meeting to decide CEO Jensen Huang’s 
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Elon Musk says it would be an 'honor' to hire Nvid
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : MSCI is dropping Strategy from its index, and the 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin Core reveals bug that made thousands of no
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : South Korea to permit crypto withdrawal freezes du
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance CSO unwittingly foreshadowed $6.3B hack ta
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin traders raise odds of sub-$70,000 Christma
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Stablecoin Drain, ETF Outflows Leave Bitcoin 'Runn
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin Short-Term Holders Send $3.6 Billion in BT
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 10/10 [business] (déjà analysé, cache) : Nvidia’s stock drops as board reportedly preps to 
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia is reportedly preparing to fire Jensen Huan
+  ♻️ 9/10 [business] (déjà analysé, cache) : CEO Jensen Huang's job is suddenly on the line at 
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Binance warns iPhone crypto holders of security fl
+  🧠 Batch analyse de 12 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgxebDjmjbiyByEP5dFfr'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 7 média(s) · 0.4h — Jensen Huang devrait se faire limoger par Nv
+     10/10 · 1 média(s) · 0.3h — Une semaine avant sa sortie, GTA 6 aurait dé
+     10/10 · 7 média(s) · -0.6h — Nvidia : le conseil d’administration prépare
+     10/10 · 1 média(s) · 1.2h — "Tout l’immeuble a commencé à trembler" : un
+     10/10 · 7 média(s) · 1.2h — Nvidia s’apprête à virer Jensen Huang, son P
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgxebWxsc4mmNaLwgcReV'}
+  → 1 sélectionné(s) [business]
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Sujet non vérifiable (modèle indisponible) → rien publié : Jensen Huang devrait se faire limoger par Nvid
+
+  ── Bilan du cycle (243 s) ──
+     écartés : 3 sujet banal · 1 sujet non vérifiable
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-embedding-001         🚫 quota
+         9. clé 2 × gemini-embedding-2-preview   🚫 quota
+        10. clé 3 × gemini-embedding-001         🚫 quota
+        11. clé 3 × gemini-embedding-2-preview   🚫 quota
+        12. clé 4 × gemini-embedding-001         🚫 quota
+        13. clé 4 × gemini-embedding-2-preview   🚫 quota
+        14. clé 5 × gemini-embedding-001         🚫 quota
+        15. clé 5 × gemini-embedding-2-preview   ✅
+        16. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-3.6-flash             🚫 quota
+        21. clé 2 × gemini-3.6-flash             🚫 quota
+        22. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.6-flash             🚫 quota
+        25. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        26. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.6-flash             🚫 quota
+        28. clé 5 × gemini-3.5-flash-lite        ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        37. clé 5 × gemini-3.6-flash             ⚠️ Unterminated string st
+        38. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 1 × gemini-embedding-2-preview · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 1/10 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-2-preview
+     vecteurs restants : gemini 001 784 · gemini 2-preview 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 15,995 entrée · 261 sortie
+     ⚠️ 14 appel(s) payés chez Claude (le gratuit n'a pas suffi)
