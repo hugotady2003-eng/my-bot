@@ -1,0 +1,106 @@
+
+[00:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Outlook, Teams, å¤§è¦æ¨¡éå®³, Nvidia, ãã¤ã¯ã­ã½ãã
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Jensen, #MaloGusto, #Donnarumma
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.1s (42 déjà en cache)
+  📄 10/45 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · OpenAI · Jeuxvideo.com · The Block · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🧠 44 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Alice Huang tied to Nvidia’s biggest C… »
+  🧩 45 articles → 21 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Widespread Microsoft outage takes down Outlook and o
+  🚨 Sujet chaud (breaking, 1 médias) : Mort de Quentin Deranque : Un des suspects remis e
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 2.1h +4
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 8 médias) : Gérard Depardieu accusé de deux agressions sexuell
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 9 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Journal du Geek, L'Express, Le Monde, OpenAI
+  🧮 Score 73.0/100 = gravité 8/10 → 36 + 8 médias +15 + frais 4.4h +2 + thème porteur +10 + portée internationale +10
+  🌙 Sujet fort (score 73) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : US envoys meet Zelensky in Dublin after talks with
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.5/100 = gravité 9/10 → 40 + frais 2.9h +4 + portée mondiale +18
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 3 médias) : DOJ moves to seize $1.2 billion from Binance hack,
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Cointelegraph
+  🧮 Score 69.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 1.3h +8 + portée mondiale +18
+  🌙 Sujet fort (score 69) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ligue des nations. L’Espagne championne du monde pro
+  🚨 Sujet chaud (breaking, 1 médias) : LES NOTES. Italie - France (3-1) : Gusto a bu la t
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.0/100 = gravité 8/10 → 36 + frais 1.7h +8 + primeur +5
+  🌙 Sujet fort (score 49) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 3 médias) : Italie-France : la boulette de Donnarumma, les err
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : France Bleu, Ouest-France
+  🧮 Score 47.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 2.1h +4
+  🌙 Sujet fort (score 47) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 45 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (99 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 2 × gemini-embedding-001         🚫 quota
+         3. clé 3 × gemini-embedding-001         🚫 quota
+         4. clé 4 × gemini-embedding-001         🚫 quota
+         5. clé 5 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 1 × gemini-3.6-flash             🚫 quota
+        10. clé 1 × gemini-3-flash               ⛔ inexistant
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 2 × gemini-3-flash               ⛔ inexistant
+        16. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 3 × gemini-3.6-flash             🚫 quota
+        20. clé 3 × gemini-3-flash               ⛔ inexistant
+        21. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 4 × gemini-3.1-flash-lite        ✅
+        23. clé 4 × gemini-3.1-flash-lite        ✅
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,641 entrée · 97 sortie
+     ✅ aucun appel payant
