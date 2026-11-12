@@ -1,0 +1,113 @@
+
+[06:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ã¡ãããã¯ãªããã¯, ãªã³ãã­ã¹, #LaGranjaAsamblea, Jensen, Marcus Smart
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Jensen, #Mississippi, #Nvidia
+  📋 Modèles de vecteurs du compte : gemini-embedding-001, gemini-embedding-2-preview
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.8s (68 déjà en cache)
+  📄 14/73 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks · SpaceNews
+  🧠 73 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧩 73 articles → 26 événement(s), dont 6 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚨 Sujet chaud (breaking, 4 médias) : Jensen Huang sur le point d'être évincé? Le consei
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : L'Express, La Tribune, Libération
+  🧮 Score 100.0/100 = gravité 9/10 → 40 + 4 médias +7 + frais 0.4h +16 + imprévu 10/10 +18 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 100) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 4 médias) : Ligue des nations : Zidane, le trouble Mbappé et l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 0.4h +16 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 5 médias) : New York : un immeuble s’effondre à Brooklyn, au m
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Le Monde, Ouest-France, Public, Sud Ouest
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + 5 médias +11 + frais 0.7h +13 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 84) mais nuit → il attendra le matin
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Quand ? Avec qui ? Comment ? A droite et au centre, 
+  🚨 Sujet chaud (breaking, 8 médias) : Équipe de France : Zidane confirme le forfait de M
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BFMTV, France Bleu, France Info, Libération
+  🧮 Score 74.0/100 = gravité 8/10 → 36 + 8 médias +15 + frais 0.7h +13 + portée internationale +10
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 74) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Democrat Scott Colom seals historic win in Mississip
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia board meeting to decide CEO Jensen Huang’s 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧮 Score 54.5/100 = gravité 9/10 → 40 + frais 2.1h +4 + portée internationale +10
+  🧩 7 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 7 exclusive(s)
+      [1m] ⚡exclusif Le conseil d'administration de Nvidia se réunit pour discuter de l'avenir de J
+      [1m] ⚡exclusif Jensen Huang a admis avoir eu une liaison avec Alice Huang, une femme soupçonn
+      [1m] ⚡exclusif Le cours de l'action Nvidia a chuté de plus de 7 à 8 % après les révélations s
+      [1m] ⚡exclusif Jensen Huang aurait eu une relation extraconjugale avec Kimberly Powell, vice-
+      [1m] ⚡exclusif Elon Musk a déclaré qu'il serait honoré d'embaucher Jensen Huang.
+      [1m] ⚡exclusif Des législateurs américains, dont le sénateur Kevin Cramer, ont appelé à la dé
+      [1m] ⚡exclusif Jensen Huang a engagé le cabinet de relations publiques Heller pour gérer la c
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 73 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (60 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-2-preview   🚫 quota
+         2. clé 2 × gemini-embedding-001         🚫 quota
+         3. clé 2 × gemini-embedding-2-preview   🚫 quota
+         4. clé 3 × gemini-embedding-001         🚫 quota
+         5. clé 3 × gemini-embedding-2-preview   🚫 quota
+         6. clé 4 × gemini-embedding-001         🚫 quota
+         7. clé 4 × gemini-embedding-2-preview   🚫 quota
+         8. clé 5 × gemini-embedding-001         ✅
+         9. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        13. clé 1 × gemini-3.6-flash             🚫 quota
+        14. clé 1 × gemini-3-flash               ⛔ inexistant
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.6-flash             🚫 quota
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.6-flash             🚫 quota
+        24. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.6-flash             🚫 quota
+        28. clé 5 × gemini-3.5-flash-lite        ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 2/10 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 792 · gemini 2-preview 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 9,478 entrée · 902 sortie
+     ✅ aucun appel payant
