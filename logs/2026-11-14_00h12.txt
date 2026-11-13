@@ -1,0 +1,146 @@
+
+[00:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : The FAA, #LaSextaDebate, #FRAvRSA, Friday the 13th, #NEDGRE
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #SeanDuffy, #LaFAA, #Starship
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.2s (38 déjà en cache)
+  📄 6/42 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · Blockworks
+  🧠 40 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « Microsoft 'deeply sorry' for global ou… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Why is Microsoft's outage lasting so l… »
+  🧠 Même événement (jugé) : « Watch: How a server outage took down M… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Microsoft 'deeply sorry' for global ou… »
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Why is Microsoft's outage lasting so l… »
+  🧠 Même événement (jugé) : « Microsoft apologizes for massive outag… »
+  🧩 42 articles → 10 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Microsoft 'deeply sorry' for global outage after alm
+  🚨 Sujet chaud (breaking, 2 médias) : Nvidia is done with Jensen Huang. The fallout in W
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 5.8h +2 + portée mondiale +18
+  🧩 6 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif Jensen Huang a démissionné de son poste de PDG de Nvidia.
+      [1m] ⚡exclusif Jensen Huang est impliqué dans une affaire de relation avec une espionne chino
+      [1m] ⚡exclusif Le Congrès américain prévoit d'enquêter sur les implications de cette affaire 
+      [2m] Jensen Huang entretenait des relations étroites avec le président Donald Trump
+      [1m] ⚡exclusif Jensen Huang a plaidé pour un assouplissement des restrictions sur l'exportati
+      [1m] ⚡exclusif L'administration Trump a autorisé Nvidia à reprendre certaines ventes de puces
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FAA grounds US flights nationwide after ‘communicati
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Tous les avions cloués au sol aux Etats-Unis en rais
+  🚨 Sujet chaud (breaking, 4 médias) : "C'est chômage technique" : enseignants, soignants
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 4.6h +2 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 10 affirmation(s) : 8 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [3m] Une panne mondiale de Microsoft a perturbé les services de messagerie et de co
+      [2m] Microsoft a attribué la panne à un problème technique lié à une mise à niveau 
+         ↳ CNBC : Microsoft a évoqué une surcharge des serveurs et des échecs de t
+         motif : Sources internes Microsoft différentes selon le moment de la communica
+      [2m] L'incident n'est pas lié à une cyberattaque ou à des agents d'intelligence art
+      [2m] Plus de 430 millions d'utilisateurs utilisent les produits Microsoft 365 affec
+      [2m] Les services ont commencé à se rétablir progressivement le vendredi après-midi
+      [2m] Le site Downdetector a enregistré un pic de 140 000 signalements de problèmes 
+      [3m] Des institutions critiques comme les hôpitaux, les transports et les services 
+      [1m] ⚡exclusif Des enseignants ont dû modifier leurs méthodes pédagogiques en raison de l'ina
+  🌙 Sujet fort (score 55) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FAA issues nationwide ground stop after communicatio
+  🚨 Sujet chaud (breaking, 19 médias) : Bitcoin plunges to $68,000 as Anthropic IPO frenzy
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, BFMTV, Blockworks, CoinDesk, Cointelegraph
+  🧮 Score 72.0/100 = gravité 8/10 → 36 + 19 médias +18 + frais 1.6h +8 + portée internationale +10
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 22 s
+  🧩 9 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [8m] La FAA a ordonné l'arrêt au sol de tous les vols aux États-Unis en raison d'un
+      [5m] Les autorités justifient cette mesure par des circonstances exceptionnelles et
+      [3m] Le ministre des Transports, Sean Duffy, a confirmé que les techniciens enquête
+      [1m] ⚡exclusif Environ 7 000 vols sont affectés par cette décision.
+      [4m] Le problème de communication affecte les centres de contrôle du trafic aérien.
+      [1m] ⚡exclusif Il s'agit du premier arrêt national depuis janvier 2023.
+      [1m] ⚡exclusif La panne est liée à des impacts sur les fréquences de contrôle aérien ou les c
+      [1m] ⚡exclusif Au moment de l'arrêt, 4 042 vols étaient en cours de vol vers les États-Unis.
+  🌙 Sujet fort (score 72) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Aux Etats-Unis, l'administration fédérale de l'aviat
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Etats-Unis : La FAA suspend tous les vols du pays ju
+  🚨 Sujet chaud (breaking, 19 médias) : La mégafusée Starship décolle, et renonce à récupé
+  🧮 Score 76.0/100 = gravité 8/10 → 36 + 19 médias +18 + frais 1.6h +8 + imprévu 6/10 +4 + portée internationale +10
+  🧩 9 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [8m] La FAA a ordonné un arrêt au sol national de tous les vols aux États-Unis.
+      [5m] L'arrêt des vols est justifié par un problème de communication affectant les c
+         ↳ Libération, 20 Minutes, CNBC : La FAA invoque des circonstances exceptionnelles et des raisons 
+         motif : Certains médias citent le communiqué officiel, d'autres les détails te
+      [3m] Le ministre américain des Transports, Sean Duffy, a confirmé que des technicie
+      [1m] ⚡exclusif Environ 7 000 vols sont affectés par cette mesure.
+      [1m] ⚡exclusif Il s'agit du premier arrêt national depuis janvier 2023.
+      [2m] Des pannes de communication similaires ont eu lieu à Newark en 2025.
+      [1m] ⚡exclusif La FAA a précisé que le problème concerne les fréquences ATC ou les capacités 
+      [1m] ⚡exclusif Au moment de l'arrêt, 4 042 vols étaient en cours de vol vers les États-Unis.
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 42 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (101 s) ──
+     écartés : 6 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 2 × gemini-embedding-001         🚫 quota
+         3. clé 3 × gemini-embedding-001         🚫 quota
+         4. clé 4 × gemini-embedding-001         🚫 quota
+         5. clé 5 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 1 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 1 × gemini-3.6-flash             🚫 quota
+        11. clé 1 × gemini-3-flash               ⛔ inexistant
+        12. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 2 × gemini-3.1-flash-lite        ✅
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 2 × gemini-3.6-flash             🚫 quota
+        17. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        20. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.6-flash             🚫 quota
+        23. clé 4 × gemini-3.1-flash-lite        ✅
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 15,417 entrée · 3,085 sortie
+     ✅ aucun appel payant
