@@ -1,0 +1,263 @@
+
+[08:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Outlook, #ç´ ç½æ­åæ¦, ç´ ç½åºå ´, Microsoft, ç»å20æ
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Outlook, #Microsoft, #Teams
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 1.7s (40 déjà en cache)
+  📄 9/51 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Jeuxvideo.com · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « La messagerie Outlook touchée par une … »
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Une panne mondiale touche la messageri… »
+  🧠 Même événement (jugé) : « Des milliers d’utilisateurs face à une… »
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 51 articles → 48 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La messagerie Outlook touchée par une panne massive,
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : la Russie dit avoir abattu 1 1
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.5/100 = gravité 7/10 → 32 + frais 0.5h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  👁️ Image écartée : Drones iraniens Shahed
+  🖼️🤝 Image récupérée chez un média jumeau (La Dépêche) — même sujet
+  📺 Bandeau d'information détecté sur l'image → écartée
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia on track for longest weekly losing streak s
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 63.5/100 = gravité 9/10 → 40 + frais 1.2h +8 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (243 → 142 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Bitcoin firm Nakamoto owes Kraken $165 million, mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 6/10 → 27 + frais 1.0h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (191 → 152 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Bitcoin slides below $70K amid thin liquidity, ETF
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 1.1h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (221 → 163 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Amazon multiplie les bonnes affaires pour le Black F
+  🚨 Sujet chaud (breaking, 1 médias) : "Qu’il sorte de prison, je le vis très mal" : 11 a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.0/100 = gravité 8/10 → 36 + frais 1.1h +8 + primeur +5
+  ⚠️ Parcours Wikipédia indisponible pour Mohamed Bakkali (HTTP Error 404: Not Found)
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  ↩️ Pas un décès malgré le classement du modèle → actualité normale [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 4 médias) : Une panne mondiale touche la messagerie Outlook de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 3.9h +4 + portée internationale +10
+  🧩 10 affirmation(s) : 6 partagée(s) · 2 divergente(s) · 3 exclusive(s)
+      [4m] Une panne mondiale affecte les services Microsoft, notamment Outlook, Teams et
+      [4m] Les mesures correctives initiales prises par Microsoft n'ont pas produit les e
+      [2m] La panne touche 74 pays et territoires à travers le monde.
+      [3m] Le début de la panne est situé entre la nuit de mercredi à jeudi et le jeudi 1
+         ↳ L'Express : La panne durait encore le vendredi 13 novembre au matin.
+         motif : Différence de temporalité dans le suivi de l'événement.
+      [2m] Des entreprises comme OpenAI et Anthropic ont été impactées par la panne.
+      [1m] ⚡exclusif Il s'agit de la deuxième interruption majeure des services Microsoft 365 cette
+      [1m] Le nombre d'utilisateurs signalant des problèmes via Downdetector a atteint de
+         ↳ L'Express : Plus de 18 000 incidents liés à Outlook ont été recensés.
+         motif : Sources de données ou moments de mesure différents.
+      [2m] Microsoft a mis en pause les déploiements et redémarre les serveurs pour rétab
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  📈 Hashtag(s) en tendance : #Outlook, #Microsoft
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Outlook, Teams, Copilot : la panne mondiale de Mic
+  🧮 Score 82.0/100 = gravité 8/10 → 36 + frais 0.2h +16 + imprévu 7/10 +4 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  📈 Hashtag(s) en tendance : #Outlook, #Teams, #Copilot
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Microsoft, #Outlook, #Teams
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 51 articles à analyser...
+  ♻️ 9/10 [business] (déjà analysé, cache) : Qui est Alice Huang, l’intermédiaire soupçonnée d’
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Une panne mondiale de la messagerie Outlook pertur
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Une panne mondiale touche la messagerie Outlook de
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Des milliers d’utilisateurs face à une panne des a
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre en Ukraine : la Russie dit avoir abattu 1 1
+  ♻️ 8/10 [business] (déjà analysé, cache) : Affaire Nvidia : le PDG Jensen Huang convoqué deva
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre en Ukraine : la Russie dit avoir abattu 1 1
+  ♻️ 8/10 [hommage] (déjà analysé, cache) : "Qu’il sorte de prison, je le vis très mal" : 11 a
+  ♻️ 8/10 [space] (déjà analysé, cache) : Starship : suivez en direct la tentative inédite d
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Une panne géante frappe Microsoft : Outlook et Mic
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Outlook, Teams, Copilot : la panne mondiale de Mic
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia sans Jensen Huang : ce qui attend Colette K
+  ♻️ 6/10 [world] (déjà analysé, cache) : Jean-Luc Mélenchon interdit d'entrée en Israël : u
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Fortnite : l'Union Européenne veut tuer les V-Buck
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Ex-Nvidia CEO Jensen Huang summoned to testify bef
+  ♻️ 6/10 [world] (déjà analysé, cache) : Zelensky welcomes US bringing Europe into Russia-U
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : North Korean hackers used fake video calls in $400
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Ex-Nvidia CEO Jensen Huang summoned to testify bef
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 7/10 [business] (déjà analysé, cache) : Alice Huang tied to Nvidia’s biggest Chinese compe
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Widespread Microsoft outage takes down Outlook and
+  ♻️ 9/10 [markets] (déjà analysé, cache) : Nvidia on track for longest weekly losing streak s
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Editor's Choice: Nvidia's AI empire stumbles over 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin firm Nakamoto owes Kraken $165 million, mo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs are now down over $1.5 billion in net
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : SpaceX-Tesla merger talks put 30,000 bitcoin back 
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin slides below $70K amid thin liquidity, ETF
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Trump nominates Hester Peirce successor among SEC,
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin tumbles below $69,000 as Nvidia turmoil ad
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : North Korea Stole $400 Million in Crypto Using Dee
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Strategy Made $19.5 Billion in Profit. So Why Is M
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Democrats launch Nvidia investigation, write scath
+  ♻️ 10/10 [business] (déjà analysé, cache) : Donald Trump really wants Tim Cook to run Nvidia
+  🧠 Batch analyse de 16 articles...
+  🌍 6/10 sans portée internationale : La messagerie Outlook touchée par une panne massiv
+  📉 3/10: Le député LFI Sébastien Delogu jugé pour outrage après 
+  📉 3/10: La tribune éco : La politique économique se fait au ray
+  📉 4/10: EX-OL : Pierre Sage écarté de Crystal Palace
+  📉 2/10: Qui était Houdini, ce célèbre magicien et roi de l’évas
+  📉 2/10: Entre confidences et connivence, Michel Sardou se racon
+  📉 3/10: « J’ai fait une overdose, j’ai failli mourir »: non ret
+  📉 4/10: Les femmes ont plus d’intelligence émotionnelle que les
+  📉 3/10: Prix des carburants : la gratuité des transports (dont 
+  ✅ 9/10 [world] mondiale: Guerre en Ukraine : une attaque massive de plus 
+  📉 3/10: Amazon multiplie les bonnes affaires pour le Black Frid
+  📉 2/10: Quel est ce petit fruitier ultra-résistant à planter ab
+  📉 4/10: Disparition de Marion Wagon : 30 ans après, un nouveau 
+  📉 1/10: Plus belle la vie en avance : résumé de l'épisode 715 d
+  📉 3/10: Sonic fête ses 35 ans avec un superbe court-métrage d’a
+  🌍 7/10 sans portée internationale : US reports record number of deportations and arres
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 7 média(s) · 0.2h — Outlook, Teams, Copilot : la panne mondiale 
+     10/10 · 8 média(s) · -1.0h — Nvidia sans Jensen Huang : ce qui attend Col
+     10/10 · 5 média(s) · 0.4h — Widespread Microsoft outage takes down Outlo
+     10/10 · 3 média(s) · 0.3h — Guerre en Ukraine : une attaque massive de p
+     10/10 · 7 média(s) · 0.8h — Une panne mondiale touche la messagerie Outl
+  ✂️ Éphéméride resserré (194 → 141 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [tech]
+  📈 Hashtag(s) en tendance : #Outlook, #Teams, #Copilot
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  📈 Hashtag(s) en tendance : #Microsoft, #Outlook, #Teams
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Outlook, Teams, Copilot : la panne mondiale de Microsof
+
+  ── Bilan du cycle (512 s) ──
+     écartés : 2 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 2 × gemini-embedding-001         🚫 quota
+         2. clé 3 × gemini-embedding-001         🚫 quota
+         3. clé 4 × gemini-embedding-001         🚫 quota
+         4. clé 5 × gemini-embedding-001         🚫 quota
+         5. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         6. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         7. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         8. clé 1 × gemini-3.6-flash             🚫 quota
+         9. clé 1 × gemini-3-flash               ⛔ inexistant
+        10. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 2 × gemini-3-flash               ⛔ inexistant
+        15. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 3 × gemini-3-flash               ⛔ inexistant
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 4 × gemini-3.6-flash             ⚠️ Unterminated string st
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.6-flash             🚫 quota
+        26. clé 5 × gemini-3.5-flash-lite        ✅
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 5 × gemini-3.1-flash-lite        ✅
+        30. clé 5 × gemini-3.1-flash-lite        ✅
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 10 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 796
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 100,254 entrée · 3,774 sortie
+     ✅ aucun appel payant
