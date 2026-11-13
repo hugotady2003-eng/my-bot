@@ -1,0 +1,93 @@
+
+[04:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Outlook, Teams, #LatinGRAMMY, ç»å20æ, ãã¤ã¯ã­ã½ãã
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Jensen, #Outlook, #Nvidia
+  📖 56 articles, tous en cache
+  📄 11/57 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · OpenAI · Jeuxvideo.com · The Block · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Israël interdit l'entrée sur son terri… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Israël interdit l’entrée sur son terri… »
+  🧩 57 articles → 55 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Donald Trump really wants Tim Cook to run Nvidia
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 10/10 → 45 + frais 2.3h +4 + thème porteur +10 + portée mondiale +18 + ⚡ démission politique → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une panne majeure touche la messagerie Outlook de Mi
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : DOJ moves to seize $1.2 billion from Binance hack,
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 48.0/100 = gravité 8/10 → 36 + frais 4.4h +2 + portée internationale +10
+  🌙 Sujet fort (score 48) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : LES NOTES. Italie - France (3-1) : Gusto a bu la t
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 38.0/100 = gravité 8/10 → 36 + frais 4.9h +2
+  → Sujet chaud pas assez fort (score 38) → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 57 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (65 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 2 × gemini-embedding-001         🚫 quota
+         3. clé 3 × gemini-embedding-001         🚫 quota
+         4. clé 4 × gemini-embedding-001         🚫 quota
+         5. clé 5 × gemini-embedding-001         🚫 quota
+         6. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 1 × gemini-3.6-flash             🚫 quota
+        10. clé 1 × gemini-3-flash               ⛔ inexistant
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 2 × gemini-3-flash               ⛔ inexistant
+        16. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 3 × gemini-3.6-flash             🚫 quota
+        20. clé 3 × gemini-3-flash               ⛔ inexistant
+        21. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 4 × gemini-3.1-flash-lite        ✅
+        23. clé 4 × gemini-3.1-flash-lite        ✅
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.6-flash             🚫 quota
+        28. clé 5 × gemini-3.5-flash-lite        ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,290 entrée · 73 sortie
+     ✅ aucun appel payant
