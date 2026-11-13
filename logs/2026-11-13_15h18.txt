@@ -1,0 +1,264 @@
+
+[15:02] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Le Monde, Libération
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ Image libre trouvée sur Commons « millions »
+  🖼️ Image libre trouvée sur Commons « déplacés »
+  🖼️ Image libre trouvée sur Commons « climatiques »
+  🖼️ Décryptage illustré par 3 image(s) différente(s) sur 6 plans
+  ⛔ gemini-3.1-flash-tts n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (models/gemini-3.1-flash-tts is not found for API v) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  🎞️ Montage : 6 plans, 32.4s
+  🎬 Carrousel vidéo (55s, 6 slides, sans son)
+  🎞️ Montage : 7 plans, 61.8s
+  📱 Version TikTok : 9:16, 6 plans, 59s, sous-titrée
+  📥 Version TikTok déposée : sortie_tiktok/pulse-2026-11-13.mp4 (49.3 Mo)
+  📝 Légende à compléter    : sortie_tiktok/pulse-2026-11-13-legende.txt
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 13-Nov-26 06:09:09 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AI4LVY_fNgvUN45EDrVRcIo"}}
+  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)
+  ⏭️  Le Saviez-vous : « L'origine du mot OK » n'explique pas vraiment → on ne publie pas
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 13-Nov-26 06:10:46 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AFC8DL1qgtWFyD7nDqts6JR"}}
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ä¾ã¸ã£ãã³, å®å±±ãã, ãã¼ã ã©ã³, #ã¿ã¤ã ã¬ã¹ãã³, #ããã¹ã
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Microsoft, #Outlook
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 15h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 9.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  📖 17/20 articles lus en 1.9s (28 déjà en cache)
+  📄 9/49 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Libération · The Block · Sciences et Avenir · Blockworks
+  🧠 48 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Outlook outage continues as Microsoft … »
+  🧩 49 articles → 18 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ce que l’on sait de la panne d’Outlook et de Microso
+  🚨 Sujet chaud (breaking, 1 médias) : Convergence de différents mots d'ordre, important 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 42.0/100 = gravité 4/10 → 18 + frais 0.3h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 42) → suivant
+  🚨 Sujet chaud (breaking, 21 médias) : Des améliorations constatées, pas de cyberattaque 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 24 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, BBC, BBC Business, BFMTV, Begeek
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 21 médias +20 + frais 1.0h +13 + thème porteur +10 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Teddy Riner a effectué son premier déplacement de campagne à l'hôpital Delafon
+      [2m] Teddy Riner a déclaré vouloir placer la santé au cœur de ses priorités politiq
+      [2m] Teddy Riner a annoncé sa candidature à l'élection présidentielle cette semaine
+      [1m] ⚡exclusif Teddy Riner a affirmé être venu à l'hôpital pour écouter les soignants et appr
+      [1m] ⚡exclusif Teddy Riner n'a pas répondu aux questions des journalistes à l'issue de sa vis
+      [1m] ⚡exclusif Bruno Le Maire a présenté un projet politique en cinquante propositions.
+      [1m] ⚡exclusif Ginette Kolinka a critiqué l'attitude des politiques face à l'antisémitisme.
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Panne d'Outlook : rétablissement "soutenu" de la mes
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : « J’ai écouté, j’ai noté, le t
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 21 médias) : Digital Fairness Act : Bruxelles propose de bannir
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 21 médias +20 + frais 1.0h +13 + thème porteur +10 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 4 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Teddy Riner a effectué sa première visite de campagne présidentielle à l'hôpit
+      [2m] Teddy Riner a déclaré vouloir replacer la santé au cœur de ses priorités pour 
+      [1m] ⚡exclusif Bruno Le Maire a présenté un projet politique en cinquante propositions, inclu
+      [1m] ⚡exclusif Ginette Kolinka a critiqué l'attitude des politiques face à l'antisémitisme lo
+  🕒 Âge de l'article : 2.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : Trente ans après la disparition de Marion Wagon, l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : France Bleu, France Info
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.3h +16
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 21 médias) : Un couple mis en examen après la mort d'un jeune h
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 51.5/100 = gravité 3/10 → 14 + 21 médias +20 + frais 1.0h +8 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 4 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Teddy Riner a effectué sa première visite de campagne présidentielle à l'hôpit
+      [2m] Ce déplacement est axé sur la santé, avec une visite des urgences pédiatriques
+      [1m] ⚡exclusif Bruno Le Maire a présenté un projet politique en cinquante propositions inclua
+      [1m] ⚡exclusif Ginette Kolinka a critiqué l'attitude des politiques face à l'antisémitisme su
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚖️ Correction factuelle forcée appliquée
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Outlook et Teams en berne : ce que l’on sait de la p
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 49 articles à analyser...
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Ce que l’on sait de la panne d’Outlook et de Micro
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Outlook et Teams en berne : ce que l’on sait de la
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Des améliorations constatées, pas de cyberattaque 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trente ans après la disparition de Marion Wagon, l
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Panne d'Outlook : rétablissement "soutenu" de la m
+  ♻️ 7/10 [world] (déjà analysé, cache) : Disparition de Marion Wagon à Agen : 30 ans après,
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Panne mondiale chez Microsoft : Quels sont les pay
+  ♻️ 9/10 [world] (déjà analysé, cache) : Présidentielle 2027 : Teddy Riner lance officielle
+  ♻️ 9/10 [tech] (déjà analysé, cache) : NVIDIA face à un tournant historique : son incroya
+  ♻️ 9/10 [business] (déjà analysé, cache) : Qui est Colette Kress, la nouvelle patronne par in
+  ♻️ 8/10 [gaming] (déjà analysé, cache) : Digital Fairness Act : Bruxelles propose de bannir
+  ♻️ 9/10 [tech] (déjà analysé, cache) : What we know about the global Microsoft outage
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Watch: How a server outage took down Microsoft Tea
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Ex-Nvidia CEO Jensen Huang summoned to testify bef
+  ♻️ 9/10 [tech] (déjà analysé, cache) : What we know about the global Microsoft outage
+  ♻️ 8/10 [business] (déjà analysé, cache) : How a sex scandal at Nvidia is putting pressure on
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Wholesale prices rose 0.3% in October, putting ann
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Bessent: Treasury has wanted Megaspeed restriction
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Outlook outage continues as Microsoft flags 'encou
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin's momentum gauge is turning red, could sen
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Bitcoin hits 12-week low as dollar rallies on inte
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : From $6 to $6.9 million: Two dormant Bitcoin addre
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Thailand seeks $148,000 daily cap on certain stabl
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Morning Minute: Crypto Plummets as Jensen Huang Ex
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Microsoft’s latest email outage turned into a full
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Microsoft’s massive Outlook outage continues
+  🧠 Batch analyse de 18 articles...
+  ✅ 7/10 [world] mondiale: « Comment soignants et patients peuvent-ils être
+  📉 4/10: Graisse de porc, coussin chauffant et rappel sur 5 étag
+  📉 5/10: Violences dans les écoles: "Les chefs d'établissement s
+  🌍 7/10 sans portée internationale : Mobilisation sociale. « Une réunion pour rien » : 
+  🌍 8/10 sans portée internationale : Présidentielle 2027 : « J’ai écouté, j’ai noté, le
+  ⏩ Doublon: Présidentielle 2027 : Teddy Riner se rendra aujourd’hui
+  📉 5/10: CARTE Les partis d’extrême droite progressent-ils vraim
+  🌍 6/10 sans portée internationale : "Comparable à un gain au Loto… sans même avoir jou
+  📉 3/10: Darty profite du Black Friday pour diviser par deux le 
+  📉 2/10: Avis ETravelSim (2026) : notre test de l’eSIM de voyage
+  📉 4/10: Rare découverte d’un bébé cyclope inhumé dans une céram
+  📉 3/10: Michèle Torr : "Je ne suis plus en couple", la chanteus
+  📉 3/10: Mercredi : l’ombre d’Hitchcock pèse sur la saison 2
+  📉 4/10: Lucky Luke: The Lonesome Cowboy Collection signe le ret
+  📉 3/10: Kraken parent Payward says expansion outside crypto tra
+  📉 4/10: llama.cpp v1.0.0 : A stronger foundation for the local 
+  📉 4/10: Claude’s Duet agent is a little neurotic and surprising
+  📉 3/10: I’d rather use Android XR glasses over Meta Ray-Bans fo
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 8 média(s) · 0.4h — Outlook et Teams en berne : ce que l’on sait
+     10/10 · 3 média(s) · 0.7h — Panne d'Outlook : rétablissement "soutenu" d
+     10/10 · 2 média(s) · 1.0h — Présidentielle 2027 : Teddy Riner lance offi
+     10/10 · 5 média(s) · 0.7h — What we know about the global Microsoft outa
+     10/10 · 5 média(s) · 0.7h — What we know about the global Microsoft outa
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [tech]
+  📈 Hashtag(s) en tendance : #Microsoft, #Outlook
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 13-Nov-26 06:18:28 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A_Hcb8Cyt3ISTZ-457UgFe4"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Outlook et Teams en berne : ce que l’on sait de la pann
+
+  ── Bilan du cycle (947 s) ──
+     écartés : 4 sujet banal · 3 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-001         ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        25. clé 2 × gemini-3.6-flash             🚫 quota
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.5-flash-lite        ✅
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 3 × gemini-3.5-flash-lite        ✅
+        37. clé 3 × gemini-3.5-flash-lite        ✅
+        38. clé 3 × gemini-3.5-flash-lite        ✅
+        39. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-3.1-flash-lite · clé 4 × gemini-embedding-001 (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 4/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash, gemini-3.1-flash-tts
+     jetons Gemini : 84,677 entrée · 4,192 sortie
+     ✅ aucun appel payant
