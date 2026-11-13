@@ -1,0 +1,101 @@
+
+[06:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Outlook, EBiDAN, #ç´ ç½æ­åæ¦, Teams, Giants
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 0.9 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Giants » écarté : trop secondaire (3/10)
+  🔎 « Microsoft » : 1 article(s) frais, le plus récent il y a 0.8 h (Euronews.com)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ✅ « Microsoft » retenu : Panne informatique mondiale impactant de nombreux services e (8/10) (+2 au score)
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Outlook, #Teams, #Microsoft
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/8 articles lus en 1.7s (64 déjà en cache)
+  📄 17/73 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · OpenAI · Jeuxvideo.com
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 73 articles → 73 événement(s)
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Donald Trump really wants Tim Cook to run Nvidia
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 10/10 → 45 + frais 4.8h +2 + thème porteur +10 + portée mondiale +18 + ⚡ démission politique → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Une panne mondiale touche la messagerie Outlook de
+  🧮 Score 88.0/100 = gravité 8/10 → 36 + frais 0.2h +16 + imprévu 8/10 +18 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 88) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (2, pénalisé par « comment  ») : Condamné pour terrorisme, un djihadiste du Lot est a
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : J’ai essayé la nouvelle Dacia Spring : simple Twingo
+  🚨 Sujet chaud (breaking, ? médias) : Panne mondiale de Microsoft perturbe Outlook, Team
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 8 → 10 (+2)
+  → Sujet chaud pas assez fort (score 10) → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 73 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (53 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 2 × gemini-embedding-001         🚫 quota
+        16. clé 3 × gemini-embedding-001         🚫 quota
+        17. clé 4 × gemini-embedding-001         🚫 quota
+        18. clé 5 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.6-flash             🚫 quota
+        21. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 4 × gemini-3.6-flash             🚫 quota
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 5 × gemini-3.5-flash-lite        ✅
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 5 × gemini-3.5-flash-lite        ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 797
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,150 entrée · 331 sortie
+     ✅ aucun appel payant
