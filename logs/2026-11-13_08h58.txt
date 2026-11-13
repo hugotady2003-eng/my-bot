@@ -1,0 +1,176 @@
+
+[08:53] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Outlook, #ç´ ç½æ­åæ¦, ç´ ç½åºå ´, EBiDAN, Microsoft
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Outlook, #Microsoft, #Teams
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/9 articles lus en 1.5s (31 déjà en cache)
+  📄 8/41 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · CoinDesk · Ouest-France · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧠 Même événement (jugé) : « "Je pense que les examens peuvent se t… »
+  🧩 41 articles → 40 événement(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 14 (char 13) → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia sans Jensen Huang : ce qui attend Colette K
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + frais 0.0h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10 + ⚡ démission politique → plancher 89
+  🕒 Âge de l'article : -0.2h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza5ygv6k1pMqtkgin45'}
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Crise sociale : les syndicats de fonctionnaires re
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 6/10 → 27 + frais 1.2h +8 + thème porteur +10 + primeur +5 + ⚡ crise institutionnelle → plancher 89
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza6DXcW6wTrgfCMPa3r'}
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia : l’ex PDG des puces électroniques convoqué
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + frais 1.0h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza6TVzR9Nu3TMovyfiH'}
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Un smartphone haut de gamme à moins de 400 € pendant
+  🚨 Sujet chaud (breaking, 1 médias) : Google lance Gemini 4 Hydrogen, sa nouvelle IA gra
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 97.0/100 = gravité 10/10 → 45 + frais 0.2h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza6wC7zefAr3V9yh1bA'}
+  🚨 Sujet chaud (breaking, 1 médias) : Et si Tim Cook prenait les commandes de Nvidia ?
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 66.0/100 = gravité 6/10 → 27 + frais 1.0h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza7B91n7TrbjNVyQ9LG'}
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia on track for longest weekly losing streak s
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 9/10 → 40 + frais 2.1h +4 + portée internationale +10
+  🕒 Âge de l'article : 2.1h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza7QzTSo7MMZNWoKkQT'}
+  🚨 Sujet chaud (breaking, 1 médias) : Bitcoin firm Nakamoto owes Kraken $165 million, mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 6/10 → 27 + frais 1.9h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.9h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza7erto8zvf4NbLs5d5'}
+  🚨 Sujet chaud (breaking, 1 médias) : Bitcoin slides below $70K amid thin liquidity, ETF
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 2.0h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 2.0h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza7tk4EznWU9TBj27Ko'}
+  🚨 Sujet chaud (breaking, 1 médias) : "Qu’il sorte de prison, je le vis très mal" : 11 a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.0/100 = gravité 8/10 → 36 + frais 1.9h +8 + primeur +5
+  ⚠️ Parcours Wikipédia indisponible pour Mohamed Bakkali (HTTP Error 404: Not Found)
+  🕒 Âge de l'article : 1.9h (frais ✅)
+  ↩️ Pas un décès malgré le classement du modèle → actualité normale [world]
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza8C3sZpaHhjBAbVtBQ'}
+  🚨 Sujet chaud (breaking, 1 médias) : Une panne mondiale touche la messagerie Outlook de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.6h +8 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.6h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza8RwXixw4moB434sEb'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Widespread Microsoft outage takes down Outlook and o
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 41 articles à analyser...
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Une panne mondiale de la messagerie Outlook pertur
+  ♻️ 6/10 [business] (déjà analysé, cache) : Mercedes-Benz envisage des fermetures d’usines en 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Dark web : 354 personnes arrêtées, dont 23 en Fran
+  ♻️ 6/10 [business] (déjà analysé, cache) : Crise sociale : les syndicats de fonctionnaires re
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Une panne mondiale touche la messagerie Outlook de
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Des millions d’utilisateurs face à une panne des a
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia : l’ex PDG des puces électroniques convoqué
+  ♻️ 8/10 [hommage] (déjà analysé, cache) : "Qu’il sorte de prison, je le vis très mal" : 11 a
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia sans Jensen Huang : ce qui attend Colette K
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Ces lunettes Amazon vont photographier les livrais
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Et si Tim Cook prenait les commandes de Nvidia ?
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Ex-Nvidia CEO Jensen Huang summoned to testify bef
+  ♻️ 6/10 [world] (déjà analysé, cache) : Zelensky welcomes US bringing Europe into Russia-U
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : North Korean hackers used fake video calls in $400
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Ex-Nvidia CEO Jensen Huang summoned to testify bef
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 6/10 [sports] (déjà analysé, cache) : NBA: Cunningham scores 52 as Pistons win double OT
+  ♻️ 9/10 [markets] (déjà analysé, cache) : Nvidia on track for longest weekly losing streak s
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Widespread Microsoft outage takes down Outlook and
+  ♻️ 7/10 [business] (déjà analysé, cache) : Alice Huang tied to Nvidia’s biggest Chinese compe
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Editor's Choice: Nvidia's AI empire stumbles over 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin firm Nakamoto owes Kraken $165 million, mo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs are now down over $1.5 billion in net
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin slides below $70K amid thin liquidity, ETF
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Trump nominates Hester Peirce successor among SEC,
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin tumbles below $69,000 as Nvidia turmoil ad
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : North Korea Stole $400 Million in Crypto Using Dee
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Strategy Made $19.5 Billion in Profit. So Why Is M
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Democrats launch Nvidia investigation, write scath
+  ♻️ 10/10 [business] (déjà analysé, cache) : Donald Trump really wants Tim Cook to run Nvidia
+  🧠 Batch analyse de 9 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza8hA5XM5jwiRA79HDQ'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 6 média(s) · -0.2h — Nvidia sans Jensen Huang : ce qui attend Col
+     10/10 · 5 média(s) · 0.3h — Widespread Microsoft outage takes down Outlo
+     10/10 · 4 média(s) · 1.6h — Une panne mondiale touche la messagerie Outl
+     10/10 · 1 média(s) · 1.1h — Nvidia : l’ex PDG des puces électroniques co
+     10/10 · 3 média(s) · 2.1h — Nvidia on track for longest weekly losing st
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza95Yiq9wiEfUAkEkJC'}
+  → 1 sélectionné(s) [business]
+  ❌ Envoi 'Nvidia sans Jensen Huang : ce qui attend': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Cgza9KLT2er2YqvofovLp'}
+
+  ── Bilan du cycle (308 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 2 × gemini-embedding-001         🚫 quota
+         2. clé 3 × gemini-embedding-001         🚫 quota
+         3. clé 4 × gemini-embedding-001         🚫 quota
+         4. clé 5 × gemini-embedding-001         🚫 quota
+         5. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         6. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         7. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         8. clé 1 × gemini-3.6-flash             🚫 quota
+         9. clé 1 × gemini-3-flash               ⛔ inexistant
+        10. clé 2 × gemini-3.5-flash-lite        ✅
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.6-flash             🚫 quota
+        22. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 5 × gemini-3.1-flash-lite        ✅
+        24. clé 5 × gemini-3.1-flash-lite        ✅
+        25. clé 5 × gemini-3.1-flash-lite        ✅
+        26. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        28. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 794
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,333 entrée · 34 sortie
+     ⚠️ 17 appel(s) payés chez Claude (le gratuit n'a pas suffi)
