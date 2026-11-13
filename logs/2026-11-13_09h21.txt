@@ -1,0 +1,283 @@
+
+[08:58] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Outlook, #ç´ ç½æ­åæ¦, ç´ ç½åºå ´, EBiDAN, Microsoft
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Outlook, #Microsoft, #Teams
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.8s (38 déjà en cache)
+  📄 9/44 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🧠 Même événement (jugé) : « Une panne mondiale touche la messageri… »
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Des millions d’utilisateurs face à une… »
+  🧩 44 articles → 42 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia sans Jensen Huang : ce qui attend Colette K
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 9/10 → 40 + frais 0.0h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10 + ⚡ démission politique → plancher 89
+  🕒 Âge de l'article : -0.1h (frais ✅)
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 145 (char 144 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 Gemini 503 — This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  ⚠️ gemini-3.6-flash (clé 1) : 503 Server Error: Service Unavailable for url: https://gener → couple suivant
+  ✂️ Tweet resserré localement (249 → 100 car.)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Crise sociale : les syndicats de fonctionnaires re
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 6/10 → 27 + frais 1.4h +8 + thème porteur +10 + primeur +5 + ⚡ crise institutionnelle → plancher 89
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 3 column 18 (char 93) → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ✂️ Tweet resserré localement (195 → 160 car.)
+  👁️ Image écartée : Ce n'est pas le Premier ministre
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia : l’ex PDG des puces électroniques convoqué
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + frais 1.3h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (161 → 107 car.)
+  👁️ Image écartée : Information factuellement fausse
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Disparition de Marion Wagon : le pôle cold case va
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 36.5/100 = gravité 5/10 → 22 + frais 2.2h +4 + thème porteur +10
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Un smartphone haut de gamme à moins de 400 € pendant
+  🚨 Sujet chaud (breaking, 1 médias) : Google lance Gemini 4 Hydrogen, sa nouvelle IA gra
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + frais 0.4h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Et si Tim Cook prenait les commandes de Nvidia ?
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 6/10 → 27 + frais 1.2h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia on track for longest weekly losing streak s
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 9/10 → 40 + frais 2.4h +4 + portée internationale +10
+  🕒 Âge de l'article : 2.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (243 → 142 car.)
+  👁️ Image écartée : Jensen Huang n'a pas démissionné
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️🤝 Image récupérée chez un média jumeau (CoinDesk) — même sujet
+  👁️ Image écartée : Personne différente
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Bitcoin firm Nakamoto owes Kraken $165 million, mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.0/100 = gravité 6/10 → 27 + frais 2.2h +4 + portée mondiale +18
+  🕒 Âge de l'article : 2.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (191 → 152 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Image écartée : Personne non identifiée
+  🖼️🤝 Image récupérée chez un média jumeau (CNBC) — même sujet
+  👁️ Image écartée : Aucun lien avec l'info
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Bitcoin slides below $70K amid thin liquidity, ETF
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + frais 2.3h +4 + portée mondiale +18
+  🕒 Âge de l'article : 2.3h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (221 → 163 car.)
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : "Qu’il sorte de prison, je le vis très mal" : 11 a
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 40.0/100 = gravité 8/10 → 36 + frais 2.3h +4
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 3 médias) : Une panne mondiale touche la messagerie Outlook de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 49.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 8.1h +1 + portée internationale +10
+  🧩 8 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] Une panne mondiale affecte les services Microsoft 365, incluant Outlook, Teams
+      [2m] Les mesures correctives initiales prises par Microsoft n'ont pas produit les r
+      [2m] La panne touche 74 pays et territoires à travers le monde.
+      [2m] Microsoft a initialement circonscrit le problème aux Amériques avant d'étendre
+      [1m] ⚡exclusif La panne a été causée par une charge élevée sur l'infrastructure.
+      [1m] ⚡exclusif Environ 130 000 utilisateurs ont signalé des problèmes via Downdetector au pic
+      [2m] Microsoft a mis en pause les déploiements et redémarre les serveurs affectés.
+      [1m] ⚡exclusif Des assistants IA tiers comme Claude et ChatGPT ont été indirectement affectés
+  🕒 Âge de l'article : 2.0h (frais ✅)
+  📈 Hashtag(s) en tendance : #Outlook, #Microsoft
+  👁️ Image écartée : Aucun lien avec l'information
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ 8 image(s) trouvée(s) mais toutes trop petites (<380×240)
+  🖼️🤝 Image récupérée chez un média jumeau (20 Minutes) — même sujet
+  👁️ Image écartée : Image montre Microsoft Teams
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Widespread Microsoft outage takes down Outlook and o
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 44 articles à analyser...
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Une panne mondiale de la messagerie Outlook pertur
+  ♻️ 6/10 [business] (déjà analysé, cache) : Mercedes-Benz envisage des fermetures d’usines en 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Dark web : 354 personnes arrêtées, dont 23 en Fran
+  ♻️ 6/10 [business] (déjà analysé, cache) : Crise sociale : les syndicats de fonctionnaires re
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Une panne mondiale touche la messagerie Outlook de
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Des millions d’utilisateurs face à une panne des a
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia : l’ex PDG des puces électroniques convoqué
+  ♻️ 8/10 [hommage] (déjà analysé, cache) : "Qu’il sorte de prison, je le vis très mal" : 11 a
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Google lance Gemini 4 Hydrogen, sa nouvelle IA gra
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia sans Jensen Huang : ce qui attend Colette K
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Ces lunettes Amazon vont photographier les livrais
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Et si Tim Cook prenait les commandes de Nvidia ?
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Ex-Nvidia CEO Jensen Huang summoned to testify bef
+  ♻️ 6/10 [world] (déjà analysé, cache) : Zelensky welcomes US bringing Europe into Russia-U
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : North Korean hackers used fake video calls in $400
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Ex-Nvidia CEO Jensen Huang summoned to testify bef
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 6/10 [sports] (déjà analysé, cache) : NBA: Cunningham scores 52 as Pistons win double OT
+  ♻️ 9/10 [markets] (déjà analysé, cache) : Nvidia on track for longest weekly losing streak s
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Widespread Microsoft outage takes down Outlook and
+  ♻️ 7/10 [business] (déjà analysé, cache) : Alice Huang tied to Nvidia’s biggest Chinese compe
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Editor's Choice: Nvidia's AI empire stumbles over 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin firm Nakamoto owes Kraken $165 million, mo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs are now down over $1.5 billion in net
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin slides below $70K amid thin liquidity, ETF
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Trump nominates Hester Peirce successor among SEC,
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin tumbles below $69,000 as Nvidia turmoil ad
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : North Korea Stole $400 Million in Crypto Using Dee
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Strategy Made $19.5 Billion in Profit. So Why Is M
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Democrats launch Nvidia investigation, write scath
+  ♻️ 10/10 [business] (déjà analysé, cache) : Donald Trump really wants Tim Cook to run Nvidia
+  🧠 Batch analyse de 10 articles...
+  📉 4/10: Altercation avec des policiers : le député Insoumis Séb
+  📉 3/10: Rosalia et Milo J triomphent aux Latin Grammy Awards à 
+  📉 3/10: Jean-Baptiste Bladier, procureur de la République de Me
+  📉 4/10: Martyre de l'A10 : « J’ai trouvé Inass sous la couvertu
+  📉 5/10: « Triomphe », « du pur bonheur », « cadeaux de Black Fr
+  📉 3/10: ATP Finals. Arthur Fils ne sera pas le seul Français en
+  📉 4/10: La lecture d'un texte de Pétain pour le 11-Novembre sus
+  📉 2/10: Un smartphone haut de gamme à moins de 400 € pendant le
+  🌍 6/10 sans portée internationale : "Il m’agrippe, me soulève et me dit que ça va me f
+  ✅ 9/10 [tech] large: What we know about the global Microsoft outage
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 6 média(s) · 0.1h — Nvidia sans Jensen Huang : ce qui attend Col
+     10/10 · 5 média(s) · 0.7h — Widespread Microsoft outage takes down Outlo
+     10/10 · 2 média(s) · 0.7h — What we know about the global Microsoft outa
+     10/10 · 4 média(s) · 2.0h — Une panne mondiale touche la messagerie Outl
+     10/10 · 1 média(s) · 1.4h — Nvidia : l’ex PDG des puces électroniques co
+  ✂️ Éphéméride resserré (194 → 141 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [business]
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (249 → 100 car.)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Nvidia sans Jensen Huang : ce qui attend Colette Kress,
+
+  ── Bilan du cycle (1376 s) ──
+     écartés : 2 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 3 × gemini-embedding-001         🚫 quota
+         5. clé 4 × gemini-embedding-001         🚫 quota
+         6. clé 5 × gemini-embedding-001         🚫 quota
+         7. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        10. clé 1 × gemini-3-flash               ⛔ inexistant
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+        24. clé 2 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 1 × gemini-3.6-flash             ⚠️ 503 Server Error: Serv
+        28. clé 2 × gemini-3.1-flash-lite        ✅
+        29. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        30. clé 2 × gemini-3.1-flash-lite        ✅
+        31. clé 1 × gemini-3.6-flash             🚫 quota
+        32. clé 2 × gemini-3.1-flash-lite        ✅
+        33. clé 2 × gemini-3.1-flash-lite        ✅
+        34. clé 2 × gemini-3.1-flash-lite        ✅
+        35. clé 2 × gemini-3.1-flash-lite        ✅
+        36. clé 2 × gemini-3.1-flash-lite        ✅
+        37. clé 2 × gemini-3.1-flash-lite        ✅
+        38. clé 2 × gemini-3.1-flash-lite        ✅
+        39. clé 2 × gemini-3.1-flash-lite        ✅
+        40. clé 2 × gemini-3.1-flash-lite        ✅
+        … et 9 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite (+11)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 794
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 146,956 entrée · 3,904 sortie
+     ✅ aucun appel payant
