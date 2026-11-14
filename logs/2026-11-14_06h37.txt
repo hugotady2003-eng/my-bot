@@ -1,0 +1,111 @@
+
+[06:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ãªã¼ã¹ãã©ãªã¢, ãã¼ã¢ã¦ã, #ananAWARD2026, #ããããå­¦ãã¹2_5å¨å¹´, åå¥ã¨ä¸ç·
+  🌍 « ChildrensDay » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Duffy, #TheFAA
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.8s (56 déjà en cache)
+  📄 11/61 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · Blockworks · OpenAI
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧠 Même événement (jugé) : « Etats-Unis : La FAA suspend tous les v… »
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧠 Même événement (jugé) : « Des avions cloués au sol pendant plusi… »
+  🧩 61 articles → 59 événement(s)
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Aux Etats-Unis, après la suspension des vols, l’ad
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.3h +16 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🧩 8 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 6 exclusive(s)
+      [2m] Le trafic aérien aux États-Unis a été suspendu pendant plusieurs heures le ven
+      [2m] La panne a entraîné l'interdiction de tous les décollages d'avions sur le terr
+      [1m] ⚡exclusif Plus de 11 000 vols et 1,5 million de passagers ont été affectés par cet incid
+      [1m] ⚡exclusif L'incident n'est ni une cyberattaque ni lié à l'intelligence artificielle.
+      [1m] ⚡exclusif La panne est attribuée à des sous-investissements dans un système informatique
+      [1m] ⚡exclusif Il s'agit de la plus importante interruption du trafic aérien aux États-Unis d
+      [1m] ⚡exclusif Les avions déjà en vol ont pu poursuivre leur trajet, mais les appareils au so
+      [1m] ⚡exclusif Les passagers ont dû faire face à une forte demande de solutions de transport 
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Le dessin du samedi 14 novembre : une panne géante
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 3/10 → 14 + frais 0.6h +13 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : FAA lifts nationwide ground stop that blocked take
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.5/100 = gravité 9/10 → 40 + frais 3.7h +4
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 2 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 61 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (99 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 2 × gemini-embedding-001         🚫 quota
+         3. clé 3 × gemini-embedding-001         🚫 quota
+         4. clé 4 × gemini-embedding-001         🚫 quota
+         5. clé 5 × gemini-embedding-001         🚫 quota
+         6. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 1 × gemini-3.6-flash             🚫 quota
+        10. clé 1 × gemini-3-flash               ⛔ inexistant
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 2 × gemini-3-flash               ⛔ inexistant
+        16. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 3 × gemini-3.6-flash             🚫 quota
+        20. clé 3 × gemini-3-flash               ⛔ inexistant
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.6-flash             🚫 quota
+        29. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        30. clé 5 × gemini-3.1-flash-lite        ✅
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 795
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,875 entrée · 794 sortie
+     ✅ aucun appel payant
