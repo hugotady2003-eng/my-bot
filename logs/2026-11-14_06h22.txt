@@ -1,0 +1,119 @@
+
+[06:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ãã¼ã¢ã¦ã, ãªã¼ã¹ãã©ãªã¢, Duffy, #ããããå­¦ãã¹2_5å¨å¹´, åå¥ã¨ä¸ç·
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Duffy, #Mullin, #NewOrleans
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.6s (55 déjà en cache)
+  📄 11/60 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · Blockworks · OpenAI
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Reprise du trafic aérien aux États-Uni… »
+  🧠 Même événement (jugé) : « Aux Etats-Unis, l'administration fédér… »
+  🧩 60 articles → 58 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : États-Unis: ce que l'on sait de la suspension des 
+  🧮 Score 88.0/100 = gravité 8/10 → 36 + frais 0.1h +16 + imprévu 9/10 +18 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 88) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FAA lifts ground stop after more than four hours, bu
+  🚨 Sujet chaud (breaking, 3 médias) : Aux Etats-Unis, après la suspension des vols, l’ad
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 87.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 0.4h +16 + thème porteur +10 + portée mondiale +18
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 9 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] L'administration américaine a ordonné l'arrêt total des décollages sur tout le
+      [2m] La panne est attribuée à la vétusté des équipements et à un manque d'investiss
+      [2m] Les autorités excluent une cyberattaque ou un lien avec l'intelligence artific
+      [1m] ⚡exclusif Le ministre de la Sécurité intérieure n'exclut pas totalement la piste d'un sa
+      [1m] ⚡exclusif L'incident a provoqué l'annulation de 6 000 vols et affecté des centaines de m
+      [2m] Il s'agit de la plus grande interruption du trafic aérien depuis les attentats
+      [2m] Le trafic aérien a repris progressivement après plusieurs heures de suspension
+      [1m] ⚡exclusif Au moment de l'arrêt, 4 042 vols étaient en cours de trajet vers les États-Uni
+  🌙 Sujet fort (score 87) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Le dessin du samedi 14 novembre : une panne géante
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 3/10 → 14 + frais 0.4h +16 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 56) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 3 médias) : Reprise du trafic aérien aux États-Unis après une 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 87.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 0.4h +16 + thème porteur +10 + portée mondiale +18
+  🧩 8 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [3m] Les autorités américaines ont ordonné une suspension nationale de tous les déc
+      [1m] ⚡exclusif L'incident a provoqué l'annulation de 6 000 vols et affecté des centaines de m
+      [2m] Les autorités ont écarté la piste d'une cyberattaque.
+      [3m] La cause principale identifiée est la vétusté du matériel et des systèmes de c
+      [2m] Une telle interruption massive est rarissime, le précédent majeur remontant au
+         ↳ Le Monde, BFMTV : Le Monde mentionne un bref précédent en 2023, BFMTV cite une pan
+         motif : Précision sur la nature des incidents passés.
+      [1m] ⚡exclusif Le ministre des Transports Sean Duffy a communiqué sur l'enquête en cours via 
+      [1m] ⚡exclusif Les avions déjà en vol ont pu poursuivre leur trajet et atterrir.
+      [1m] ⚡exclusif Des incidents sans rapport direct avec la panne aérienne ont été signalés, com
+  🌙 Sujet fort (score 87) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : 'Miracle on Mississippi' - All passengers rescued af
+  ⚽ API football-data : 2 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 60 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (76 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 2 × gemini-embedding-001         🚫 quota
+         2. clé 3 × gemini-embedding-001         🚫 quota
+         3. clé 4 × gemini-embedding-001         🚫 quota
+         4. clé 5 × gemini-embedding-001         🚫 quota
+         5. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         6. clé 1 × gemini-3.1-flash-lite        ✅
+         7. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 1 × gemini-3.6-flash             🚫 quota
+        10. clé 1 × gemini-3-flash               ⛔ inexistant
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 2 × gemini-3-flash               ⛔ inexistant
+        16. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.1-flash-lite        ✅
+        18. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 3 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 4 × gemini-3.6-flash             🚫 quota
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 5 × gemini-3.5-flash-lite        ✅
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 5 × gemini-3.5-flash-lite        ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 796
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,981 entrée · 1,546 sortie
+     ✅ aucun appel payant
