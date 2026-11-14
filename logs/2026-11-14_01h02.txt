@@ -1,0 +1,83 @@
+
+[01:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : The FAA, Friday the 13th, #ã·ã¥ã¼ã¤ã, New Orleans, #FRAvRSA
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #SeanDuffy, #Microsoft, #LaFAA
+  📖 46 articles, tous en cache
+  📄 7/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 48 articles → 48 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia is done with Jensen Huang. The fallout in W
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.5/100 = gravité 7/10 → 32 + frais 0.1h +16 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 74) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Tous les avions cloués au sol aux Etats-Unis en rais
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Panne d'Outlook : "large reprise" de la messagerie, 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FAA issues nationwide ground stop after communicatio
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : FAA grounds departing flights nationwide, citing air
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Tired of paying for cloud storage every month? pClou
+  🚨 Sujet chaud (breaking, 1 médias) : "C'est chômage technique" : enseignants, soignants
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 48.0/100 = gravité 8/10 → 36 + frais 5.9h +2 + portée internationale +10
+  🌙 Sujet fort (score 48) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Aux Etats-Unis, l'administration fédérale de l'aviat
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Etats-Unis : La FAA suspend tous les vols du pays ju
+  ⚽ API football-data : 2 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 48 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (44 s) ──
+     écartés : 7 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 2 × gemini-embedding-001         🚫 quota
+         3. clé 3 × gemini-embedding-001         🚫 quota
+         4. clé 4 × gemini-embedding-001         🚫 quota
+         5. clé 5 × gemini-embedding-001         🚫 quota
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        11. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 1 × gemini-3-flash               ⛔ inexistant
+        14. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        17. clé 2 × gemini-3.6-flash             🚫 quota
+        18. clé 2 × gemini-3-flash               ⛔ inexistant
+        19. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.1-flash-lite        ✅
+        21. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.6-flash             🚫 quota
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-3.6-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,545 entrée · 152 sortie
+     ✅ aucun appel payant
