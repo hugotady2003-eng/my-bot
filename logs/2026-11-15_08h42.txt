@@ -1,0 +1,130 @@
+
+[08:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ã©ãã¿ã¼ã©ã¤ã³ãº, ã¨ãªã¶ãã¹å¥³çæ¯, #UFC334, ã«ã ãã£ãã¯, Hokit
+  🔎 « Gane » : 1 article(s) frais, le plus récent il y a 1.3 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Gane » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Gane » écarté : jugement indisponible
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Hokit
+  🚫 gemini-embedding-001 : quota de vecteurs épuisé → modèle suivant
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  📖 3/3 articles lus en 0.2s (33 déjà en cache)
+  📄 7/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 37 articles → 37 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestations: le gouvernement interdit la vente 
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 79.0/100 = gravité 10/10 → 45 + frais 0.1h +16 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch4LYmHRiZ6JdewruM6f1'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : MMA : Dans un combat âpre contre Hokit, Gane garde s
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre au Moyen-Orient : plusieurs explosions à Ba
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 84.0/100 = gravité 10/10 → 45 + frais 0.7h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch4LZ1FJirhsrNUSqkzVC'}
+  🚨 Sujet chaud (breaking, 1 médias) : Inondations dans l'Hérault : une conductrice porté
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 37 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : Ukraine : Volodymyr Zelensky évoque l’hypothèse am
+  ♻️ 6/10 [space] (déjà analysé, cache) : L'Ukraine et la Russie bataillent dans l'espace po
+  ♻️ 10/10 [world] (déjà analysé, cache) : Guerre au Moyen-Orient : plusieurs explosions à Ba
+  ♻️ 7/10 [world] (déjà analysé, cache) : Inondations dans l'Hérault : une conductrice porté
+  ♻️ 9/10 [space] (déjà analysé, cache) : « Mechazilla a attrapé le Starship ! » : SpaceX ré
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 n’a pas cassé le record du trafic Internet e
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Linky : l’Europe ferme la porte aux réfractaires e
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 n’a pas cassé le record du trafic Internet e
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia : le départ de Jensen Huang provoque une mo
+  ♻️ 9/10 [world] (déjà analysé, cache) : US has floated Ukraine ceding Donbas for Nato memb
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Microsoft says services fully restored after day-l
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 7/10 [world] (déjà analysé, cache) : ASEAN summit: Who’s attending and what’s at stake?
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : XRP crashes to its lowest since November 2024 as m
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin crashes to 3-month low below $63,000 as an
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Microsoft confirms global outage resolved, rules o
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Kava Lend loses roughly $3.8 million to hack, send
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs lose $1 billion for the second week i
+  ♻️ 9/10 [business] (déjà analysé, cache) : The Week Jensen Huang Fell: How a Spy Scandal Topp
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI, Anthropic, Google and Other AI Giants Face
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Where was Nvidia’s security team?
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Elon Musk, other tech execs sign petition calling 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Tesla opens Cybercab pre-orders ‘for personal use,
+  ♻️ 6/10 [space] (déjà analysé, cache) : SpaceX returned its Starship rocket on Saturday—bu
+  🧠 Batch analyse de 11 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch4LZJHk4ATNGJ8uHYAna'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.7h — Guerre au Moyen-Orient : plusieurs explosion
+     10/10 · 3 média(s) · 0.7h — Nvidia : le départ de Jensen Huang provoque 
+     8/10 · 1 média(s) · 0.2h — Inondations dans l'Hérault : une conductrice
+     10/10 · 2 média(s) · 7.9h — Ukraine : Volodymyr Zelensky évoque l’hypoth
+     10/10 · 2 média(s) · 9.9h — « Mechazilla a attrapé le Starship ! » : Spa
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch4LZZ8TaRaWXYdruvCzg'}
+  → 1 sélectionné(s) [world]
+  ❌ Envoi 'Guerre au Moyen-Orient : plusieurs explo': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch4LZnxfXWW26DNyhLB2q'}
+
+  ── Bilan du cycle (103 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 5 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 5 × gemini-3.6-flash             🚫 quota
+        25. clé 5 × gemini-3-flash               ⛔ inexistant
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 3 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 5 × gemini-embedding-001
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 793
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 422 entrée · 1 sortie
+     ⚠️ 16 appel(s) payés chez Claude (le gratuit n'a pas suffi)
