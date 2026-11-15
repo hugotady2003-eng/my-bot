@@ -1,0 +1,131 @@
+
+[00:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : England, Spain, #FRATUR, Cowboys, Trafford
+  🔎 « England » : 1 article(s) frais, le plus récent il y a 1.6 h (OneFootball)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting ',' delimiter: line 1 column 19 (char 18) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « England » écarté : Information sportive erronée ou sans actualité récente.
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 3.1 h (arsenalsports.ca)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Cowboys » écarté : Simple annonce de match sportif sans événement marquant.
+  🔎 « Trafford » : 1 article(s) frais, le plus récent il y a 1.3 h (Goal.com)
+  ✅ « Trafford » retenu : Résultat sportif majeur d'un match international. (6/10) (+1 au score)
+  🔎 « Inglaterra » : 1 article(s) frais, le plus récent il y a 14.7 h (OneFootball)
+  ⏭️  « Inglaterra » écarté : trop secondaire (4/10)
+  🔎 « Mendoza » : 1 article(s) frais, le plus récent il y a 2.1 h (RDS)
+  ⏭️  « Mendoza » écarté : trop secondaire (2/10)
+  🌍 « ESPENG » : aucune reprise en français, source internationale retenue
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Trafford
+  📖 31 articles, tous en cache
+  📄 9/32 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · The Block · CoinDesk · Blockworks · The Verge
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Sans briller, l'équipe de France s’imp… »
+  🧠 Même événement (jugé) : « France - Turquie : Direction le Final … »
+  🧠 Même événement (jugé) : « France - Turquie. « Sur le contenu, on… »
+  🧠 Même événement (jugé) : « France - Turquie. Sorti à la pause, Mi… »
+  🧠 Même événement (jugé) : « Suspected China spy linked to Nvidia's… »
+  🧩 32 articles → 27 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 4 médias) : Face à la Turquie, les Bleus par une toute petite 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 20 s
+  🧮 Score 60.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 1.7h +8 + thème porteur +10 + exploit français +4
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] L'équipe de France a battu la Turquie 2-1 lors de la phase de groupes de la Li
+      [3m] La France est qualifiée pour les quarts de finale de la Ligue des nations.
+      [1m] ⚡exclusif La France termine première de son groupe.
+      [2m] La performance des Bleus lors de ce match est jugée médiocre ou poussive.
+      [1m] ⚡exclusif Le gardien Mike Maignan a été remplacé par Guillaume Restes à la mi-temps en r
+      [2m] Eli Junior Kroupi a marqué le deuxième but de la France.
+      [1m] ⚡exclusif Désiré Doué était absent pour ce match.
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  ⚪ Écarté (0, pénalisé par « pourrait ») : Jensen Huang envisagerait un come-back chez Nvidia, 
+  🚨 Sujet chaud (breaking, 4 médias) : Sans briller, l'équipe de France s’impose face à l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 1.7h +8 + thème porteur +10 + exploit français +4
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 20 s
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] L'équipe de France a battu la Turquie 2-1 et s'est qualifiée pour les quarts d
+      [1m] ⚡exclusif La France termine à la première place de son groupe de Ligue des nations.
+      [2m] La performance de l'équipe de France lors de ce match est jugée médiocre ou po
+      [1m] ⚡exclusif Le premier but français a été marqué contre son camp par le défenseur turc Emi
+      [2m] Eli Junior Kroupi a marqué le deuxième but de l'équipe de France.
+      [1m] ⚡exclusif Le gardien Mike Maignan a été remplacé par Guillaume Restes à la mi-temps en r
+      [3m] Le match s'est déroulé au Stade Atlantique de Bordeaux le 15 novembre 2026.
+  🌙 Sujet fort (score 65) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : CZ denies Binance sold crypto as Bitcoin bounces f
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.5/100 = gravité 7/10 → 32 + frais 1.8h +8 + primeur +5 + portée mondiale +18
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Mort du baron de la drogue mexicain historique Mig
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.5/100 = gravité 7/10 → 32 + frais 1.7h +8 + primeur +5
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Espagne-Angleterre : Le tableau tactique, entre pres
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 32 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (120 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 4 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 4 × gemini-embedding-001         🚫 quota
+        27. clé 5 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-3.1-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,370 entrée · 1,397 sortie
+     ✅ aucun appel payant
