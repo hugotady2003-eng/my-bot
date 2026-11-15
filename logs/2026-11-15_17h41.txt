@@ -1,0 +1,236 @@
+
+[17:36] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  Le Saviez-vous : « L'origine du mot poubelle » n'explique pas vraiment → on ne publie pas
+  ⚠️ gemini-3.5-flash-lite (clé 3) : Expecting ':' delimiter: line 1 column 154 (char 153) → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #FoolInLoveEP12, DO I EVEN MATTER, ãã¤ããã¤ãå©ä¼, #ä¹æ¨åå·¥äºä¸­, Hutchinson
+  🌍 « DO I EVEN MATTER » : aucune reprise en français, source internationale retenue
+  🔎 « Hutchinson » : 1 article(s) frais, le plus récent il y a 0.7 h (L'Équipe)
+  ⏭️  « Hutchinson » écarté : trop secondaire (3/10)
+  🕐 17h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 7.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 9/12 articles lus en 1.7s (26 déjà en cache)
+  📄 9/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🧠 38 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « The Week Jensen Huang Fell: How a Spy … »
+  🧩 38 articles → 14 événement(s), dont 6 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Manifestation du 14 novembre : plus de 400 interpe
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 2.2h +4
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚪ Écarté (-5, pénalisé par « \b(?:météo ») : Météo : pluie et vent avant une accalmie ce week-end
+  🚨 Sujet chaud (breaking, 6 médias) : Guerre en Ukraine : "Elle nous isolera en Europe..
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : BFMTV, Gamekult, Libération, Ouest-France, Sud Ouest
+  🧮 Score 76.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 0.1h +16 + portée mondiale +18
+  🕒 Âge de l'article : 1.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (195 → 151 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 8 médias) : L'Estonie va fermer sa frontière avec la Russie à 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 9 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, 9to5Mac, Blockworks, France Bleu, France Info
+  🧮 Score 87.5/100 = gravité 7/10 → 32 + 8 médias +15 + frais 0.6h +13 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (168 → 122 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : À Washington, la justice bloque le projet de golf 
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BFMTV, Ouest-France
+  🧮 Score 58.5/100 = gravité 5/10 → 22 + 3 médias +7 + frais 0.1h +16 + programmé 3/10 -15 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 3 médias) : Suspected China spy linked to Nvidia's ex-boss lef
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 36.5/100 = gravité 7/10 → 32 + 3 médias +7 + ancien 17h -12 + portée internationale +10
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [3m] Jensen Huang a démissionné de son poste de PDG d'Nvidia à la suite de révélati
+      [2m] L'une des relations extra-conjugales de Jensen Huang concernait Alice Huang, c
+      [2m] Megaspeed, le plus gros acheteur de puces Nvidia en Asie du Sud-Est, fait l'ob
+      [1m] ⚡exclusif Alice Huang a quitté son rôle de direction chez Megaspeed en août de l'année d
+      [1m] ⚡exclusif Megaspeed a annoncé le lancement d'une enquête interne menée par un cabinet ju
+      [1m] ⚡exclusif Le secrétaire au Trésor américain Scott Bessent a reproché au département du C
+      [1m] ⚡exclusif David Reber, le chef de la sécurité d'Nvidia, a démissionné en août en invoqua
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 8 médias) : "Des courriers ont pu être lus" : ce que l'on sait
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 92.0/100 = gravité 8/10 → 36 + 8 médias +15 + frais 0.6h +13 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 2.1h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 4 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (196 → 149 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 8 médias) : Intempéries dans l’Hérault : Automobilistes bloqué
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 92.0/100 = gravité 8/10 → 36 + 8 médias +15 + frais 0.6h +13 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 5.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (197 → 150 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 8 médias) : Guerre en Ukraine : face à la « zone de mort » du 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.0/100 = gravité 6/10 → 27 + 8 médias +15 + frais 0.6h +13 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 2 s
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 38 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Avions cloués au sol aux Etats-Unis : des câbles e
+  ♻️ 8/10 [world] (déjà analysé, cache) : Russie : comment des filiales européennes confisqu
+  ♻️ 8/10 [tech] (déjà analysé, cache) : "Des courriers ont pu être lus" : ce que l'on sait
+  ♻️ 7/10 [world] (déjà analysé, cache) : L'Estonie va fermer sa frontière avec la Russie à 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Manifestation du 14 novembre : plus de 400 interpe
+  ♻️ 8/10 [world] (déjà analysé, cache) : Intempéries dans l’Hérault : Automobilistes bloqué
+  ♻️ 6/10 [world] (déjà analysé, cache) : Guerre en Ukraine : face à la « zone de mort » du 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre en Ukraine : "Elle nous isolera en Europe..
+  ♻️ 9/10 [world] (déjà analysé, cache) : Iran targets US military base in Bahrain with dron
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Suspected China spy linked to Nvidia's ex-boss lef
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 8/10 [world] (déjà analysé, cache) : 70 bodies recovered from Gaza rubble, thousands st
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : XRP crashes to its lowest since November 2024 as m
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin crashes to 3-month low below $63,000 as an
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin falls to four-month low near $62K as crypt
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Kava Lend loses roughly $3.8 million to hack, send
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs lose $1 billion for the second week i
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : How Wall Street Is Racing to Claim the Onchain Dol
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Lose $2.1 Billion in November as Outf
+  ♻️ 9/10 [business] (déjà analysé, cache) : The Week Jensen Huang Fell: How a Spy Scandal Topp
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Where was Nvidia’s security team?
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Elon Musk, other tech execs sign petition calling 
+  ♻️ 6/10 [space] (déjà analysé, cache) : SpaceX returned its Starship rocket on Saturday—bu
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Apple’s Siri AI smart glasses are reportedly launc
+  🧠 Batch analyse de 11 articles...
+  📉 3/10: Katarzyna Kalwat, un théâtre hanté par la honte
+  🌍 8/10 sans portée internationale : Le procès en appel de Gérard Depardieu pour agress
+  📉 4/10: Jean-Luc Mélenchon, candidat LFI à la présidentielle: a
+  📉 2/10: Météo : pluie et vent avant une accalmie ce week-end, q
+  ✅ 7/10 [business] large: Prime Macron sans CSG mais fiscalisée, indemnité
+  ✅ 8/10 [world] large: « Nous ne nous laisserons pas intimider »… L’Est
+  📉 3/10: Pour le Black Friday, la trottinette électrique Xiaomi 
+  📉 2/10: Black Friday à moins de 50 euros : notre sélection gami
+  📉 2/10: Saint-Jacques achetées à l'avance pour Noël : cet endro
+  🌍 7/10 sans portée internationale : Il fallait s'y attendre : GTA 6 pourrait être cens
+  📉 4/10: Apple engineers ‘actively working’ on Face ID for iPhon
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.1h — « Nous ne nous laisserons pas intimider »… L
+     9/10 · 2 média(s) · 0.3h — L'Estonie va fermer sa frontière avec la Rus
+     10/10 · 1 média(s) · 3.0h — Iran targets US military base in Bahrain wit
+     9/10 · 1 média(s) · 0.7h — Russie : comment des filiales européennes co
+     8/10 · 1 média(s) · 0.2h — Prime Macron sans CSG mais fiscalisée, indem
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (181 → 152 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : « Nous ne nous laisserons pas intimider »… L’Estonie va
+
+  ── Bilan du cycle (270 s) ──
+     écartés : 2 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        ⚠️ Expecting ':' delimite
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 3 × gemini-embedding-001         ✅
+        18. clé 3 × gemini-3.5-flash-lite        ✅
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        ✅
+        31. clé 3 × gemini-3.5-flash-lite        ✅
+        32. clé 3 × gemini-3.5-flash-lite        ✅
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 3 × gemini-3.5-flash-lite        ✅
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 3 × gemini-3.5-flash-lite        ✅
+        37. clé 3 × gemini-3.5-flash-lite        ✅
+        38. clé 3 × gemini-3.5-flash-lite        ✅
+        39. clé 3 × gemini-3.5-flash-lite        ✅
+        40. clé 3 × gemini-3.5-flash-lite        ✅
+        … et 1 autres
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 3/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 106,619 entrée · 3,089 sortie
+     ✅ aucun appel payant
