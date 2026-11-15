@@ -1,0 +1,181 @@
+
+[09:56] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Libération
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ Image libre trouvée sur Commons « Gane »
+  🖼️ Image libre trouvée sur Commons « conserve »
+  🖼️ Image libre trouvée sur Commons « ceinture »
+  🖼️ Décryptage illustré par 3 image(s) différente(s) sur 6 plans
+  ⛔ gemini-3.1-flash-tts n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (models/gemini-3.1-flash-tts is not found for API v) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  🎞️ Montage : 6 plans, 32.0s
+  🎬 Carrousel vidéo (54s, 6 slides, sans son)
+  🎞️ Montage : 7 plans, 61.8s
+  📱 Version TikTok : 9:16, 6 plans, 59s, sous-titrée
+  📥 Version TikTok déposée : sortie_tiktok/pulse-2026-11-15.mp4 (64.4 Mo)
+  📝 Légende à compléter    : sortie_tiktok/pulse-2026-11-15-legende.txt
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Sunday, 15-Nov-26 01:02:35 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AMV6M5-tWY9l6N_kMuhdH6o"}}
+  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)
+  ⏭️  Le Saviez-vous : « Origine de poser un lapin » n'explique pas vraiment → on ne publie pas
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : ã©ãã¿ã¼ã©ã¤ã³ãº, ã¨ãªã¶ãã¹å¥³çæ¯, ã«ã ãã£ãã¯, #ã©ãã©ã¤ããã§ã¹_Day2, #æ«»å6thã¢ãã©_DAY2
+  🔎 « Hokit » : 1 article(s) frais, le plus récent il y a 1.3 h (L'Équipe)
+  ✅ « Hokit » retenu : Victoire sportive importante de Ciryl Gane à l'UFC (7/10) (+1 au score)
+  🔎 « Gane » : 1 article(s) frais, le plus récent il y a 1.3 h (L'Équipe)
+  ✅ « Gane » retenu : Victoire de Ciryl Gane pour son titre UFC. (6/10) (+1 au score)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Hokit, #Gane
+  🕐 10h (Paris) — rythme journée (34-70 min · 0 publié(s), 16 restant(s) sur 14.0 h) : 34-70 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/9 articles lus en 1.5s (25 déjà en cache)
+  📄 8/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · CoinDesk · The Block · Ouest-France · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🧩 35 articles → 13 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 7 médias) : Le gouvernement interdit la vente de mortiers d’ar
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Begeek, Blockworks, L'Express, Libération, Sud Ouest
+  🧮 Score 26.5/100 = gravité 7/10 → 32 + 7 médias +11 + frais 2.1h +4 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 26) → suivant
+  🚨 Sujet chaud (breaking, 7 médias) : SpaceX : Starship réussit une première historique 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 9/10 → 40 + 7 médias +11 + frais 2.1h +4 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Une septuagénaire portée disparue à Candillargues ap
+  ⚪ Écarté (-1, pénalisé par « \b(?:météo ») : Inondations dans l’Hérault : une femme de 73 ans por
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Avions cloués au sol aux Etats-Unis : des câbles en 
+  🚨 Sujet chaud (breaking, 7 médias) : Nvidia : le départ de Jensen Huang provoque une mo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 9/10 → 40 + 7 médias +11 + frais 2.1h +4 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🚨 Sujet chaud (breaking, 12 médias) : Une filiale de La Poste dédiée aux entreprises vic
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 14 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ars Technica, BBC Business, Cointelegraph, Decrypt
+  🧮 Score 75.0/100 = gravité 8/10 → 36 + 12 médias +18 + frais 9.9h +1 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (192 → 139 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Avec 40 kilos de moins, Malik Bentalha est méconaiss
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ciryl Gane s'impose difficilement face à Josh Hokit 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ciryl Gane s'impose difficilement face à Josh Hokit 
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 35 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Avions cloués au sol aux Etats-Unis : des câbles e
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le gouvernement interdit la vente de mortiers d’ar
+  ♻️ 9/10 [space] (déjà analysé, cache) : SpaceX : Starship réussit une première historique 
+  ♻️ 6/10 [space] (déjà analysé, cache) : L'Ukraine et la Russie bataillent dans l'espace po
+  ♻️ 7/10 [world] (déjà analysé, cache) : Stress et règlements de compte interne… Ambassadeu
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Une filiale de La Poste dédiée aux entreprises vic
+  ♻️ 9/10 [space] (déjà analysé, cache) : « Mechazilla a attrapé le Starship ! » : SpaceX ré
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 n’a pas cassé le record du trafic Internet e
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 n’a pas cassé le record du trafic Internet e
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Nvidia : le départ de Jensen Huang provoque une mo
+  ♻️ 9/10 [world] (déjà analysé, cache) : US has floated Ukraine ceding Donbas for Nato memb
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Microsoft says services fully restored after day-l
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : XRP crashes to its lowest since November 2024 as m
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin crashes to 3-month low below $63,000 as an
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Coinone warns of phishing, identity theft after cu
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Kava Lend loses roughly $3.8 million to hack, send
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs lose $1 billion for the second week i
+  ♻️ 9/10 [business] (déjà analysé, cache) : The Week Jensen Huang Fell: How a Spy Scandal Topp
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI, Anthropic, Google and Other AI Giants Face
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Where was Nvidia’s security team?
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Elon Musk, other tech execs sign petition calling 
+  ♻️ 7/10 [business] (déjà analysé, cache) : Tesla opens Cybercab pre-orders ‘for personal use,
+  ♻️ 6/10 [space] (déjà analysé, cache) : SpaceX returned its Starship rocket on Saturday—bu
+  🧠 Batch analyse de 9 articles...
+  🌍 7/10 sans portée internationale : Une septuagénaire portée disparue à Candillargues 
+  🌍 7/10 sans portée internationale : Les revalorisations annoncées pour les plus bas sa
+  📉 3/10: La vie en images et en échanges de Vincent Delerm, invi
+  ⏩ Doublon: Inondations dans l’Hérault : une femme de 73 ans portée
+  📉 4/10: Statue de la Vierge vandalisée en Corse : "J’ai honte d
+  📉 2/10: "L’arrivée de Primark va créer un gros surplus de fréqu
+  📉 4/10: Clap de fin pour les Volkswagen ID.4 et ID.5 : le Tigua
+  🌍 7/10 sans portée internationale : Malik Bentalha, le visage transformé par un an de 
+  ⏩ Doublon: Avec 40 kilos de moins, Malik Bentalha est méconaissabl
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.7h — SpaceX : Starship réussit une première histo
+     10/10 · 3 média(s) · 2.1h — Nvidia : le départ de Jensen Huang provoque 
+     8/10 · 1 média(s) · 0.4h — Avions cloués au sol aux Etats-Unis : des câ
+     9/10 · 1 média(s) · 1.2h — Une filiale de La Poste dédiée aux entrepris
+     10/10 · 3 média(s) · 11.2h — « Mechazilla a attrapé le Starship ! » : Spa
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [space]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (170 → 119 car.)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Numerama) — même sujet
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.7h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Sunday, 15-Nov-26 01:04:58 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AepzWbGoNiiaXpBvqDQEGxU"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : SpaceX : Starship réussit une première historique en re
+
+  ── Bilan du cycle (519 s) ──
+     écartés : 6 sujet banal · 3 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-3.5-flash-lite        ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-embedding-001         ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.1-flash-lite · clé 1 × gemini-3.6-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-embedding-001 · clé 2 × gemini-3-flash (+20)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 5/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 351
+     modèles écartés (inexistants) : gemini-3.1-flash-tts
+     jetons Gemini : 43,060 entrée · 1,850 sortie
+     ✅ aucun appel payant
