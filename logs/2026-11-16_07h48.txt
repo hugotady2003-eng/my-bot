@@ -1,0 +1,163 @@
+
+[07:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #æ°·æ¸¡é¦åæ±ã¤ãã«å®è£, Steelers, Bengals, #ãããããã«ã¯ã®æ·±æ·µã¸, #ã¯ã¾å¯¿å¸ã®æ¨ã­ãå¬ç¥­ã
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 1.2 h (Mezha.net)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « Steelers » écarté : trop secondaire (2/10)
+  🔎 « Bengals » : 1 article(s) frais, le plus récent il y a 1.2 h (Mezha.net)
+  ⏭️  « Bengals » écarté : trop secondaire (2/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.4s (27 déjà en cache)
+  📄 6/30 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Libération · Ouest-France · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 30 articles → 30 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Suspected China spy linked to Nvidia's ex-boss lef
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 43.5/100 = gravité 7/10 → 32 + frais 5.0h +2 + portée internationale +10
+  → Sujet chaud pas assez fort (score 44) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT, guerre en Ukraine : près de 200 drones 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.5/100 = gravité 9/10 → 40 + frais 0.9h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 37 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch6ABcBVUyQVtUNMsNRsS'}
+  🚨 Sujet chaud (breaking, 1 médias) : Miguel Ángel Félix Gallardo, fondateur du premier 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 7/10 → 32 + frais 0.3h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🛑 Hommage non vérifiable (Error code: 400 - {'type': 'error', 'error':) — traité en actualité normale
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 1 column 236 (char 235 → couple suivant
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch6ACqxkG28QEZgchuTQH'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Après l’exploit d’Elon Musk, l’échec de Jeff Bezos :
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "Pedocriminel légendaire", Guillaume Pley, son show 
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre de territoire, "barbarie", aveux surprises.
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + frais 1.8h +8 + thème porteur +10 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.8h (frais ✅)
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 3 column 3 (char 76) → couple suivant
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch6ADT76pwP77PivN4HTb'}
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 30 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : EN DIRECT, guerre en Ukraine : près de 200 drones 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump-Xi-Poutine : un sommet inédit mais symboliqu
+  ♻️ 7/10 [world] (déjà analysé, cache) : Miguel Ángel Félix Gallardo, fondateur du premier 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre de territoire, "barbarie", aveux surprises.
+  ♻️ 7/10 [science] (déjà analysé, cache) : "Des étincelles tombaient du ciel comme de la plui
+  ♻️ 7/10 [sports] (déjà analysé, cache) : NBA. Les Spurs de Wembanyama arrachent une 12e vic
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : la région de Moscou visée par 
+  ♻️ 7/10 [space] (déjà analysé, cache) : Après l’exploit d’Elon Musk, l’échec de Jeff Bezos
+  ♻️ 7/10 [ai] (déjà analysé, cache) : ZD Tech : L'IA sous l'océan : le projet géant de D
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Avec ChatGPT Wallet, c’est l’IA qui fait les cours
+  ♻️ 8/10 [world] (déjà analysé, cache) : Zelensky urges US and Musk to lift Starlink restri
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Suspected China spy linked to Nvidia's ex-boss lef
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Suspected China spy linked to Nvidia's ex-boss lef
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Tech world's calls for Jensen Huang to return to N
+  ♻️ 10/10 [world] (déjà analysé, cache) : China confirms Xi-Trump-Putin historic summit. Wha
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Trump administration to name Nvidia, OpenAI and se
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin’s biggest bet is now a drop below $60,000,
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Asian chip stocks tumble ahead of Nvidia Q3 earnin
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : CZ denies Binance sold crypto as Bitcoin bounces f
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : How Wall Street Is Racing to Claim the Onchain Dol
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Lose $2.1 Billion in November as Outf
+  ♻️ 9/10 [business] (déjà analysé, cache) : The Week Jensen Huang Fell: How a Spy Scandal Topp
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 8/10 [space] (déjà analysé, cache) : Vulcan rocket fails, destroying 40 Amazon Leo sate
+  ♻️ 8/10 [space] (déjà analysé, cache) : Vulcan rocket fails during launch, dealing major b
+  ♻️ 6/10 [space] (déjà analysé, cache) : SpaceX returned its Starship rocket on Saturday—bu
+  🧠 Batch analyse de 2 articles...
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting ',' delimiter: line 1 column 44 (char 43) → couple suivant
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch6ADvz9oK3QoZ8eMDYs1'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.2h — Trump-Xi-Poutine : un sommet inédit mais sym
+     10/10 · 1 média(s) · 0.3h — NBA. Les Spurs de Wembanyama arrachent une 1
+     10/10 · 2 média(s) · 0.3h — Guerre en Ukraine : la région de Moscou visé
+     10/10 · 2 média(s) · 0.9h — EN DIRECT, guerre en Ukraine : près de 200 d
+     9/10 · 2 média(s) · 0.3h — Après l’exploit d’Elon Musk, l’échec de Jeff
+  ⚠️ gemini-3.6-flash (clé 5) : Extra data: line 1 column 3 (char 2) → couple suivant
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch6AEXkvL9YiwjniGq9D3'}
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 3 column 3 (char 77) → couple suivant
+  ❌ Envoi 'Trump-Xi-Poutine : un sommet inédit mais': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch6AFcsmxRNAV44qFDKWu'}
+
+  ── Bilan du cycle (164 s) ──
+     écartés : 2 sujet banal · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        ✅
+        23. clé 5 × gemini-3.1-flash-lite        ✅
+        24. clé 1 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 5 × gemini-embedding-001         🚫 quota
+        29. clé 5 × gemini-3.1-flash-lite        ✅
+        30. clé 5 × gemini-3.1-flash-lite        ✅
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        39. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        40. clé 5 × gemini-3.6-flash             ⚠️ Expecting property nam
+        … et 6 autres
+     jamais essayé ce cycle : clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 1/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.6-flash
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 794
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 39,543 entrée · 600 sortie
+     ⚠️ 7 appel(s) payés chez Claude (le gratuit n'a pas suffi)
