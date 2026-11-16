@@ -1,0 +1,125 @@
+
+[03:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Cowboys, 49ers, #ãã©ãã¯ãµã³ãã¼ã¨ãã«ã¯ããã¢, Ferro, Niners
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 6.1 h (arsenalsports.ca)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Cowboys » écarté : Simple annonce de match sportif sans événement marquant.
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 5.2 h (Touchdown Actu)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « 49ers » écarté : trop secondaire (3/10)
+  🌍 « Niners » : aucune reprise en français, source internationale retenue
+  🔎 « Niners » : 1 article(s) frais, le plus récent il y a 0.7 h (The Mercury News)
+  ⏭️  « Niners » écarté : Sport americain sans impact direct en France
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 6.1 h (arsenalsports.ca)
+  ⏭️  « Steelers » écarté : Simple match sportif sans enjeu majeur national
+  🌍 « Von Miller » : aucune reprise en français, source internationale retenue
+  🔎 « Von Miller » : 1 article(s) frais, le plus récent il y a 3.1 h (Lyndy's Sports Annuals)
+  ⏭️  « Von Miller » écarté : Sujet sportif mineur sans impact en France
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Pucallpa
+  📖 2/2 articles lus en 0.3s (42 déjà en cache)
+  📄 9/45 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · The Block · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Sans briller, l'équipe de France s’imp… »
+  🧠 Même événement (jugé) : « Guadeloupe : un mort et quatre blessés… »
+  🧠 Même événement (jugé) : « France - Turquie. « Sur le contenu, on… »
+  🧩 45 articles → 42 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, pénalisé par « pourrait ») : Jensen Huang envisagerait un come-back chez Nvidia, 
+  🚨 Sujet chaud (breaking, 3 médias) : Face à la Turquie, les Bleus par une toute petite 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 42 s
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 4.7h +2 + thème porteur +10 + exploit français +4
+  🧩 6 affirmation(s) : 4 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [3m] L'équipe de France a battu la Turquie sur le score de 2 à 1 à Bordeaux.
+      [3m] Cette victoire permet aux Bleus de valider leur qualification pour les quarts 
+      [2m] Junior Kroupi a inscrit un but lors de la rencontre.
+      [2m] Le match des Bleus a été jugé médiocre ou poussif malgré la victoire.
+         ↳ France Info : France Info insiste sur la domination des Bleus presque toute la
+         motif : Appréciation subjective différente de la qualité du match.
+      [1m] ⚡exclusif L'équipe de France est entraînée par Zinédine Zidane.
+      [1m] ⚡exclusif Le premier but français a été inscrit contre son camp par le défenseur turc Em
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 3 médias) : France - Turquie. « Sur le contenu, on peut être p
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 4.7h +2 + thème porteur +10 + exploit français +4
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : Guadeloupe : Une fusillade lors d’une soirée privé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.0/100 = gravité 4/10 → 18 + 2 médias +4 + frais 1.6h +8 + primeur +5
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 35) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Léon XIV appelle à entendre « le cri de la terre et 
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 45 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (101 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.6-flash             🚫 quota
+        19. clé 5 × gemini-3.5-flash-lite        ✅
+        20. clé 5 × gemini-3.5-flash-lite        ✅
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 4 × gemini-embedding-001         🚫 quota
+        27. clé 5 × gemini-embedding-001         🚫 quota
+        28. clé 5 × gemini-3.5-flash-lite        ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 797
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,621 entrée · 1,726 sortie
+     ✅ aucun appel payant
