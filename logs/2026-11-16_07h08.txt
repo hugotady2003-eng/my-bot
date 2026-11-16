@@ -1,0 +1,192 @@
+
+[07:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Steelers, Bengals, #æ°·æ¸¡é¦åæ±ã¤ãã«å®è£, ãã¼ã ãã¢ã¼, #ãããããã«ã¯ã®æ·±æ·µã¸
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 0.5 h (Mezha.net)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Steelers » écarté : trop secondaire (2/10)
+  🔎 « Bengals » : 1 article(s) frais, le plus récent il y a 0.5 h (Mezha.net)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Bengals » écarté : trop secondaire (1/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/10 articles lus en 1.5s (51 déjà en cache)
+  📄 10/62 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : 'parts' → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 62 articles → 62 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia : Elon Musk, le fondateur d’Uber et plus de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.0/100 = gravité 8/10 → 36 + frais 0.6h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 38 s
+  👁️ Image écartée : Fausse légende et fausse image
+  🖼️🤝 Image récupérée chez un média jumeau (Frandroid) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : COP31 : quels pays doivent régler la facture de la l
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre de territoire, "barbarie", aveux surprises.
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + frais 1.1h +8 + thème porteur +10 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 1 s
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (163 → 109 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Inondations dans l’Hérault : portée disparue toute
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.5/100 = gravité 7/10 → 32 + frais 1.1h +8 + primeur +5
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 62 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre de territoire, "barbarie", aveux surprises.
+  ♻️ 7/10 [science] (déjà analysé, cache) : "Des étincelles tombaient du ciel comme de la plui
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia : Elon Musk, le fondateur d’Uber et plus de
+  ♻️ 7/10 [world] (déjà analysé, cache) : Inondations dans l’Hérault : portée disparue toute
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Jensen Huang envisagerait un come-back chez Nvidia
+  ♻️ 8/10 [world] (déjà analysé, cache) : Zelensky urges US and Musk to lift Starlink restri
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Suspected China spy linked to Nvidia's ex-boss lef
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Suspected China spy linked to Nvidia's ex-boss lef
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Tech world's calls for Jensen Huang to return to N
+  ♻️ 10/10 [world] (déjà analysé, cache) : China confirms Xi-Trump-Putin historic summit. Wha
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin’s biggest bet is now a drop below $60,000,
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Asian chip stocks tumble ahead of Nvidia Q3 earnin
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : CZ denies Binance sold crypto as Bitcoin bounces f
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : How Wall Street Is Racing to Claim the Onchain Dol
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Lose $2.1 Billion in November as Outf
+  ♻️ 9/10 [business] (déjà analysé, cache) : The Week Jensen Huang Fell: How a Spy Scandal Topp
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 8/10 [space] (déjà analysé, cache) : Vulcan rocket fails, destroying 40 Amazon Leo sate
+  ♻️ 8/10 [space] (déjà analysé, cache) : Vulcan rocket fails during launch, dealing major b
+  ♻️ 6/10 [space] (déjà analysé, cache) : SpaceX returned its Starship rocket on Saturday—bu
+  🎯 Pré-classement : 20 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 4/10: ÉDITORIAL. Budget : ordonnances à l’horizon…
+  ✅ 8/10 [ai] mondiale: Trump administration to name Nvidia, OpenAI and 
+  📉 5/10: The Last Ice on Puncak Jaya
+  📉 4/10: « On a lancé une collecte de poêle à bois »… Des associ
+  📉 5/10: Gérard Depardieu : sa condamnation pour agressions sexu
+  📉 4/10: Widow of Haiti’s slain leader Moise to contest presiden
+  📉 4/10: Colère des lycéens : Les rassemblements interdits devan
+  📉 4/10: Iraqi armed group denies involvement in oil smuggling, 
+  📉 3/10: Les Restos du Cœur de la Sarthe face à la hausse de la 
+  📉 3/10: «Le Masque et la Plume» : France Inter a-t-elle vraimen
+  ✅ 10/10 [world] mondiale: Après la Maison Blanche, la Chine confirme à son
+  📉 5/10: COP31 : quels pays doivent régler la facture de la lutt
+  🌍 6/10 sans portée internationale : Yemeni forces' retreat leaves Houthis in control o
+  📉 4/10: « Fractures françaises » : Marine Le Pen et les limites
+  📉 5/10: COP31 : pourquoi l’objectif de limiter le réchauffement
+  📉 4/10: Nathan Blecharczyk, cofondateur d’Airbnb : « Nous voulo
+  🌍 6/10 sans portée internationale : Il veut supprimer les frais de notaires pour les m
+  📉 3/10: L'autoroute A13 fermée pour neuf mois en raison de trav
+  📉 3/10: Clichés misogynes, factures qui explosent, malfaçons...
+  📉 2/10: Moi, cocue : «Ça a été l’électrochoc qui m’a sortie de 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.1h — Après la Maison Blanche, la Chine confirme à
+     10/10 · 4 média(s) · 0.7h — Nvidia : Elon Musk, le fondateur d’Uber et p
+     9/10 · 1 média(s) · 0.1h — Trump administration to name Nvidia, OpenAI 
+     10/10 · 4 média(s) · 2.6h — Tech world's calls for Jensen Huang to retur
+     10/10 · 1 média(s) · 1.6h — China confirms Xi-Trump-Putin historic summi
+  ✂️ Éphéméride resserré (184 → 97 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (243 → 206 car.)
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Après la Maison Blanche, la Chine confirme à son tour u
+
+  ── Bilan du cycle (165 s) ──
+     écartés : 2 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 2 × gemini-embedding-001         🚫 quota
+        10. clé 3 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-001         🚫 quota
+        12. clé 5 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 2 × gemini-3.6-flash             🚫 quota
+        18. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        21. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        24. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        25. clé 5 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.6-flash             ⚠️ 'parts'
+        27. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        28. clé 5 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.6-flash             🚫 quota
+        30. clé 4 × gemini-3.6-flash             🚫 quota
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 795
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 48,323 entrée · 1,948 sortie
+     ✅ aucun appel payant
