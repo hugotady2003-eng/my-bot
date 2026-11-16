@@ -1,0 +1,217 @@
+
+[16:32] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « plastic pen cap »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 16-Nov-26 07:34:34 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A8ruVblWj-1PUptoUxuQFTa"}}
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Grammy, Raye, olivia, #caengames, Tinashe
+  🔎 « Grammy » : 1 article(s) frais, le plus récent il y a 1.3 h (BFM)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ✅ « Grammy » retenu : Annonce officielle des nominations aux Grammy Awards (6/10) (+1 au score)
+  🔎 « Raye » : 1 article(s) frais, le plus récent il y a 0.2 h (parismatch.be)
+  ⏭️  « Raye » écarté : trop secondaire (5/10)
+  🔎 « olivia » : 1 article(s) frais, le plus récent il y a 1.2 h (AlloCiné)
+  ⏭️  « olivia » écarté : Simple renouvellement de serie TV.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Grammy
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 16h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 8.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/10 articles lus en 1.0s (23 déjà en cache)
+  📄 7/33 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · Jeuxvideo.com · CoinDesk · Blockworks
+  🧠 33 vecteurs calculés en 1 appel(s)
+  🧩 33 articles → 13 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : James Bond : Robert Pattinson va enfiler le smoking 
+  🚨 Sujet chaud (breaking, 3 médias) : Affaire Nvidia: Donald Trump assure que ça ne le "
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BFMTV, Ouest-France
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + 3 médias +7 + frais 0.1h +16 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ✂️ Tweet resserré localement (251 → 214 car.)
+  🖼️🤝 Image récupérée chez un média jumeau (Begeek) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Présidentielle 2027 : pourquoi TF1 raccourcit except
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine: que proposent les candidats déc
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 4/10 → 18 + frais 0.1h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (180 → 146 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Robert Pattinson va incarner James Bond, devenant le
+  🚨 Sujet chaud (breaking, 16 médias) : GTA 6 : 36 heures de marathon dès ce mercredi 18 n
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 16 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, BFM People, Begeek, Blockworks, France Bleu
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + 16 médias +18 + frais 0.3h +16 + portée internationale +10
+  🕒 Âge de l'article : 5.4h (frais ✅)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Trump says Nvidia scandal did not put U.S. nationa
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.0/100 = gravité 8/10 → 36 + frais 0.4h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (166 → 129 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Morning Minute: Crypto Hits Extreme Fear as Bitcoi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : CoinDesk, Decrypt
+  🧮 Score 62.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.4h +4 + portée mondiale +18
+  🕒 Âge de l'article : 2.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (93h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Transition énergétique : la France dévoile sa straté
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Grammy Awards: la Britannique Raye en tête des nomin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 33 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : Des militaires français opèrent désormais en Ukrai
+  ♻️ 7/10 [business] (déjà analysé, cache) : Affaire Nvidia: Donald Trump assure que ça ne le "
+  ♻️ 8/10 [gaming] (déjà analysé, cache) : James Bond : l'acteur Robert Pattinson choisi pour
+  ♻️ 8/10 [world] (déjà analysé, cache) : Le véritable homme fort à Shenzhen ne sera pas cel
+  ♻️ 7/10 [space] (déjà analysé, cache) : Ce robot financé par le Pentagone a assemblé une s
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Permis de tuer pour les robots ? L'ONU s'écharpe s
+  ♻️ 9/10 [ai] (déjà analysé, cache) : Le départ de Jensen Huang secoue déjà tout l’écosy
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 : 36 heures de marathon dès ce mercredi 18 n
+  ♻️ 7/10 [business] (déjà analysé, cache) : Intel sued by investors after PC sales slump hits 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Why Starshield limits are hurting Ukraine against 
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia fallout: Commerce targets loophole for Chin
+  ♻️ 8/10 [business] (déjà analysé, cache) : Trump says Nvidia scandal did not put U.S. nationa
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin was supposed to gain as AI faltered, but i
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Zelle picks Solana for ZelleUSD stablecoin and int
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Morning Minute: Crypto Hits Extreme Fear as Bitcoi
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Ledger Brings Clear Signing to Solana, Ending 'Bli
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 8/10 [business] (déjà analysé, cache) : Jensen Huang allies build a "war room" to get him 
+  🧠 Batch analyse de 13 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🌍 8/10 sans portée internationale : Robert Pattinson va incarner James Bond, devenant 
+  📉 3/10: Otage du conflit entre le Rwanda et la RDC, l’Organisat
+  ⏩ Doublon: James Bond : Robert Pattinson va enfiler le smoking de 
+  ⏩ Doublon: "C'est l'honneur d'une vie" : l'acteur britannique Robe
+  📉 2/10: Présidentielle 2027 : pourquoi TF1 raccourcit exception
+  🌍 6/10 sans portée internationale : Transition énergétique : la France dévoile sa stra
+  ⏩ Doublon: James Bond : Robert Pattinson officiellement choisi pou
+  ⏩ Doublon: Fin du suspense, le nom du prochain James Bond a été ré
+  📉 4/10: Librairies, supérettes, énergies fossiles : Daniel Kret
+  ⏩ Doublon: Cinéma: Robert Pattinson choisi pour être le prochain J
+  📉 3/10: Dragon Ball Super Beerus : Beerus utilise-t-il vraiment
+  ⏩ Doublon: Robert Pattinson is Amazon’s first James Bond
+  📉 2/10: HomeView missing some podcast feeds? Here’s why
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 0.2h — Affaire Nvidia: Donald Trump assure que ça n
+     10/10 · 8 média(s) · 0.5h — James Bond : l'acteur Robert Pattinson chois
+     10/10 · 2 média(s) · 0.5h — Trump says Nvidia scandal did not put U.S. n
+     10/10 · 3 média(s) · 0.7h — Le départ de Jensen Huang secoue déjà tout l
+     9/10 · 1 média(s) · 0.2h — Nvidia fallout: Commerce targets loophole fo
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [business]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️🤝 Image récupérée chez un média jumeau (Begeek) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Monday, 16-Nov-26 07:41:11 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AEbWOPZMsS0ynJo3tBf8Whk"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Affaire Nvidia: Donald Trump assure que ça ne le "déran
+
+  ── Bilan du cycle (504 s) ──
+     écartés : 5 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 3 × gemini-3.5-flash-lite        ✅
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 3 × gemini-embedding-001         ✅
+        18. clé 3 × gemini-3.5-flash-lite        ✅
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        38. clé 3 × gemini-3.6-flash             🚫 quota
+        39. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        40. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        … et 5 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 3/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 84,564 entrée · 2,194 sortie
+     ✅ aucun appel payant
