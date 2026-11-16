@@ -1,0 +1,115 @@
+
+[04:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Steelers, Cowboys, Bengals, #ãã©ãã¯ãµã³ãã¼ã¨ãã«ã¯ããã¢, #ã¯ã¾å¯¿å¸ã®æ¨ã­ãå¬ç¥­ã
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 7.0 h (arsenalsports.ca)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Steelers » écarté : Simple annonce de match de saison régulière.
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 0.6 h (Mezha.net)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Cowboys » écarté : trop secondaire (3/10)
+  🔎 « Bengals » : 1 article(s) frais, le plus récent il y a 5.7 h (RueDesJoueurs)
+  ⏭️  « Bengals » écarté : Simple pronostic sportif sans événement marquant.
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 6.1 h (Touchdown Actu)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « 49ers » écarté : trop secondaire (3/10)
+  📖 1/1 articles lus en 0.1s (42 déjà en cache)
+  📄 9/44 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · The Block · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Sans briller, l'équipe de France s’imp… »
+  🧠 Même événement (jugé) : « Élections au Cap-Vert : le président s… »
+  🧩 44 articles → 42 événement(s)
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Face à la Turquie, les Bleus par une toute petite 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 46 s
+  🧮 Score 61.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 5.6h +2 + thème porteur +10 + exploit français +4 + portée internationale +10
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 7 affirmation(s) : 3 partagée(s) · 1 divergente(s) · 3 exclusive(s)
+      [2m] L'équipe de France a battu la Turquie sur le score de 2-1.
+      [2m] La France termine première de son groupe et se qualifie pour les quarts de fin
+      [1m] La qualité de jeu des Bleus lors de ce match est jugée médiocre.
+         ↳ France Info : Les Bleus ont été dominateurs presque toute la rencontre.
+         motif : Différence d'appréciation subjective sur la performance sportive.
+      [2m] Le match s'est déroulé au Stade Atlantique de Bordeaux.
+      [1m] ⚡exclusif Le premier but français a été marqué contre son camp par le défenseur turc Emi
+      [1m] ⚡exclusif Le second but français a été inscrit par Eli Junior Kroupi.
+      [1m] ⚡exclusif La Turquie a réduit le score à la 90e minute.
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Guadeloupe : Une fusillade lors d’une soirée privé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 22.0/100 = gravité 4/10 → 18 + frais 2.2h +4
+  → Sujet chaud pas assez fort (score 22) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Mort de Félix Gallardo, le « parrain » du narcotra
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 57.0/100 = gravité 8/10 → 36 + frais 0.9h +13 + primeur absolue +8
+  🌙 Sujet fort (score 57) mais nuit → il attendra le matin
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 44 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (98 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        20. clé 5 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 4 × gemini-embedding-001         🚫 quota
+        25. clé 5 × gemini-embedding-001         🚫 quota
+        26. clé 4 × gemini-3.6-flash             🚫 quota
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 5 × gemini-3.5-flash-lite        ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 795
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,452 entrée · 843 sortie
+     ✅ aucun appel payant
