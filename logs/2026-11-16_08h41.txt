@@ -1,0 +1,206 @@
+
+[08:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #æ°·æ¸¡é¦åæ±ã¤ãã«å®è£, #ãã§ã³ã£ã¨ã§ãã§ã¼ãã»ãã³, å±±å½¢ã¦ã­ãªãã, #ã¯ã¾å¯¿å¸ã®æ¨ã­ãå¬ç¥­ã, #ArundhathiNakshatram
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/5 articles lus en 0.8s (29 déjà en cache)
+  📄 6/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Unterminated string starting at: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 35 articles → 35 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Suspected China spy linked to Nvidia's ex-boss lef
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 43.5/100 = gravité 7/10 → 32 + frais 5.8h +2 + portée internationale +10
+  → Sujet chaud pas assez fort (score 44) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT, guerre en Ukraine : le pont reliant la 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + frais 1.8h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (225 → 116 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Sud Ouest) — même sujet
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Grève du 17 novembre: Olivier Faure sera présent l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.7h +8 + thème porteur +10 + primeur +5
+  🕒 Âge de l'article : 1.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 5 s
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre de territoire, "barbarie", aveux surprises.
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 55.5/100 = gravité 7/10 → 32 + frais 2.6h +4 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 2.6h (frais ✅)
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (163 → 109 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Donald Trump va rencontrer Vladimir Poutine et Xi 
+  🧮 Score 100.0/100 = gravité 10/10 → 45 + frais 0.1h +16 + imprévu 10/10 +18 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (227 → 182 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 35 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : EN DIRECT, guerre en Ukraine : le pont reliant la 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Grève du 17 novembre: Olivier Faure sera présent l
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre de territoire, "barbarie", aveux surprises.
+  ♻️ 7/10 [science] (déjà analysé, cache) : "Des étincelles tombaient du ciel comme de la plui
+  ♻️ 10/10 [world] (déjà analysé, cache) : Donald Trump va rencontrer Vladimir Poutine et Xi 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Moyen-Orient : l’Iran refuse l’accès de l’AIEA à s
+  ♻️ 9/10 [world] (déjà analysé, cache) : Un sommet entre Xi, Trump et Poutine aura bien lie
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : la région de Moscou visée par 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : ZD Tech : L'IA sous l'océan : le projet géant de D
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Avec ChatGPT Wallet, c’est l’IA qui fait les cours
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : Les sorties jeux vidéo de la semaine du 16 novembr
+  ♻️ 8/10 [world] (déjà analysé, cache) : Zelensky urges US and Musk to lift Starlink restri
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Suspected China spy linked to Nvidia's ex-boss lef
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Suspected China spy linked to Nvidia's ex-boss lef
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 8/10 [world] (déjà analysé, cache) : How Russia is preparing Iran for the next escalati
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Tech world's calls for Jensen Huang to return to N
+  ♻️ 10/10 [world] (déjà analysé, cache) : China confirms Xi-Trump-Putin historic summit. Wha
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Trump administration to name Nvidia, OpenAI and se
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin’s biggest bet is now a drop below $60,000,
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Asian chip stocks tumble ahead of Nvidia Q3 earnin
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : CZ denies Binance sold crypto as Bitcoin bounces f
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : How Wall Street Is Racing to Claim the Onchain Dol
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Lose $2.1 Billion in November as Outf
+  ♻️ 9/10 [business] (déjà analysé, cache) : The Week Jensen Huang Fell: How a Spy Scandal Topp
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 8/10 [space] (déjà analysé, cache) : Vulcan rocket fails, destroying 40 Amazon Leo sate
+  ♻️ 8/10 [space] (déjà analysé, cache) : Vulcan rocket fails during launch, dealing major b
+  ♻️ 6/10 [space] (déjà analysé, cache) : SpaceX returned its Starship rocket on Saturday—bu
+  🧠 Batch analyse de 5 articles...
+  📉 1/10: Le journal de 8h du lundi 16 novembre 2026
+  📉 3/10: « On est très émus » : une belle chaîne de solidarité p
+  📉 5/10: Noël 2026 : le budget sera-t-il vraiment plus serré ? C
+  🌍 7/10 sans portée internationale : Meurtre du frère d’Amine Kessaci : verdict très at
+  📉 4/10: « World Product Graph » : le projet d’Amazon pour deven
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.2h — Donald Trump va rencontrer Vladimir Poutine 
+     10/10 · 2 média(s) · 0.7h — Un sommet entre Xi, Trump et Poutine aura bi
+     10/10 · 1 média(s) · 0.7h — Les sorties jeux vidéo de la semaine du 16 n
+     9/10 · 1 média(s) · 0.4h — Moyen-Orient : l’Iran refuse l’accès de l’AI
+     10/10 · 2 média(s) · 1.8h — EN DIRECT, guerre en Ukraine : le pont relia
+  ✂️ Éphéméride resserré (184 → 97 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (227 → 182 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Donald Trump va rencontrer Vladimir Poutine et Xi Jinpi
+
+  ── Bilan du cycle (329 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 2 × gemini-embedding-001         🚫 quota
+         2. clé 3 × gemini-embedding-001         🚫 quota
+         3. clé 4 × gemini-embedding-001         🚫 quota
+         4. clé 5 × gemini-embedding-001         🚫 quota
+         5. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         6. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         7. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         8. clé 1 × gemini-3.6-flash             🚫 quota
+         9. clé 1 × gemini-3-flash               ⛔ inexistant
+        10. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        22. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 5 × gemini-3.1-flash-lite        ✅
+        24. clé 4 × gemini-3.6-flash             ⚠️ Unterminated string st
+        25. clé 5 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.6-flash             🚫 quota
+        27. clé 5 × gemini-3.1-flash-lite        ✅
+        28. clé 5 × gemini-3.1-flash-lite        ✅
+        29. clé 5 × gemini-3.1-flash-lite        ✅
+        30. clé 5 × gemini-3.1-flash-lite        ✅
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 3 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 791
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 72,681 entrée · 2,051 sortie
+     ✅ aucun appel payant
