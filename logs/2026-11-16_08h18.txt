@@ -1,0 +1,187 @@
+
+[08:16] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #æ°·æ¸¡é¦åæ±ã¤ãã«å®è£, #ãã§ã³ã£ã¨ã§ãã§ã¼ãã»ãã³, å±±å½¢ã¦ã­ãªãã, #ã¯ã¾å¯¿å¸ã®æ¨ã­ãå¬ç¥­ã, #ArundhathiNakshatram
+  🔎 « Bengals » : 1 article(s) frais, le plus récent il y a 1.7 h (Mezha.net)
+  ⏭️  « Bengals » écarté : trop secondaire (2/10)
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 1.7 h (Mezha.net)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « Steelers » écarté : trop secondaire (2/10)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.8s (41 déjà en cache)
+  📄 8/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Les rassemblements et cortèges sont in… »
+  🧠 Même événement (jugé) : « Guerre de territoire, "barbarie", aveu… »
+  🧩 47 articles → 45 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : L'homme qui connaissait les secrets de Jensen Huang
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT, guerre en Ukraine : le pont reliant la 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + frais 1.4h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (225 → 116 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Sud Ouest) — même sujet
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les rassemblements et cortèges sont interdits autour
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Ici tout commence en avance : résumé de l'épisode du
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Guerre de territoire, "barbarie", aveux surprises.
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 38.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.1h +8 + thème porteur +10 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 11 s
+  🧩 5 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif Cinq hommes sont jugés pour le triple homicide commis en 2020 à Marseille dans
+      [1m] ⚡exclusif Brahim Chabane, frère du militant Amine Kessaci, figure parmi les trois victim
+      [1m] ⚡exclusif Le procès aux assises des Bouches-du-Rhône a duré quatre semaines et a mis en 
+      [1m] ⚡exclusif La préfecture de police de Paris a interdit les rassemblements non déclarés au
+      [1m] ⚡exclusif Le lycée Nelson Mandela à Nantes a rouvert ses portes après six semaines de fe
+  → Sujet chaud pas assez fort (score 38) → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 47 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : EN DIRECT, guerre en Ukraine : le pont reliant la 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre de territoire, "barbarie", aveux surprises.
+  ♻️ 7/10 [science] (déjà analysé, cache) : "Des étincelles tombaient du ciel comme de la plui
+  ♻️ 7/10 [sports] (déjà analysé, cache) : « Quelqu’un a réussi à faire pire que Blatter » : 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : la région de Moscou visée par 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : ZD Tech : L'IA sous l'océan : le projet géant de D
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Avec ChatGPT Wallet, c’est l’IA qui fait les cours
+  ♻️ 8/10 [world] (déjà analysé, cache) : Zelensky urges US and Musk to lift Starlink restri
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Suspected China spy linked to Nvidia's ex-boss lef
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Suspected China spy linked to Nvidia's ex-boss lef
+  ♻️ 7/10 [world] (déjà analysé, cache) : Lewis Hamilton visits Egypt’s Rafah crossing and G
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Tech world's calls for Jensen Huang to return to N
+  ♻️ 10/10 [world] (déjà analysé, cache) : China confirms Xi-Trump-Putin historic summit. Wha
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Trump administration to name Nvidia, OpenAI and se
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin’s biggest bet is now a drop below $60,000,
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Asian chip stocks tumble ahead of Nvidia Q3 earnin
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : CZ denies Binance sold crypto as Bitcoin bounces f
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : How Wall Street Is Racing to Claim the Onchain Dol
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Lose $2.1 Billion in November as Outf
+  ♻️ 9/10 [business] (déjà analysé, cache) : The Week Jensen Huang Fell: How a Spy Scandal Topp
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 8/10 [space] (déjà analysé, cache) : Vulcan rocket fails, destroying 40 Amazon Leo sate
+  ♻️ 8/10 [space] (déjà analysé, cache) : Vulcan rocket fails during launch, dealing major b
+  ♻️ 6/10 [space] (déjà analysé, cache) : SpaceX returned its Starship rocket on Saturday—bu
+  🎯 Pré-classement : 2 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 3/10: Rassemblements interdits autour de lycées franciliens, 
+  📉 4/10: Équipe de France : Kylian Mbappé est-il Zinédine Zidane
+  📉 4/10: La Xbox Helix sera « une console », non pas un PC
+  🌍 7/10 sans portée internationale : « Une attaque directe contre la liberté d’expressi
+  📉 4/10: Helsing backer Plural raises $1.1B to fund Europe’s nex
+  ✅ 9/10 [gaming] neutre: Les sorties jeux vidéo de la semaine du 16 novem
+  ✅ 8/10 [world] large: How Russia is preparing Iran for the next escala
+  📉 5/10: Nvidia : le trou noir de la sécurité interne
+  📉 5/10: L'homme qui connaissait les secrets de Jensen Huang
+  📉 3/10: Les nouveaux fauteuils Razer vont faire vibrer les joue
+  ✅ 9/10 [world] mondiale: Un sommet entre Xi, Trump et Poutine aura bien l
+  📉 3/10: Thailand's GDP growth picks up to 2.9% in Q3 on strong 
+  📉 5/10: Négociations salariales : le bras de fer s’annonce tend
+  📉 0/10: Ici tout commence en avance : résumé de l'épisode du ma
+  📉 3/10: Malaysia's Anwar faces growing pressure after 'emphatic
+  📉 3/10: Motorola Signature vs Samsung Galaxy S25 Edge : comment
+  📉 3/10: Toute l’info en 2 minutes : Philippe refuse encore la p
+  📉 2/10: Optimiste ou pessimiste ? Pourquoi il faut être les deu
+  📉 1/10: Les chanterelles
+  🌍 8/10 sans portée internationale : Gérard Depardieu renonce à être rejugé pour agress
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.3h — Les sorties jeux vidéo de la semaine du 16 n
+     10/10 · 1 média(s) · 0.3h — Un sommet entre Xi, Trump et Poutine aura bi
+     10/10 · 2 média(s) · 0.8h — Guerre en Ukraine : la région de Moscou visé
+     9/10 · 1 média(s) · 0.3h — How Russia is preparing Iran for the next es
+     10/10 · 2 média(s) · 1.4h — EN DIRECT, guerre en Ukraine : le pont relia
+  ✂️ Éphéméride resserré (184 → 97 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [gaming]
+  👁️ Image écartée : GTA 6 n'est pas sorti
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Les sorties jeux vidéo de la semaine du 16 novembre (GT
+
+  ── Bilan du cycle (117 s) ──
+     écartés : 3 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 2 × gemini-3-flash               ⛔ inexistant
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 3 × gemini-3-flash               ⛔ inexistant
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        20. clé 4 × gemini-3.6-flash             🚫 quota
+        21. clé 4 × gemini-3-flash               ⛔ inexistant
+        22. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 5 × gemini-3.1-flash-lite        ✅
+        24. clé 1 × gemini-embedding-001         🚫 quota
+        25. clé 2 × gemini-embedding-001         🚫 quota
+        26. clé 3 × gemini-embedding-001         🚫 quota
+        27. clé 4 × gemini-embedding-001         🚫 quota
+        28. clé 5 × gemini-embedding-001         🚫 quota
+        29. clé 5 × gemini-3.1-flash-lite        ✅
+        30. clé 5 × gemini-3.1-flash-lite        ✅
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 2 autres
+     jamais essayé ce cycle : clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 792
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 29,836 entrée · 1,874 sortie
+     ✅ aucun appel payant
