@@ -1,0 +1,205 @@
+
+[07:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #caengames, ç§ã®åå, Chargers, Ravens, æ±å¤ãã
+  🔎 « Chargers » : 1 article(s) frais, le plus récent il y a 0.8 h (La Presse)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Chargers » écarté : trop secondaire (2/10)
+  🌍 « Ravens » : aucune reprise en français, source internationale retenue
+  🔎 « Ravens » : 1 article(s) frais, le plus récent il y a 1.7 h (Baltimore Ravens)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⏭️  « Ravens » écarté : trop secondaire (2/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/6 articles lus en 1.6s (35 déjà en cache)
+  📄 6/41 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Jeuxvideo.com · CoinDesk · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧠 Même événement (jugé) : « Présidentielle 2027 : Clash, « magicie… »
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 41 articles → 40 événement(s)
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Puces Nvidia : les États-Unis verrouillent l’accès
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 73.5/100 = gravité 7/10 → 32 + frais 0.0h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : -1.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (180 → 153 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Two major Kyiv bridges hit in Russian attack, mayor 
+  ⚪ Écarté (-4, pénalisé par « horoscope ») : Chewy Promo Codes: 25% Off November 2026
+  🚨 Sujet chaud (breaking, 2 médias) : Impôts, logement, smic… Ce qu’il faut retenir du d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 5.0h +2 + thème porteur +10
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Cinq candidats à la présidentielle ont débattu sur TF1 et LCI des enjeux de po
+      [1m] ⚡exclusif Le débat a été marqué par une vive altercation entre Jean-Luc Mélenchon et Bru
+      [1m] ⚡exclusif Le sujet de l'augmentation du SMIC a provoqué des désaccords entre les candida
+      [1m] ⚡exclusif Jean-Luc Mélenchon a proposé une taxe à 100 % sur les héritages dépassant 12 m
+      [1m] ⚡exclusif Edouard Philippe était absent du débat en raison de ses obligations au Havre.
+  🕒 Âge de l'article : 1.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (20 Minutes) — même sujet
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : deux ponts de Kiev touchés par
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.5/100 = gravité 9/10 → 40 + frais 0.2h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 41 articles à analyser...
+  ♻️ 8/10 [business] (déjà analysé, cache) : « Inside Deutsche Bank » : les secrets inavouables
+  ♻️ 8/10 [world] (déjà analysé, cache) : Impôts, logement, smic… Ce qu’il faut retenir du d
+  ♻️ 7/10 [world] (déjà analysé, cache) : Présidentielle 2027 : Clash, « magicien », grand p
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : deux ponts de Kiev touchés par
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia : après la chute brutale de Jensen Huang, q
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Fini les excès de vitesse, Tesla met à jour son FS
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Puces Nvidia : les États-Unis verrouillent l’accès
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Sanction record en Italie : 805 M€ contre Meta pou
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Microsoft Outlook, Teams : on connait enfin la cau
+  ♻️ 8/10 [gaming] (déjà analysé, cache) : Fusillade aux locaux de inXile (Clockwork Revoluti
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Two major Kyiv bridges hit in Russian attack, mayo
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Ukraine accuses Russia of targeting rescue operati
+  ♻️ 7/10 [ai] (déjà analysé, cache) : California sues OpenAI over Hugging Face attack
+  ♻️ 9/10 [business] (déjà analysé, cache) : Trump’s accounts traded up to $97.5 million in Nvi
+  ♻️ 8/10 [world] (déjà analysé, cache) : Iran escalates threats as third U.S. carrier arriv
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Wells Fargo's reported BlackRock bitcoin ETF holdi
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Hackers inject credit card, crypto-stealing malwar
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin Wallet Maker Trezor Says Customer Data Was
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin's $2 Billion Liquidation Weekend Leaves Tr
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Tech leaders are convinced that Jensen Huang’s exi
+  🧠 Batch analyse de 19 articles...
+  📉 4/10: RN : le complotisme aux relents antisémites d’une membr
+  📉 3/10: DJ Snake rejoint la programmation du festival Chambord 
+  🌍 6/10 sans portée internationale : Elles ne tiennent qu'un trimestre sans revenus: le
+  🌍 6/10 sans portée internationale : Cadres : les intentions d’embauche chutent encore
+  📉 4/10: L’ancien boxeur vénézuélien Jorge Linares arrêté par la
+  📉 4/10: 850 ch dans un quadrimoteur prêt au décollage : nous av
+  📉 2/10: Intersport casse le prix de son Nakamura Crosscity LTD 
+  📉 2/10: Hinaupoko Devèze s'envoie en l'air avec Camille Cerf : 
+  📉 5/10: On s’est moqué des Google Glass, son successeur est déj
+  📉 4/10: Grâce à l'I.A, tout le monde sort des jeux vidéo, même 
+  🌍 8/10 sans portée internationale : De nouvelles images de GTA 6 mettent en avant les 
+  🌍 7/10 sans portée internationale : Imran Khan seeks urgent medical care fearing he 'm
+  📉 5/10: 'Complete system reset' needed to get 440,000 young peo
+  🌍 8/10 sans portée internationale : Stories of survival and pain: Children amid Israel
+  ✅ 7/10 [crypto] large: CFTC backs blockchain-based derivatives infrastr
+  🌍 7/10 sans portée internationale : United Airlines system outage disrupts departures 
+  📉 1/10: Chewy Promo Codes: 25% Off November 2026
+  📉 4/10: tvOS 27.3 beta 2 brings Siri AI to Apple TV beta tester
+  📉 3/10: Tossing Fireworks from Cloud to Cloud
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.2h — Guerre en Ukraine : deux ponts de Kiev touch
+     10/10 · 2 média(s) · 0.4h — Two major Kyiv bridges hit in Russian attack
+     10/10 · 1 média(s) · 0.4h — Ukraine accuses Russia of targeting rescue o
+     9/10 · 1 média(s) · 0.4h — « Inside Deutsche Bank » : les secrets inavo
+     10/10 · 2 média(s) · 1.9h — Impôts, logement, smic… Ce qu’il faut reteni
+  ✂️ Éphéméride resserré (186 → 137 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Guerre en Ukraine : deux ponts de Kiev touchés par des 
+
+  ── Bilan du cycle (227 s) ──
+     écartés : 6 sans portée internationale · 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        16. clé 5 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 4 × gemini-embedding-001         🚫 quota
+        21. clé 5 × gemini-embedding-001         🚫 quota
+        22. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.6-flash             🚫 quota
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 5 × gemini-3.1-flash-lite        ✅
+        28. clé 5 × gemini-3.1-flash-lite        ✅
+        29. clé 5 × gemini-3.1-flash-lite        ✅
+        30. clé 5 × gemini-3.1-flash-lite        ✅
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 790
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 59,274 entrée · 2,698 sortie
+     ✅ aucun appel payant
