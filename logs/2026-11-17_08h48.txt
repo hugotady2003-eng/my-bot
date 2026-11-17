@@ -1,0 +1,193 @@
+
+[08:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #caengames, ç§ã®åå, SÃ¶zcÃ¼ TV&#39;ye, #éå½ã®çºå½ã¦ã¾ã, ãããã®éå½ã®çº
+  🔎 « Chargers » : 1 article(s) frais, le plus récent il y a 0.9 h (L'Équipe)
+  ⏭️  « Chargers » écarté : trop secondaire (3/10)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/10 articles lus en 1.5s (56 déjà en cache)
+  📄 13/68 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Libération · Ouest-France · The Block · France Info · Jeuxvideo.com
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧩 68 articles → 68 événement(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Statue de la Vierge vandalisée en Corse : peines de 
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Obsolescence programmée des iPhone : Apple sera ju
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 80.5/100 = gravité 7/10 → 32 + frais 0.9h +13 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (Numerama) — même sujet
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-1, pénalisé par « \b(?:météo ») : Deux ponts de Kiev sont fermés à la circulation aprè
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Sommet entre Vladimir Poutine, Donald Trump et Xi 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + frais 1.2h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Ce qu’il faut retenir du débat entre 5 candidats à
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 40.0/100 = gravité 8/10 → 36 + frais 3.3h +4
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Alcool, drogues, suicides : les « décès de désespo
+  🧮 Score 41.5/100 = gravité 5/10 → 22 + frais 0.2h +16 + programmé 3/10 -15 + primeur absolue +8 + portée internationale +10
+  → Sujet chaud pas assez fort (score 42) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Le responsable du piratage massif de GTA 6 plaide 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 8/10 → 36 + frais 0.3h +16 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Affaire Gérard Depardieu : la compagne de Stéphane S
+  ⚪ Écarté (-5, pénalisé par « \b(?:téléréalité ») : "Prendre ma voiture et partir", L'amour est dans le 
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 0 match(s) sur 48h, dont France : 0
+  → 68 articles à analyser...
+  ♻️ 8/10 [business] (déjà analysé, cache) : « Inside Deutsche Bank » : les secrets inavouables
+  ♻️ 8/10 [world] (déjà analysé, cache) : Ce qu’il faut retenir du débat entre 5 candidats à
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Obsolescence programmée des iPhone : Apple sera ju
+  ♻️ 9/10 [world] (déjà analysé, cache) : Sommet entre Vladimir Poutine, Donald Trump et Xi 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Présidentielle 2027 : Clash, « magicien », grand p
+  ♻️ 7/10 [world] (déjà analysé, cache) : Taïwan redoute d’être sacrifiée par Washington
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : Le responsable du piratage massif de GTA 6 plaide 
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Puces Nvidia : les États-Unis verrouillent l’accès
+  ♻️ 7/10 [world] (déjà analysé, cache) : Pierre Ménès : un an de prison ferme requis dans s
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : Le responsable du piratage massif de GTA 6 plaide 
+  ♻️ 8/10 [gaming] (déjà analysé, cache) : Fusillade aux locaux de inXile (Clockwork Revoluti
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Ukraine and Russia trade strikes on key bridges
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Ukraine accuses Russia of targeting rescue operati
+  ♻️ 7/10 [ai] (déjà analysé, cache) : OpenAI sued by California over Hugging Face attack
+  ♻️ 9/10 [business] (déjà analysé, cache) : Trump’s accounts traded up to $97.5 million in Nvi
+  ♻️ 8/10 [world] (déjà analysé, cache) : Iran escalates threats as third U.S. carrier arriv
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Wells Fargo's reported BlackRock bitcoin ETF holdi
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Cathie Wood’s Ark Invest loads up on crypto stocks
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin Wallet Maker Trezor Says Customer Data Was
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin's $2 Billion Liquidation Weekend Leaves Tr
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Tech leaders are convinced that Jensen Huang’s exi
+  🎯 Pré-classement : 24 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  📉 2/10: Colère des lycéens : À peine rouvert, le lycée Mandela 
+  ✅ 6/10 [crypto] mondiale: Bitcoin could slide into the $50,000s as Fed rat
+  ✅ 7/10 [tech] mondiale: Apple sera jugé en France pour obsolescence prog
+  ✅ 6/10 [tech] large: Nvidia warns chip buyers of legal risks tied to 
+  📉 5/10: Strengthening NATO and allied cyber defenses with AI
+  ✅ 6/10 [crypto] mondiale: Grayscale says crypto pullback offers ‘compellin
+  🌍 8/10 sans portée internationale : Un homme s'introduit dans un cours en visio et men
+  ✅ 7/10 [gaming] large: NBA 2K27 profite de la sortie de GTA 6 pour réal
+  🌍 8/10 sans portée internationale : GTA 6 donne un aperçu de sa météo particulièrement
+  🌍 7/10 sans portée internationale : GTA 6 : un deuxième correctif est déployé par Rock
+  ✅ 9/10 [world] large: Bahrain thwarts drone attack, Iran claims target
+  📉 3/10: Cette console Nintendo légendaire a été créée en seulem
+  📉 2/10: 12 12 12 (Apple TV) : fin de l'épisode 1 expliquée
+  📉 4/10: L’iPhone le plus cher d’Apple va enfin reconnaître votr
+  📉 3/10: C’est le moment de changer d’ordinateur puisque le MacB
+  📉 4/10: Présidentielle 2027 : SMIC, logement social, galères de
+  📉 4/10: Dell étend son « AI Factory » avec Nvidia : passerelle 
+  📉 3/10: ZD Tech : L'intelligence artificielle exige des données
+  📉 2/10: Affaire Gérard Depardieu : la compagne de Stéphane Sitb
+  📉 4/10: Basket. Formé à Cholet, Killian Hayes vers un retour en
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.3h — Le responsable du piratage massif de GTA 6 p
+     10/10 · 2 média(s) · 0.3h — Le responsable du piratage massif de GTA 6 p
+     10/10 · 1 média(s) · 0.3h — Ukraine and Russia trade strikes on key brid
+     10/10 · 3 média(s) · 0.1h — Apple sera jugé en France pour obsolescence 
+     10/10 · 1 média(s) · 0.2h — Bahrain thwarts drone attack, Iran claims ta
+  ✂️ Éphéméride resserré (186 → 137 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [gta6]
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ❌ Envoi 'Le responsable du piratage massif de GTA': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch88dfoHnjM6YU78kshaR'}
+
+  ── Bilan du cycle (165 s) ──
+     écartés : 4 sujet banal · 3 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 2 × gemini-embedding-001         🚫 quota
+         4. clé 3 × gemini-embedding-001         🚫 quota
+         5. clé 4 × gemini-embedding-001         🚫 quota
+         6. clé 5 × gemini-embedding-001         🚫 quota
+         7. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 1 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        11. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 1 × gemini-3-flash               ⛔ inexistant
+        14. clé 2 × gemini-3.5-flash-lite        ✅
+        15. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 2 × gemini-3.6-flash             🚫 quota
+        18. clé 3 × gemini-3.5-flash-lite        ✅
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 3 × gemini-3.6-flash             🚫 quota
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        32. clé 4 × gemini-3.6-flash             🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        38. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 776
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 32,076 entrée · 1,556 sortie
+     ⚠️ 1 appel(s) payés chez Claude (le gratuit n'a pas suffi)
