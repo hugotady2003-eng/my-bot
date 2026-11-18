@@ -1,0 +1,185 @@
+
+[08:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : æ¯ããã, æ¯ã¦ãµã®, Grimes, #RLHolidaySG, #RalphLaurenSG
+  🔎 « Grimes » : 1 article(s) frais, le plus récent il y a 0.2 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Grimes » écarté : trop secondaire (5/10)
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  📖 8/8 articles lus en 1.4s (30 déjà en cache)
+  📄 9/40 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Sciences et Avenir · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 40 articles → 40 événement(s)
+  🕒 Sujet chaud mais article ancien (14h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Xi Jinping se place sur le devant de la scène mond
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.5/100 = gravité 9/10 → 40 + frais 2.7h +4 + portée mondiale +18
+  🕒 Âge de l'article : 2.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 21 s
+  ✂️ Tweet resserré localement (208 → 170 car.)
+  🖼️ 4 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Xi Jinping (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Après un premier fiasco à 347 millions d’euros, le R
+  🚨 Sujet chaud (breaking, 1 médias) : Mettez à jour votre PS5 si vous voulez jouer à GTA
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 8/10 → 36 + frais 0.0h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.0h (frais ✅)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 8 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : ZD Tech : Elon Musk l'admet, le modèle économique 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.0/100 = gravité 4/10 → 18 + frais 0.0h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : -1.0h (frais ✅)
+  🕊️ Hommage REFUSÉ par le modèle — La personne citée est vivante.
+  ↩️ Hommage non confirmé → actualité normale [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (196 → 165 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  → 40 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : Xi Jinping se place sur le devant de la scène mond
+  ♻️ 9/10 [world] (déjà analysé, cache) : Le sujet divise la classe politique : pourquoi des
+  ♻️ 6/10 [business] (déjà analysé, cache) : Ils sont en forte hausse : les salaires des grands
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Prouver l’obsolescence programmée d’Apple : un cas
+  ♻️ 6/10 [world] (déjà analysé, cache) : Après un premier fiasco à 347 millions d’euros, le
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : Mettez à jour votre PS5 si vous voulez jouer à GTA
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Panne Apple : iCloud, l’App Store et Apple Music n
+  ♻️ 8/10 [tech] (déjà analysé, cache) : « Je serais honoré de revenir » : Jensen Huang sor
+  ♻️ 6/10 [science] (déjà analysé, cache) : Unicef alerte sur la santé mentale des jeunes
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : Mettez à jour votre PS5 si vous voulez jouer à GTA
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Putin's Crimean Bridge partly collapses as Zelensk
+  ♻️ 8/10 [world] (déjà analysé, cache) : How the attack on Crimean Bridge unfolded
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia says it won't reinstate Huang as it reports
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia says it won't reinstate Huang as it reports
+  ♻️ 8/10 [world] (déjà analysé, cache) : China’s Xi calls for removing trade and investment
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Iran says army targets U.S. drone and missile site
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : U.S. judge says Ethereum has ‘no terms of use,’ cl
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin's 12% slide through key support looks scar
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : XRP whales moved $270 million during the selloff. 
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Ledger hardware implant saga reaches Dubai’s Virgi
+  ♻️ 8/10 [business] (déjà analysé, cache) : Nvidia board rejects Huang comeback despite record
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Coinbase AI defense blocks $4.7 million from being
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia Board Shuts Down Jensen Huang Comeback, Lau
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  🧠 Batch analyse de 14 articles...
+  📉 4/10: Santé : neuf Français sur dix sous-estiment ce que remb
+  📉 3/10: Lieux, costumes, décors : quand l’écologie entre en jeu
+  📉 3/10: Toute l’info en 2 minutes : Martyre de l'A10, vers une 
+  📉 5/10: NFL. Alicia Keys, John Legend… Un casting XXL aux côtés
+  📉 5/10: « On en a marre, prends tes affaires et pars ! » Carlo 
+  📉 4/10: DIRECT VIDÉO. Fonte des glaces, impact des gaz lacrymog
+  📉 4/10: Koh-Lanta All Stars : Lola remporte l'épreuve des potea
+  📉 5/10: Évaluations nationales des élèves : orthographe en recu
+  📉 5/10: « L’engagement politique recule » : anatomie de la gran
+  📉 4/10: Une BYD moins chère qu’une Tesla Model 3 et qui recharg
+  ✅ 6/10 [tech] large: Nvidia écarte le retour de Jensen Huang
+  📉 5/10: Prix des jeux PlayStation : circulez, rien à rembourser
+  🌍 6/10 sans portée internationale : GTA 6 : attention, les arnaques se multiplient ava
+  📉 5/10: Le terrain GTA 6 Vice City de la NBA dévoilé par Miami 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.3h — Le sujet divise la classe politique : pourqu
+     10/10 · 2 média(s) · 0.1h — Mettez à jour votre PS5 si vous voulez jouer
+     10/10 · 2 média(s) · 0.1h — Mettez à jour votre PS5 si vous voulez jouer
+     9/10 · 6 média(s) · -2.0h — Nvidia écarte le retour de Jensen Huang
+     10/10 · 2 média(s) · 2.7h — Xi Jinping se place sur le devant de la scèn
+  ✂️ Éphéméride resserré (216 → 98 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Le sujet divise la classe politique : pourquoi des mili
+
+  ── Bilan du cycle (238 s) ──
+     écartés : 1 sujet banal · 1 hommage refusé · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.6-flash             🚫 quota
+        13. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 4 × gemini-3.6-flash             🚫 quota
+        16. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 5 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 4 × gemini-embedding-001         🚫 quota
+        21. clé 5 × gemini-embedding-001         🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        ✅
+        23. clé 5 × gemini-3.1-flash-lite        ✅
+        24. clé 5 × gemini-3.1-flash-lite        ✅
+        25. clé 5 × gemini-3.1-flash-lite        ✅
+        26. clé 5 × gemini-3.1-flash-lite        ✅
+        27. clé 5 × gemini-3.1-flash-lite        ✅
+        28. clé 5 × gemini-3.1-flash-lite        ✅
+        29. clé 5 × gemini-3.1-flash-lite        ✅
+        30. clé 5 × gemini-3.1-flash-lite        ✅
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 789
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 55,707 entrée · 1,927 sortie
+     ✅ aucun appel payant
