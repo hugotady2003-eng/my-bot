@@ -1,0 +1,148 @@
+
+[08:36] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : æ¯ããã, Grimes, æ¯ã¦ãµã®, Lakers, Hornets
+  🔎 « Grimes » : 1 article(s) frais, le plus récent il y a 0.3 h (Basket USA)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Grimes » écarté : trop secondaire (3/10)
+  🔎 « Lakers » : 1 article(s) frais, le plus récent il y a 0.4 h (Basket USA)
+  ⏭️  « Lakers » écarté : trop secondaire (3/10)
+  🔎 « Hornets » : 1 article(s) frais, le plus récent il y a 3.4 h (TrashTalk)
+  ⏭️  « Hornets » écarté : Simple match sportif futur sans enjeu majeur.
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/9 articles lus en 1.9s (29 déjà en cache)
+  📄 10/40 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · Sciences et Avenir · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  🧩 40 articles → 40 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia écarte le retour de Jensen Huang
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.0/100 = gravité 6/10 → 27 + frais 0.0h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : -1.5h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChA1rCYkD7J84Q6FSeEvy'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : sans attendre Edouard Philippe
+  🚨 Sujet chaud (breaking, 1 médias) : Haine des femmes, messages racistes… Un premier pr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45/100 = gravité 7/10 → 32 + frais 0.1h +16 + thème porteur +10 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 45) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Le Mexique obtient la suspension de la vente d'un 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.0/100 = gravité 4/10 → 18 + frais 0.1h +16 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChA1rSvSbkGLuRpqALryy'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Après un premier fiasco à 347 millions d’euros, le R
+  🚨 Sujet chaud (breaking, 1 médias) : Mettez à jour votre PS5 si vous voulez jouer à GTA
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 57.0/100 = gravité 8/10 → 36 + frais 0.5h +13 + primeur absolue +8
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChA1rhCvDe1QWgofpFGzg'}
+  ⚪ Écarté (-1, pénalisé par « \b(?:météo ») : Pluie-inondation : la vigilance orange pour la Somme
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  → 40 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : L’Iran frappe Bahreïn et le Koweït après une offen
+  ♻️ 7/10 [world] (déjà analysé, cache) : Haine des femmes, messages racistes… Un premier pr
+  ♻️ 7/10 [world] (déjà analysé, cache) : Pluie-inondation : la vigilance orange pour la Som
+  ♻️ 6/10 [science] (déjà analysé, cache) : Cop31 : « Il est possible que la France ait connu,
+  ♻️ 9/10 [world] (déjà analysé, cache) : Le sujet divise la classe politique : pourquoi des
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Prouver l’obsolescence programmée d’Apple : un cas
+  ♻️ 6/10 [world] (déjà analysé, cache) : Après un premier fiasco à 347 millions d’euros, le
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : Mettez à jour votre PS5 si vous voulez jouer à GTA
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Panne Apple : iCloud, l’App Store et Apple Music n
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Nvidia écarte le retour de Jensen Huang
+  ♻️ 6/10 [science] (déjà analysé, cache) : Unicef alerte sur la santé mentale des jeunes
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : Mettez à jour votre PS5 si vous voulez jouer à GTA
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Putin's Crimean Bridge partly collapses as Zelensk
+  ♻️ 8/10 [world] (déjà analysé, cache) : How the attack on Crimean Bridge unfolded
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia says it won't reinstate Huang as it reports
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia says it won't reinstate Huang as it reports
+  ♻️ 8/10 [world] (déjà analysé, cache) : China’s Xi calls for removing trade and investment
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Iran says army targets U.S. drone and missile site
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Widespread outages hit banks, air travel, the NSA 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : U.S. judge says Ethereum has ‘no terms of use,’ cl
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin's 12% slide through key support looks scar
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Ledger hardware implant saga reaches Dubai’s Virgi
+  ♻️ 8/10 [business] (déjà analysé, cache) : Nvidia board rejects Huang comeback despite record
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Coinbase AI defense blocks $4.7 million from being
+  ♻️ 9/10 [business] (déjà analysé, cache) : Nvidia Board Shuts Down Jensen Huang Comeback, Lau
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Search gets a major upgrade with Gemini 4 H
+  🧠 Batch analyse de 12 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChA1ryWwm5Pa5moSvhj12'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.4h — L’Iran frappe Bahreïn et le Koweït après une
+     10/10 · 1 média(s) · 0.7h — Le sujet divise la classe politique : pourqu
+     10/10 · 2 média(s) · 0.5h — Mettez à jour votre PS5 si vous voulez jouer
+     10/10 · 2 média(s) · 0.5h — Mettez à jour votre PS5 si vous voulez jouer
+     9/10 · 5 média(s) · -1.5h — Nvidia écarte le retour de Jensen Huang
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChA1sJSVFY4faz6jK9TYQ'}
+  → 1 sélectionné(s) [world]
+  ❌ Envoi 'L’Iran frappe Bahreïn et le Koweït après': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChA1sYYnte7Acw8zueodq'}
+
+  ── Bilan du cycle (270 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        ✅
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-embedding-001         🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 5 × gemini-embedding-001         🚫 quota
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        36. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 787
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,724 entrée · 171 sortie
+     ⚠️ 11 appel(s) payés chez Claude (le gratuit n'a pas suffi)
