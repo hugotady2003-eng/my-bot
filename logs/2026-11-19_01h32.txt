@@ -1,0 +1,95 @@
+
+[01:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #GHVIPEstreno, GTA 6, GTA VI, ì¬ëë¬¸ì, #æ ã®åéã®ã¦ãããããã¯
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #HakeemJeffries, #GTAVI, #GTA6
+  📖 1/1 articles lus en 0.2s (56 déjà en cache)
+  📄 10/59 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Jeuxvideo.com · The Block · OpenAI · Libération · Blockworks
+  ⛔ text-embedding-004 n'existe pas sur ce compte — écarté pour la suite du run
+  ⛔ embedding-001 n'existe pas sur ce compte — écarté pour la suite du run
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 59 articles → 59 événement(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Anthropic IPO raises over $81 billion in largest o
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 85.0/100 = gravité 8/10 → 36 + frais 0.8h +13 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 85) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : The nation’s largest school districts consider ditch
+  ⚪ Écarté (-3, pénalisé par « pourrait ») : Présidentielle 2026 : L’écologiste Tondelier envisag
+  ⚪ Écarté (-2, pénalisé par « comment  ») : Sortie de GTA VI : immersion, transgression, satire 
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Amazon lance une tonne de nouvelles offres pour la B
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Myanmar faces historic genocide verdict at UN cour
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.5/100 = gravité 7/10 → 32 + frais 1.5h +8 + primeur +5
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Etats-Unis : Le démocrate Hakeem Jeffries va devenir
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 59 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (59 s) ──
+     écartés : 5 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 1 × text-embedding-004           ⛔ inexistant
+         3. clé 1 × embedding-001                ⛔ inexistant
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 2 × text-embedding-004           ⛔ inexistant
+         6. clé 2 × embedding-001                ⛔ inexistant
+         7. clé 3 × gemini-embedding-001         🚫 quota
+         8. clé 3 × text-embedding-004           ⛔ inexistant
+         9. clé 3 × embedding-001                ⛔ inexistant
+        10. clé 4 × gemini-embedding-001         🚫 quota
+        11. clé 4 × text-embedding-004           ⛔ inexistant
+        12. clé 4 × embedding-001                ⛔ inexistant
+        13. clé 5 × gemini-embedding-001         🚫 quota
+        14. clé 5 × text-embedding-004           ⛔ inexistant
+        15. clé 5 × embedding-001                ⛔ inexistant
+        16. clé 1 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        21. clé 1 × gemini-3.6-flash             🚫 quota
+        22. clé 1 × gemini-3-flash               ⛔ inexistant
+        23. clé 2 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        25. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        26. clé 2 × gemini-3.6-flash             🚫 quota
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        30. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        31. clé 3 × gemini-3.6-flash             🚫 quota
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.5-flash-lite (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800
+     modèles écartés (inexistants) : embedding-001, gemini-2.5-flash-lite, gemini-3-flash, text-embedding-004
+     jetons Gemini : 1,658 entrée · 127 sortie
+     ✅ aucun appel payant
