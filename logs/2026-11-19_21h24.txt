@@ -1,0 +1,242 @@
+
+[21:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « sea otters sleeping water »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 19-Nov-26 12:16:40 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AgsD1_JH9k2UPV_GclMYwHt"}}
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #TerÃ¶rFinansmanÄ±ZulmÃ¼, $ANT, #EfeAlimDebut, #FoolInLoveEP13, #ReisAlgÄ±yÄ±DeÄilFonzedeyiDinle
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Coalition, #Jason, #Lucia
+  ⛔ text-embedding-004 n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Embedding indisponible (modèle introuvable (models/text-embedding-004 is not found for API ver) → comparaison par mots-clés
+  🕐 21h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 3.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 1.0s (32 déjà en cache)
+  📄 6/40 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · Blockworks
+  ⛔ embedding-001 n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 39 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « The seven Anthropic founders who are a… »
+  🧠 Même événement (jugé) : « Fears grow that US will put Nobel-winn… »
+  🧩 40 articles → 17 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 19 médias) : A Shenzhen, Xi Jinping et « l’ami » Vladimir Pouti
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 21 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, ActuGaming, Al Jazeera, BBC, BFM People
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + 19 médias +18 + frais 1.2h +8 + portée mondiale +18
+  🕒 Âge de l'article : 4.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (171 → 118 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Xi Jinping (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (22h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (2, pénalisé par « comment  ») : « La plus grande menace jamais vue » : comment la gu
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Myanmar committed genocide against Rohingya minority
+  🕒 Sujet chaud mais article ancien (34h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Hackers Leak Visa, Mastercard and JPMorgan Customer 
+  🚨 Sujet chaud (breaking, 19 médias) : Bitcoin Enters Death Cross as Anthropic IPO Fails 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + 19 médias +18 + frais 1.3h +8 + portée mondiale +18
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (182 → 156 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 19 médias) : Inondations dans le Pas-de-Calais : 300 personnes 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 80.0/100 = gravité 8/10 → 36 + 19 médias +18 + frais 1.3h +8 + portée mondiale +18
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (252 → 120 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 19 médias) : « Une histoire, mais pas la bonne » : une photo fa
+  🧮 Score 93.5/100 = gravité 7/10 → 32 + 19 médias +18 + frais 1.3h +8 + imprévu 8/10 +18 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (182 → 155 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Teddy Riner (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT, guerre en Ukraine : les Européens réaff
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + frais 1.7h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (161 → 117 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 19 médias) : Armes GTA 6 : où trouver le sniper SMS-01 et un ar
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + 19 médias +18 + frais 1.3h +8 + portée mondiale +18
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : GTA 6 : On connait enfin l’intégralité du casting 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 40.0/100 = gravité 8/10 → 36 + frais 3.3h +4
+  → Sujet chaud pas assez fort (score 40) → suivant
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  → 40 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : A Shenzhen, Xi Jinping et « l’ami » Vladimir Pouti
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : EN DIRECT, guerre en Ukraine : les Européens réaff
+  ♻️ 8/10 [world] (déjà analysé, cache) : Donald Trump «ouvert» à une protection de type Ota
+  ♻️ 9/10 [gta6] (déjà analysé, cache) : GTA VI: une session découverte du jeu organisée au
+  ♻️ 8/10 [world] (déjà analysé, cache) : Inondations dans le Pas-de-Calais : 300 personnes 
+  ♻️ 7/10 [tech] (déjà analysé, cache) : C’est quoi Artex, le logiciel d’IA chinois utilisé
+  ♻️ 7/10 [sports] (déjà analysé, cache) : « Une histoire, mais pas la bonne » : une photo fa
+  ♻️ 9/10 [world] (déjà analysé, cache) : À Shenzhen, une rencontre entre Trump, Poutine et 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : « La plus grande menace jamais vue » : comment la 
+  ♻️ 7/10 [science] (déjà analysé, cache) : 98,3 % de victoires : la puce quantique de Google 
+  ♻️ 6/10 [ai] (déjà analysé, cache) : ChatGPT s'empare des articles du Figaro et du grou
+  ♻️ 6/10 [world] (déjà analysé, cache) : Prêt à "servir son pays", le prince Harry retourne
+  ♻️ 7/10 [tech] (déjà analysé, cache) : “Il alimente plus de 225 millions de sites web” : 
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : Armes GTA 6 : où trouver le sniper SMS-01 et un ar
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 : On connait enfin l’intégralité du casting 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Myanmar committed genocide against Rohingya minori
+  ♻️ 10/10 [breaking] (déjà analysé, cache) : Trump, Putin and Xi release 'peace declaration' af
+  ♻️ 8/10 [world] (déjà analysé, cache) : Europe ready for talks with Russia on ending war i
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Simon Jack: Can Anthropic's record-breaking IPO st
+  ♻️ 6/10 [ai] (déjà analysé, cache) : The seven Anthropic founders who are about to beco
+  ♻️ 7/10 [world] (déjà analysé, cache) : Fears grow that US will put Nobel-winning judge un
+  ♻️ 7/10 [world] (déjà analysé, cache) : European leaders unite in Berlin to reaffirm suppo
+  ♻️ 6/10 [markets] (déjà analysé, cache) : AMD dives on short-seller report of alleged China 
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Sky's USDS stablecoin shrinks 35% as $1.5 billion 
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Anthropic gains after IPO, but pulls off highest l
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin Enters Death Cross as Anthropic IPO Fails 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Protesters Arrested Outside Nasdaq as Activists Op
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Google gives Gemini the ability to use your Mac fo
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Meta’s AI agent Muse is mixing up conversations an
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google is putting AI chats right on the homepage
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Google Built a Giant ‘Mirror Dimension’ Internet t
+  🧠 Batch analyse de 7 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 2 column 16 (char 29) → couple suivant
+  📉 3/10: En 50 ans, comment le groupe U2 est devenu l’un des gro
+  📉 5/10: Sans l’aide de Rockstar, des scientifiques ont réussi à
+  ⏩ Doublon: Sans l’aide de Rockstar, des scientifiques ont réussi à
+  📉 4/10: ‘On the same page’: Hegseth hails US ties with Colombia
+  📉 4/10: U.S. Steel agrees with union to raise wages 19.25% over
+  ✅ 6/10 [crypto] mondiale: Trump’s SEC nominee Johnson backs formal rulemak
+  ✅ 7/10 [business] large: Hackers Leak Visa, Mastercard and JPMorgan Custo
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.4h — GTA VI: une session découverte du jeu organi
+     10/10 · 2 média(s) · 0.3h — Myanmar committed genocide against Rohingya 
+     10/10 · 2 média(s) · 0.7h — Donald Trump «ouvert» à une protection de ty
+     9/10 · 1 média(s) · 0.5h — Sky's USDS stablecoin shrinks 35% as $1.5 bi
+     10/10 · 1 média(s) · 1.7h — EN DIRECT, guerre en Ukraine : les Européens
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [gta6]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ✂️ Tweet resserré localement (188 → 152 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 19-Nov-26 12:24:33 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AZSHds8lz3W2HO2u2eCnVTW"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : GTA VI: une session découverte du jeu organisée au Gran
+
+  ── Bilan du cycle (520 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 1 × embedding-001                ⛔ inexistant
+        10. clé 2 × gemini-embedding-001         🚫 quota
+        11. clé 2 × embedding-001                ⛔ inexistant
+        12. clé 3 × gemini-embedding-001         ✅
+        13. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.1-flash-lite        ✅
+        25. clé 2 × gemini-3.1-flash-lite        ✅
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.1-flash-lite        ✅
+        28. clé 2 × gemini-3.1-flash-lite        ✅
+        29. clé 2 × gemini-3.1-flash-lite        ✅
+        30. clé 2 × gemini-3.1-flash-lite        ✅
+        31. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        32. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        33. clé 3 × gemini-3.5-flash-lite        ✅
+        34. clé 2 × gemini-3.6-flash             🚫 quota
+        35. clé 3 × gemini-3.5-flash-lite        ✅
+        36. clé 3 × gemini-3.5-flash-lite        ✅
+        37. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 3/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : embedding-001, gemini-2.5-flash-lite, gemini-3-flash, text-embedding-004
+     jetons Gemini : 98,072 entrée · 2,342 sortie
+     ✅ aucun appel payant
