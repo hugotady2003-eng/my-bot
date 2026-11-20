@@ -1,0 +1,136 @@
+
+[00:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #StarAcademy, Ø§ÙÙØµØ±, #ã²ããªã¥ã¦, Bayern, #ãµã¿ãã©
+  🌍 « Ø§ÙÙØµØ± » : aucune reprise en français, source internationale retenue
+  🔎 « Bayern » : 1 article(s) frais, le plus récent il y a 3.0 h (Foot Mercato)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Bayern » écarté : trop secondaire (4/10)
+  🌍 « Ø±ÙÙØ§ÙØ¯Ù » : aucune reprise en français, source internationale retenue
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/3 articles lus en 0.3s (33 déjà en cache)
+  📄 6/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Jeuxvideo.com · CoinDesk · The Block · Blockworks · The Verge
+  🧠 36 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « Russian missile hits Poland as Ukraine… »
+  🧠 Même événement (jugé) : « Trump vows to stop U.S. companies from… »
+  🧠 Même événement (jugé) : « Bitcoin falls below $60K for first tim… »
+  🧩 37 articles → 19 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : Procès Zecler : les trois policiers condamnés à de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 1.8h +8 + thème porteur +10 + primeur +5
+  🔍 3 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 6 affirmation(s) : 0 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [1m] ⚡exclusif La cour criminelle de Paris a condamné trois policiers à des peines de prison 
+      [1m] La circonstance aggravante de racisme a été retenue par la cour.
+         ↳ France Bleu : La question du racisme est une circonstance aggravante écartée p
+         motif : France Bleu présente le statut juridique avant le verdict final.
+      [1m] ⚡exclusif Les trois policiers ont renouvelé leurs excuses au dernier jour du procès.
+      [1m] ⚡exclusif Les peines prononcées sont légèrement inférieures aux réquisitions de l'avocat
+      [1m] ⚡exclusif Les policiers sont jugés pour violences volontaires et faux en écriture publiq
+      [1m] ⚡exclusif L'agression a eu lieu le 21 novembre 2020 dans un studio d'enregistrement à Pa
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 9 médias) : La loi sur la présomption de légitime défense pour
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Blockworks, France Bleu, IGN France, Jeuxvideo.com
+  🧮 Score 55.0/100 = gravité 8/10 → 36 + 9 médias +15 + frais 3.2h +4
+  🌙 Sujet fort (score 55) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "GTA VI" : les ventes du jeu vidéo ont atteint près 
+  🚨 Sujet chaud (breaking, 1 médias) : Jensen Huang’s ‘Lying’ Alarmed Nvidia Board Ahead 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 59.0/100 = gravité 10/10 → 45 + frais 3.5h +4 + portée internationale +10
+  🌙 Sujet fort (score 59) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : Tech stock sell-off drags markets down as Anthropi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 6/10 → 27 + 2 médias +4 + frais 0.7h +13 + primeur +5 + portée mondiale +18
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 42 s
+  🧩 5 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [2m] L'action d'Anthropic a chuté à près de 88 dollars, se rapprochant de son prix 
+      [2m] Le Nasdaq Composite a ouvert en baisse de 1,3 % vendredi dans un contexte de r
+      [2m] L'indice S&P 500 a ouvert en baisse de 0,4 % vendredi.
+      [2m] L'indice Dow Jones Industrial Average a ouvert en légère hausse vendredi.
+      [2m] L'introduction en bourse d'Anthropic sur le Nasdaq a débuté à 111,50 dollars e
+  🌙 Sujet fort (score 67) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : Trump threatens tax on US tech firms building AI d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 62.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.4h +4 + portée mondiale +18
+  🧩 5 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Le président Donald Trump menace d'imposer une taxe importante aux entreprises
+      [1m] ⚡exclusif Donald Trump a déclaré que les entreprises américaines pourraient être interdi
+      [1m] ⚡exclusif L'annonce de cette nouvelle politique semble avoir surpris le personnel de la 
+      [1m] ⚡exclusif Donald Trump a exhorté les citoyens américains à accepter la construction de c
+      [1m] ⚡exclusif Ces déclarations ont été faites lors d'une conférence de presse à la Maison Bl
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Wrapped Monero token crashes 99.8% amid suspected 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 3.8h +4
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 37 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (102 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-embedding-001         🚫 quota
+        19. clé 2 × gemini-embedding-001         🚫 quota
+        20. clé 3 × gemini-embedding-001         🚫 quota
+        21. clé 4 × gemini-embedding-001         🚫 quota
+        22. clé 5 × gemini-embedding-001         ✅
+        23. clé 1 × gemini-3.6-flash             🚫 quota
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,624 entrée · 1,506 sortie
+     ✅ aucun appel payant
