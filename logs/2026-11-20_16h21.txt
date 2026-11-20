@@ -1,0 +1,254 @@
+
+[16:12] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  Le Saviez-vous : « Origine de l'expression OK » n'explique pas vraiment → on ne publie pas
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #Mã¹ã, #LOST10, #Ø³Ø§Ø¹Ù_Ø§Ø³ØªØ¬Ø§Ø¨Ù, #SECONDTAKEbyAuAuSave, #LoversAndGangstersEP4
+  ⛔ text-embedding-004 n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Embedding indisponible (modèle introuvable (models/text-embedding-004 is not found for API ver) → comparaison par mots-clés
+  ⛔ embedding-001 n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Embedding indisponible (modèle introuvable (models/embedding-001 is not found for API version ) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 16h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 8.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 405: Not Allowed
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 24/30 articles lus en 3.1s (19 déjà en cache)
+  📄 11/49 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · CoinDesk · The Block · Sciences et Avenir · Blockworks
+  🧠 49 vecteurs calculés en 1 appel(s)
+  🧩 49 articles → 11 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 12 médias) : EN DIRECT, guerre en Ukraine | L’Elysée évoque une
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 13 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Al Jazeera, Ars Technica, BBC Business, CoinDesk
+  🧮 Score 100.0/100 = gravité 9/10 → 40 + 12 médias +18 + frais 0.3h +16 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (169 → 125 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 9 médias) : Présidentielle 2027 : Villepin candidat après Rine
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 9 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, France Bleu, Journal du Geek, Konbini, Libération
+  🧮 Score 76.0/100 = gravité 6/10 → 27 + 9 médias +15 + frais 0.3h +16 + portée mondiale +18
+  🕒 Âge de l'article : 1.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (209 → 157 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Beats Black Friday deals: $100 off new Beats 360, Po
+  🚨 Sujet chaud (breaking, 9 médias) : Ligue des nations : l'équipe de France affrontera 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 85.0/100 = gravité 8/10 → 36 + 9 médias +15 + frais 0.3h +16 + portée mondiale +18
+  🕒 Âge de l'article : 3.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Test de la Samsung Galaxy Tab S12 Ultra : une tablet
+  🚨 Sujet chaud (breaking, 11 médias) : Un glitch dans GTA 6 permet de jouer à la première
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🧠 14 article(s) sur un autre sujet, écartés du dossier : BFMTV, Begeek, Blockworks, Dexerto, France Info
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 11 médias +15 + frais 0.3h +16 + ⚡ crise institutionnelle → plancher 89
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Déraillement du TER en Normandie : une collision ent
+  🚨 Sujet chaud (breaking, 2 médias) : La Pologne dénonce une nouvelle "provocation russe
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 48.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 2.7h +4
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧩 8 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] La Pologne a subi une violation de son espace aérien par trois objets russes, 
+      [2m] Le gouvernement polonais qualifie ces incursions de provocation délibérée de l
+      [2m] La Pologne va solliciter un soutien renforcé de l'OTAN pour sécuriser son flan
+      [2m] Les incursions ont eu lieu simultanément à des exercices militaires de la Coal
+      [1m] ⚡exclusif Aucun dommage matériel ni victime n'a été signalé suite à la chute des objets.
+      [1m] ⚡exclusif Le missile Kh-101 a chuté dans une zone rurale à Nowy Lipowiec, à 50 km de la 
+      [1m] ⚡exclusif Le secrétaire général de l'OTAN, Mark Rutte, a condamné ces violations et a fa
+      [1m] ⚡exclusif Les incursions russes s'inscrivent dans le cadre d'une attaque aérienne massiv
+  🕒 Âge de l'article : 3.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • TROP LONG (186 caractères)
+  ✂️ Tweet resserré localement (212 → 121 car.)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (12h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  → 49 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : EN DIRECT, guerre en Ukraine | L’Elysée évoque une
+  ♻️ 9/10 [world] (déjà analysé, cache) : La Pologne dénonce une nouvelle "provocation russe
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Ligue des nations : l'équipe de France affrontera 
+  ♻️ 6/10 [world] (déjà analysé, cache) : Présidentielle 2027 : Villepin candidat après Rine
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Artex frappe l'UE : l'exploitation d'une IA autono
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Un glitch dans GTA 6 permet de jouer à la première
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Russia targets Kyiv crossings days after Ukraine h
+  ♻️ 9/10 [world] (déjà analysé, cache) : Russian missile hits Poland as Ukraine's allies ho
+  ♻️ 6/10 [business] (déjà analysé, cache) : Anthropic shares fall a day after blockbuster open
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Outages in US cause worry, despite official attemp
+  ♻️ 7/10 [world] (déjà analysé, cache) : U.S.-China trade, Taiwan and tech tensions remain 
+  ♻️ 6/10 [markets] (déjà analysé, cache) : The bull market has a new problem. The 'smart mone
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Hong Kong moves to extend crypto licensing rules t
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Live news: Bitcoin hovers just above $61,000 as An
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Binance hacker moves nearly $600M in ETH, routes f
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Rep. Horsford sees opening for House vote on crypt
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : US spot bitcoin ETFs see $582 million in daily net
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Shed $582M in a Day as BTC Drops Belo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [tech] (déjà analysé, cache) : California AG subpoenas Nvidia over worries about 
+  🎯 Pré-classement : 8 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ✅ 9/10 [world] mondiale: Pologne: deux missiles russes sont tombés, sans 
+  🌍 7/10 sans portée internationale : GTA 6 : impossible de rejouer les missions de l’hi
+  📉 5/10: GTA 6 : un fast-food va reproduire le même burger avec 
+  📉 3/10: Emmanuel Macron, un tyran à petits pas, par Gérald Bron
+  ✅ 8/10 [world] large: Génocide des Rohingyas : après la décision histo
+  📉 4/10: Un Géorgien de 45 ans retrouvé mystérieusement mort dan
+  📉 5/10: "Face aux deepfakes audio, la meilleure parade reste l'
+  📉 4/10: Manifestant mort à Paris le 17 octobre : des traces d’a
+  🌍 7/10 sans portée internationale : Une comédienne accuse Gérard Depardieu de viol en 
+  📉 3/10: La technologie n'est plus fiable, il faut l'anticiper !
+  ✅ 7/10 [tech] mondiale: Le directeur national de la cybersécurité des Et
+  📉 2/10: Jardin : les limaces s’attaquent à vos plantations ? Ce
+  ✅ 6/10 [ai] mondiale: Cette IA a conçu un processeur 4,59 fois plus ef
+  🌍 6/10 sans portée internationale : Let’s talk about GTA VI
+  📉 3/10: Une prof de SES convoquée par le rectorat pour un devoi
+  📉 3/10: Les Anneaux de pouvoir fait-elle vraiment n’importe quo
+  📉 4/10: Audiovisuel public : privatiser Radio France ? Sa patro
+  📉 5/10: Cargo échoué: pourquoi les conditions météorologiques "
+  📉 2/10: 5 séries à regarder ce weekend entre les parties de GTA
+  🌍 7/10 sans portée internationale : Les nouveautés qui font sensation dans GTA VI
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.3h — EN DIRECT, guerre en Ukraine | L’Elysée évoq
+     10/10 · 1 média(s) · 0.3h — Pologne: deux missiles russes sont tombés, s
+     9/10 · 1 média(s) · 0.2h — Génocide des Rohingyas : après la décision h
+     10/10 · 1 média(s) · 2.3h — Russia targets Kyiv crossings days after Ukr
+     10/10 · 1 média(s) · 1.5h — Russian missile hits Poland as Ukraine's all
+  ✂️ Éphéméride resserré (215 → 98 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (169 → 125 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Emmanuel Macron (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : EN DIRECT, guerre en Ukraine | L’Elysée évoque une adhé
+
+  ── Bilan du cycle (524 s) ──
+     écartés : 4 sans portée internationale · 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.6-flash             🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-embedding-001         🚫 quota
+        12. clé 2 × gemini-embedding-001         🚫 quota
+        13. clé 3 × gemini-embedding-001         ✅
+        14. clé 2 × gemini-3.1-flash-lite        ✅
+        15. clé 2 × gemini-3.1-flash-lite        ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        25. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 2 × gemini-3.6-flash             🚫 quota
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        ✅
+        30. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-embedding-001 · clé 4 × gemini-2.5-flash-lite (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 3/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : embedding-001, gemini-2.5-flash-lite, gemini-3-flash, text-embedding-004
+     jetons Gemini : 89,777 entrée · 3,427 sortie
+     ✅ aucun appel payant
