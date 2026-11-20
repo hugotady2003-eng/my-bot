@@ -1,0 +1,79 @@
+
+[05:51] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #é¦ããããã³æ°æé¢¨, #ããå®¶ã®ã¨ãããã©ãé£ã¹ãã, Colts, Daniel Jones, #ã´ã³ãã£100ä¸äººãã©ã­ã¯ã¼è¨å¿µ
+  🔎 « Colts » : 1 article(s) frais, le plus récent il y a 19.9 h (DAZN)
+  ⏭️  « Colts » écarté : Simple avant-match sportif sans enjeu national.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Fiona
+  📖 1/1 articles lus en 0.1s (65 déjà en cache)
+  📄 14/67 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · OpenAI · Jeuxvideo.com · The Block
+  ⛔ text-embedding-004 n'existe pas sur ce compte — écarté pour la suite du run
+  ⛔ embedding-001 n'existe pas sur ce compte — écarté pour la suite du run
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Tondelier se tourne vers Mélenchon : l… »
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🧩 67 articles → 66 événement(s)
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 2 column 15 (char 16) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🕒 Sujet chaud mais article ancien (37h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : nouvelles frappes sur Kiev, fr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.0/100 = gravité 8/10 → 36 + frais 1.0h +13 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 75) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Fiona the Hippo Died After Eating a Hat. But How Doe
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 67 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (39 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-embedding-001         🚫 quota
+         3. clé 1 × text-embedding-004           ⛔ inexistant
+         4. clé 1 × embedding-001                ⛔ inexistant
+         5. clé 2 × gemini-embedding-001         🚫 quota
+         6. clé 2 × text-embedding-004           ⛔ inexistant
+         7. clé 2 × embedding-001                ⛔ inexistant
+         8. clé 3 × gemini-embedding-001         🚫 quota
+         9. clé 3 × text-embedding-004           ⛔ inexistant
+        10. clé 3 × embedding-001                ⛔ inexistant
+        11. clé 4 × gemini-embedding-001         🚫 quota
+        12. clé 4 × text-embedding-004           ⛔ inexistant
+        13. clé 4 × embedding-001                ⛔ inexistant
+        14. clé 5 × gemini-embedding-001         🚫 quota
+        15. clé 5 × text-embedding-004           ⛔ inexistant
+        16. clé 5 × embedding-001                ⛔ inexistant
+        17. clé 1 × gemini-3.5-flash-lite        ✅
+        18. clé 1 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+        21. clé 1 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        25. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+        26. clé 1 × gemini-3-flash               ⛔ inexistant
+        27. clé 2 × gemini-3.5-flash-lite        ✅
+        28. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        29. clé 2 × gemini-3.5-flash-lite        ✅
+        30. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        31. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        32. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.6-flash
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 797
+     modèles écartés (inexistants) : embedding-001, gemini-2.5-flash-lite, gemini-3-flash, text-embedding-004
+     jetons Gemini : 2,519 entrée · 235 sortie
+     ✅ aucun appel payant
