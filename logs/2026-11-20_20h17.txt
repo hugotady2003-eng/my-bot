@@ -1,0 +1,238 @@
+
+[20:09] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « bright orange flight recorder »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 3 column 14 (char 31) → couple suivant
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 20-Nov-26 11:10:46 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ALa68v83-NLYJbOk74ydqDK"}}
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  ❌ RSS Google AI: The read operation timed out
+  📈 50 tendances lues sur trends24.in : Ø§ÙØ§ÙÙÙ, ÙÙÙ Ø§Ù, Daniel Jones, Ø²ÙØ§Ø¯, Riemann
+  🌍 « Ø§ÙØ§ÙÙÙ » : aucune reprise en français, source internationale retenue
+  🌍 « ÙÙÙ Ø§Ù » : aucune reprise en français, source internationale retenue
+  🔎 « Daniel Jones » : 1 article(s) frais, le plus récent il y a 0.8 h (RDS)
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⏭️  « Daniel Jones » écarté : trop secondaire (2/10)
+  🌍 « Ø²ÙØ§Ø¯ » : aucune reprise en français, source internationale retenue
+  🌍 « Ø§ÙØ´ÙØ· Ø§ÙØ§ÙÙ » : aucune reprise en français, source internationale retenue
+  🌍 « Ø§ÙØ´ÙØ· Ø§ÙØ«Ø§ÙÙ » : aucune reprise en français, source internationale retenue
+  🔎 « Colts » : 1 article(s) frais, le plus récent il y a 0.8 h (RDS)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Colts » écarté : trop secondaire (2/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Riemann
+  ⛔ text-embedding-004 n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Embedding indisponible (modèle introuvable (models/text-embedding-004 is not found for API ver) → comparaison par mots-clés
+  🕐 20h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 4.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/8 articles lus en 1.0s (24 déjà en cache)
+  📄 7/32 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · The Block · Libération · Ouest-France · Blockworks
+  ⛔ embedding-001 n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 32 vecteurs calculés en 1 appel(s)
+  🧩 32 articles → 20 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : La loi sur la présomption de légitime défense pour
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 41.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.4h +16 + primeur +5 + fait local -20 + sous la barre des faits locaux (66)
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧩 7 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 2 exclusive(s)
+      [2m] Le Parlement a définitivement adopté la proposition de loi instaurant une prés
+      [2m] Le Sénat a adopté le texte par 205 voix pour et 110 contre.
+      [2m] La gauche parlementaire annonce une saisine du Conseil constitutionnel pour co
+      [2m] Le texte a été soutenu par la droite, la majorité des centristes et le Rassemb
+      [1m] ⚡exclusif Le texte initial sur la présomption de légitime défense a été réécrit par le g
+      [1m] ⚡exclusif L'opposition au texte est liée à des manifestations récentes et à une pétition
+      [2m] La gauche qualifie le texte de permis de tuer et dénonce une victoire idéologi
+  → Sujet chaud pas assez fort (score 41) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027: "Elle est importante parce qu'e
+  🚨 Sujet chaud (breaking, 2 médias) : Guerre en Ukraine : Donald Trump affirme que Vladi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 90.5/100 = gravité 9/10 → 40 + 2 médias +4 + frais 0.7h +13 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [1m] ⚡exclusif Donald Trump affirme que Vladimir Poutine souhaite mettre fin à la guerre en U
+      [2m] Donald Trump, Vladimir Poutine et Xi Jinping ont tenu un sommet inédit à Shenz
+      [1m] ⚡exclusif Les trois dirigeants ont conclu un accord sur une déclaration de paix à l'issu
+      [1m] ⚡exclusif Donald Trump qualifie ses relations personnelles avec Xi Jinping et Vladimir P
+      [2m] Donald Trump a tenu une conférence de presse à la Maison Blanche pour s'exprim
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (174 → 126 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : « J’adorerais le voir revenir » : Donald Trump pou
+  🧮 Score 78.5/100 = gravité 5/10 → 22 + frais 0.1h +16 + imprévu 7/10 +4 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 2 médias) : Sommet à Shenzhen : Donald Trump assure que ses re
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 95.0/100 = gravité 10/10 → 45 + 2 médias +4 + frais 0.8h +13 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Donald Trump, Xi Jinping et Vladimir Poutine ont tenu un sommet à Shenzhen.
+      [1m] ⚡exclusif Donald Trump affirme que ses relations personnelles avec Xi Jinping et Vladimi
+      [1m] ⚡exclusif Donald Trump rapporte que Vladimir Poutine souhaite une résolution diplomatiqu
+      [1m] ⚡exclusif Les trois dirigeants ont conclu un accord sur une déclaration de paix à l'issu
+      [2m] Donald Trump a tenu une conférence de presse à la Maison Blanche pour commente
+  🕒 Âge de l'article : 0.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Présidentielle 2027 : Villepin candidat après Rine
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 39.0/100 = gravité 6/10 → 27 + frais 5.4h +2 + thème porteur +10
+  → Sujet chaud pas assez fort (score 39) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Russian missile hits Poland as Ukraine's allies ho
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 9/10 → 40 + frais 2.4h +4 + portée internationale +10
+  🕒 Âge de l'article : 2.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « C’est un moment monumental dans l’histoire de l’hu
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  → 32 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : La loi sur la présomption de légitime défense pour
+  ♻️ 8/10 [world] (déjà analysé, cache) : Le Parlement adopte définitivement la présomption 
+  ♻️ 10/10 [breaking] (déjà analysé, cache) : Sommet à Shenzhen : Donald Trump assure que ses re
+  ♻️ 6/10 [world] (déjà analysé, cache) : Présidentielle 2027 : Villepin candidat après Rine
+  ♻️ 8/10 [ai] (déjà analysé, cache) : « C’est un moment monumental dans l’histoire de l’
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : Donald Trump affirme que Vladi
+  ♻️ 9/10 [world] (déjà analysé, cache) : Russian missile hits Poland as Ukraine's allies ho
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Russia targets Kyiv crossings days after Ukraine h
+  ♻️ 6/10 [business] (déjà analysé, cache) : Anthropic shares fall after blockbuster opening as
+  ♻️ 9/10 [world] (déjà analysé, cache) : Ukraine strikes Kerch Bridge as Putin ally declare
+  ♻️ 9/10 [world] (déjà analysé, cache) : Trump vows to stop U.S. companies from building da
+  ♻️ 6/10 [markets] (déjà analysé, cache) : The bull market has a new problem. The 'smart mone
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump says he still has confidence in Lutnick
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Bitcoin plunges below $59,000 as rush to cash puts
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Hong Kong moves to extend crypto licensing rules t
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Sky Protocol sees $2 billion in stablecoin withdra
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin falls below $60K for first time since July
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance hack laundering ramps up as $149 million i
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : JPMorgan says bitcoin price correction widens gap 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Trump threatens ‘tremendous tax’ for moving AI dat
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Google says it’s going to shut off Google Assistan
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Signal now blocks screenshots on iPhone to stop Si
+  🧠 Batch analyse de 7 articles...
+  📉 4/10: «Ce n’est pas tous les jours qu’un navire s’échoue» : s
+  📉 3/10: Présidentielle 2027: "Elle est importante parce qu'elle
+  📉 2/10: Patinage artistique : Cizeron et Fournier Beaudry domin
+  📉 2/10: Débat à Midi Libre sur le mouvement lycéen : "nous devo
+  📉 2/10: "C'est parfois très compliqué" : Vanessa Demouy se livr
+  📉 5/10: Programme Artemis : pour préparer ses prochaines missio
+  📉 5/10: Former US national security adviser confronted by stude
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.4h — Le Parlement adopte définitivement la présom
+     10/10 · 2 média(s) · 0.5h — La loi sur la présomption de légitime défens
+     10/10 · 3 média(s) · 0.8h — Sommet à Shenzhen : Donald Trump assure que 
+     10/10 · 3 média(s) · 0.8h — Guerre en Ukraine : Donald Trump affirme que
+     10/10 · 2 média(s) · 0.7h — Ukraine strikes Kerch Bridge as Putin ally d
+  ✂️ Éphéméride resserré (215 → 98 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (164 → 124 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 20-Nov-26 11:17:06 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AiESIIroqqIwUfMDOG2rPAI"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Le Parlement adopte définitivement la présomption d'usa
+
+  ── Bilan du cycle (442 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        10. clé 3 × gemini-3.5-flash-lite        ✅
+        11. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 1 × embedding-001                ⛔ inexistant
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 2 × embedding-001                ⛔ inexistant
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 3 × embedding-001                ⛔ inexistant
+        21. clé 4 × gemini-embedding-001         ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+        29. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+        38. clé 3 × gemini-3.1-flash-lite        ✅
+        39. clé 3 × gemini-3.1-flash-lite        ✅
+        40. clé 3 × gemini-3.1-flash-lite        ✅
+        … et 5 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 2/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : embedding-001, gemini-2.5-flash-lite, gemini-3-flash, text-embedding-004
+     jetons Gemini : 74,434 entrée · 3,479 sortie
+     ✅ aucun appel payant
