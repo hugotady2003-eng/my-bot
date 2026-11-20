@@ -1,0 +1,145 @@
+
+[00:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Ø§ÙÙØµØ±, Bayern, Ø±ÙÙØ§ÙØ¯Ù, Daniel Jones, Telcel
+  🌍 « Ø§ÙÙØµØ± » : aucune reprise en français, source internationale retenue
+  🔎 « Bayern » : 1 article(s) frais, le plus récent il y a 2.7 h (Foot Mercato)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : 'parts' → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Bayern » écarté : trop secondaire (4/10)
+  🌍 « Ø±ÙÙØ§ÙØ¯Ù » : aucune reprise en français, source internationale retenue
+  🔎 « Daniel Jones » : 1 article(s) frais, le plus récent il y a 1.4 h (Touchdown Actu)
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 14 (char 13) → couple suivant
+  ⏭️  « Daniel Jones » écarté : trop secondaire (3/10)
+  🔎 « Telcel » : 1 article(s) frais, le plus récent il y a 2.9 h (Zonebourse Suisse)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Telcel » écarté : Panne d'un opérateur étranger sans intérêt français.
+  🔎 « Riemann » : 1 article(s) frais, le plus récent il y a 2.6 h (Actu.fr)
+  ⏭️  « Riemann » écarté : Article explicatif sans fait nouveau notable.
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Nasdaq
+  📖 1/1 articles lus en 0.0s (30 déjà en cache)
+  📄 5/31 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Jeuxvideo.com · CoinDesk · The Block · Blockworks · The Verge
+  🧠 31 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧠 Même événement (jugé) : « Bitcoin falls below $60K for first tim… »
+  🧩 31 articles → 17 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 3 médias) : "La jurisprudence Zecler": après un verdict histor
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 51.0/100 = gravité 8/10 → 36 + 3 médias +7 + frais 1.1h +8
+  🔍 4 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] La cour criminelle de Paris a condamné trois policiers à des peines de prison 
+      [2m] La circonstance aggravante de racisme a été retenue par la cour.
+      [2m] Les peines prononcées sont inférieures aux réquisitions de l'avocate générale.
+      [1m] ⚡exclusif L'avocat de Michel Zecler qualifie cette décision de jurisprudence Zecler.
+      [1m] ⚡exclusif Les policiers condamnés ont l'interdiction d'exercer leur métier.
+      [1m] ⚡exclusif Les trois policiers ont présenté leurs excuses au dernier jour du procès.
+      [1m] ⚡exclusif Les policiers étaient jugés pour violences volontaires et faux en écriture pub
+  🌙 Sujet fort (score 51) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : La loi sur la présomption de légitime défense pour
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 18.0/100 = gravité 8/10 → 36 + frais 4.3h +2 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 18) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : "GTA VI" : les ventes du jeu vidéo ont atteint près 
+  🚨 Sujet chaud (breaking, 1 médias) : Jensen Huang’s ‘Lying’ Alarmed Nvidia Board Ahead 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 59.0/100 = gravité 10/10 → 45 + frais 3.2h +4 + portée internationale +10
+  🌙 Sujet fort (score 59) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Trump threatens ban on US firms building AI data c
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : The Block
+  🧮 Score 65.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 2.2h +4 + portée mondiale +18
+  🧩 6 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [3m] Le président Donald Trump menace d'interdire aux entreprises américaines de co
+      [2m] Donald Trump a annoncé cette mesure de manière improvisée, sans en avoir infor
+      [1m] ⚡exclusif La justification de Trump pour cette mesure est d'empêcher la Chine de prendre
+      [2m] L'annonce a été faite lors d'une conférence de presse au retour d'un sommet av
+      [1m] ⚡exclusif Les centres de données ont été un sujet central lors des élections de mi-manda
+      [1m] ⚡exclusif Trump a exhorté les Américains à accepter la construction de centres de donnée
+  🌙 Sujet fort (score 65) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Trump threatens tax on US tech firms building AI d
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 2.2h +4 + portée mondiale +18
+  🧩 7 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [3m] Donald Trump menace d'interdire aux entreprises américaines de construire des 
+      [2m] Le président a annoncé cette mesure de manière improvisée, sans en avoir infor
+      [1m] ⚡exclusif La mise en œuvre et l'application concrète de cette politique restent incertai
+      [1m] ⚡exclusif Trump justifie cette mesure par la volonté d'empêcher la Chine de prendre l'av
+      [1m] ⚡exclusif L'annonce a été faite lors d'une conférence de presse après un sommet trilatér
+      [1m] ⚡exclusif Les centres de données étaient un sujet central lors des élections de mi-manda
+      [1m] ⚡exclusif Trump a exhorté les Américains à accepter la construction de centres de donnée
+  🌙 Sujet fort (score 65) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Wrapped Monero token crashes 99.8% amid suspected 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 7/10 → 32 + frais 3.4h +4
+  → Sujet chaud pas assez fort (score 36) → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 31 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (69 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ 'parts'
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-3.6-flash             🚫 quota
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 4 × gemini-embedding-001         🚫 quota
+        25. clé 5 × gemini-embedding-001         ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-2.5-flash-lite (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 8,696 entrée · 1,821 sortie
+     ✅ aucun appel payant
