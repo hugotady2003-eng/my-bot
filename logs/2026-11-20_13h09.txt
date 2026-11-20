@@ -1,0 +1,255 @@
+
+[13:03] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « spa hydrotherapy tub »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 20-Nov-26 04:04:43 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AviDGvml0oMCPhPfabLnntj"}}
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ãããæ­è¬¡ç¥­, #PayPayã¹ã¯ã©ãããã, ã­ãã³é å¸, #hololiveNext, #è¤äºé¢¨ãã¢ããªãµã¤ã¿ã«
+  🌍 « ENHYPEN » : aucune reprise en français, source internationale retenue
+  🔎 « ENHYPEN » : 1 article(s) frais, le plus récent il y a 5.2 h (Forbes)
+  ⏭️  « ENHYPEN » écarté : Sortie musicale pour un public ciblé et niche.
+  🕐 13h (Paris) — rythme journée (26-55 min · 0 publié(s), 16 restant(s) sur 11.0 h) : 26-55 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 10/12 articles lus en 1.6s (26 déjà en cache)
+  📄 6/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · CoinDesk · The Block · Blockworks
+  ⛔ text-embedding-004 n'existe pas sur ce compte — écarté pour la suite du run
+  ⛔ embedding-001 n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 38 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Anthropic’s 7 founders cashed out near… »
+  🧩 38 articles → 19 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dominique de Villepin annonce sa candidature à l’éle
+  🚨 Sujet chaud (breaking, 9 médias) : Guerre en Ukraine : Kiev mise sur l’isolement stra
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 8 article(s) sur un autre sujet, écartés du dossier : BFMTV, Begeek, L'Express, Le Monde, Libération
+  🧮 Score 87.0/100 = gravité 8/10 → 36 + 9 médias +15 + frais 0.2h +16 + thème porteur +10 + portée internationale +10
+  🕒 Âge de l'article : 2.1h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (182 → 127 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Vladimir Poutine (Wikipedia)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 6 médias) : Bitcoin drops for third straight day as Asian tech
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : CoinDesk, Cointelegraph, Decrypt
+  🧮 Score 68.5/100 = gravité 7/10 → 32 + 6 médias +11 + frais 1.3h +8 + portée mondiale +18
+  🧩 9 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 4 exclusive(s)
+      [2m] Anthropic est entrée en bourse sur le Nasdaq avec un prix d'introduction de 83
+      [2m] L'action Anthropic a clôturé sa première journée de cotation à un prix proche 
+         ↳ CNBC : L'action a clôturé précisément à 97,17 dollars.
+         motif : Précision accrue dans les données de clôture.
+      [2m] L'introduction en bourse d'Anthropic a permis de lever un total de 81,3 millia
+      [2m] La valorisation boursière d'Anthropic a atteint environ 1,8 trillion de dollar
+      [2m] Le cours de l'action a atteint un pic de 111,50 dollars lors des premiers écha
+      [1m] ⚡exclusif Les sept fondateurs d'Anthropic ont vendu chacun environ 3,4 millions d'action
+      [1m] ⚡exclusif Chaque fondateur a perçu environ 280 millions de dollars grâce à la vente de s
+      [1m] ⚡exclusif Le marché technologique global a connu une baisse lors de la journée d'introdu
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Adhésion de l'Ukraine à l'Otan : l'étonnant change
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + frais 1.2h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Donald Trump (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Urgo a réussi à créer une peau artificielle
+  🚨 Sujet chaud (breaking, 2 médias) : Ligue des nations : l'équipe de France affrontera 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.5h +13 + thème porteur +10 + exploit français +4 + primeur +5 + portée internationale +10
+  🧩 9 affirmation(s) : 7 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] L'équipe de France affrontera l'Espagne en quart de finale de la Ligue des nat
+      [2m] Les matchs aller et retour sont prévus entre le 25 et le 30 mars 2027.
+      [2m] Le vainqueur de ce quart de finale affrontera les Pays-Bas ou le Portugal en d
+      [1m] ⚡exclusif L'équipe de France jouera le match aller à l'extérieur et le retour à domicile
+      [1m] ⚡exclusif L'Espagne a terminé deuxième de son groupe après une défaite contre l'Angleter
+      [2m] La France a terminé première de son groupe devant la Belgique.
+      [2m] Le tirage au sort a eu lieu au siège de l'UEFA en Suisse.
+      [2m] Zinédine Zidane est l'entraîneur de l'équipe de France.
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Procès Zecler : les trois policiers poursuivis ren
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.8h +8 + thème porteur +10 + primeur +5
+  🕒 Âge de l'article : 1.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 5 médias) : Three Kyiv bridges hit during major Russian missil
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : BBC, CNBC, Ouest-France
+  🧮 Score 92.5/100 = gravité 9/10 → 40 + 5 médias +11 + frais 0.9h +13 + thème porteur +10 + portée mondiale +18
+  🧩 8 affirmation(s) : 1 partagée(s) · 0 divergente(s) · 7 exclusive(s)
+      [2m] Dominique de Villepin a officiellement annoncé sa candidature à l'élection pré
+      [1m] ⚡exclusif Dominique de Villepin a présenté des mesures économiques, notamment le partage
+      [1m] ⚡exclusif Dominique de Villepin a justifié sa candidature en évoquant une situation de p
+      [1m] ⚡exclusif Dominique de Villepin a exprimé une position claire en distinguant le Rassembl
+      [1m] ⚡exclusif Le programme de Dominique de Villepin comporterait 230 mesures selon Politico.
+      [1m] ⚡exclusif Dominique de Villepin prépare sa candidature depuis plus de deux ans via son m
+      [1m] ⚡exclusif Dominique de Villepin propose le rétablissement de l'impôt sur la fortune (ISF
+      [1m] ⚡exclusif La campagne de Dominique de Villepin utilise le slogan « Et si on s’aimait enc
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  → 38 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : Dominique de Villepin annonce sa candidature à l’é
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : Kiev mise sur l’isolement stra
+  ♻️ 9/10 [world] (déjà analysé, cache) : La Pologne dénonce une nouvelle "provocation russe
+  ♻️ 9/10 [world] (déjà analysé, cache) : Adhésion de l'Ukraine à l'Otan : l'étonnant change
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : un missile russe tombé dans le
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Ligue des nations : l'équipe de France affrontera 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Procès Zecler : les trois policiers poursuivis ren
+  ♻️ 9/10 [world] (déjà analysé, cache) : Deux missiles russes tombés dans le sud-est de la 
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Ligue des nations : les Bleus de Zidane affrontero
+  ♻️ 6/10 [world] (déjà analysé, cache) : Présidentielle 2027 : rétablissement de l'ISF, "bi
+  ♻️ 7/10 [tech] (déjà analysé, cache) : L’Italie autorise le FSD de Tesla, pendant que la 
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : Sensor Tower estime que GTA 6 s'est écoulé à 24,58
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Cyberleek de retour sur GTA 6 et avec une version 
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Three Kyiv bridges hit during major Russian missil
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Anthropic becomes one of world's most valuable pub
+  ♻️ 9/10 [business] (déjà analysé, cache) : Anthropic defies the odds, holding record IPO desp
+  ♻️ 7/10 [world] (déjà analysé, cache) : Putin scores ‘massive win’ at first trilateral mee
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin drops for third straight day as Asian tech
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Binance hacker moves nearly $600M in ETH, routes f
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin nears repeat of chart pattern that precede
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : MoonPay applies for national trust bank charter to
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin ETFs Shed $582M in a Day as BTC Drops Belo
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [business] (déjà analysé, cache) : Anthropic’s 7 founders cashed out nearly $2B in re
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Apple is hiring engineers to build its own AI agen
+  🧠 Batch analyse de 12 articles...
+  📉 5/10: Affaire Barbara Butch : Allan Brunon, responsable LFI à
+  ✅ 9/10 [world] mondiale: Frappes russes sur Kiev: la France réclame une r
+  🌍 7/10 sans portée internationale : Urgo a réussi à créer une peau artificielle
+  🌍 7/10 sans portée internationale : Garde à vue de mineurs : les parents doivent être 
+  📉 5/10: Une arme constitutionnelle pour contrer l’obstruction :
+  📉 3/10: Black Friday Week : les offres les plus alléchantes (ju
+  📉 4/10: Comment sauvegarder dans GTA 6
+  📉 3/10: Anthony Delon, après les tensions financières avec Anou
+  📉 4/10: Marvel réécrit ses Avengers, et Doom n’est pas arrivé p
+  📉 4/10: Why the robots are ditching Uber
+  📉 3/10: Which MacBook to Buy (2026): Here’s Which Laptop Is Rig
+  📉 5/10: Muse Is Unleashing a World of Pettiness on Instagram
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.2h — Deux missiles russes tombés dans le sud-est 
+     10/10 · 2 média(s) · 0.3h — Bitcoin ETFs Shed $582M in a Day as BTC Drop
+     10/10 · 1 média(s) · 0.1h — Frappes russes sur Kiev: la France réclame u
+     10/10 · 2 média(s) · 0.7h — La Pologne dénonce une nouvelle "provocation
+     10/10 · 4 média(s) · 0.6h — Guerre en Ukraine : un missile russe tombé d
+  ✂️ Éphéméride resserré (215 → 98 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (171 → 127 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (France Info) — même sujet
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 20-Nov-26 04:09:24 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AJfGqhSpykcbRaO6u4HMjeN"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Deux missiles russes tombés dans le sud-est de la Polog
+
+  ── Bilan du cycle (328 s) ──
+     écartés : 2 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         3. clé 1 × gemini-3.6-flash             🚫 quota
+         4. clé 1 × gemini-3-flash               ⛔ inexistant
+         5. clé 2 × gemini-3.5-flash-lite        ✅
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-embedding-001         🚫 quota
+         8. clé 1 × text-embedding-004           ⛔ inexistant
+         9. clé 1 × embedding-001                ⛔ inexistant
+        10. clé 2 × gemini-embedding-001         ✅
+        11. clé 2 × gemini-3.5-flash-lite        ✅
+        12. clé 2 × gemini-3.5-flash-lite        ✅
+        13. clé 2 × gemini-3.5-flash-lite        ✅
+        14. clé 2 × gemini-3.5-flash-lite        ✅
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+        24. clé 2 × gemini-3.1-flash-lite        ✅
+        25. clé 2 × gemini-3.1-flash-lite        ✅
+        26. clé 2 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.1-flash-lite        ✅
+        28. clé 2 × gemini-3.1-flash-lite        ✅
+        29. clé 2 × gemini-3.1-flash-lite        ✅
+        30. clé 2 × gemini-3.1-flash-lite        ✅
+        31. clé 2 × gemini-3.1-flash-lite        ✅
+        32. clé 2 × gemini-3.1-flash-lite        ✅
+        33. clé 2 × gemini-3.1-flash-lite        ✅
+        34. clé 2 × gemini-3.1-flash-lite        ✅
+        35. clé 2 × gemini-3.1-flash-lite        ✅
+        36. clé 2 × gemini-3.1-flash-lite        ✅
+        37. clé 2 × gemini-3.1-flash-lite        ✅
+        38. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-embedding-001 · clé 3 × gemini-3.5-flash-lite (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 4/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : embedding-001, gemini-2.5-flash-lite, gemini-3-flash, text-embedding-004
+     jetons Gemini : 90,213 entrée · 4,807 sortie
+     ✅ aucun appel payant
