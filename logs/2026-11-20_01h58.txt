@@ -1,0 +1,118 @@
+
+[01:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #ã´ã³ãã£100ä¸äººãã©ã­ã¯ã¼è¨å¿µ, #CaraACara26, Fiona, SÃ¡nchez, #CaraACaraRTVE
+  🔎 « Fiona » : 1 article(s) frais, le plus récent il y a 2.4 h (tv5monde)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Fiona » écarté : trop secondaire (2/10)
+  🌍 « CaraACaraRTVE » : aucune reprise en français, source internationale retenue
+  🌍 « Sanabria » : aucune reprise en français, source internationale retenue
+  📖 1/1 articles lus en 0.1s (46 déjà en cache)
+  📄 7/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · OpenAI · Libération · Jeuxvideo.com · Blockworks
+  ⛔ text-embedding-004 n'existe pas sur ce compte — écarté pour la suite du run
+  ⛔ embedding-001 n'existe pas sur ce compte — écarté pour la suite du run
+  🧠 47 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Sommet à Shenzhen : la déclaration Tru… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « Fears grow that US will put Nobel-winn… »
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🧠 Même événement (jugé) : « Anthropic gains after IPO, but pulls o… »
+  🧩 48 articles → 20 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027 : Jadot et Iordanoff quittent le
+  🚨 Sujet chaud (breaking, 5 médias) : Anthropic becomes one of world's most valuable pub
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : The Verge
+  🧮 Score 83.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 1.4h +8 + thème porteur +10 + portée mondiale +18
+  🧩 7 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Anthropic est entrée en bourse sur le Nasdaq, atteignant une valorisation d'en
+      [3m] L'action Anthropic a été introduite à 83 dollars par action.
+      [1m] ⚡exclusif L'introduction en bourse d'Anthropic est la plus importante jamais enregistrée
+      [2m] Le cours de l'action a clôturé à 97 dollars après avoir atteint un pic à 111,5
+      [1m] ⚡exclusif Les sept fondateurs d'Anthropic ont vendu des actions pour un total de 1,95 mi
+      [2m] Le marché technologique global a reculé lors de la journée d'introduction, ave
+      [1m] ⚡exclusif Des entreprises comme Fireworks AI promeuvent l'open-source pour éviter les co
+  🌙 Sujet fort (score 83) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Nvidia, AMD, Micron Sink as Anthropic Closes 17% A
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧠 1 article(s) sur un autre sujet, écartés du dossier : Decrypt
+  🧮 Score 49.0/100 = gravité 6/10 → 27 + frais 4.0h +4 + portée mondiale +18
+  🌙 Sujet fort (score 49) mais nuit → il attendra le matin
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : LiberNovo’s Black Friday sale takes up to 42% off er
+  🚨 Sujet chaud (breaking, 15 médias) : Inondations dans le Pas-de-Calais : 300 personnes 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 17 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, ActuGaming, BFM People, BFMTV, Blockworks
+  🧮 Score 56.0/100 = gravité 8/10 → 36 + 15 médias +18 + frais 4.6h +2
+  🕒 Âge de l'article : 5.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (197 → 144 car.)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 4 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 48 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (173 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-embedding-001         🚫 quota
+         8. clé 1 × text-embedding-004           ⛔ inexistant
+         9. clé 1 × embedding-001                ⛔ inexistant
+        10. clé 2 × gemini-embedding-001         🚫 quota
+        11. clé 2 × text-embedding-004           ⛔ inexistant
+        12. clé 2 × embedding-001                ⛔ inexistant
+        13. clé 3 × gemini-embedding-001         🚫 quota
+        14. clé 3 × text-embedding-004           ⛔ inexistant
+        15. clé 3 × embedding-001                ⛔ inexistant
+        16. clé 4 × gemini-embedding-001         🚫 quota
+        17. clé 4 × text-embedding-004           ⛔ inexistant
+        18. clé 4 × embedding-001                ⛔ inexistant
+        19. clé 5 × gemini-embedding-001         ✅
+        20. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 2 × gemini-3.6-flash             🚫 quota
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        34. clé 3 × gemini-3.6-flash             🚫 quota
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 800
+     modèles écartés (inexistants) : embedding-001, gemini-2.5-flash-lite, gemini-3-flash, text-embedding-004
+     jetons Gemini : 18,742 entrée · 950 sortie
+     ✅ aucun appel payant
