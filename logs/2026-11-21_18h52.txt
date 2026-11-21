@@ -1,0 +1,130 @@
+
+[18:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « human liver anatomy »
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Saturday, 21-Nov-26 09:51:30 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AbcTacA3-rVLsq-dlzA-tiM"}}
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  📈 50 tendances lues sur trends24.in : Chelsea, Alonso, #à¹à¸à¸¡à¸à¸´à¸£à¸²à¸à¸¥à¸­à¸à¸à¸²à¸¥à¸à¸­à¸à¸à¸, KHEMJIRA FOREVER FINAL EP, #SixTONESANN
+  🔎 « Chelsea » : 1 article(s) frais, le plus récent il y a 0.9 h (L'Équipe)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Extra data: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Chelsea » écarté : trop secondaire (3/10)
+  🔎 « Alonso » : 1 article(s) frais, le plus récent il y a 7.2 h (Motorsport.com France)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏭️  « Alonso » écarté : trop secondaire (4/10)
+  🌍 « KHEMJIRA FOREVER FINAL EP » : aucune reprise en français, source internationale retenue
+  🔎 « Palmer » : 1 article(s) frais, le plus récent il y a 10.9 h (Goal.com)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Palmer » écarté : Simple rumeur de transfert sans annonce officielle.
+  🕐 18h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 6.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/4 articles lus en 1.4s (18 déjà en cache)
+  📄 6/23 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · CoinDesk · The Block · Blockworks
+  🧠 22 vecteurs calculés en 1 appel(s)
+  🧩 23 articles → 17 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (19h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : «Perdre une journée de salaire, c’est compliqué» : à
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : François Ruffin retire sa candidature à l'élection p
+  ⚽ API football-data : 45 match(s) sur 48h, dont France : 0
+  → 23 articles à analyser...
+  ♻️ 7/10 [world] (déjà analysé, cache) : Complot : la Russie soupçonnée d'avoir commandité 
+  ♻️ 9/10 [world] (déjà analysé, cache) : François Ruffin retire sa candidature à l'élection
+  ♻️ 7/10 [business] (déjà analysé, cache) : Budget de l'UE : le président du Conseil européen 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Robots tueurs autonomes : ce que les armées délègu
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 et Zelda au cœur d’une guerre de review bomb
+  ♻️ 9/10 [world] (déjà analysé, cache) : Zelensky says Crimean Bridge strikes 'fair respons
+  ♻️ 6/10 [business] (déjà analysé, cache) : Tech stock sell-off drags markets down as Anthropi
+  ♻️ 6/10 [world] (déjà analysé, cache) : Fight over fossil fuels leaves COP31 climate talks
+  ♻️ 6/10 [business] (déjà analysé, cache) : Tech stock sell-off drags markets down as Anthropi
+  ♻️ 10/10 [breaking] (déjà analysé, cache) : Russian strike kills two, wounds 60, in Zelenskyy’
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Trump says there could be a 'positive spin' from t
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Ether treasury firm BTCS warns SEC its $54 million
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : US lawmakers propose up to 30% rewards for predict
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : JPMorgan says bitcoin’s price drop pressures miner
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Fraudsters Used Fake Crypto Exchanges to Steal $37
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Is the AI Bubble Finally Popping? Nvidia Crashes 4
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [space] (déjà analysé, cache) : SpaceX's Starshield troubles in Ukraine could thre
+  🧠 Batch analyse de 4 articles...
+  📉 5/10: L’attaquant du PSG Désiré Doué sort sur une civière en 
+  📉 3/10: «Perdre une journée de salaire, c’est compliqué» : à Pa
+  📉 1/10: Le vent va se lever dans la région : des dizaines de dé
+  ✅ 9/10 [crypto] large: Bitcoin bounces 9% from two-year low to retake $
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.5h — François Ruffin retire sa candidature à l'él
+     10/10 · 1 média(s) · 0.0h — Bitcoin bounces 9% from two-year low to reta
+     10/10 · 1 média(s) · 0.5h — Russian strike kills two, wounds 60, in Zele
+     9/10 · 1 média(s) · 0.9h — Trump says there could be a 'positive spin' 
+     9/10 · 1 média(s) · 0.9h — Fraudsters Used Fake Crypto Exchanges to Ste
+  ✂️ Éphéméride resserré (184 → 166 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (194 → 130 car.)
+  👁️ Image écartée : Ce n'est pas François Ruffin
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Saturday, 21-Nov-26 09:52:41 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AftbVopb5NFf7bEcU9RY1oK"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : François Ruffin retire sa candidature à l'élection prés
+
+  ── Bilan du cycle (113 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        ✅
+         3. clé 1 × gemini-3.1-flash-lite        ✅
+         4. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         5. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         6. clé 1 × gemini-3.6-flash             ⚠️ Extra data: line 1 col
+         7. clé 1 × gemini-3-flash               ⛔ inexistant
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3.5-flash-lite        ✅
+        11. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-001         🚫 quota
+        15. clé 3 × gemini-embedding-001         ✅
+        16. clé 2 × gemini-3.1-flash-lite        ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        ✅
+        19. clé 2 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        ✅
+        22. clé 2 × gemini-3.1-flash-lite        ✅
+        23. clé 2 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3.6-flash (+12)
+     clés Gemini : 5/5 disponible(s)
+     texte : 11/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.1-flash-lite
+     vecteurs : 3/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 25,563 entrée · 993 sortie
+     ✅ aucun appel payant
