@@ -1,0 +1,84 @@
+
+[00:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Flamengo, Espi, Vini, Mineiro, Ohio State
+  🔎 « Flamengo » : 1 article(s) frais, le plus récent il y a 0.9 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting ',' delimiter: line 1 column 19 (char 18) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Flamengo » écarté : trop secondaire (3/10)
+  🔎 « Espi » : 1 article(s) frais, le plus récent il y a 1.6 h (Eurosport)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ✅ « Espi » retenu : Performance sportive décisive du Real Madrid. (6/10) (+1 au score)
+  🔎 « Vini » : 1 article(s) frais, le plus récent il y a 17.6 h (OneFootball)
+  ⏭️  « Vini » écarté : Simple analyse de match sans fait nouveau.
+  🔎 « Mineiro » : 1 article(s) frais, le plus récent il y a 0.4 h (OneFootball)
+  ⏭️  « Mineiro » écarté : Contenu sportif ancien sans actualité récente.
+  🌍 « Merentiel » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #RealMadrid, #Espi
+  📖 27 articles, tous en cache
+  📄 6/27 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Blockworks
+  🧠 27 vecteurs calculés en 1 appel(s)
+  🧩 27 articles → 15 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Brésil : l’ex-président Bolsonaro en soins intensifs
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT France - Argentine : Les Bleus qualifiés
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.0/100 = gravité 8/10 → 36 + frais 5.6h +2 + thème porteur +10 + exploit français +4
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Liga. Penalty raté, passeur décisif : Kylian Mbapp
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.5h +8 + thème porteur +10 + primeur +5
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, ? médias) : Espi sauve le Real, soirée mitigée pour Mbappé
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  📈 Sujet en tendance : score 8 → 9 (+1)
+  → Sujet chaud pas assez fort (score 9) → suivant
+  ⚽ API football-data : 45 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 27 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (43 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 4 × gemini-embedding-001         🚫 quota
+        21. clé 5 × gemini-embedding-001         ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.5-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,218 entrée · 199 sortie
+     ✅ aucun appel payant
