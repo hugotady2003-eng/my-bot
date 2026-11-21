@@ -1,0 +1,94 @@
+
+[03:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  ❌ RSS Public: The read operation timed out
+  📈 50 tendances lues sur trends24.in : #SmackDown, #CCWIN, #BamBamBammie4thEver, ä¸é£ä¼åæ¥, JunÃ­n
+  🔎 « SmackDown » : 1 article(s) frais, le plus récent il y a 1.8 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « SmackDown » écarté : Il s'agit d'un simple résultat de catch.
+  🌍 « ARMY FOCUS ON BTS » : aucune reprise en français, source internationale retenue
+  📖 47 articles, tous en cache
+  📄 10/48 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Jeuxvideo.com · CoinDesk · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 48 articles → 48 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Au procès de l’interpellation de Michel Zecler, le
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 50.0/100 = gravité 8/10 → 36 + frais 3.2h +4 + thème porteur +10
+  🌙 Sujet fort (score 50) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (7h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Tech stock sell-off drags markets down as Anthropi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 47.0/100 = gravité 6/10 → 27 + frais 4.2h +2 + portée mondiale +18
+  🌙 Sujet fort (score 47) mais nuit → il attendra le matin
+  ⚽ API football-data : 45 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 48 articles à analyser...
+  → 1 sélectionné(s) [gta6]
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : GTA 6 réalise le plus gros lancement de toute l’histoir
+
+  ── Bilan du cycle (86 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-embedding-001         🚫 quota
+         9. clé 2 × gemini-embedding-001         🚫 quota
+        10. clé 3 × gemini-embedding-001         🚫 quota
+        11. clé 4 × gemini-embedding-001         🚫 quota
+        12. clé 5 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3.5-flash-lite        ✅
+        16. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.6-flash             🚫 quota
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 5 × gemini-3.5-flash-lite        ✅
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 5 × gemini-3.5-flash-lite        ✅
+        29. clé 5 × gemini-3.5-flash-lite        ✅
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 2,754 entrée · 355 sortie
+     ✅ aucun appel payant
