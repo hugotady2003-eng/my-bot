@@ -1,0 +1,94 @@
+
+[06:20] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : å¤«å©¦ã®æ¥, ãã«ã¼ã¤ã³ãã«ã¹, #GOJEKDIGOPAY1000AJA, #åäºåº·äºã®ã¼ã¡ã¼ã¡ã¢ãã¿ãã¼ã³, UCLA
+  🔎 « Hadjar » : 1 article(s) frais, le plus récent il y a 11.5 h (Motorsport.com France)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Hadjar » écarté : trop secondaire (3/10)
+  🔎 « Paredes » : 1 article(s) frais, le plus récent il y a 10.5 h (KarloBag.eu)
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Paredes » écarté : trop secondaire (2/10)
+  📖 1/1 articles lus en 0.1s (39 déjà en cache)
+  📄 8/40 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 40 articles → 40 événement(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre au Moyen-Orient : frappe iranienne sur Bahr
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 1.0h +8 + primeur +5 + portée mondiale +18
+  🌙 Sujet fort (score 67) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Au moins 3 morts et 36 disparus après un incendie 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.5/100 = gravité 7/10 → 32 + frais 1.7h +8 + primeur +5
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 25 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 40 articles à analyser...
+  → 1 sélectionné(s) [gta6]
+  🎥 Vidéo d'actu récupérée (1.1 Mo) chez cdn.decrypt.co → attachée au tweet
+  🎥 Vidéo éditoriale trouvée dans l'article → attachée
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : GTA 6 Leaker Dangles a PC Port Behind a $15 Million Cry
+
+  ── Bilan du cycle (119 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-001         🚫 quota
+        15. clé 3 × gemini-embedding-001         🚫 quota
+        16. clé 4 × gemini-embedding-001         🚫 quota
+        17. clé 5 × gemini-embedding-001         🚫 quota
+        18. clé 1 × gemini-3.6-flash             🚫 quota
+        19. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        20. clé 3 × gemini-3.6-flash             🚫 quota
+        21. clé 4 × gemini-3.5-flash-lite        ✅
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 797
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,031 entrée · 523 sortie
+     ✅ aucun appel payant
