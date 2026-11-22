@@ -1,0 +1,107 @@
+
+[00:40] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : å¤å´æè¬ã®æ¥, Mets, #GHVIPNoche1, Steelers, Skubal
+  🔎 « Mets » : 1 article(s) frais, le plus récent il y a 6.6 h (RTL)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting ',' delimiter: line 1 column 19 (char 18) → couple suivant
+  ⏭️  « Mets » écarté : trop secondaire (5/10)
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 5.7 h (DAZN)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Steelers » écarté : Simple diffusion d'un match sportif sur DAZN.
+  🔎 « Skubal » : 1 article(s) frais, le plus récent il y a 4.2 h (PassionMLB)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Skubal » écarté : Rumeur de transfert sportif sans impact en France.
+  🌍 « ImACeleb » : aucune reprise en français, source internationale retenue
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #LeMans, #Thanksgiving
+  📖 1/1 articles lus en 0.2s (37 déjà en cache)
+  📄 10/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · The Block · Ouest-France · Jeuxvideo.com · Blockworks
+  🧠 37 vecteurs calculés en 1 appel(s)
+  🧠 Même événement (jugé) : « Explosion on Russian ship at Libya por… »
+  🧩 38 articles → 12 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Sommet Choose France : les entreprises tricolores pr
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : A la COP31, la communauté internationale s’est fract
+  🚨 Sujet chaud (breaking, 5 médias) : EN DIRECT, guerre en Ukraine : deux navires, dont 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 4 article(s) sur un autre sujet, écartés du dossier : France Info, La Tribune, Ouest-France
+  🧮 Score 77.5/100 = gravité 9/10 → 40 + 5 médias +11 + frais 1.9h +8 + portée mondiale +18
+  🧩 7 affirmation(s) : 1 partagée(s) · 1 divergente(s) · 5 exclusive(s)
+      [2m] Un navire russe a été ciblé par une attaque de drones à Benghazi, en Libye.
+      [1m] Deux navires, dont un russe, ont été ciblés par des attaques de drones à Bengh
+         ↳ BBC : Un seul navire russe est mentionné comme ayant été visé par l'at
+         motif : La BBC ne mentionne qu'un seul navire.
+      [1m] ⚡exclusif L'explosion s'est produite à l'aube dimanche alors que le navire s'était arrêt
+      [1m] ⚡exclusif Aucune victime n'est à déplorer selon les autorités locales et le site a été s
+      [1m] ⚡exclusif Des images satellites montrent un bateau en feu puis partiellement submergé au
+      [1m] ⚡exclusif Le gouvernement de l'Est libyen (GNS) affirme que le pays n'est pas partie pre
+      [1m] ⚡exclusif Le gouvernement de Tripoli (GNU) a mis en garde contre l'hébergement de forces
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 7 médias) : OM - Le Mans. « On a manqué de maîtrise technique 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : Blockworks, Jeuxvideo.com, Journal du Geek, Le Monde, Ouest-France
+  🧮 Score 44.5/100 = gravité 3/10 → 14 + 7 médias +11 + frais 4.5h +2 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  → Sujet chaud pas assez fort (score 44) → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 25 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 38 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (60 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.6-flash             🚫 quota
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.5-flash-lite        ✅
+        15. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 3 × gemini-3.6-flash             🚫 quota
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 4 × gemini-embedding-001         🚫 quota
+        23. clé 5 × gemini-embedding-001         ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,518 entrée · 1,260 sortie
+     ✅ aucun appel payant
