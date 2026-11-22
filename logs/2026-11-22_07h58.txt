@@ -1,0 +1,148 @@
+
+[07:55] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #LasVegasGP, Leclerc, Russell, Verstappen, å¤«å©¦ã®æ¥
+  🔎 « Leclerc » : 1 article(s) frais, le plus récent il y a 1.2 h (Le Mag Sport Auto)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting ',' delimiter: line 1 column 19 (char 18) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Leclerc » écarté : trop secondaire (4/10)
+  🔎 « Russell » : 1 article(s) frais, le plus récent il y a 0.4 h (Google Actualités)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Russell » écarté : trop secondaire (3/10)
+  🔎 « Verstappen » : 1 article(s) frais, le plus récent il y a 1.3 h (L'Équipe)
+  ✅ « Verstappen » retenu : Victoire de Max Verstappen au Grand Prix. (6/10) (+1 au score)
+  🔎 « Oscar » : 1 article(s) frais, le plus récent il y a 1.9 h (Le Journal de Montréal)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Oscar » écarté : Reconversion professionnelle sans impact sur l'actualité fra
+  🔎 « Ferrari » : 1 article(s) frais, le plus récent il y a 1.2 h (Le Mag Sport Auto)
+  ⏭️  « Ferrari » écarté : trop secondaire (5/10)
+  🔎 « Hamilton » : 1 article(s) frais, le plus récent il y a 1.0 h (Le Mag Sport Auto)
+  ⏭️  « Hamilton » écarté : trop secondaire (5/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Verstappen
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.6s (17 déjà en cache)
+  📄 4/22 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Ouest-France · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 22 articles → 22 événement(s)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 20 s
+  ⚪ Écarté (-1, pénalisé par « \b(?:météo ») : Météo : l’Ain et le Jura placés en vigilance orange 
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : Max Verstappen remporte le Grand Prix de Las Vegas a
+  ⚽ API football-data : 25 match(s) sur 48h, dont France : 0
+  → 22 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Budget 2027: Emmanuel Macron réfléchit à convoquer
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Soit un bon accord, soit pas d’accord du tout" : 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le Rwanda, sous-traitant de l’immigration européen
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 et Zelda au cœur d’une guerre de review bomb
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Jensen Huang aurait menacé des employés et Nvidia 
+  ♻️ 6/10 [world] (déjà analysé, cache) : New draft deal aims to avert collapse of talks at 
+  ♻️ 9/10 [world] (déjà analysé, cache) : Zelensky says Crimean Bridge strikes 'fair respons
+  ♻️ 7/10 [world] (déjà analysé, cache) : Russia-bound ship attacked in Gulf of Finland
+  ♻️ 6/10 [business] (déjà analysé, cache) : Tech stock sell-off drags markets down as Anthropi
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Trump says there could be a 'positive spin' from t
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Bitcoin rebounds above $60,000 after $1.8 billion 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Ether treasury firm BTCS warns SEC its $54 million
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 Leaker Dangles a PC Port Behind a $15 Millio
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Fraudsters Used Fake Crypto Exchanges to Steal $37
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Trump says reported FBI database hack is ‘not good
+  🧠 Batch analyse de 5 articles...
+  📉 4/10: "C'est devenu une énième ambassade du Kremlin" : à Nice
+  📉 3/10: « Ça nous oblige à l’excellence » : comment Val Thorens
+  📉 3/10: Météo : l’Ain et le Jura placés en vigilance orange plu
+  📉 2/10: Future piscine Léon Marchand : pourquoi la Cité de la n
+  📉 2/10: L’héritière de la Samsung Galaxy Watch Ultra est sortie
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.4h — Budget 2027: Emmanuel Macron réfléchit à con
+     8/10 · 1 média(s) · 0.2h — Le Rwanda, sous-traitant de l’immigration eu
+     7/10 · 1 média(s) · 0.1h — New draft deal aims to avert collapse of tal
+     8/10 · 1 média(s) · 1.9h — "Soit un bon accord, soit pas d’accord du to
+     9/10 · 1 média(s) · 9.6h — Jensen Huang aurait menacé des employés et N
+  ✂️ Éphéméride resserré (211 → 139 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 1 s
+  → 2 sélectionné(s) [gta6, world]
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 20 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Budget 2027: Emmanuel Macron réfléchit à convoquer le C
+
+  ── Bilan du cycle (170 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Expecting ',' delimite
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.6-flash             🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 3 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 1 × gemini-embedding-001         🚫 quota
+        23. clé 2 × gemini-embedding-001         🚫 quota
+        24. clé 3 × gemini-embedding-001         🚫 quota
+        25. clé 4 × gemini-embedding-001         🚫 quota
+        26. clé 5 × gemini-embedding-001         🚫 quota
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-3.6-flash (+2)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 792
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 23,341 entrée · 1,290 sortie
+     ✅ aucun appel payant
