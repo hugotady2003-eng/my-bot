@@ -1,0 +1,161 @@
+
+[15:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  💾 Décryptage réutilisé (déjà généré aujourd'hui, 0 coût)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ Décryptage reporté (aucune image) — le run continue.
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  Le Saviez-vous : « Pourquoi les oignons font pleurer » n'explique pas vraiment → on ne publie pas
+  ❌ Sondage X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  → Scan RSS...
+  ❌ RSS Est Républicain: Remote end closed connection without response
+  📈 50 tendances lues sur trends24.in : #FoolInLoveEP14, WHAT ELSE I OWE, å¤«å©¦ã®æ¥, #TLE1stDebut, #GOã¹ã
+  🌍 « WHAT ELSE I OWE » : aucune reprise en français, source internationale retenue
+  🔎 « Villarreal » : 1 article(s) frais, le plus récent il y a 4.7 h (DAZN)
+  ✅ « Villarreal » retenu : Match de football important du championnat espagnol. (6/10) (+1 au score)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Villarreal
+  🕐 15h (Paris) — rythme journée (25-45 min · 0 publié(s), 16 restant(s) sur 9.0 h) : 25-45 min
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 13/15 articles lus en 1.7s (19 déjà en cache)
+  📄 4/35 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Libération · Blockworks
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🧩 35 articles → 14 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (2, aucun signal d'actualité majeure) : COP31 : la présidence turque ​annonce le rejet de sa
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : COP31 en Turquie : le sommet se conclut sans accord,
+  🚨 Sujet chaud (breaking, 1 médias) : Inondations dans le Pas-de-Calais : la situation «
+  🧮 Score 39.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + imprévu 6/10 +4 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 40) → suivant
+  ⚪ Écarté (-9, pénalisé par « on a test, \b(pourquoi ») : Amazon brade ce robot aspirateur-laveur Ecovacs à mo
+  🚨 Sujet chaud (breaking, 11 médias) : Affaire Nvidia : la campagne secrète de la Chine p
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 7 article(s) sur un autre sujet, écartés du dossier : Dexerto, Gamekult, L'Express, Libération, Melty
+  🧮 Score 87.0/100 = gravité 8/10 → 36 + 11 médias +15 + frais 0.4h +16 + thème porteur +10 + portée internationale +10
+  🧩 5 affirmation(s) : 5 partagée(s) · 0 divergente(s) · 0 exclusive(s)
+      [4m] La COP31 en Turquie a échoué à adopter un accord final en raison de l'oppositi
+      [3m] Le ministre irlandais du Climat Darragh O'Brien a annoncé au nom de l'UE que s
+      [2m] La ministre française de la Transition écologique Monique Barbut a qualifié le
+      [2m] Le président turc de la COP31 Murat Kurum a officiellement reconnu l'échec et 
+      [2m] D'autres pays comme le Panama, les îles Marshall, le Vanuatu ou Belize se sont
+  🕒 Âge de l'article : 2.8h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (213 → 169 car.)
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-2, pénalisé par « comment  ») : FC Barcelone - Villarreal CF : direct vidéo, streami
+  ⚽ API football-data : 25 match(s) sur 48h, dont France : 0
+  → 35 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : COP31 : la présidence turque ​annonce le rejet de 
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Affaire Nvidia : la campagne secrète de la Chine p
+  ♻️ 6/10 [world] (déjà analysé, cache) : Climat : le président de la COP31 reconnaît qu'il 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Inondations dans le Pas-de-Calais : la situation «
+  ♻️ 7/10 [world] (déjà analysé, cache) : COP31 en Turquie : le sommet se conclut sans accor
+  ♻️ 9/10 [world] (déjà analysé, cache) : "Il n’y aura pas d’accord" : la COP31 se clôture d
+  ♻️ 7/10 [world] (déjà analysé, cache) : Télécoms : la Chine fustige une interdiction améri
+  ♻️ 8/10 [world] (déjà analysé, cache) : « Des dégâts matériels, sans blessures signalées »
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 et Zelda au cœur d’une guerre de review bomb
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Ce bug dans Java trouvé par une IA peut faire bien
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : GTA 6 au Japon : le sang, le gore et la nudité cen
+  ♻️ 7/10 [world] (déjà analysé, cache) : Russia-bound ship still on fire after attack in Gu
+  ♻️ 9/10 [crypto] (déjà analysé, cache) : Bitcoin rebounds above $60,000 after $1.8 billion 
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin briefly drops to $17K on Kraken, exchange 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : South Korean exchanges halt CYBER transfers amid s
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 Leaker Dangles a PC Port Behind a $15 Millio
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Fraudsters Used Fake Crypto Exchanges to Steal $37
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Trump says reported FBI database hack is ‘not good
+  🧠 Batch analyse de 15 articles...
+  📉 3/10: Désobéir au pouvoir politique : le débat resurgit dans 
+  📉 4/10: Jeff Mills, pionnier de la techno : «Plus nous imaginer
+  📉 5/10: En Guadeloupe, le traitement des batteries des véhicule
+  📉 3/10: On a ouvert Règne Delta, l’extension Pokémon qui fait d
+  📉 2/10: Amazon brade ce robot aspirateur-laveur Ecovacs à moiti
+  ⏩ Doublon: On a ouvert Règne Delta, l’extension Pokémon qui fait d
+  📉 3/10: Envoyé dans un EHPAD, Philippe Caverivière va de désill
+  📉 5/10: Présidentielle 2027 : Marine Le Pen face à une difficul
+  🌍 7/10 sans portée internationale : Sur Twitch, GTA 6 explose le record de Valorant et
+  📉 3/10: Life, work of Kuwait’s first female composer featured a
+  🌍 7/10 sans portée internationale : Croatia outraged after psychiatric patient dies fr
+  ✅ 6/10 [crypto] large: Bitcoin's quantum security challenge extends to 
+  ✅ 6/10 [tech] large: Google's Quantum Chip Beats Classical Limits in 
+  🌍 6/10 sans portée internationale : Nintendo’s Switch 2 console is $50 off for Black F
+  📉 3/10: ‘The show is starting soon. Please turn on your headpho
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 4 média(s) · 0.4h — "Il n’y aura pas d’accord" : la COP31 se clô
+     10/10 · 4 média(s) · 0.7h — COP31 en Turquie : le sommet se conclut sans
+     10/10 · 4 média(s) · 2.5h — COP31 : la présidence turque ​annonce le rej
+     8/10 · 1 média(s) · 0.2h — Inondations dans le Pas-de-Calais : la situa
+     9/10 · 1 média(s) · 2.8h — Affaire Nvidia : la campagne secrète de la C
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (184 → 157 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : "Il n’y aura pas d’accord" : la COP31 se clôture dans l
+
+  ── Bilan du cycle (171 s) ──
+     écartés : 4 sujet banal · 3 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-embedding-001         🚫 quota
+        10. clé 2 × gemini-embedding-001         ✅
+        11. clé 2 × gemini-3.5-flash-lite        ✅
+        12. clé 2 × gemini-3.5-flash-lite        ✅
+        13. clé 2 × gemini-3.5-flash-lite        ✅
+        14. clé 2 × gemini-3.5-flash-lite        ✅
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 2 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3.6-flash · clé 2 × gemini-3-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.5-flash-lite · clé 3 × gemini-embedding-001 · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash (+14)
+     clés Gemini : 5/5 disponible(s)
+     texte : 12/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-3.5-flash-lite
+     vecteurs : 4/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 2 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 41,000 entrée · 1,806 sortie
+     ✅ aucun appel payant
