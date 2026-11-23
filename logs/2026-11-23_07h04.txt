@@ -1,0 +1,189 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : å¤å´æè¬ã®æ¥, 49ers, Vikings, #TwentyOneSeriesQ1, Niners
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 1.6 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « 49ers » écarté : Match ancien, aucune actualité récente liée.
+  🔎 « Vikings » : 1 article(s) frais, le plus récent il y a 1.6 h (Touchdown Actu)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 14 (char 13) → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Vikings » écarté : trop secondaire (4/10)
+  🌍 « Niners » : aucune reprise en français, source internationale retenue
+  🔎 « Niners » : 1 article(s) frais, le plus récent il y a 0.4 h (San Francisco Chronicle)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Niners » écarté : Sport US hors actualite francaise majeure.
+  🔎 « Larkin » : 1 article(s) frais, le plus récent il y a 4.0 h (Le Devoir)
+  ⏭️  « Larkin » écarté : Sport nord-américain hors actualité française majeure.
+  🔎 « Hage » : 1 article(s) frais, le plus récent il y a 4.1 h (La Presse)
+  ⏭️  « Hage » écarté : Simple rumeur de transfert sportif nord-americain.
+  🔎 « Purdy » : 1 article(s) frais, le plus récent il y a 1.6 h (Touchdown Actu)
+  ⏭️  « Purdy » écarté : trop secondaire (3/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/11 articles lus en 1.8s (57 déjà en cache)
+  📄 14/68 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Jeuxvideo.com · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « COP31 : «Le conflit entre les intérêts… »
+  🧩 68 articles → 67 événement(s)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 24 s
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 6 s
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : des frappes russes font au moi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.5/100 = gravité 9/10 → 40 + frais 0.7h +13 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 6 s
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Yemen's Houthis claim attacks on Saudi oil refiner
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + frais 2.2h +4 + portée mondiale +18
+  🕒 Âge de l'article : 2.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  → 68 articles à analyser...
+  ♻️ 7/10 [business] (déjà analysé, cache) : Emmanuel Macron envisage de réunir le Congrès à Ve
+  ♻️ 7/10 [world] (déjà analysé, cache) : A la COP31, la communauté internationale s’est fra
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Guerre en Ukraine : des frappes russes font au moi
+  ♻️ 8/10 [world] (déjà analysé, cache) : COP31 : le sommet pour le climat s’achève à Antaly
+  ♻️ 6/10 [business] (déjà analysé, cache) : Sommet Choose France : les entreprises tricolores 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre en Ukraine : « Les vêtements chauds, c'est 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mer Baltique : le cargo russe en feu après une att
+  ♻️ 7/10 [world] (déjà analysé, cache) : Télécoms : la Chine fustige une interdiction améri
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 et Zelda au cœur d’une guerre de review bomb
+  ♻️ 9/10 [ai] (déjà analysé, cache) : “Un moment monumental pour l’humanité” : Claude au
+  ♻️ 9/10 [gaming] (déjà analysé, cache) : GTA 6 : un braqueur repenti juge le réalisme des b
+  ♻️ 8/10 [world] (déjà analysé, cache) : Longest-ever UN climate talks end with no deal as 
+  ♻️ 8/10 [world] (déjà analysé, cache) : Child rescued in Ukraine after Russian drone attac
+  ♻️ 8/10 [world] (déjà analysé, cache) : Yemen's Houthis claim attacks on Saudi oil refiner
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Director of National Intelligence Jay Clayton warn
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : More on the pending oversight hearings: State of C
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Trump to host second memecoin dinner tonight with 
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Google's Quantum Chip Beats Classical Limits in 'I
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : GTA 6 Leaker Dangles a PC Port Behind a $15 Millio
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Fraudsters Used Fake Crypto Exchanges to Steal $37
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  🎯 Pré-classement : 26 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 7/10 [crypto] mondiale: Spot bitcoin ETFs shed $1.8 billion in past week
+  📉 5/10: Logiciels dépassés, agents IA de plus en plus menaçants
+  ✅ 6/10 [crypto] mondiale: Trump renews call for Nvidia to rehire Jensen Hu
+  📉 4/10: How Notable Capital, GIC, and Baillie Gifford bet big o
+  ✅ 7/10 [markets] large: Billionaire Bill Ackman warns Fed will make a ra
+  ✅ 7/10 [markets] large: Market rout kills 50 basis points December Fed r
+  📉 3/10: Emmanuel Macron à Toulouse chez Airbus : derrière la dé
+  ✅ 8/10 [world] large: « Scandaleux »… Colère après l’échec de la COP31
+  ✅ 6/10 [crypto] mondiale: Bitcoin sold for $17,000 on Kraken's Canadian do
+  ✅ 6/10 [tech] large: U.S. probes Megaspeed, Alice Huang as new figure
+  🌍 6/10 sans portée internationale : Pochettino’s nightmare start as Man U thrashed by 
+  📉 5/10: COP31 : «Le conflit entre les intérêts fossiles et les 
+  ✅ 9/10 [world] large: Boy, 7, pulled alive from rubble hours after Rus
+  📉 4/10: Chauffage au bois : vers une interdiction totale en 202
+  ✅ 6/10 [world] mondiale: L’itinéraire d’Hugues Moutouh, préfet « provocat
+  📉 4/10: Nouveaux projets d'investissement, dernière vitrine du 
+  📉 4/10: « Une fille balafrée par la vie », qui « a décidé d’êtr
+  📉 3/10: FC Nantes. Face à Grenoble, les Canaris veulent prendre
+  📉 2/10: Demain nous appartient en avance : résumé de l'épisode 
+  📉 3/10: Audrey Fleurot prend ses distances avec Pierre Niney : 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.7h — Guerre en Ukraine : des frappes russes font 
+     10/10 · 2 média(s) · 0.5h — Boy, 7, pulled alive from rubble hours after
+     10/10 · 2 média(s) · 1.4h — Child rescued in Ukraine after Russian drone
+     10/10 · 4 média(s) · 2.6h — « Scandaleux »… Colère après l’échec de la C
+     9/10 · 1 média(s) · 0.8h — Longest-ever UN climate talks end with no de
+  ⚠️ Histoire échouée : 'histoire'
+  → 2 sélectionné(s) [breaking, gta6]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.7h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Guerre en Ukraine : des frappes russes font au moins 14
+
+  ── Bilan du cycle (218 s) ──
+     écartés : 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting property nam
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.6-flash             🚫 quota
+        19. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        20. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.6-flash             🚫 quota
+        22. clé 5 × gemini-3.5-flash-lite        ✅
+        23. clé 2 × gemini-3.6-flash             🚫 quota
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 5 × gemini-3.5-flash-lite        ✅
+        27. clé 5 × gemini-3.5-flash-lite        ✅
+        28. clé 1 × gemini-embedding-001         🚫 quota
+        29. clé 2 × gemini-embedding-001         🚫 quota
+        30. clé 3 × gemini-embedding-001         🚫 quota
+        31. clé 4 × gemini-embedding-001         🚫 quota
+        32. clé 5 × gemini-embedding-001         🚫 quota
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 8 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 793
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 43,932 entrée · 1,801 sortie
+     ✅ aucun appel payant
