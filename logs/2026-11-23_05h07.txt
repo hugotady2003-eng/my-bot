@@ -1,0 +1,110 @@
+
+[05:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : å¤å´æè¬ã®æ¥, 49ers, Larkin, Hage, Vikings
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 5.0 h (Eurosport)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « 49ers » écarté : trop secondaire (2/10)
+  🔎 « Larkin » : 1 article(s) frais, le plus récent il y a 1.0 h (Le Devoir)
+  ⏭️  « Larkin » écarté : Il s'agit d'une fausse information sportive.
+  🔎 « Hage » : 1 article(s) frais, le plus récent il y a 2.2 h (La Presse)
+  ⏭️  « Hage » écarté : Rumeur de transfert sportif sans annonce officielle.
+  🔎 « Vikings » : 1 article(s) frais, le plus récent il y a 5.1 h (Eurosport)
+  ⏭️  « Vikings » écarté : trop secondaire (3/10)
+  🌍 « Niners » : aucune reprise en français, source internationale retenue
+  🔎 « Niners » : 1 article(s) frais, le plus récent il y a 4.0 h (The Mercury News)
+  ⏭️  « Niners » écarté : Article ancien sur un match de football américain.
+  🔎 « Giants » : 1 article(s) frais, le plus récent il y a 7.1 h (Touchdown Actu)
+  ⏭️  « Giants » écarté : trop secondaire (2/10)
+  📖 54 articles, tous en cache
+  📄 13/54 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · The Block · Libération · Jeuxvideo.com · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 54 articles → 54 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : EN DIRECT, guerre en Ukraine : deux navires, dont 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 60.5/100 = gravité 9/10 → 40 + frais 5.2h +2 + portée mondiale +18
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 54 articles à analyser...
+  → 1 sélectionné(s) [gta6]
+  🎥 Vidéo d'actu récupérée (1.1 Mo) chez cdn.decrypt.co → attachée au tweet
+  🎥 Vidéo éditoriale trouvée dans l'article → attachée
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : GTA 6 Leaker Dangles a PC Port Behind a $15 Million Cry
+
+  ── Bilan du cycle (108 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 4 × gemini-3.1-flash-lite        ✅
+        22. clé 4 × gemini-3.1-flash-lite        ✅
+        23. clé 1 × gemini-embedding-001         🚫 quota
+        24. clé 2 × gemini-embedding-001         🚫 quota
+        25. clé 3 × gemini-embedding-001         🚫 quota
+        26. clé 4 × gemini-embedding-001         🚫 quota
+        27. clé 5 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.6-flash             🚫 quota
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,220 entrée · 621 sortie
+     ✅ aucun appel payant
