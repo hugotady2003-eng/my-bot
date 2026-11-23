@@ -1,0 +1,109 @@
+
+[06:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : å¤å´æè¬ã®æ¥, 49ers, Vikings, Larkin, Niners
+  🔎 « 49ers » : 1 article(s) frais, le plus récent il y a 1.1 h (Touchdown Actu)
+  ⏭️  « 49ers » écarté : trop secondaire (3/10)
+  🔎 « Vikings » : 1 article(s) frais, le plus récent il y a 1.1 h (Touchdown Actu)
+  ⏭️  « Vikings » écarté : trop secondaire (4/10)
+  🔎 « Larkin » : 1 article(s) frais, le plus récent il y a 3.5 h (Le Devoir)
+  ⏭️  « Larkin » écarté : Sport nord-américain hors actualité française majeure.
+  🌍 « Niners » : aucune reprise en français, source internationale retenue
+  🔎 « Niners » : 1 article(s) frais, le plus récent il y a 1.1 h (Daily Norseman)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  ⏭️  « Niners » écarté : trop secondaire (2/10)
+  🔎 « Hage » : 1 article(s) frais, le plus récent il y a 3.6 h (La Presse)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Hage » écarté : Rumeur de transfert sportif sans annonce officielle.
+  🔎 « Purdy » : 1 article(s) frais, le plus récent il y a 1.1 h (Touchdown Actu)
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 14 (char 13) → couple suivant
+  ⏭️  « Purdy » écarté : Match de NFL sans actualité récente majeure.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/5 articles lus en 1.8s (57 déjà en cache)
+  📄 14/62 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · CoinDesk · The Block · Jeuxvideo.com · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🧠 Même événement (jugé) : « COP31 : «Le conflit entre les intérêts… »
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 62 articles → 61 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : des frappes russes font au moi
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 82.5/100 = gravité 9/10 → 40 + frais 0.2h +16 + primeur absolue +8 + portée mondiale +18
+  🌙 Sujet fort (score 82) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (10h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (15h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Yemen's Houthis claim attacks on Saudi oil refiner
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 1.7h +8 + primeur +5 + portée mondiale +18
+  🌙 Sujet fort (score 67) mais nuit → il attendra le matin
+  ⚽ API football-data : 6 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 62 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (97 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         5. clé 1 × gemini-3.1-flash-lite        ✅
+         6. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         7. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         8. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         9. clé 1 × gemini-3-flash               ⛔ inexistant
+        10. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        13. clé 2 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-embedding-001         🚫 quota
+        15. clé 2 × gemini-embedding-001         🚫 quota
+        16. clé 3 × gemini-embedding-001         🚫 quota
+        17. clé 4 × gemini-embedding-001         🚫 quota
+        18. clé 5 × gemini-embedding-001         🚫 quota
+        19. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        20. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 1 × gemini-3.6-flash             🚫 quota
+        24. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        25. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 2 × gemini-3.6-flash             ⚠️ Unterminated string st
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 2 × gemini-3.6-flash             🚫 quota
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        32. clé 3 × gemini-3.6-flash             🚫 quota
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.5-flash-lite (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 793
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,418 entrée · 327 sortie
+     ✅ aucun appel payant
