@@ -1,0 +1,210 @@
+
+[07:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Bengals, #ãããå¬ã®æ°ä½ãã¶, #ãã©ãã¯ãã©ã¤ãã¼ãauPAY, Commanders, Jayden Daniels
+  🔎 « Bengals » : 1 article(s) frais, le plus récent il y a 7.2 h (RDS)
+  ⏭️  « Bengals » écarté : trop secondaire (3/10)
+  🔎 « Commanders » : 1 article(s) frais, le plus récent il y a 1.0 h (Mezha.net)
+  ⏭️  « Commanders » écarté : trop secondaire (3/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Washington, #Villavicencio
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/9 articles lus en 2.2s (123 déjà en cache)
+  📄 19/134 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · The Block · Public
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧩 134 articles → 134 événement(s)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Le « come-back » spectaculaire de Jensen Huang à l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + frais 1.6h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.6h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (161 → 120 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Jensen Huang (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Scandale Nvidia : Washington place sur liste noire
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + frais 0.3h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (165 → 122 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (BBC) — même sujet
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-2, pénalisé par « pourrait, comment  ») : "On n'est plus à une surprise près" : pourquoi Emman
+  🕒 Sujet chaud mais article ancien (13h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : "En 10 ans": des députés du bloc central lancent u
+  🧮 Score 32.5/100 = gravité 3/10 → 14 + frais 0.1h +16 + programmé 3/10 -15 + primeur absolue +8 + portée internationale +10
+  → Sujet chaud pas assez fort (score 32) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Milliards retirés, inflation… Le Livret A vit une 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 61.0/100 = gravité 6/10 → 27 + frais 0.5h +16 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (174 → 145 car.)
+  ⏱️ vision : API indisponible (503) → nouvelle tentative dans 8 s
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : États-Unis : la Californie redoute de fortes inond
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 61.0/100 = gravité 6/10 → 27 + frais 0.4h +16 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (181 → 148 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : « J’ai voulu comprendre l’homme qu’était mon père 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 42.0/100 = gravité 4/10 → 18 + frais 0.3h +16 + primeur absolue +8
+  → Sujet chaud pas assez fort (score 42) → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Car bomb strikes governor’s office in Meta, Colombia
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  → 134 articles à analyser...
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Le « come-back » spectaculaire de Jensen Huang à l
+  ♻️ 8/10 [world] (déjà analysé, cache) : Deux navires russes attaqués dans les eaux libyenn
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Milliards retirés, inflation… Le Livret A vit une 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Scandale Nvidia : Washington place sur liste noire
+  ♻️ 6/10 [world] (déjà analysé, cache) : États-Unis : la Californie redoute de fortes inond
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mer Baltique : le cargo russe en feu après une att
+  ♻️ 7/10 [ai] (déjà analysé, cache) : L'IA peut-elle aider à planifier des attentats ter
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Pas compatible avec le format d'une radio musical
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Trump faces backlash after saying he 'convinced' N
+  ♻️ 7/10 [ai] (déjà analysé, cache) : US to blacklist Asian AI firm Megaspeed after Nvid
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Trump faces backlash after saying he 'convinced' N
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Nvidia value climbs by almost $1tn and tech stocks
+  ♻️ 8/10 [world] (déjà analysé, cache) : Ukraine confirms it used naval drones to strike tw
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [ai] (déjà analysé, cache) : States sue SpaceX to stop Grok from generating chi
+  🎯 Pré-classement : 96 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 8/10 [tech] mondiale: Nvidia : Jensen Huang redevient PDG, Donald Trum
+  📉 4/10: Firefox sur iPhone n’est toujours qu’un Safari déguisé 
+  ✅ 9/10 [world] mondiale: Iran says three tankers hit mines in Hormuz desp
+  📉 5/10: De la crise de la dette française à l’explosion de l’eu
+  ✅ 6/10 [ai] mondiale: À l’approche de la fin de son mandat, le chef de
+  📉 4/10: Présidentielle 2027 : retraites, voile, règle d’or, avo
+  ✅ 6/10 [markets] large: "On n'est plus à une surprise près" : pourquoi E
+  🌍 7/10 sans portée internationale : The hacker behind early GTA VI leaks has been sent
+  📉 3/10: Apple Pay just got even better with four new features a
+  📉 2/10: Emmanuel Macron "trop laxiste et trop démago", Pierre P
+  📉 2/10: These are my two must-have iPhone Duo accessories
+  📉 4/10: « Je ne cède pas à la sinistrose » : dans les coulisses
+  🌍 7/10 sans portée internationale : Épargne : le Livret A enregistre sa pire année dep
+  📉 3/10: GTA 6 : pourquoi vos armes disparaissent (et la règle d
+  🌍 7/10 sans portée internationale : "On ne joue pas à GTA 6 pour acheter des fleurs, f
+  📉 3/10: Démarchage téléphonique : comment réussir (enfin) à blo
+  📉 4/10: Publicité: face aux géants du numérique, comment la min
+  🌍 7/10 sans portée internationale : Procès d’Émilie König : « Si ça n’avait pas été l’
+  ✅ 6/10 [gaming] large: GTA 6 jouable sur PC ? Pas encore, malgré une nu
+  📉 3/10: Chauffage : couper le radiateur d’une pièce vide fait e
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.4h — Scandale Nvidia : Washington place sur liste
+     10/10 · 9 média(s) · 1.6h — Le « come-back » spectaculaire de Jensen Hua
+     10/10 · 9 média(s) · 1.5h — Trump faces backlash after saying he 'convin
+     10/10 · 9 média(s) · 1.5h — Trump faces backlash after saying he 'convin
+     10/10 · 1 média(s) · 1.0h — Iran says three tankers hit mines in Hormuz 
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [ai]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (183 → 157 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (BBC) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Scandale Nvidia : Washington place sur liste noire l’en
+
+  ── Bilan du cycle (391 s) ──
+     écartés : 4 sans portée internationale · 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-embedding-001         🚫 quota
+         4. clé 2 × gemini-embedding-001         🚫 quota
+         5. clé 3 × gemini-embedding-001         🚫 quota
+         6. clé 4 × gemini-embedding-001         🚫 quota
+         7. clé 5 × gemini-embedding-001         🚫 quota
+         8. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        12. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+        13. clé 1 × gemini-3.6-flash             ⚠️ Unterminated string st
+        14. clé 1 × gemini-3-flash               ⛔ inexistant
+        15. clé 2 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-3.6-flash             🚫 quota
+        17. clé 2 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.5-flash-lite        ✅
+        19. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 2 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 2 × gemini-3.6-flash             🚫 quota
+        27. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+        37. clé 3 × gemini-3.1-flash-lite        ✅
+        38. clé 3 × gemini-3.1-flash-lite        ✅
+        39. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        40. clé 3 × gemini-3.6-flash             🚫 quota
+        … et 3 autres
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 781
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 75,264 entrée · 2,315 sortie
+     ✅ aucun appel payant
