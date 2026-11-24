@@ -1,0 +1,219 @@
+
+[08:00] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Bengals, #ãããå¬ã®æ°ä½ãã¶, #GuruNanakJayanti, à¤à¤¾à¤°à¥à¤¤à¤¿à¤ à¤ªà¥à¤°à¥à¤£à¤¿à¤®à¤¾, #ãã¶ãããã®Mãã¶600åã¤ãã¼
+  🔎 « Bengals » : 1 article(s) frais, le plus récent il y a 0.1 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Bengals » écarté : trop secondaire (2/10)
+  🌍 « GuruNanakJayanti » : aucune reprise en français, source internationale retenue
+  🔎 « Commanders » : 1 article(s) frais, le plus récent il y a 0.2 h (L'Équipe)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  ⏭️  « Commanders » écarté : trop secondaire (2/10)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  📖 5/5 articles lus en 1.5s (64 déjà en cache)
+  📄 12/70 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · IGN France · Blockworks
+  🧠 69 vecteurs calculés en 1 appel(s)
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🧠 Même événement (jugé) : « Retour de Jensen Huang à Nvidia, «stoc… »
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 70 articles → 20 événement(s), dont 2 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 31 médias) : Le « come-back » spectaculaire de Jensen Huang à l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 44 article(s) sur un autre sujet, écartés du dossier : 20 Minutes, Ars Technica, BBC, BBC Business, BFM People
+  🧮 Score 92.5/100 = gravité 9/10 → 40 + 31 médias +20 + frais 2.6h +4 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 2.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Jensen Huang (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-2, pénalisé par « pourrait, comment  ») : "On n'est plus à une surprise près" : pourquoi Emman
+  🚨 Sujet chaud (breaking, 4 médias) : Présidentielle 2027 : l'impopularité record d'Emma
+  🧠 3 article(s) sur un autre sujet, écartés du dossier : BFMTV, Frandroid, Ouest-France
+  🧮 Score 40.5/100 = gravité 5/10 → 22 + 4 médias +7 + frais 0.4h +16 + programmé 3/10 -15 + portée internationale +10
+  → Sujet chaud pas assez fort (score 40) → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 31 médias) : Loi logement : alourdi par l’amendement du RN sur 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + 31 médias +20 + frais 2.6h +4 + thème porteur +10 + portée mondiale +18
+  🕒 Âge de l'article : 1.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (163 → 122 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle : Le Congrès des maires s'ouvre ce ma
+  🚨 Sujet chaud (breaking, 4 médias) : Grandes marées, El Niño, océan surchauffé… La Cali
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.5/100 = gravité 7/10 → 32 + 4 médias +7 + frais 0.4h +16 + portée internationale +10
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (177 → 127 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 Aucune vraie photo → breaking SANS image (texte seul)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  → 70 articles à analyser...
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Le « come-back » spectaculaire de Jensen Huang à l
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Retour de Jensen Huang à Nvidia : les Etats-Unis p
+  ♻️ 7/10 [world] (déjà analysé, cache) : Loi logement : alourdi par l’amendement du RN sur 
+  ♻️ 7/10 [world] (déjà analysé, cache) : La bonne nouvelle dont personne n'a parlé : l’Inde
+  ♻️ 6/10 [markets] (déjà analysé, cache) : "On n'est plus à une surprise près" : pourquoi Emm
+  ♻️ 7/10 [world] (déjà analysé, cache) : Grandes marées, El Niño, océan surchauffé… La Cali
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mer Baltique : le cargo russe en feu après une att
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Nvidia : Trump assume avoir imposé le retour de Je
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia : le retour controversé de Jensen Huang
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Pas compatible avec le format d'une radio musical
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Le leaker GTA 6, Cyberleek, publie un fichier .exe
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Trump faces backlash after saying he 'convinced' N
+  ♻️ 7/10 [ai] (déjà analysé, cache) : US to blacklist Asian AI firm Megaspeed after Nvid
+  ♻️ 9/10 [world] (déjà analysé, cache) : Nato chief vows defence against space threat after
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Trump faces backlash after saying he 'convinced' N
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Nvidia value climbs by almost $1tn and tech stocks
+  ♻️ 8/10 [world] (déjà analysé, cache) : Ukraine confirms it used naval drones to strike tw
+  ♻️ 6/10 [tech] (déjà analysé, cache) : Nvidia live: Markets surge as Jensen Huang returns
+  ♻️ 9/10 [world] (déjà analysé, cache) : Iran says three tankers hit mines in Hormuz despit
+  ♻️ 7/10 [tech] (déjà analysé, cache) : US to place Megaspeed on trade blacklist amid Nvid
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Why One Math Proof Has AI Experts Warning Humans M
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump halts Iowa detonation, says new governor to 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : States sue SpaceX to stop Grok from generating chi
+  🎯 Pré-classement : 24 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 4/10: Nvidia's Jensen Huang faces Senate scrutiny despite Tru
+  📉 4/10: Xiaomi en France : les prix à Dubaï douchent l’espoir d
+  📉 3/10: Le Royaume-Uni va-t-il réintégrer l’Union européenne ? 
+  📉 3/10: Le Rhône placé en vigilance crue jaune
+  🌍 6/10 sans portée internationale : Inondations dans le Pas-de-Calais: la décrue amorc
+  📉 5/10: Présidentielle : Le Congrès des maires s'ouvre ce mardi
+  📉 2/10: Volley-ball. Coupe de France : Saint-Nazaire veut surfe
+  📉 4/10: Teenage Engineering dévoile un lecteur CD fou sans couv
+  📉 4/10: New York judge declines to block Kalshi from operating 
+  🌍 6/10 sans portée internationale : "Il attend ses prochains examens" : Brad Pitt face
+  📉 4/10: Climat : Après l’échec de la COP31, est-ce qu’il faut r
+  📉 5/10: Le film Naruto commence son casting avec Hiroyuki Sanad
+  📉 3/10: « Nous apportons des réponses adaptées à l’accélération
+  📉 5/10: Mouvement lycéen : la délicate et précaire reprise des 
+  🌍 7/10 sans portée internationale : Budget : S.Lecornu tente de trouver un compromis a
+  📉 4/10: Vietnam awards $400m high-speed rail study to French-le
+  📉 5/10: Cyclisme. Tadej Pogacar en est certain : « Le dopage n’
+  📉 3/10: De Riga à Bratislava, le cœur de l’Europe bat désormais
+  📉 4/10: Après la douche froide de 2023, Hunger Games revient en
+  📉 4/10: 80 % des capacités de fabrication de panneaux solaires 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 9 média(s) · 0.4h — Retour de Jensen Huang à Nvidia : les Etats-
+     10/10 · 9 média(s) · 2.7h — Le « come-back » spectaculaire de Jensen Hua
+     10/10 · 9 média(s) · 2.6h — Trump faces backlash after saying he 'convin
+     10/10 · 9 média(s) · 2.6h — Trump faces backlash after saying he 'convin
+     10/10 · 1 média(s) · 2.1h — Iran says three tankers hit mines in Hormuz 
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [tech]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (198 → 152 car.)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  👤 Photo de Jensen Huang (Wikipedia)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Retour de Jensen Huang à Nvidia : les Etats-Unis placen
+
+  ── Bilan du cycle (739 s) ──
+     écartés : 3 sans portée internationale · 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.6-flash             🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 3 × gemini-embedding-001         ✅
+        15. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        16. clé 3 × gemini-3.5-flash-lite        ✅
+        17. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        18. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        19. clé 3 × gemini-3.1-flash-lite        ✅
+        20. clé 2 × gemini-3.6-flash             🚫 quota
+        21. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 3 × gemini-3.6-flash             🚫 quota
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+        34. clé 4 × gemini-3.5-flash-lite        ✅
+        35. clé 4 × gemini-3.5-flash-lite        ✅
+        36. clé 4 × gemini-3.5-flash-lite        ✅
+        37. clé 4 × gemini-3.5-flash-lite        ✅
+        38. clé 4 × gemini-3.5-flash-lite        ✅
+        39. clé 4 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3-flash (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 3/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 776
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 68,197 entrée · 1,461 sortie
+     ✅ aucun appel payant
