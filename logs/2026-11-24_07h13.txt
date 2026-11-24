@@ -1,0 +1,205 @@
+
+[07:08] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Bengals, #ãããå¬ã®æ°ä½ãã¶, #ãã©ãã¯ãã©ã¤ãã¼ãauPAY, Commanders, Jayden Daniels
+  🔎 « Bengals » : 1 article(s) frais, le plus récent il y a 7.3 h (RDS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Bengals » écarté : trop secondaire (2/10)
+  🔎 « Commanders » : 1 article(s) frais, le plus récent il y a 1.1 h (Mezha.net)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Commanders » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Washington, #Villavicencio
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/11 articles lus en 2.0s (104 déjà en cache)
+  📄 17/116 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Sciences et Avenir · CoinDesk · The Block · Ouest-France · Public
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🧩 116 articles → 116 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Le « come-back » spectaculaire de Jensen Huang à l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 9/10 → 40 + frais 1.7h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.7h (frais ✅)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (161 → 120 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Jensen Huang (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Scandale Nvidia : Washington place sur liste noire
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + frais 0.4h +16 + thème porteur +10 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (165 → 122 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (BBC) — même sujet
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027: Marine Le Pen, Gabriel Attal, E
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Depuis janvier, les Français ont retiré près de 10 m
+  ⚪ Écarté (-2, pénalisé par « pourrait, comment  ») : "On n'est plus à une surprise près" : pourquoi Emman
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Loi logement : alourdi par l’amendement du RN sur 
+  🧮 Score 30.5/100 = gravité 7/10 → 32 + frais 0.2h +16 + programmé 3/10 -15 + thème porteur +10 + primeur absolue +8 + fait local -20 + sous la barre des faits locaux (66)
+  → Sujet chaud pas assez fort (score 30) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : États-Unis : la Californie redoute de fortes inond
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 61.0/100 = gravité 6/10 → 27 + frais 0.5h +16 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ✂️ Tweet resserré localement (181 → 148 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Car bomb strikes governor’s office in Meta, Colombia
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  → 116 articles à analyser...
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Le « come-back » spectaculaire de Jensen Huang à l
+  ♻️ 8/10 [world] (déjà analysé, cache) : Deux navires russes attaqués dans les eaux libyenn
+  ♻️ 7/10 [world] (déjà analysé, cache) : Loi logement : alourdi par l’amendement du RN sur 
+  ♻️ 6/10 [markets] (déjà analysé, cache) : "On n'est plus à une surprise près" : pourquoi Emm
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Milliards retirés, inflation… Le Livret A vit une 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Scandale Nvidia : Washington place sur liste noire
+  ♻️ 6/10 [world] (déjà analysé, cache) : États-Unis : la Californie redoute de fortes inond
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mer Baltique : le cargo russe en feu après une att
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : GTA 6 jouable sur PC ? Pas encore, malgré une nuit
+  ♻️ 7/10 [ai] (déjà analysé, cache) : L'IA peut-elle aider à planifier des attentats ter
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Pas compatible avec le format d'une radio musical
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Trump faces backlash after saying he 'convinced' N
+  ♻️ 7/10 [ai] (déjà analysé, cache) : US to blacklist Asian AI firm Megaspeed after Nvid
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Trump faces backlash after saying he 'convinced' N
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Nvidia value climbs by almost $1tn and tech stocks
+  ♻️ 8/10 [world] (déjà analysé, cache) : Ukraine confirms it used naval drones to strike tw
+  ♻️ 9/10 [world] (déjà analysé, cache) : Iran says three tankers hit mines in Hormuz despit
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [ai] (déjà analysé, cache) : States sue SpaceX to stop Grok from generating chi
+  🎯 Pré-classement : 76 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ✅ 8/10 [tech] mondiale: Nvidia : le retour controversé de Jensen Huang
+  🌍 7/10 sans portée internationale : Prix à la pompe : jusqu’à 1 000 euros d’aide déblo
+  📉 5/10: Il veut fixer 5 priorités dont l'agriculture et les lyc
+  📉 5/10: Présidentielle 2027 : les appels à décaler la date du s
+  📉 4/10: Comment trouver Red Hulk dans GTA 6
+  📉 4/10: GTA 6 : nudistes, klaxons et pélicans : un ornithologue
+  ✅ 7/10 [crypto] mondiale: CFTC staff say bitcoin, ether can count toward d
+  📉 4/10: Croissance en trompe-l’œil, affaires de corruption… Pou
+  📉 4/10: GTA 6 : toutes les fins possibles et comment les débloq
+  📉 3/10: Richpanel helps companies automate 50% of support in 30
+  ✅ 9/10 [world] mondiale: Nato chief vows defence against space threat aft
+  📉 5/10: Kalshi halts operations in Utah while dodging immediate
+  📉 5/10: Why 42 Macro says it’s waiting to buy the Bitcoin dip
+  📉 5/10: California court terminates lawsuit against Coinbase ov
+  📉 3/10: NASA Awards Contract for NOAA’s Near Earth Orbit Networ
+  ✅ 7/10 [gaming] large: Le leaker GTA 6, Cyberleek, publie un fichier .e
+  📉 4/10: Présidentielle 2027: Marine Le Pen, Gabriel Attal, Edou
+  📉 2/10: FC Nantes - Grenoble. Au bout des émotions pour vaincre
+  🌍 7/10 sans portée internationale : Publication des notes du pape François : «Hier soi
+  📉 2/10: De retour chez les parents : «Je me sens un peu comme u
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.5h — Scandale Nvidia : Washington place sur liste
+     10/10 · 7 média(s) · 1.7h — Le « come-back » spectaculaire de Jensen Hua
+     10/10 · 7 média(s) · 1.6h — Trump faces backlash after saying he 'convin
+     10/10 · 7 média(s) · 1.6h — Trump faces backlash after saying he 'convin
+     10/10 · 1 média(s) · 1.1h — Iran says three tankers hit mines in Hormuz 
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [ai]
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (165 → 122 car.)
+  📺 Bandeau d'information détecté sur l'image → écartée
+  🖼️🤝 Image récupérée chez un média jumeau (BBC) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🤝 Image d'origine hors-sujet → photo d'un autre média retenue
+  🕒 Âge de l'article à la publication : 0.5h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Scandale Nvidia : Washington place sur liste noire l’en
+
+  ── Bilan du cycle (332 s) ──
+     écartés : 4 sujet banal · 2 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-embedding-001         🚫 quota
+        13. clé 2 × gemini-embedding-001         🚫 quota
+        14. clé 3 × gemini-embedding-001         🚫 quota
+        15. clé 4 × gemini-embedding-001         🚫 quota
+        16. clé 5 × gemini-embedding-001         🚫 quota
+        17. clé 3 × gemini-3.1-flash-lite        ✅
+        18. clé 3 × gemini-3.1-flash-lite        ✅
+        19. clé 3 × gemini-3.1-flash-lite        ✅
+        20. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 3 × gemini-3.6-flash             🚫 quota
+        22. clé 4 × gemini-3.5-flash-lite        ✅
+        23. clé 4 × gemini-3.5-flash-lite        ✅
+        24. clé 4 × gemini-3.5-flash-lite        ✅
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        38. clé 4 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 4 × gemini-3.6-flash             🚫 quota
+        … et 3 autres
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 780
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 63,217 entrée · 2,094 sortie
+     ✅ aucun appel payant
