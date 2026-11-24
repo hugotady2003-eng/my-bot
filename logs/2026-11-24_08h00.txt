@@ -1,0 +1,164 @@
+
+[07:53] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Bengals, #ãããå¬ã®æ°ä½ãã¶, #GuruNanakJayanti, à¤à¤¾à¤°à¥à¤¤à¤¿à¤ à¤ªà¥à¤°à¥à¤£à¤¿à¤®à¤¾, #ãã¶ãããã®Mãã¶600åã¤ãã¼
+  🔎 « Bengals » : 1 article(s) frais, le plus récent il y a 0.3 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Bengals » écarté : trop secondaire (3/10)
+  🌍 « GuruNanakJayanti » : aucune reprise en français, source internationale retenue
+  🔎 « Commanders » : 1 article(s) frais, le plus récent il y a 0.3 h (Touchdown Actu)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Commanders » écarté : trop secondaire (3/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 0.9s (64 déjà en cache)
+  📄 12/69 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · Ouest-France · Sciences et Avenir · CoinDesk · IGN France · Blockworks
+  🧠 68 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 4) : 'parts' → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : 'parts' → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Unterminated string starting at: line 1 column 2 (char 1) → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  🧩 69 articles → 18 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 31 médias) : Le « come-back » spectaculaire de Jensen Huang à l
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 92.5/100 = gravité 9/10 → 40 + 31 médias +20 + frais 2.4h +4 + thème porteur +10 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 2.5h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChMKX5be95dLkEcY925gH'}
+  🚨 Sujet chaud (breaking, 1 médias) : Mort de Nahel: la cour d’appel de Versailles se pr
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 79.0/100 = gravité 10/10 → 45 + frais 0.1h +16 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChMKXZm48B2r7KAW4h6Cq'}
+  ⚪ Écarté (-2, pénalisé par « pourrait, comment  ») : "On n'est plus à une surprise près" : pourquoi Emman
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 31 médias) : Loi logement : alourdi par l’amendement du RN sur 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 83.5/100 = gravité 7/10 → 32 + 31 médias +20 + frais 2.4h +4 + thème porteur +10 + portée mondiale +18
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 1.0h (frais ✅)
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChMKYzsCW45F87DR9KtH5'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle : Le Congrès des maires s'ouvre ce ma
+  🚨 Sujet chaud (breaking, 2 médias) : Grandes marées, El Niño, océan surchauffé… La Cali
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🧮 Score 56.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 0.3h +16 + primeur +5
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChMKauJ8bYBG3eY1MjGke'}
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  → 69 articles à analyser...
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Le « come-back » spectaculaire de Jensen Huang à l
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Retour de Jensen Huang à Nvidia : les Etats-Unis p
+  ♻️ 7/10 [world] (déjà analysé, cache) : Loi logement : alourdi par l’amendement du RN sur 
+  ♻️ 7/10 [world] (déjà analysé, cache) : La bonne nouvelle dont personne n'a parlé : l’Inde
+  ♻️ 6/10 [markets] (déjà analysé, cache) : "On n'est plus à une surprise près" : pourquoi Emm
+  ♻️ 7/10 [world] (déjà analysé, cache) : Grandes marées, El Niño, océan surchauffé… La Cali
+  ♻️ 7/10 [world] (déjà analysé, cache) : Mer Baltique : le cargo russe en feu après une att
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Nvidia : Trump assume avoir imposé le retour de Je
+  ♻️ 8/10 [tech] (déjà analysé, cache) : Nvidia : le retour controversé de Jensen Huang
+  ♻️ 7/10 [world] (déjà analysé, cache) : "Pas compatible avec le format d'une radio musical
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Le leaker GTA 6, Cyberleek, publie un fichier .exe
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Trump faces backlash after saying he 'convinced' N
+  ♻️ 7/10 [ai] (déjà analysé, cache) : US to blacklist Asian AI firm Megaspeed after Nvid
+  ♻️ 9/10 [world] (déjà analysé, cache) : Nato chief vows defence against space threat after
+  ♻️ 9/10 [tech] (déjà analysé, cache) : Trump faces backlash after saying he 'convinced' N
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Nvidia value climbs by almost $1tn and tech stocks
+  ♻️ 8/10 [world] (déjà analysé, cache) : Ukraine confirms it used naval drones to strike tw
+  ♻️ 9/10 [world] (déjà analysé, cache) : Iran says three tankers hit mines in Hormuz despit
+  ♻️ 7/10 [tech] (déjà analysé, cache) : US to place Megaspeed on trade blacklist amid Nvid
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Why One Math Proof Has AI Experts Warning Humans M
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [world] (déjà analysé, cache) : Trump halts Iowa detonation, says new governor to 
+  ♻️ 7/10 [ai] (déjà analysé, cache) : States sue SpaceX to stop Grok from generating chi
+  🎯 Pré-classement : 25 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChMKbC2DRjdG1rgkqCZrT'}
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 9 média(s) · 0.2h — Retour de Jensen Huang à Nvidia : les Etats-
+     10/10 · 9 média(s) · 2.5h — Le « come-back » spectaculaire de Jensen Hua
+     10/10 · 9 média(s) · 2.4h — Trump faces backlash after saying he 'convin
+     10/10 · 9 média(s) · 2.4h — Trump faces backlash after saying he 'convin
+     10/10 · 1 média(s) · 1.9h — Iran says three tankers hit mines in Hormuz 
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChMKbXmc5kxKfhKE8984d'}
+  → 1 sélectionné(s) [tech]
+  🛑 Impossible de vérifier le sujet (Error code: 400 - {'type': 'error', 'error': {) — aucune publication pour ce fait
+  🛑 Sujet non vérifiable (modèle indisponible) → rien publié : Retour de Jensen Huang à Nvidia : les Etats-Un
+
+  ── Bilan du cycle (383 s) ──
+     écartés : 2 sujet banal · 1 sujet non vérifiable
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 3 × gemini-embedding-001         ✅
+        19. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        20. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        21. clé 4 × gemini-3.6-flash             ⚠️ 'parts'
+        22. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        24. clé 5 × gemini-3.6-flash             ⚠️ 'parts'
+        25. clé 4 × gemini-3.6-flash             🚫 quota
+        26. clé 5 × gemini-3.6-flash             ⚠️ Unterminated string st
+        27. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-embedding-001 · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 3/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 777
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 1,412 entrée · 73 sortie
+     ⚠️ 34 appel(s) payés chez Claude (le gratuit n'a pas suffi)
