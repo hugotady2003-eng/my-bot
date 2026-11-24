@@ -1,0 +1,84 @@
+
+[00:45] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Bellingham, Real Madrid, Vini, #GSvAVL, Thanksgiving
+  📈 3 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Iowa, #Dortmund, #Bellingham
+  📖 1/1 articles lus en 0.3s (36 déjà en cache)
+  📄 6/37 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Jeuxvideo.com · The Block · Blockworks
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🧠 37 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧩 37 articles → 17 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚨 Sujet chaud (breaking, 5 médias) : Jensen Huang tells staff that Nvidia doesn't need 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🧠 5 article(s) sur un autre sujet, écartés du dossier : CNBC, Decrypt, TechCrunch, Wired
+  🧮 Score 73.5/100 = gravité 9/10 → 40 + 5 médias +11 + frais 2.2h +4 + portée mondiale +18
+  🌙 Sujet fort (score 74) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 5 médias) : Trump wanted Jensen Huang back. Now, the president
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.0/100 = gravité 8/10 → 36 + 5 médias +11 + frais 2.2h +4 + portée mondiale +18
+  🌙 Sujet fort (score 69) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : La Marine française saisit plus de 3,3 tonnes de mét
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Plus de quatre tonnes de matériel explosif bientôt d
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 10 médias) : Nvidia : soupçons de délit d'initié et manœuvres p
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧠 9 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Ars Technica, Blockworks, Gamekult, Jeuxvideo.com
+  🧮 Score 78.5/100 = gravité 7/10 → 32 + 10 médias +15 + frais 3.8h +4 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Arsenal and Dortmund draw 1-1 as Gyokeres goes fro
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 7/10 → 32 + frais 0.9h +13 + primeur absolue +8
+  🌙 Sujet fort (score 52) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Bellingham stunner, Mbappe brace help Real Madrid 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 44.5/100 = gravité 7/10 → 32 + frais 1.2h +8 + primeur +5
+  → Sujet chaud pas assez fort (score 44) → suivant
+  ⚽ API football-data : 19 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 37 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (64 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-embedding-001         🚫 quota
+         2. clé 2 × gemini-embedding-001         🚫 quota
+         3. clé 3 × gemini-embedding-001         ✅
+         4. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         5. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         6. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 1 × gemini-3-flash               ⛔ inexistant
+         9. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 2 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        15. clé 3 × gemini-3.5-flash-lite        ✅
+        16. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        17. clé 3 × gemini-3.5-flash-lite        ✅
+        18. clé 2 × gemini-3.6-flash             🚫 quota
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite (+10)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 3/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 3,691 entrée · 93 sortie
+     ✅ aucun appel payant
