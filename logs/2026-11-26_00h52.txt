@@ -1,0 +1,117 @@
+
+[00:50] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Thanksgiving, Aaron Rodgers, McCarthy, Lammens, Steelers
+  🔎 « Thanksgiving » : 1 article(s) frais, le plus récent il y a 2.7 h (Boursorama)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Thanksgiving » écarté : trop secondaire (3/10)
+  🔎 « Aaron Rodgers » : 1 article(s) frais, le plus récent il y a 3.8 h (Touchdown Actu)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Aaron Rodgers » écarté : Information fausse, Aaron Rodgers joue aux Jets.
+  🔎 « McCarthy » : 1 article(s) frais, le plus récent il y a 3.0 h (Touchdown Actu)
+  ⏭️  « McCarthy » écarté : Anecdote sportive ancienne sans impact réel.
+  🌍 « Lammens » : aucune reprise en français, source internationale retenue
+  🔎 « Lammens » : 1 article(s) frais, le plus récent il y a 0.9 h (ESPN)
+  ⏭️  « Lammens » écarté : trop secondaire (2/10)
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 3.3 h (DAZN)
+  ⏭️  « Steelers » écarté : Information fausse, Aaron Rodgers joue aux Jets.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 3.9 h (arsenalsports.ca)
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Bayern, #Lille
+  📖 1/1 articles lus en 0.3s (38 déjà en cache)
+  📄 10/39 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Sciences et Avenir · CoinDesk · Blockworks
+  🧠 39 vecteurs calculés en 1 appel(s)
+  🧩 39 articles → 12 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : Ligue des champions : le résumé de l’exploit des L
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 78.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 0.9h +13 + thème porteur +10 + primeur +5 + portée internationale +10
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Lille a battu le Bayern Munich 2-1 lors de la phase de ligue de la Ligue des c
+      [2m] Les buteurs lillois sont Ayase Ueda et un joueur ayant provoqué un but contre 
+      [2m] Le Bayern Munich a ouvert le score par Dayot Upamecano à la 15e minute.
+      [2m] Le Bayern Munich était privé de plusieurs joueurs cadres, dont Harry Kane et M
+      [1m] ⚡exclusif Lille occupe la 29e place du classement de la phase de ligue.
+      [1m] ⚡exclusif Davide Ancelotti a célébré la victoire avec ses joueurs devant le kop lillois.
+      [1m] ⚡exclusif Le Bayern Munich n'avait pas connu de défaite en match officiel depuis avril.
+      [1m] ⚡exclusif Lille a fait match nul contre Bodo Glimt le 3 novembre.
+  🌙 Sujet fort (score 78) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : SpaceX wins FCC approval to deploy 1 million orbit
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 63.5/100 = gravité 7/10 → 32 + frais 4.0h +4 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 13 médias) : Nvidia turmoil casts pall over high-flying global 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 21 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Al Jazeera, BBC, CNBC, CoinDesk
+  🧮 Score 71.5/100 = gravité 7/10 → 32 + 13 médias +18 + frais 2.7h +4 + portée mondiale +18
+  🌙 Sujet fort (score 72) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 13 médias) : FCC approves SpaceX plan to put AI data centers in
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 76.0/100 = gravité 8/10 → 36 + 13 médias +18 + frais 2.7h +4 + portée mondiale +18
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  ⚪ Écarté (-2, pénalisé par « comment  ») : L'Agence du médicament met en garde contre les conse
+  🚨 Sujet chaud (breaking, 1 médias) : Présidentielle 2027 : « La démocratie, c’est le vo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  🚨 Sujet chaud (breaking, 13 médias) : Thirty-one killed in massive fire as fuel tanker c
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 76.0/100 = gravité 8/10 → 36 + 13 médias +18 + frais 2.7h +4 + portée mondiale +18
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 13 médias) : "Ce n'est pas notre guerre" : les propos de Teddy 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 7/10 → 32 + 13 médias +18 + frais 2.7h +4 + portée mondiale +18
+  🌙 Sujet fort (score 72) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Lille-Bayern: la belle image d'Ancelotti célébré par
+  ⚽ API football-data : 14 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 39 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (68 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        11. clé 3 × gemini-3.1-flash-lite        ✅
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 3 × gemini-embedding-001         🚫 quota
+        19. clé 4 × gemini-embedding-001         ✅
+        20. clé 3 × gemini-3.1-flash-lite        ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.5-flash-lite (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 2/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,627 entrée · 889 sortie
+     ✅ aucun appel payant
