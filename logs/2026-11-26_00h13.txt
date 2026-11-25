@@ -1,0 +1,131 @@
+
+[00:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Aaron Rodgers, Lammens, McCarthy, Thanksgiving, Steelers
+  🔎 « Aaron Rodgers » : 1 article(s) frais, le plus récent il y a 3.1 h (Touchdown Actu)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Aaron Rodgers » écarté : Information fausse, Aaron Rodgers joue aux Jets.
+  🔎 « Lammens » : 1 article(s) frais, le plus récent il y a 1.1 h (RTL Info)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Lammens » écarté : Bilan sportif individuel sans enjeu national majeur
+  🔎 « McCarthy » : 1 article(s) frais, le plus récent il y a 2.3 h (Touchdown Actu)
+  ⏭️  « McCarthy » écarté : Anecdote sportive ancienne sans importance majeure.
+  🔎 « Thanksgiving » : 1 article(s) frais, le plus récent il y a 2.2 h (Boursorama)
+  ⏭️  « Thanksgiving » écarté : Fausse information ou actualite etrangere anecdotique.
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 2.7 h (DAZN)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Steelers » écarté : Information fausse, Aaron Rodgers joue aux Jets.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 3.2 h (arsenalsports.ca)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Bayern, #Lille
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 0/1 articles lus en 0.2s (35 déjà en cache)
+  📄 10/36 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Sciences et Avenir · CoinDesk · Blockworks
+  🧠 36 vecteurs calculés en 1 appel(s)
+  🧩 36 articles → 12 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 1 médias) : Ligue des champions : le résumé de l’exploit des L
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 77.0/100 = gravité 8/10 → 36 + frais 0.7h +13 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 77) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 11 médias) : Nvidia turmoil casts pall over high-flying global 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 12 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, CNBC, Decrypt, Jeuxvideo.com
+  🧮 Score 72.5/100 = gravité 7/10 → 32 + 11 médias +15 + frais 1.9h +8 + portée mondiale +18
+  🌙 Sujet fort (score 72) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 6 médias) : FCC approves SpaceX plan to put AI data centers in
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Cointelegraph, La Tribune, Ouest-France, TechCrunch, The Block
+  🧮 Score 71.0/100 = gravité 8/10 → 36 + 6 médias +11 + frais 2.3h +4 + thème porteur +10 + portée internationale +10
+  🌙 Sujet fort (score 71) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : Santé : sept régions en pré-épidémie de grippe, l'
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 33.5/100 = gravité 7/10 → 32 + frais 5.1h +2
+  → Sujet chaud pas assez fort (score 34) → suivant
+  🚨 Sujet chaud (breaking, 1 médias) : SpaceX wins FCC approval to deploy 1 million orbit
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 63.5/100 = gravité 7/10 → 32 + frais 3.3h +4 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 2 médias) : "La démocratie, c’est du vote": David Lisnard reje
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 35.5/100 = gravité 3/10 → 14 + 2 médias +4 + frais 0.7h +13 + primeur +5
+  🧩 9 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 6 exclusive(s)
+      [1m] ⚡exclusif David Lisnard rejette la proposition d'Édouard Philippe d'organiser un débat e
+      [2m] David Lisnard préconise l'organisation d'une primaire pour désigner un candida
+      [2m] David Lisnard souhaite attirer des électeurs issus de tous horizons, y compris
+      [2m] David Lisnard a été réélu à la présidence de l'Association des maires de Franc
+      [1m] ⚡exclusif Édouard Philippe a refusé de participer à la primaire proposée par David Lisna
+      [1m] ⚡exclusif David Lisnard fixe comme objectif à la primaire d'éliminer Jean-Luc Mélenchon 
+      [1m] ⚡exclusif David Lisnard n'exclut pas une participation d'Éric Zemmour à la primaire.
+      [1m] ⚡exclusif David Lisnard refuse de se prononcer sur un second tour opposant Marine Le Pen
+  → Sujet chaud pas assez fort (score 36) → suivant
+  ⚪ Écarté (-2, pénalisé par « comment  ») : L'Agence du médicament met en garde contre les conse
+  🚨 Sujet chaud (breaking, 2 médias) : Présidentielle 2027 : « La démocratie, c’est le vo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  🚨 Sujet chaud (breaking, 11 médias) : Thirty-one killed in massive fire as fuel tanker c
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 77.0/100 = gravité 8/10 → 36 + 11 médias +15 + frais 1.9h +8 + portée mondiale +18
+  🌙 Sujet fort (score 77) mais nuit → il attendra le matin
+  ⚪ Écarté (2, pénalisé par « étude ») : Ligue des champions. Le classement après la 5e journ
+  ⚽ API football-data : 14 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 36 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (171 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        ✅
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        ✅
+        13. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        16. clé 3 × gemini-3.6-flash             🚫 quota
+        17. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 4 × gemini-embedding-001         ✅
+        23. clé 4 × gemini-3.1-flash-lite        ✅
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 2/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 6,928 entrée · 1,014 sortie
+     ✅ aucun appel payant
