@@ -1,0 +1,92 @@
+
+[02:01] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #CorridaDasBlogueiras8, Bellingham, Real Madrid, #ããã¯ã®ã°ã©ã³ã­ã¤ãã«çºå£², #ãµãã¦ã§ã¤æ°ãµã³ã
+  🔎 « Bellingham » : 1 article(s) frais, le plus récent il y a 3.1 h (L'Équipe)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ gemini-3.6-flash (clé 1) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Bellingham » écarté : trop secondaire (5/10)
+  🔎 « Real Madrid » : 1 article(s) frais, le plus récent il y a 3.0 h (Real Madrid CF | Web Oficial)
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Real Madrid » écarté : trop secondaire (5/10)
+  🔎 « Thanksgiving » : 1 article(s) frais, le plus récent il y a 3.2 h (BFM)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Thanksgiving » écarté : Célébration récurrente sans nouveauté politique majeure.
+  🔎 « Vini » : 1 article(s) frais, le plus récent il y a 2.8 h (Real Madrid CF | Web Oficial)
+  ⏭️  « Vini » écarté : trop secondaire (4/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Iowa
+  📖 1/1 articles lus en 0.1s (46 déjà en cache)
+  📄 6/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Jeuxvideo.com · The Block · Blockworks
+  🧠 47 vecteurs calculés en 1 appel(s)
+  🧩 47 articles → 26 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : Trump wanted Jensen Huang back. Now, the president
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 1.8h +8 + primeur +5 + portée mondiale +18
+  🧩 8 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Le conseil d'administration de Nvidia a réintégré Jensen Huang au poste de PDG
+      [2m] La réintégration de Jensen Huang a été influencée par des échanges avec des re
+      [2m] La démission initiale de Jensen Huang faisait suite à la révélation d'affaires
+      [1m] ⚡exclusif Le président Donald Trump revendique un rôle actif dans le retour de Jensen Hu
+      [1m] ⚡exclusif Les alliés républicains de Donald Trump au Congrès désapprouvent la réintégrat
+      [1m] ⚡exclusif Des experts en sécurité nationale estiment que la réintégration de Huang suggè
+      [1m] ⚡exclusif Lors d'une réunion interne, Jensen Huang a présenté ses excuses aux employés d
+      [1m] ⚡exclusif Jensen Huang a affirmé aux employés que le modèle opérationnel unique de Nvidi
+  🌙 Sujet fort (score 71) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🕒 Sujet chaud mais article ancien (9h) → pas de breaking sur du réchauffé → suivant
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Plus de quatre tonnes de matériel explosif bientôt d
+  ⚽ API football-data : 14 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 47 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (74 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             ⚠️ Expecting value: line 
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.6-flash             🚫 quota
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-embedding-001         🚫 quota
+        16. clé 2 × gemini-embedding-001         🚫 quota
+        17. clé 3 × gemini-embedding-001         🚫 quota
+        18. clé 4 × gemini-embedding-001         ✅
+        19. clé 3 × gemini-3.1-flash-lite        ✅
+        20. clé 3 × gemini-3.1-flash-lite        ✅
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash (+8)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 2/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 799
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,914 entrée · 895 sortie
+     ✅ aucun appel payant
