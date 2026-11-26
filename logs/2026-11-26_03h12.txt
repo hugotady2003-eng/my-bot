@@ -1,0 +1,107 @@
+
+[03:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Thanksgiving, Corinthians, Rodgers, McCarthy, #GHVIPGala2
+  🔎 « Corinthians » : 1 article(s) frais, le plus récent il y a 1.0 h (OneFootball)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Corinthians » écarté : trop secondaire (2/10)
+  🔎 « Rodgers » : 1 article(s) frais, le plus récent il y a 6.1 h (Touchdown Actu)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Rodgers » écarté : Information fausse, Aaron Rodgers joue aux Jets.
+  🔎 « McCarthy » : 1 article(s) frais, le plus récent il y a 5.3 h (Touchdown Actu)
+  ⏭️  « McCarthy » écarté : Anecdote sportive ancienne sans impact réel.
+  🌍 « KAIO CESAR » : aucune reprise en français, source internationale retenue
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 6.3 h (arsenalsports.ca)
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Bayern, #Thanksgiving
+  📖 47 articles, tous en cache
+  📄 11/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Sciences et Avenir · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Lille-Bayern: la belle image d'Ancelot… »
+  🧩 47 articles → 46 événement(s)
+  ⚪ Écarté (-2, pénalisé par « comment  ») : L'Agence du médicament met en garde contre les conse
+  🚨 Sujet chaud (breaking, 1 médias) : Etats-Unis : La grande parade de Thanksgiving de N
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 6/10 → 27 + frais 0.7h +13 + primeur absolue +8 + portée internationale +10
+  🌙 Sujet fort (score 58) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Un incendie sur une autoroute fait au moins 31 mor
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 50.0/100 = gravité 8/10 → 36 + frais 2.1h +4 + thème porteur +10
+  🌙 Sujet fort (score 50) mais nuit → il attendra le matin
+  🕒 Sujet chaud mais article ancien (6h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 2 médias) : Ligue des champions : le LOSC renverse le Bayern M
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 64.0/100 = gravité 8/10 → 36 + 2 médias +4 + frais 2.4h +4 + thème porteur +10 + portée internationale +10
+  🔍 2 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 7 affirmation(s) : 5 partagée(s) · 1 divergente(s) · 2 exclusive(s)
+      [2m] Le LOSC a battu le Bayern Munich sur le score de 2-1 lors de la cinquième jour
+      [2m] Le LOSC occupe désormais la 29e place du classement de la phase de ligue.
+      [2m] Le Bayern Munich a ouvert le score en premier durant la rencontre.
+         ↳ Le Monde : Le Monde indique que le Bayern a ouvert le score sans préciser l
+         motif : Précision factuelle supplémentaire apportée par BFMTV.
+      [2m] Les buts lillois ont été marqués par Ayase Ueda et par un but contre son camp 
+      [1m] ⚡exclusif Davide Ancelotti a célébré sa première victoire en Ligue des champions avec le
+      [1m] ⚡exclusif Le Bayern Munich était privé de plusieurs joueurs cadres, dont Harry Kane, Mic
+      [2m] Le LOSC doit affronter Stuttgart, le Slovan Bratislava et l'AS Rome lors des p
+  🌙 Sujet fort (score 64) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Thirty-one killed in massive fire as fuel tanker c
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 40.0/100 = gravité 8/10 → 36 + frais 3.9h +4
+  → Sujet chaud pas assez fort (score 40) → suivant
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 47 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (111 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-embedding-001         🚫 quota
+        17. clé 2 × gemini-embedding-001         🚫 quota
+        18. clé 3 × gemini-embedding-001         🚫 quota
+        19. clé 4 × gemini-embedding-001         🚫 quota
+        20. clé 5 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-3.1-flash-lite        ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        ✅
+        27. clé 3 × gemini-3.1-flash-lite        ✅
+        28. clé 3 × gemini-3.1-flash-lite        ✅
+        29. clé 3 × gemini-3.1-flash-lite        ✅
+        30. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-3.6-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.5-flash-lite (+5)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,361 entrée · 902 sortie
+     ✅ aucun appel payant
