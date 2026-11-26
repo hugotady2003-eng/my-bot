@@ -1,0 +1,201 @@
+
+[07:21] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Thanksgiving, Jordan Love, Packers, #ConstitutionDay, Rams
+  🔎 « Thanksgiving » : 1 article(s) frais, le plus récent il y a 3.4 h (Le Monde.fr)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Thanksgiving » écarté : Célébration récurrente sans fait nouveau.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 0.9 h (RDS)
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  🌍 « ConstitutionDay » : aucune reprise en français, source internationale retenue
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 1.1 h (La Presse)
+  ⏭️  « Rams » écarté : trop secondaire (2/10)
+  ⚠️ Embedding indisponible (quota texte épuisé) → comparaison par mots-clés
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 429: Too Many Requests
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 7/10 articles lus en 0.8s (36 déjà en cache)
+  📄 11/46 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Sciences et Avenir · CoinDesk · Libération · Ouest-France · Jeuxvideo.com
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧠 Même événement (jugé) : « Santé : « Des réponses erronées ou ina… »
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🧩 46 articles → 45 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Procès d'Émilie König : du Morbihan à la Syrie, it
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + frais 0.3h +16 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  ⚖️ Correction factuelle forcée appliquée
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : les Européens prêts à parler à
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 1.9h +8 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.9h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (183 → 147 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Vladimir Poutine (Wikipedia)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : CNews rayée des écrans pendant un mois ? Reporters
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 8/10 → 36 + frais 0.1h +16 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (292 → 248 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Lenovo Coupon Codes: 15% Off in November 2026
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  → 46 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : les Européens prêts à parler à
+  ♻️ 6/10 [world] (déjà analysé, cache) : "La Libye sert de base arrière à la Russie" : aprè
+  ♻️ 7/10 [ai] (déjà analysé, cache) : L'Agence du médicament met en garde contre les con
+  ♻️ 7/10 [world] (déjà analysé, cache) : Procès d'Émilie König : du Morbihan à la Syrie, it
+  ♻️ 6/10 [world] (déjà analysé, cache) : Russie : Comment la France et ses voisins européen
+  ♻️ 6/10 [science] (déjà analysé, cache) : PFAS dans les aliments : une ONG dénonce des faill
+  ♻️ 7/10 [world] (déjà analysé, cache) : Nouveaux droits de douane imposés par Donald Trump
+  ♻️ 8/10 [world] (déjà analysé, cache) : CNews rayée des écrans pendant un mois ? Reporters
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Budget 2027 : Bruxelles valide la copie française,
+  ♻️ 9/10 [business] (déjà analysé, cache) : Les coulisses d’un incroyable revirement : comment
+  ♻️ 7/10 [space] (déjà analysé, cache) : Décollage d’Ariane 6 : que s’est-il passé avec l’i
+  ♻️ 7/10 [world] (déjà analysé, cache) : San Francisco en alerte face à un risque majeur d'
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Affaire Nvidia : le Congrès américain réclame des 
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Avec sa future Xbox Helix, Microsoft voudrait rend
+  ♻️ 8/10 [world] (déjà analysé, cache) : Thirty-one killed in massive fire as fuel tanker c
+  ♻️ 7/10 [markets] (déjà analysé, cache) : S&P warns Nvidia credit rating could be cut over '
+  ♻️ 9/10 [markets] (déjà analysé, cache) : U.S. proposes new tariffs on 14 trading partners, 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : How Trump’s latest tariff moves hand India an edge
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bill to lock up U.S. government bitcoin for 20 yea
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : UK regulator plans tighter DeFi rules, citing $6.3
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Galaxy walks back bitcoin’s June-bottom call, warn
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : House Committee advances Strategic Bitcoin Reserve
+  ♻️ 8/10 [tech] (déjà analysé, cache) : What Happened to Alice Huang, the Woman at the Cen
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 6/10 [business] (déjà analysé, cache) : S&P considers Nvidia credit downgrade over governa
+  ♻️ 8/10 [space] (déjà analysé, cache) : FCC approves SpaceX plan to put AI data centers in
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Amazon loses its latest attempt to get out of hand
+  🧠 Batch analyse de 18 articles...
+  📉 3/10: Le déséquilibre financier du couple, un terrain fertile
+  🌍 7/10 sans portée internationale : "C'est de la violence gratuite": parents et person
+  📉 5/10: "Les parrainages, je n'en donne à personne" : les maire
+  🌍 6/10 sans portée internationale : Open d’Australie. Après avoir été opéré, Jannik Si
+  ✅ 7/10 [ai] large: Santé : « Des réponses erronées ou inadaptées »,
+  📉 3/10: Mort de Pierre, 21 ans, dans le Tarn : son meilleur ami
+  📉 2/10: 1,17 kg, écran OLED, Snapdragon X2 Plus : cet ultrabook
+  📉 2/10: Black Friday : les 13 meilleurs bons plans jeux vidéo s
+  🌍 8/10 sans portée internationale : 1Password victime d’une intrusion et d’un vol de d
+  📉 3/10: Un bisou et des mots à l'oreille : François Hollande et
+  📉 2/10: Christophe Willem en privé : « Je n’ai pas de tabou là-
+  📉 2/10: Découragé car vous avez trop de jeux à faire ? 5 consei
+  ✅ 7/10 [crypto] large: Over 1,000 Bitcoin miners were tricked into work
+  ✅ 8/10 [crypto] mondiale: Fidelity files for Chainlink ETF, Musk’s X wins 
+  📉 3/10: Now Google’s Familiar Faces AI feature works on Walmart
+  📉 2/10: Lenovo Coupon Codes: 15% Off in November 2026
+  📉 2/10: Google’s Pixelsnap Ring Stand gets first sale that incl
+  ✅ 8/10 [ai] large: Apple pulls popular Chinese AI chatbot from the 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.1h — CNews rayée des écrans pendant un mois ? Rep
+     9/10 · 2 média(s) · 0.2h — L'Agence du médicament met en garde contre l
+     9/10 · 2 média(s) · 0.3h — Santé : « Des réponses erronées ou inadaptée
+     10/10 · 2 média(s) · 1.4h — Les coulisses d’un incroyable revirement : c
+     10/10 · 2 média(s) · 1.6h — Bill to lock up U.S. government bitcoin for 
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (253 → 209 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : CNews rayée des écrans pendant un mois ? Reporters sans
+
+  ── Bilan du cycle (274 s) ──
+     écartés : 3 sans portée internationale · 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        ✅
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-001         🚫 quota
+        23. clé 4 × gemini-embedding-001         🚫 quota
+        24. clé 5 × gemini-embedding-001         🚫 quota
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        31. clé 4 × gemini-3.6-flash             🚫 quota
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 4 autres
+     jamais essayé ce cycle : clé 1 × gemini-embedding-001 · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 796
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 62,225 entrée · 2,042 sortie
+     ✅ aucun appel payant
