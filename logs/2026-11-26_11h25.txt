@@ -1,0 +1,179 @@
+
+[11:19] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : L'Express, La Dépêche
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🖼️ Image libre trouvée sur Commons « tonnes »
+  🖼️ Image libre trouvée sur Commons « gazole »
+  🖼️ Image libre trouvée sur Commons « coulent »
+  🖼️ Décryptage illustré par 3 image(s) différente(s) sur 6 plans
+  ⛔ gemini-3.1-flash-tts n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (models/gemini-3.1-flash-tts is not found for API v) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  🎞️ Montage : 6 plans, 32.0s
+  🎬 Carrousel vidéo (54s, 6 slides, sans son)
+  🚦 Vidéo TikTok NON VALIDÉE — 1 défaut(s) :
+     • RÉPÉTITION entre les plans 1 et 2
+  🚫 Défauts éditoriaux → version TikTok abandonnée ce jour
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 26-Nov-26 02:21:41 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A1CEe6W_jFS25SgFXCoxFry"}}
+  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ Image libre trouvée sur Commons « orange flight recorder box »
+  👁️ Image écartée : Aucun lien avec l'info
+  👁️ Illustration hors-sujet → carte sans image
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #MagicLoverSeries, #à¸à¹à¸­à¸¡à¸à¸¥à¸¸à¹à¸à¸£à¸±à¸Series, #WeTVAlwaysMore2027xPNB, PUINOONBINT WETV 2027, #HemenTumFonlaraTamAnaPara
+  🕐 11h (Paris) — rythme journée (31-65 min · 0 publié(s), 16 restant(s) sur 13.0 h) : 31-65 min
+  ⚠️ fetch_article_text: HTTP Error 500: Internal Server Error
+  📖 5/6 articles lus en 0.8s (28 déjà en cache)
+  📄 9/34 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Sciences et Avenir · CoinDesk · Melty · Blockworks
+  🧠 34 vecteurs calculés en 1 appel(s)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🧠 Même événement (jugé) : « Emilie König, l’ancienne « égérie » de… »
+  🧩 34 articles → 14 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 2 médias) : Procès d'Émilie König, recruteuse de Daesh: "Elle 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 46.5/100 = gravité 7/10 → 32 + 2 médias +4 + frais 9.2h +1 + thème porteur +10
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧩 6 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Émilie König est jugée devant la cour d'assises spécialement composée pour des
+      [2m] L'avocat d'Émilie König, Emmanuel Daoud, affirme que sa cliente aborde son pro
+      [1m] ⚡exclusif Émilie König soutient qu'elle a abandonné l'idéologie radicale de Daesh.
+      [1m] ⚡exclusif Le Parquet national antiterroriste qualifie Émilie König de figure et d'égérie
+      [1m] ⚡exclusif Émilie König a été inscrite sur la liste noire des combattants terroristes étr
+      [1m] ⚡exclusif Émilie König reconnaît une grande partie des faits qui lui sont reprochés.
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️🤝 Image récupérée chez un média jumeau (20 Minutes) — même sujet
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 11 médias) : Reporters sans frontières demande la suspension de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 13 article(s) sur un autre sujet, écartés du dossier : 9to5Mac, Blockworks, CNBC, Decrypt, L'Express
+  🧮 Score 57.5/100 = gravité 7/10 → 32 + 11 médias +15 + frais 8.2h +1 + portée internationale +10
+  🕒 Âge de l'article : 3.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (178 → 158 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Data centers dans l'espace : le projet colossal d'El
+  🚨 Sujet chaud (breaking, 1 médias) : Règle d’or d’Emmanuel Macron : Sous quel président
+  🧮 Score 15.0/100 = gravité 4/10 → 18 + frais 4.4h +2 + programmé 2/10 -15 + portée internationale +10
+  → Sujet chaud pas assez fort (score 15) → suivant
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  → 34 articles à analyser...
+  ♻️ 8/10 [space] (déjà analysé, cache) : Data centers dans l'espace : le projet colossal d'
+  ♻️ 7/10 [world] (déjà analysé, cache) : Procès d'Émilie König, recruteuse de Daesh: "Elle 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Ce petit archipel du Pacifique qui a dit "non" au 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Emilie König, l’ancienne « égérie » de Daesh accus
+  ♻️ 8/10 [markets] (déjà analysé, cache) : Trump relance sa guerre commerciale : les États-Un
+  ♻️ 7/10 [world] (déjà analysé, cache) : San Francisco en alerte face à un risque majeur d'
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Affaire Nvidia : le Congrès américain réclame des 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Reporters sans frontières demande la suspension de
+  ♻️ 6/10 [ai] (déjà analysé, cache) : Ubisoft demande à ses équipes de se justifier si e
+  ♻️ 7/10 [world] (déjà analysé, cache) : Desperate appeals from women on death row in Iran 
+  ♻️ 9/10 [breaking] (déjà analysé, cache) : Ukraine drone attack kills five in Russian-occupie
+  ♻️ 8/10 [business] (déjà analysé, cache) : SpaceX, Musk pledge to donate a share each to acti
+  ♻️ 7/10 [markets] (déjà analysé, cache) : U.S. tariff-hike threats pile pressure on partners
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Asia rejects basis of new Trump tariffs as US gath
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : $7 billion of bitcoin options expire Friday, and t
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Over 1,000 Bitcoin miners were tricked into workin
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin ETF November outflows top $5B, Morgan Stan
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Switzerland’s first spot Bitcoin ETF ticks up 0.6%
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Switzerland approves 57 jurisdictions for crypto d
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Spot bitcoin ETFs on track for worst month on reco
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Europe’s only spot bitcoin ETF starts trading in S
+  ♻️ 8/10 [tech] (déjà analysé, cache) : What Happened to Alice Huang, the Woman at the Cen
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 6/10 [business] (déjà analysé, cache) : S&P considers Nvidia credit downgrade over governa
+  ♻️ 8/10 [space] (déjà analysé, cache) : FCC approves SpaceX plan to put AI data centers in
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Amazon loses its latest attempt to get out of hand
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Apple pulls popular Chinese AI chatbot from the Ap
+  🧠 Batch analyse de 5 articles...
+  📉 4/10: Marché locatif : des tensions persistantes
+  ✅ 7/10 [sports] large: Ligue des champions : le PSG perd la tête, Lille
+  📉 3/10: Baisse des surfaces et des ventes de vin bio en 2025 : 
+  📉 3/10: ZeratoR explique enfin l’origine de “ZeratoR” dans Smal
+  📉 3/10: Les marchés de Noël saturés : « C'est voulu : on ébloui
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.3h — Data centers dans l'espace : le projet colos
+     10/10 · 1 média(s) · 0.4h — Ukraine drone attack kills five in Russian-o
+     9/10 · 2 média(s) · 0.2h — Procès d'Émilie König, recruteuse de Daesh: 
+     9/10 · 1 média(s) · 0.6h — Trump relance sa guerre commerciale : les Ét
+     8/10 · 1 média(s) · 0.2h — Ce petit archipel du Pacifique qui a dit "no
+  ⚠️ Wikipedia: The read operation timed out
+  → 1 sélectionné(s) [space]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ Fetch image: HTTP Error 400: Bad Request
+  🖼️ 1 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Elon Musk (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.3h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ⚠️ Vidéo FB échouée : HTTP Error 400: Bad Request → fallback photo
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Thursday, 26-Nov-26 02:25:51 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AUb3s6LBSC_VfFlnU1_MFHy"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Data centers dans l'espace : le projet colossal d'Elon 
+
+  ── Bilan du cycle (400 s) ──
+     écartés : 1 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 1 × gemini-3.1-flash-lite        ✅
+         8. clé 1 × gemini-3.1-flash-lite        ✅
+         9. clé 1 × gemini-3.1-flash-lite        ✅
+        10. clé 1 × gemini-3.1-flash-lite        ✅
+        11. clé 1 × gemini-3.1-flash-lite        ✅
+        12. clé 1 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.1-flash-lite        ✅
+        14. clé 1 × gemini-3.1-flash-lite        ✅
+        15. clé 1 × gemini-3.1-flash-lite        ✅
+        16. clé 1 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-3.1-flash-lite        ✅
+        18. clé 1 × gemini-3.1-flash-lite        ✅
+        19. clé 1 × gemini-3.1-flash-lite        ✅
+        20. clé 1 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3-flash · clé 1 × gemini-3.6-flash · clé 2 × gemini-3.1-flash-lite · clé 2 × gemini-embedding-001 · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-3.6-flash (+19)
+     clés Gemini : 5/5 disponible(s)
+     texte : 24/25 couple(s) clé+modèle disponible(s)
+        prochain : clé 1 × gemini-3.1-flash-lite
+     vecteurs : 5/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-3.1-flash-tts
+     jetons Gemini : 58,289 entrée · 2,841 sortie
+     ✅ aucun appel payant
