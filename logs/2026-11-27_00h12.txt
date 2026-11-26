@@ -1,0 +1,103 @@
+
+[00:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Thanksgiving, #DebateA4RTVE, Abascal, #ELDEBATE26, Bears
+  🔎 « Thanksgiving » : 1 article(s) frais, le plus récent il y a 11.8 h (Regards protestants)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Thanksgiving » écarté : Célébration récurrente sans nouveauté ni actualité.
+  🔎 « Abascal » : 1 article(s) frais, le plus récent il y a 1.4 h (Demócrata)
+  ⏭️  « Abascal » écarté : trop secondaire (4/10)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 1.0 h (DAZN)
+  ⏭️  « Bears » écarté : trop secondaire (3/10)
+  🔎 « Gibbs » : 1 article(s) frais, le plus récent il y a 3.9 h (DAZN)
+  ⏭️  « Gibbs » écarté : trop secondaire (2/10)
+  🌍 « Ada Colau » : aucune reprise en français, source internationale retenue
+  🔎 « Ada Colau » : 1 article(s) frais, le plus récent il y a 4.5 h (El Constitucional)
+  ⏭️  « Ada Colau » écarté : Soutien politique espagnol sans impact majeur en France
+  📖 1/1 articles lus en 0.1s (24 déjà en cache)
+  📄 7/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · CoinDesk · Ouest-France · Sciences et Avenir · Blockworks
+  🧠 25 vecteurs calculés en 1 appel(s)
+  🧩 26 articles → 10 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (17h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 8 médias) : "La violence, la terreur et la mort..." : Emilie K
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Challenges, Dexerto, La Tribune, Le Monde, Libération
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 8 médias +15 + frais 4.7h +2 + thème porteur +10 + ⚡ décès d'un chef d'État → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 5 affirmation(s) : 2 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [2m] Emilie König comparaît devant la cour d'assises spéciale de Paris pour associa
+      [2m] Emilie König présente ses excuses à la nation française et exprime sa honte au
+      [1m] ⚡exclusif L'accusée exprime des remords et s'excuse auprès de sa mère et de ses enfants 
+      [1m] ⚡exclusif Une enquêtrice de la DGSI a témoigné en visioconférence pour détailler la part
+      [1m] ⚡exclusif Emilie König a affirmé vouloir s'expliquer et prouver qu'elle a rompu avec l'i
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Trump demands probe into ‘record setting error’ af
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 2.0h +8 + primeur +5 + portée internationale +10
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 8 médias) : L’Agence France Presse ciblée par une cyberattaque
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 8 médias +15 + frais 4.7h +2 + thème porteur +10 + ⚡ décès d'un chef d'État → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 26 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (79 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 4 × gemini-3.5-flash-lite        ✅
+        21. clé 1 × gemini-embedding-001         🚫 quota
+        22. clé 2 × gemini-embedding-001         🚫 quota
+        23. clé 3 × gemini-embedding-001         🚫 quota
+        24. clé 4 × gemini-embedding-001         🚫 quota
+        25. clé 5 × gemini-embedding-001         ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-3.6-flash · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-2.5-flash-lite (+1)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 5,290 entrée · 1,026 sortie
+     ✅ aucun appel payant
