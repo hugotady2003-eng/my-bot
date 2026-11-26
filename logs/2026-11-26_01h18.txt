@@ -1,0 +1,125 @@
+
+[01:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Thanksgiving, Aaron Rodgers, McCarthy, Lammens, Steelers
+  🌍 « Thanksgiving » : aucune reprise en français, source internationale retenue
+  🔎 « Thanksgiving » : 1 article(s) frais, le plus récent il y a 2.8 h (PBS)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  ⏭️  « Thanksgiving » écarté : trop secondaire (3/10)
+  🔎 « Aaron Rodgers » : 1 article(s) frais, le plus récent il y a 4.2 h (Touchdown Actu)
+  ⏭️  « Aaron Rodgers » écarté : Information fausse, Aaron Rodgers joue aux Jets.
+  🔎 « McCarthy » : 1 article(s) frais, le plus récent il y a 3.4 h (Touchdown Actu)
+  ⏭️  « McCarthy » écarté : Anecdote sportive ancienne sans impact réel.
+  🔎 « Lammens » : 1 article(s) frais, le plus récent il y a 1.8 h (Goal.com)
+  ⏭️  « Lammens » écarté : trop secondaire (3/10)
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 3.8 h (DAZN)
+  ⏭️  « Steelers » écarté : Information fausse, Aaron Rodgers joue aux Jets.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 4.3 h (arsenalsports.ca)
+  ⏭️  « Packers » écarté : trop secondaire (2/10)
+  📈 2 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #Bayern, #Lille
+  📖 1/1 articles lus en 0.2s (43 déjà en cache)
+  📄 11/44 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Sciences et Avenir · CoinDesk · Blockworks
+  🧠 44 vecteurs calculés en 1 appel(s)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🧠 Même événement (jugé) : « U.S. proposes new tariffs on 14 tradin… »
+  🧩 44 articles → 10 événement(s), dont 4 suivi(s) par 3 médias ou plus
+  🚨 Sujet chaud (breaking, 4 médias) : Ligue des champions : le résumé de l’exploit des L
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : BFMTV, Le Monde
+  ✂️ 2 élément(s) écartés — 1 source(s) hors sujet : Ouest-France
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 1.3h +8 + thème porteur +10 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 79) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 4 médias) : Un incendie sur une autoroute fait au moins 31 mor
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 79.0/100 = gravité 8/10 → 36 + 4 médias +7 + frais 1.3h +8 + thème porteur +10 + portée mondiale +18
+  🧩 3 affirmation(s) : 0 partagée(s) · 0 divergente(s) · 3 exclusive(s)
+      [1m] ⚡exclusif Un incendie sur une autoroute en Égypte a fait au moins 31 morts.
+      [1m] ⚡exclusif Un incendie s'est déclenché dans l'agglomération du Caire après le renversemen
+      [1m] ⚡exclusif Un incendie s'est déclaré en Guyane lors du décollage de la fusée Ariane 6.
+  🌙 Sujet fort (score 79) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : SpaceX wins FCC approval to deploy 1 million orbit
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 61.5/100 = gravité 7/10 → 32 + frais 4.4h +2 + thème porteur +10 + portée mondiale +18
+  🌙 Sujet fort (score 62) mais nuit → il attendra le matin
+  ⚪ Écarté (-2, pénalisé par « comment  ») : L'Agence du médicament met en garde contre les conse
+  🚨 Sujet chaud (breaking, 1 médias) : Présidentielle 2027 : « La démocratie, c’est le vo
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  ⏭️  Rien de neuf sur ce sujet chaud (doublon) → suivant
+  🚨 Sujet chaud (breaking, 13 médias) : Thirty-one killed in massive fire as fuel tanker c
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 21 article(s) sur un autre sujet, écartés du dossier : Al Jazeera, BBC, CNBC, CoinDesk, Cointelegraph
+  🧮 Score 76.0/100 = gravité 8/10 → 36 + 13 médias +18 + frais 3.3h +4 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 76) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 13 médias) : Nvidia turmoil casts pall over high-flying global 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 7/10 → 32 + 13 médias +18 + frais 3.3h +4 + portée mondiale +18
+  ⚠️ Affirmations non analysables ('list' object has no attribute 'get')
+  🌙 Sujet fort (score 72) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 13 médias) : "Ce n'est pas notre guerre" : les propos de Teddy 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 71.5/100 = gravité 7/10 → 32 + 13 médias +18 + frais 3.3h +4 + portée mondiale +18
+  🧩 4 affirmation(s) : 3 partagée(s) · 0 divergente(s) · 1 exclusive(s)
+      [2m] Les États-Unis ont annoncé de nouvelles taxes douanières visant 14 partenaires
+      [2m] Ces nouvelles mesures tarifaires visent à contrer la surcapacité de production
+      [1m] ⚡exclusif L'Union européenne se voit imposer un taux de douane de 15 %.
+      [2m] La Chine fait face à des droits de douane de 20 %.
+  🌙 Sujet fort (score 72) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Lille-Bayern: la belle image d'Ancelotti célébré par
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 44 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (130 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        ✅
+        10. clé 2 × gemini-3.1-flash-lite        ✅
+        11. clé 2 × gemini-3.1-flash-lite        ✅
+        12. clé 2 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-embedding-001         🚫 quota
+        14. clé 2 × gemini-embedding-001         🚫 quota
+        15. clé 3 × gemini-embedding-001         🚫 quota
+        16. clé 4 × gemini-embedding-001         ✅
+        17. clé 2 × gemini-3.1-flash-lite        ✅
+        18. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 2 × gemini-3.6-flash             🚫 quota
+        20. clé 3 × gemini-3.5-flash-lite        ✅
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        ✅
+        23. clé 3 × gemini-3.5-flash-lite        ✅
+        24. clé 3 × gemini-3.5-flash-lite        ✅
+        25. clé 3 × gemini-3.5-flash-lite        ✅
+        26. clé 3 × gemini-3.5-flash-lite        ✅
+        27. clé 3 × gemini-3.5-flash-lite        ✅
+        28. clé 3 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-3-flash · clé 3 × gemini-3.1-flash-lite · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 3 × gemini-3-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite (+9)
+     clés Gemini : 5/5 disponible(s)
+     texte : 9/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.5-flash-lite
+     vecteurs : 2/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-embedding-001
+     vecteurs restants : gemini 001 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 10,388 entrée · 2,401 sortie
+     ✅ aucun appel payant
