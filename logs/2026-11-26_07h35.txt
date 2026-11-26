@@ -1,0 +1,198 @@
+
+[07:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Thanksgiving, Jordan Love, Packers, #ConstitutionDay, Rams
+  🔎 « Thanksgiving » : 1 article(s) frais, le plus récent il y a 3.5 h (Le Monde.fr)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Thanksgiving » écarté : Célébration récurrente sans fait nouveau.
+  🔎 « Packers » : 1 article(s) frais, le plus récent il y a 1.1 h (RDS)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Packers » écarté : Sport canadien sans interet pour la France.
+  🌍 « ConstitutionDay » : aucune reprise en français, source internationale retenue
+  🔎 « Rams » : 1 article(s) frais, le plus récent il y a 1.2 h (La Presse)
+  ⏭️  « Rams » écarté : trop secondaire (3/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 2/6 articles lus en 1.6s (32 déjà en cache)
+  📄 11/38 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · The Block · Sciences et Avenir · CoinDesk · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 38 articles → 38 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Procès d'Émilie König : du Morbihan à la Syrie, it
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 65.5/100 = gravité 7/10 → 32 + frais 0.5h +16 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.5h (frais ✅)
+  🔎 2 défaut(s) détecté(s) → une seule régénération
+     • ERREUR FACTUELLE
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : les Européens prêts à parler à
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + frais 2.0h +4 + portée mondiale +18
+  🕒 Âge de l'article : 2.0h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (181 → 146 car.)
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Vladimir Poutine (Wikipedia)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Droits de douane : l’administration Trump persiste
+  🧮 Score 78.0/100 = gravité 8/10 → 36 + frais 0.1h +16 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : CNews rayée des écrans pendant un mois ? Reporters
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 70.0/100 = gravité 8/10 → 36 + frais 0.3h +16 + thème porteur +10 + primeur absolue +8
+  🕒 Âge de l'article : 0.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (180 → 156 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  → 38 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : les Européens prêts à parler à
+  ♻️ 6/10 [world] (déjà analysé, cache) : "La Libye sert de base arrière à la Russie" : aprè
+  ♻️ 8/10 [world] (déjà analysé, cache) : Droits de douane : l’administration Trump persiste
+  ♻️ 7/10 [ai] (déjà analysé, cache) : L'Agence du médicament met en garde contre les con
+  ♻️ 7/10 [world] (déjà analysé, cache) : Procès d'Émilie König : du Morbihan à la Syrie, it
+  ♻️ 6/10 [world] (déjà analysé, cache) : Russie : Comment la France et ses voisins européen
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Santé : « Des réponses erronées ou inadaptées », l
+  ♻️ 6/10 [science] (déjà analysé, cache) : PFAS dans les aliments : une ONG dénonce des faill
+  ♻️ 8/10 [world] (déjà analysé, cache) : CNews rayée des écrans pendant un mois ? Reporters
+  ♻️ 6/10 [markets] (déjà analysé, cache) : Budget 2027 : Bruxelles valide la copie française,
+  ♻️ 9/10 [business] (déjà analysé, cache) : Les coulisses d’un incroyable revirement : comment
+  ♻️ 7/10 [space] (déjà analysé, cache) : Décollage d’Ariane 6 : que s’est-il passé avec l’i
+  ♻️ 7/10 [world] (déjà analysé, cache) : San Francisco en alerte face à un risque majeur d'
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Affaire Nvidia : le Congrès américain réclame des 
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Avec sa future Xbox Helix, Microsoft voudrait rend
+  ♻️ 8/10 [world] (déjà analysé, cache) : Thirty-one killed in massive fire as fuel tanker c
+  ♻️ 7/10 [markets] (déjà analysé, cache) : S&P warns Nvidia credit rating could be cut over '
+  ♻️ 9/10 [markets] (déjà analysé, cache) : U.S. proposes new tariffs on 14 trading partners, 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : How Trump’s latest tariff moves hand India an edge
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Over 1,000 Bitcoin miners were tricked into workin
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bill to lock up U.S. government bitcoin for 20 yea
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : UK regulator plans tighter DeFi rules, citing $6.3
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Fidelity files for Chainlink ETF, Musk’s X wins ru
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Galaxy walks back bitcoin’s June-bottom call, warn
+  ♻️ 8/10 [tech] (déjà analysé, cache) : What Happened to Alice Huang, the Woman at the Cen
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 6/10 [business] (déjà analysé, cache) : S&P considers Nvidia credit downgrade over governa
+  ♻️ 8/10 [space] (déjà analysé, cache) : FCC approves SpaceX plan to put AI data centers in
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Amazon loses its latest attempt to get out of hand
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Apple pulls popular Chinese AI chatbot from the Ap
+  🧠 Batch analyse de 7 articles...
+  ✅ 7/10 [world] large: Emilie König, l’ancienne « égérie » de Daesh acc
+  📉 4/10: « Les gènes révèlent ce qui a permis la survie de l’Hum
+  📉 4/10: Violences et armes : dix hommes soupçonnés d’appartenir
+  📉 3/10: Présidentielle 2027 : le Breton Loïg Chesnais-Girard ve
+  📉 2/10: Tuto : comment recharger son Pass Navigo mensuel direct
+  ✅ 7/10 [world] large: ICC judge Kimberly Prost tries war crimes. She’s
+  ✅ 8/10 [crypto] mondiale: Europe’s only spot bitcoin ETF starts trading in
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.1h — Droits de douane : l’administration Trump pe
+     9/10 · 2 média(s) · 0.4h — L'Agence du médicament met en garde contre l
+     9/10 · 2 média(s) · 0.5h — Santé : « Des réponses erronées ou inadaptée
+     9/10 · 1 média(s) · 0.3h — CNews rayée des écrans pendant un mois ? Rep
+     9/10 · 1 média(s) · 0.1h — Europe’s only spot bitcoin ETF starts tradin
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Droits de douane : l’administration Trump persiste
+
+  ── Bilan du cycle (248 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 4 × gemini-embedding-001         🚫 quota
+        21. clé 5 × gemini-embedding-001         🚫 quota
+        22. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 4 × gemini-3.1-flash-lite        ✅
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+        37. clé 4 × gemini-3.1-flash-lite        ✅
+        38. clé 4 × gemini-3.1-flash-lite        ✅
+        39. clé 4 × gemini-3.1-flash-lite        ✅
+        40. clé 4 × gemini-3.1-flash-lite        ✅
+        … et 6 autres
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 794
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 73,257 entrée · 2,022 sortie
+     ✅ aucun appel payant
