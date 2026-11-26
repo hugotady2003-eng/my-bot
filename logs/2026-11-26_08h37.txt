@@ -1,0 +1,137 @@
+
+[08:35] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Thanksgiving, #ConstitutionDay, #WeTVAlwaysMore2027xPNB, PUINOONBINT WETV 2027, #ä¸­å¤iPadè²·ããªãã½ãããã
+  🔎 « Thanksgiving » : 1 article(s) frais, le plus récent il y a 1.5 h (Google Actualités)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ⚠️ Jugement de « Thanksgiving » impossible (Error code: 400 - {'type': 'error', 'error': {'typ) → écarté
+  ⏭️  « Thanksgiving » écarté : jugement indisponible
+  🌍 « ConstitutionDay » : aucune reprise en français, source internationale retenue
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 6/7 articles lus en 2.5s (45 déjà en cache)
+  📄 11/54 article(s) sans corps lisible → recoupement sur titre et résumé seuls : The Block · Ouest-France · Sciences et Avenir · CoinDesk · Libération · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 54 articles → 54 événement(s)
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Écrits antisémites attribués à Jordan Bardella: de n
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : les Européens prêts à parler à
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 58.0/100 = gravité 8/10 → 36 + frais 3.1h +4 + portée mondiale +18
+  🕒 Âge de l'article : 3.1h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChRA35Wcinmamx3Dnyavm'}
+  🚨 Sujet chaud (breaking, 1 médias) : Reporters sans frontières demande la suspension de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 52.5/100 = gravité 7/10 → 32 + frais 0.9h +13 + primeur absolue +8
+  🕒 Âge de l'article : 0.9h (frais ✅)
+  ❌ Publication sujet chaud échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChRA3KVk2Ch5DQcRMrNea'}
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Les Anneaux de pouvoir saison 3 : fin de l’épisode 7
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Brad Pitt et Angelina Jolie mettent fin à leur âpre 
+  ⚪ Écarté (-2, pénalisé par « comment  ») : L'Agence du médicament met en garde contre les conse
+  🚨 Sujet chaud (breaking, 1 médias) : Duran Duran : Andy Taylor, guitariste et composite
+  ⚠️ Note de gravité hors bornes (77) → ramenée dans 0-10
+  🧮 Score 69.0/100 = gravité 10/10 → 45 + frais 0.1h +16 + primeur absolue +8
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🛑 Hommage non vérifiable (Error code: 400 - {'type': 'error', 'error':) — traité en actualité normale
+  ↩️ Hommage non confirmé → actualité normale [world]
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ❌ Breaking échoué : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChRA43pDA3pFUTmtbYksd'}
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  → 54 articles à analyser...
+  ♻️ 8/10 [world] (déjà analysé, cache) : Guerre en Ukraine : les Européens prêts à parler à
+  ♻️ 6/10 [world] (déjà analysé, cache) : "La Libye sert de base arrière à la Russie" : aprè
+  ♻️ 7/10 [ai] (déjà analysé, cache) : L'Agence du médicament met en garde contre les con
+  ♻️ 6/10 [world] (déjà analysé, cache) : Russie : Comment la France et ses voisins européen
+  ♻️ 7/10 [space] (déjà analysé, cache) : Décollage d’Ariane 6 : que s’est-il passé avec l’i
+  ♻️ 7/10 [ai] (déjà analysé, cache) : « Des informations inexactes, contradictoires ou i
+  ♻️ 7/10 [world] (déjà analysé, cache) : San Francisco en alerte face à un risque majeur d'
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Affaire Nvidia : le Congrès américain réclame des 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Reporters sans frontières demande la suspension de
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : Leak de GTA 6 et vols crypto, deux hackers britann
+  ♻️ 8/10 [world] (déjà analysé, cache) : Thirty-one killed in massive fire as fuel tanker c
+  ♻️ 7/10 [markets] (déjà analysé, cache) : S&P warns Nvidia credit rating could be cut over '
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Over 1,000 Bitcoin miners were tricked into workin
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : UK regulator plans tighter DeFi rules, citing $6.3
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Europe’s only spot bitcoin ETF starts trading in S
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Fidelity files for Chainlink ETF, Musk’s X wins ru
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Galaxy walks back bitcoin’s June-bottom call, warn
+  ♻️ 8/10 [tech] (déjà analysé, cache) : What Happened to Alice Huang, the Woman at the Cen
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 6/10 [business] (déjà analysé, cache) : S&P considers Nvidia credit downgrade over governa
+  ♻️ 8/10 [space] (déjà analysé, cache) : FCC approves SpaceX plan to put AI data centers in
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Amazon loses its latest attempt to get out of hand
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Apple pulls popular Chinese AI chatbot from the Ap
+  🎯 Pré-classement : 10 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  ❌ Batch analyse: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChRA4QgKDjF1Mg1ZfvZbq'}
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 2 média(s) · 1.0h — « Des informations inexactes, contradictoire
+     9/10 · 2 média(s) · 1.4h — L'Agence du médicament met en garde contre l
+     9/10 · 1 média(s) · 1.1h — Europe’s only spot bitcoin ETF starts tradin
+     9/10 · 1 média(s) · 1.9h — Fidelity files for Chainlink ETF, Musk’s X w
+     8/10 · 1 média(s) · 0.9h — Reporters sans frontières demande la suspens
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChRA4j8LiVJ6tWMuYpZeM'}
+  ⚠️ GTA6: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChRA4y216tnxCReAxgjha'}
+  → 1 sélectionné(s) [ai]
+  ❌ Envoi '« Des informations inexactes, contradict': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChRA5CuvncgMFp6udQ4TJ'}
+
+  ── Bilan du cycle (110 s) ──
+     écartés : 4 sujet banal · 1 hommage refusé
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 4 × gemini-2.5-flash-lite        ⛔ inexistant
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 4 × gemini-3-flash               ⛔ inexistant
+        21. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        22. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        23. clé 5 × gemini-2.5-flash-lite        ⛔ inexistant
+        24. clé 5 × gemini-3.6-flash             🚫 quota
+        25. clé 5 × gemini-3-flash               ⛔ inexistant
+        26. clé 1 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-001         🚫 quota
+        29. clé 4 × gemini-embedding-001         🚫 quota
+        30. clé 5 × gemini-embedding-001         🚫 quota
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 793
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 20 entrée · 0 sortie
+     ⚠️ 19 appel(s) payés chez Claude (le gratuit n'a pas suffi)
