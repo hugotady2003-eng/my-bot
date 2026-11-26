@@ -1,0 +1,124 @@
+
+[00:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Thanksgiving, #DebateA4RTVE, Abascal, #ELDEBATE26, Bears
+  🔎 « Thanksgiving » : 1 article(s) frais, le plus récent il y a 11.7 h (Regards protestants)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Thanksgiving » écarté : Célébration récurrente sans actualité nouvelle
+  🔎 « Abascal » : 1 article(s) frais, le plus récent il y a 1.3 h (Demócrata)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Abascal » écarté : trop secondaire (3/10)
+  🔎 « Bears » : 1 article(s) frais, le plus récent il y a 0.9 h (DAZN)
+  ⏭️  « Bears » écarté : trop secondaire (3/10)
+  🔎 « Gibbs » : 1 article(s) frais, le plus récent il y a 3.4 h (DAZN)
+  ⏭️  « Gibbs » écarté : trop secondaire (2/10)
+  🔎 « Ada Colau » : 1 article(s) frais, le plus récent il y a 3.3 h (Demócrata)
+  ⏭️  « Ada Colau » écarté : Événement politique local espagnol sans impact français.
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 1/2 articles lus en 0.1s (22 déjà en cache)
+  📄 7/25 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Libération · CoinDesk · Ouest-France · Sciences et Avenir · Blockworks
+  🧠 24 vecteurs calculés en 1 appel(s)
+  🧩 25 articles → 9 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  🕒 Sujet chaud mais article ancien (17h) → pas de breaking sur du réchauffé → suivant
+  🚨 Sujet chaud (breaking, 8 médias) : "La violence, la terreur et la mort..." : Emilie K
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 6 article(s) sur un autre sujet, écartés du dossier : Challenges, Dexerto, La Tribune, Le Monde, Libération
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + 8 médias +15 + frais 4.6h +2 + thème porteur +10 + ⚡ décès d'un chef d'État → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 9 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 5 exclusive(s)
+      [2m] Emilie König est jugée devant la cour d'assises spéciale de Paris pour associa
+      [2m] L'accusée a présenté des excuses publiques à la nation française, à sa famille
+      [1m] ⚡exclusif Emilie König affirme avoir rompu avec l'idéologie djihadiste et ne plus être l
+      [1m] ⚡exclusif Une enquêtrice de la DGSI a témoigné en visioconférence sur l'implication de l
+      [2m] L'accusée est âgée de 41 ans.
+      [2m] Emilie König a rejoint la Syrie en 2013.
+      [1m] ⚡exclusif L'accusée encourt une peine de trente ans de réclusion criminelle.
+      [1m] ⚡exclusif Le Parquet national antiterroriste qualifie Emilie König d'égérie de Daesh.
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 1 médias) : Trump demands probe into ‘record setting error’ af
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 54.5/100 = gravité 7/10 → 32 + frais 1.9h +8 + primeur +5 + portée internationale +10
+  🌙 Sujet fort (score 54) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 8 médias) : L’Agence France Presse ciblée par une cyberattaque
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 7/10 → 32 + 8 médias +15 + frais 4.6h +2 + thème porteur +10 + ⚡ décès d'un chef d'État → plancher 89
+  🔍 1 chiffre(s) confirmé(s) par plusieurs médias
+  🧩 8 affirmation(s) : 4 partagée(s) · 0 divergente(s) · 4 exclusive(s)
+      [2m] Emilie König est jugée devant la cour d'assises spéciale de Paris pour associa
+      [2m] L'accusée a présenté des excuses à la nation française lors de l'ouverture de 
+      [2m] Emilie König est âgée de 41 ans.
+      [2m] L'accusée a exprimé des regrets concernant l'impact de son activité de propaga
+      [1m] ⚡exclusif L'accusée a affirmé avoir rompu avec l'idéologie djihadiste.
+      [1m] ⚡exclusif L'accusée a présenté des excuses spécifiques à ses enfants et à sa mère.
+      [1m] ⚡exclusif Le Parquet national antiterroriste qualifie l'accusée d'égérie de Daesh.
+      [1m] ⚡exclusif Une enquêtrice de la DGSI a témoigné en visioconférence sur la participation d
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚽ API football-data : 1 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 25 articles à analyser...
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Unterminated string starting at: line 2 column 21 (char 22) → couple suivant
+  → 1 sélectionné(s) [gta6]
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  ⚠️ Page article illisible pour vidéo (HTTP Error 403: Forbidden)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tech:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : GTA 6 : les options graphiques cachées par Rockstar sur
+
+  ── Bilan du cycle (123 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        ✅
+        12. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.1-flash-lite        ✅
+        14. clé 3 × gemini-3.1-flash-lite        ✅
+        15. clé 3 × gemini-3.1-flash-lite        ✅
+        16. clé 3 × gemini-3.1-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 4 × gemini-embedding-001         🚫 quota
+        21. clé 5 × gemini-embedding-001         ✅
+        22. clé 3 × gemini-3.1-flash-lite        ✅
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        27. clé 3 × gemini-3.6-flash             ⚠️ Unterminated string st
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-3.1-flash-lite · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-3.6-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 7/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.6-flash
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 7,066 entrée · 1,759 sortie
+     ✅ aucun appel payant
