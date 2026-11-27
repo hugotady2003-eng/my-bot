@@ -1,0 +1,134 @@
+
+[23:58] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Le Monde, Sud Ouest
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🖼️ Image libre trouvée sur Commons « OpenAI »
+  🖼️ Image libre trouvée sur Commons « contre »
+  🖼️ Image libre trouvée sur Commons « Apple »
+  🖼️ Décryptage illustré par 2 image(s) différente(s) sur 6 plans
+  ⛔ gemini-3.1-flash-tts n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (models/gemini-3.1-flash-tts is not found for API v) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  🎞️ Montage : 6 plans, 32.0s
+  🎬 Carrousel vidéo (54s, 6 slides, sans son)
+  🚦 Vidéo TikTok NON VALIDÉE — 1 défaut(s) :
+     • RÉPÉTITION entre les plans 1 et 3
+  🚫 Défauts éditoriaux → version TikTok abandonnée ce jour
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 27-Nov-26 15:00:38 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"AiPAZp8KTBvGWf91pjUi2Ra"}}
+  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Chelsea, Bo Nix, Alonso, Fofana, Broncos
+  🔎 « Chelsea » : 1 article(s) frais, le plus récent il y a 3.0 h (L'Équipe)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : 'parts' → couple suivant
+  ⏭️  « Chelsea » écarté : trop secondaire (4/10)
+  🔎 « Alonso » : 1 article(s) frais, le plus récent il y a 5.9 h (AOC media)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Alonso » écarté : Interview culturelle sans impact direct en France
+  🔎 « Fofana » : 1 article(s) frais, le plus récent il y a 0.7 h (Le Figaro)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Fofana » écarté : trop secondaire (3/10)
+  🔎 « Broncos » : 1 article(s) frais, le plus récent il y a 10.9 h (DAZN)
+  ⏭️  « Broncos » écarté : Match de saison régulière sans enjeu majeur.
+  🌍 « bolu » : aucune reprise en français, source internationale retenue
+  🔎 « bolu » : 1 article(s) frais, le plus récent il y a 1.6 h (Daily Sabah)
+  ⏭️  « bolu » écarté : trop secondaire (4/10)
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 3/4 articles lus en 1.6s (22 déjà en cache)
+  📄 5/26 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Libération · Ouest-France · Blockworks
+  🧠 26 vecteurs calculés en 1 appel(s)
+  🧩 26 articles → 14 événement(s), dont 1 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dette : S&P dégrade la perspective française de stab
+  🚨 Sujet chaud (breaking, 1 médias) : "Elle a besoin d’être reconnue dans le regard des 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 45.5/100 = gravité 7/10 → 32 + frais 3.0h +4 + thème porteur +10
+  🌙 Sujet fort (score 46) mais nuit → il attendra le matin
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Soupçons de fuite vers le RN: le bureau et le domici
+  🚨 Sujet chaud (breaking, 1 médias) : L'hommage national aux victimes de l'attentat raci
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + frais 1.3h +8 + thème porteur +10 + primeur +5 + ⚡ attentat → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  🚨 Sujet chaud (breaking, 9 médias) : OpenAI Turns the Tables on Apple With Its Own Trad
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧠 10 article(s) sur un autre sujet, écartés du dossier : Ars Technica, Blockworks, Cointelegraph, Decrypt, Le Monde
+  🧮 Score 60.0/100 = gravité 6/10 → 27 + 9 médias +15 + frais 1.8h +8 + portée internationale +10
+  🌙 Sujet fort (score 60) mais nuit → il attendra le matin
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 26 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (241 s) ──
+     écartés : 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        ✅
+         8. clé 2 × gemini-3.1-flash-lite        ✅
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             🚫 quota
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        🚫 quota
+        14. clé 1 × gemini-3.1-flash-lite        🚫 quota
+        15. clé 1 × gemini-3.6-flash             🚫 quota
+        16. clé 2 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        18. clé 2 × gemini-3.6-flash             ⚠️ 'parts'
+        19. clé 3 × gemini-3.5-flash-lite        ✅
+        20. clé 2 × gemini-3.6-flash             🚫 quota
+        21. clé 3 × gemini-3.5-flash-lite        ✅
+        22. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 3 × gemini-3.1-flash-lite        ✅
+        24. clé 3 × gemini-3.1-flash-lite        ✅
+        25. clé 3 × gemini-3.1-flash-lite        ✅
+        26. clé 1 × gemini-embedding-001         🚫 quota
+        27. clé 2 × gemini-embedding-001         🚫 quota
+        28. clé 3 × gemini-embedding-001         🚫 quota
+        29. clé 4 × gemini-embedding-001         🚫 quota
+        30. clé 5 × gemini-embedding-001         ✅
+        31. clé 3 × gemini-3.1-flash-lite        ✅
+        32. clé 3 × gemini-3.1-flash-lite        ✅
+        33. clé 3 × gemini-3.1-flash-lite        ✅
+        34. clé 3 × gemini-3.1-flash-lite        ✅
+        35. clé 3 × gemini-3.1-flash-lite        ✅
+        36. clé 3 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 3 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-3.5-flash-lite · clé 4 × gemini-3.1-flash-lite (+7)
+     clés Gemini : 5/5 disponible(s)
+     texte : 8/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 3 × gemini-3.1-flash-lite
+     vecteurs : 1/5 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-embedding-001
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash, gemini-3.1-flash-tts
+     jetons Gemini : 11,719 entrée · 956 sortie
+     ✅ aucun appel payant
