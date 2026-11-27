@@ -1,0 +1,165 @@
+
+[08:31] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Chiefs, Cowboys, #MOSCHINOxTleFirstone, Josh Allen, Butker
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 4.7 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Chiefs » écarté : trop secondaire (3/10)
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 5.5 h (Touchdown Actu)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Cowboys » écarté : trop secondaire (3/10)
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 10.3 h (Lente Desportiva)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Josh Allen » écarté : Analyse sportive sans fait nouveau récent.
+  🌍 « Butker » : aucune reprise en français, source internationale retenue
+  🔎 « Butker » : 1 article(s) frais, le plus récent il y a 3.3 h (NFL.com)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Butker » écarté : trop secondaire (1/10)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 8/12 articles lus en 2.0s (34 déjà en cache)
+  📄 10/47 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · CoinDesk · Sciences et Avenir · Jeuxvideo.com · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  🧩 47 articles → 47 événement(s)
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : BFM Nord et Vous: les bons réflexes à avoir pour ne 
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027: Gérald Darmanin juge que "l'ext
+  🚨 Sujet chaud (breaking, 1 médias) : Le Brésil déplore l’affirmation d’Emmanuel Macron 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 84.5/100 = gravité 7/10 → 32 + frais 0.7h +13 + thème porteur +10 + exploit français +4 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (190 → 157 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : tension:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 47 articles à analyser...
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Le virage au forceps des alliés de l’OTAN vers des
+  ♻️ 6/10 [world] (déjà analysé, cache) : Riner et l’Ukraine : il faut éviter toute «naïveté
+  ♻️ 7/10 [world] (déjà analysé, cache) : Présidentielle 2027: Gérald Darmanin juge que "l'e
+  ♻️ 8/10 [world] (déjà analysé, cache) : Violente tempête aux États-Unis : des centaines de
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le Brésil déplore l’affirmation d’Emmanuel Macron 
+  ♻️ 6/10 [markets] (déjà analysé, cache) : S&P maintiendra-t-elle le statu quo sur la note de
+  ♻️ 7/10 [space] (déjà analysé, cache) : Un astronaute pakistanais rejoint la station chino
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : Comment débloquer les ouragans dans GTA 6
+  ♻️ 7/10 [space] (déjà analysé, cache) : SpaceX est autorisée à déployer jusqu’à un million
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 : les options graphiques cachées par Rocksta
+  ♻️ 8/10 [world] (déjà analysé, cache) : US too focused on Middle East and not pushing Russ
+  ♻️ 7/10 [world] (déjà analysé, cache) : Major Thanksgiving storm brings flooding, flight d
+  ♻️ 9/10 [world] (déjà analysé, cache) : Two Italians killed in Kuwait drone attack; Trump 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance says customer withdrawals are fully restor
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Ethereum's much-awaited Glamsterdam upgrade cleare
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : JPMorgan flags bitcoin ‘capitulation,’ Democrats p
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Nvidia hits pause on chip shipments to Southeast A
+  ♻️ 6/10 [tech] (déjà analysé, cache) : X finally gets parental controls after 20 years
+  ♻️ 7/10 [tech] (déjà analysé, cache) : South Korea proceeds with case over allegedly misl
+  🎯 Pré-classement : 6 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 4/10: ZD Tech : Comment la Nasa sauve Perseverance sur Mars, 
+  📉 4/10: Western sanctions on Israeli settlers serve to shield t
+  📉 2/10: Black Friday : le TOP 3 des offres incontournables d’Ap
+  🌍 7/10 sans portée internationale : Les profils criminels de GTA 6 font jaser, et Rock
+  📉 3/10: « Un homme épanoui, actif et magnifique » : le beau mes
+  🌍 8/10 sans portée internationale : Gérard Depardieu renvoyé pour viol : "C'est une vr
+  ✅ 6/10 [tech] large: XPeng annonce un robot humanoïde IRON au prix d’
+  🌍 6/10 sans portée internationale : Vous pouvez jeter votre Nintendo DS et votre Wii U
+  📉 5/10: Can the Mecca pact turn its collective defence promise 
+  📉 4/10: Hakeem Jeffries has disarmed a progressive revolt, but 
+  📉 2/10: BFM Nord et Vous: les bons réflexes à avoir pour ne pas
+  📉 5/10: Pas encore de GTA Online, mais un portage PC pirate de 
+  📉 3/10: 5 ans après la fermeture définitive de Tati, voici ce q
+  🌍 7/10 sans portée internationale : Le youtubeur Greg Guillotin est jugé ce vendredi à
+  📉 2/10: Avec son neuvième album, intitulé « Naw », la chanteuse
+  📉 2/10: Salon du livre jeunesse de Montreuil. « La fiction perm
+  📉 3/10: Cyrille alias "Schtroumpfy", l’un des plus grands maîtr
+  🌍 7/10 sans portée internationale : Foot : des violences contre des supporters turcs e
+  📉 3/10: L’automobiliste sort de sa voiture après un accrochage 
+  📉 5/10: Salaire contre allègements : la bataille se poursuit
+  🏁 Classement final (score · médias · âge) :
+     9/10 · 1 média(s) · 0.6h — Violente tempête aux États-Unis : des centai
+     10/10 · 1 média(s) · 4.1h — Two Italians killed in Kuwait drone attack; 
+     8/10 · 1 média(s) · 0.8h — Le Brésil déplore l’affirmation d’Emmanuel M
+     7/10 · 1 média(s) · -1.6h — XPeng annonce un robot humanoïde IRON au pri
+     8/10 · 1 média(s) · 1.7h — Présidentielle 2027: Gérald Darmanin juge qu
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 5 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting property name enclosed in double quotes: line 2 co → couple suivant
+  ⚠️ Histoire échouée : Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChT3fJEnV2RiMDgt92E6n'}
+  ⚠️ gemini-3.6-flash (clé 5) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  ⚠️ GTA6: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChT3foNyybPCSyJo7EaX5'}
+  → 1 sélectionné(s) [world]
+  🚫 gemini-3.6-flash épuisé sur la clé 5 → couple suivant
+  ❌ Envoi 'Violente tempête aux États-Unis : des ce': Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChT3g4PdScec1S7tyUefn'}
+
+  ── Bilan du cycle (224 s) ──
+     écartés : 5 sans portée internationale · 2 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        ✅
+         7. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         8. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 3 × gemini-3.5-flash-lite        ✅
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.6-flash             🚫 quota
+        14. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        15. clé 4 × gemini-3.1-flash-lite        ✅
+        16. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.6-flash             🚫 quota
+        18. clé 5 × gemini-3.5-flash-lite        ✅
+        19. clé 1 × gemini-embedding-001         🚫 quota
+        20. clé 2 × gemini-embedding-001         🚫 quota
+        21. clé 3 × gemini-embedding-001         🚫 quota
+        22. clé 4 × gemini-embedding-001         🚫 quota
+        23. clé 5 × gemini-embedding-001         🚫 quota
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 5 × gemini-3.5-flash-lite        ✅
+        26. clé 5 × gemini-3.5-flash-lite        ✅
+        27. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        28. clé 5 × gemini-3.1-flash-lite        ✅
+        29. clé 5 × gemini-3.1-flash-lite        ✅
+        30. clé 5 × gemini-3.1-flash-lite        ✅
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        🚫 quota
+        38. clé 5 × gemini-3.6-flash             ⚠️ Expecting property nam
+        39. clé 5 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        40. clé 5 × gemini-3.6-flash             🚫 quota
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite
+     clés Gemini : 5/5 disponible(s)
+     texte : 0/15 couple(s) clé+modèle disponible(s)
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 784
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 22,968 entrée · 1,357 sortie
+     ⚠️ 3 appel(s) payés chez Claude (le gratuit n'a pas suffi)
