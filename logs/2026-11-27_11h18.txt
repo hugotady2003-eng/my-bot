@@ -1,0 +1,136 @@
+
+[11:14] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  🧠 2 article(s) sur un autre sujet, écartés du dossier : Ouest-France, Sud Ouest
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ pas de miniature RSS fournie par le flux
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️ Image libre trouvée sur Commons « million »
+  🖼️ Image libre trouvée sur Commons « satellites »
+  🖼️ Image libre trouvée sur Commons « orbite »
+  🖼️ Décryptage illustré par 3 image(s) différente(s) sur 6 plans
+  ⛔ gemini-3.1-flash-tts n'existe pas sur ce compte — écarté pour la suite du run
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (models/gemini-3.1-flash-tts is not found for API v) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  ⚠️ Voix de synthèse indisponible (modèle introuvable (gemini-3.1-flash-tts, déjà constaté)) → vidéo sans voix
+  🎞️ Montage : 6 plans, 32.8s
+  🎬 Carrousel vidéo (56s, 6 slides, sans son)
+  🚦 Vidéo TikTok NON VALIDÉE — 3 défaut(s) :
+     • RÉPÉTITION entre les plans 1 et 2
+     • RÉPÉTITION entre les plans 1 et 4
+     • PHRASE TROP LONGUE au plan 5 (262 car.)
+  🚫 Défauts éditoriaux → version TikTok abandonnée ce jour
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 27-Nov-26 02:16:32 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"ABoyWifep1FLBp15vXD1QHM"}}
+  🛑 X n'a pas publié → le décryptage retentera au prochain run (contenu en cache)
+  ⏭️  Le Saviez-vous : « Origine du nom Bluetooth » n'explique pas vraiment → on ne publie pas
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #æ¯é±éæã¯ãã¤ãã¶, #CurrysPurpleFriday, #ãã©ãã¯ãã©ã¤ãã¼ãã²ã¼ã ä¸æ§, #éææ¥ã®ãã»ãã³ã«ã¶ã»ã¯ã¬ã¼ã, æ°äººãã
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🕐 11h (Paris) — rythme journée (31-65 min · 0 publié(s), 16 restant(s) sur 13.0 h) : 31-65 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 5/7 articles lus en 0.6s (20 déjà en cache)
+  📄 6/27 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · Libération · Sciences et Avenir · CoinDesk · Blockworks
+  🧠 27 vecteurs calculés en 1 appel(s)
+  🧩 27 articles → 17 événement(s), dont 3 suivi(s) par 3 médias ou plus
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Black Friday: acheter sur une plateforme comme Amazo
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Présidentielle 2027: pour la députée Danielle Simonn
+  🚨 Sujet chaud (breaking, 1 médias) : Saluts nazis, supporters hospitalisés, réaction de
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 69.0/100 = gravité 8/10 → 36 + frais 1.1h +8 + thème porteur +10 + primeur +5 + portée internationale +10
+  🕒 Âge de l'article : 1.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  ✂️ Tweet resserré localement (239 → 187 car.)
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : energie:2
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (2, pénalisé par « comment  ») : Guerre en Ukraine : « Polyvalent, facile à mettre en
+  🚨 Sujet chaud (breaking, 1 médias) : Ethereum Sets December 15 Date for Delayed Glamste
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🧮 Score 32.5/100 = gravité 3/10 → 14 + frais 0.0h +16 + programmé 3/10 -15 + primeur absolue +8 + portée internationale +10
+  → Sujet chaud pas assez fort (score 32) → suivant
+  🕒 Sujet chaud mais article ancien (11h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 27 articles à analyser...
+  ♻️ 7/10 [markets] (déjà analysé, cache) : La France entre en récession après deux trimestres
+  ♻️ 7/10 [world] (déjà analysé, cache) : Présidentielle 2027: pour la députée Danielle Simo
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Saluts nazis, supporters hospitalisés, réaction de
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre en Ukraine : « Polyvalent, facile à mettre 
+  ♻️ 9/10 [sports] (déjà analysé, cache) : MotoGP. Coup de tonnerre, Marc Marquez annonce sa 
+  ♻️ 6/10 [markets] (déjà analysé, cache) : S&P maintiendra-t-elle le statu quo sur la note de
+  ♻️ 7/10 [space] (déjà analysé, cache) : La Nasa a percuté un astéroïde : les premières ima
+  ♻️ 6/10 [gaming] (déjà analysé, cache) : GTA 6 : une fausse version PC cache un dangereux m
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 : les options graphiques cachées par Rocksta
+  ♻️ 8/10 [world] (déjà analysé, cache) : Zelensky criticises 'strange' Trump-Putin friendsh
+  ♻️ 7/10 [world] (déjà analysé, cache) : Major Thanksgiving storm brings flooding, flight d
+  ♻️ 9/10 [world] (déjà analysé, cache) : Two Italians killed in Kuwait drone attack; Trump 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Trump demands probe into ‘record setting error’ af
+  ♻️ 8/10 [crypto] (déjà analysé, cache) : Bitcoin tops $61,000 as Nasdaq futures extend Wedn
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : JPMorgan flags bitcoin ‘capitulation,’ Democrats p
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Nvidia hits pause on chip shipments to Southeast A
+  ♻️ 6/10 [tech] (déjà analysé, cache) : X finally gets parental controls after 20 years
+  ♻️ 7/10 [tech] (déjà analysé, cache) : South Korea proceeds with case over allegedly misl
+  🧠 Batch analyse de 6 articles...
+  📉 3/10: Gérald Darmanin transforme la campagne d’Edouard Philip
+  📉 2/10: Black Friday: acheter sur une plateforme comme Amazon o
+  📉 5/10: Commandée pour la laiterie de Marie-Antoinette, la jatt
+  📉 5/10: Budget : le Sénat rejette la hausse de TVA sur la télé 
+  📉 4/10: Présidentielle 2027 : LFI refuse de rencontrer ses anci
+  📉 5/10: « La France constitue le principal risque » : ce qui at
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 1 média(s) · 0.1h — MotoGP. Coup de tonnerre, Marc Marquez annon
+     9/10 · 1 média(s) · 0.5h — Bitcoin tops $61,000 as Nasdaq futures exten
+     9/10 · 1 média(s) · 1.1h — Saluts nazis, supporters hospitalisés, réact
+     9/10 · 1 média(s) · 1.2h — Zelensky criticises 'strange' Trump-Putin fr
+     10/10 · 1 média(s) · 6.8h — Two Italians killed in Kuwait drone attack; 
+  📜 Aucun événement assez connu — skip.
+  → 1 sélectionné(s) [sports]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • TROP LONG (161 caractères)
+  🖼️ aucune image trouvée dans la page (og:image/JSON-LD/<img> absents ou page bloquée)
+  🖼️ miniature RSS trop petite, écartée
+  👤 Photo de Marc Marquez (Wikipedia)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  ❌ Post Facebook échoué : HTTP Error 400: Bad Request | détail : {"error":{"message":"Error validating access token: Session has expired on Tuesday, 21-Jul-26 10:00:00 PDT. The current time is Friday, 27-Nov-26 02:18:37 PST.","type":"OAuthException","code":190,"error_subcode":463,"fbtrace_id":"A54zhjlFu_ceHuJU0kM-uas"}}
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : MotoGP. Coup de tonnerre, Marc Marquez annonce sa retra
+
+  ── Bilan du cycle (269 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        ✅
+         3. clé 1 × gemini-3.5-flash-lite        ✅
+         4. clé 1 × gemini-3.5-flash-lite        ✅
+         5. clé 1 × gemini-embedding-001         ✅
+         6. clé 1 × gemini-3.5-flash-lite        ✅
+         7. clé 1 × gemini-3.5-flash-lite        ✅
+         8. clé 1 × gemini-3.5-flash-lite        ✅
+         9. clé 1 × gemini-3.5-flash-lite        ✅
+        10. clé 1 × gemini-3.5-flash-lite        ✅
+        11. clé 1 × gemini-3.5-flash-lite        ✅
+        12. clé 1 × gemini-3.5-flash-lite        ✅
+        13. clé 1 × gemini-3.5-flash-lite        ✅
+        14. clé 1 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 1 × gemini-3-flash · clé 1 × gemini-2.5-flash-lite · clé 1 × gemini-3.6-flash · clé 1 × gemini-3.1-flash-lite · clé 2 × gemini-3.5-flash-lite · clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 2 × gemini-embedding-001 (+20)
+     clés Gemini : 5/5 disponible(s)
+     texte : 25/25 couple(s) clé+modèle disponible(s)
+     vecteurs : 5/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 0
+     modèles écartés (inexistants) : gemini-3.1-flash-tts
+     jetons Gemini : 43,932 entrée · 1,598 sortie
+     ✅ aucun appel payant
