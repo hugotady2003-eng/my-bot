@@ -1,0 +1,189 @@
+
+[07:10] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Chiefs, Cowboys, Josh Allen, Butker, ã¡ãããã¯ãªããã¯
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 3.3 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 3) : Expecting value: line 1 column 1 (char 0) → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Chiefs » écarté : trop secondaire (3/10)
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 4.2 h (Touchdown Actu)
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Cowboys » écarté : trop secondaire (2/10)
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 8.9 h (Lente Desportiva)
+  ⏭️  « Josh Allen » écarté : Analyse sportive sans fait nouveau récent.
+  🌍 « Butker » : aucune reprise en français, source internationale retenue
+  🔎 « Butker » : 1 article(s) frais, le plus récent il y a 1.7 h (Yahoo Sports)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  ⏭️  « Butker » écarté : Sport US mineur pour le public francais.
+  🔎 « Buffalo » : 1 article(s) frais, le plus récent il y a 2.7 h (Fuites Infos)
+  ⏭️  « Buffalo » écarté : trop secondaire (3/10)
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/6 articles lus en 1.0s (43 déjà en cache)
+  📄 8/49 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · Sciences et Avenir · The Block · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 49 articles → 49 événement(s)
+  ⚪ Écarté (-8, pénalisé par « horoscope, \b(pourquoi ») : Black Friday : faux sites, promotions alléchantes et
+  ⚪ Écarté (-3, pénalisé par « \b(?:fait divers ») : Donald Trump dit souhaiter que Vladimir Poutine "met
+  🚨 Sujet chaud (breaking, 1 médias) : Présidentielle 2027: à Bruxelles, Emmanuel Macron 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 75.5/100 = gravité 7/10 → 32 + frais 0.4h +16 + thème porteur +10 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.4h (frais ✅)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 34 s
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️🤝 Image récupérée chez un média jumeau (Sud Ouest) — même sujet
+  👁️ Image écartée : Image violente et hors-sujet
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  🚨 Sujet chaud (breaking, 1 médias) : Marseille : des images « effroyables… » Des suppor
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 67.0/100 = gravité 8/10 → 36 + frais 0.7h +13 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.7h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (195 → 159 car.)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Nous étudions actuellement cinq demandes de financ
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : China, Japan, South Korea and ASEAN to form working 
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 49 articles à analyser...
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Le virage au forceps des alliés de l’OTAN vers des
+  ♻️ 7/10 [world] (déjà analysé, cache) : Présidentielle 2027: à Bruxelles, Emmanuel Macron 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Donald Trump dit souhaiter que Vladimir Poutine "m
+  ♻️ 7/10 [world] (déjà analysé, cache) : Procès d’Émilie König : « J’ai vraiment honte »… L
+  ♻️ 7/10 [world] (déjà analysé, cache) : Guerre au Moyen-Orient : Donald Trump minimise le 
+  ♻️ 8/10 [sports] (déjà analysé, cache) : Marseille : des images « effroyables… » Des suppor
+  ♻️ 6/10 [markets] (déjà analysé, cache) : IA : la démesure jusqu'à la crise financière ? Com
+  ♻️ 6/10 [markets] (déjà analysé, cache) : S&P maintiendra-t-elle le statu quo sur la note de
+  ♻️ 7/10 [space] (déjà analysé, cache) : Un astronaute pakistanais rejoint la station chino
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : Comment débloquer les ouragans dans GTA 6
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : FC 27 ressuscite un commentateur de foot décédé gr
+  ♻️ 7/10 [space] (déjà analysé, cache) : SpaceX est autorisée à déployer jusqu’à un million
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 : les options graphiques cachées par Rocksta
+  ♻️ 8/10 [world] (déjà analysé, cache) : US too focused on Middle East and not pushing Russ
+  ♻️ 7/10 [world] (déjà analysé, cache) : Major Thanksgiving storm brings flooding, flight d
+  ♻️ 9/10 [world] (déjà analysé, cache) : Two Italians killed in Kuwait drone attack; Trump 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Trump demands probe into ‘record setting error’ af
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance says customer withdrawals are fully restor
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Ethereum's much-awaited Glamsterdam upgrade cleare
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : JPMorgan flags bitcoin ‘capitulation,’ Democrats p
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Nvidia hits pause on chip shipments to Southeast A
+  ♻️ 6/10 [tech] (déjà analysé, cache) : X finally gets parental controls after 20 years
+  ♻️ 7/10 [tech] (déjà analysé, cache) : South Korea proceeds with case over allegedly misl
+  🎯 Pré-classement : 3 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  🌍 7/10 sans portée internationale : Des violents affrontements entre supporters de l'O
+  📉 4/10: Xenoblade Chronicles 3 en 4K et en 60 FPS, c'est dans u
+  📉 3/10: Australian LNG exporters must reserve some supply to lo
+  📉 4/10: "Je commence à me sentir à l'aise avec qui je suis": Lo
+  🌍 7/10 sans portée internationale : Ecrits antisémites : Jordan Bardella s’enferre dan
+  📉 5/10: China, Japan, South Korea and ASEAN to form working gro
+  📉 3/10: L’heure de vérité pour Pedro Sanchez : cinq infographie
+  📉 2/10: APOD: 2026 November 27 – The Moon Watchers
+  📉 2/10: Handball. Starligue : « Rarement tous les cadres au ren
+  📉 2/10: Factory Floor, Polo Perks, Pairi Daeza… Qu’est-ce qu’on
+  📉 4/10: « Nous étudions actuellement cinq demandes de financeme
+  🌍 7/10 sans portée internationale : Estonia closing land borders with Russia to keep o
+  📉 3/10: Le Black Friday est lancé chez Boulanger : voici le TOP
+  🌍 6/10 sans portée internationale : Israel uses south Lebanon Christian villages to tr
+  📉 5/10: UK to pay 'participation' fee to deliver EU deals
+  📉 3/10: Black Friday : faux sites, promotions alléchantes et ur
+  📉 2/10: L’Aveyronnais José Bové a choisi de mettre les voiles, 
+  📉 2/10: Mémoire cash - Célébrons l'anniversaire de la Dreamcast
+  📉 2/10: Black Friday Dyson : l’aspirateur balai V16 Piston Anim
+  📉 2/10: Météo de Noël : la France sous son blanc manteau en 202
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.2h — Guerre au Moyen-Orient : Donald Trump minimi
+     10/10 · 2 média(s) · 0.7h — Marseille : des images « effroyables… » Des 
+     9/10 · 2 média(s) · 0.4h — Présidentielle 2027: à Bruxelles, Emmanuel M
+     10/10 · 2 média(s) · 2.7h — Two Italians killed in Kuwait drone attack; 
+     8/10 · 1 média(s) · 0.2h — SpaceX est autorisée à déployer jusqu’à un m
+  ⚠️ Histoire échouée : 'histoire'
+  → 2 sélectionné(s) [gta6, world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (174 → 147 car.)
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  🕒 Âge de l'article à la publication : 0.2h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Guerre au Moyen-Orient : Donald Trump minimise le parta
+
+  ── Bilan du cycle (148 s) ──
+     écartés : 4 sujet banal · 4 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             ⚠️ Expecting value: line 
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 3 × gemini-3.6-flash             🚫 quota
+        19. clé 4 × gemini-3.1-flash-lite        ✅
+        20. clé 4 × gemini-3.1-flash-lite        ✅
+        21. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        22. clé 4 × gemini-3.6-flash             🚫 quota
+        23. clé 5 × gemini-3.5-flash-lite        ✅
+        24. clé 5 × gemini-3.5-flash-lite        ✅
+        25. clé 1 × gemini-embedding-001         🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 5 × gemini-embedding-001         🚫 quota
+        30. clé 5 × gemini-3.5-flash-lite        ✅
+        31. clé 5 × gemini-3.5-flash-lite        ✅
+        32. clé 5 × gemini-3.5-flash-lite        ✅
+        33. clé 5 × gemini-3.5-flash-lite        ✅
+        34. clé 5 × gemini-3.5-flash-lite        ✅
+        35. clé 5 × gemini-3.5-flash-lite        ✅
+        36. clé 5 × gemini-3.5-flash-lite        ✅
+        37. clé 5 × gemini-3.5-flash-lite        ✅
+        38. clé 5 × gemini-3.5-flash-lite        ✅
+        39. clé 5 × gemini-3.5-flash-lite        ✅
+        40. clé 5 × gemini-3.5-flash-lite        ✅
+        … et 7 autres
+     jamais essayé ce cycle : clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.1-flash-lite · clé 5 × gemini-3.6-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 3/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 794
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 49,963 entrée · 2,077 sortie
+     ✅ aucun appel payant
