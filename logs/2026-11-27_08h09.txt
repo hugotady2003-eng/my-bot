@@ -1,0 +1,191 @@
+
+[08:05] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Chiefs, Cowboys, #MOSCHINOxTleFirstone, Josh Allen, Butker
+  🔎 « Chiefs » : 1 article(s) frais, le plus récent il y a 4.3 h (DAZN)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  ⏭️  « Chiefs » écarté : trop secondaire (3/10)
+  🌍 « Cowboys » : aucune reprise en français, source internationale retenue
+  🔎 « Cowboys » : 1 article(s) frais, le plus récent il y a 2.2 h (Google Actualités)
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 4 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 5 → couple suivant
+  ⏭️  « Cowboys » écarté : trop secondaire (2/10)
+  🔎 « Josh Allen » : 1 article(s) frais, le plus récent il y a 9.9 h (Lente Desportiva)
+  ⏭️  « Josh Allen » écarté : Analyse sportive sans fait nouveau récent.
+  🌍 « Butker » : aucune reprise en français, source internationale retenue
+  🔎 « Butker » : 1 article(s) frais, le plus récent il y a 2.9 h (NFL.com)
+  ⏭️  « Butker » écarté : trop secondaire (1/10)
+  💰 2 sujets chauds analysés en UN seul appel (au lieu de 2)
+  🕐 8h (Paris) — rythme journée (39-81 min · 0 publié(s), 16 restant(s) sur 16.0 h) : 39-81 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 11/12 articles lus en 2.2s (32 déjà en cache)
+  📄 8/44 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · Sciences et Avenir · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 44 articles → 44 événement(s)
+  ⏱️ gemini-3.1-flash-lite : 15 requêtes/min atteintes → pause 20 s
+  ⚪ Écarté (-1, pénalisé par « \b(pourquoi ») : Toute l’info en 2 minutes : Violences au Vélodrome, 
+  🚨 Sujet chaud (breaking, 1 médias) : Présidentielle 2027 : "Jusqu’à preuve du contraire
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 56.5/100 = gravité 5/10 → 22 + frais 0.2h +16 + primeur absolue +8 + portée internationale +10
+  🕒 Âge de l'article : 0.2h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:1
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  ❌ Publication sujet chaud échouée : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (-3, pénalisé par « \b(?:fait divers ») : Donald Trump dit souhaiter que Vladimir Poutine "met
+  🚨 Sujet chaud (breaking, 1 médias) : Emmanuel Macron qualifie la viande brésilienne de 
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 87.5/100 = gravité 7/10 → 32 + frais 0.1h +16 + thème porteur +10 + exploit français +4 + primeur absolue +8 + portée mondiale +18
+  🕒 Âge de l'article : 0.1h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (196 → 145 car.)
+  🖼️🤝 Image récupérée chez un média jumeau (Sud Ouest) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Marine Le Pen passe un savon aux élus RN, David Lisn
+  🕒 Sujet chaud mais article ancien (8h) → pas de breaking sur du réchauffé → suivant
+  ⚽ API football-data : 10 match(s) sur 48h, dont France : 0
+  → 44 articles à analyser...
+  ♻️ 7/10 [ai] (déjà analysé, cache) : Le virage au forceps des alliés de l’OTAN vers des
+  ♻️ 6/10 [world] (déjà analysé, cache) : Riner et l’Ukraine : il faut éviter toute «naïveté
+  ♻️ 7/10 [world] (déjà analysé, cache) : Emmanuel Macron qualifie la viande brésilienne de 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Donald Trump dit souhaiter que Vladimir Poutine "m
+  ♻️ 7/10 [world] (déjà analysé, cache) : Le Brésil déplore l’affirmation d’Emmanuel Macron 
+  ♻️ 6/10 [markets] (déjà analysé, cache) : S&P maintiendra-t-elle le statu quo sur la note de
+  ♻️ 7/10 [space] (déjà analysé, cache) : Un astronaute pakistanais rejoint la station chino
+  ♻️ 7/10 [gta6] (déjà analysé, cache) : Comment débloquer les ouragans dans GTA 6
+  ♻️ 7/10 [gaming] (déjà analysé, cache) : FC 27 ressuscite un commentateur de foot décédé gr
+  ♻️ 7/10 [space] (déjà analysé, cache) : SpaceX est autorisée à déployer jusqu’à un million
+  ♻️ 8/10 [gta6] (déjà analysé, cache) : GTA 6 : les options graphiques cachées par Rocksta
+  ♻️ 8/10 [world] (déjà analysé, cache) : US too focused on Middle East and not pushing Russ
+  ♻️ 7/10 [world] (déjà analysé, cache) : Major Thanksgiving storm brings flooding, flight d
+  ♻️ 9/10 [world] (déjà analysé, cache) : Two Italians killed in Kuwait drone attack; Trump 
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Binance says customer withdrawals are fully restor
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Ethereum's much-awaited Glamsterdam upgrade cleare
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : JPMorgan flags bitcoin ‘capitulation,’ Democrats p
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Nvidia hits pause on chip shipments to Southeast A
+  ♻️ 6/10 [tech] (déjà analysé, cache) : X finally gets parental controls after 20 years
+  ♻️ 7/10 [tech] (déjà analysé, cache) : South Korea proceeds with case over allegedly misl
+  🎯 Pré-classement : 1 articles écartés, les 20 plus prometteurs partent en analyse
+  🧠 Batch analyse de 20 articles...
+  📉 1/10: Plus belle la vie en avance : résumé de l’épisode 725 d
+  📉 3/10: Test : Queen's Domain est une véritable leçon de level 
+  📉 5/10: Cloudflare révèle des pics de trafic exceptionnels liés
+  📉 2/10: Baisse du pouvoir d’achat, canicules à répétition : que
+  ✅ 7/10 [gaming] large: Microsoft fait la pub des portages pirates de GT
+  ✅ 8/10 [world] large: Violente tempête aux États-Unis : des centaines 
+  📉 3/10: Toute l’info en 2 minutes : Violences au Vélodrome, Mac
+  📉 3/10: Marine Le Pen passe un savon aux élus RN, David Lisnard
+  📉 4/10: Élever des porcs coûte de plus en plus cher pour les él
+  📉 2/10: Carole Delga l’affirme avant le débat d’orientation bud
+  🌍 7/10 sans portée internationale : French, Bulgarian presidents slam Marseille violen
+  📉 1/10: Marchés et lumières de Noël, expo-photo, art, vin et ga
+  ✅ 6/10 [world] large: Des Français tirés au sort vont choisir les prio
+  📉 4/10: Sovereign wealth funds are acting more like private equ
+  📉 5/10: A New Breed of Chip Runs AI Models Using Waves of Light
+  📉 5/10: Après la grosse panne de 24 heures, Microsoft veut réta
+  📉 5/10: Une nouvelle étape vers des data centers dans l’espace
+  📉 2/10: Cyclisme. Cet ancien champion de France cadet qui stopp
+  📉 2/10: Souris et rats : cette feuille de cuisine insoupçonnée 
+  📉 2/10: "Vous vous foutez de ma gueule ?" : en pleine PMA, Mari
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 3 média(s) · 0.1h — Emmanuel Macron qualifie la viande brésilien
+     10/10 · 3 média(s) · 0.3h — Le Brésil déplore l’affirmation d’Emmanuel M
+     9/10 · 1 média(s) · 0.2h — Violente tempête aux États-Unis : des centai
+     8/10 · 2 média(s) · 0.4h — Riner et l’Ukraine : il faut éviter toute «n
+     8/10 · 1 média(s) · 0.2h — Microsoft fait la pub des portages pirates d
+  ✂️ Éphéméride resserré (186 → 136 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  ✂️ Tweet resserré localement (196 → 145 car.)
+  🖼️🤝 Image récupérée chez un média jumeau (Sud Ouest) — même sujet
+  👁️ Quota de vision presque épuisé → réservé aux sujets sensibles
+  📺 BFMTV illustre en plateau → photo d'un autre média retenue
+  ✨ Logo Pulse animé
+  🎵 Ambiance sonore : sobre:0
+  🎬 Carte animée générée (7.0s, 16:9 1920×1080)
+  🕒 Âge de l'article à la publication : 0.1h (frais ✅)
+  📤 Upload vidéo sur X...
+  ✅ Vidéo uploadée
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Emmanuel Macron qualifie la viande brésilienne de "dopé
+
+  ── Bilan du cycle (223 s) ──
+     écartés : 3 sujet banal · 1 sans portée internationale
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-2.5-flash-lite        ⛔ inexistant
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 3 × gemini-3-flash               ⛔ inexistant
+        16. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        17. clé 4 × gemini-3.1-flash-lite        ✅
+        18. clé 4 × gemini-3.1-flash-lite        🚫 quota
+        19. clé 4 × gemini-3.6-flash             🚫 quota
+        20. clé 5 × gemini-3.5-flash-lite        🚫 quota
+        21. clé 5 × gemini-3.1-flash-lite        ✅
+        22. clé 5 × gemini-3.1-flash-lite        ✅
+        23. clé 5 × gemini-3.1-flash-lite        ✅
+        24. clé 5 × gemini-3.1-flash-lite        ✅
+        25. clé 1 × gemini-embedding-001         🚫 quota
+        26. clé 2 × gemini-embedding-001         🚫 quota
+        27. clé 3 × gemini-embedding-001         🚫 quota
+        28. clé 4 × gemini-embedding-001         🚫 quota
+        29. clé 5 × gemini-embedding-001         🚫 quota
+        30. clé 5 × gemini-3.1-flash-lite        ✅
+        31. clé 5 × gemini-3.1-flash-lite        ✅
+        32. clé 5 × gemini-3.1-flash-lite        ✅
+        33. clé 5 × gemini-3.1-flash-lite        ✅
+        34. clé 5 × gemini-3.1-flash-lite        ✅
+        35. clé 5 × gemini-3.1-flash-lite        ✅
+        36. clé 5 × gemini-3.1-flash-lite        ✅
+        37. clé 5 × gemini-3.1-flash-lite        ✅
+        38. clé 5 × gemini-3.1-flash-lite        ✅
+        39. clé 5 × gemini-3.1-flash-lite        ✅
+        40. clé 5 × gemini-3.1-flash-lite        ✅
+        … et 6 autres
+     jamais essayé ce cycle : clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 5 × gemini-2.5-flash-lite · clé 5 × gemini-3.6-flash · clé 5 × gemini-3-flash
+     clés Gemini : 5/5 disponible(s)
+     texte : 2/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 5 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 785
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 50,123 entrée · 2,214 sortie
+     ✅ aucun appel payant
