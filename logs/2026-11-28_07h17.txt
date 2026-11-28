@@ -1,0 +1,147 @@
+
+[07:15] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : #GMMTVStarlympics2026, Lakers, Luka, Spurs, Mark Pope
+  🌍 « GMMTVStarlympics2026 » : aucune reprise en français, source internationale retenue
+  🔎 « Lakers » : 1 article(s) frais, le plus récent il y a 0.9 h (BeBasket)
+  ⏭️  « Lakers » écarté : trop secondaire (4/10)
+  🔎 « Luka » : 1 article(s) frais, le plus récent il y a 13.1 h (Basket USA)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  ⏭️  « Luka » écarté : Simple article d'analyse sportive sans événement majeur.
+  🌍 « Spurs » : aucune reprise en français, source internationale retenue
+  🔎 « Spurs » : 1 article(s) frais, le plus récent il y a 3.2 h (NBA.com)
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  ⚠️ gemini-3.6-flash (clé 2) : Expecting property name enclosed in double quotes: line 1 co → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Spurs » écarté : Match futur sans enjeu marquant en France
+  🌍 « Mark Pope » : aucune reprise en français, source internationale retenue
+  🔎 « Mark Pope » : 1 article(s) frais, le plus récent il y a 4.8 h (UKAthletics)
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  ⏭️  « Mark Pope » écarté : Conférence de sport universitaire américain sans intérêt fra
+  🌍 « ã¹ããªã¯ » : aucune reprise en français, source internationale retenue
+  🕐 7h (Paris) — rythme journée (41-86 min · 0 publié(s), 16 restant(s) sur 17.0 h) : 41-86 min
+  ⚠️ fetch_article_text: HTTP Error 403: Forbidden
+  📖 4/5 articles lus en 0.8s (17 déjà en cache)
+  📄 4/22 article(s) sans corps lisible → recoupement sur titre et résumé seuls : CoinDesk · Libération · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 4 → couple suivant
+  🧩 22 articles → 22 événement(s)
+  🚨 Sujet chaud (breaking, 1 médias) : Guerre en Ukraine : Kiev assume l’extension du con
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 81.5/100 = gravité 9/10 → 40 + frais 1.3h +8 + thème porteur +10 + primeur +5 + portée mondiale +18
+  🕒 Âge de l'article : 1.3h (frais ✅)
+  🔎 1 défaut(s) détecté(s) → une seule régénération
+     • LIGNE TROP LONGUE
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  ⚠️ gemini-2.5-flash-image indisponible (quota image épuisé)
+  ⚠️ gemini-3.1-flash-image indisponible (quota image épuisé)
+  🗓️ Aucun modèle d'image disponible → génération suspendue jusqu'à demain
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🖼️🤝 Image récupérée chez un média jumeau (La Dépêche) — même sujet
+  ❌ Breaking échoué : cannot access local variable '_site_seul' where it is not associated with a value
+  ⚽ API football-data : 40 match(s) sur 48h, dont France : 0
+  → 22 articles à analyser...
+  ♻️ 9/10 [world] (déjà analysé, cache) : Guerre en Ukraine : Kiev assume l’extension du con
+  ♻️ 9/10 [markets] (déjà analysé, cache) : L’agence S&P menace de dégrader encore la note de 
+  ♻️ 7/10 [world] (déjà analysé, cache) : Moscou froisse Kim Jong-un : l'alliance militaire 
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Un calcul "technique" qui illustre un "décrochage"
+  ♻️ 7/10 [markets] (déjà analysé, cache) : Trump demands probe into 'record setting error' af
+  ♻️ 6/10 [markets] (déjà analysé, cache) : The S&P 500 is in a correction. Bear markets and r
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Bitcoin 'death cross' is coming. Here's what happe
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin on course to end seven-week losing streak 
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Franklin Templeton makes room for HYPE in crypto i
+  ♻️ 7/10 [crypto] (déjà analysé, cache) : Bitcoin whales pile into BTC despite shrinking pro
+  ♻️ 6/10 [ai] (déjà analysé, cache) : OpenAI Turns the Tables on Apple With Its Own Trad
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : 4 Scary Bitcoin Charts That Suggest This Bear Mark
+  ♻️ 6/10 [crypto] (déjà analysé, cache) : Venezuela’s sanctions are stablecoins’ proof of co
+  ♻️ 8/10 [ai] (déjà analysé, cache) : Introducing Gemini 4 Neon
+  ♻️ 7/10 [tech] (déjà analysé, cache) : Nvidia hits pause on chip shipments to Southeast A
+  ♻️ 6/10 [tech] (déjà analysé, cache) : X finally gets parental controls after 20 years
+  ♻️ 7/10 [business] (déjà analysé, cache) : Intel faced a choice: Give Trump 10% or face the c
+  🧠 Batch analyse de 5 articles...
+  📉 3/10: Ecrits antisémites : est-il vrai que Jordan Bardella a 
+  📉 2/10: Vigilance grand froid: les travailleurs s'adaptent face
+  📉 2/10: "Lire, c'est un acte de résistance": Paul-Denis Mbenga 
+  📉 3/10: "Plus d'un prix sur dix n'est pas avantageux au kilo", 
+  ✅ 8/10 [world] mondiale: Guerre en Ukraine : l'armée ukrainienne affirme 
+  🏁 Classement final (score · médias · âge) :
+     10/10 · 2 média(s) · 0.4h — Guerre en Ukraine : l'armée ukrainienne affi
+     10/10 · 2 média(s) · 1.3h — Guerre en Ukraine : Kiev assume l’extension 
+     10/10 · 2 média(s) · 9.0h — L’agence S&P menace de dégrader encore la no
+     8/10 · 1 média(s) · 10.9h — Bitcoin whales pile into BTC despite shrinki
+     9/10 · 2 média(s) · 12.8h — Un calcul "technique" qui illustre un "décro
+  ✂️ Éphéméride resserré (195 → 183 car.)
+  ⚠️ Histoire échouée : 'histoire'
+  → 1 sélectionné(s) [world]
+  👁️ Image écartée : Image sans lien direct
+  🖼️ 8 image(s) trouvée(s) mais aucune n'a pu être téléchargée
+  🖼️ miniature RSS trop petite, écartée
+  🖼️ Aucune vraie photo exploitable pour cet article
+  🕒 Âge de l'article à la publication : 0.4h (frais ✅)
+  ❌ Post X échoué : 402 Payment Required
+credits depleted
+  📵 Meta ignoré (réservé aux rendez-vous : decryptage, recap, saviez)
+  ⏸️ Instagram en pause (anti-blocage : min 90 min entre posts)
+  ⚠️ Aucune plateforme n'a publié — sujet NON consommé, réessai au prochain run : Guerre en Ukraine : l'armée ukrainienne affirme avoir u
+
+  ── Bilan du cycle (115 s) ──
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        ✅
+         2. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         3. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         4. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         5. clé 1 × gemini-3.6-flash             🚫 quota
+         6. clé 1 × gemini-3-flash               ⛔ inexistant
+         7. clé 2 × gemini-3.5-flash-lite        ✅
+         8. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         9. clé 2 × gemini-3.1-flash-lite        🚫 quota
+        10. clé 2 × gemini-3.6-flash             ⚠️ Expecting property nam
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        13. clé 3 × gemini-3.6-flash             🚫 quota
+        14. clé 4 × gemini-3.5-flash-lite        ✅
+        15. clé 2 × gemini-3.6-flash             🚫 quota
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 1 × gemini-embedding-001         🚫 quota
+        18. clé 2 × gemini-embedding-001         🚫 quota
+        19. clé 3 × gemini-embedding-001         🚫 quota
+        20. clé 4 × gemini-embedding-001         🚫 quota
+        21. clé 5 × gemini-embedding-001         🚫 quota
+        22. clé 4 × gemini-3.5-flash-lite        🚫 quota
+        23. clé 4 × gemini-3.1-flash-lite        ✅
+        24. clé 4 × gemini-3.1-flash-lite        ✅
+        25. clé 4 × gemini-3.1-flash-lite        ✅
+        26. clé 4 × gemini-3.1-flash-lite        ✅
+        27. clé 4 × gemini-3.1-flash-lite        ✅
+        28. clé 4 × gemini-3.1-flash-lite        ✅
+        29. clé 4 × gemini-3.1-flash-lite        ✅
+        30. clé 4 × gemini-3.1-flash-lite        ✅
+        31. clé 4 × gemini-3.1-flash-lite        ✅
+        32. clé 4 × gemini-3.1-flash-lite        ✅
+        33. clé 4 × gemini-3.1-flash-lite        ✅
+        34. clé 4 × gemini-3.1-flash-lite        ✅
+        35. clé 4 × gemini-3.1-flash-lite        ✅
+        36. clé 4 × gemini-3.1-flash-lite        ✅
+     jamais essayé ce cycle : clé 2 × gemini-3-flash · clé 2 × gemini-2.5-flash-lite · clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3-flash · clé 4 × gemini-3.6-flash · clé 4 × gemini-2.5-flash-lite · clé 5 × gemini-3-flash (+4)
+     clés Gemini : 5/5 disponible(s)
+     texte : 5/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.1-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 797
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 28,893 entrée · 1,128 sortie
+     ✅ aucun appel payant
