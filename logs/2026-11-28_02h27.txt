@@ -1,0 +1,95 @@
+
+[02:25] 🔍 Check Pulse — version 5.1.0
+  🔧 Moteur : analyse=gemini · rédaction=gemini · spéciaux=gemini (clé Gemini détectée ✅)
+  → Scan RSS...
+  📈 50 tendances lues sur trends24.in : Bronson Reed, Bo Nix, Chelsea, #bolu, Broncos
+  🔎 « Bronson Reed » : 1 article(s) frais, le plus récent il y a 0.8 h (Mezha.net)
+  📋 Modèles de vecteurs du compte : gemini-embedding-001
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 1 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-2.5-flash-lite n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.6-flash épuisé sur la clé 1 → couple suivant
+  ⛔ gemini-3-flash n'existe pas sur ce compte — écarté pour la suite du run
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 2 → couple suivant
+  🚫 gemini-3.5-flash-lite épuisé sur la clé 3 → couple suivant
+  ⏭️  « Bronson Reed » écarté : Il s'agit d'une fausse information, rumeur infondée.
+  🔎 « Chelsea » : 1 article(s) frais, le plus récent il y a 3.5 h (Eurosport)
+  ⏱️ texte : API indisponible (503) → nouvelle tentative dans 8 s
+  🚫 gemini-3.1-flash-lite épuisé sur la clé 3 → couple suivant
+  🚫 gemini-3.6-flash épuisé sur la clé 3 → couple suivant
+  ⏭️  « Chelsea » écarté : trop secondaire (3/10)
+  🌍 « bolu » : aucune reprise en français, source internationale retenue
+  🔎 « bolu » : 1 article(s) frais, le plus récent il y a 1.7 h (Anadolu Ajansı)
+  ⏭️  « bolu » écarté : trop secondaire (1/10)
+  🔎 « Broncos » : 1 article(s) frais, le plus récent il y a 13.3 h (DAZN)
+  ⏭️  « Broncos » écarté : Simple avant-match sportif sans actualité marquante
+  🔎 « Alonso » : 1 article(s) frais, le plus récent il y a 8.4 h (AOC media)
+  ⏭️  « Alonso » écarté : Interview culturelle sans actualité politique majeure en Fra
+  🔎 « Steelers » : 1 article(s) frais, le plus récent il y a 7.5 h (L'Équipe)
+  ⏭️  « Steelers » écarté : trop secondaire (3/10)
+  📈 1 sujet(s) en tendance trouvé(s) dans l'actualité du jour : #BlackFriday
+  📖 40 articles, tous en cache
+  📄 7/40 article(s) sans corps lisible → recoupement sur titre et résumé seuls : Ouest-France · CoinDesk · Libération · Blockworks
+  🛑 Aucun couple clé+modèle disponible pour les vecteurs (0 restant(s))
+  🧩 40 articles → 40 événement(s)
+  ⏱️ gemini-3.5-flash-lite : 15 requêtes/min atteintes → pause 33 s
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : Dette : S&P dégrade la perspective française de stab
+  ⚪ Écarté (0, aucun signal d'actualité majeure) : « Fuites » vers le RN : Ambroise de Rancourt, le res
+  ⚪ Écarté (-4, pénalisé par « \b(pourquoi ») : Sony’s 1000XM4C headphones are a Black Friday bargai
+  🚨 Sujet chaud (breaking, 1 médias) : L'hommage national aux victimes de l'attentat raci
+  💾 Analyse réutilisée (déjà vue à un run précédent, 0 coût)
+  🧮 Score 89.0/100 = gravité 8/10 → 36 + frais 3.7h +4 + thème porteur +10 + ⚡ attentat → plancher 89
+  🌙 Sujet fort (score 89) mais nuit → il attendra le matin
+  ⚽ API football-data : 40 match(s) sur 48h, dont France : 0
+  🌙 Nuit : actualités normales suspendues (seules les alertes vitales passent)
+  → 40 articles à analyser...
+  → Rien à publier.
+
+  ── Bilan du cycle (90 s) ──
+     écartés : 3 sujet banal
+     plafonds : X 0/20 · site 0/60
+     ordre d'essai des couples clé+modèle :
+         1. clé 1 × gemini-3.5-flash-lite        🚫 quota
+         2. clé 1 × gemini-3.1-flash-lite        🚫 quota
+         3. clé 1 × gemini-2.5-flash-lite        ⛔ inexistant
+         4. clé 1 × gemini-3.6-flash             🚫 quota
+         5. clé 1 × gemini-3-flash               ⛔ inexistant
+         6. clé 2 × gemini-3.5-flash-lite        🚫 quota
+         7. clé 2 × gemini-3.1-flash-lite        🚫 quota
+         8. clé 2 × gemini-2.5-flash-lite        ⛔ inexistant
+         9. clé 2 × gemini-3.6-flash             🚫 quota
+        10. clé 2 × gemini-3-flash               ⛔ inexistant
+        11. clé 3 × gemini-3.5-flash-lite        🚫 quota
+        12. clé 3 × gemini-3.1-flash-lite        ✅
+        13. clé 3 × gemini-3.1-flash-lite        🚫 quota
+        14. clé 3 × gemini-3.6-flash             🚫 quota
+        15. clé 4 × gemini-3.5-flash-lite        ✅
+        16. clé 4 × gemini-3.5-flash-lite        ✅
+        17. clé 4 × gemini-3.5-flash-lite        ✅
+        18. clé 4 × gemini-3.5-flash-lite        ✅
+        19. clé 4 × gemini-3.5-flash-lite        ✅
+        20. clé 1 × gemini-embedding-001         🚫 quota
+        21. clé 2 × gemini-embedding-001         🚫 quota
+        22. clé 3 × gemini-embedding-001         🚫 quota
+        23. clé 4 × gemini-embedding-001         🚫 quota
+        24. clé 5 × gemini-embedding-001         🚫 quota
+        25. clé 4 × gemini-3.5-flash-lite        ✅
+        26. clé 4 × gemini-3.5-flash-lite        ✅
+        27. clé 4 × gemini-3.5-flash-lite        ✅
+        28. clé 4 × gemini-3.5-flash-lite        ✅
+        29. clé 4 × gemini-3.5-flash-lite        ✅
+        30. clé 4 × gemini-3.5-flash-lite        ✅
+        31. clé 4 × gemini-3.5-flash-lite        ✅
+        32. clé 4 × gemini-3.5-flash-lite        ✅
+        33. clé 4 × gemini-3.5-flash-lite        ✅
+     jamais essayé ce cycle : clé 3 × gemini-3-flash · clé 3 × gemini-2.5-flash-lite · clé 4 × gemini-3.6-flash · clé 4 × gemini-3-flash · clé 4 × gemini-2.5-flash-lite · clé 4 × gemini-3.1-flash-lite · clé 5 × gemini-3.5-flash-lite · clé 5 × gemini-3.6-flash (+3)
+     clés Gemini : 5/5 disponible(s)
+     texte : 6/15 couple(s) clé+modèle disponible(s)
+        prochain : clé 4 × gemini-3.5-flash-lite
+     vecteurs : 0/5 couple(s) clé+modèle disponible(s)
+     vecteurs restants : gemini 001 800
+     modèles écartés (inexistants) : gemini-2.5-flash-lite, gemini-3-flash
+     jetons Gemini : 4,019 entrée · 325 sortie
+     ✅ aucun appel payant
